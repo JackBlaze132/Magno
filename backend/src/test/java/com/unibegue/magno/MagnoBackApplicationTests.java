@@ -1,0 +1,13 @@
+package com.unibegue.magno;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class MagnoBackApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
