@@ -22,4 +22,8 @@ public class AcademicProgram {
     @ManyToMany(mappedBy = "academicPrograms", fetch = FetchType.LAZY)
     private List<StudentProfile> studentProfiles;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_of_academic_program", nullable = false)
+    TypeOfAcademicProgram typeOfAcademicProgram;
+
 }
