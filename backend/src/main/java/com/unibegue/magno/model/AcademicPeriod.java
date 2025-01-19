@@ -14,7 +14,7 @@ public class AcademicPeriod {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @Column(name = "start_date", nullable = false)
@@ -32,7 +32,7 @@ public class AcademicPeriod {
     @OneToMany(mappedBy = "academicPeriod", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FunctionaryProfile> functionaryProfiles;
 
-    @OneToMany(mappedBy = "academicPeriod", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "academicPeriod", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<ResearchSeedbedProfile> researchSeedbedsProfiles;
 

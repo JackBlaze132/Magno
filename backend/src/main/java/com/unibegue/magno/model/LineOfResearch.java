@@ -1,5 +1,7 @@
 package com.unibegue.magno.model;
 
+// Research lines that will be associated with a research group or seedbed, information extracted
+// from the website: https://minciencias.gov.co/la-ciencia-en-cifras/grupos# on 01/18/25 (43 in total).
 public enum LineOfResearch {
     AGRICULTURA_SILVICULTURA_Y_PESCA, ARTE, BIOTECNOLOGIA_AGRICOLA,
     BIOTECNOLOGIA_AMBIENTAL, BIOTECNOLOGIA_EN_SALUD, BIOTECNOLIGIA_INDUSTRIAL,

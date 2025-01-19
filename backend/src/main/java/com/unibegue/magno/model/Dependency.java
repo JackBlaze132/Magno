@@ -13,10 +13,11 @@ public class Dependency {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    //If some Dependency is deleted, the profiles associated won't be deleted
     @JsonIgnore
-    @OneToMany(mappedBy = "dependency", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "dependency", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private List<FunctionaryProfile> functionaryProfiles;
 }
