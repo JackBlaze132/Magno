@@ -21,7 +21,7 @@ public class ResearchSeedbedProfile {
     private FunctionaryProfile coordinator;
 
     @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "tutor_id", nullable = false)
+    @JoinColumn(name = "tutor_id", nullable = true)
     private FunctionaryProfile tutor;
 
     @ManyToOne
@@ -35,7 +35,7 @@ public class ResearchSeedbedProfile {
     @ManyToMany
     @JoinTable(
             name = "research_seedbeds_profiles_functionary_profiles",
-            joinColumns = @JoinColumn(name = "research_seedbed_id"),
+            joinColumns = @JoinColumn(name = "research_seedbed_profile_id"),
             inverseJoinColumns = @JoinColumn(name = "teacher_profile_id")
     )
     private List<FunctionaryProfile> functionaryProfiles;
@@ -43,5 +43,9 @@ public class ResearchSeedbedProfile {
     @OneToMany(mappedBy = "researchSeedbedProfile", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ResearchSeedbedStudentProfile> studentProfiles;
 
+    @OneToMany(mappedBy = "researchSeedbedProfile", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ExternalUserProfile> externalUserProfiles;
 
+    @Column(name = "was_active", nullable = false)
+    private boolean wasActive;
 }

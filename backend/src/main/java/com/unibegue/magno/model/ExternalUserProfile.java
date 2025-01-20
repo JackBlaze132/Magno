@@ -18,6 +18,10 @@ public class ExternalUserProfile {
     @JoinColumn(name = "academic_period_id", nullable = false)
     private AcademicPeriod academicPeriod;
 
+    @ManyToOne
+    @JoinColumn(name = "research_seedbed_profile_id", nullable = false)
+    private ResearchSeedbedProfile researchSeedbedProfile;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "type_of_external_user", nullable = false)
     private TypeOfExternalUser typeOfExternalUser;

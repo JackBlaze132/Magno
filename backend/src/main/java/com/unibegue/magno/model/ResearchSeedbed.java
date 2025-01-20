@@ -28,9 +28,6 @@ public class ResearchSeedbed {
     @Column(name = "creation_date", nullable = false)
     LocalDate creationDate;
 
-    @Column(name = "is_active", nullable = false)
-    private boolean isActive;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "line_of_research", nullable = false)
     LineOfResearch lineOfResearch;
