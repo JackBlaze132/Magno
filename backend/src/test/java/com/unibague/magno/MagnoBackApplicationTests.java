@@ -1,4 +1,4 @@
-package com.unibegue.magno;
+package com.unibague.magno;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
