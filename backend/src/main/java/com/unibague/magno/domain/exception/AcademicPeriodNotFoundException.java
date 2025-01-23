@@ -4,4 +4,8 @@ public class AcademicPeriodNotFoundException extends RuntimeException {
     public AcademicPeriodNotFoundException() {
         super("Academic period not found");
     }
+
+    public AcademicPeriodNotFoundException(String message) {
+        super(message);
+    }
 }
