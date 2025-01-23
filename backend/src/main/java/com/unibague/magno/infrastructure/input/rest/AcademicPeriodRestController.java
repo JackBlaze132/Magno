@@ -15,22 +15,27 @@ public class AcademicPeriodRestController {
 
     private final AcademicPeriodHandler academicPeriodHandler;
 
-    @GetMapping(path = "/academic-periods/{id}")
+    @GetMapping(path = "/{id}", headers = "API-VERSION=1")
     public AcademicPeriodResponse getAcademicPeriodById(@PathVariable Long id) {
         return academicPeriodHandler.findById(id);
     }
 
-    @GetMapping(path = "/academic-periods")
+    @GetMapping(path = "/", headers = "API-VERSION=1")
     public List<AcademicPeriodResponse> getAllAcademicPeriods() {
         return academicPeriodHandler.findAll();
     }
 
-    @PostMapping(path = "/academic-periods")
+    @PostMapping(path = "/", headers = "API-VERSION=1")
     public AcademicPeriodResponse createAcademicPeriod(@RequestBody AcademicPeriodRequest academicPeriodRequest) {
         return academicPeriodHandler.save(academicPeriodRequest);
     }
 
-    @DeleteMapping(path = "/academic-periods/{id}")
+    @PutMapping(path = "/{id}", headers = "API-VERSION=1")
+    public AcademicPeriodResponse updateAcademicPeriod(@PathVariable Long id, @RequestBody AcademicPeriodRequest academicPeriodRequest) {
+        return academicPeriodHandler.updateById(id, academicPeriodRequest);
+    }
+
+    @DeleteMapping(path = "/{id}", headers = "API-VERSION=1")
     public void deleteAcademicPeriodById(@PathVariable Long id) {
         academicPeriodHandler.deleteById(id);
     }

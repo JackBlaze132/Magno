@@ -34,6 +34,12 @@ public class AcademicPeriodHandler implements IAcademicPeriodHandler{
     }
 
     @Override
+    public AcademicPeriodResponse updateById(Long id, AcademicPeriodRequest academicPeriod) {
+        return academicPeriodResponseMapper.toResponse(academicPeriodServicePort
+                .update(id, academicPeriodRequestMapper.toAcademicPeriod(academicPeriod)));
+    }
+
+    @Override
     public void deleteById(Long id) {
         academicPeriodServicePort.deleteById(id);
     }

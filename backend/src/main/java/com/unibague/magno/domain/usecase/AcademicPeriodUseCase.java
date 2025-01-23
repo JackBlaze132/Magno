@@ -27,6 +27,11 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
     }
 
     @Override
+    public AcademicPeriod update(Long id, AcademicPeriod academicPeriod) {
+        return academicPeriodPersistencePort.update(id, academicPeriod);
+    }
+
+    @Override
     public void deleteById(Long id) {
         academicPeriodPersistencePort.deleteById(id);
     }

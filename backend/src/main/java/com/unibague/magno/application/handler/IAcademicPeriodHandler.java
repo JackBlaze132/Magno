@@ -8,6 +8,7 @@ import java.util.List;
 public interface IAcademicPeriodHandler {
     AcademicPeriodResponse findById(Long id);
     AcademicPeriodResponse save(AcademicPeriodRequest academicPeriod);
+    AcademicPeriodResponse updateById(Long id, AcademicPeriodRequest academicPeriod);
     void deleteById(Long id);
     List<AcademicPeriodResponse> findAll();
 }
