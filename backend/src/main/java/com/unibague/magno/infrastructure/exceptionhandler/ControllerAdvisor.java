@@ -21,20 +21,20 @@ public class ControllerAdvisor {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(AcademicPeriodNotFoundException.class)
-    public ErrorResponse handleAcademicPeriodNotFoundException() {
+    public ErrorResponse handleAcademicPeriodNotFoundException(AcademicPeriodNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ACADEMIC_PERIOD_NOT_FOUND.getCode());
-        errorResponse.setMessage(ACADEMIC_PERIOD_NOT_FOUND.getMessage());
+        errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(RoleNotFoundException.class)
-    public ErrorResponse handleRoleNotFoundException() {
+    public ErrorResponse handleRoleNotFoundException(RoleNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.ROLE_NOT_FOUND.getCode());
-        errorResponse.setMessage(ExceptionResponse.ROLE_NOT_FOUND.getMessage());
+        errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
         return errorResponse;
     }

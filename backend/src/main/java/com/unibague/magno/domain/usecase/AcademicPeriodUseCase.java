@@ -18,7 +18,8 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
     @Override
     public AcademicPeriod findById(Long id) {
         return academicPeriodPersistencePort.findById(id)
-                .orElseThrow(AcademicPeriodNotFoundException::new);
+                .orElseThrow(() -> new AcademicPeriodNotFoundException(
+                        String.format("AcademicPeriod with ID %d not found", id)));
     }
 
     @Override
@@ -28,11 +29,19 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
 
     @Override
     public AcademicPeriod update(Long id, AcademicPeriod academicPeriod) {
+        if(academicPeriodPersistencePort.findById(id).isEmpty()) {
+            throw new AcademicPeriodNotFoundException(
+                    String.format("AcademicPeriod with ID %d could not be updated because it does not exist", id));
+        }
         return academicPeriodPersistencePort.update(id, academicPeriod);
     }
 
     @Override
     public void deleteById(Long id) {
+        if(academicPeriodPersistencePort.findById(id).isEmpty()) {
+            throw new AcademicPeriodNotFoundException(
+                    String.format("AcademicPeriod with ID %d could not be deleted because it does not exist", id));
+        }
         academicPeriodPersistencePort.deleteById(id);
     }
 

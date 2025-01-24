@@ -18,7 +18,8 @@ public class RoleUseCase implements IRoleServicePort {
     @Override
     public Role findById(Long id) {
         return rolePersistencePort.findById(id)
-                .orElseThrow(RoleNotFoundException::new);
+                .orElseThrow(() -> new RoleNotFoundException(
+                        String.format("Role with ID %d not found", id)));
     }
 
     @Override
@@ -28,11 +29,19 @@ public class RoleUseCase implements IRoleServicePort {
 
     @Override
     public Role update(Long id, Role role) {
+        if (rolePersistencePort.findById(id).isEmpty()) {
+            throw new RoleNotFoundException(
+                    String.format("Role with ID %d could not be updated because it does not exist", id));
+        }
         return rolePersistencePort.update(id, role);
     }
 
     @Override
     public void deleteById(Long id) {
+        if (rolePersistencePort.findById(id).isEmpty()) {
+            throw new RoleNotFoundException(
+                    String.format("Role with ID %d could not be deleted because it does not exist", id));
+        }
         rolePersistencePort.deleteById(id);
     }
 

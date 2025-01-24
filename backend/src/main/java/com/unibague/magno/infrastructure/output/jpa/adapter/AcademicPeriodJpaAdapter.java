@@ -25,33 +25,23 @@ public class AcademicPeriodJpaAdapter implements IAcademicPeriodPersistencePort 
 
     @Override
     public AcademicPeriod save(AcademicPeriod academicPeriod) {
-        AcademicPeriodEntity academicPeriodEntity = academicPeriodEntityMapper.toAcademicPeriodEntity(academicPeriod);
+        AcademicPeriodEntity academicPeriodEntity = academicPeriodEntityMapper
+                .toAcademicPeriodEntity(academicPeriod);
         AcademicPeriodEntity savedAcademicPeriodEntity = academicPeriodRepository.save(academicPeriodEntity);
         return academicPeriodEntityMapper.toAcademicPeriod(savedAcademicPeriodEntity);
     }
 
     @Override
     public AcademicPeriod update(Long id, AcademicPeriod academicPeriod) {
-        if(academicPeriodRepository.existsById(id)) {
-            AcademicPeriodEntity academicPeriodEntity = academicPeriodEntityMapper.toAcademicPeriodEntity(id, academicPeriod);
-            AcademicPeriodEntity updatedAcademicPeriodEntity = academicPeriodRepository.save(academicPeriodEntity);
-            return academicPeriodEntityMapper.toAcademicPeriod(updatedAcademicPeriodEntity);
-        }
-        else{
-            throw new AcademicPeriodNotFoundException(
-                    String.format("Academic period with ID %d could not be updated", academicPeriod.getId()));
-        }
+        AcademicPeriodEntity academicPeriodEntity = academicPeriodEntityMapper
+                .toAcademicPeriodEntity(id, academicPeriod);
+        AcademicPeriodEntity savedAcademicPeriodEntity = academicPeriodRepository.save(academicPeriodEntity);
+        return academicPeriodEntityMapper.toAcademicPeriod(savedAcademicPeriodEntity);
     }
 
     @Override
     public void deleteById(Long id) {
-        if(academicPeriodRepository.existsById(id)) {
-            academicPeriodRepository.deleteById(id);
-        }
-        else{
-            throw new AcademicPeriodNotFoundException(
-                    String.format("Academic period with ID %d could not be deleted", id));
-        }
+        academicPeriodRepository.deleteById(id);
     }
 
     @Override

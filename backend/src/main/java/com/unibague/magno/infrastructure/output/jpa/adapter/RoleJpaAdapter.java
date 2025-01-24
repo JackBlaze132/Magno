@@ -32,25 +32,14 @@ public class RoleJpaAdapter implements IRolePersistencePort {
 
     @Override
     public Role update(Long id, Role role) {
-        if(roleRepository.existsById(id)) {
-            RoleEntity roleEntity = roleEntityMapper.toRoleEntity(id, role);
-            RoleEntity updatedRoleEntity = roleRepository.save(roleEntity);
-            return roleEntityMapper.toRole(updatedRoleEntity);
-        }
-        else{
-            throw new RoleNotFoundException(
-                    String.format("Role with ID %d could not be updated", role.getId()));
-        }
+        RoleEntity roleEntity = roleEntityMapper.toRoleEntity(id, role);
+        RoleEntity updatedRoleEntity = roleRepository.save(roleEntity);
+        return roleEntityMapper.toRole(updatedRoleEntity);
     }
 
     @Override
     public void deleteById(Long id) {
-        if (roleRepository.existsById(id)) {
-            roleRepository.deleteById(id);
-        } else {
-            throw new RoleNotFoundException(
-                    String.format("Role with ID %d could not be deleted", id));
-        }
+        roleRepository.deleteById(id);
     }
 
     @Override
