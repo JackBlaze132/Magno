@@ -1,6 +1,7 @@
 package com.unibague.magno.infrastructure.exceptionhandler;
 
 import com.unibague.magno.domain.exception.AcademicPeriodNotFoundException;
+import com.unibague.magno.domain.exception.DependencyNotFoundException;
 import com.unibague.magno.domain.exception.RoleNotFoundException;
 import org.springframework.http.HttpStatus;
 import com.unibague.magno.domain.model.ErrorResponse;
@@ -34,6 +35,16 @@ public class ControllerAdvisor {
     public ErrorResponse handleRoleNotFoundException(RoleNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.ROLE_NOT_FOUND.getCode());
+        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(DependencyNotFoundException.class)
+    public ErrorResponse handleDependencyNotFoundException(DependencyNotFoundException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.DEPENDENCY_NOT_FOUND.getCode());
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
         return errorResponse;
