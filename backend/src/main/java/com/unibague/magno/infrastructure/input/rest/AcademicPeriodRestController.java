@@ -31,7 +31,7 @@ public class AcademicPeriodRestController {
     }
 
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
-    public AcademicPeriodResponse updateAcademicPeriod(@PathVariable Long id, @RequestBody AcademicPeriodRequest academicPeriodRequest) {
+    public AcademicPeriodResponse updateAcademicPeriodById(@PathVariable Long id, @RequestBody AcademicPeriodRequest academicPeriodRequest) {
         return academicPeriodHandler.updateById(id, academicPeriodRequest);
     }
 

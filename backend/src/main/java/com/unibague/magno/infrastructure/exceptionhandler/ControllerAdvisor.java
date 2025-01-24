@@ -1,6 +1,7 @@
 package com.unibague.magno.infrastructure.exceptionhandler;
 
 import com.unibague.magno.domain.exception.AcademicPeriodNotFoundException;
+import com.unibague.magno.domain.exception.RoleNotFoundException;
 import org.springframework.http.HttpStatus;
 import com.unibague.magno.domain.model.ErrorResponse;
 import org.springframework.validation.BindingResult;
@@ -28,6 +29,16 @@ public class ControllerAdvisor {
         return errorResponse;
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(RoleNotFoundException.class)
+    public ErrorResponse handleRoleNotFoundException() {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.ROLE_NOT_FOUND.getCode());
+        errorResponse.setMessage(ExceptionResponse.ROLE_NOT_FOUND.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        return errorResponse;
+    }
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ErrorResponse handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
@@ -40,7 +51,7 @@ public class ControllerAdvisor {
                 .toList();
 
         ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.GENERIC_ERROR.getCode()); // Código genérico
+        errorResponse.setCode(ExceptionResponse.GENERIC_ERROR.getCode());
         errorResponse.setMessage("Validation failed for one or more fields.");
         errorResponse.setDetails(errorDetails);
         errorResponse.setTimestamp(LocalDateTime.now());
