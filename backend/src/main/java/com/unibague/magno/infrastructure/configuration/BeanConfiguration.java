@@ -1,21 +1,27 @@
 package com.unibague.magno.infrastructure.configuration;
 
 import com.unibague.magno.domain.api.IAcademicPeriodServicePort;
+import com.unibague.magno.domain.api.IAcademicProgramServicePort;
 import com.unibague.magno.domain.api.IDependencyServicePort;
 import com.unibague.magno.domain.api.IRoleServicePort;
 import com.unibague.magno.domain.spi.IAcademicPeriodPersistencePort;
+import com.unibague.magno.domain.spi.IAcademicProgramPersistencePort;
 import com.unibague.magno.domain.spi.IDependencyPersistencePort;
 import com.unibague.magno.domain.spi.IRolePersistencePort;
 import com.unibague.magno.domain.usecase.AcademicPeriodUseCase;
+import com.unibague.magno.domain.usecase.AcademicProgramUseCase;
 import com.unibague.magno.domain.usecase.DependencyUseCase;
 import com.unibague.magno.domain.usecase.RoleUseCase;
 import com.unibague.magno.infrastructure.output.jpa.adapter.AcademicPeriodJpaAdapter;
+import com.unibague.magno.infrastructure.output.jpa.adapter.AcademicProgramJpaAdapter;
 import com.unibague.magno.infrastructure.output.jpa.adapter.DependencyJpaAdapter;
 import com.unibague.magno.infrastructure.output.jpa.adapter.RoleJpaAdapter;
 import com.unibague.magno.infrastructure.output.jpa.mapper.AcademicPeriodEntityMapper;
+import com.unibague.magno.infrastructure.output.jpa.mapper.AcademicProgramEntityMapper;
 import com.unibague.magno.infrastructure.output.jpa.mapper.DependencyEntityMapper;
 import com.unibague.magno.infrastructure.output.jpa.mapper.RoleEntityMapper;
 import com.unibague.magno.infrastructure.output.jpa.repository.IAcademicPeriodRepository;
+import com.unibague.magno.infrastructure.output.jpa.repository.IAcademicProgramRepository;
 import com.unibague.magno.infrastructure.output.jpa.repository.IDependencyRepository;
 import com.unibague.magno.infrastructure.output.jpa.repository.IRoleRepository;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +40,9 @@ public class BeanConfiguration {
 
     private final IDependencyRepository dependencyRepository;
     private final DependencyEntityMapper dependencyEntityMapper;
+
+    private final IAcademicProgramRepository academicProgramRepository;
+    private final AcademicProgramEntityMapper academicProgramEntityMapper;
 
     @Bean
     public IAcademicPeriodServicePort academicPeriodServicePort() {
@@ -63,5 +72,15 @@ public class BeanConfiguration {
     @Bean
     public IDependencyPersistencePort dependencyPersistencePort() {
         return new DependencyJpaAdapter(dependencyRepository, dependencyEntityMapper);
+    }
+
+    @Bean
+    public IAcademicProgramServicePort academicProgramServicePort() {
+        return new AcademicProgramUseCase(academicProgramPersistencePort());
+    }
+
+    @Bean
+    public IAcademicProgramPersistencePort academicProgramPersistencePort() {
+        return new AcademicProgramJpaAdapter(academicProgramRepository, academicProgramEntityMapper);
     }
 }
