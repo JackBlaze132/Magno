@@ -7,11 +7,13 @@ import com.unibague.magno.infrastructure.output.jpa.entity.RoleEntity;
 import com.unibague.magno.infrastructure.output.jpa.mapper.RoleEntityMapper;
 import com.unibague.magno.infrastructure.output.jpa.repository.IRoleRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Transactional
 public class RoleJpaAdapter implements IRolePersistencePort {
 
     private final IRoleRepository roleRepository;

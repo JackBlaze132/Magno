@@ -14,7 +14,6 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class RoleHandler implements IRoleHandler {
 
     private final IRoleServicePort roleServicePort;

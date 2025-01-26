@@ -6,11 +6,13 @@ import com.unibague.magno.infrastructure.output.jpa.entity.DependencyEntity;
 import com.unibague.magno.infrastructure.output.jpa.mapper.DependencyEntityMapper;
 import com.unibague.magno.infrastructure.output.jpa.repository.IDependencyRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Transactional
 public class DependencyJpaAdapter implements IDependencyPersistencePort {
 
     private final IDependencyRepository dependencyRepository;

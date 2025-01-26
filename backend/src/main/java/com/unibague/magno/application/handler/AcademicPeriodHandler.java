@@ -14,7 +14,6 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class AcademicPeriodHandler implements IAcademicPeriodHandler{
 
     private final IAcademicPeriodServicePort academicPeriodServicePort;

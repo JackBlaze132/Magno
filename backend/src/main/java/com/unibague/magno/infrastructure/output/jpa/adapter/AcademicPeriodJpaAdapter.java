@@ -7,11 +7,13 @@ import com.unibague.magno.infrastructure.output.jpa.entity.AcademicPeriodEntity;
 import com.unibague.magno.infrastructure.output.jpa.mapper.AcademicPeriodEntityMapper;
 import com.unibague.magno.infrastructure.output.jpa.repository.IAcademicPeriodRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Transactional
 public class AcademicPeriodJpaAdapter implements IAcademicPeriodPersistencePort {
 
     private final IAcademicPeriodRepository academicPeriodRepository;

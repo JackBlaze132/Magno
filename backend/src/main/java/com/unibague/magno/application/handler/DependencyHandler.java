@@ -14,7 +14,6 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class DependencyHandler implements IDependencyHandler{
 
     private final IDependencyServicePort dependencyServicePort;
