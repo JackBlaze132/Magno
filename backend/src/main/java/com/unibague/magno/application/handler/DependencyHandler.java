@@ -8,7 +8,6 @@ import com.unibague.magno.domain.api.IDependencyServicePort;
 import com.unibague.magno.domain.model.Dependency;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

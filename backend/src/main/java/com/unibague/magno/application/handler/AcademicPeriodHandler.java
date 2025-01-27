@@ -8,7 +8,6 @@ import com.unibague.magno.domain.api.IAcademicPeriodServicePort;
 import com.unibague.magno.domain.model.AcademicPeriod;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

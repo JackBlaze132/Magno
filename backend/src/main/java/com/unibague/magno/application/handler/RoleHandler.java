@@ -8,7 +8,6 @@ import com.unibague.magno.domain.api.IRoleServicePort;
 import com.unibague.magno.domain.model.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
