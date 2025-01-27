@@ -1,24 +1,28 @@
 package com.unibague.magno.domain.model;
 
+import java.util.Set;
+
 public class User {
 
     private Long id;
     private String fullName;
     private String identificationNumber;
     private String email;
-    private String user_code;
+    private String userCode;
     private boolean isExternalUser;
     Sex sex;
+    Set<Role> roles;
 
-    public User(Long id, String fullName, String identificationNumber, String email, String user_code,
-                boolean isExternalUser, Sex sex) {
+    public User(Long id, String fullName, String identificationNumber, String email,
+                String userCode, boolean isExternalUser, Sex sex, Set<Role> roles) {
         this.id = id;
         this.fullName = fullName;
         this.identificationNumber = identificationNumber;
         this.email = email;
-        this.user_code = user_code;
+        this.userCode = userCode;
         this.isExternalUser = isExternalUser;
         this.sex = sex;
+        this.roles = roles;
     }
 
     public User() {
@@ -56,12 +60,12 @@ public class User {
         this.email = email;
     }
 
-    public String getUser_code() {
-        return user_code;
+    public String getUserCode() {
+        return userCode;
     }
 
-    public void setUser_code(String user_code) {
-        this.user_code = user_code;
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
     }
 
     public boolean isExternalUser() {
@@ -78,5 +82,13 @@ public class User {
 
     public void setSex(Sex sex) {
         this.sex = sex;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
