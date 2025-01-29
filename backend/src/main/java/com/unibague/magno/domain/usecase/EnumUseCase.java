@@ -28,7 +28,7 @@ public class EnumUseCase implements IEnumServicePort {
                                 .replace(" ", "_");
                         return formattedName.equalsIgnoreCase(value);
                     } catch (Exception ex) {
-                        return e.name().equalsIgnoreCase(value);
+                        throw new IllegalArgumentException("El enum no tiene un método getFormattedName.");
                     }
                 });
     }
