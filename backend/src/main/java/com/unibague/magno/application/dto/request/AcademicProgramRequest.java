@@ -2,7 +2,7 @@ package com.unibague.magno.application.dto.request;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import com.unibague.magno.domain.model.AcademicProgramType;
+import com.unibague.magno.domain.model.enums.AcademicProgramType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;

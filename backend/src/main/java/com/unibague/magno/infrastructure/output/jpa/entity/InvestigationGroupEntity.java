@@ -1,6 +1,6 @@
 package com.unibague.magno.infrastructure.output.jpa.entity;
 
-import com.unibague.magno.domain.model.LineOfResearch;
+import com.unibague.magno.domain.model.enums.LineOfResearch;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

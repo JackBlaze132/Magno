@@ -1,8 +1,6 @@
 package com.unibague.magno.infrastructure.output.jpa.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.unibague.magno.domain.model.Sex;
+import com.unibague.magno.domain.model.enums.Sex;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

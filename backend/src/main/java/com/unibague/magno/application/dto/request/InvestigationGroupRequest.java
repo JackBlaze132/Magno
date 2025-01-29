@@ -1,6 +1,6 @@
 package com.unibague.magno.application.dto.request;
 
-import com.unibague.magno.domain.model.LineOfResearch;
+import com.unibague.magno.domain.model.enums.LineOfResearch;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

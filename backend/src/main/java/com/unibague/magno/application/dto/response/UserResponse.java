@@ -1,6 +1,6 @@
 package com.unibague.magno.application.dto.response;
 
-import com.unibague.magno.domain.model.Sex;
+import com.unibague.magno.domain.model.enums.Sex;
 import lombok.Getter;
 import lombok.Setter;
 

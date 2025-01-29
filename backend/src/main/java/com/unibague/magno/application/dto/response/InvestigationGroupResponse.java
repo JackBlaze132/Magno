@@ -1,6 +1,6 @@
 package com.unibague.magno.application.dto.response;
 
-import com.unibague.magno.domain.model.LineOfResearch;
+import com.unibague.magno.domain.model.enums.LineOfResearch;
 import lombok.Getter;
 import lombok.Setter;
 

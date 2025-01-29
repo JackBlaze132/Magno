@@ -1,5 +1,7 @@
 package com.unibague.magno.domain.model;
 
+import com.unibague.magno.domain.model.enums.Sex;
+
 import java.util.Set;
 
 public class User {

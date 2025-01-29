@@ -91,4 +91,9 @@ public class BeanConfiguration {
     public IInvestigationGroupPersistencePort investigationGroupPersistencePort() {
         return new InvestigationGroupJpaAdapter(investigationGroupRepository, investigationGroupEntityMapper);
     }
+
+    @Bean
+    public IEnumServicePort enumServicePort() {
+        return new EnumUseCase();
+    }
 }

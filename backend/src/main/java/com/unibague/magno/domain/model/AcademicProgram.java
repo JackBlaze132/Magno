@@ -1,5 +1,7 @@
 package com.unibague.magno.domain.model;
 
+import com.unibague.magno.domain.model.enums.AcademicProgramType;
+
 public class AcademicProgram {
 
     private Long id;
