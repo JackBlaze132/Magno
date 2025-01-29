@@ -1,29 +1,11 @@
 package com.unibague.magno.infrastructure.configuration;
 
-import com.unibague.magno.domain.api.IAcademicPeriodServicePort;
-import com.unibague.magno.domain.api.IAcademicProgramServicePort;
-import com.unibague.magno.domain.api.IDependencyServicePort;
-import com.unibague.magno.domain.api.IRoleServicePort;
-import com.unibague.magno.domain.spi.IAcademicPeriodPersistencePort;
-import com.unibague.magno.domain.spi.IAcademicProgramPersistencePort;
-import com.unibague.magno.domain.spi.IDependencyPersistencePort;
-import com.unibague.magno.domain.spi.IRolePersistencePort;
-import com.unibague.magno.domain.usecase.AcademicPeriodUseCase;
-import com.unibague.magno.domain.usecase.AcademicProgramUseCase;
-import com.unibague.magno.domain.usecase.DependencyUseCase;
-import com.unibague.magno.domain.usecase.RoleUseCase;
-import com.unibague.magno.infrastructure.output.jpa.adapter.AcademicPeriodJpaAdapter;
-import com.unibague.magno.infrastructure.output.jpa.adapter.AcademicProgramJpaAdapter;
-import com.unibague.magno.infrastructure.output.jpa.adapter.DependencyJpaAdapter;
-import com.unibague.magno.infrastructure.output.jpa.adapter.RoleJpaAdapter;
-import com.unibague.magno.infrastructure.output.jpa.mapper.AcademicPeriodEntityMapper;
-import com.unibague.magno.infrastructure.output.jpa.mapper.AcademicProgramEntityMapper;
-import com.unibague.magno.infrastructure.output.jpa.mapper.DependencyEntityMapper;
-import com.unibague.magno.infrastructure.output.jpa.mapper.RoleEntityMapper;
-import com.unibague.magno.infrastructure.output.jpa.repository.IAcademicPeriodRepository;
-import com.unibague.magno.infrastructure.output.jpa.repository.IAcademicProgramRepository;
-import com.unibague.magno.infrastructure.output.jpa.repository.IDependencyRepository;
-import com.unibague.magno.infrastructure.output.jpa.repository.IRoleRepository;
+import com.unibague.magno.domain.api.*;
+import com.unibague.magno.domain.spi.*;
+import com.unibague.magno.domain.usecase.*;
+import com.unibague.magno.infrastructure.output.jpa.adapter.*;
+import com.unibague.magno.infrastructure.output.jpa.mapper.*;
+import com.unibague.magno.infrastructure.output.jpa.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,6 +25,9 @@ public class BeanConfiguration {
 
     private final IAcademicProgramRepository academicProgramRepository;
     private final AcademicProgramEntityMapper academicProgramEntityMapper;
+
+    private final IUserRepository userRepository;
+    private final UserEntityMapper userEntityMapper;
 
     @Bean
     public IAcademicPeriodServicePort academicPeriodServicePort() {
@@ -82,5 +67,15 @@ public class BeanConfiguration {
     @Bean
     public IAcademicProgramPersistencePort academicProgramPersistencePort() {
         return new AcademicProgramJpaAdapter(academicProgramRepository, academicProgramEntityMapper);
+    }
+
+    @Bean
+    public IUserServicePort userServicePort() {
+        return new UserUseCase(userPersistencePort());
+    }
+
+    @Bean
+    public IUserPersistencePort userPersistencePort() {
+        return new UserJpaAdapter(userRepository, userEntityMapper);
     }
 }

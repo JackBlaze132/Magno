@@ -9,8 +9,10 @@ import com.unibague.magno.infrastructure.output.jpa.repository.IRoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Transactional
@@ -48,5 +50,10 @@ public class RoleJpaAdapter implements IRolePersistencePort {
     public List<Role> findAll() {
         List<RoleEntity> roleEntities = roleRepository.findAll();
         return roleEntityMapper.toRoleList(roleEntities);
+    }
+
+    @Override
+    public Set<Role> findRolesByIds(Set<Long> ids) {
+        return new HashSet<>(roleEntityMapper.toRoleList(roleRepository.findAllById(ids)));
     }
 }

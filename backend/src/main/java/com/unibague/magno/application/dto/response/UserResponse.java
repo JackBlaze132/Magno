@@ -1,9 +1,13 @@
 package com.unibague.magno.application.dto.response;
 
 import com.unibague.magno.domain.model.Sex;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 
+@Getter
+@Setter
 public class UserResponse {
 
     private Long id;

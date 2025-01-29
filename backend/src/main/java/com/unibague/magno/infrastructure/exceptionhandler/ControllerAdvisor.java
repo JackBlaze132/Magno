@@ -1,9 +1,6 @@
 package com.unibague.magno.infrastructure.exceptionhandler;
 
-import com.unibague.magno.domain.exception.AcademicPeriodNotFoundException;
-import com.unibague.magno.domain.exception.AcademicProgramNotFoundException;
-import com.unibague.magno.domain.exception.DependencyNotFoundException;
-import com.unibague.magno.domain.exception.RoleNotFoundException;
+import com.unibague.magno.domain.exception.*;
 import org.springframework.http.HttpStatus;
 import com.unibague.magno.domain.model.ErrorResponse;
 import org.springframework.validation.BindingResult;
@@ -56,6 +53,16 @@ public class ControllerAdvisor {
     public ErrorResponse handleDependencyNotFoundException(AcademicProgramNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.ACADEMIC_PROGRAM_NOT_FOUND.getCode());
+        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(UserNotFoundException.class)
+    public ErrorResponse handleUserNotFoundException(UserNotFoundException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.USER_NOT_FOUND.getCode());
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
         return errorResponse;
