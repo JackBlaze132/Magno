@@ -1,0 +1,50 @@
+package com.unibague.magno.infrastructure.input.rest;
+
+import com.unibague.magno.application.dto.request.InvestigationGroupRequest;
+import com.unibague.magno.application.dto.response.InvestigationGroupResponse;
+import com.unibague.magno.application.handler.InvestigationGroupHandler;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/api/investigation-groups")
+public class InvestigationGroupRestController {
+
+    private final InvestigationGroupHandler investigationGroupHandler;
+
+    @GetMapping(path = "/{id}", headers = "API-VERSION=1")
+    public ResponseEntity<InvestigationGroupResponse> getInvestigationGroupById(@PathVariable Long id) {
+        InvestigationGroupResponse response = investigationGroupHandler.findById(id);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping(path = "/", headers = "API-VERSION=1")
+    public ResponseEntity<List<InvestigationGroupResponse>> getAllInvestigationGroups() {
+        List<InvestigationGroupResponse> responses = investigationGroupHandler.findAll();
+        return ResponseEntity.ok(responses);
+    }
+
+    @PostMapping(path = "/", headers = "API-VERSION=1")
+    public ResponseEntity<InvestigationGroupResponse> createInvestigationGroup
+            (@RequestBody InvestigationGroupRequest investigationGroupRequest) {
+        InvestigationGroupResponse created = investigationGroupHandler.save(investigationGroupRequest);
+        return ResponseEntity.ok(created);
+    }
+
+    @PutMapping(path = "/{id}", headers = "API-VERSION=1")
+    public ResponseEntity<InvestigationGroupResponse> updateInvestigationGroupById
+            (@PathVariable Long id, @RequestBody InvestigationGroupRequest investigationGroupRequest) {
+        InvestigationGroupResponse updated = investigationGroupHandler.updateById(id, investigationGroupRequest);
+        return ResponseEntity.ok(updated);
+    }
+
+    @DeleteMapping(path = "/{id}", headers = "API-VERSION=1")
+    public ResponseEntity<Void> deleteInvestigationGroupById(@PathVariable Long id) {
+        investigationGroupHandler.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+}

@@ -10,6 +10,7 @@ public enum ExceptionResponse {
     DEPENDENCY_NOT_FOUND("ERR_DEPENDENCY_001", "Dependency not found."),
     ACADEMIC_PROGRAM_NOT_FOUND("ERR_ACADEMIC_PROGRAM_001", "Academic program not found."),
     USER_NOT_FOUND("ERR_USER_001", "User not found."),
+    INVESTIGATION_GROUP_NOT_FOUND("ERR_INVESTIGATION_GROUP_001", "Investigation group not found."),
     GENERIC_ERROR("ERR_GENERIC_001", "An unexpected error occurred.");
 
     private final String code;

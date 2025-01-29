@@ -29,6 +29,9 @@ public class BeanConfiguration {
     private final IUserRepository userRepository;
     private final UserEntityMapper userEntityMapper;
 
+    private final IInvestigationGroupRepository investigationGroupRepository;
+    private final InvestigationGroupEntityMapper investigationGroupEntityMapper;
+
     @Bean
     public IAcademicPeriodServicePort academicPeriodServicePort() {
         return new AcademicPeriodUseCase(academicPeriodPersistencePort());
@@ -77,5 +80,15 @@ public class BeanConfiguration {
     @Bean
     public IUserPersistencePort userPersistencePort() {
         return new UserJpaAdapter(userRepository, userEntityMapper);
+    }
+
+    @Bean
+    public IInvestigationGroupServicePort investigationGroupServicePort() {
+        return new InvestigationGroupUseCase(investigationGroupPersistencePort());
+    }
+
+    @Bean
+    public IInvestigationGroupPersistencePort investigationGroupPersistencePort() {
+        return new InvestigationGroupJpaAdapter(investigationGroupRepository, investigationGroupEntityMapper);
     }
 }

@@ -17,6 +17,6 @@ public class InvestigationGroupRequest {
     private String name;
 
     @NotNull(message = "Line of research field is required")
-    @Size(min = 1, message = "At least one line of research is required")
+    @Size(min = 2, max = 5, message = "Line of research field must have between 2 and 5 elements")
     private Set<LineOfResearch> linesOfResearch;
 }
