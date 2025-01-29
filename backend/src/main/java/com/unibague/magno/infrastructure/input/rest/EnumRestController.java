@@ -17,28 +17,21 @@ public class EnumRestController {
     private final String enumPackage = "com.unibague.magno.domain.model.enums.";
 
     @GetMapping("/{enumName}/values")
-    public ResponseEntity<List<String>> getEnumValues(@PathVariable String enumName) {
-        try {
-            Class<?> enumClass = Class.forName(enumPackage + enumName);
-            if (enumClass.isEnum()) {
-                return ResponseEntity.ok(enumServicePort.getAllEnumValues((Class<Enum>) enumClass));
-            }
-        } catch (ClassNotFoundException e) {
-            throw new EnumBadRequestException("Enum no encontrado: " + enumName);
+    public ResponseEntity<List<String>> getEnumValues(@PathVariable String enumName) throws ClassNotFoundException {
+        Class<?> enumClass = Class.forName(enumPackage + enumName);
+        if (enumClass.isEnum()) {
+            return ResponseEntity.ok(enumServicePort.getAllEnumValues((Class<Enum>) enumClass));
         }
-        throw new IllegalArgumentException("La clase proporcionada no es un enum.");
+        throw new EnumBadRequestException("Enum no encontrado: " + enumName);
     }
 
     @GetMapping("/{enumName}/exists")
-    public ResponseEntity<Boolean> existsInEnum(@PathVariable String enumName, @RequestParam String value) {
-        try {
-            Class<?> enumClass = Class.forName(enumPackage + enumName);
-            if (enumClass.isEnum()) {
-                return ResponseEntity.ok(enumServicePort.existsInEnum(value, (Class<Enum>) enumClass));
-            }
-        } catch (ClassNotFoundException e) {
-            throw new EnumBadRequestException("Enum no encontrado: " + enumName);
+    public ResponseEntity<Boolean> existsInEnum(@PathVariable String enumName, @RequestParam String value)
+            throws ClassNotFoundException {
+        Class<?> enumClass = Class.forName(enumPackage + enumName);
+        if (enumClass.isEnum()) {
+            return ResponseEntity.ok(enumServicePort.existsInEnum(value, (Class<Enum>) enumClass));
         }
-        throw new IllegalArgumentException("La clase proporcionada no es un enum.");
+        throw new EnumBadRequestException("Enum no encontrado: " + enumName);
     }
 }
