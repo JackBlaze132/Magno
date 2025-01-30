@@ -6,12 +6,10 @@ public class Role {
 
     private Long id;
     private String name;
-    private Set<Long> userIds;
 
     public Role(Long id, String name, Set<Long> userIds) {
         this.id = id;
         this.name = name;
-        this.userIds = userIds;
     }
 
     public Role() {
@@ -33,11 +31,4 @@ public class Role {
         this.name = name;
     }
 
-    public Set<Long> getUserIds() {
-        return userIds;
-    }
-
-    public void setUserIds(Set<Long> usersIds) {
-        this.userIds = usersIds;
-    }
 }

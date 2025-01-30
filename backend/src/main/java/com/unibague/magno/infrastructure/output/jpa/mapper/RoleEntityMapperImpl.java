@@ -1,16 +1,20 @@
 package com.unibague.magno.infrastructure.output.jpa.mapper;
 
 import com.unibague.magno.domain.model.Role;
-import com.unibague.magno.domain.model.User;
 import com.unibague.magno.infrastructure.output.jpa.entity.RoleEntity;
 import com.unibague.magno.infrastructure.output.jpa.entity.UserEntity;
+import com.unibague.magno.infrastructure.output.jpa.repository.IUserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Component
+@RequiredArgsConstructor
 public class RoleEntityMapperImpl implements RoleEntityMapper {
+
+    private final IUserRepository userRepository;
+    private final UserEntityMapper userEntityMapper;
 
     @Override
     public Role toRole(RoleEntity roleEntity) {
@@ -22,10 +26,6 @@ public class RoleEntityMapperImpl implements RoleEntityMapper {
 
         role.setId(roleEntity.getId());
         role.setName(roleEntity.getName());
-        Set<Long> userIds = roleEntity.getUsers().stream()
-                .map(UserEntity::getId)
-                .collect(Collectors.toSet());
-        role.setUserIds(userIds);
 
         return role;
     }
@@ -40,7 +40,7 @@ public class RoleEntityMapperImpl implements RoleEntityMapper {
 
         if (role != null) {
             roleEntity.setName(role.getName());
-            roleEntity.setUsers(getUserEntities(role));
+            roleEntity.setUsers(getUserEntities(id));
         }
 
         roleEntity.setId(id);
@@ -58,7 +58,7 @@ public class RoleEntityMapperImpl implements RoleEntityMapper {
 
         roleEntity.setId(role.getId());
         roleEntity.setName(role.getName());
-        roleEntity.setUsers(getUserEntities(role));
+        roleEntity.setUsers(Collections.emptySet());
 
         return roleEntity;
     }
@@ -77,15 +77,7 @@ public class RoleEntityMapperImpl implements RoleEntityMapper {
         return list;
     }
 
-    private Set<UserEntity> getUserEntities(Role role) {
-        return Optional.ofNullable(role.getUserIds())
-                .orElse(Collections.emptySet())
-                .stream()
-                .map(userId -> {
-                    UserEntity userEntity = new UserEntity();
-                    userEntity.setId(userId);
-                    return userEntity;
-                })
-                .collect(Collectors.toSet());
+    private Set<UserEntity> getUserEntities(Long roleId) {
+        return new HashSet<>(userRepository.findByRolesId(roleId));
     }
 }
