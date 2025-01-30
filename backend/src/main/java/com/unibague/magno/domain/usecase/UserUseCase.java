@@ -38,6 +38,10 @@ public class UserUseCase implements IUserServicePort {
 
     @Override
     public void deleteById(Long id) {
+        if (userPersistencePort.findById(id).isEmpty()) {
+            throw new UserNotFoundException(
+                    String.format("User with id %s could not be deleted because it does not exist", id));
+        }
         userPersistencePort.deleteById(id);
     }
 
