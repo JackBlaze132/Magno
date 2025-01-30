@@ -14,21 +14,21 @@ import java.util.List;
 public class EnumRestController {
 
     private final IEnumServicePort enumServicePort;
-    private final String enumPackage = "com.unibague.magno.domain.model.enums.";
+    private static final String ENUM_PACKAGE = "com.unibague.magno.domain.model.enums.";
 
-    @GetMapping("/{enumName}/values")
+    @GetMapping(path = "/{enumName}/values", headers = "API-VERSION=1")
     public ResponseEntity<List<String>> getEnumValues(@PathVariable String enumName) throws ClassNotFoundException {
-        Class<?> enumClass = Class.forName(enumPackage + enumName);
+        Class<?> enumClass = Class.forName(ENUM_PACKAGE + enumName);
         if (enumClass.isEnum()) {
             return ResponseEntity.ok(enumServicePort.getAllEnumValues((Class<Enum>) enumClass));
         }
         throw new EnumBadRequestException("Enum no encontrado: " + enumName);
     }
 
-    @GetMapping("/{enumName}/exists")
+    @GetMapping(path = "/{enumName}/exists", headers = "API-VERSION=1")
     public ResponseEntity<Boolean> existsInEnum(@PathVariable String enumName, @RequestParam String value)
             throws ClassNotFoundException {
-        Class<?> enumClass = Class.forName(enumPackage + enumName);
+        Class<?> enumClass = Class.forName(ENUM_PACKAGE + enumName);
         if (enumClass.isEnum()) {
             return ResponseEntity.ok(enumServicePort.existsInEnum(value, (Class<Enum>) enumClass));
         }
