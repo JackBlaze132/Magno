@@ -27,7 +27,10 @@ public class UserEntityMapperImpl implements UserEntityMapper{
         user.setUserCode( userEntity.getUserCode() );
         user.setExternalUser( userEntity.isExternalUser() );
         user.setSex( userEntity.getSex() );
-        user.setRoles( roleEntitySetToRoleSet( userEntity.getRoles() ) );
+        Set<Long> roleIds = userEntity.getRoles().stream()
+                .map(RoleEntity::getId)
+                .collect(Collectors.toSet());
+        user.setRoleIds(roleIds);
 
         return user;
     }
@@ -47,7 +50,13 @@ public class UserEntityMapperImpl implements UserEntityMapper{
             userEntity.setUserCode( user.getUserCode() );
             userEntity.setExternalUser( user.isExternalUser() );
             userEntity.setSex( user.getSex() );
-            userEntity.setRoles( roleSetToRoleEntitySet( user.getRoles() ) );
+            userEntity.setRoles( user.getRoleIds().stream()
+                    .map(roleId -> {
+                        RoleEntity roleEntity = new RoleEntity();
+                        roleEntity.setId(roleId);
+                        return roleEntity;
+                    })
+                    .collect(Collectors.toSet()) );
         }
         userEntity.setId( id );
 
@@ -69,7 +78,14 @@ public class UserEntityMapperImpl implements UserEntityMapper{
         userEntity.setUserCode( user.getUserCode() );
         userEntity.setExternalUser( user.isExternalUser() );
         userEntity.setSex( user.getSex() );
-        userEntity.setRoles( roleSetToRoleEntitySet( user.getRoles() ) );
+        Set<RoleEntity> roleEntities = user.getRoleIds().stream()
+                .map(roleId -> {
+                    RoleEntity roleEntity = new RoleEntity();
+                    roleEntity.setId(roleId);
+                    return roleEntity;
+                })
+                .collect(Collectors.toSet());
+        userEntity.setRoles(roleEntities);
 
         return userEntity;
     }
@@ -85,33 +101,4 @@ public class UserEntityMapperImpl implements UserEntityMapper{
                 .toList();
     }
 
-    private Set<Role> roleEntitySetToRoleSet(Set<RoleEntity> roleEntities) {
-        if (roleEntities == null) {
-            return null;
-        }
-
-        return roleEntities.stream()
-                .map(roleEntity -> {
-                    Role role = new Role();
-                    role.setId(roleEntity.getId());
-                    role.setName(roleEntity.getName());
-                    return role;
-                })
-                .collect(Collectors.toSet());
-    }
-
-    private Set<RoleEntity> roleSetToRoleEntitySet(Set<Role> roles) {
-        if (roles == null) {
-            return null;
-        }
-
-        return roles.stream()
-                .map(role -> {
-                    RoleEntity roleEntity = new RoleEntity();
-                    roleEntity.setId(role.getId());
-                    roleEntity.setName(role.getName());
-                    return roleEntity;
-                })
-                .collect(Collectors.toSet());
-    }
 }

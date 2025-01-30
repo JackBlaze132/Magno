@@ -12,11 +12,11 @@ public class User {
     private String email;
     private String userCode;
     private boolean isExternalUser;
-    Sex sex;
-    Set<Role> roles;
+    private Sex sex;
+    private Set<Long> roleIds;
 
     public User(Long id, String fullName, String identificationNumber, String email,
-                String userCode, boolean isExternalUser, Sex sex, Set<Role> roles) {
+                String userCode, boolean isExternalUser, Sex sex, Set<Long> roleIds) {
         this.id = id;
         this.fullName = fullName;
         this.identificationNumber = identificationNumber;
@@ -24,7 +24,7 @@ public class User {
         this.userCode = userCode;
         this.isExternalUser = isExternalUser;
         this.sex = sex;
-        this.roles = roles;
+        this.roleIds = roleIds;
     }
 
     public User() {
@@ -86,11 +86,11 @@ public class User {
         this.sex = sex;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Set<Long> getRoleIds() {
+        return roleIds;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRoleIds(Set<Long> rolesIds) {
+        this.roleIds = rolesIds;
     }
 }

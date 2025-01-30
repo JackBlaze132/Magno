@@ -6,12 +6,12 @@ public class Role {
 
     private Long id;
     private String name;
-    private Set<User> users;
+    private Set<Long> userIds;
 
-    public Role(Long id, String name, Set<User> users) {
+    public Role(Long id, String name, Set<Long> userIds) {
         this.id = id;
         this.name = name;
-        this.users = users;
+        this.userIds = userIds;
     }
 
     public Role() {
@@ -33,11 +33,11 @@ public class Role {
         this.name = name;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public Set<Long> getUserIds() {
+        return userIds;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setUserIds(Set<Long> usersIds) {
+        this.userIds = usersIds;
     }
 }

@@ -6,9 +6,11 @@ import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
+import java.util.Set;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface RoleResponseMapper {
     RoleResponse toResponse(Role role);
     List<RoleResponse> toResponseList(List<Role> roles);
+    Set<RoleResponse> toResponseSet(Set<Role> roles);
 }
