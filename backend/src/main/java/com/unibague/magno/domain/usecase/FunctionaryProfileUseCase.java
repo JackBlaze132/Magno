@@ -30,11 +30,21 @@ public class FunctionaryProfileUseCase implements IFunctionaryProfileServicePort
 
     @Override
     public FunctionaryProfile update(Long id, FunctionaryProfile functionaryProfile) {
+        if(functionaryProfilePersistencePort.findById(id).isEmpty()) {
+            throw new FunctionaryProfileNotFoundException(
+                    String.format("FunctionaryProfile with ID %d could not be updated because it does not exist", id)
+            );
+        }
         return functionaryProfilePersistencePort.update(id, functionaryProfile);
     }
 
     @Override
     public void deleteById(Long id) {
+        if(functionaryProfilePersistencePort.findById(id).isEmpty()) {
+            throw new FunctionaryProfileNotFoundException(
+                    String.format("FunctionaryProfile with ID %d could not be deleted because it does not exist", id)
+            );
+        }
         functionaryProfilePersistencePort.deleteById(id);
     }
 

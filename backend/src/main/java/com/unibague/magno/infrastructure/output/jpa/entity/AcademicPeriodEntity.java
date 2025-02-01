@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -31,4 +32,7 @@ public class AcademicPeriodEntity {
 
     @Column(name = "is_current", nullable = false)
     boolean isCurrent;
+
+    @OneToMany(mappedBy = "academicPeriod", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<FunctionaryProfileEntity> functionaryProfiles;
 }

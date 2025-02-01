@@ -7,7 +7,6 @@ import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface FunctionaryProfileResponseMapper {
     FunctionaryProfileResponse toResponse(FunctionaryProfile functionaryProfile);
     List<FunctionaryProfileResponse> toResponseList(List<FunctionaryProfile> functionaryProfiles);

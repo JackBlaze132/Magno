@@ -1,6 +1,7 @@
 package com.unibague.magno.infrastructure.configuration;
 
 import com.unibague.magno.domain.api.*;
+import com.unibague.magno.domain.model.FunctionaryProfile;
 import com.unibague.magno.domain.spi.*;
 import com.unibague.magno.domain.usecase.*;
 import com.unibague.magno.infrastructure.output.jpa.adapter.*;
@@ -31,6 +32,9 @@ public class BeanConfiguration {
 
     private final IInvestigationGroupRepository investigationGroupRepository;
     private final InvestigationGroupEntityMapper investigationGroupEntityMapper;
+
+    private final IFunctionaryProfileRepository functionaryProfileRepository;
+    private final FunctionaryProfileEntityMapper functionaryProfileEntityMapper;
 
     @Bean
     public IAcademicPeriodServicePort academicPeriodServicePort() {
@@ -95,5 +99,15 @@ public class BeanConfiguration {
     @Bean
     public IEnumServicePort enumServicePort() {
         return new EnumUseCase();
+    }
+
+    @Bean
+    public IFunctionaryProfileServicePort functionaryProfileServicePort() {
+        return new FunctionaryProfileUseCase(functionaryProfilePersistencePort());
+    }
+
+    @Bean
+    public IFunctionaryProfilePersistencePort functionaryProfilePersistencePort() {
+        return new FunctionaryProfileJpaAdapter(functionaryProfileRepository, functionaryProfileEntityMapper);
     }
 }

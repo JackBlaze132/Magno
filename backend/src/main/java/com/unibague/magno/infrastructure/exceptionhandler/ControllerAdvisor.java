@@ -78,6 +78,16 @@ public class ControllerAdvisor {
         return errorResponse;
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(FunctionaryProfileNotFoundException.class)
+    public ErrorResponse handleUserNotFoundException(FunctionaryProfileNotFoundException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.FUNCTIONARY_PROFILE_NOT_FOUND.getCode());
+        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        return errorResponse;
+    }
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(EnumBadRequestException.class)
     public ErrorResponse handleUserNotFoundException(EnumBadRequestException exception) {

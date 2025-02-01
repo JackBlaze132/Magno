@@ -1,5 +1,7 @@
 package com.unibague.magno.application.dto.response;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.unibague.magno.domain.model.enums.Sex;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,6 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class UserResponse {
 
     private Long id;

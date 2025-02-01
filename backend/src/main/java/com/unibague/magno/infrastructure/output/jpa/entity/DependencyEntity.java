@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -20,4 +22,9 @@ public class DependencyEntity {
 
     @Column(name = "name", nullable = false, unique = true)
     private String name;
+
+    //If some Dependency is deleted, the profiles associated won't be deleted
+    @OneToMany(mappedBy = "dependency", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    private Set<FunctionaryProfileEntity> functionaryProfiles;
+
 }
