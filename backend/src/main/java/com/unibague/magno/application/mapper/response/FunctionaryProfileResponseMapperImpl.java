@@ -12,6 +12,7 @@ import com.unibague.magno.domain.spi.IUserPersistencePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -60,6 +61,8 @@ public class FunctionaryProfileResponseMapperImpl implements FunctionaryProfileR
 
     @Override
     public List<FunctionaryProfileResponse> toResponseList(List<FunctionaryProfile> functionaryProfiles) {
-        return List.of();
+        return functionaryProfiles.stream()
+                .map(this::toResponse)
+                .toList();
     }
 }
