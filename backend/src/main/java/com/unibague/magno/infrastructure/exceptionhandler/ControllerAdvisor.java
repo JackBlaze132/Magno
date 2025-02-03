@@ -1,6 +1,7 @@
 package com.unibague.magno.infrastructure.exceptionhandler;
 
 import com.unibague.magno.domain.exception.*;
+import com.unibague.magno.domain.exception.integra.IntegraUserNotFoundException;
 import org.springframework.http.HttpStatus;
 import com.unibague.magno.domain.model.ErrorResponse;
 import org.springframework.validation.BindingResult;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -25,6 +27,7 @@ public class ControllerAdvisor {
         errorResponse.setCode(ACADEMIC_PERIOD_NOT_FOUND.getCode());
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
     }
 
@@ -35,6 +38,7 @@ public class ControllerAdvisor {
         errorResponse.setCode(ExceptionResponse.ROLE_NOT_FOUND.getCode());
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
     }
 
@@ -45,6 +49,7 @@ public class ControllerAdvisor {
         errorResponse.setCode(ExceptionResponse.DEPENDENCY_NOT_FOUND.getCode());
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
     }
 
@@ -55,6 +60,7 @@ public class ControllerAdvisor {
         errorResponse.setCode(ExceptionResponse.ACADEMIC_PROGRAM_NOT_FOUND.getCode());
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
     }
 
@@ -65,6 +71,7 @@ public class ControllerAdvisor {
         errorResponse.setCode(ExceptionResponse.USER_NOT_FOUND.getCode());
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
     }
 
@@ -75,6 +82,7 @@ public class ControllerAdvisor {
         errorResponse.setCode(ExceptionResponse.INVESTIGATION_GROUP_NOT_FOUND.getCode());
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
     }
 
@@ -85,6 +93,32 @@ public class ControllerAdvisor {
         errorResponse.setCode(ExceptionResponse.FUNCTIONARY_PROFILE_NOT_FOUND.getCode());
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(HttpClientErrorException.NotFound.class)
+    public ErrorResponse handleUserNotFoundException(HttpClientErrorException.NotFound exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.INTEGRA_API_ERROR.getCode());
+        errorResponse.setMessage(ExceptionResponse.INTEGRA_API_ERROR.getMessage());
+        errorResponse.setDetails(
+                Collections.singletonList
+                        ("Possible reasons: Incorrect path in environment variables or VPN access required."));
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(IntegraUserNotFoundException.class)
+    public ErrorResponse handleUserNotFoundException(IntegraUserNotFoundException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.INTEGRA_API_ERROR.getCode());
+        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
     }
 
@@ -95,6 +129,7 @@ public class ControllerAdvisor {
         errorResponse.setCode(ExceptionResponse.ENUM_BAD_REQUEST.getCode());
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
     }
 
@@ -114,6 +149,7 @@ public class ControllerAdvisor {
         errorResponse.setMessage("Validation failed for one or more fields.");
         errorResponse.setDetails(errorDetails);
         errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
 
         return errorResponse;
     }
@@ -126,6 +162,7 @@ public class ControllerAdvisor {
         errorResponse.setMessage(ExceptionResponse.GENERIC_ERROR.getMessage());
         errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
     }
 }

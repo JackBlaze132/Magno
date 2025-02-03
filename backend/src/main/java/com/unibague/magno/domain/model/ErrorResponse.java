@@ -9,12 +9,15 @@ public class ErrorResponse {
     private String message;
     private List<String> details;
     private LocalDateTime timestamp;
+    private String exceptionClassName;
 
-    public ErrorResponse(String code, String message, List<String> details, LocalDateTime timestamp) {
+    public ErrorResponse(String code, String message, List<String> details, LocalDateTime timestamp,
+                         String exceptionClassName) {
         this.code = code;
         this.message = message;
         this.details = details;
         this.timestamp = timestamp;
+        this.exceptionClassName = exceptionClassName;
     }
 
     public ErrorResponse() {
@@ -50,5 +53,13 @@ public class ErrorResponse {
 
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getExceptionClassName() {
+        return exceptionClassName;
+    }
+
+    public void setExceptionClassName(String exceptionClassName) {
+        this.exceptionClassName = exceptionClassName;
     }
 }

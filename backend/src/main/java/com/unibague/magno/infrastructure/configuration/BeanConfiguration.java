@@ -1,15 +1,20 @@
 package com.unibague.magno.infrastructure.configuration;
 
 import com.unibague.magno.domain.api.*;
+import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.model.FunctionaryProfile;
 import com.unibague.magno.domain.spi.*;
+import com.unibague.magno.domain.spi.integra.IIntegraPersistencePort;
 import com.unibague.magno.domain.usecase.*;
+import com.unibague.magno.domain.usecase.integra.IntegraUseCase;
 import com.unibague.magno.infrastructure.output.jpa.adapter.*;
+import com.unibague.magno.infrastructure.output.jpa.adapter.integra.IntegraUserClient;
 import com.unibague.magno.infrastructure.output.jpa.mapper.*;
 import com.unibague.magno.infrastructure.output.jpa.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @RequiredArgsConstructor
@@ -110,4 +115,18 @@ public class BeanConfiguration {
     public IFunctionaryProfilePersistencePort functionaryProfilePersistencePort() {
         return new FunctionaryProfileJpaAdapter(functionaryProfileRepository, functionaryProfileEntityMapper);
     }
+
+    // "Integra" and related beans
+    private final RestTemplate restTemplate;
+
+    @Bean
+    public IIntegraPersistencePort integraPersistencePort() {
+        return new IntegraUserClient(restTemplate);
+    }
+
+    @Bean
+    public IIntegraServicePort integraServicePort() {
+        return new IntegraUseCase(integraPersistencePort());
+    }
+
 }

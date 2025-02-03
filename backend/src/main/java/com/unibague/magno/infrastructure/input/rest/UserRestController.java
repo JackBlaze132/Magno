@@ -1,5 +1,6 @@
 package com.unibague.magno.infrastructure.input.rest;
 
+import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.application.dto.request.UserRequest;
 import com.unibague.magno.application.dto.response.UserResponse;
 import com.unibague.magno.application.handler.UserHandler;
@@ -32,6 +33,13 @@ public class UserRestController {
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest) {
         UserResponse userResponse = userHandler.save(userRequest);
+        URI location = URI.create(String.format("/api/users/%d", userResponse.getId()));
+        return ResponseEntity.created(location).body(userResponse);
+    }
+
+    @PostMapping(path = "/integra-user", headers = "API-VERSION=1")
+    public ResponseEntity<UserResponse> createUser(@RequestBody IntegraUserRequest integraUserRequest) {
+        UserResponse userResponse = userHandler.save(integraUserRequest);
         URI location = URI.create(String.format("/api/users/%d", userResponse.getId()));
         return ResponseEntity.created(location).body(userResponse);
     }

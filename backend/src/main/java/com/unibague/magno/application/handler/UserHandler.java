@@ -1,5 +1,6 @@
 package com.unibague.magno.application.handler;
 
+import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.application.dto.request.UserRequest;
 import com.unibague.magno.application.dto.response.UserResponse;
 import com.unibague.magno.application.mapper.request.UserRequestMapper;
@@ -27,6 +28,11 @@ public class UserHandler implements IUserHandler{
 
     @Override
     public UserResponse save(UserRequest user) {
+        return userResponseMapper.toResponse(userServicePort.save(userRequestMapper.toUser(user)));
+    }
+
+    @Override
+    public UserResponse save(IntegraUserRequest user) {
         return userResponseMapper.toResponse(userServicePort.save(userRequestMapper.toUser(user)));
     }
 
