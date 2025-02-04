@@ -6,6 +6,7 @@ import com.unibague.magno.domain.model.Role;
 import com.unibague.magno.domain.spi.IRolePersistencePort;
 
 import java.util.List;
+import java.util.Set;
 
 public class RoleUseCase implements IRoleServicePort {
 
@@ -48,5 +49,10 @@ public class RoleUseCase implements IRoleServicePort {
     @Override
     public List<Role> findAll() {
         return rolePersistencePort.findAll();
+    }
+
+    @Override
+    public Set<Role> findRolesByIds(Set<Long> ids) {
+        return rolePersistencePort.findRolesByIds(ids);
     }
 }
