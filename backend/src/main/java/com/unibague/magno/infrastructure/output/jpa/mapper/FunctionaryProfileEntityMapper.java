@@ -2,9 +2,7 @@ package com.unibague.magno.infrastructure.output.jpa.mapper;
 
 import com.unibague.magno.domain.model.FunctionaryProfile;
 import com.unibague.magno.infrastructure.output.jpa.entity.FunctionaryProfileEntity;
-import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 

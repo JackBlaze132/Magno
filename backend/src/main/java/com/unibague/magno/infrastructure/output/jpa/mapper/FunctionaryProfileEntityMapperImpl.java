@@ -80,15 +80,13 @@ public class FunctionaryProfileEntityMapperImpl implements FunctionaryProfileEnt
 
     @Override
     public List<FunctionaryProfile> toFunctionaryProfileList(List<FunctionaryProfileEntity> functionaryProfileEntities) {
+
         if ( functionaryProfileEntities == null ) {
             return null;
         }
 
-        List<FunctionaryProfile> list = new ArrayList<FunctionaryProfile>( functionaryProfileEntities.size() );
-        for ( FunctionaryProfileEntity functionaryProfileEntity : functionaryProfileEntities ) {
-            list.add( toFunctionaryProfile( functionaryProfileEntity ) );
-        }
-
-        return list;
+        return functionaryProfileEntities.stream()
+                .map(this::toFunctionaryProfile)
+                .toList();
     }
 }

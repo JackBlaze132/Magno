@@ -32,4 +32,7 @@ public class InvestigationGroupEntity {
     )
     @Column(name = "line_of_research")
     private Set<LineOfResearch> linesOfResearch;
+
+    @OneToMany(mappedBy = "investigationGroup")
+    private Set<InvestigationGroupProfileEntity> investigationGroupProfiles;
 }

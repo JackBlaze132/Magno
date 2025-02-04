@@ -1,6 +1,5 @@
 package com.unibague.magno.infrastructure.output.jpa.mapper;
 
-import com.unibague.magno.domain.model.Role;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.infrastructure.output.jpa.entity.RoleEntity;
 import com.unibague.magno.infrastructure.output.jpa.entity.UserEntity;

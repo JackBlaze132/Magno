@@ -11,6 +11,8 @@ public enum ExceptionResponse {
     ACADEMIC_PROGRAM_NOT_FOUND("ERR_ACADEMIC_PROGRAM_001", "Academic program not found."),
     USER_NOT_FOUND("ERR_USER_001", "User not found."),
     INVESTIGATION_GROUP_NOT_FOUND("ERR_INVESTIGATION_GROUP_001", "Investigation group not found."),
+    INVESTIGATION_GROUP_PROFILE_NOT_FOUND("ERR_INVESTIGATION_GROUP_PROFILE_001",
+            "Investigation group profile not found."),
     FUNCTIONARY_PROFILE_NOT_FOUND("ERR_FUNCTIONARY_PROFILE_001", "Functionary profile not found."),
     ENUM_BAD_REQUEST("ERR_ENUM_001", "Invalid enum value."),
     INTEGRA_API_ERROR("ERR_INTEGRA_API_001", "An error occurred while trying to connect to the " +

@@ -2,7 +2,6 @@ package com.unibague.magno.infrastructure.configuration;
 
 import com.unibague.magno.domain.api.*;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
-import com.unibague.magno.domain.model.FunctionaryProfile;
 import com.unibague.magno.domain.spi.*;
 import com.unibague.magno.domain.spi.integra.IIntegraPersistencePort;
 import com.unibague.magno.domain.usecase.*;
@@ -40,6 +39,9 @@ public class BeanConfiguration {
 
     private final IFunctionaryProfileRepository functionaryProfileRepository;
     private final FunctionaryProfileEntityMapper functionaryProfileEntityMapper;
+
+    private final IInvestigationGroupProfileRepository investigationGroupProfileRepository;
+    private final InvestigationGroupProfileEntityMapper investigationGroupProfileEntityMapper;
 
     @Bean
     public IAcademicPeriodServicePort academicPeriodServicePort() {
@@ -114,6 +116,17 @@ public class BeanConfiguration {
     @Bean
     public IFunctionaryProfilePersistencePort functionaryProfilePersistencePort() {
         return new FunctionaryProfileJpaAdapter(functionaryProfileRepository, functionaryProfileEntityMapper);
+    }
+
+    @Bean
+    public IInvestigationGroupProfileServicePort investigationGroupProfileServicePort() {
+        return new InvestigationGroupProfileUseCase(investigationGroupProfilePersistencePort());
+    }
+
+    @Bean
+    public IInvestigationGroupProfilePersistencePort investigationGroupProfilePersistencePort() {
+        return new InvestigationGroupProfileJpaAdapter(
+                investigationGroupProfileRepository, investigationGroupProfileEntityMapper, functionaryProfileRepository);
     }
 
     // "Integra" and related beans

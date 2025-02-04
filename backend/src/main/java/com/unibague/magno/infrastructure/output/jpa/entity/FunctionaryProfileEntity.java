@@ -29,4 +29,7 @@ public class FunctionaryProfileEntity {
     @ManyToOne
     @JoinColumn(name = "dependency_id")
     private DependencyEntity dependency;
+
+    @OneToOne(mappedBy = "coordinator", cascade = CascadeType.REFRESH)
+    private InvestigationGroupProfileEntity investigationGroup;
 }
