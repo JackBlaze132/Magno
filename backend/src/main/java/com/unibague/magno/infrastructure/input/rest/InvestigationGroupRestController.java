@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -33,7 +34,8 @@ public class InvestigationGroupRestController {
     public ResponseEntity<InvestigationGroupResponse> createInvestigationGroup
             (@Valid @RequestBody InvestigationGroupRequest investigationGroupRequest) {
         InvestigationGroupResponse created = investigationGroupHandler.save(investigationGroupRequest);
-        return ResponseEntity.ok(created);
+        URI location = URI.create("/api/investigation-groups/" + created.getId());
+        return ResponseEntity.created(location).body(created);
     }
 
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
