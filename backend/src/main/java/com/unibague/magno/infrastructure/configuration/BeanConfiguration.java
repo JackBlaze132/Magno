@@ -43,6 +43,9 @@ public class BeanConfiguration {
     private final IInvestigationGroupProfileRepository investigationGroupProfileRepository;
     private final InvestigationGroupProfileEntityMapper investigationGroupProfileEntityMapper;
 
+    private final IResearchSeedbedRepository researchSeedbedRepository;
+    private final ResearchSeedbedEntityMapper researchSeedbedEntityMapper;
+
     @Bean
     public IAcademicPeriodServicePort academicPeriodServicePort() {
         return new AcademicPeriodUseCase(academicPeriodPersistencePort());
@@ -127,6 +130,16 @@ public class BeanConfiguration {
     public IInvestigationGroupProfilePersistencePort investigationGroupProfilePersistencePort() {
         return new InvestigationGroupProfileJpaAdapter(
                 investigationGroupProfileRepository, investigationGroupProfileEntityMapper, functionaryProfileRepository);
+    }
+
+    @Bean
+    public IResearchSeedbedServicePort researchSeedbedServicePort() {
+        return new ResearchSeedbedUseCase(researchSeedbedPersistencePort());
+    }
+
+    @Bean
+    public IResearchSeedbedPersistencePort researchSeedbedPersistencePort() {
+        return new ResearchSeedbedJpaAdapter(researchSeedbedRepository, researchSeedbedEntityMapper);
     }
 
     // "Integra" and related beans
