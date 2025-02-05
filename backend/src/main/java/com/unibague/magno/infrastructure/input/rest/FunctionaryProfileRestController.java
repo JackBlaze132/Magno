@@ -3,6 +3,7 @@ package com.unibague.magno.infrastructure.input.rest;
 import com.unibague.magno.application.dto.request.FunctionaryProfileRequest;
 import com.unibague.magno.application.dto.response.FunctionaryProfileResponse;
 import com.unibague.magno.application.handler.FunctionaryProfileHandler;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class FunctionaryProfileRestController {
 
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<FunctionaryProfileResponse> createFunctionaryProfile
-            (@RequestBody FunctionaryProfileRequest functionaryProfileRequest) {
+            (@Valid @RequestBody FunctionaryProfileRequest functionaryProfileRequest) {
         FunctionaryProfileResponse created = functionaryProfileHandler.save(functionaryProfileRequest);
         URI location = URI.create(String.format("/api/functionary-profiles/%d", created.getId()));
         return ResponseEntity.created(location).body(created);
@@ -39,7 +40,7 @@ public class FunctionaryProfileRestController {
 
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<FunctionaryProfileResponse> updateFunctionaryProfileById
-            (@PathVariable Long id, @RequestBody FunctionaryProfileRequest functionaryProfileRequest) {
+            (@PathVariable Long id, @Valid @RequestBody FunctionaryProfileRequest functionaryProfileRequest) {
         FunctionaryProfileResponse updated = functionaryProfileHandler.updateById(id, functionaryProfileRequest);
         return ResponseEntity.ok(updated);
     }

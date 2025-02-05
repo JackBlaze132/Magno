@@ -3,6 +3,7 @@ package com.unibague.magno.infrastructure.input.rest;
 import com.unibague.magno.application.dto.request.InvestigationGroupProfileRequest;
 import com.unibague.magno.application.dto.response.InvestigationGroupProfileResponse;
 import com.unibague.magno.application.handler.InvestigationGroupProfileHandler;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class InvestigationGroupProfileRestController {
 
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<InvestigationGroupProfileResponse> createInvestigationGroupProfile
-            (@RequestBody InvestigationGroupProfileRequest investigationGroupProfileRequest) {
+            (@Valid @RequestBody InvestigationGroupProfileRequest investigationGroupProfileRequest) {
         InvestigationGroupProfileResponse created = investigationGroupProfileHandler
                 .save(investigationGroupProfileRequest);
         URI location = URI.create(String.format("/api/investigation-group-profiles/%d", created.getId()));
@@ -40,7 +41,7 @@ public class InvestigationGroupProfileRestController {
 
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<InvestigationGroupProfileResponse> updateInvestigationGroupProfileById
-            (@PathVariable Long id, @RequestBody InvestigationGroupProfileRequest investigationGroupProfileRequest) {
+            (@PathVariable Long id, @Valid @RequestBody InvestigationGroupProfileRequest investigationGroupProfileRequest) {
         InvestigationGroupProfileResponse updated = investigationGroupProfileHandler
                 .updateById(id, investigationGroupProfileRequest);
         return ResponseEntity.ok(updated);

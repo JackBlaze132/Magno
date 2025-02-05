@@ -4,6 +4,7 @@ import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.application.dto.request.UserRequest;
 import com.unibague.magno.application.dto.response.UserResponse;
 import com.unibague.magno.application.handler.UserHandler;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,14 +32,14 @@ public class UserRestController {
     }
 
     @PostMapping(path = "/", headers = "API-VERSION=1")
-    public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest) {
+    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest) {
         UserResponse userResponse = userHandler.save(userRequest);
         URI location = URI.create(String.format("/api/users/%d", userResponse.getId()));
         return ResponseEntity.created(location).body(userResponse);
     }
 
     @PostMapping(path = "/integra-user", headers = "API-VERSION=1")
-    public ResponseEntity<UserResponse> createUser(@RequestBody IntegraUserRequest integraUserRequest) {
+    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody IntegraUserRequest integraUserRequest) {
         UserResponse userResponse = userHandler.save(integraUserRequest);
         URI location = URI.create(String.format("/api/users/%d", userResponse.getId()));
         return ResponseEntity.created(location).body(userResponse);
@@ -46,7 +47,7 @@ public class UserRestController {
 
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<UserResponse> updateUserById
-            (@PathVariable Long id, @RequestBody UserRequest userRequest) {
+            (@PathVariable Long id, @Valid @RequestBody UserRequest userRequest) {
         UserResponse userResponse = userHandler.updateById(id, userRequest);
         return ResponseEntity.ok(userResponse);
     }

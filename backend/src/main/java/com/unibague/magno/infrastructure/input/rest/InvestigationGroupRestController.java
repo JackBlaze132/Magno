@@ -3,6 +3,7 @@ package com.unibague.magno.infrastructure.input.rest;
 import com.unibague.magno.application.dto.request.InvestigationGroupRequest;
 import com.unibague.magno.application.dto.response.InvestigationGroupResponse;
 import com.unibague.magno.application.handler.InvestigationGroupHandler;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,14 +31,14 @@ public class InvestigationGroupRestController {
 
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<InvestigationGroupResponse> createInvestigationGroup
-            (@RequestBody InvestigationGroupRequest investigationGroupRequest) {
+            (@Valid @RequestBody InvestigationGroupRequest investigationGroupRequest) {
         InvestigationGroupResponse created = investigationGroupHandler.save(investigationGroupRequest);
         return ResponseEntity.ok(created);
     }
 
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<InvestigationGroupResponse> updateInvestigationGroupById
-            (@PathVariable Long id, @RequestBody InvestigationGroupRequest investigationGroupRequest) {
+            (@PathVariable Long id, @Valid @RequestBody InvestigationGroupRequest investigationGroupRequest) {
         InvestigationGroupResponse updated = investigationGroupHandler.updateById(id, investigationGroupRequest);
         return ResponseEntity.ok(updated);
     }

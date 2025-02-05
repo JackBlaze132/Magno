@@ -3,6 +3,7 @@ package com.unibague.magno.infrastructure.input.rest;
 import com.unibague.magno.application.dto.request.DependencyRequest;
 import com.unibague.magno.application.dto.response.DependencyResponse;
 import com.unibague.magno.application.handler.DependencyHandler;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class DependencyRestController {
 
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<DependencyResponse> createDependency
-            (@RequestBody DependencyRequest dependencyRequest) {
+            (@Valid @RequestBody DependencyRequest dependencyRequest) {
         DependencyResponse created = dependencyHandler.save(dependencyRequest);
         URI location = URI.create(String.format("/api/dependencies/%d", created.getId()));
         return ResponseEntity.created(location).body(created);
@@ -39,7 +40,7 @@ public class DependencyRestController {
 
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<DependencyResponse> updateDependencyById
-            (@PathVariable Long id, @RequestBody DependencyRequest dependencyRequest) {
+            (@PathVariable Long id, @Valid @RequestBody DependencyRequest dependencyRequest) {
         DependencyResponse updated = dependencyHandler.updateById(id, dependencyRequest);
         return ResponseEntity.ok(updated);
     }

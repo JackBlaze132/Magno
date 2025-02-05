@@ -3,6 +3,7 @@ package com.unibague.magno.infrastructure.input.rest;
 import com.unibague.magno.application.dto.request.ResearchSeedbedRequest;
 import com.unibague.magno.application.dto.response.ResearchSeedbedResponse;
 import com.unibague.magno.application.handler.ResearchSeedbedHandler;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,14 +31,14 @@ public class ResearchSeedbedRestController {
 
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<ResearchSeedbedResponse> createResearchSeedbed
-            (@RequestBody ResearchSeedbedRequest researchSeedbedRequest) {
+            (@Valid @RequestBody ResearchSeedbedRequest researchSeedbedRequest) {
         ResearchSeedbedResponse created = researchSeedbedHandler.save(researchSeedbedRequest);
         return ResponseEntity.ok(created);
     }
 
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<ResearchSeedbedResponse> updateResearchSeedbedById
-            (@PathVariable Long id, @RequestBody ResearchSeedbedRequest researchSeedbedRequest) {
+            (@PathVariable Long id, @Valid @RequestBody ResearchSeedbedRequest researchSeedbedRequest) {
         ResearchSeedbedResponse updated = researchSeedbedHandler.updateById(id, researchSeedbedRequest);
         return ResponseEntity.ok(updated);
     }

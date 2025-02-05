@@ -3,6 +3,7 @@ package com.unibague.magno.infrastructure.input.rest;
 import com.unibague.magno.application.dto.request.RoleRequest;
 import com.unibague.magno.application.dto.response.RoleResponse;
 import com.unibague.magno.application.handler.RoleHandler;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,7 @@ public class RoleRestController {
     }
 
     @PostMapping(path = "/", headers = "API-VERSION=1")
-    public ResponseEntity<RoleResponse> createRole(@RequestBody RoleRequest roleRequest) {
+    public ResponseEntity<RoleResponse> createRole(@Valid @RequestBody RoleRequest roleRequest) {
         RoleResponse roleResponse = roleHandler.save(roleRequest);
         URI location = URI.create(String.format("/api/roles/%d", roleResponse.getId()));
         return ResponseEntity.created(location).body(roleResponse);
@@ -38,7 +39,7 @@ public class RoleRestController {
 
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<RoleResponse> updateRoleById
-            (@PathVariable Long id, @RequestBody RoleRequest roleRequest) {
+            (@PathVariable Long id, @Valid @RequestBody RoleRequest roleRequest) {
         RoleResponse roleResponse = roleHandler.updateById(id, roleRequest);
         return ResponseEntity.ok(roleResponse);
     }

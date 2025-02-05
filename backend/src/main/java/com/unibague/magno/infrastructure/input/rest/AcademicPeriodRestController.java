@@ -3,6 +3,7 @@ package com.unibague.magno.infrastructure.input.rest;
 import com.unibague.magno.application.dto.request.AcademicPeriodRequest;
 import com.unibague.magno.application.dto.response.AcademicPeriodResponse;
 import com.unibague.magno.application.handler.AcademicPeriodHandler;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class AcademicPeriodRestController {
 
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<AcademicPeriodResponse> createAcademicPeriod
-            (@RequestBody AcademicPeriodRequest academicPeriodRequest) {
+            (@Valid @RequestBody AcademicPeriodRequest academicPeriodRequest) {
         AcademicPeriodResponse created = academicPeriodHandler.save(academicPeriodRequest);
         URI location = URI.create(String.format("/api/academic-periods/%d", created.getId()));
         return ResponseEntity.created(location).body(created);
@@ -39,7 +40,7 @@ public class AcademicPeriodRestController {
 
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<AcademicPeriodResponse> updateAcademicPeriodById
-            (@PathVariable Long id, @RequestBody AcademicPeriodRequest academicPeriodRequest) {
+            (@PathVariable Long id, @Valid @RequestBody AcademicPeriodRequest academicPeriodRequest) {
         AcademicPeriodResponse updated = academicPeriodHandler.updateById(id, academicPeriodRequest);
         return ResponseEntity.ok(updated);
     }

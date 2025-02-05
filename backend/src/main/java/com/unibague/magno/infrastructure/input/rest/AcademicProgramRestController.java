@@ -3,6 +3,7 @@ package com.unibague.magno.infrastructure.input.rest;
 import com.unibague.magno.application.dto.request.AcademicProgramRequest;
 import com.unibague.magno.application.dto.response.AcademicProgramResponse;
 import com.unibague.magno.application.handler.AcademicProgramHandler;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class AcademicProgramRestController {
 
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<AcademicProgramResponse> createAcademicProgram
-            (@RequestBody AcademicProgramRequest academicProgramRequest) {
+            (@Valid @RequestBody AcademicProgramRequest academicProgramRequest) {
         AcademicProgramResponse created = academicProgramHandler.save(academicProgramRequest);
         URI location = URI.create(String.format("/api/academic-programs/%d", created.getId()));
         return ResponseEntity.created(location).body(created);
@@ -39,7 +40,7 @@ public class AcademicProgramRestController {
 
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<AcademicProgramResponse> updateAcademicProgramById
-            (@PathVariable Long id, @RequestBody AcademicProgramRequest academicProgramRequest) {
+            (@PathVariable Long id, @Valid @RequestBody AcademicProgramRequest academicProgramRequest) {
         AcademicProgramResponse updated = academicProgramHandler.updateById(id, academicProgramRequest);
         return ResponseEntity.ok(updated);
     }
