@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 public class RoleRequest {
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Field name is required")
     private String name;
 }

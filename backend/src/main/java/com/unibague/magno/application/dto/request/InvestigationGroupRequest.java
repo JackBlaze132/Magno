@@ -1,5 +1,7 @@
 package com.unibague.magno.application.dto.request;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.unibague.magno.domain.model.enums.LineOfResearch;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -11,6 +13,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class InvestigationGroupRequest {
 
     @NotBlank(message = "Name field is required")
