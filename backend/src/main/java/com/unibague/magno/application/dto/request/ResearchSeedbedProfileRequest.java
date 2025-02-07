@@ -20,12 +20,11 @@ public class ResearchSeedbedProfileRequest {
     @Positive(message = "coordinator_id must be positive")
     private Long coordinatorId;
 
-    @NotNull(message = "tutor_id is required")
     @Positive(message = "tutor_id must be positive")
     private Long tutorId;
 
-    @NotNull(message = "research_group_profile_id is required")
-    @Positive(message = "research_group_profile_id must be positive")
+    @NotNull(message = "investigation_group_profile_id is required")
+    @Positive(message = "investigation_group_profile_id must be positive")
     private Long investigationGroupProfileId;
 
     @NotNull(message = "academic_period_id is required")

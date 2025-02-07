@@ -53,11 +53,13 @@ public class ResearchSeedbedProfileResponseMapperImpl implements ResearchSeedbed
                 .findById(academicPeriodId));
 
         return ResearchSeedbedProfileResponse.builder()
+                .id(researchSeedbedProfile.getId())
                 .researchSeedbed(researchSeedbedResponse)
                 .coordinator(coordinator)
                 .tutor(tutor)
                 .investigationGroupProfile(investigationGroupProfile)
                 .academicPeriod(academicPeriod)
+                .wasActive(researchSeedbedProfile.getWasActive())
                 .build();
 
     }
