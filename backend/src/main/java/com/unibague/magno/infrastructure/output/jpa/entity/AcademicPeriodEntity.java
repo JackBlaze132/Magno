@@ -38,4 +38,7 @@ public class AcademicPeriodEntity {
 
     @OneToMany(mappedBy = "academicPeriod", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<InvestigationGroupProfileEntity> investigationGroupProfiles;
+
+    @OneToMany(mappedBy = "academicPeriod", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ResearchSeedbedProfileEntity> researchSeedbedProfiles;
 }

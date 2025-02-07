@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -42,4 +43,7 @@ public class ResearchSeedbedEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "line_of_research", nullable = false)
     private LineOfResearch lineOfResearch;
+
+    @OneToMany(mappedBy = "researchSeedbed", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ResearchSeedbedProfileEntity> researchSeedbedProfiles;
 }

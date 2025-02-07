@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -29,5 +31,8 @@ public class InvestigationGroupProfileEntity {
     @ManyToOne
     @JoinColumn(name = "academic_period_id")
     private AcademicPeriodEntity academicPeriod;
+
+    @OneToMany(mappedBy = "investigationGroupProfile", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ResearchSeedbedProfileEntity> researchSeedbeds;
 
 }

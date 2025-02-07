@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -32,4 +34,10 @@ public class FunctionaryProfileEntity {
 
     @OneToOne(mappedBy = "coordinator", cascade = CascadeType.REFRESH)
     private InvestigationGroupProfileEntity investigationGroup;
+
+    @OneToMany(mappedBy = "coordinator", cascade = CascadeType.REFRESH)
+    private Set<ResearchSeedbedProfileEntity> researchSeedbed;
+
+    @OneToMany(mappedBy = "tutor", cascade = CascadeType.REFRESH)
+    private Set<ResearchSeedbedProfileEntity> researchSeedbeds;
 }
