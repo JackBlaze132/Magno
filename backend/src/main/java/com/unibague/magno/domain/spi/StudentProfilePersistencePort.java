@@ -1,0 +1,14 @@
+package com.unibague.magno.domain.spi;
+
+import com.unibague.magno.domain.model.StudentProfile;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface StudentProfilePersistencePort {
+    Optional<StudentProfile> findById(Long id);
+    StudentProfile save(StudentProfile studentProfile);
+    StudentProfile update(Long id, StudentProfile studentProfile);
+    void deleteById(Long id);
+    List<StudentProfile> findAll();
+}
