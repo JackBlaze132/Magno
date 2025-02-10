@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class FunctionaryProfileRequest {
+public class StudentProfileRequest {
 
     @NotNull(message = "Field user_id is required")
     @Positive(message = "Field user_id must be positive")
@@ -19,8 +19,4 @@ public class FunctionaryProfileRequest {
     @NotNull(message = "Field academic_period_id is required")
     @Positive(message = "Field academic_period_id must be positive")
     private Long academicPeriodId;
-
-    @NotNull(message = "Field dependency_id is required")
-    @Positive(message = "Field dependency_id must be positive")
-    private Long dependencyId;
 }
