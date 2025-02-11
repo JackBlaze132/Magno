@@ -3,6 +3,7 @@ package com.unibague.magno.domain.usecase.integra;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.integra.IntegraUserNotFoundException;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
+import com.unibague.magno.domain.model.integra.IntegraStudent;
 import com.unibague.magno.domain.spi.integra.IIntegraPersistencePort;
 
 import java.util.List;
@@ -42,5 +43,10 @@ public class IntegraUseCase implements IIntegraServicePort {
             return new IntegraUserNotFoundException(message);
         });
 
+    }
+
+    @Override
+    public List<IntegraStudent> getIntegraStudentByIdentification(String identification) {
+        return integraPersistencePort.getStudentByIdentification(identification);
     }
 }
