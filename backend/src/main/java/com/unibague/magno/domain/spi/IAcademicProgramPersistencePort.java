@@ -4,6 +4,7 @@ import com.unibague.magno.domain.model.AcademicProgram;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface IAcademicProgramPersistencePort {
     Optional<AcademicProgram> findById(Long id);
@@ -11,4 +12,5 @@ public interface IAcademicProgramPersistencePort {
     AcademicProgram update(Long id, AcademicProgram academicProgram);
     void deleteById(Long id);
     List<AcademicProgram> findAll();
+    Set<AcademicProgram> findAcademicProgramsByIds(Set<Long> ids);
 }

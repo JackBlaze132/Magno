@@ -6,6 +6,7 @@ import com.unibague.magno.domain.model.AcademicProgram;
 import com.unibague.magno.domain.spi.IAcademicProgramPersistencePort;
 
 import java.util.List;
+import java.util.Set;
 
 public class AcademicProgramUseCase implements IAcademicProgramServicePort {
 
@@ -48,5 +49,10 @@ public class AcademicProgramUseCase implements IAcademicProgramServicePort {
     @Override
     public List<AcademicProgram> findAll() {
         return academicProgramPersistencePort.findAll();
+    }
+
+    @Override
+    public Set<AcademicProgram> findAcademicProgramsByIds(Set<Long> ids) {
+        return academicProgramPersistencePort.findAcademicProgramsByIds(ids);
     }
 }

@@ -6,9 +6,11 @@ import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
+import java.util.Set;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AcademicProgramResponseMapper {
     AcademicProgramResponse toResponse(AcademicProgram academicProgram);
     List<AcademicProgramResponse> toResponseList(List<AcademicProgram> academicPrograms);
+    Set<AcademicProgramResponse> toResponseSet(Set<AcademicProgram> academicPrograms);
 }

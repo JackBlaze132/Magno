@@ -3,6 +3,7 @@ package com.unibague.magno.domain.api;
 import com.unibague.magno.domain.model.AcademicProgram;
 
 import java.util.List;
+import java.util.Set;
 
 public interface IAcademicProgramServicePort {
     AcademicProgram findById(Long id);
@@ -10,4 +11,5 @@ public interface IAcademicProgramServicePort {
     AcademicProgram update(Long id, AcademicProgram academicProgram);
     void deleteById(Long id);
     List<AcademicProgram> findAll();
+    Set<AcademicProgram> findAcademicProgramsByIds(Set<Long> ids);
 }

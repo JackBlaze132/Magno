@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Getter
 @Setter
 @Builder
@@ -16,4 +18,5 @@ public class StudentProfileResponse {
     private UserResponse user;
     private AcademicPeriodResponse academicPeriod;
     private Byte semester;
+    private Set<AcademicProgramResponse> academicPrograms;
 }
