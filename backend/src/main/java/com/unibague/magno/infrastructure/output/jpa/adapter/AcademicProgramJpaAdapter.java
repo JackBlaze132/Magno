@@ -8,8 +8,10 @@ import com.unibague.magno.infrastructure.output.jpa.repository.IAcademicProgramR
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Transactional
@@ -48,5 +50,10 @@ public class AcademicProgramJpaAdapter implements IAcademicProgramPersistencePor
     @Override
     public List<AcademicProgram> findAll() {
         return academicProgramEntityMapper.toAcademicProgramList(academicProgramRepository.findAll());
+    }
+
+    @Override
+    public Set<AcademicProgram> findAcademicProgramsByIds(Set<Long> ids) {
+        return new HashSet<>(academicProgramEntityMapper.toAcademicProgramList(academicProgramRepository.findAllById(ids)));
     }
 }

@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -28,4 +30,7 @@ public class AcademicProgramEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "academic_program_type", nullable = false)
     AcademicProgramType type;
+
+    @ManyToMany(mappedBy = "academicPrograms")
+    private Set<StudentProfileEntity> studentProfiles;
 }

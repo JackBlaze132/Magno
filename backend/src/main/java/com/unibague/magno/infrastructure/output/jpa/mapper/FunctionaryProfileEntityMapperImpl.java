@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-@RequiredArgsConstructor
 public class FunctionaryProfileEntityMapperImpl implements FunctionaryProfileEntityMapper {
 
     @Override

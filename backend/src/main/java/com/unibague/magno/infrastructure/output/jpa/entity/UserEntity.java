@@ -50,4 +50,7 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     Set<FunctionaryProfileEntity> functionaryProfiles;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    Set<StudentProfileEntity> studentProfileEntities;
 }
