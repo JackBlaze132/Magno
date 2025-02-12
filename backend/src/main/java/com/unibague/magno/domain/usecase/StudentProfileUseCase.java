@@ -3,15 +3,15 @@ package com.unibague.magno.domain.usecase;
 import com.unibague.magno.domain.api.IStudentProfileServicePort;
 import com.unibague.magno.domain.exception.StudentProfileNotFoundException;
 import com.unibague.magno.domain.model.StudentProfile;
-import com.unibague.magno.domain.spi.StudentProfilePersistencePort;
+import com.unibague.magno.domain.spi.IStudentProfilePersistencePort;
 
 import java.util.List;
 
 public class StudentProfileUseCase  implements IStudentProfileServicePort {
 
-    private final StudentProfilePersistencePort studentProfilePersistencePort;
+    private final IStudentProfilePersistencePort studentProfilePersistencePort;
 
-    public StudentProfileUseCase(StudentProfilePersistencePort studentProfilePersistencePort) {
+    public StudentProfileUseCase(IStudentProfilePersistencePort studentProfilePersistencePort) {
         this.studentProfilePersistencePort = studentProfilePersistencePort;
     }
 

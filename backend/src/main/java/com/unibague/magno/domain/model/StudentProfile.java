@@ -1,17 +1,21 @@
 package com.unibague.magno.domain.model;
 
+import java.util.Set;
+
 public class StudentProfile {
 
     private Long id;
     private Long userId;
     private Long academicPeriodId;
     private Byte semester;
+    private Set<Long> academicProgramsIds;
 
-    public StudentProfile(Long id, Long userId, Long academicPeriodId, Byte semester) {
+    public StudentProfile(Long id, Long userId, Long academicPeriodId, Byte semester, Set<Long> academicProgramsIds) {
         this.id = id;
         this.userId = userId;
         this.academicPeriodId = academicPeriodId;
         this.semester = semester;
+        this.academicProgramsIds = academicProgramsIds;
     }
 
     public StudentProfile() {
@@ -47,5 +51,13 @@ public class StudentProfile {
 
     public void setSemester(Byte semester) {
         this.semester = semester;
+    }
+
+    public Set<Long> getAcademicProgramsIds() {
+        return academicProgramsIds;
+    }
+
+    public void setAcademicProgramsIds(Set<Long> academicProgramsIds) {
+        this.academicProgramsIds = academicProgramsIds;
     }
 }
