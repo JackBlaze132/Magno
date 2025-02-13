@@ -12,4 +12,5 @@ public interface IAcademicProgramServicePort {
     void deleteById(Long id);
     List<AcademicProgram> findAll();
     Set<AcademicProgram> findAcademicProgramsByIds(Set<Long> ids);
+    Set<AcademicProgram> findAcademicProgramsByAcademicProgramCodes(Set<String> academicProgramCodes);
 }

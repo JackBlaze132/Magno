@@ -56,4 +56,10 @@ public class AcademicProgramJpaAdapter implements IAcademicProgramPersistencePor
     public Set<AcademicProgram> findAcademicProgramsByIds(Set<Long> ids) {
         return new HashSet<>(academicProgramEntityMapper.toAcademicProgramList(academicProgramRepository.findAllById(ids)));
     }
+
+    @Override
+    public Set<AcademicProgram> findAcademicProgramsByAcademicProgramCodes(Set<String> academicProgramCodes) {
+        return new HashSet<>(academicProgramEntityMapper.toAcademicProgramList(academicProgramRepository
+                .findByProgramCodeIn(academicProgramCodes)));
+    }
 }

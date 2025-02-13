@@ -55,4 +55,9 @@ public class AcademicProgramUseCase implements IAcademicProgramServicePort {
     public Set<AcademicProgram> findAcademicProgramsByIds(Set<Long> ids) {
         return academicProgramPersistencePort.findAcademicProgramsByIds(ids);
     }
+
+    @Override
+    public Set<AcademicProgram> findAcademicProgramsByAcademicProgramCodes(Set<String> academicProgramCodes) {
+        return academicProgramPersistencePort.findAcademicProgramsByAcademicProgramCodes(academicProgramCodes);
+    }
 }
