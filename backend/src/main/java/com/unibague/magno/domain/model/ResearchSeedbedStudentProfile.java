@@ -3,13 +3,13 @@ package com.unibague.magno.domain.model;
 public class ResearchSeedbedStudentProfile {
 
     private Long id;
-    private Long researchSeedbedId;
+    private Long researchSeedbedProfileId;
     private Long studentProfileId;
     private Boolean wasActive;
 
     public ResearchSeedbedStudentProfile(Long id, Long researchSeedbedId, Long studentProfileId, Boolean wasActive) {
         this.id = id;
-        this.researchSeedbedId = researchSeedbedId;
+        this.researchSeedbedProfileId = researchSeedbedId;
         this.studentProfileId = studentProfileId;
         this.wasActive = wasActive;
     }
@@ -22,12 +22,12 @@ public class ResearchSeedbedStudentProfile {
         this.id = id;
     }
 
-    public Long getResearchSeedbedId() {
-        return researchSeedbedId;
+    public Long getResearchSeedbedProfileId() {
+        return researchSeedbedProfileId;
     }
 
-    public void setResearchSeedbedId(Long researchSeedbedId) {
-        this.researchSeedbedId = researchSeedbedId;
+    public void setResearchSeedbedProfileId(Long researchSeedbedProfileId) {
+        this.researchSeedbedProfileId = researchSeedbedProfileId;
     }
 
     public Long getStudentProfileId() {
