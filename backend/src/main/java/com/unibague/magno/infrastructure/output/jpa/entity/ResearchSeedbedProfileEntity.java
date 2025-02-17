@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -17,6 +19,9 @@ public class ResearchSeedbedProfileEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToMany(mappedBy = "researchSeedbedProfile", cascade = CascadeType.REFRESH, orphanRemoval = true)
+    private Set<ResearchSeedbedStudentProfileEntity> researchSeedbedProfiles;
 
     @ManyToOne
     @JoinColumn(name = "research_seedbed_id")

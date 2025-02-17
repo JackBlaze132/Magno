@@ -14,6 +14,9 @@ public class ResearchSeedbedStudentProfile {
         this.wasActive = wasActive;
     }
 
+    public ResearchSeedbedStudentProfile() {
+    }
+
     public Long getId() {
         return id;
     }

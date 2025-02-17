@@ -15,15 +15,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ResearchSeedbedStudentProfileResponseMapperImpl implements ResearchSeedbedStudentProfileResponseMapper{
 
-    IResearchSeedbedProfileServicePort researchSeedbedProfileServicePort;
-    ResearchSeedbedProfileResponseMapper researchSeedbedProfileResponseMapper;
+    private final IResearchSeedbedProfileServicePort researchSeedbedProfileServicePort;
+    private final ResearchSeedbedProfileResponseMapper researchSeedbedProfileResponseMapper;
 
-    IStudentProfileServicePort studentProfileServicePort;
-    StudentProfileResponseMapper studentProfileResponseMapper;
+    private final IStudentProfileServicePort studentProfileServicePort;
+    private final StudentProfileResponseMapper studentProfileResponseMapper;
 
     @Override
     public ResearchSeedbedStudentProfileResponse
     toResponse(ResearchSeedbedStudentProfile researchSeedbedStudentProfile) {
+
+        Long researchSeedbedStudentProfileId = researchSeedbedStudentProfile.getId();
 
         Long researchSeedbedProfileId = researchSeedbedStudentProfile.getResearchSeedbedProfileId();
         ResearchSeedbedProfileResponse researchSeedbedProfile = researchSeedbedProfileResponseMapper
@@ -36,9 +38,10 @@ public class ResearchSeedbedStudentProfileResponseMapperImpl implements Research
                 .findById(studentProfileId));
 
         return ResearchSeedbedStudentProfileResponse.builder()
+                .id(researchSeedbedStudentProfileId)
                 .researchSeedbedProfile(researchSeedbedProfile)
                 .studentProfile(studentProfile)
-                .wasActive(false)
+                .wasActive(researchSeedbedStudentProfile.getWasActive())
                 .build();
     }
 

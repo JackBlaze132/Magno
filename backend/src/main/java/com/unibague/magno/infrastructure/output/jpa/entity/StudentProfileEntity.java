@@ -23,6 +23,9 @@ public class StudentProfileEntity {
     @Column(name = "semester", nullable = false)
     private byte semester;
 
+    @OneToMany(mappedBy = "studentProfile", cascade = CascadeType.REFRESH)
+    private Set<ResearchSeedbedStudentProfileEntity> researchSeedbedStudentProfiles;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
