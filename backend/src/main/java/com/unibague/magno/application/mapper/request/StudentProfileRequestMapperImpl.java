@@ -40,10 +40,10 @@ public class StudentProfileRequestMapperImpl implements StudentProfileRequestMap
 
         byte semester = (byte) students.stream()
                 .map(IntegraStudent::getSemester)
-                .map(s -> (s == null || s.isEmpty()) ? "11" : s)
+                .map(s -> (s == null || s.isEmpty()) ? "0" : s)
                 .mapToInt(Integer::parseInt)
                 .max()
-                .orElse(0);
+                .orElse(-1);
 
         Set<AcademicProgram> academicProgramSet = academicProgramServicePort
                 .findAcademicProgramsByAcademicProgramCodes(

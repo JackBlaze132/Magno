@@ -3,9 +3,12 @@ package com.unibague.magno.application.mapper.request;
 import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.application.dto.request.UserRequest;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
+import com.unibague.magno.domain.exception.integra.IntegraStudentNotFoundException;
 import com.unibague.magno.domain.model.User;
+import com.unibague.magno.domain.model.enums.JSONIntegraType;
 import com.unibague.magno.domain.model.enums.Sex;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
+import com.unibague.magno.domain.model.integra.IntegraStudent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -43,9 +46,28 @@ public class UserRequestMapperImpl implements UserRequestMapper {
     @Override
     public User toUser(IntegraUserRequest userRequest) {
 
-        IntegraFunctionary integraFunctionary = integraServicePort.
-                getIntegraFunctionaryByIdentification(userRequest.getIdentification());
+        if (userRequest.getType().equals(JSONIntegraType.FUNCIONARIO)){
+            IntegraFunctionary integraFunctionary = integraServicePort.
+                    getIntegraFunctionaryByIdentification(userRequest.getIdentification());
+            return mapIntegraFunctionary(userRequest, integraFunctionary);
+        }
+        else if (userRequest.getType().equals(JSONIntegraType.ESTUDIANTE)){
+            IntegraStudent integraStudent = integraServicePort.
+                    getIntegraStudentByIdentification(userRequest.getIdentification())
+                    .stream()
+                    .findFirst()
+                    .orElseThrow(() -> new IntegraStudentNotFoundException(
+                            String.format("It wasn't possible to find the student with identification %s",
+                                    userRequest.getIdentification())
+                    ));
+            return mapIntegraStudent(userRequest, integraStudent);
+        }
+        else {
+            throw new IllegalArgumentException("The type of the integra user is not valid");
+        }
+    }
 
+    private User mapIntegraFunctionary(IntegraUserRequest userRequest, IntegraFunctionary integraFunctionary) {
         User user = new User();
         user.setFullName(integraFunctionary.getFullName());
         user.setIdentificationNumber(integraFunctionary.getIdentification());
@@ -55,7 +77,20 @@ public class UserRequestMapperImpl implements UserRequestMapper {
 
         Sex sex = integraFunctionary.getSex().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO;
         user.setSex(sex);
+        user.setRoleIds(userRequest.getRoleIds());
+        return user;
+    }
 
+    private User mapIntegraStudent(IntegraUserRequest userRequest, IntegraStudent integraStudent) {
+        User user = new User();
+        user.setFullName(integraStudent.getName());
+        user.setIdentificationNumber(integraStudent.getIdentification());
+        user.setEmail(integraStudent.getEmail());
+        user.setUserCode(integraStudent.getCodeStudent());
+        user.setExternalUser(false);
+
+        Sex sex = integraStudent.getSexo().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO;
+        user.setSex(sex);
         user.setRoleIds(userRequest.getRoleIds());
         return user;
     }
