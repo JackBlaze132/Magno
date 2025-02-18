@@ -49,4 +49,11 @@ public class DependencyUseCase implements IDependencyServicePort {
     public List<Dependency> findAll() {
         return dependencyPersistencePort.findAll();
     }
+
+    @Override
+    public Dependency findByName(String name) {
+        return dependencyPersistencePort.findByName(name)
+                .orElseThrow(() -> new DependencyNotFoundException(
+                        String.format("Dependency with name %s not found", name)));
+    }
 }

@@ -47,4 +47,10 @@ public class DependencyJpaAdapter implements IDependencyPersistencePort {
     public List<Dependency> findAll() {
         return dependencyEntityMapper.toDependencyList(dependencyRepository.findAll());
     }
+
+    @Override
+    public Optional<Dependency> findByName(String name) {
+        return dependencyRepository.findByName(name)
+                .map(dependencyEntityMapper::toDependency);
+    }
 }

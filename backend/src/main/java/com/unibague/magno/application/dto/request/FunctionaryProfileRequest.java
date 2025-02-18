@@ -19,8 +19,4 @@ public class FunctionaryProfileRequest {
     @NotNull(message = "Field academic_period_id is required")
     @Positive(message = "Field academic_period_id must be positive")
     private Long academicPeriodId;
-
-    @NotNull(message = "Field dependency_id is required")
-    @Positive(message = "Field dependency_id must be positive")
-    private Long dependencyId;
 }

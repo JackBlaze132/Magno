@@ -10,4 +10,5 @@ public interface IDependencyServicePort {
     Dependency update(Long id, Dependency dependency);
     void deleteById(Long id);
     List<Dependency> findAll();
+    Dependency findByName(String name);
 }

@@ -11,4 +11,5 @@ public interface IDependencyPersistencePort {
     Dependency update(Long id, Dependency dependency);
     void deleteById(Long id);
     List<Dependency> findAll();
+    Optional<Dependency> findByName(String name);
 }
