@@ -19,22 +19,22 @@ public class ExternalUserProfileEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "country")
+    @Column(name = "country", nullable = false)
     private String country;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type_of_external_user")
+    @Column(name = "type_of_external_user", nullable = false)
     private TypeOfExternalUser typeOfExternalUser;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     UserEntity user;
 
     @ManyToOne
-    @JoinColumn(name = "academic_period_id")
+    @JoinColumn(name = "academic_period_id", nullable = false)
     AcademicPeriodEntity academicPeriod;
 
     @ManyToOne
-    @JoinColumn(name = "research_seedbed_profile_id")
+    @JoinColumn(name = "research_seedbed_profile_id", nullable = false)
     ResearchSeedbedProfileEntity researchSeedbedProfile;
 }

@@ -19,14 +19,14 @@ public class ResearchSeedbedStudentProfileEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "research_seedbed_profile_id")
+    @JoinColumn(name = "research_seedbed_profile_id", nullable = false)
     ResearchSeedbedProfileEntity researchSeedbedProfile;
 
     @ManyToOne
-    @JoinColumn(name = "student_profile_id")
+    @JoinColumn(name = "student_profile_id", nullable = false)
     StudentProfileEntity studentProfile;
 
 
-    @Column(name = "was_active")
+    @Column(name = "was_active", nullable = false)
     private Boolean wasActive;
 }

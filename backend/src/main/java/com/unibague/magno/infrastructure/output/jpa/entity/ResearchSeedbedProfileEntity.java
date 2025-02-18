@@ -24,11 +24,11 @@ public class ResearchSeedbedProfileEntity {
     private Set<ResearchSeedbedStudentProfileEntity> researchSeedbedProfiles;
 
     @ManyToOne
-    @JoinColumn(name = "research_seedbed_id")
+    @JoinColumn(name = "research_seedbed_id", nullable = false)
     private ResearchSeedbedEntity researchSeedbed;
 
     @ManyToOne
-    @JoinColumn(name = "coordinator_id")
+    @JoinColumn(name = "coordinator_id", nullable = false)
     private FunctionaryProfileEntity coordinator;
 
     @ManyToOne
@@ -36,13 +36,13 @@ public class ResearchSeedbedProfileEntity {
     private FunctionaryProfileEntity tutor;
 
     @ManyToOne
-    @JoinColumn(name = "investigation_group_profile_id")
+    @JoinColumn(name = "investigation_group_profile_id", nullable = false)
     private InvestigationGroupProfileEntity investigationGroupProfile;
 
     @ManyToOne
-    @JoinColumn(name = "academic_period_id")
+    @JoinColumn(name = "academic_period_id", nullable = false)
     private AcademicPeriodEntity academicPeriod;
 
-    @Column(name = "was_active")
+    @Column(name = "was_active", nullable = false)
     private Boolean wasActive;
 }

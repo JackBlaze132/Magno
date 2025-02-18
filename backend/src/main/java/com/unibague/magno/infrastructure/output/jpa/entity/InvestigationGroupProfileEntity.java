@@ -21,7 +21,7 @@ public class InvestigationGroupProfileEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "investigation_group_id")
+    @JoinColumn(name = "investigation_group_id", nullable = false)
     private InvestigationGroupEntity investigationGroup;
 
     @OneToOne(cascade = CascadeType.REFRESH)
@@ -29,7 +29,7 @@ public class InvestigationGroupProfileEntity {
     private FunctionaryProfileEntity coordinator;
 
     @ManyToOne
-    @JoinColumn(name = "academic_period_id")
+    @JoinColumn(name = "academic_period_id", nullable = false)
     private AcademicPeriodEntity academicPeriod;
 
     @OneToMany(mappedBy = "investigationGroupProfile", cascade = CascadeType.ALL, orphanRemoval = true)

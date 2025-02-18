@@ -29,7 +29,7 @@ public class FunctionaryProfileEntity {
     private AcademicPeriodEntity academicPeriod;
 
     @ManyToOne
-    @JoinColumn(name = "dependency_id")
+    @JoinColumn(name = "dependency_id", nullable = false)
     private DependencyEntity dependency;
 
     @OneToOne(mappedBy = "coordinator", cascade = CascadeType.REFRESH)
