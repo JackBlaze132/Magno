@@ -20,7 +20,7 @@ public class ResearchSeedbedProfileEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "researchSeedbedProfile", cascade = CascadeType.REFRESH, orphanRemoval = true)
+    @OneToMany(mappedBy = "researchSeedbedProfile", cascade = CascadeType.MERGE, orphanRemoval = true)
     private Set<ResearchSeedbedStudentProfileEntity> researchSeedbedProfiles;
 
     @ManyToOne
@@ -32,7 +32,7 @@ public class ResearchSeedbedProfileEntity {
     private FunctionaryProfileEntity coordinator;
 
     @ManyToOne
-    @JoinColumn(name = "tutor_id")
+    @JoinColumn(name = "tutor_id", nullable = true)
     private FunctionaryProfileEntity tutor;
 
     @ManyToOne

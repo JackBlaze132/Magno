@@ -37,10 +37,6 @@ public class ResearchSeedbedProfileResponseMapperImpl implements ResearchSeedbed
                 .toResponse(functionaryProfileServicePort
                 .findById(coordinatorId));
 
-        Long tutorId = researchSeedbedProfile.getTutorId();
-        FunctionaryProfileResponse tutor = functionaryProfileResponseMapper
-                .toResponse(functionaryProfileServicePort
-                .findById(tutorId));
 
         Long investigationGroupProfileId = researchSeedbedProfile.getInvestigationGroupProfileId();
         InvestigationGroupProfileResponse investigationGroupProfile = investigationGroupProfileResponseMapper
@@ -52,11 +48,28 @@ public class ResearchSeedbedProfileResponseMapperImpl implements ResearchSeedbed
                 .toResponse(academicPeriodServicePort
                 .findById(academicPeriodId));
 
+        Long tutorId = researchSeedbedProfile.getTutorId();
+        if (tutorId != null) {
+            FunctionaryProfileResponse tutor = functionaryProfileResponseMapper
+                    .toResponse(functionaryProfileServicePort
+                            .findById(tutorId));
+
+            return ResearchSeedbedProfileResponse.builder()
+                    .id(researchSeedbedProfile.getId())
+                    .researchSeedbed(researchSeedbedResponse)
+                    .coordinator(coordinator)
+                    .tutor(tutor)
+                    .investigationGroupProfile(investigationGroupProfile)
+                    .academicPeriod(academicPeriod)
+                    .wasActive(researchSeedbedProfile.getWasActive())
+                    .build();
+        }
+
         return ResearchSeedbedProfileResponse.builder()
                 .id(researchSeedbedProfile.getId())
                 .researchSeedbed(researchSeedbedResponse)
                 .coordinator(coordinator)
-                .tutor(tutor)
+                .tutor(null)
                 .investigationGroupProfile(investigationGroupProfile)
                 .academicPeriod(academicPeriod)
                 .wasActive(researchSeedbedProfile.getWasActive())

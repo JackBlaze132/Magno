@@ -22,7 +22,11 @@ public class ResearchSeedbedProfileEntityMapperImpl implements ResearchSeedbedPr
         researchSeedbedProfile.setId(researchSeedbedProfileEntity.getId());
         researchSeedbedProfile.setResearchSeedbedId(researchSeedbedProfileEntity.getResearchSeedbed().getId());
         researchSeedbedProfile.setCoordinatorId(researchSeedbedProfileEntity.getCoordinator().getId());
-        researchSeedbedProfile.setTutorId(researchSeedbedProfileEntity.getTutor().getId());
+
+        Long tutorId = researchSeedbedProfileEntity.getTutor() != null ?
+                researchSeedbedProfileEntity.getTutor().getId() : null;
+        researchSeedbedProfile.setTutorId(tutorId);
+
         researchSeedbedProfile.setInvestigationGroupProfileId(researchSeedbedProfileEntity
                 .getInvestigationGroupProfile().getId());
         researchSeedbedProfile.setAcademicPeriodId(researchSeedbedProfileEntity.getAcademicPeriod().getId());
@@ -50,9 +54,13 @@ public class ResearchSeedbedProfileEntityMapperImpl implements ResearchSeedbedPr
         coordinatorEntity.setId(researchSeedbedProfile.getCoordinatorId());
         researchSeedbedProfileEntity.setCoordinator(coordinatorEntity);
 
-        FunctionaryProfileEntity tutorEntity = new FunctionaryProfileEntity();
-        tutorEntity.setId(researchSeedbedProfile.getTutorId());
-        researchSeedbedProfileEntity.setTutor(tutorEntity);
+        Long tutorId = researchSeedbedProfileEntity.getTutor() != null ?
+                researchSeedbedProfileEntity.getTutor().getId() : null;
+        if (tutorId != null){
+            FunctionaryProfileEntity tutorEntity = new FunctionaryProfileEntity();
+            tutorEntity.setId(researchSeedbedProfile.getTutorId());
+            researchSeedbedProfileEntity.setTutor(tutorEntity);
+        }
 
         InvestigationGroupProfileEntity investigationGroupProfileEntity = new InvestigationGroupProfileEntity();
         investigationGroupProfileEntity.setId(researchSeedbedProfile.getInvestigationGroupProfileId());
@@ -85,9 +93,13 @@ public class ResearchSeedbedProfileEntityMapperImpl implements ResearchSeedbedPr
         coordinatorEntity.setId(researchSeedbedProfile.getCoordinatorId());
         researchSeedbedProfileEntity.setCoordinator(coordinatorEntity);
 
-        FunctionaryProfileEntity tutorEntity = new FunctionaryProfileEntity();
-        tutorEntity.setId(researchSeedbedProfile.getTutorId());
-        researchSeedbedProfileEntity.setTutor(tutorEntity);
+        Long tutorId = researchSeedbedProfileEntity.getTutor() != null ?
+                researchSeedbedProfileEntity.getTutor().getId() : null;
+        if (tutorId != null){
+            FunctionaryProfileEntity tutorEntity = new FunctionaryProfileEntity();
+            tutorEntity.setId(researchSeedbedProfile.getTutorId());
+            researchSeedbedProfileEntity.setTutor(tutorEntity);
+        }
 
         InvestigationGroupProfileEntity investigationGroupProfileEntity = new InvestigationGroupProfileEntity();
         investigationGroupProfileEntity.setId(researchSeedbedProfile.getInvestigationGroupProfileId());
