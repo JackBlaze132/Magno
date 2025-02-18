@@ -5,7 +5,9 @@ import com.unibague.magno.domain.exception.UserNotFoundException;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.spi.IUserPersistencePort;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class UserUseCase implements IUserServicePort {
 
@@ -48,5 +50,15 @@ public class UserUseCase implements IUserServicePort {
     @Override
     public List<User> findAll() {
         return userPersistencePort.findAll();
+    }
+
+    @Override
+    public List<String> findAllCountries() {
+        String[] countryCodes = Locale.getISOCountries();
+        Locale spanishLocale = Locale.of("es");
+        return Arrays.stream(countryCodes)
+                .map(countryCode -> Locale.of("", countryCode))
+                .map(countryLocale -> countryLocale.getDisplayCountry(spanishLocale))
+                .toList();
     }
 }

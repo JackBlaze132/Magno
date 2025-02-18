@@ -50,4 +50,9 @@ public class UserHandler implements IUserHandler{
     public List<UserResponse> findAll() {
         return userResponseMapper.toResponseList(userServicePort.findAll());
     }
+
+    @Override
+    public List<String> findAllCountries() {
+        return userServicePort.findAllCountries();
+    }
 }

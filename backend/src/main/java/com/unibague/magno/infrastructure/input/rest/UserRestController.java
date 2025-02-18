@@ -31,6 +31,12 @@ public class UserRestController {
         return ResponseEntity.ok(userResponse);
     }
 
+    @GetMapping(path = "/all-countries", headers = "API-VERSION=1")
+    ResponseEntity<List<String>> getAllCountries() {
+        List<String> countries = userHandler.findAllCountries();
+        return ResponseEntity.ok(countries);
+    }
+
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest) {
         UserResponse userResponse = userHandler.save(userRequest);

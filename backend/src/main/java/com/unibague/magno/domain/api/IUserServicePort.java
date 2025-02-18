@@ -10,4 +10,5 @@ public interface IUserServicePort {
     User update(Long id, User user);
     void deleteById(Long id);
     List<User> findAll();
+    List<String> findAllCountries();
 }

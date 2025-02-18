@@ -13,4 +13,5 @@ public interface IUserHandler {
     UserResponse updateById(Long id, UserRequest user);
     void deleteById(Long id);
     List<UserResponse> findAll();
+    List<String> findAllCountries();
 }
