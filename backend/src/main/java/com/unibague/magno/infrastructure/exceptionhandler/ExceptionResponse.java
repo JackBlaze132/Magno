@@ -24,6 +24,7 @@ public enum ExceptionResponse {
     ENUM_BAD_REQUEST("ERR_ENUM_001", "Invalid enum value."),
     INTEGRA_API_ERROR("ERR_INTEGRA_API_001", "An error occurred while trying to connect to the " +
             "Integra API."),
+    UPLOAD_EXCEL_ERROR("ERR_UPLOAD_EXCEL_001", "An error occurred while trying to upload the Excel file."),
     GENERIC_ERROR("ERR_GENERIC_001", "An unexpected error occurred.");
 
     private final String code;
