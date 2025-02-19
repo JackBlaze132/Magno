@@ -46,4 +46,9 @@ public class AcademicProgramHandler implements IAcademicProgramHandler{
     public List<AcademicProgramResponse> findAll() {
         return academicProgramResponseMapper.toResponseList(academicProgramServicePort.findAll());
     }
+
+    @Override
+    public List<AcademicProgramResponse> saveAll() {
+        return academicProgramResponseMapper.toResponseList(academicProgramServicePort.saveAll());
+    }
 }

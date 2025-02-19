@@ -13,4 +13,5 @@ public interface IAcademicProgramServicePort {
     List<AcademicProgram> findAll();
     Set<AcademicProgram> findAcademicProgramsByIds(Set<Long> ids);
     Set<AcademicProgram> findAcademicProgramsByAcademicProgramCodes(Set<String> academicProgramCodes);
+    List<AcademicProgram> saveAll();
 }

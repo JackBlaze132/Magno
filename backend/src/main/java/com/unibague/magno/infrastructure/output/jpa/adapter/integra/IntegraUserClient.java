@@ -1,5 +1,6 @@
 package com.unibague.magno.infrastructure.output.jpa.adapter.integra;
 
+import com.unibague.magno.domain.model.integra.IntegraAcademicProgram;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 import com.unibague.magno.domain.spi.integra.IIntegraPersistencePort;
@@ -31,6 +32,9 @@ public class IntegraUserClient implements IIntegraPersistencePort {
     @Value("${integra.student.url2}")
     private String studentsUrl2;
 
+    @Value("${integra.academic.programs.url}")
+    private String academicProgramsUrl;
+
     @Override
     public List<IntegraFunctionary> getAllFunctionaries() {
         final String url = baseUrl + allFunctionariesUrl;
@@ -53,6 +57,19 @@ public class IntegraUserClient implements IIntegraPersistencePort {
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<IntegraStudent>>() {}
+        );
+        return response.getBody();
+    }
+
+    @Override
+    public List<IntegraAcademicProgram> getAllAcademicPrograms() {
+        final String url = baseUrl + academicProgramsUrl;
+
+        ResponseEntity<List<IntegraAcademicProgram>> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<IntegraAcademicProgram>>() {}
         );
         return response.getBody();
     }

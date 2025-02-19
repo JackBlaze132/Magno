@@ -38,6 +38,12 @@ public class AcademicProgramRestController {
         return ResponseEntity.created(location).body(created);
     }
 
+    @PostMapping(path = "/create-all-academic-programs", headers = "API-VERSION=1")
+    public ResponseEntity<List<AcademicProgramResponse>> createAllAcademicPrograms() {
+        List<AcademicProgramResponse> created = academicProgramHandler.saveAll();
+        return ResponseEntity.ok(created);
+    }
+
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<AcademicProgramResponse> updateAcademicProgramById
             (@PathVariable Long id, @Valid @RequestBody AcademicProgramRequest academicProgramRequest) {

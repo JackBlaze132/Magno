@@ -95,7 +95,7 @@ public class BeanConfiguration {
 
     @Bean
     public IAcademicProgramPersistencePort academicProgramPersistencePort() {
-        return new AcademicProgramJpaAdapter(academicProgramRepository, academicProgramEntityMapper);
+        return new AcademicProgramJpaAdapter(academicProgramRepository, academicProgramEntityMapper, integraServicePort());
     }
 
     @Bean

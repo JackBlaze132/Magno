@@ -1,5 +1,6 @@
 package com.unibague.magno.infrastructure.output.jpa.adapter;
 
+import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.model.AcademicProgram;
 import com.unibague.magno.domain.spi.IAcademicProgramPersistencePort;
 import com.unibague.magno.infrastructure.output.jpa.entity.AcademicProgramEntity;
@@ -12,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Transactional
@@ -19,6 +21,7 @@ public class AcademicProgramJpaAdapter implements IAcademicProgramPersistencePor
 
     private final IAcademicProgramRepository academicProgramRepository;
     private final AcademicProgramEntityMapper academicProgramEntityMapper;
+    private final IIntegraServicePort integraServicePort;
 
     @Override
     public Optional<AcademicProgram> findById(Long id) {
@@ -61,5 +64,31 @@ public class AcademicProgramJpaAdapter implements IAcademicProgramPersistencePor
     public Set<AcademicProgram> findAcademicProgramsByAcademicProgramCodes(Set<String> academicProgramCodes) {
         return new HashSet<>(academicProgramEntityMapper.toAcademicProgramList(academicProgramRepository
                 .findByProgramCodeIn(academicProgramCodes)));
+    }
+
+    @Override
+    public List<AcademicProgram> saveAll() {
+        List<AcademicProgramEntity> existingPrograms = academicProgramRepository.findAll();
+        Set<String> existingNames = extractNames(existingPrograms);
+        List<AcademicProgramEntity> newPrograms = fetchNewPrograms(existingNames);
+        return savePrograms(newPrograms);
+    }
+
+    private Set<String> extractNames(List<AcademicProgramEntity> programs) {
+        return programs.stream()
+                .map(AcademicProgramEntity::getName)
+                .collect(Collectors.toSet());
+    }
+
+    private List<AcademicProgramEntity> fetchNewPrograms(Set<String> existingNames) {
+        return integraServicePort.getAllAcademicPrograms().stream()
+                .map(academicProgramEntityMapper::toAcademicProgramEntity)
+                .filter(program -> !existingNames.contains(program.getName()))
+                .toList();
+    }
+
+    private List<AcademicProgram> savePrograms(List<AcademicProgramEntity> newPrograms) {
+        List<AcademicProgramEntity> savedEntities = academicProgramRepository.saveAll(newPrograms);
+        return academicProgramEntityMapper.toAcademicProgramList(savedEntities);
     }
 }
