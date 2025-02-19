@@ -85,7 +85,7 @@ public class BeanConfiguration {
 
     @Bean
     public IDependencyPersistencePort dependencyPersistencePort() {
-        return new DependencyJpaAdapter(dependencyRepository, dependencyEntityMapper);
+        return new DependencyJpaAdapter(dependencyRepository, dependencyEntityMapper, integraServicePort());
     }
 
     @Bean

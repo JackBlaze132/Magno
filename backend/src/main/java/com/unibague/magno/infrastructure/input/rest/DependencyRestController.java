@@ -38,6 +38,12 @@ public class DependencyRestController {
         return ResponseEntity.created(location).body(created);
     }
 
+    @PostMapping(path = "/create-all-dependencies", headers = "API-VERSION=1")
+    public ResponseEntity<List<DependencyResponse>> createAllDependencies() {
+        List<DependencyResponse> created = dependencyHandler.saveAllFromIntegra();
+        return ResponseEntity.ok(created);
+    }
+
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<DependencyResponse> updateDependencyById
             (@PathVariable Long id, @Valid @RequestBody DependencyRequest dependencyRequest) {

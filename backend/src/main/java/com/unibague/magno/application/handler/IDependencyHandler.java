@@ -11,4 +11,5 @@ public interface IDependencyHandler {
     DependencyResponse updateById(Long id, DependencyRequest dependency);
     void deleteById(Long id);
     List<DependencyResponse> findAll();
+    List<DependencyResponse> saveAllFromIntegra();
 }

@@ -11,4 +11,5 @@ public interface IDependencyServicePort {
     void deleteById(Long id);
     List<Dependency> findAll();
     Dependency findByName(String name);
+    List<Dependency> saveAllFromIntegra();
 }

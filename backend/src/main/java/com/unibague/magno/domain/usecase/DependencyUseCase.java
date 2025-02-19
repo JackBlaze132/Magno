@@ -56,4 +56,9 @@ public class DependencyUseCase implements IDependencyServicePort {
                 .orElseThrow(() -> new DependencyNotFoundException(
                         String.format("Dependency with name %s not found", name)));
     }
+
+    @Override
+    public List<Dependency> saveAllFromIntegra() {
+        return dependencyPersistencePort.saveAllFromIntegra();
+    }
 }

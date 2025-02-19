@@ -6,7 +6,6 @@ import com.unibague.magno.domain.model.integra.IntegraAcademicProgram;
 import com.unibague.magno.infrastructure.output.jpa.entity.AcademicProgramEntity;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
