@@ -201,7 +201,7 @@ public class ControllerAdvisor {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(EnumBadRequestException.class)
+    @ExceptionHandler(UploadExcelException.class)
     public ErrorResponse handleUserNotFoundException(UploadExcelException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.UPLOAD_EXCEL_ERROR.getCode());
