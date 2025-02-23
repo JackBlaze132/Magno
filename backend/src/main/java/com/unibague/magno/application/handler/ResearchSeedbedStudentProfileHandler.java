@@ -5,11 +5,16 @@ import com.unibague.magno.application.dto.response.ResearchSeedbedStudentProfile
 import com.unibague.magno.application.mapper.request.ResearchSeedbedStudentProfileRequestMapper;
 import com.unibague.magno.application.mapper.response.ResearchSeedbedStudentProfileResponseMapper;
 import com.unibague.magno.domain.api.IResearchSeedbedStudentProfileServicePort;
+import com.unibague.magno.domain.exception.UploadExcelException;
 import com.unibague.magno.domain.model.ResearchSeedbedStudentProfile;
+import com.unibague.magno.infrastructure.util.UploadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -18,10 +23,11 @@ public class ResearchSeedbedStudentProfileHandler implements IResearchSeedbedStu
     private final IResearchSeedbedStudentProfileServicePort researchSeedbedStudentProfileServicePort;
     private final ResearchSeedbedStudentProfileRequestMapper researchSeedbedStudentProfileRequestMapper;
     private final ResearchSeedbedStudentProfileResponseMapper researchSeedbedStudentProfileResponseMapper;
+    private final UploadService uploadService;
 
     @Override
     public ResearchSeedbedStudentProfileResponse findById(Long id) {
-        ResearchSeedbedStudentProfile researchSeedbedStudentProfile =researchSeedbedStudentProfileServicePort.findById(id);
+        ResearchSeedbedStudentProfile researchSeedbedStudentProfile = researchSeedbedStudentProfileServicePort.findById(id);
         return researchSeedbedStudentProfileResponseMapper.toResponse(researchSeedbedStudentProfile);
     }
 
@@ -47,5 +53,29 @@ public class ResearchSeedbedStudentProfileHandler implements IResearchSeedbedStu
     @Override
     public List<ResearchSeedbedStudentProfileResponse> findAll() {
         return researchSeedbedStudentProfileResponseMapper.toResponseList(researchSeedbedStudentProfileServicePort.findAll());
+    }
+
+    @Override
+    public List<ResearchSeedbedStudentProfileResponse> saveAllByExcel(Long researchSeedbedProfileId, MultipartFile file) {
+        List<Map<String, String>> data = getListOfMpas(file);
+        List<ResearchSeedbedStudentProfile> researchSeedbedStudentProfiles = researchSeedbedStudentProfileServicePort
+                .saveAllByExcel(researchSeedbedProfileId, data);
+        return researchSeedbedStudentProfileResponseMapper.toResponseList(researchSeedbedStudentProfiles);
+    }
+
+    private List<Map<String, String>> getListOfMpas(MultipartFile file) {
+        try{
+            List<Map<String, String>> data = uploadService.uploadExcel(file);
+            List<Map<String, String>> newData = new ArrayList<>(data);
+            newData.removeIf(map -> map.entrySet()
+                    .stream()
+                    .anyMatch(entry -> entry.getValue().isEmpty()));
+            return newData;
+        }
+        catch (Exception e){
+            throw new UploadExcelException(
+                    String.format("Error uploading the excel file with name: %s", file.getOriginalFilename())
+            );
+        }
     }
 }

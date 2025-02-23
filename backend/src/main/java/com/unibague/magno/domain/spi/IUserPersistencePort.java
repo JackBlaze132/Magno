@@ -9,6 +9,7 @@ public interface IUserPersistencePort {
     Optional<User> findById(Long id);
     User save(User user);
     User update(Long id, User user);
+    Optional<User> findByUserIdentification(String identification);
     void deleteById(Long id);
     List<User> findAll();
 }

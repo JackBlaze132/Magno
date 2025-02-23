@@ -176,7 +176,9 @@ public class BeanConfiguration {
 
     @Bean
     public IResearchSeedbedStudentProfileServicePort researchSeedbedStudentProfileServicePort() {
-        return new ResearchSeedbedStudentProfileUseCase(researchSeedbedStudentProfilePersistencePort());
+        return new ResearchSeedbedStudentProfileUseCase(researchSeedbedStudentProfilePersistencePort(),
+                userServicePort(), integraServicePort(), studentProfileServicePort(),
+                researchSeedbedProfileServicePort(), academicProgramServicePort());
     }
 
     @Bean

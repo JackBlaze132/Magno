@@ -39,6 +39,12 @@ public class UserJpaAdapter implements IUserPersistencePort {
     }
 
     @Override
+    public Optional<User> findByUserIdentification(String identification) {
+        Optional<UserEntity> user = userRepository.findByIdentificationNumber(identification);
+        return user.map(userEntityMapper::toUser);
+    }
+
+    @Override
     public void deleteById(Long id) {
         userRepository.deleteById(id);
     }

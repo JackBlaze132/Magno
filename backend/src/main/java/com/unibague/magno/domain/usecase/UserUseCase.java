@@ -8,6 +8,7 @@ import com.unibague.magno.domain.spi.IUserPersistencePort;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 public class UserUseCase implements IUserServicePort {
 
@@ -36,6 +37,11 @@ public class UserUseCase implements IUserServicePort {
                     String.format("User with id %s could not be updated because it does not exist", user.getId()));
         }
         return userPersistencePort.update(id, user);
+    }
+
+    @Override
+    public Optional<User> findByUserIdentification(String identification) {
+        return userPersistencePort.findByUserIdentification(identification);
     }
 
     @Override

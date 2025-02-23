@@ -39,6 +39,17 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
     }
 
     @Override
+    public StudentProfile findByStudentProfileIdentificationAndResearchSeedbedProfileId(String identification,
+                                                                                        Long researchSeedbedProfileId) {
+        return studentProfilePersistencePort.findByStudentProfileIdentificationAndResearchSeedbedProfileId(
+                identification, researchSeedbedProfileId
+        ).orElseThrow(() -> new StudentProfileNotFoundException(
+                String.format("StudentProfile with identification %s and researchSeedbedProfileId %d not found",
+                        identification, researchSeedbedProfileId)
+        ));
+    }
+
+    @Override
     public void deleteById(Long id) {
         if (studentProfilePersistencePort.findById(id).isEmpty()) {
             throw new StudentProfileNotFoundException(
