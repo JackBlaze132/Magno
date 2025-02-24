@@ -69,4 +69,9 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
     public List<StudentProfile> findAll() {
         return studentProfilePersistencePort.findAll();
     }
+
+    @Override
+    public List<StudentProfile> findAllByAcademicPeriodId(Long academicPeriodId) {
+        return studentProfilePersistencePort.findAllByAcademicPeriodId(academicPeriodId);
+    }
 }

@@ -13,4 +13,5 @@ public interface IStudentProfilePersistencePort {
     boolean existsByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId);
     void deleteById(Long id);
     List<StudentProfile> findAll();
+    List<StudentProfile> findAllByAcademicPeriodId(Long academicPeriodId);
 }

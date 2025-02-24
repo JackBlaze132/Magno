@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IStudentProfileRepository extends JpaRepository<StudentProfileEntity, Long> {
@@ -20,4 +21,6 @@ public interface IStudentProfileRepository extends JpaRepository<StudentProfileE
             "WHERE sp.user.id = :userId " +
             "AND sp.academicPeriod.id = :academicPeriodId")
     boolean existsByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId);
+
+    List<StudentProfileEntity> findAllByAcademicPeriod_Id(Long academicPeriodId);
 }
