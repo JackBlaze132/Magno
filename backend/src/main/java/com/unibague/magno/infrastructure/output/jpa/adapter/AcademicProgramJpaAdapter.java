@@ -74,6 +74,11 @@ public class AcademicProgramJpaAdapter implements IAcademicProgramPersistencePor
         return savePrograms(newPrograms);
     }
 
+    @Override
+    public boolean existsByProgramCodeAndProgramName(String programCode, String programName) {
+        return academicProgramRepository.existsByProgramCodeAndName(programCode, programName);
+    }
+
     private Set<String> extractNames(List<AcademicProgramEntity> programs) {
         return programs.stream()
                 .map(AcademicProgramEntity::getName)
