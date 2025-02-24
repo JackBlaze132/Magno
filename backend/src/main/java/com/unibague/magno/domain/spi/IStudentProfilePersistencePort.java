@@ -9,8 +9,8 @@ public interface IStudentProfilePersistencePort {
     Optional<StudentProfile> findById(Long id);
     StudentProfile save(StudentProfile studentProfile);
     StudentProfile update(Long id, StudentProfile studentProfile);
-    Optional<StudentProfile> findByStudentProfileIdentificationAndResearchSeedbedProfileId(String identification,
-                                                                                        Long researchSeedbedProfileId);
+    Optional<StudentProfile> findByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId);
+    boolean existsByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId);
     void deleteById(Long id);
     List<StudentProfile> findAll();
 }

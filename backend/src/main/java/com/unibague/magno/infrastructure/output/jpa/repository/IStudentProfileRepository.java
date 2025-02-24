@@ -8,12 +8,16 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 public interface IStudentProfileRepository extends JpaRepository<StudentProfileEntity, Long> {
-    @Query("SELECT sp FROM StudentProfileEntity sp " +
-            "JOIN sp.researchSeedbedStudentProfiles rssp " +
-            "WHERE sp.user.identificationNumber = :identification " +
-            "AND rssp.researchSeedbedProfile.id = :researchSeedbedProfileId")
-    Optional<StudentProfileEntity> findByStudentProfileIdentificationAndResearchSeedbedProfileId(
-            @Param("identification") String identification,
-            @Param("researchSeedbedProfileId") Long researchSeedbedProfileId
-    );
+
+    @Query("SELECT sp from StudentProfileEntity sp " +
+            "WHERE sp.user.id = :userId " +
+            "AND sp.academicPeriod.id = :academicPeriodId")
+    Optional<StudentProfileEntity> findByUserIdAndAcademicPeriodId(@Param("userId") Long userId,
+                                                                   @Param("academicPeriodId") Long academicPeriodId);
+
+    @Query("SELECT CASE WHEN COUNT(sp) > 0 THEN TRUE ELSE FALSE END " +
+            "FROM StudentProfileEntity sp " +
+            "WHERE sp.user.id = :userId " +
+            "AND sp.academicPeriod.id = :academicPeriodId")
+    boolean existsByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId);
 }

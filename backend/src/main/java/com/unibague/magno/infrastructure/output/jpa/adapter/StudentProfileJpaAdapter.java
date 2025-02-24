@@ -43,10 +43,15 @@ public class StudentProfileJpaAdapter implements IStudentProfilePersistencePort 
     }
 
     @Override
-    public Optional<StudentProfile> findByStudentProfileIdentificationAndResearchSeedbedProfileId(String identification, Long researchSeedbedProfileId) {
+    public Optional<StudentProfile> findByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId) {
         Optional<StudentProfileEntity> studentProfile = studentProfileRepository
-                .findByStudentProfileIdentificationAndResearchSeedbedProfileId(identification, researchSeedbedProfileId);
+                .findByUserIdAndAcademicPeriodId(userId, academicPeriodId);
         return studentProfile.map(studentProfileEntityMapper::toStudentProfile);
+    }
+
+    @Override
+    public boolean existsByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId) {
+        return studentProfileRepository.existsByUserIdAndAcademicPeriodId(userId, academicPeriodId);
     }
 
     @Override

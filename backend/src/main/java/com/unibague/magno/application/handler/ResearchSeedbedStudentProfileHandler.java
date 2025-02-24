@@ -65,12 +65,7 @@ public class ResearchSeedbedStudentProfileHandler implements IResearchSeedbedStu
 
     private List<Map<String, String>> getListOfMpas(MultipartFile file) {
         try{
-            List<Map<String, String>> data = uploadService.uploadExcel(file);
-            List<Map<String, String>> newData = new ArrayList<>(data);
-            newData.removeIf(map -> map.entrySet()
-                    .stream()
-                    .anyMatch(entry -> entry.getValue().isEmpty()));
-            return newData;
+            return uploadService.uploadExcel(file);
         }
         catch (Exception e){
             throw new UploadExcelException(

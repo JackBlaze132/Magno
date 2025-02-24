@@ -42,23 +42,6 @@ public class ResearchSeedbedStudentProfileRestController {
         return ResponseEntity.created(location).body(created);
     }
 
-    @GetMapping(path = "/add-by-excel/", headers = "API-VERSION=1")
-    public String addResearchSeedbedStudentProfileByExcel(
-            @RequestParam("file") MultipartFile file) {
-        try{
-            List<Map<String, String>> data = uploadService.uploadExcel(file);
-            List<Map<String, String>> newData = new ArrayList<>(data);
-            newData.removeIf(map -> map.entrySet()
-                    .stream()
-                    .anyMatch(entry -> entry.getValue().isEmpty()));
-            return newData.toString();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return "Error xd";
-        }
-    }
-
     @PostMapping(path = "/add-all-by-excel/{researchSeedbedProfileId}", headers = "API-VERSION=1")
     ResponseEntity<List<ResearchSeedbedStudentProfileResponse>> addAllResearchSeedbedStudentProfileByExcel(
             @PathVariable Long researchSeedbedProfileId, @RequestParam("file") MultipartFile file) {

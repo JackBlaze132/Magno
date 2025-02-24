@@ -14,4 +14,5 @@ public interface IIntegraServicePort {
     List<IntegraStudent> getIntegraStudentByIdentification(String identification);
     List<IntegraAcademicProgram> getAllAcademicPrograms();
     List<IntegraDependency> getAllDependencies();
+    List<String> findMissingStudentIdentificationsInIntegra(List<String> identifications);
 }

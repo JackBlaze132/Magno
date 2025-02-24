@@ -1,11 +1,13 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IStudentProfileServicePort;
+import com.unibague.magno.domain.exception.StudentProfileAlreadyExistsException;
 import com.unibague.magno.domain.exception.StudentProfileNotFoundException;
 import com.unibague.magno.domain.model.StudentProfile;
 import com.unibague.magno.domain.spi.IStudentProfilePersistencePort;
 
 import java.util.List;
+import java.util.Optional;
 
 public class StudentProfileUseCase  implements IStudentProfileServicePort {
 
@@ -25,6 +27,11 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
 
     @Override
     public StudentProfile save(StudentProfile studentProfile) {
+        if (existsByUserIdAndAcademicPeriodId(studentProfile.getUserId(), studentProfile.getAcademicPeriodId())) {
+            throw new StudentProfileAlreadyExistsException(
+                    String.format("StudentProfile with ID %d could not be saved because it already exists", studentProfile.getId())
+            );
+        }
         return studentProfilePersistencePort.save(studentProfile);
     }
 
@@ -39,14 +46,13 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
     }
 
     @Override
-    public StudentProfile findByStudentProfileIdentificationAndResearchSeedbedProfileId(String identification,
-                                                                                        Long researchSeedbedProfileId) {
-        return studentProfilePersistencePort.findByStudentProfileIdentificationAndResearchSeedbedProfileId(
-                identification, researchSeedbedProfileId
-        ).orElseThrow(() -> new StudentProfileNotFoundException(
-                String.format("StudentProfile with identification %s and researchSeedbedProfileId %d not found",
-                        identification, researchSeedbedProfileId)
-        ));
+    public Optional<StudentProfile> findByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId) {
+        return studentProfilePersistencePort.findByUserIdAndAcademicPeriodId(userId, academicPeriodId);
+    }
+
+    @Override
+    public boolean existsByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId) {
+        return studentProfilePersistencePort.existsByUserIdAndAcademicPeriodId(userId, academicPeriodId);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
     private final IResearchSeedbedProfileServicePort researchSeedbedProfileServicePort;
     private final IAcademicProgramServicePort academicProgramServicePort;
 
-    private final static String IDENTIFICATION = "identification";
+    private static final String IDENTIFICATION = "identification";
 
     public ResearchSeedbedStudentProfileUseCase(
             IResearchSeedbedStudentProfilePersistencePort researchSeedbedStudentProfilePersistencePort,
@@ -74,57 +74,19 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
     public List<ResearchSeedbedStudentProfile> saveAllByExcel(Long researchSeedbedProfileId,
                                                               List<Map<String, String>> researchSeedbedStudentProfiles) {
 
-        // If some of the students aren't found in "integra", the process should be stopped
-        List<IntegraStudent> integraStudentsList = researchSeedbedStudentProfiles.stream()
-                .map(studentProfile -> {
-                    String identification = studentProfile.get(IDENTIFICATION);
-                    return integraServicePort.getIntegraStudentByIdentification(identification)
-                            .stream().findFirst().orElseThrow(
-                                    () -> new IntegraStudentNotFoundException(
-                                            String.format("IntegraStudent with identification %s not found", identification)
-                                    )
-                            );
-                }).toList();
+        // Clean the list because some maps can have empty values
+        List<Map<String, String>> cleanedStudentListOfMaps = getCleanedStudentListOfMaps(researchSeedbedStudentProfiles);
 
         ResearchSeedbedProfile researchSeedbedProfile = researchSeedbedProfileServicePort.findById(researchSeedbedProfileId);
         Long academicPeriodId = researchSeedbedProfile.getAcademicPeriodId();
 
-
         // Verify and register users if they don't exist
-        List<User> users = researchSeedbedStudentProfiles.stream()
-                .map(studentProfile -> {
-                    String identification = studentProfile.get("identification"); // Getting the identification from the Map
-                    return userServicePort.findByUserIdentification(identification)
-                            .orElseGet(() -> {
-                                // If the user doesn't exist, we create it
-                                IntegraStudent integraStudent = integraServicePort.getIntegraStudentByIdentification(identification)
-                                        .stream()
-                                        .findFirst()
-                                        .orElseThrow(() -> new IntegraStudentNotFoundException(
-                                                String.format("IntegraStudent with identification %s not found", identification)
-                                        ));
+        List<User> users = getUserListByListOfMaps(cleanedStudentListOfMaps);
 
-                                User user = new User();
-                                user.setIdentificationNumber(integraStudent.getIdentification());
-                                user.setFullName(integraStudent.getName());
-                                user.setEmail(integraStudent.getEmail());
-                                user.setUserCode(integraStudent.getCodeStudent());
-                                user.setExternalUser(false);
-                                user.setSex(integraStudent.getSexo().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO);
-                                user.setRoleIds(Set.of(1L));
-
-                                return userServicePort.save(user);
-                            });
-                })
-                .toList();
-
-        List<StudentProfile> existingStudentProfiles = studentProfileServicePort.findAll()
-                .stream()
-                .filter(sp -> sp.getAcademicPeriodId().equals(academicPeriodId))
-                .toList();
+        List<StudentProfile> existingStudentProfiles = findByAcademicPeriodId(academicPeriodId);
 
         // Create new StudentProfile only if they don't exist for the current academic period
-        List<StudentProfile> newStudentProfiles = researchSeedbedStudentProfiles.stream()
+        List<StudentProfile> newStudentProfiles = cleanedStudentListOfMaps.stream()
                 .map(studentProfile -> {
                     String identification = studentProfile.get(IDENTIFICATION);
 
@@ -137,41 +99,13 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
                             ));
 
                     // Verify if there is already a StudentProfile for this user and academic period
-                    boolean profileExists = studentProfileServicePort.findAll()
-                            .stream()
-                            .anyMatch(sp -> sp.getUserId().equals(user.getId()) &&
-                                    sp.getAcademicPeriodId().equals(academicPeriodId));
+                    Optional<StudentProfile> spByUserIdAndAcademicPeriodId =
+                            studentProfileServicePort.findByUserIdAndAcademicPeriodId(user.getId(), academicPeriodId);
 
-                    if (!profileExists) {
-                        // If it doesn't exist, create a new StudentProfile
-                        StudentProfile newStudentProfile = new StudentProfile();
-                        List<IntegraStudent> integraStudents = integraServicePort.getIntegraStudentByIdentification(identification);
-                        newStudentProfile.setSemester(
-                                integraStudents.stream()
-                                        .map(student -> {
-                                            String semesterStr = student.getSemester();
-                                            return (semesterStr == null || semesterStr.isEmpty()) ? 0 : Byte.parseByte(semesterStr);
-                                        })
-                                        .max(Byte::compare)
-                                        .orElse((byte) 0)
-                        );
-                        newStudentProfile.setAcademicPeriodId(academicPeriodId); // Assign the correct academic period
-                        newStudentProfile.setUserId(user.getId()); // Associate the created user
-                        newStudentProfile.setAcademicProgramsIds(academicProgramServicePort.findAcademicProgramsByAcademicProgramCodes(
-                                        integraStudents.stream()
-                                                .map(IntegraStudent::getProgramCode)
-                                                .collect(Collectors.toSet()))
-                                .stream()
-                                .map(AcademicProgram::getId)
-                                .collect(Collectors.toSet()));
-
-                        return studentProfileServicePort.save(newStudentProfile);
-                    } else {
-                        // If exits return it
-                        return studentProfileServicePort.findByStudentProfileIdentificationAndResearchSeedbedProfileId(
-                                identification, researchSeedbedProfileId
-                        );
-                    }
+                    // If it doesn't exist, create a new StudentProfile
+                    // If exits return it
+                    return spByUserIdAndAcademicPeriodId.orElseGet(
+                            () -> createStudentProfileFromIntegraData(identification, academicPeriodId, user));
                 })
                 .toList();
 
@@ -202,10 +136,105 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
                 .toList();
     }
 
+    private StudentProfile createStudentProfileFromIntegraData(
+            String identification, Long academicPeriodId, User user) {
+        StudentProfile newStudentProfile = new StudentProfile();
+        List<IntegraStudent> integraStudents = integraServicePort.getIntegraStudentByIdentification(identification);
+        newStudentProfile.setSemester(
+                integraStudents.stream()
+                        .map(student -> {
+                            String semesterStr = student.getSemester();
+                            return (semesterStr == null || semesterStr.isEmpty()) ? 0 : Byte.parseByte(semesterStr);
+                        })
+                        .max(Byte::compare)
+                        .orElse((byte) 0)
+        );
+        newStudentProfile.setAcademicPeriodId(academicPeriodId); // Assign the correct academic period
+        newStudentProfile.setUserId(user.getId()); // Associate the created user
+        newStudentProfile.setAcademicProgramsIds(academicProgramServicePort.findAcademicProgramsByAcademicProgramCodes(
+                        integraStudents.stream()
+                                .map(IntegraStudent::getProgramCode)
+                                .collect(Collectors.toSet()))
+                .stream()
+                .map(AcademicProgram::getId)
+                .collect(Collectors.toSet()));
+
+        return studentProfileServicePort.save(newStudentProfile);
+    }
+
     @Override
     public boolean existsByStudentProfileIdAndResearchSeedbedProfileId(Long studentProfileId, Long researchSeedbedProfileId) {
         return researchSeedbedStudentProfilePersistencePort.existsByStudentProfileIdAndResearchSeedbedProfileId(
                 studentProfileId, researchSeedbedProfileId
         );
+    }
+
+    private List<StudentProfile> findByAcademicPeriodId(Long academicPeriodId) {
+        return studentProfileServicePort.findAll()
+                .stream()
+                .filter(sp -> sp.getAcademicPeriodId().equals(academicPeriodId))
+                .toList();
+    }
+
+    // Notice that this method suppose that the field with the identifications is called "identification"
+    // Also, if some
+    private List<User> getUserListByListOfMaps(List<Map<String, String>> cleanedStudentListOfMaps) {
+        return cleanedStudentListOfMaps.stream()
+                .map(studentProfile -> {
+                    String identification = studentProfile.get(IDENTIFICATION); // Getting the identification from the Map
+                    return userServicePort.findByUserIdentification(identification)
+                            .orElseGet(() -> {
+                                // If the user doesn't exist, we create it
+                                IntegraStudent integraStudent = getFirstIntegraStudentFound(identification);
+                                User user = getUserByIntegraStudent(integraStudent);
+                                return userServicePort.save(user);
+                            });
+                })
+                .toList();
+    }
+
+    private IntegraStudent getFirstIntegraStudentFound(String identification) {
+        return integraServicePort.getIntegraStudentByIdentification(identification)
+                .stream()
+                .findFirst()
+                .orElseThrow(() -> new IntegraStudentNotFoundException(
+                        String.format("IntegraStudent with identification %s not found", identification)
+                ));
+    }
+
+    // This method filters out the student profiles that have empty values and checks if the students exist in Integra
+    private List<Map<String, String>> getCleanedStudentListOfMaps(List<Map<String, String>> researchSeedbedStudentProfiles) {
+        List<Map<String, String>> cleanedStudentListOfMaps = researchSeedbedStudentProfiles.stream()
+                .filter(map -> map.values().stream().noneMatch(String::isEmpty))
+                .toList();
+
+        List<String> studentIdentifications = cleanedStudentListOfMaps.stream()
+                .map(studentProfile -> studentProfile.get(IDENTIFICATION))
+                .toList();
+
+        List<String> missingIdentifications = integraServicePort
+                .findMissingStudentIdentificationsInIntegra(studentIdentifications);
+
+        if (!missingIdentifications.isEmpty()) {
+            throw new IntegraStudentNotFoundException(
+                    String.format(
+                            "The following student identifications were not found in Integra: %s",
+                            String.join(", ", missingIdentifications)
+                    )
+            );
+        }
+        return cleanedStudentListOfMaps;
+    }
+
+    private User getUserByIntegraStudent(IntegraStudent integraStudent) {
+        User user = new User();
+        user.setIdentificationNumber(integraStudent.getIdentification());
+        user.setFullName(integraStudent.getName());
+        user.setEmail(integraStudent.getEmail());
+        user.setUserCode(integraStudent.getCodeStudent());
+        user.setExternalUser(false);
+        user.setSex(integraStudent.getSexo().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO);
+        user.setRoleIds(Set.of(1L));
+        return user;
     }
 }

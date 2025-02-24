@@ -61,4 +61,11 @@ public class IntegraUseCase implements IIntegraServicePort {
     public List<IntegraDependency> getAllDependencies() {
         return integraPersistencePort.getAllDependencies();
     }
+
+    @Override
+    public List<String> findMissingStudentIdentificationsInIntegra(List<String> identifications) {
+        return identifications.stream()
+                .filter(identification -> getIntegraStudentByIdentification(identification).isEmpty())
+                .toList();
+    }
 }
