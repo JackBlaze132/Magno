@@ -100,7 +100,7 @@ public class BeanConfiguration {
 
     @Bean
     public IUserServicePort userServicePort() {
-        return new UserUseCase(userPersistencePort());
+        return new UserUseCase(userPersistencePort(), integraServicePort());
     }
 
     @Bean
@@ -166,7 +166,8 @@ public class BeanConfiguration {
 
     @Bean
     public IStudentProfileServicePort studentProfileServicePort() {
-        return new StudentProfileUseCase(studentProfilePersistencePort());
+        return new StudentProfileUseCase(studentProfilePersistencePort(), userServicePort(),
+                integraServicePort(), academicProgramServicePort());
     }
 
     @Bean
@@ -178,7 +179,7 @@ public class BeanConfiguration {
     public IResearchSeedbedStudentProfileServicePort researchSeedbedStudentProfileServicePort() {
         return new ResearchSeedbedStudentProfileUseCase(researchSeedbedStudentProfilePersistencePort(),
                 userServicePort(), integraServicePort(), studentProfileServicePort(),
-                researchSeedbedProfileServicePort(), academicProgramServicePort());
+                researchSeedbedProfileServicePort());
     }
 
     @Bean

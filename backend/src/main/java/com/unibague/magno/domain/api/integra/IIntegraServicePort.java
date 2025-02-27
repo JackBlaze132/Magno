@@ -6,6 +6,7 @@ import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IIntegraServicePort {
     List<IntegraFunctionary> getAllFunctionaries();
@@ -15,4 +16,7 @@ public interface IIntegraServicePort {
     List<IntegraAcademicProgram> getAllAcademicPrograms();
     List<IntegraDependency> getAllDependencies();
     List<String> findMissingStudentIdentificationsInIntegra(List<String> identifications);
+    //This method should only be used by the User class
+    IntegraStudent getFirstIntegraStudentFound(String identification);
+    List<Map<String, String>> getCleanedStudentListOfMaps(List<Map<String, String>> researchSeedbedStudentProfiles);
 }

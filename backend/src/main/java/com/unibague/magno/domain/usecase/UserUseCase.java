@@ -1,21 +1,26 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IUserServicePort;
+import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.UserNotFoundException;
 import com.unibague.magno.domain.model.User;
+import com.unibague.magno.domain.model.enums.Sex;
+import com.unibague.magno.domain.model.integra.IntegraStudent;
 import com.unibague.magno.domain.spi.IUserPersistencePort;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
+
+import static com.unibague.magno.domain.usecase.ResearchSeedbedStudentProfileUseCase.IDENTIFICATION;
 
 public class UserUseCase implements IUserServicePort {
 
     private final IUserPersistencePort userPersistencePort;
+    private final IIntegraServicePort integraServicePort;
 
-    public UserUseCase(IUserPersistencePort userPersistencePort) {
+    public UserUseCase(IUserPersistencePort userPersistencePort,
+                       IIntegraServicePort integraServicePort) {
         this.userPersistencePort = userPersistencePort;
+        this.integraServicePort = integraServicePort;
     }
 
     @Override
@@ -59,6 +64,25 @@ public class UserUseCase implements IUserServicePort {
     }
 
     @Override
+    // Notice that this method suppose that the field with the identifications is called "identification"
+    // Also, if some
+    public List<User> getUserListByListOfStudentMaps(List<Map<String, String>> cleanedStudentListOfMaps) {
+        return cleanedStudentListOfMaps.stream()
+                .map(studentProfile -> {
+                    String identification = studentProfile.get(IDENTIFICATION); // Getting the identification from the Map
+                    return findByUserIdentification(identification)
+                            .orElseGet(() -> {
+                                // If the user doesn't exist, we create it
+                                IntegraStudent integraStudent = integraServicePort.
+                                        getFirstIntegraStudentFound(identification);
+                                User user = getUserByIntegraStudent(integraStudent);
+                                return save(user);
+                            });
+                })
+                .toList();
+    }
+
+    @Override
     public List<String> findAllCountries() {
         String[] countryCodes = Locale.getISOCountries();
         Locale spanishLocale = Locale.of("es");
@@ -66,5 +90,28 @@ public class UserUseCase implements IUserServicePort {
                 .map(countryCode -> Locale.of("", countryCode))
                 .map(countryLocale -> countryLocale.getDisplayCountry(spanishLocale))
                 .toList();
+    }
+
+    @Override
+    public User getUserByIntegraStudent(IntegraStudent integraStudent) {
+        User user = new User();
+        user.setIdentificationNumber(integraStudent.getIdentification());
+        user.setFullName(integraStudent.getName());
+        user.setEmail(integraStudent.getEmail());
+        user.setUserCode(integraStudent.getCodeStudent());
+        user.setExternalUser(false);
+        user.setSex(integraStudent.getSexo().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO);
+        user.setRoleIds(Set.of(1L));
+        return user;
+    }
+
+    @Override
+    public User findUserByIdentification(List<User> users, String identification) {
+        return users.stream()
+                .filter(u -> u.getIdentificationNumber().equals(identification))
+                .findFirst()
+                .orElseThrow(() -> new UserNotFoundException(
+                        String.format("User with identification %s not found", identification)
+                ));
     }
 }

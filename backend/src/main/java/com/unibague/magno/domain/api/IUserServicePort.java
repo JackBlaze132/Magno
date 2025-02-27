@@ -1,8 +1,10 @@
 package com.unibague.magno.domain.api;
 
 import com.unibague.magno.domain.model.User;
+import com.unibague.magno.domain.model.integra.IntegraStudent;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface IUserServicePort {
@@ -12,5 +14,8 @@ public interface IUserServicePort {
     Optional<User> findByUserIdentification(String identification);
     void deleteById(Long id);
     List<User> findAll();
+    List<User> getUserListByListOfStudentMaps(List<Map<String, String>> cleanData);
     List<String> findAllCountries();
+    User getUserByIntegraStudent(IntegraStudent integraStudent);
+    User findUserByIdentification(List<User> users, String identification);
 }

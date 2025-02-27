@@ -1,8 +1,10 @@
 package com.unibague.magno.domain.api;
 
 import com.unibague.magno.domain.model.StudentProfile;
+import com.unibague.magno.domain.model.User;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface IStudentProfileServicePort {
@@ -14,4 +16,10 @@ public interface IStudentProfileServicePort {
     void deleteById(Long id);
     List<StudentProfile> findAll();
     List<StudentProfile> findAllByAcademicPeriodId(Long academicPeriodId);
+    List<StudentProfile> getOrCreateStudentProfiles(List<Map<String, String>> cleanedStudentListOfMaps,
+                                                    List<User> users, Long academicPeriodId);
+    StudentProfile getOrCreateStudentProfile(Map<String, String> studentProfileMap,
+                                             List<User> users, Long academicPeriodId);
+    StudentProfile createStudentProfileFromIntegraData(
+            String identification, Long academicPeriodId, User user);
 }
