@@ -2,7 +2,7 @@ package com.unibague.magno.infrastructure.input.rest;
 
 import com.unibague.magno.application.dto.request.ResearchSeedbedStudentProfileRequest;
 import com.unibague.magno.application.dto.response.ResearchSeedbedStudentProfileResponse;
-import com.unibague.magno.application.handler.ResearchSeedbedStudentProfileHandler;
+import com.unibague.magno.application.handler.impl.ResearchSeedbedStudentProfileHandler;
 import com.unibague.magno.infrastructure.util.UploadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/research-seedbed-student-profile")

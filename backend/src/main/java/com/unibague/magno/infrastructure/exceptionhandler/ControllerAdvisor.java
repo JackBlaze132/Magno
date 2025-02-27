@@ -1,7 +1,21 @@
 package com.unibague.magno.infrastructure.exceptionhandler;
 
-import com.unibague.magno.domain.exception.*;
+import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotFoundException;
+import com.unibague.magno.domain.exception.academicprogram.AcademicProgramNotFoundException;
+import com.unibague.magno.domain.exception.dependency.DependencyNotFoundException;
+import com.unibague.magno.domain.exception.enums.EnumBadRequestException;
+import com.unibague.magno.domain.exception.excel.UploadExcelException;
+import com.unibague.magno.domain.exception.externaluser.ExternalUserProfileNotFoundException;
+import com.unibague.magno.domain.exception.functionaryprofile.FunctionaryProfileNotFoundException;
 import com.unibague.magno.domain.exception.integra.IntegraUserNotFoundException;
+import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupNotFoundException;
+import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException;
+import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFoundException;
+import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileNotFoundException;
+import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ResearchSeedbedStudentProfileNotFoundException;
+import com.unibague.magno.domain.exception.role.RoleNotFoundException;
+import com.unibague.magno.domain.exception.studentprofile.StudentProfileNotFoundException;
+import com.unibague.magno.domain.exception.user.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import com.unibague.magno.domain.model.ErrorResponse;
 import org.springframework.validation.BindingResult;

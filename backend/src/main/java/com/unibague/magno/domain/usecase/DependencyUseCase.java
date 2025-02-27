@@ -1,7 +1,7 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IDependencyServicePort;
-import com.unibague.magno.domain.exception.DependencyNotFoundException;
+import com.unibague.magno.domain.exception.dependency.DependencyNotFoundException;
 import com.unibague.magno.domain.model.Dependency;
 import com.unibague.magno.domain.spi.IDependencyPersistencePort;
 

@@ -2,7 +2,7 @@ package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.*;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
-import com.unibague.magno.domain.exception.ResearchSeedbedStudentProfileNotFoundException;
+import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ResearchSeedbedStudentProfileNotFoundException;
 import com.unibague.magno.domain.model.*;
 import com.unibague.magno.domain.spi.IResearchSeedbedStudentProfilePersistencePort;
 
@@ -45,6 +45,10 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
 
     @Override
     public ResearchSeedbedStudentProfile update(Long id, ResearchSeedbedStudentProfile researchSeedbedStudentProfile) {
+        if (researchSeedbedStudentProfilePersistencePort.findById(id).isEmpty()) {
+            throw new ResearchSeedbedStudentProfileNotFoundException(
+                    String.format("ResearchSeedbedStudentProfile with id %d could not be updated because it was not found", id));
+        }
         return researchSeedbedStudentProfilePersistencePort.update(id, researchSeedbedStudentProfile);
     }
 
@@ -52,7 +56,7 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
     public void deleteById(Long id) {
         if (researchSeedbedStudentProfilePersistencePort.findById(id).isEmpty()) {
             throw new ResearchSeedbedStudentProfileNotFoundException(
-                    String.format("ResearchSeedbedStudentProfile with id %d not found", id));
+                    String.format("ResearchSeedbedStudentProfile with id %d could not be deleted because it was not found", id));
         }
         researchSeedbedStudentProfilePersistencePort.deleteById(id);
     }

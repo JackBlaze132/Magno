@@ -2,7 +2,7 @@ package com.unibague.magno.infrastructure.input.rest;
 
 import com.unibague.magno.application.dto.request.ResearchSeedbedRequest;
 import com.unibague.magno.application.dto.response.ResearchSeedbedResponse;
-import com.unibague.magno.application.handler.ResearchSeedbedHandler;
+import com.unibague.magno.application.handler.impl.ResearchSeedbedHandler;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

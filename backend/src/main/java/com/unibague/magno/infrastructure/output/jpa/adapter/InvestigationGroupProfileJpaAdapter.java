@@ -1,6 +1,6 @@
 package com.unibague.magno.infrastructure.output.jpa.adapter;
 
-import com.unibague.magno.domain.exception.InvestigationGroupProfileNotFoundException;
+import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException;
 import com.unibague.magno.domain.model.InvestigationGroupProfile;
 import com.unibague.magno.domain.spi.IInvestigationGroupProfilePersistencePort;
 import com.unibague.magno.infrastructure.output.jpa.entity.FunctionaryProfileEntity;

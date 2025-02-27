@@ -2,7 +2,7 @@ package com.unibague.magno.infrastructure.input.rest;
 
 import com.unibague.magno.application.dto.request.InvestigationGroupRequest;
 import com.unibague.magno.application.dto.response.InvestigationGroupResponse;
-import com.unibague.magno.application.handler.InvestigationGroupHandler;
+import com.unibague.magno.application.handler.impl.InvestigationGroupHandler;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

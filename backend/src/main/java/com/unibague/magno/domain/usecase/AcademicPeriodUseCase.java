@@ -1,7 +1,7 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IAcademicPeriodServicePort;
-import com.unibague.magno.domain.exception.AcademicPeriodNotFoundException;
+import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotFoundException;
 import com.unibague.magno.domain.model.AcademicPeriod;
 import com.unibague.magno.domain.spi.IAcademicPeriodPersistencePort;
 

@@ -1,6 +1,5 @@
 package com.unibague.magno.infrastructure.output.jpa.adapter;
 
-import com.unibague.magno.domain.exception.AcademicPeriodNotFoundException;
 import com.unibague.magno.domain.model.AcademicPeriod;
 import com.unibague.magno.domain.spi.IAcademicPeriodPersistencePort;
 import com.unibague.magno.infrastructure.output.jpa.entity.AcademicPeriodEntity;

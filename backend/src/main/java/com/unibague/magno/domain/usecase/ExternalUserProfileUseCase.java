@@ -1,7 +1,7 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IExternalUserProfileServicePort;
-import com.unibague.magno.domain.exception.ExternalUserProfileNotFoundException;
+import com.unibague.magno.domain.exception.externaluser.ExternalUserProfileNotFoundException;
 import com.unibague.magno.domain.model.ExternalUserProfile;
 import com.unibague.magno.domain.spi.IExternalUserProfilePersistencePort;
 
@@ -32,7 +32,7 @@ public class ExternalUserProfileUseCase implements IExternalUserProfileServicePo
     public ExternalUserProfile update(Long id, ExternalUserProfile externalUserProfile) {
         if (externalUserProfilePersistencePort.findById(id).isEmpty()) {
             throw new ExternalUserProfileNotFoundException(
-                    String.format("ExternalUserProfile with id %s not found", id)
+                    String.format("ExternalUserProfile with id %s could not be updated because it does not exist", id)
             );
         }
         return externalUserProfilePersistencePort.update(id, externalUserProfile);
@@ -42,7 +42,7 @@ public class ExternalUserProfileUseCase implements IExternalUserProfileServicePo
     public void deleteById(Long id) {
         if (externalUserProfilePersistencePort.findById(id).isEmpty()) {
             throw new ExternalUserProfileNotFoundException(
-                    String.format("ExternalUserProfile with id %s not found", id)
+                    String.format("ExternalUserProfile with id %s could not be deleted because it does not exist", id)
             );
         }
         externalUserProfilePersistencePort.deleteById(id);

@@ -2,7 +2,7 @@ package com.unibague.magno.infrastructure.input.rest;
 
 import com.unibague.magno.application.dto.request.FunctionaryProfileRequest;
 import com.unibague.magno.application.dto.response.FunctionaryProfileResponse;
-import com.unibague.magno.application.handler.FunctionaryProfileHandler;
+import com.unibague.magno.application.handler.impl.FunctionaryProfileHandler;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

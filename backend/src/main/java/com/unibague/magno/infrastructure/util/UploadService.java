@@ -1,6 +1,6 @@
 package com.unibague.magno.infrastructure.util;
 
-import com.unibague.magno.domain.exception.UploadExcelException;
+import com.unibague.magno.domain.exception.excel.UploadExcelException;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Service;

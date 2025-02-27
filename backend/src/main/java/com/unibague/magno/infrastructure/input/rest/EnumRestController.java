@@ -1,7 +1,7 @@
 package com.unibague.magno.infrastructure.input.rest;
 
 import com.unibague.magno.domain.api.IEnumServicePort;
-import com.unibague.magno.domain.exception.EnumBadRequestException;
+import com.unibague.magno.domain.exception.enums.EnumBadRequestException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

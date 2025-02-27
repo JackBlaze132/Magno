@@ -2,7 +2,7 @@ package com.unibague.magno.infrastructure.input.rest;
 
 import com.unibague.magno.application.dto.request.ExternalUserProfileRequest;
 import com.unibague.magno.application.dto.response.ExternalUserProfileResponse;
-import com.unibague.magno.application.handler.ExternalUserProfileHandler;
+import com.unibague.magno.application.handler.impl.ExternalUserProfileHandler;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

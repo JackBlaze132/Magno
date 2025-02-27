@@ -2,7 +2,7 @@ package com.unibague.magno.infrastructure.input.rest;
 
 import com.unibague.magno.application.dto.request.StudentProfileRequest;
 import com.unibague.magno.application.dto.response.StudentProfileResponse;
-import com.unibague.magno.application.handler.StudentProfileHandler;
+import com.unibague.magno.application.handler.impl.StudentProfileHandler;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

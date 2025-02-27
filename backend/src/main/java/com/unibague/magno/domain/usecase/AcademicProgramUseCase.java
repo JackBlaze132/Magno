@@ -1,8 +1,8 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IAcademicProgramServicePort;
-import com.unibague.magno.domain.exception.AcademicProgramAlreadyExistsException;
-import com.unibague.magno.domain.exception.AcademicProgramNotFoundException;
+import com.unibague.magno.domain.exception.academicprogram.AcademicProgramAlreadyExistsException;
+import com.unibague.magno.domain.exception.academicprogram.AcademicProgramNotFoundException;
 import com.unibague.magno.domain.model.AcademicProgram;
 import com.unibague.magno.domain.spi.IAcademicProgramPersistencePort;
 

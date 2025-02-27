@@ -2,7 +2,7 @@ package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
-import com.unibague.magno.domain.exception.UserNotFoundException;
+import com.unibague.magno.domain.exception.user.UserNotFoundException;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.enums.Sex;
 import com.unibague.magno.domain.model.integra.IntegraStudent;

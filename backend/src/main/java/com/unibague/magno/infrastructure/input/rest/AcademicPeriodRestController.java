@@ -2,7 +2,7 @@ package com.unibague.magno.infrastructure.input.rest;
 
 import com.unibague.magno.application.dto.request.AcademicPeriodRequest;
 import com.unibague.magno.application.dto.response.AcademicPeriodResponse;
-import com.unibague.magno.application.handler.AcademicPeriodHandler;
+import com.unibague.magno.application.handler.impl.AcademicPeriodHandler;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

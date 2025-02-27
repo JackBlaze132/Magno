@@ -1,7 +1,7 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IFunctionaryProfileServicePort;
-import com.unibague.magno.domain.exception.FunctionaryProfileNotFoundException;
+import com.unibague.magno.domain.exception.functionaryprofile.FunctionaryProfileNotFoundException;
 import com.unibague.magno.domain.model.FunctionaryProfile;
 import com.unibague.magno.domain.spi.IFunctionaryProfilePersistencePort;
 

@@ -1,7 +1,7 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IResearchSeedbedProfileServicePort;
-import com.unibague.magno.domain.exception.ResearchSeedbedNotFoundException;
+import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFoundException;
 import com.unibague.magno.domain.model.ResearchSeedbedProfile;
 import com.unibague.magno.domain.spi.IResearchSeedbedProfilePersistencePort;
 

@@ -2,7 +2,7 @@ package com.unibague.magno.infrastructure.input.rest;
 
 import com.unibague.magno.application.dto.request.DependencyRequest;
 import com.unibague.magno.application.dto.response.DependencyResponse;
-import com.unibague.magno.application.handler.DependencyHandler;
+import com.unibague.magno.application.handler.impl.DependencyHandler;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

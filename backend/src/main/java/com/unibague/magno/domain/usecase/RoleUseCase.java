@@ -1,7 +1,7 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IRoleServicePort;
-import com.unibague.magno.domain.exception.RoleNotFoundException;
+import com.unibague.magno.domain.exception.role.RoleNotFoundException;
 import com.unibague.magno.domain.model.Role;
 import com.unibague.magno.domain.spi.IRolePersistencePort;
 

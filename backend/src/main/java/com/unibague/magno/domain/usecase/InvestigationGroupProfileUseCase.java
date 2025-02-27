@@ -1,7 +1,7 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IInvestigationGroupProfileServicePort;
-import com.unibague.magno.domain.exception.InvestigationGroupProfileNotFoundException;
+import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException;
 import com.unibague.magno.domain.model.InvestigationGroupProfile;
 import com.unibague.magno.domain.spi.IInvestigationGroupProfilePersistencePort;
 

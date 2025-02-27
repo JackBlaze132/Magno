@@ -1,6 +1,5 @@
 package com.unibague.magno.infrastructure.output.jpa.adapter;
 
-import com.unibague.magno.domain.exception.RoleNotFoundException;
 import com.unibague.magno.domain.model.Role;
 import com.unibague.magno.domain.spi.IRolePersistencePort;
 import com.unibague.magno.infrastructure.output.jpa.entity.RoleEntity;

@@ -1,6 +1,6 @@
 package com.unibague.magno.infrastructure.output.jpa.mapper;
 
-import com.unibague.magno.domain.exception.FunctionaryProfileNotFoundException;
+import com.unibague.magno.domain.exception.functionaryprofile.FunctionaryProfileNotFoundException;
 import com.unibague.magno.domain.model.InvestigationGroupProfile;
 import com.unibague.magno.infrastructure.output.jpa.entity.AcademicPeriodEntity;
 import com.unibague.magno.infrastructure.output.jpa.entity.FunctionaryProfileEntity;
