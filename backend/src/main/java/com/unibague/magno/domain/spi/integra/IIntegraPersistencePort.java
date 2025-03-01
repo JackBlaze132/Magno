@@ -10,7 +10,7 @@ import java.util.List;
 public interface IIntegraPersistencePort {
     List<IntegraFunctionary> getAllFunctionaries();
     // This method return a list because a student can have 2 programs, so it can have 2 records in the JSON returned
-    List<IntegraStudent> getStudentByIdentification(String identification);
+    List<IntegraStudent> getIntegraStudentRecordsByIdentification(String identification);
     List<IntegraAcademicProgram> getAllAcademicPrograms();
     List<IntegraDependency> getAllDependencies();
 }

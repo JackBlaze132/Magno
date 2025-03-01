@@ -151,13 +151,7 @@ public class UserUseCase implements IUserServicePort {
         }
 
         IntegraStudent integraStudent = integraServicePort.
-                getIntegraStudentByIdentification(userRequest.getIdentification())
-                .stream()
-                .findFirst()
-                .orElseThrow(() -> new IntegraStudentNotFoundException(
-                        String.format("It wasn't possible to find the student with identification %s",
-                                userRequest.getIdentification())
-                ));
+                getFirstIntegraStudentFound(userRequest.getIdentification());
 
         User user = new User();
         user.setFullName(integraStudent.getName());

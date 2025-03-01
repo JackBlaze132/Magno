@@ -55,7 +55,7 @@ public class IntegraUserClient implements IIntegraPersistencePort {
     @Override
     // Sometimes, the Integra service returns HTTP 504 due to the fact that it is overloaded, so, we need to retry the request
     // Retry the request 2 times with a 10-second delay between retries
-    public List<IntegraStudent> getStudentByIdentification(String identification) {
+    public List<IntegraStudent> getIntegraStudentRecordsByIdentification(String identification) {
         final String url = baseUrl + studentsUrl1 + identification + studentsUrl2;
 
         ResponseEntity<List<IntegraStudent>> response = restTemplate.exchange(

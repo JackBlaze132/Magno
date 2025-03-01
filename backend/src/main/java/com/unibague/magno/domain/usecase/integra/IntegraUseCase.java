@@ -47,8 +47,18 @@ public class IntegraUseCase implements IIntegraServicePort {
     }
 
     @Override
-    public List<IntegraStudent> getIntegraStudentByIdentification(String identification) {
-        return integraPersistencePort.getStudentByIdentification(identification);
+    public List<IntegraStudent> getIntegraStudentRecordsByIdentification(String identification) {
+        return getIntegraStudentRecordsOrThrow(identification);
+    }
+
+    private List<IntegraStudent> getIntegraStudentRecordsOrThrow(String identification) {
+        List<IntegraStudent> students = integraPersistencePort.getIntegraStudentRecordsByIdentification(identification);
+        if (students.isEmpty()) {
+            throw new IntegraStudentNotFoundException(
+                    String.format("IntegraStudent with identification %s not found", identification)
+            );
+        }
+        return students;
     }
 
     @Override
@@ -64,13 +74,19 @@ public class IntegraUseCase implements IIntegraServicePort {
     @Override
     public List<String> findMissingStudentIdentificationsInIntegra(List<String> identifications) {
         return identifications.stream()
-                .filter(identification -> getIntegraStudentByIdentification(identification).isEmpty())
+                .filter(identification -> {
+                    try {
+                        return getIntegraStudentRecordsByIdentification(identification).isEmpty();
+                    } catch (IntegraStudentNotFoundException e) {
+                        return true; // If exception is thrown, we consider that the student is missing
+                    }
+                })
                 .toList();
     }
 
     @Override
     public IntegraStudent getFirstIntegraStudentFound(String identification) {
-        return getIntegraStudentByIdentification(identification)
+        return getIntegraStudentRecordsByIdentification(identification)
                 .stream()
                 .findFirst()
                 .orElseThrow(() -> new IntegraStudentNotFoundException(
@@ -90,7 +106,12 @@ public class IntegraUseCase implements IIntegraServicePort {
                 .toList();
 
         List<String> missingIdentifications = findMissingStudentIdentificationsInIntegra(studentIdentifications);
+        throwIfStudentsMissing(missingIdentifications); // If there are missing students, we throw an exception
 
+        return cleanedStudentListOfMaps;
+    }
+
+    private void throwIfStudentsMissing(List<String> missingIdentifications) {
         if (!missingIdentifications.isEmpty()) {
             throw new IntegraStudentNotFoundException(
                     String.format(
@@ -99,7 +120,6 @@ public class IntegraUseCase implements IIntegraServicePort {
                     )
             );
         }
-        return cleanedStudentListOfMaps;
     }
 
     @Override

@@ -6,7 +6,6 @@ import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.studentprofile.StudentProfileAlreadyExistsException;
 import com.unibague.magno.domain.exception.studentprofile.StudentProfileNotFoundException;
-import com.unibague.magno.domain.model.AcademicProgram;
 import com.unibague.magno.domain.model.StudentProfile;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static com.unibague.magno.domain.usecase.ResearchSeedbedStudentProfileUseCase.IDENTIFICATION;
 
@@ -122,26 +120,19 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
     @Override
     public StudentProfile createStudentProfileFromIntegraData(
             String identification, Long academicPeriodId, User user) {
+
         StudentProfile newStudentProfile = new StudentProfile();
-        List<IntegraStudent> integraStudents = integraServicePort.getIntegraStudentByIdentification(identification);
+
+        List<IntegraStudent> integraStudents = integraServicePort.getIntegraStudentRecordsByIdentification(identification);
         newStudentProfile.setSemester(
-                integraStudents.stream()
-                        .map(student -> {
-                            String semesterStr = student.getSemester();
-                            return (semesterStr == null || semesterStr.isEmpty()) ? 0 : Byte.parseByte(semesterStr);
-                        })
-                        .max(Byte::compare)
-                        .orElse((byte) 0)
+                integraServicePort.getMaxSemester(integraStudents)
         );
+
         newStudentProfile.setAcademicPeriodId(academicPeriodId); // Assign the correct academic period
         newStudentProfile.setUserId(user.getId()); // Associate the created user
-        newStudentProfile.setAcademicProgramsIds(academicProgramServicePort.findAcademicProgramsByAcademicProgramCodes(
-                        integraStudents.stream()
-                                .map(IntegraStudent::getProgramCode)
-                                .collect(Collectors.toSet()))
-                .stream()
-                .map(AcademicProgram::getId)
-                .collect(Collectors.toSet()));
+
+        newStudentProfile.setAcademicProgramsIds(
+                academicProgramServicePort.getAcademicProgramIdsByListOfIntegraStudent(integraStudents));
 
         return save(newStudentProfile);
     }

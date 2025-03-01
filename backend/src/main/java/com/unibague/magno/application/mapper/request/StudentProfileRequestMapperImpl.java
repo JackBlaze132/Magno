@@ -29,7 +29,7 @@ public class StudentProfileRequestMapperImpl implements StudentProfileRequestMap
         }
 
         User user = userServicePort.findById( studentProfileRequest.getUserId() );
-        List<IntegraStudent> students = integraServicePort.getIntegraStudentByIdentification(user.getIdentificationNumber());
+        List<IntegraStudent> students = integraServicePort.getIntegraStudentRecordsByIdentification(user.getIdentificationNumber());
 
         byte semester = integraServicePort.getMaxSemester(students);
         Set<Long> academicProgramIds = academicProgramServicePort.getAcademicProgramIdsByListOfIntegraStudent(students);
