@@ -2,6 +2,7 @@ package com.unibague.magno.infrastructure.input.rest;
 
 import com.unibague.magno.application.dto.request.ResearchSeedbedStudentProfileRequest;
 import com.unibague.magno.application.dto.response.ResearchSeedbedStudentProfileResponse;
+import com.unibague.magno.application.dto.response.ResearchSeedbedStudentProfileSummaryResponse;
 import com.unibague.magno.application.handler.impl.ResearchSeedbedStudentProfileHandler;
 import com.unibague.magno.infrastructure.util.UploadService;
 import lombok.RequiredArgsConstructor;
@@ -41,9 +42,9 @@ public class ResearchSeedbedStudentProfileRestController {
     }
 
     @PostMapping(path = "/add-all-by-excel/{researchSeedbedProfileId}", headers = "API-VERSION=1")
-    ResponseEntity<List<ResearchSeedbedStudentProfileResponse>> addAllResearchSeedbedStudentProfileByExcel(
+    ResponseEntity<List<ResearchSeedbedStudentProfileSummaryResponse>> addAllResearchSeedbedStudentProfileByExcel(
             @PathVariable Long researchSeedbedProfileId, @RequestParam("file") MultipartFile file) {
-        List<ResearchSeedbedStudentProfileResponse> responses = researchSeedbedStudentProfileHandler
+        List<ResearchSeedbedStudentProfileSummaryResponse> responses = researchSeedbedStudentProfileHandler
                 .saveAllByExcel(researchSeedbedProfileId, file);
         return ResponseEntity.ok(responses);
     }

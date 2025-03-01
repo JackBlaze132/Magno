@@ -2,6 +2,7 @@ package com.unibague.magno.application.handler.impl;
 
 import com.unibague.magno.application.dto.request.ResearchSeedbedStudentProfileRequest;
 import com.unibague.magno.application.dto.response.ResearchSeedbedStudentProfileResponse;
+import com.unibague.magno.application.dto.response.ResearchSeedbedStudentProfileSummaryResponse;
 import com.unibague.magno.application.handler.interfaces.IResearchSeedbedStudentProfileHandler;
 import com.unibague.magno.application.mapper.request.ResearchSeedbedStudentProfileRequestMapper;
 import com.unibague.magno.application.mapper.response.ResearchSeedbedStudentProfileResponseMapper;
@@ -56,18 +57,18 @@ public class ResearchSeedbedStudentProfileHandler implements IResearchSeedbedStu
     }
 
     @Override
-    public List<ResearchSeedbedStudentProfileResponse> saveAllByExcel(Long researchSeedbedProfileId, MultipartFile file) {
-        List<Map<String, String>> data = getListOfMpas(file);
+    public List<ResearchSeedbedStudentProfileSummaryResponse> saveAllByExcel(Long researchSeedbedProfileId, MultipartFile file) {
+        List<Map<String, String>> data = getListOfMaps(file);
         List<ResearchSeedbedStudentProfile> researchSeedbedStudentProfiles = researchSeedbedStudentProfileServicePort
                 .saveAllByExcel(researchSeedbedProfileId, data);
-        return researchSeedbedStudentProfileResponseMapper.toResponseList(researchSeedbedStudentProfiles);
+        return researchSeedbedStudentProfileResponseMapper.toSummaryResponseList(researchSeedbedStudentProfiles);
     }
 
-    private List<Map<String, String>> getListOfMpas(MultipartFile file) {
-        try{
+    private List<Map<String, String>> getListOfMaps(MultipartFile file) {
+        try {
             return uploadService.uploadExcel(file);
         }
-        catch (Exception e){
+        catch (Exception e) {
             throw new UploadExcelException(
                     String.format("Error uploading the excel file with name: %s", file.getOriginalFilename())
             );

@@ -18,11 +18,15 @@ public class ResearchSeedbedProfileResponseMapperImpl implements ResearchSeedbed
     private final IFunctionaryProfileServicePort functionaryProfileServicePort;
     private final FunctionaryProfileResponseMapper functionaryProfileResponseMapper;
 
+    private final IInvestigationGroupServicePort investigationGroupServicePort;
+    private final InvestigationGroupResponseMapper investigationGroupResponseMapper;
+
     private final IInvestigationGroupProfileServicePort investigationGroupProfileServicePort;
     private final InvestigationGroupProfileResponseMapper investigationGroupProfileResponseMapper;
 
     private final IAcademicPeriodServicePort academicPeriodServicePort;
     private final AcademicPeriodResponseMapper academicPeriodResponseMapper;
+    private final IUserServicePort userServicePort;
 
     @Override
     public ResearchSeedbedProfileResponse toResponse(ResearchSeedbedProfile researchSeedbedProfile) {
@@ -48,24 +52,7 @@ public class ResearchSeedbedProfileResponseMapperImpl implements ResearchSeedbed
                 .toResponse(academicPeriodServicePort
                 .findById(academicPeriodId));
 
-        Long tutorId = researchSeedbedProfile.getTutorId();
-        if (tutorId != null) {
-            FunctionaryProfileResponse tutor = functionaryProfileResponseMapper
-                    .toResponse(functionaryProfileServicePort
-                            .findById(tutorId));
-
-            return ResearchSeedbedProfileResponse.builder()
-                    .id(researchSeedbedProfile.getId())
-                    .researchSeedbed(researchSeedbedResponse)
-                    .coordinator(coordinator)
-                    .tutor(tutor)
-                    .investigationGroupProfile(investigationGroupProfile)
-                    .academicPeriod(academicPeriod)
-                    .wasActive(researchSeedbedProfile.getWasActive())
-                    .build();
-        }
-
-        return ResearchSeedbedProfileResponse.builder()
+        ResearchSeedbedProfileResponse response = ResearchSeedbedProfileResponse.builder()
                 .id(researchSeedbedProfile.getId())
                 .researchSeedbed(researchSeedbedResponse)
                 .coordinator(coordinator)
@@ -75,6 +62,18 @@ public class ResearchSeedbedProfileResponseMapperImpl implements ResearchSeedbed
                 .wasActive(researchSeedbedProfile.getWasActive())
                 .build();
 
+        Long tutorId = researchSeedbedProfile.getTutorId();
+        if (tutorId != null) {
+            FunctionaryProfileResponse tutor = functionaryProfileResponseMapper
+                    .toResponse(functionaryProfileServicePort
+                            .findById(tutorId));
+
+            response.setTutor(tutor);
+
+            return response;
+        }
+
+        return response;
     }
 
     @Override
@@ -82,5 +81,51 @@ public class ResearchSeedbedProfileResponseMapperImpl implements ResearchSeedbed
         return researchSeedbedProfiles.stream()
                 .map(this::toResponse)
                 .toList();
+    }
+
+    @Override
+    public ResearchSeedbedProfileSummaryResponse toSummaryResponse(ResearchSeedbedProfile researchSeedbedProfile) {
+
+        Long researchSeedbedId = researchSeedbedProfile.getId();
+        String researchSeedbedName = researchSeedbedServicePort.findById(researchSeedbedProfile.getResearchSeedbedId()).getName();
+
+        String coordinatorName = userServicePort.findById(
+                functionaryProfileServicePort.findById(
+                        researchSeedbedProfile.getCoordinatorId())
+                        .getUserId()).getFullName();
+
+        String investigationGroupName = investigationGroupServicePort.findById(
+                investigationGroupProfileServicePort.findById(
+                        researchSeedbedProfile.getInvestigationGroupProfileId())
+                        .getInvestigationGroupId()).getName();
+
+        String academicPeriodName = academicPeriodServicePort.findById(
+                researchSeedbedProfile.getAcademicPeriodId()).getName();
+
+        Boolean wasActive = researchSeedbedProfile.getWasActive();
+
+        ResearchSeedbedProfileSummaryResponse response = ResearchSeedbedProfileSummaryResponse.builder()
+                .id(researchSeedbedId)
+                .researchSeedbedName(researchSeedbedName)
+                .coordinatorName(coordinatorName)
+                .tutorName(null)
+                .investigationGroupName(investigationGroupName)
+                .academicPeriodName(academicPeriodName)
+                .wasActive(wasActive)
+                .build();
+
+        Long tutorId = researchSeedbedProfile.getTutorId();
+        if (tutorId != null) {
+            String tutorName = userServicePort.findById(
+                    functionaryProfileServicePort.findById(
+                            tutorId)
+                            .getUserId()).getFullName();
+
+            response.setTutorName(tutorName);
+
+            return response;
+        }
+
+        return response;
     }
 }

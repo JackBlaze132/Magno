@@ -1,8 +1,6 @@
 package com.unibague.magno.application.mapper.response;
 
-import com.unibague.magno.application.dto.response.ResearchSeedbedProfileResponse;
-import com.unibague.magno.application.dto.response.ResearchSeedbedStudentProfileResponse;
-import com.unibague.magno.application.dto.response.StudentProfileResponse;
+import com.unibague.magno.application.dto.response.*;
 import com.unibague.magno.domain.api.IResearchSeedbedProfileServicePort;
 import com.unibague.magno.domain.api.IStudentProfileServicePort;
 import com.unibague.magno.domain.model.ResearchSeedbedStudentProfile;
@@ -51,5 +49,35 @@ public class ResearchSeedbedStudentProfileResponseMapperImpl implements Research
         return researchSeedbedStudentProfiles.stream()
                 .map(this::toResponse)
                 .toList();
+    }
+
+    @Override
+    public List<ResearchSeedbedStudentProfileSummaryResponse> toSummaryResponseList(
+            List<ResearchSeedbedStudentProfile> researchSeedbedStudentProfiles) {
+        return researchSeedbedStudentProfiles.stream()
+                .map(this::toSummaryResponse)
+                .toList();
+    }
+
+    private ResearchSeedbedStudentProfileSummaryResponse toSummaryResponse(
+            ResearchSeedbedStudentProfile researchSeedbedStudentProfile) {
+
+        Long researchSeedbedStudentProfileId = researchSeedbedStudentProfile.getResearchSeedbedProfileId();
+        Long studentProfileId = researchSeedbedStudentProfile.getStudentProfileId();
+
+        ResearchSeedbedProfileSummaryResponse researchSeedbedProfile = researchSeedbedProfileResponseMapper
+                .toSummaryResponse(researchSeedbedProfileServicePort
+                .findById(researchSeedbedStudentProfileId));
+
+        StudentProfileResponse studentProfile = studentProfileResponseMapper
+                .toResponse(studentProfileServicePort
+                .findById(studentProfileId));
+
+        return ResearchSeedbedStudentProfileSummaryResponse.builder()
+                .id(researchSeedbedStudentProfile.getId())
+                .researchSeedbedProfile(researchSeedbedProfile)
+                .studentProfile(studentProfile)
+                .wasActive(researchSeedbedStudentProfile.getWasActive())
+                .build();
     }
 }
