@@ -32,12 +32,7 @@ public class IntegraUseCase implements IIntegraServicePort {
     public IntegraFunctionary getIntegraFunctionaryByIdentification(String identification) {
 
         List<IntegraFunctionary> functionaries = getAllFunctionaries();
-        if(functionaries == null || functionaries.isEmpty()) {
-            String message = String
-                    .format("It wasn't possible to find the functionary with identification %s " +
-                            "because the returned list is null or empty", identification);
-            throw new IntegraUserNotFoundException(message);
-        }
+
         Optional<IntegraFunctionary> functionaryOptional = functionaries.stream()
                 .filter(f -> f.getIdentification().equals(identification))
                 .findFirst();

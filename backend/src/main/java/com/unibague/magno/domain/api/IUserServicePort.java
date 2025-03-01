@@ -1,5 +1,6 @@
 package com.unibague.magno.domain.api;
 
+import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 
@@ -18,4 +19,6 @@ public interface IUserServicePort {
     List<String> findAllCountries();
     User getUserByIntegraStudent(IntegraStudent integraStudent);
     User findUserByIdentification(List<User> users, String identification);
+    User mapFromIntegraFunctionary(IntegraUserRequest userRequest);
+    User mapFromIntegraStudent(IntegraUserRequest userRequest);
 }

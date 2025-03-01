@@ -1,10 +1,15 @@
 package com.unibague.magno.domain.usecase;
 
+import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
+import com.unibague.magno.domain.exception.integra.IntegraInvalidTypeException;
+import com.unibague.magno.domain.exception.integra.IntegraStudentNotFoundException;
 import com.unibague.magno.domain.exception.user.UserNotFoundException;
 import com.unibague.magno.domain.model.User;
+import com.unibague.magno.domain.model.enums.JSONIntegraType;
 import com.unibague.magno.domain.model.enums.Sex;
+import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 import com.unibague.magno.domain.spi.IUserPersistencePort;
 
@@ -113,5 +118,57 @@ public class UserUseCase implements IUserServicePort {
                 .orElseThrow(() -> new UserNotFoundException(
                         String.format("User with identification %s not found", identification)
                 ));
+    }
+
+    @Override
+    public User mapFromIntegraFunctionary(IntegraUserRequest userRequest) {
+
+        if (userRequest.getType().equals(JSONIntegraType.ESTUDIANTE)) {
+            throw new IntegraInvalidTypeException("The type of the integra user is not valid for this method");
+        }
+
+        IntegraFunctionary integraFunctionary = integraServicePort.
+                getIntegraFunctionaryByIdentification(userRequest.getIdentification());
+
+        User user = new User();
+        user.setFullName(integraFunctionary.getFullName());
+        user.setIdentificationNumber(integraFunctionary.getIdentification());
+        user.setEmail(integraFunctionary.getEmail());
+        user.setUserCode(integraFunctionary.getCodeUser());
+        user.setExternalUser(false);
+
+        Sex sex = integraFunctionary.getSex().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO;
+        user.setSex(sex);
+        user.setRoleIds(userRequest.getRoleIds());
+        return user;
+    }
+
+    @Override
+    public User mapFromIntegraStudent(IntegraUserRequest userRequest) {
+
+        if (userRequest.getType().equals(JSONIntegraType.FUNCIONARIO)) {
+            throw new IntegraInvalidTypeException("The type of the integra user is not valid for this method");
+        }
+
+        IntegraStudent integraStudent = integraServicePort.
+                getIntegraStudentByIdentification(userRequest.getIdentification())
+                .stream()
+                .findFirst()
+                .orElseThrow(() -> new IntegraStudentNotFoundException(
+                        String.format("It wasn't possible to find the student with identification %s",
+                                userRequest.getIdentification())
+                ));
+
+        User user = new User();
+        user.setFullName(integraStudent.getName());
+        user.setIdentificationNumber(integraStudent.getIdentification());
+        user.setEmail(integraStudent.getEmail());
+        user.setUserCode(integraStudent.getCodeStudent());
+        user.setExternalUser(false);
+
+        Sex sex = integraStudent.getSexo().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO;
+        user.setSex(sex);
+        user.setRoleIds(userRequest.getRoleIds());
+        return user;
     }
 }

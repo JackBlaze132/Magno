@@ -2,13 +2,10 @@ package com.unibague.magno.application.mapper.request;
 
 import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.application.dto.request.UserRequest;
-import com.unibague.magno.domain.api.integra.IIntegraServicePort;
-import com.unibague.magno.domain.exception.integra.IntegraStudentNotFoundException;
+import com.unibague.magno.domain.api.IUserServicePort;
+import com.unibague.magno.domain.exception.integra.IntegraInvalidTypeException;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.enums.JSONIntegraType;
-import com.unibague.magno.domain.model.enums.Sex;
-import com.unibague.magno.domain.model.integra.IntegraFunctionary;
-import com.unibague.magno.domain.model.integra.IntegraStudent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +16,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class UserRequestMapperImpl implements UserRequestMapper {
 
-    private final IIntegraServicePort integraServicePort;
+    private final IUserServicePort userServicePort;
 
     @Override
     public User toUser(UserRequest userRequest) {
@@ -47,51 +44,14 @@ public class UserRequestMapperImpl implements UserRequestMapper {
     public User toUser(IntegraUserRequest userRequest) {
 
         if (userRequest.getType().equals(JSONIntegraType.FUNCIONARIO)){
-            IntegraFunctionary integraFunctionary = integraServicePort.
-                    getIntegraFunctionaryByIdentification(userRequest.getIdentification());
-            return mapIntegraFunctionary(userRequest, integraFunctionary);
+            return userServicePort.mapFromIntegraFunctionary(userRequest);
         }
         else if (userRequest.getType().equals(JSONIntegraType.ESTUDIANTE)){
-            IntegraStudent integraStudent = integraServicePort.
-                    getIntegraStudentByIdentification(userRequest.getIdentification())
-                    .stream()
-                    .findFirst()
-                    .orElseThrow(() -> new IntegraStudentNotFoundException(
-                            String.format("It wasn't possible to find the student with identification %s",
-                                    userRequest.getIdentification())
-                    ));
-            return mapIntegraStudent(userRequest, integraStudent);
+            return userServicePort.mapFromIntegraStudent(userRequest);
         }
         else {
-            throw new IllegalArgumentException("The type of the integra user is not valid");
+            throw new IntegraInvalidTypeException("The type of the integra user is not valid");
         }
     }
 
-    private User mapIntegraFunctionary(IntegraUserRequest userRequest, IntegraFunctionary integraFunctionary) {
-        User user = new User();
-        user.setFullName(integraFunctionary.getFullName());
-        user.setIdentificationNumber(integraFunctionary.getIdentification());
-        user.setEmail(integraFunctionary.getEmail());
-        user.setUserCode(integraFunctionary.getCodeUser());
-        user.setExternalUser(false);
-
-        Sex sex = integraFunctionary.getSex().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO;
-        user.setSex(sex);
-        user.setRoleIds(userRequest.getRoleIds());
-        return user;
-    }
-
-    private User mapIntegraStudent(IntegraUserRequest userRequest, IntegraStudent integraStudent) {
-        User user = new User();
-        user.setFullName(integraStudent.getName());
-        user.setIdentificationNumber(integraStudent.getIdentification());
-        user.setEmail(integraStudent.getEmail());
-        user.setUserCode(integraStudent.getCodeStudent());
-        user.setExternalUser(false);
-
-        Sex sex = integraStudent.getSexo().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO;
-        user.setSex(sex);
-        user.setRoleIds(userRequest.getRoleIds());
-        return user;
-    }
 }
