@@ -4,10 +4,12 @@ import com.unibague.magno.domain.api.IAcademicProgramServicePort;
 import com.unibague.magno.domain.exception.academicprogram.AcademicProgramAlreadyExistsException;
 import com.unibague.magno.domain.exception.academicprogram.AcademicProgramNotFoundException;
 import com.unibague.magno.domain.model.AcademicProgram;
+import com.unibague.magno.domain.model.integra.IntegraStudent;
 import com.unibague.magno.domain.spi.IAcademicProgramPersistencePort;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class AcademicProgramUseCase implements IAcademicProgramServicePort {
 
@@ -75,5 +77,22 @@ public class AcademicProgramUseCase implements IAcademicProgramServicePort {
     @Override
     public boolean existsByProgramCodeAndProgramName(String programCode, String programName) {
         return academicProgramPersistencePort.existsByProgramCodeAndProgramName(programCode, programName);
+    }
+
+    @Override
+    public Set<Long> getAcademicProgramIdsByListOfIntegraStudent(List<IntegraStudent> studentRecords) {
+
+        Set<AcademicProgram> academicProgramSet = getAcademicProgramsByListOfIntegraStudent(studentRecords);
+
+        return academicProgramSet.stream()
+                .map(AcademicProgram::getId)
+                .collect(Collectors.toSet());
+    }
+
+    private Set<AcademicProgram> getAcademicProgramsByListOfIntegraStudent(List<IntegraStudent> studentRecords) {
+        return findAcademicProgramsByAcademicProgramCodes(
+                studentRecords.stream()
+                                .map(IntegraStudent::getProgramCode)
+                                .collect(Collectors.toSet()));
     }
 }

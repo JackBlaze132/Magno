@@ -101,4 +101,14 @@ public class IntegraUseCase implements IIntegraServicePort {
         }
         return cleanedStudentListOfMaps;
     }
+
+    @Override
+    public byte getMaxSemester(List<IntegraStudent> studentRecords) {
+        return (byte) studentRecords.stream()
+                .map(IntegraStudent::getSemester)
+                .map(s -> (s == null || s.isEmpty()) ? "0" : s)
+                .mapToInt(Integer::parseInt)
+                .max()
+                .orElse(-1);
+    }
 }

@@ -19,4 +19,5 @@ public interface IIntegraServicePort {
     //This method should only be used by the User class
     IntegraStudent getFirstIntegraStudentFound(String identification);
     List<Map<String, String>> getCleanedStudentListOfMaps(List<Map<String, String>> researchSeedbedStudentProfiles);
+    byte getMaxSemester(List<IntegraStudent> studentRecords);
 }

@@ -1,6 +1,7 @@
 package com.unibague.magno.domain.api;
 
 import com.unibague.magno.domain.model.AcademicProgram;
+import com.unibague.magno.domain.model.integra.IntegraStudent;
 
 import java.util.List;
 import java.util.Set;
@@ -15,4 +16,5 @@ public interface IAcademicProgramServicePort {
     Set<AcademicProgram> findAcademicProgramsByAcademicProgramCodes(Set<String> academicProgramCodes);
     List<AcademicProgram> saveAll();
     boolean existsByProgramCodeAndProgramName(String programCode, String programName);
+    Set<Long> getAcademicProgramIdsByListOfIntegraStudent(List<IntegraStudent> studentRecords);
 }
