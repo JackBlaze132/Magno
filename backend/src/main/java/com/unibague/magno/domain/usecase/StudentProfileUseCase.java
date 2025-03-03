@@ -6,15 +6,14 @@ import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.studentprofile.StudentProfileAlreadyExistsException;
 import com.unibague.magno.domain.exception.studentprofile.StudentProfileNotFoundException;
+import com.unibague.magno.domain.model.AcademicProgram;
 import com.unibague.magno.domain.model.StudentProfile;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 import com.unibague.magno.domain.spi.IStudentProfilePersistencePort;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.unibague.magno.domain.usecase.ResearchSeedbedStudentProfileUseCase.IDENTIFICATION;
 
@@ -131,8 +130,16 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
         newStudentProfile.setAcademicPeriodId(academicPeriodId); // Assign the correct academic period
         newStudentProfile.setUserId(user.getId()); // Associate the created user
 
-        newStudentProfile.setAcademicProgramsIds(
-                academicProgramServicePort.getAcademicProgramIdsByListOfIntegraStudent(integraStudents));
+        Set<String> academicProgramCodes = integraStudents.stream()
+                .map(IntegraStudent::getProgramCode)
+                .collect(Collectors.toSet());
+        Set<Long> academicProgramIds = academicProgramServicePort
+                .findAcademicProgramsByAcademicProgramCodes(academicProgramCodes)
+                .stream()
+                .map(AcademicProgram::getId)
+                .collect(Collectors.toSet());
+
+        newStudentProfile.setAcademicProgramsIds(academicProgramIds);
 
         return save(newStudentProfile);
     }

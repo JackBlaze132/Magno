@@ -4,6 +4,7 @@ import com.unibague.magno.application.dto.request.StudentProfileRequest;
 import com.unibague.magno.domain.api.IAcademicProgramServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
+import com.unibague.magno.domain.model.AcademicProgram;
 import com.unibague.magno.domain.model.StudentProfile;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -32,7 +34,14 @@ public class StudentProfileRequestMapperImpl implements StudentProfileRequestMap
         List<IntegraStudent> students = integraServicePort.getIntegraStudentRecordsByIdentification(user.getIdentificationNumber());
 
         byte semester = integraServicePort.getMaxSemester(students);
-        Set<Long> academicProgramIds = academicProgramServicePort.getAcademicProgramIdsByListOfIntegraStudent(students);
+
+        Set<String> academicProgramCodes = students.stream()
+                .map(IntegraStudent::getProgramCode)
+                .collect(Collectors.toSet());
+        Set<Long> academicProgramIds = academicProgramServicePort.findAcademicProgramsByAcademicProgramCodes(academicProgramCodes)
+                .stream()
+                .map(AcademicProgram::getId)
+                .collect(Collectors.toSet());
 
         StudentProfile studentProfile = new StudentProfile();
 

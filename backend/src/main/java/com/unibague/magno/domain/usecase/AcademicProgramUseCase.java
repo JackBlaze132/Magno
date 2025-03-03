@@ -79,16 +79,6 @@ public class AcademicProgramUseCase implements IAcademicProgramServicePort {
         return academicProgramPersistencePort.existsByProgramCodeAndProgramName(programCode, programName);
     }
 
-    @Override
-    public Set<Long> getAcademicProgramIdsByListOfIntegraStudent(List<IntegraStudent> studentRecords) {
-
-        Set<AcademicProgram> academicProgramSet = getAcademicProgramsByListOfIntegraStudent(studentRecords);
-
-        return academicProgramSet.stream()
-                .map(AcademicProgram::getId)
-                .collect(Collectors.toSet());
-    }
-
     private Set<AcademicProgram> getAcademicProgramsByListOfIntegraStudent(List<IntegraStudent> studentRecords) {
         return findAcademicProgramsByAcademicProgramCodes(
                 studentRecords.stream()
