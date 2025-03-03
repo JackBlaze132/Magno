@@ -78,11 +78,4 @@ public class AcademicProgramUseCase implements IAcademicProgramServicePort {
     public boolean existsByProgramCodeAndProgramName(String programCode, String programName) {
         return academicProgramPersistencePort.existsByProgramCodeAndProgramName(programCode, programName);
     }
-
-    private Set<AcademicProgram> getAcademicProgramsByListOfIntegraStudent(List<IntegraStudent> studentRecords) {
-        return findAcademicProgramsByAcademicProgramCodes(
-                studentRecords.stream()
-                                .map(IntegraStudent::getProgramCode)
-                                .collect(Collectors.toSet()));
-    }
 }

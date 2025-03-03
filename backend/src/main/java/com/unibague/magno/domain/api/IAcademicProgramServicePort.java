@@ -1,7 +1,6 @@
 package com.unibague.magno.domain.api;
 
 import com.unibague.magno.domain.model.AcademicProgram;
-import com.unibague.magno.domain.model.integra.IntegraStudent;
 
 import java.util.List;
 import java.util.Set;
