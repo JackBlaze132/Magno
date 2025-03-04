@@ -11,5 +11,4 @@ public interface IAcademicProgramHandler {
     AcademicProgramResponse updateById(Long id, AcademicProgramRequest academicProgram);
     void deleteById(Long id);
     List<AcademicProgramResponse> findAll();
-    List<AcademicProgramResponse> saveAll();
 }

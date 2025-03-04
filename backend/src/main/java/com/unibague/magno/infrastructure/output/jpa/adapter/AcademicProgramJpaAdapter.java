@@ -67,33 +67,7 @@ public class AcademicProgramJpaAdapter implements IAcademicProgramPersistencePor
     }
 
     @Override
-    public List<AcademicProgram> saveAll() {
-        List<AcademicProgramEntity> existingPrograms = academicProgramRepository.findAll();
-        Set<String> existingNames = extractNames(existingPrograms);
-        List<AcademicProgramEntity> newPrograms = fetchNewPrograms(existingNames);
-        return savePrograms(newPrograms);
-    }
-
-    @Override
     public boolean existsByProgramCodeAndProgramName(String programCode, String programName) {
         return academicProgramRepository.existsByProgramCodeAndName(programCode, programName);
-    }
-
-    private Set<String> extractNames(List<AcademicProgramEntity> programs) {
-        return programs.stream()
-                .map(AcademicProgramEntity::getName)
-                .collect(Collectors.toSet());
-    }
-
-    private List<AcademicProgramEntity> fetchNewPrograms(Set<String> existingNames) {
-        return integraServicePort.getAllAcademicPrograms().stream()
-                .map(academicProgramEntityMapper::toAcademicProgramEntity)
-                .filter(program -> !existingNames.contains(program.getName()))
-                .toList();
-    }
-
-    private List<AcademicProgram> savePrograms(List<AcademicProgramEntity> newPrograms) {
-        List<AcademicProgramEntity> savedEntities = academicProgramRepository.saveAll(newPrograms);
-        return academicProgramEntityMapper.toAcademicProgramList(savedEntities);
     }
 }

@@ -131,11 +131,6 @@ public class AcademicProgramUseCase implements IAcademicProgramServicePort {
     }
 
     @Override
-    public List<AcademicProgram> saveAll() {
-        return academicProgramPersistencePort.saveAll();
-    }
-
-    @Override
     public boolean existsByProgramCodeAndProgramName(String programCode, String programName) {
         return academicProgramPersistencePort.existsByProgramCodeAndProgramName(programCode, programName);
     }
