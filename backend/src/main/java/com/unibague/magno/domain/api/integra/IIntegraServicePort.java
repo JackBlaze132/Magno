@@ -7,6 +7,7 @@ import com.unibague.magno.domain.model.integra.IntegraStudent;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public interface IIntegraServicePort {
     List<IntegraFunctionary> getAllFunctionaries();
@@ -20,4 +21,5 @@ public interface IIntegraServicePort {
     IntegraStudent getFirstIntegraStudentFound(String identification);
     List<Map<String, String>> getCleanedStudentListOfMaps(List<Map<String, String>> researchSeedbedStudentProfiles);
     byte getMaxSemester(List<IntegraStudent> studentRecords);
+    List<IntegraAcademicProgram> getIntegraAcademicProgramsByProgramCodes(Set<String> programCodes);
 }

@@ -6,6 +6,7 @@ import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 
 import java.util.List;
+import java.util.Set;
 
 public interface IIntegraPersistencePort {
     List<IntegraFunctionary> getAllFunctionaries();
@@ -13,4 +14,5 @@ public interface IIntegraPersistencePort {
     List<IntegraStudent> getIntegraStudentRecordsByIdentification(String identification);
     List<IntegraAcademicProgram> getAllAcademicPrograms();
     List<IntegraDependency> getAllDependencies();
+    List<IntegraAcademicProgram> getIntegraAcademicProgramsByProgramCodes(Set<String> programCodes);
 }

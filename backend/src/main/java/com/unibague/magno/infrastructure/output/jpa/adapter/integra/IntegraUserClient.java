@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -91,5 +92,12 @@ public class IntegraUserClient implements IIntegraPersistencePort {
                 new ParameterizedTypeReference<List<IntegraDependency>>() {}
         );
         return response.getBody();
+    }
+
+    @Override
+    public List<IntegraAcademicProgram> getIntegraAcademicProgramsByProgramCodes(Set<String> programCodes) {
+        return getAllAcademicPrograms().stream()
+                .filter(academicProgram -> programCodes.contains(academicProgram.getProgramCode()))
+                .toList();
     }
 }

@@ -90,7 +90,7 @@ public class BeanConfiguration {
 
     @Bean
     public IAcademicProgramServicePort academicProgramServicePort() {
-        return new AcademicProgramUseCase(academicProgramPersistencePort());
+        return new AcademicProgramUseCase(academicProgramPersistencePort(), integraServicePort());
     }
 
     @Bean

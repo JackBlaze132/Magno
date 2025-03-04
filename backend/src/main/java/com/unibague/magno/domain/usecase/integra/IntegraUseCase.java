@@ -1,6 +1,7 @@
 package com.unibague.magno.domain.usecase.integra;
 
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
+import com.unibague.magno.domain.exception.integra.IntegraAcademicProgramNotFoundException;
 import com.unibague.magno.domain.exception.integra.IntegraStudentNotFoundException;
 import com.unibague.magno.domain.exception.integra.IntegraUserNotFoundException;
 import com.unibague.magno.domain.model.integra.IntegraAcademicProgram;
@@ -12,6 +13,7 @@ import com.unibague.magno.domain.spi.integra.IIntegraPersistencePort;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import static com.unibague.magno.domain.usecase.ResearchSeedbedStudentProfileUseCase.IDENTIFICATION;
 
@@ -130,5 +132,21 @@ public class IntegraUseCase implements IIntegraServicePort {
                 .mapToInt(Integer::parseInt)
                 .max()
                 .orElse(-1);
+    }
+
+    @Override
+    public List<IntegraAcademicProgram> getIntegraAcademicProgramsByProgramCodes(Set<String> programCodes) {
+
+        List<IntegraAcademicProgram> integraAcademicPrograms = integraPersistencePort
+                .getIntegraAcademicProgramsByProgramCodes(programCodes);
+
+        if (integraAcademicPrograms.isEmpty()) {
+            throw new IntegraAcademicProgramNotFoundException(
+                    String.format("IntegraAcademicPrograms with program codes %s not found",
+                            String.join(", ", programCodes))
+            );
+        }
+
+        return integraAcademicPrograms;
     }
 }
