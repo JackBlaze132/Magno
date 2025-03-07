@@ -22,4 +22,5 @@ public interface IIntegraServicePort {
     List<Map<String, String>> getCleanedStudentListOfMaps(List<Map<String, String>> researchSeedbedStudentProfiles);
     byte getMaxSemester(List<IntegraStudent> studentRecords);
     List<IntegraAcademicProgram> getIntegraAcademicProgramsByProgramCodes(Set<String> programCodes);
+    IntegraDependency getIntegraDependencyByDependencyName(String dependencyName);
 }

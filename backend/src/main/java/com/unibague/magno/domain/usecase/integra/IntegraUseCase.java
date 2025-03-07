@@ -149,4 +149,9 @@ public class IntegraUseCase implements IIntegraServicePort {
 
         return integraAcademicPrograms;
     }
+
+    @Override
+    public IntegraDependency getIntegraDependencyByDependencyName(String dependencyName) {
+        return integraPersistencePort.getIntegraDependencyByDependencyName(dependencyName);
+    }
 }

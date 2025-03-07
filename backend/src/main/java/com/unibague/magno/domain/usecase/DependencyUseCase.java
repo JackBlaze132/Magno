@@ -1,18 +1,24 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IDependencyServicePort;
+import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.dependency.DependencyNotFoundException;
 import com.unibague.magno.domain.model.Dependency;
+import com.unibague.magno.domain.model.integra.IntegraDependency;
 import com.unibague.magno.domain.spi.IDependencyPersistencePort;
 
 import java.util.List;
+import java.util.Optional;
 
 public class DependencyUseCase implements IDependencyServicePort {
 
     private final IDependencyPersistencePort dependencyPersistencePort;
+    private final IIntegraServicePort integraServicePort;
 
-    public DependencyUseCase(IDependencyPersistencePort dependencyPersistencePort) {
+    public DependencyUseCase(IDependencyPersistencePort dependencyPersistencePort,
+                             IIntegraServicePort integraServicePort) {
         this.dependencyPersistencePort = dependencyPersistencePort;
+        this.integraServicePort = integraServicePort;
     }
 
     @Override
@@ -52,9 +58,25 @@ public class DependencyUseCase implements IDependencyServicePort {
 
     @Override
     public Dependency findByName(String name) {
-        return dependencyPersistencePort.findByName(name)
-                .orElseThrow(() -> new DependencyNotFoundException(
-                        String.format("Dependency with name %s not found", name)));
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be null or empty");
+        }
+        return findOrSaveByName(name);
+    }
+
+    private Dependency findOrSaveByName(String name) {
+        Optional<Dependency> dependency = dependencyPersistencePort.findByName(name);
+        if (dependency.isPresent()) {
+            return dependency.get();
+        }
+        IntegraDependency integraDependency = integraServicePort.getIntegraDependencyByDependencyName(name);
+        return save(mapFromIntegraDependency(integraDependency));
+    }
+
+    private Dependency mapFromIntegraDependency(IntegraDependency integraDependency) {
+        Dependency dependency = new Dependency();
+        dependency.setName(integraDependency.getDepName());
+        return dependency;
     }
 
     @Override

@@ -15,4 +15,5 @@ public interface IIntegraPersistencePort {
     List<IntegraAcademicProgram> getAllAcademicPrograms();
     List<IntegraDependency> getAllDependencies();
     List<IntegraAcademicProgram> getIntegraAcademicProgramsByProgramCodes(Set<String> programCodes);
+    IntegraDependency getIntegraDependencyByDependencyName(String dependencyName);
 }

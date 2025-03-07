@@ -80,7 +80,7 @@ public class BeanConfiguration {
 
     @Bean
     public IDependencyServicePort dependencyServicePort() {
-        return new DependencyUseCase(dependencyPersistencePort());
+        return new DependencyUseCase(dependencyPersistencePort(), integraServicePort());
     }
 
     @Bean

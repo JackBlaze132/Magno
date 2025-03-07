@@ -1,5 +1,6 @@
 package com.unibague.magno.infrastructure.output.jpa.adapter.integra;
 
+import com.unibague.magno.domain.exception.integra.IntegraDependencyNotFoundException;
 import com.unibague.magno.domain.model.integra.IntegraAcademicProgram;
 import com.unibague.magno.domain.model.integra.IntegraDependency;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
@@ -99,5 +100,16 @@ public class IntegraUserClient implements IIntegraPersistencePort {
         return getAllAcademicPrograms().stream()
                 .filter(academicProgram -> programCodes.contains(academicProgram.getProgramCode()))
                 .toList();
+    }
+
+    @Override
+    public IntegraDependency getIntegraDependencyByDependencyName(String dependencyName) {
+        return getAllDependencies().stream()
+                .filter(dependency -> dependency.getDepName().equals(dependencyName))
+                .findFirst()
+                .orElseThrow(() -> {
+                    String message = String.format("Integra dependency with name %s not found", dependencyName);
+                    return new IntegraDependencyNotFoundException(message);
+                });
     }
 }
