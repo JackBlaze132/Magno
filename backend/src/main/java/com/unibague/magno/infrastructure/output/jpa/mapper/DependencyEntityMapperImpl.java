@@ -64,7 +64,7 @@ public class DependencyEntityMapperImpl implements DependencyEntityMapper {
     @Override
     public DependencyEntity toDependencyEntity(IntegraDependency dependency) {
         DependencyEntity dependencyEntity = new DependencyEntity();
-        dependencyEntity.setName(dependency.getDep_name());
+        dependencyEntity.setName(dependency.getDepName());
         return dependencyEntity;
     }
 }

@@ -74,7 +74,7 @@ public class DependencyJpaAdapter implements IDependencyPersistencePort {
 
     private List<DependencyEntity> fetchDependencies(Set<String> existingDependenciesNames) {
         return integraServicePort.getAllDependencies().stream()
-                .filter(dependency -> !existingDependenciesNames.contains(dependency.getDep_name()))
+                .filter(dependency -> !existingDependenciesNames.contains(dependency.getDepName()))
                 .map(dependencyEntityMapper::toDependencyEntity)
                 .collect(Collectors.toList());
     }
