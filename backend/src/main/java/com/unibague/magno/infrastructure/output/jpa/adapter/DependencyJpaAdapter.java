@@ -57,30 +57,4 @@ public class DependencyJpaAdapter implements IDependencyPersistencePort {
         return dependencyRepository.findByName(name)
                 .map(dependencyEntityMapper::toDependency);
     }
-
-    @Override
-    public List<Dependency> saveAllFromIntegra() {
-        List<DependencyEntity> existingDependencies = dependencyRepository.findAll();
-        Set<String> existingDependenciesNames = extractNames(existingDependencies);
-        List<DependencyEntity> newDependencies = fetchDependencies(existingDependenciesNames);
-        return saveDependencies(newDependencies);
-    }
-
-    private Set<String> extractNames(List<DependencyEntity> existingDependencies) {
-        return existingDependencies.stream()
-                .map(DependencyEntity::getName)
-                .collect(Collectors.toSet());
-    }
-
-    private List<DependencyEntity> fetchDependencies(Set<String> existingDependenciesNames) {
-        return integraServicePort.getAllDependencies().stream()
-                .filter(dependency -> !existingDependenciesNames.contains(dependency.getDepName()))
-                .map(dependencyEntityMapper::toDependencyEntity)
-                .collect(Collectors.toList());
-    }
-
-    private List<Dependency> saveDependencies(List<DependencyEntity> newDependencies) {
-        List<DependencyEntity> savedDependencies = dependencyRepository.saveAll(newDependencies);
-        return dependencyEntityMapper.toDependencyList(savedDependencies);
-    }
 }

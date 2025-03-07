@@ -78,9 +78,4 @@ public class DependencyUseCase implements IDependencyServicePort {
         dependency.setName(integraDependency.getDepName());
         return dependency;
     }
-
-    @Override
-    public List<Dependency> saveAllFromIntegra() {
-        return dependencyPersistencePort.saveAllFromIntegra();
-    }
 }

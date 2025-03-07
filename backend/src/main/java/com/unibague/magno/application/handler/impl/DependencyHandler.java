@@ -47,9 +47,4 @@ public class DependencyHandler implements IDependencyHandler {
     public List<DependencyResponse> findAll() {
         return dependencyResponseMapper.toResponseList(dependencyServicePort.findAll());
     }
-
-    @Override
-    public List<DependencyResponse> saveAllFromIntegra() {
-        return dependencyResponseMapper.toResponseList(dependencyServicePort.saveAllFromIntegra());
-    }
 }

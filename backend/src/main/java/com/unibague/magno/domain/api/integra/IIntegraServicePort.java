@@ -14,8 +14,6 @@ public interface IIntegraServicePort {
     IntegraFunctionary getIntegraFunctionaryByIdentification(String identification);
     // This method return a list because a student can have 2 programs, so it can have 2 records in the JSON returned
     List<IntegraStudent> getIntegraStudentRecordsByIdentification(String identification);
-    List<IntegraAcademicProgram> getAllAcademicPrograms();
-    List<IntegraDependency> getAllDependencies();
     List<String> findMissingStudentIdentificationsInIntegra(List<String> identifications);
     //This method should only be used by the User class
     IntegraStudent getFirstIntegraStudentFound(String identification);

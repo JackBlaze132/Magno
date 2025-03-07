@@ -69,8 +69,7 @@ public class IntegraUserClient implements IIntegraPersistencePort {
         return response.getBody();
     }
 
-    @Override
-    public List<IntegraAcademicProgram> getAllAcademicPrograms() {
+    private List<IntegraAcademicProgram> getAllAcademicPrograms() {
         final String url = baseUrl + academicProgramsUrl;
 
         ResponseEntity<List<IntegraAcademicProgram>> response = restTemplate.exchange(
@@ -82,8 +81,7 @@ public class IntegraUserClient implements IIntegraPersistencePort {
         return response.getBody();
     }
 
-    @Override
-    public List<IntegraDependency> getAllDependencies() {
+    private List<IntegraDependency> getAllDependencies() {
         final String url = baseUrl + dependenciesUrl;
 
         ResponseEntity<List<IntegraDependency>> response = restTemplate.exchange(

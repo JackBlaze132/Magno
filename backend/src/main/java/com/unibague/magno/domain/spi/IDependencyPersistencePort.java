@@ -12,5 +12,4 @@ public interface IDependencyPersistencePort {
     void deleteById(Long id);
     List<Dependency> findAll();
     Optional<Dependency> findByName(String name);
-    List<Dependency> saveAllFromIntegra();
 }

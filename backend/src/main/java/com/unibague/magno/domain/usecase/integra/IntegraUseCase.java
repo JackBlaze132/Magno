@@ -64,16 +64,6 @@ public class IntegraUseCase implements IIntegraServicePort {
     }
 
     @Override
-    public List<IntegraAcademicProgram> getAllAcademicPrograms() {
-        return integraPersistencePort.getAllAcademicPrograms();
-    }
-
-    @Override
-    public List<IntegraDependency> getAllDependencies() {
-        return integraPersistencePort.getAllDependencies();
-    }
-
-    @Override
     public List<String> findMissingStudentIdentificationsInIntegra(List<String> identifications) {
         return identifications.stream()
                 .filter(identification -> {
