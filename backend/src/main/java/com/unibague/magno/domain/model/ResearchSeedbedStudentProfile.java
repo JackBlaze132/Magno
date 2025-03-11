@@ -6,12 +6,15 @@ public class ResearchSeedbedStudentProfile {
     private Long researchSeedbedProfileId;
     private Long studentProfileId;
     private Boolean wasActive;
+    private Boolean isLeader;
 
-    public ResearchSeedbedStudentProfile(Long id, Long researchSeedbedId, Long studentProfileId, Boolean wasActive) {
+    public ResearchSeedbedStudentProfile(Long id, Long researchSeedbedId, Long studentProfileId,
+                                         Boolean wasActive, Boolean isLeader) {
         this.id = id;
         this.researchSeedbedProfileId = researchSeedbedId;
         this.studentProfileId = studentProfileId;
         this.wasActive = wasActive;
+        this.isLeader = isLeader;
     }
 
     public ResearchSeedbedStudentProfile() {
@@ -47,5 +50,13 @@ public class ResearchSeedbedStudentProfile {
 
     public void setWasActive(Boolean wasActive) {
         this.wasActive = wasActive;
+    }
+
+    public Boolean getLeader() {
+        return isLeader;
+    }
+
+    public void setLeader(Boolean leader) {
+        isLeader = leader;
     }
 }

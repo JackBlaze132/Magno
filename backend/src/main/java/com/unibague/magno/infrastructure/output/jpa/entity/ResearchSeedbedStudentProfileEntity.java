@@ -26,7 +26,9 @@ public class ResearchSeedbedStudentProfileEntity {
     @JoinColumn(name = "student_profile_id", nullable = false)
     StudentProfileEntity studentProfile;
 
-
     @Column(name = "was_active", nullable = false)
     private Boolean wasActive;
+
+    @Column(name = "is_leader", nullable = false)
+    private Boolean isLeader;
 }

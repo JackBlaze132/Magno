@@ -7,7 +7,6 @@ import com.unibague.magno.infrastructure.output.jpa.entity.StudentProfileEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class ResearchSeedbedStudentProfileEntityMapperImpl implements ResearchSeedbedStudentProfileEntityMapper{
@@ -28,6 +27,7 @@ public class ResearchSeedbedStudentProfileEntityMapperImpl implements ResearchSe
         researchSeedbedStudentProfile.setStudentProfileId(researchSeedbedStudentProfileEntity
                 .getStudentProfile().getId());
         researchSeedbedStudentProfile.setWasActive(researchSeedbedStudentProfileEntity.getWasActive());
+        researchSeedbedStudentProfile.setLeader(researchSeedbedStudentProfileEntity.getIsLeader());
 
         return researchSeedbedStudentProfile;
 
@@ -54,6 +54,7 @@ public class ResearchSeedbedStudentProfileEntityMapperImpl implements ResearchSe
         researchSeedbedStudentProfileEntity.setStudentProfile(studentProfileEntity);
 
         researchSeedbedStudentProfileEntity.setWasActive(researchSeedbedStudentProfile.getWasActive());
+        researchSeedbedStudentProfileEntity.setIsLeader(researchSeedbedStudentProfile.getLeader());
         return researchSeedbedStudentProfileEntity;
     }
 
@@ -73,6 +74,7 @@ public class ResearchSeedbedStudentProfileEntityMapperImpl implements ResearchSe
         researchSeedbedStudentProfileEntity.setStudentProfile(studentProfileEntity);
 
         researchSeedbedStudentProfileEntity.setWasActive(researchSeedbedStudentProfile.getWasActive());
+        researchSeedbedStudentProfileEntity.setIsLeader(researchSeedbedStudentProfile.getLeader());
         return researchSeedbedStudentProfileEntity;
     }
 

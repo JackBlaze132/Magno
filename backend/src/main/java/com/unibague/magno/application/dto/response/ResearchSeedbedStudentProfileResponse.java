@@ -16,4 +16,5 @@ public class ResearchSeedbedStudentProfileResponse {
     private ResearchSeedbedProfileResponse researchSeedbedProfile;
     private StudentProfileResponse studentProfile;
     private Boolean wasActive;
+    private Boolean isLeader;
 }

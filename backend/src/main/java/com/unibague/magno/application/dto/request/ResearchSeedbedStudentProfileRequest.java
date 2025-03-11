@@ -22,4 +22,7 @@ public class ResearchSeedbedStudentProfileRequest {
 
     @NotNull(message = "was_active is required")
     private Boolean wasActive;
+
+    @NotNull(message = "is_leader is required")
+    private Boolean isLeader;
 }

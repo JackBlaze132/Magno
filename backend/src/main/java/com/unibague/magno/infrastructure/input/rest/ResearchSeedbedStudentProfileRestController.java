@@ -46,7 +46,8 @@ public class ResearchSeedbedStudentProfileRestController {
             @PathVariable Long researchSeedbedProfileId, @RequestParam("file") MultipartFile file) {
         List<ResearchSeedbedStudentProfileSummaryResponse> responses = researchSeedbedStudentProfileHandler
                 .saveAllByExcel(researchSeedbedProfileId, file);
-        return ResponseEntity.ok(responses);
+        URI location = URI.create("/api/research-seedbed-student-profile/");
+        return ResponseEntity.created(location).body(responses);
     }
 
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")

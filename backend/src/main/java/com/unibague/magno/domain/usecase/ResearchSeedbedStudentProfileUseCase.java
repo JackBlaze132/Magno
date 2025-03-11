@@ -110,6 +110,7 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
         researchSeedbedStudentProfile.setStudentProfileId(studentProfileId);
         researchSeedbedStudentProfile.setResearchSeedbedProfileId(researchSeedbedProfileId);
         researchSeedbedStudentProfile.setWasActive(false);
+        researchSeedbedStudentProfile.setLeader(false);
         return researchSeedbedStudentProfilePersistencePort.save(researchSeedbedStudentProfile);
     }
 }
