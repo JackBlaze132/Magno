@@ -27,7 +27,6 @@
     "types": [
       "vite/client",
       "node"
-      //"unplugin-vue-router/client"
         
     ],
     "allowJs": true,
@@ -42,7 +41,6 @@
   "include": [
     "src/**/*",
     "src/**/*.vue",
-    //"./typed-router.d.ts"
   ],
   "exclude": ["dist", "node_modules", "cypress"],
   "references": [{ "path": "./tsconfig.node.json" }],
