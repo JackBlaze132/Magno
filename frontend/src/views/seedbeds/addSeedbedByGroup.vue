@@ -1,0 +1,3 @@
+<template>
+  <formAddSeedbed/>
+</template>
