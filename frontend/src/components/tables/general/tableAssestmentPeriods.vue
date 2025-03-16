@@ -19,9 +19,9 @@
       :headers="headers"
       :sort-by="[{key: 'name'}]"
     >
-      <template v-slot:item.isActive="{item}">
-        <VChip :color="item.isActive ? 'green' : ''" >
-          {{ periodActivityFormatter(item.isActive)}}
+      <template v-slot:item.current="{item}">
+        <VChip :color="item.current ? 'green' : ''" >
+          {{ periodActivityFormatter(item.current)}}
         </VChip>
       </template>
       <!--<template v-slot:item.link="{item, index}">-->
@@ -52,9 +52,9 @@ import QuickActions from "@/components/quickActions.vue";
 interface Item {
   id: number,
   name: string,
-  startDate: string,
-  endDate: string,
-  isActive: boolean,
+  start_date: string,
+  end_date: string,
+  current: boolean,
 }
 
 export default defineComponent({
@@ -71,9 +71,9 @@ export default defineComponent({
       headers: [
         {title: 'ID', key: 'id'},
         {title: 'Nombre', key: 'name'},
-        {title: 'Fecha de inicio', key: 'startDate'},
-        {title: 'Fecha de finalización', key: 'endDate'},
-        {title: 'Estado', key: 'isActive'},
+        {title: 'Fecha de inicio', key: 'start_date'},
+        {title: 'Fecha de finalización', key: 'end_date'},
+        {title: 'Estado', key: 'current'},
         {key: 'link', sortable: false},
       ],
     }
@@ -83,9 +83,13 @@ export default defineComponent({
     this.getPeriods();
   },
   methods: {
+
     async getPeriods() {
+      const apiHeaders = {
+          'API-VERSION': '1',
+      }
       try {
-        this.items = await API.get(API.GET_ASSESMENT_PERIODS)
+        this.items = await API.get(API.GET_ACADEMIC_PERIODS, apiHeaders)
         this.$emit('loaded');
       } catch (error) {
         console.error('Error fetching users:', error);

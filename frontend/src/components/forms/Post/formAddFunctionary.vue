@@ -46,7 +46,7 @@ export default defineComponent({
   methods: {
     async getPeriods() {
       try {
-        this.periods = await API.get(API.GET_ASSESMENT_PERIODS);
+        this.periods = await API.get(API.GET_ACADEMIC_PERIODS);
       } catch (error) {
         console.error('Error fetching periods:', error);
       }

@@ -2,13 +2,13 @@
 class API{
 
 
-  private readonly API_BASE_URL: string = '/api/';
+  private readonly API_BASE_URL: string = '/api';
 
   public readonly HEADER_TEST: string='hello/header';
   // ya se encuentra registrada en el archivo vite.config.mts
   //----[ENDPOINTS]----
   //----[GET]----
-  public readonly GET_ASSESMENT_PERIODS: string = 'getAssesmentPeriods';
+  public readonly GET_ACADEMIC_PERIODS: string = '/academic-periods/';
   public readonly GET_FUNCTIONARY_PROFILES: string = 'getFunctionaryProfiles';
   public readonly GET_STUDENT_PROFILES: string = 'getStudentProfiles';
   public readonly GET_RESEARCH_SEEDBEDS: string = 'getResearchSeedbeds';
