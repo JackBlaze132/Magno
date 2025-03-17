@@ -1,5 +1,6 @@
 package com.unibague.magno.application.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Getter;
@@ -16,5 +17,7 @@ public class AcademicPeriodResponse {
     private String name;
     private LocalDate startDate;
     private LocalDate endDate;
+    
+    @JsonProperty("is_current")
     private boolean isCurrent;
 }
