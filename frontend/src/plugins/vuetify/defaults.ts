@@ -105,7 +105,7 @@ export default {
     variant: 'outlined',
     density: 'comfortable',
     color: 'primary',
-    hideDetails: 'auto',
+
   },
   VAutocomplete: {
     variant: 'outlined',
@@ -145,5 +145,8 @@ export default {
   },
   VCard:{
     rounded: 'lg'
-  }
+  },
+  VDateInput:{
+    variant: 'outlined',
+  },
 }

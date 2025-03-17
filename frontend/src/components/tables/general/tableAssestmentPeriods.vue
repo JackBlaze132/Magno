@@ -28,13 +28,31 @@
         <template v-slot:item.link="{item}">
         <QuickActions
           :toView="item.id + '/grupos-investigacion'"
-          :toEdit="item.id + '/editar-periodo'"
-          :toDelete="item.id"
-          :deleteItem="item.name"
-          @itemDeleted="handleItemDeleted"
-          deleteType="periodo"
-          ></QuickActions>
 
+          :toEdit="item.id"
+          :itemEdit="item.name"
+          @itemEdited="handleItemEdited"
+          typeEdit="periodo"
+
+          :toDelete="item.id"
+          :itemDelete="item.name"
+          @itemDeleted="handleItemDeleted"
+          typeDelete="periodo"
+
+          :fields="[
+          { key: 'name', label: 'Nombre', type: 'text' },
+          { key: 'start_date', label: 'Fecha de inicio', type: 'date' },
+          { key: 'end_date', label: 'Fecha de fin', type: 'date' }
+          ]"
+
+          :initialData="{
+            name: item.name,
+            start_date: new Date (item.start_date),
+            end_date: new Date (item.end_date),
+            current: item.current
+          }"
+
+        />
       </template>
     </VDataTable>
   </VCard>
@@ -101,6 +119,13 @@ export default defineComponent({
     handleItemDeleted(index: number) {
       this.items.splice(index, 1);
       this.getPeriods() // Eliminar el elemento del array
+    },
+    handleItemEdited(index: number, updatedName: string) {
+      const item = this.items.find((i) => i.id === index);
+      if (item) {
+        item.name = updatedName;
+      }
+      this.getPeriods();
     },
   },
 })
