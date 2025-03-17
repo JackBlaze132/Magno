@@ -85,6 +85,14 @@ export default defineComponent({
           response = await API.post(API.POST_ACADEMIC_PERIOD, {
             ...this.formValues,
           }, headers);
+        } else if (this.type === 'semillero') {
+          response = await API.post(API.POST_RESEARCH_SEEDBED, {
+            ...this.formValues,
+          }, headers);
+        } else if (this.type === 'grupo') {
+          response = await API.post(API.POST_INVESTIGATION_GROUP, {
+            ...this.formValues,
+          }, headers);
         }
         if (!response.error) {
           this.$emit('itemCreated', this.formValues.name);

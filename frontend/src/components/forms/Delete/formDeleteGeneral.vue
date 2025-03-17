@@ -10,7 +10,7 @@
     <VForm validate-on="submit" @submit.prevent="deleteItem">
       <VTextField  name="field" id="field" v-model="inputValue" :placeholder="`eliminar ${name}`"/>
       <VcardItem class="d-flex justify-end">
-        <LoadingBtn @click="deleteItem" icon="ri-delete-bin-5-line" text="Eliminar" :loading="loading" color="error" ></LoadingBtn>
+        <LoadingBtn icon="ri-delete-bin-5-line" text="Eliminar" :loading="loading" color="error" ></LoadingBtn>
       </VcardItem>
     </VForm>
   </VCard>
@@ -46,28 +46,31 @@ export default defineComponent({
   },
   methods: {
     async deleteItem() {
+      this.loading = true;
+
+      const headers = {
+        'API-VERSION': '1',
+      }
+
+      const endpoint =
+      this.type === 'semillero' ? API.DELETE_RESEARCH_SEEDBED :
+      this.type === 'grupo' ? API.DELETE_INVESTIGATION_GROUP :
+      this.type === 'periodo' ? API.DELETE_ACADEMIC_PERIOD : '';
+
       const expectedValue = `eliminar ${this.name}`;
       if (this.inputValue !== expectedValue) {
         alert(`Por favor ingrese "${expectedValue}" para confirmar la eliminación.`);
+        this.loading = false;
         return;
       }
 
-      this.loading = true;
-
       try {
         let response;
-        if (this.type === 'semillero') {
-          response = await API.delete(API.DELETE_RESEARCH_SEEDBED + this.index);
-        } else if (this.type === 'grupo') {
-          response = await API.delete(API.DELETE_INVESTIGATION_GROUP + this.index);
-        } else if (this.type === 'periodo') {
-          response = await API.delete(API.DELETE_ASSESMENT_PERIOD + this.index);
-        }
+        response = await API.delete(endpoint + this.index, headers);
 
         if (response.error) {
           console.error("Error al realizar la solicitud", response.error);
         } else {
-          console.log(response);
           this.$emit('itemDeleted', this.index); // Emitir evento al eliminar el objeto
         }
       } catch (error) {

@@ -14,7 +14,7 @@ class API{
   public readonly GET_STUDENT_PROFILES: string = 'getStudentProfiles';
   public readonly GET_RESEARCH_SEEDBEDS: string = 'getResearchSeedbeds';
   public readonly GET_USERS: string = 'getUsers';
-  public readonly GET_INVESTIGATION_GROUP_BY_ASSESMENT_PERIOD: string = 'getInvestigationGroupsByAssesmentPeriodId/';
+  public readonly GET_INVESTIGATION_GROUP_BY_ACADEMIC_PERIOD: string = 'getInvestigationGroupsByAssesmentPeriodId/';
   public readonly GET_RESEARCH_SEEDBED_BY_GROUP_ID:string='getResearchSeedbedsByInvestigationGroupId/';
   public readonly GET_COORDINATOR_BY_RESEARCH_SEEDBED_ID: string = 'getCoordinatorByResearchseedbedId/';
   public readonly GET_EXTERNAL_FUNCTIONARY_PROFILE_BY_SEEDBED_ID: string='getExternalFunctionaryProfilesByResearchSeedbedId/';
@@ -44,7 +44,7 @@ class API{
   public readonly DELETE_STUDENT_PROFILE_FROM_RESEARCH_SEEDBED:string='deleteStudentProfileFromAResearchSeedbed';
   public readonly DELETE_RESEARCH_SEEDBED:string='deleteResearchSeedbed/';
   public readonly DELETE_INVESTIGATION_GROUP: string='deleteInvestigationGroup/';
-  public readonly DELETE_ASSESMENT_PERIOD: string='deleteAssessmentPeriod/';
+  public readonly DELETE_ACADEMIC_PERIOD: string='academic-periods/';
 
 
 
@@ -128,11 +128,17 @@ class API{
     }
   }
 
-  public async delete(endpoint: string){
+  public async delete(endpoint: string, headers: Record<string, string> = {}){
     try{
       const response = await fetch(this.API_BASE_URL + `${endpoint}`, {
         method: 'DELETE',
+        headers: {
+          ...headers
+        },
       });
+      if (response.ok && response.status === 204) {
+        return {}; // or return null
+      }
       return response.json();
     }catch(error){
       console.error(`Error deleting to ${endpoint}:`, error);
