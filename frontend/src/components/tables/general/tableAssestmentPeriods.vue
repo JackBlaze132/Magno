@@ -47,9 +47,9 @@
 
           :initialData="{
             name: item.name,
-            start_date: new Date (item.start_date),
-            end_date: new Date (item.end_date),
-            current: item.current
+            start_date: dateFormatter(item.start_date),
+            end_date: dateFormatter (item.end_date),
+            is_current: item.current
           }"
 
         />
@@ -116,6 +116,10 @@ export default defineComponent({
     periodActivityFormatter(state:boolean){
       return Formatter.periodActivityFormatter(state);
     },
+    dateFormatter(date:string){
+      return Formatter.dateFormatter(date);
+    },
+
     handleItemDeleted(index: number) {
       this.items.splice(index, 1);
       this.getPeriods() // Eliminar el elemento del array

@@ -26,7 +26,7 @@ class API{
 
   //----[POST]----
   public readonly POST_INVESTIGATION_GROUP:string='addInvestigationGroup';
-  public readonly POST_ASSESMENT_PERIOD:string='addAssesmentPeriod';
+  public readonly POST_ACADEMIC_PERIOD:string='academic-periods/';
   public readonly POST_RESEARCH_SEEDBED:string='addResearchSeedbed';
   public readonly POST_STUDENT_PROFILE:string='addStudentProfile';
   public readonly POST_USER:string='addUser';
@@ -94,12 +94,13 @@ class API{
     }
   }**/
 
-  public async post(endpoint: string, data: any) {
+  public async post(endpoint: string, data: any, headers: Record<string, string> = {}) {
     try {
       const response = await fetch(this.API_BASE_URL + `${endpoint}`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          ...headers
         },
         body: JSON.stringify(data)
       });

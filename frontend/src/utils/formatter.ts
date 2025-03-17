@@ -23,7 +23,8 @@ class Formatter{
   }
 
   public dateFormatter(date: string){
-    return date;
+    //'T05:00:00.000Z' is added to the date to avoid the date to be displayed as the previous day
+    return new Date(date + 'T05:00:00.000Z');
   }
 }
 
