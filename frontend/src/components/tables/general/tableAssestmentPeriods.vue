@@ -19,9 +19,9 @@
       :headers="headers"
       :sort-by="[{key: 'name'}]"
     >
-      <template v-slot:item.current="{item}">
-        <VChip :color="item.current ? 'green' : ''" >
-          {{ periodActivityFormatter(item.current)}}
+      <template v-slot:item.is_current="{item}">
+        <VChip :color="item.is_current ? 'green' : ''" >
+          {{ periodActivityFormatter(item.is_current)}}
         </VChip>
       </template>
       <!--<template v-slot:item.link="{item, index}">-->
@@ -72,7 +72,7 @@ interface Item {
   name: string,
   start_date: string,
   end_date: string,
-  current: boolean,
+  is_current: boolean,
 }
 
 export default defineComponent({
@@ -91,7 +91,7 @@ export default defineComponent({
         {title: 'Nombre', key: 'name'},
         {title: 'Fecha de inicio', key: 'start_date'},
         {title: 'Fecha de finalización', key: 'end_date'},
-        {title: 'Estado', key: 'current'},
+        {title: 'Estado', key: 'is_current'},
         {key: 'link', sortable: false},
       ],
     }
