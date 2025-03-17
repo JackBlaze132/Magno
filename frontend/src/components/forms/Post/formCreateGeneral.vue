@@ -1,9 +1,9 @@
 <template>
   <VCard class="pa-5 ma-5" max-width="600">
-    <VCardTitle>Editar {{ type }}</VCardTitle>
+    <VCardTitle>Agregar {{ type }}</VCardTitle>
     <VDivider/>
     <VCardText>
-      <VForm @submit.prevent="editItem">
+      <VForm @submit.prevent="CreateItem">
         <!-- Campos para editar, por ejemplo: nombre -->
         <div v-for="(field, index) in fields" :key="index">
           <VTextField v-if="field.type === 'text'"
@@ -18,6 +18,19 @@
             prepend-icon=""
             prepend-inner-icon="ri-calendar-2-line"
           />
+
+          <VRadioGroup v-else-if="field.type === 'radio-group'"
+            v-model="formValues[field.key]"
+            class="d-flex"
+            inline
+          >
+            <VRadio
+             v-for="(option,index) in field.options"
+             :key="index"
+              :label="option.label"
+              :value="option.value"
+            />
+          </VRadioGroup>
         </div>
         <VcardItem class="d-flex justify-end">
           <LoadingBtn icon="ri-save-2-line" text="Guardar" :loading="loading" color="primary"/>
@@ -41,11 +54,8 @@ export default defineComponent({
     name: {
       type: String,
     },
-    index: {
-      type: Number,
-    },
     fields: {
-      type: Array as () => Array<{ key: string; label: string; type?: string }>,
+      type: Array as () => Array<{ key: string; label: string; type?: string; options?: Array<{ label: string; value: string }> }>,
       default: () => [],
     },
     initialData: {
@@ -63,7 +73,7 @@ export default defineComponent({
     };
   },
   methods: {
-    async editItem() {
+    async CreateItem() {
       this.loading = true;
       const headers = {
         'API-VERSION': '1',
@@ -72,18 +82,19 @@ export default defineComponent({
         let response;
         if (this.type === 'periodo') {
           // Ejemplo hipotético para editar un periodo
-          response = await API.put(API.PUT_ACADEMIC_PERIOD + this.index, {
+          response = await API.post(API.POST_ACADEMIC_PERIOD, {
             ...this.formValues,
           }, headers);
         }
         if (!response.error) {
-          this.$emit('itemEdited', this.index, this.formValues.name);
+          this.$emit('itemCreated', this.formValues.name);
         }
       } catch (error) {
-        console.error("Error al editar", error);
+        console.error("Error al crear", error);
       } finally {
         this.loading = false;
       }
+
     },
   },
 });

@@ -13,6 +13,7 @@ declare module 'vue' {
     FormAddSeedbed: typeof import('./src/components/forms/Post/formAddSeedbed.vue')['default']
     FormAddStudent: typeof import('./src/components/forms/Post/formAddStudent.vue')['default']
     FormAddUser: typeof import('./src/components/forms/Post/formAddUser.vue')['default']
+    FormCreateGeneral: typeof import('./src/components/forms/Post/formCreateGeneral.vue')['default']
     FormDeleteGeneral: typeof import('./src/components/forms/Delete/formDeleteGeneral.vue')['default']
     FormLogin: typeof import('./src/components/forms/formLogin.vue')['default']
     FormUpdateFunctionary: typeof import('./src/components/forms/Patch/formUpdateFunctionary.vue')['default']

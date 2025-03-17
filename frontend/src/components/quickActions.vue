@@ -10,13 +10,24 @@
     </VTooltip>
   </VBtn>
 
+  <VBtn v-if="toCreate" class="mx-2" prepend-icon="ri-add-fill" @click="overlayCreate = !overlayCreate">
+    Agregar
+    <VOverlay v-model="overlayCreate" scrim="black" class="d-flex align-center justify-center" opacity="0.7">
+      <FormCreateGeneral
+        :type="typeCreate"
+        :name="itemCreate"
+        :fields="fields"
+        @itemCreated="handleItemCreated"
+      />
+    </VOverlay>
+  </VBtn>
   <!--
     Edit button (toEdit):
     Opens an overlay containing FormUpdateGeneral to update the item.
   -->
-  <VBtn v-if="toEdit" icon class="action edit" flat color="transparent" desity="compact" @click="overlay = !overlay">
+  <VBtn v-if="toEdit" icon class="action edit" flat color="transparent" desity="compact" @click="overlayEdit = !overlayEdit">
     <VIcon icon="ri-edit-box-line" />
-    <VOverlay v-model="overlay" scrim="black" class="d-flex align-center justify-center" opacity="0.7">
+    <VOverlay v-model="overlayEdit" scrim="black" class="d-flex align-center justify-center" opacity="0.7">
       <FormUpdateGeneral
         :index="toEdit"
         :type="typeEdit"
@@ -67,27 +78,46 @@ export default defineComponent({
     // ---[View]---
     toView: {
       type: String,
+      required: false,
+    },
+    //--[Create]---
+    toCreate: {
+      type: Boolean,
+      required: false,
+    },
+    typeCreate: {
+      type: String,
+      required: false,
+    },
+    itemCreate: {
+      type: String,
+      required: false,
     },
     // ---[Edit]---
     toEdit: {
       type: String,
+      required: false,
     },
     typeEdit: {
       type: String,
+      required: false,
     },
     itemEdit: {
       type: String,
+      required: false,
     },
     // ---[Delete]---
     toDelete: {
       type: Number,
+      required: false,
     },
     typeDelete: {
       type: String,
+      required: false,
     },
     itemDelete: {
       type: String,
-      required: true,
+      required: false,
     },
 
     /**
@@ -95,7 +125,7 @@ export default defineComponent({
      * e.g. [{ key: 'name', label: 'Name', type: 'text' }]
      */
     fields: {
-      type: Array as () => Array<{ key: string; label: string; type?: string }>,
+      type: Array as () => Array<{ key: string; label: string; type?: string; options?: Array<{ label: string; value: string }> }>,
       default: () => [],
     },
 
@@ -109,13 +139,25 @@ export default defineComponent({
   },
   data() {
     return {
+      // ---[Overlays]---
+      // Controls the visibility of the create overlay
+      overlayCreate: false,
       // Controls the visibility of the edit overlay
-      overlay: false,
+      overlayEdit: false,
       // Controls the visibility of the delete overlay
       overlayDelete: false,
+
     };
   },
   methods: {
+
+    /**
+     * Handles the 'itemCreated' event from FormUpdateGeneral and closes the overlay.
+     */
+    handleItemCreated() {
+      this.$emit('itemCreated');
+      this.overlayCreate = false;
+    },
     /**
      * Handles the 'itemDeleted' event from FormDeleteGeneral and closes the overlay.
      */
@@ -128,10 +170,10 @@ export default defineComponent({
      * Handles when an item is edited in FormUpdateGeneral and closes the overlay.
      */
     handleItemEdited(index: any, name: any) {
-      console.log('initial data:' + this.initialData);
       this.$emit('itemEdited', index, name);
-      this.overlay = false;
+      this.overlayEdit = false;
     }
+
   }
 });
 </script>

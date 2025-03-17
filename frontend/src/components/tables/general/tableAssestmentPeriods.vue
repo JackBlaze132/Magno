@@ -11,7 +11,22 @@
         hide-details
         single-line
       ></VTextField>
-      <VBtn to="agregar-periodo" class="mx-2" prepend-icon="ri-add-fill"> Agregar</VBtn>
+      <!--<VBtn to="agregar-periodo" class="mx-2" prepend-icon="ri-add-fill"> Agregar</VBtn>-->
+      <QuickActions
+        toCreate
+        :typeCreate="'periodo'"
+        :itemCreate="'periodo'"
+        :fields="[
+          { key: 'name', label: 'Nombre', type: 'text' },
+          { key: 'start_date', label: 'Fecha de inicio', type: 'date' },
+          { key: 'end_date', label: 'Fecha de fin', type: 'date' },
+          { key: 'is_current', label: 'Estado', type: 'radio-group', options: [
+            { label: 'Activo', value: 'true' },
+            { label: 'Inactivo', value: 'false' }
+          ] }
+        ]"
+        @itemCreated="handleItemCreated"
+      />
     </VCardTitle>
     <VDataTable
       :items="items"
@@ -49,7 +64,7 @@
             name: item.name,
             start_date: dateFormatter(item.start_date),
             end_date: dateFormatter (item.end_date),
-            is_current: item.current
+            is_current: item.is_current
           }"
 
         />
@@ -118,6 +133,10 @@ export default defineComponent({
     },
     dateFormatter(date:string){
       return Formatter.dateFormatter(date);
+    },
+
+    handleItemCreated() {
+      this.getPeriods();
     },
 
     handleItemDeleted(index: number) {
