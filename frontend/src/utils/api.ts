@@ -2,13 +2,14 @@
 class API{
 
 
-  private readonly API_BASE_URL: string = '/api';
+  //private readonly API_BASE_URL: string = '/api/';
+  private readonly API_BASE_URL: string = 'http://localhost:8080/api/';
 
   public readonly HEADER_TEST: string='hello/header';
   // ya se encuentra registrada en el archivo vite.config.mts
   //----[ENDPOINTS]----
   //----[GET]----
-  public readonly GET_ACADEMIC_PERIODS: string = '/academic-periods/';
+  public readonly GET_ACADEMIC_PERIODS: string = 'academic-periods/';
   public readonly GET_FUNCTIONARY_PROFILES: string = 'getFunctionaryProfiles';
   public readonly GET_STUDENT_PROFILES: string = 'getStudentProfiles';
   public readonly GET_RESEARCH_SEEDBEDS: string = 'getResearchSeedbeds';
@@ -36,7 +37,7 @@ class API{
   public readonly PATCH_RESEARCH_SEEDBED_FUNCTIONARY:string='updateResearchSeedbedFunctionary';
   public readonly PATCH_INVESTIGATION_GROUP_NAME:string='updateInvestigationGroupName';
   public readonly PATCH_RESEARCH_SEEDBED_NAME:string='updateResearchSeedbedName';
-  public readonly PATCH_ASSESMENT_PERIOD:string='updateAssessmentPeriod';
+  public readonly PUT_ACADEMIC_PERIOD:string='academic-periods/';
 
 
   //----[DELETE]----
@@ -109,12 +110,13 @@ class API{
     }
   }
 
-  public async patch(endpoint: string, data: any) {
+  public async put(endpoint: string, data: any, headers: Record<string, string> = {}) {
     try {
       const response = await fetch(this.API_BASE_URL + `${endpoint}`, {
-        method: 'PATCH',
+        method: 'PUT',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          ...headers
         },
         body: JSON.stringify(data)
       });

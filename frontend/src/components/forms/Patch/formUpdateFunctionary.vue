@@ -69,7 +69,7 @@ export default defineComponent({
     },
     addSeedbed() {
       this.loading=true
-      API.patch(API.PATCH_RESEARCH_SEEDBED_FUNCTIONARY, this.item)
+      API.put(API.PATCH_RESEARCH_SEEDBED_FUNCTIONARY, this.item)
       .then((data) => {
         if (data.error) {
           this.loading = false

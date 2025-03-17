@@ -44,7 +44,7 @@ export default defineComponent({
   methods: {
     updateData() {
       this.loading = true;
-      API.patch(API.PATCH_ASSESMENT_PERIOD, this.item)
+      API.put(API.PUT_ACADEMIC_PERIOD, this.item)
       .then((data) => {
         if (data.error) {
           console.error("Error al realizar la solicitud", data.error);

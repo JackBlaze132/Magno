@@ -21,6 +21,10 @@ class Formatter{
   public periodActivityFormatter(isActive: boolean){
     return isActive? 'Activo' : 'inactivo';
   }
+
+  public dateFormatter(date: string){
+    return date;
+  }
 }
 
 export default Formatter.getInstance();

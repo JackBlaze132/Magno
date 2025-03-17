@@ -31,7 +31,7 @@ export default defineComponent({
   methods: {
     updateGroup() {
       this.loading = true;
-      API.patch(API.PATCH_RESEARCH_SEEDBED_NAME, this.item)
+      API.put(API.PATCH_RESEARCH_SEEDBED_NAME, this.item)
       .then((data) => {
         if (data.error) {
           console.error("Error al realizar la solicitud", data.error);

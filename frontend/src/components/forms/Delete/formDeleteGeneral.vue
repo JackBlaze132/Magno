@@ -1,14 +1,14 @@
 <template>
-  <VCard class="pa-5 my-3" color="surface" max-width="600">
+  <VCard class="pa-5 ma-5" color="surface" max-width="600">
     <VCardTitle>
-      Eliminar {{itemType}}
+      Eliminar {{type}}
     </VCardTitle>
     <VDivider/>
     <VCardText>
-      Esta a punto eliminar el {{ itemType }} denominado {{itemName}}, si esta seguro de que desea eliminar este elemento por favor ingrese <span class="px-1" style="background-color:rgb(var(--v-theme-grey-300))"> eliminar {{ itemName }}</span>en el campo de abajo.
+      Esta a punto eliminar el {{ type }} denominado {{name}}, si esta seguro de que desea eliminar este elemento por favor ingrese <span class="px-1" style="background-color:rgb(var(--v-theme-grey-300))"> eliminar {{ name }}</span>en el campo de abajo.
     </VCardText>
     <VForm validate-on="submit" @submit.prevent="deleteItem">
-      <VTextField  name="field" id="field" v-model="inputValue" :placeholder="`eliminar ${itemName}`"/>
+      <VTextField  name="field" id="field" v-model="inputValue" :placeholder="`eliminar ${name}`"/>
       <VcardItem class="d-flex justify-end">
         <LoadingBtn @click="deleteItem" icon="ri-delete-bin-5-line" text="Eliminar" :loading="loading" color="error" ></LoadingBtn>
       </VcardItem>
@@ -28,10 +28,10 @@ export default defineComponent({
     label: {
       type: String,
     },
-    itemType: {
+    type: {
       type: String,
     },
-    itemName:{
+    name:{
       type: String,
     },
     index: {
@@ -46,7 +46,7 @@ export default defineComponent({
   },
   methods: {
     async deleteItem() {
-      const expectedValue = `eliminar ${this.itemName}`;
+      const expectedValue = `eliminar ${this.name}`;
       if (this.inputValue !== expectedValue) {
         alert(`Por favor ingrese "${expectedValue}" para confirmar la eliminación.`);
         return;
@@ -56,11 +56,11 @@ export default defineComponent({
 
       try {
         let response;
-        if (this.itemType === 'semillero') {
+        if (this.type === 'semillero') {
           response = await API.delete(API.DELETE_RESEARCH_SEEDBED + this.index);
-        } else if (this.itemType === 'grupo') {
+        } else if (this.type === 'grupo') {
           response = await API.delete(API.DELETE_INVESTIGATION_GROUP + this.index);
-        } else if (this.itemType === 'periodo') {
+        } else if (this.type === 'periodo') {
           response = await API.delete(API.DELETE_ASSESMENT_PERIOD + this.index);
         }
 

@@ -16,6 +16,7 @@ declare module 'vue' {
     FormDeleteGeneral: typeof import('./src/components/forms/Delete/formDeleteGeneral.vue')['default']
     FormLogin: typeof import('./src/components/forms/formLogin.vue')['default']
     FormUpdateFunctionary: typeof import('./src/components/forms/Patch/formUpdateFunctionary.vue')['default']
+    FormUpdateGeneral: typeof import('./src/components/forms/Put/formUpdateGeneral.vue')['default']
     FormUpdateGroup: typeof import('./src/components/forms/Patch/formUpdateGroup.vue')['default']
     FormUpdatePeriod: typeof import('./src/components/forms/Patch/formUpdatePeriod.vue')['default']
     FormUpdateSeedbed: typeof import('./src/components/forms/Patch/formUpdateSeedbed.vue')['default']
