@@ -29,6 +29,12 @@ public class ResearchSeedbedProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
+    @GetMapping(path = "/get-all-by-investigation-group-profile-id/{id}", headers = "API-VERSION=1")
+    public ResponseEntity<List<ResearchSeedbedProfileResponse>> getAllByInvestigationGroupProfileId(@PathVariable Long id) {
+        List<ResearchSeedbedProfileResponse> responses = researchSeedbedProfileHandler.findAllByInvestigationGroupProfileId(id);
+        return ResponseEntity.ok(responses);
+    }
+
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<ResearchSeedbedProfileResponse> createResearchSeedbedProfile
             (@RequestBody ResearchSeedbedProfileRequest researchSeedbedProfileRequest) {

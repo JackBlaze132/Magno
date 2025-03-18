@@ -52,4 +52,9 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
     public List<ResearchSeedbedProfile> findAll() {
         return researchSeedbedProfilePersistencePort.findAll();
     }
+
+    @Override
+    public List<ResearchSeedbedProfile> findAllByInvestigationGroupProfileId(Long id) {
+        return researchSeedbedProfilePersistencePort.findAllByInvestigationGroupProfileId(id);
+    }
 }

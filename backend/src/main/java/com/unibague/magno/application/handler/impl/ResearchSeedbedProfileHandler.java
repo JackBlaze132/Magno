@@ -49,4 +49,10 @@ public class ResearchSeedbedProfileHandler implements IResearchSeedbedProfileHan
     public List<ResearchSeedbedProfileResponse> findAll() {
         return researchSeedbedProfileResponseMapper.toResponseList(researchSeedbedProfileServicePort.findAll());
     }
+
+    @Override
+    public List<ResearchSeedbedProfileResponse> findAllByInvestigationGroupProfileId(Long id) {
+        return researchSeedbedProfileResponseMapper.toResponseList(
+                researchSeedbedProfileServicePort.findAllByInvestigationGroupProfileId(id));
+    }
 }

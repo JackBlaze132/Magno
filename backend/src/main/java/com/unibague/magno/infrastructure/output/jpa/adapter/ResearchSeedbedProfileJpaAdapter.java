@@ -53,4 +53,10 @@ public class ResearchSeedbedProfileJpaAdapter implements IResearchSeedbedProfile
         return researchSeedbedProfileEntityMapper
                 .toResearchSeedbedProfileList(researchSeedbedProfileRepository.findAll());
     }
+
+    @Override
+    public List<ResearchSeedbedProfile> findAllByInvestigationGroupProfileId(Long id) {
+        return researchSeedbedProfileEntityMapper
+                .toResearchSeedbedProfileList(researchSeedbedProfileRepository.findAllByInvestigationGroupProfileId(id));
+    }
 }
