@@ -73,4 +73,11 @@ public class InvestigationGroupProfileJpaAdapter implements IInvestigationGroupP
         return investigationGroupProfileEntityMapper
                 .toInvestigationGroupProfileList(investigationGroupProfileRepository.findAll());
     }
+
+    @Override
+    public List<InvestigationGroupProfile> findAllByAcademicPeriodId(Long academicPeriodId) {
+        return investigationGroupProfileEntityMapper.toInvestigationGroupProfileList(
+                investigationGroupProfileRepository.findByAcademicPeriodId(academicPeriodId)
+        );
+    }
 }

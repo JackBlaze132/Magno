@@ -11,4 +11,5 @@ public interface IInvestigationGroupProfileHandler {
     InvestigationGroupProfileResponse updateById(Long id, InvestigationGroupProfileRequest investigationGroupProfileRequest);
     void deleteById(Long id);
     List<InvestigationGroupProfileResponse> findAll();
+    List<InvestigationGroupProfileResponse> findAllByAcademicPeriodId(Long id);
 }

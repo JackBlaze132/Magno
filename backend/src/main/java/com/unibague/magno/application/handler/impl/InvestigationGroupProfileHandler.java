@@ -49,4 +49,10 @@ public class InvestigationGroupProfileHandler implements IInvestigationGroupProf
     public List<InvestigationGroupProfileResponse> findAll() {
         return investigationGroupProfileResponseMapper.toResponseList(investigationGroupProfileServicePort.findAll());
     }
+
+    @Override
+    public List<InvestigationGroupProfileResponse> findAllByAcademicPeriodId(Long id) {
+        return investigationGroupProfileResponseMapper.toResponseList(
+                investigationGroupProfileServicePort.findAllByAcademicPeriodId(id));
+    }
 }

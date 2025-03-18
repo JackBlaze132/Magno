@@ -10,4 +10,5 @@ public interface IInvestigationGroupProfileServicePort {
     InvestigationGroupProfile update(Long id, InvestigationGroupProfile investigationGroupProfile);
     void deleteById(Long id);
     List<InvestigationGroupProfile> findAll();
+    List<InvestigationGroupProfile> findAllByAcademicPeriodId(Long academicPeriodId);
 }

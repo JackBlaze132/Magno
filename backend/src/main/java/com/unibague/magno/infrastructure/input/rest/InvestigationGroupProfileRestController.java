@@ -30,6 +30,13 @@ public class InvestigationGroupProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
+    @GetMapping(path = "/get-all-by-academic-period-id/{id}", headers = "API-VERSION=1")
+    public ResponseEntity<List<InvestigationGroupProfileResponse>> getAllInvestigationGroupProfilesByAcademicPeriodId(
+            @PathVariable Long id) {
+        List<InvestigationGroupProfileResponse> responses = investigationGroupProfileHandler.findAllByAcademicPeriodId(id);
+        return ResponseEntity.ok(responses);
+    }
+
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<InvestigationGroupProfileResponse> createInvestigationGroupProfile
             (@Valid @RequestBody InvestigationGroupProfileRequest investigationGroupProfileRequest) {

@@ -53,4 +53,9 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
     public List<InvestigationGroupProfile> findAll() {
         return investigationGroupProfilePersistencePort.findAll();
     }
+
+    @Override
+    public List<InvestigationGroupProfile> findAllByAcademicPeriodId(Long academicPeriodId) {
+        return investigationGroupProfilePersistencePort.findAllByAcademicPeriodId(academicPeriodId);
+    }
 }
