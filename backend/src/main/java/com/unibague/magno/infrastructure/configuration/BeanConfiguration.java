@@ -120,7 +120,7 @@ public class BeanConfiguration {
 
     @Bean
     public IEnumServicePort enumServicePort() {
-        return new EnumUseCase();
+        return new EnumUseCase(investigationGroupServicePort(), researchSeedbedServicePort());
     }
 
     @Bean
