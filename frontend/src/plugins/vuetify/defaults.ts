@@ -149,4 +149,7 @@ export default {
   VDateInput:{
     variant: 'outlined',
   },
+  VDivider:{
+    thickness: 2,
+  },
 }

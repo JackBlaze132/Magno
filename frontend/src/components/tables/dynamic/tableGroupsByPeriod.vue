@@ -76,7 +76,7 @@ export default defineComponent({
   methods: {
     async getGroups() {
       try {
-        this.items = await API.get(API.GET_INVESTIGATION_GROUP_BY_ASSESMENT_PERIOD + this.$route.params.idPeriodo);
+        this.items = await API.get(API.GET_INVESTIGATION_GROUP_BY_ACADEMIC_PERIOD + this.$route.params.idPeriodo);
         this.$emit('loaded');
       } catch (error) {
         console.error('Error fetching users:', error);

@@ -26,6 +26,12 @@
             to="/periodos">
           </v-list-item>
           <v-list-item
+            prepend-icon="ri-apps-line"
+            title="Grupos de investigación"
+            value="grupos"
+            to="/grupos">
+          </v-list-item>
+          <v-list-item
             prepend-icon="ri-seedling-line"
             title="Semilleros"
             value="semilleros"
@@ -49,6 +55,12 @@
             title="Estudiantes"
             value="estudiantes"
             to="/estudiantes">
+          </v-list-item>
+          <v-list-item
+            prepend-icon="ri-external-link-line"
+            title="Aliados externos"
+            value="aliados"
+            to="/aliados">
           </v-list-item>
         </v-list>
         <template v-slot:append>
