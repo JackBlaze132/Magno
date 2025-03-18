@@ -37,4 +37,5 @@ export const paths = {
   ESTUDIANTES_LISTAR: 'listar-estudiantes',
   ESTUDIANTE_DETALLES_DINAMICO: ':idNumber/detalles-estudiante',
   ESTUDIANTE_DETALLES_NOMBRE: 'detalles-estudiante',
+  GROUPS_PATH: '/grupos',
 }

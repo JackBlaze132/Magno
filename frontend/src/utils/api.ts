@@ -12,6 +12,7 @@ class API{
   public readonly GET_ACADEMIC_PERIODS: string = 'academic-periods/';
   public readonly GET_FUNCTIONARY_PROFILES: string = 'getFunctionaryProfiles';
   public readonly GET_STUDENT_PROFILES: string = 'getStudentProfiles';
+  public readonly GET_INVESTIGATION_GROUPS: string = 'investigation-groups/';
   public readonly GET_RESEARCH_SEEDBEDS: string = 'getResearchSeedbeds';
   public readonly GET_USERS: string = 'getUsers';
   public readonly GET_INVESTIGATION_GROUP_BY_ACADEMIC_PERIOD: string = 'getInvestigationGroupsByAssesmentPeriodId/';

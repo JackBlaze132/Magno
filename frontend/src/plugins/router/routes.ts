@@ -141,6 +141,11 @@ export const routes = [
         ],
       },
       {
+        name: 'grupos',
+        path: P.GROUPS_PATH,
+        component: components.LIST_GROUPS,
+      },
+      {
         name: 'semilleros',
         path: P.SEMILLEROS_PATH,
         component: components.SEEDBEDS_LIST,

@@ -32,4 +32,5 @@ export const components = {
   DETAIL_STUDENT: () => import('@/views/students/detailStudent.vue'),
   LAYOUT_BLANK: () => import('@/layouts/blank.vue'),
   LOGIN_INDEX: () => import('@/views/login/index.vue'),
+  LIST_GROUPS: () => import('@/views/research-groups/listGroups.vue'),
 }
