@@ -1,15 +1,15 @@
 package com.unibague.magno.domain.model;
 
-import java.util.Set;
-
 public class Role {
 
     private Long id;
     private String name;
+    private String description;
 
-    public Role(Long id, String name, Set<Long> userIds) {
+    public Role(Long id, String name, String description) {
         this.id = id;
         this.name = name;
+        this.description = description;
     }
 
     public Role() {
@@ -31,4 +31,11 @@ public class Role {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

@@ -35,8 +35,4 @@ public class UserRequest {
 
     @NotNull(message = "Field 'sex' is required")
     Sex sex;
-
-    @NotNull(message = "Field 'role_ids' is required")
-    @Size(min = 1, message = "Field 'role_ids' must have at least one element")
-    private Set<Long> roleIds;
 }

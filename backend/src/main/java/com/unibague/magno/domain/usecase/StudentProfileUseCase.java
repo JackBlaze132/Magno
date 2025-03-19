@@ -141,6 +141,7 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
                 .collect(Collectors.toSet());
 
         newStudentProfile.setAcademicProgramsIds(academicProgramIds);
+        newStudentProfile.setRoleIds(Set.of(1L)); // This needs to be changed to a dynamic value in the future
 
         return save(newStudentProfile);
     }

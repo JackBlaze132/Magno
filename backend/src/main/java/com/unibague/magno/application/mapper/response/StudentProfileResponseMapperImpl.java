@@ -6,6 +6,7 @@ import com.unibague.magno.application.dto.response.StudentProfileResponse;
 import com.unibague.magno.application.dto.response.UserResponse;
 import com.unibague.magno.domain.api.IAcademicPeriodServicePort;
 import com.unibague.magno.domain.api.IAcademicProgramServicePort;
+import com.unibague.magno.domain.api.IRoleServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.model.StudentProfile;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,9 @@ public class StudentProfileResponseMapperImpl implements StudentProfileResponseM
 
     private final IAcademicProgramServicePort academicProgramServicePort;
     private final AcademicProgramResponseMapper academicProgramResponseMapper;
+
+    private final IRoleServicePort roleServicePort;
+    private final RoleResponseMapper roleResponseMapper;
 
     @Override
     public StudentProfileResponse toResponse(StudentProfile studentProfile) {
@@ -49,6 +53,8 @@ public class StudentProfileResponseMapperImpl implements StudentProfileResponseM
                 .academicPeriod(academicPeriodResponse)
                 .semester(studentProfile.getSemester())
                 .academicPrograms(academicProgramResponses)
+                .roleIds(roleResponseMapper.toResponseSet(roleServicePort
+                        .findRolesByIds(studentProfile.getRoleIds())))
                 .build();
     }
 

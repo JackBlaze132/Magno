@@ -1,15 +1,14 @@
 package com.unibague.magno.infrastructure.output.jpa.mapper;
 
 import com.unibague.magno.domain.model.FunctionaryProfile;
-import com.unibague.magno.infrastructure.output.jpa.entity.AcademicPeriodEntity;
-import com.unibague.magno.infrastructure.output.jpa.entity.DependencyEntity;
-import com.unibague.magno.infrastructure.output.jpa.entity.FunctionaryProfileEntity;
-import com.unibague.magno.infrastructure.output.jpa.entity.UserEntity;
+import com.unibague.magno.infrastructure.output.jpa.entity.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 public class FunctionaryProfileEntityMapperImpl implements FunctionaryProfileEntityMapper {
@@ -26,6 +25,11 @@ public class FunctionaryProfileEntityMapperImpl implements FunctionaryProfileEnt
         functionaryProfile.setUserId(functionaryProfileEntity.getUser().getId());
         functionaryProfile.setAcademicPeriodId(functionaryProfileEntity.getAcademicPeriod().getId());
         functionaryProfile.setDependencyId(functionaryProfileEntity.getDependency().getId());
+        Set<Long> roleIds = functionaryProfileEntity.getRoles()
+                .stream()
+                .map(RoleEntity::getId)
+                .collect(Collectors.toSet());
+        functionaryProfile.setRoleIds(roleIds);
 
         return functionaryProfile;
     }
@@ -51,6 +55,15 @@ public class FunctionaryProfileEntityMapperImpl implements FunctionaryProfileEnt
         dependencyEntity.setId(functionaryProfile.getDependencyId());
         functionaryProfileEntity.setDependency(dependencyEntity);
 
+        functionaryProfileEntity.setRoles(functionaryProfile.getRoleIds()
+                .stream()
+                .map(roleId -> {
+                    RoleEntity roleEntity = new RoleEntity();
+                    roleEntity.setId(roleId);
+                    return roleEntity;
+                })
+                .collect(Collectors.toSet()));
+
         return functionaryProfileEntity;
     }
 
@@ -73,6 +86,15 @@ public class FunctionaryProfileEntityMapperImpl implements FunctionaryProfileEnt
         DependencyEntity dependencyEntity = new DependencyEntity();
         dependencyEntity.setId(functionaryProfile.getDependencyId());
         functionaryProfileEntity.setDependency(dependencyEntity);
+
+        functionaryProfileEntity.setRoles(functionaryProfile.getRoleIds()
+                .stream()
+                .map(roleId -> {
+                    RoleEntity roleEntity = new RoleEntity();
+                    roleEntity.setId(roleId);
+                    return roleEntity;
+                })
+                .collect(Collectors.toSet()));
 
         return functionaryProfileEntity;
     }

@@ -106,7 +106,6 @@ public class UserUseCase implements IUserServicePort {
         user.setUserCode(integraStudent.getCodeStudent());
         user.setExternalUser(false);
         user.setSex(integraStudent.getSexo().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO);
-        user.setRoleIds(Set.of(1L));
         return user;
     }
 
@@ -139,7 +138,6 @@ public class UserUseCase implements IUserServicePort {
 
         Sex sex = integraFunctionary.getSex().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO;
         user.setSex(sex);
-        user.setRoleIds(userRequest.getRoleIds());
         return user;
     }
 
@@ -162,7 +160,6 @@ public class UserUseCase implements IUserServicePort {
 
         Sex sex = integraStudent.getSexo().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO;
         user.setSex(sex);
-        user.setRoleIds(userRequest.getRoleIds());
         return user;
     }
 }

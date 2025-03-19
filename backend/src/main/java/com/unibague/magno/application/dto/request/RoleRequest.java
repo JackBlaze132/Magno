@@ -10,4 +10,7 @@ public class RoleRequest {
 
     @NotBlank(message = "Field name is required")
     private String name;
+
+    @NotBlank(message = "Field description is required")
+    private String description;
 }

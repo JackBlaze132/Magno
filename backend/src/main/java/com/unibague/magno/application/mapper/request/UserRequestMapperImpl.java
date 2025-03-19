@@ -32,10 +32,6 @@ public class UserRequestMapperImpl implements UserRequestMapper {
         user.setUserCode( userRequest.getUserCode() );
         user.setExternalUser( userRequest.isExternalUser() );
         user.setSex( userRequest.getSex() );
-        Set<Long> set = userRequest.getRoleIds();
-        if ( set != null ) {
-            user.setRoleIds(new LinkedHashSet<>(set) );
-        }
 
         return user;
     }

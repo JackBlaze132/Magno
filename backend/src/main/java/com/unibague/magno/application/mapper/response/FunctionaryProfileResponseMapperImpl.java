@@ -6,6 +6,7 @@ import com.unibague.magno.application.dto.response.FunctionaryProfileResponse;
 import com.unibague.magno.application.dto.response.UserResponse;
 import com.unibague.magno.domain.api.IAcademicPeriodServicePort;
 import com.unibague.magno.domain.api.IDependencyServicePort;
+import com.unibague.magno.domain.api.IRoleServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.model.FunctionaryProfile;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,9 @@ public class FunctionaryProfileResponseMapperImpl implements FunctionaryProfileR
 
     private final IDependencyServicePort dependencyServicePort;
     private final DependencyResponseMapper dependencyResponseMapper;
+
+    private final IRoleServicePort roleServicePort;
+    private final RoleResponseMapper roleResponseMapper;
 
     @Override
     public FunctionaryProfileResponse toResponse(FunctionaryProfile functionaryProfile) {
@@ -48,6 +52,8 @@ public class FunctionaryProfileResponseMapperImpl implements FunctionaryProfileR
                 .user(userResponse)
                 .academicPeriod(academicPeriodResponse)
                 .dependency(dependencyResponse)
+                .roleIds(roleResponseMapper.toResponseSet(roleServicePort
+                        .findRolesByIds(functionaryProfile.getRoleIds())))
                 .build();
     }
 

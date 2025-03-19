@@ -40,14 +40,6 @@ public class UserEntity {
     @Column(name = "sex", nullable = false)
     private Sex sex;
 
-    @ManyToMany
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<RoleEntity> roles;
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     Set<FunctionaryProfileEntity> functionaryProfiles;
 

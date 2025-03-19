@@ -40,4 +40,12 @@ public class FunctionaryProfileEntity {
 
     @OneToMany(mappedBy = "tutor", cascade = CascadeType.REFRESH)
     private Set<ResearchSeedbedProfileEntity> researchSeedbeds;
+
+    @ManyToMany
+    @JoinTable(
+            name = "functionary_profiles_roles",
+            joinColumns = @JoinColumn(name = "functionary_profile_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<RoleEntity> roles;
 }

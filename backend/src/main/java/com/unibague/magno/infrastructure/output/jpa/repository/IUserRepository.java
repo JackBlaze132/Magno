@@ -7,6 +7,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IUserRepository extends JpaRepository<UserEntity, Long> {
-    List<UserEntity> findByRolesId(Long roleId);
     Optional<UserEntity> findByIdentificationNumber(String identificationNumber);
 }

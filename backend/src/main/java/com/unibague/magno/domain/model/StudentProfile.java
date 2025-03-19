@@ -9,6 +9,7 @@ public class StudentProfile {
     private Long academicPeriodId;
     private Byte semester;
     private Set<Long> academicProgramsIds;
+    private Set<Long> roleIds;
 
     public StudentProfile(Long id, Long userId, Long academicPeriodId, Byte semester, Set<Long> academicProgramsIds) {
         this.id = id;
@@ -59,5 +60,13 @@ public class StudentProfile {
 
     public void setAcademicProgramsIds(Set<Long> academicProgramsIds) {
         this.academicProgramsIds = academicProgramsIds;
+    }
+
+    public Set<Long> getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(Set<Long> roleIds) {
+        this.roleIds = roleIds;
     }
 }
