@@ -25,6 +25,9 @@ public class RoleEntity {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    @Column(name = "description", nullable = false)
+    private String description;
+
     @ManyToMany(mappedBy = "roles")
     @JsonIgnore
     private Set<UserEntity> users;

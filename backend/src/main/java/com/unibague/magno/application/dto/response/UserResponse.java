@@ -1,5 +1,6 @@
 package com.unibague.magno.application.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.unibague.magno.domain.model.enums.Sex;
@@ -20,7 +21,10 @@ public class UserResponse {
     private String identificationNumber;
     private String email;
     private String userCode;
+
+    @JsonProperty("is_external_user")
     private boolean isExternalUser;
+
     private Sex sex;
-    private Set<RoleResponse> roles;
+    private Set<RoleResponse> roleIds;
 }
