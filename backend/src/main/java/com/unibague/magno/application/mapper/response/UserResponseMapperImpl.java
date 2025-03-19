@@ -25,8 +25,6 @@ public class UserResponseMapperImpl implements UserResponseMapper {
                 .userCode(userResponse.getUserCode())
                 .sex(userResponse.getSex())
                 .isExternalUser(userResponse.isExternalUser())
-                .roleIds(roleResponseMapper.toResponseSet(roleServicePort
-                        .findRolesByIds(userResponse.getRoleIds())))
                 .build();
     }
 

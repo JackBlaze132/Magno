@@ -13,10 +13,9 @@ public class User {
     private String userCode;
     private boolean isExternalUser;
     private Sex sex;
-    private Set<Long> roleIds;
 
     public User(Long id, String fullName, String identificationNumber, String email,
-                String userCode, boolean isExternalUser, Sex sex, Set<Long> roleIds) {
+                String userCode, boolean isExternalUser, Sex sex) {
         this.id = id;
         this.fullName = fullName;
         this.identificationNumber = identificationNumber;
@@ -24,7 +23,6 @@ public class User {
         this.userCode = userCode;
         this.isExternalUser = isExternalUser;
         this.sex = sex;
-        this.roleIds = roleIds;
     }
 
     public User() {
@@ -84,13 +82,5 @@ public class User {
 
     public void setSex(Sex sex) {
         this.sex = sex;
-    }
-
-    public Set<Long> getRoleIds() {
-        return roleIds;
-    }
-
-    public void setRoleIds(Set<Long> rolesIds) {
-        this.roleIds = rolesIds;
     }
 }

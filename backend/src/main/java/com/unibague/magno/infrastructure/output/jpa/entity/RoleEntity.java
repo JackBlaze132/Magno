@@ -30,5 +30,9 @@ public class RoleEntity {
 
     @ManyToMany(mappedBy = "roles")
     @JsonIgnore
-    private Set<UserEntity> users;
+    private Set<StudentProfileEntity> studentProfileEntities;
+
+    @ManyToMany(mappedBy = "roles")
+    @JsonIgnore
+    private Set<FunctionaryProfileEntity> functionaryProfileEntities;
 }

@@ -22,4 +22,8 @@ public class StudentProfileRequest {
     @NotNull(message = "Field academic_period_id is required")
     @Positive(message = "Field academic_period_id must be positive")
     private Long academicPeriodId;
+
+    @NotNull(message = "Field 'role_ids' is required")
+    @Size(min = 1, message = "Field 'role_ids' must have at least one element")
+    private Set<Long> roleIds;
 }

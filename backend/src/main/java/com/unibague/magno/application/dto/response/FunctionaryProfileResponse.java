@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Getter
 @Setter
 @Builder
@@ -16,4 +18,5 @@ public class FunctionaryProfileResponse {
     private UserResponse user;
     private AcademicPeriodResponse academicPeriod;
     private DependencyResponse dependency;
+    private Set<RoleResponse> roleIds;
 }

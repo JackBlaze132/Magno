@@ -26,5 +26,4 @@ public class UserResponse {
     private boolean isExternalUser;
 
     private Sex sex;
-    private Set<RoleResponse> roleIds;
 }
