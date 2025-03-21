@@ -43,6 +43,7 @@ export default defineConfig({
       '@images': fileURLToPath(new URL('./src/assets/images/', import.meta.url)),
       '@styles': fileURLToPath(new URL('./src/assets/styles/', import.meta.url)),
       '@components': fileURLToPath(new URL('./src/components/', import.meta.url)),
+      
     },
     extensions: [
       '.js',

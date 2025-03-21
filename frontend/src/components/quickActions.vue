@@ -10,32 +10,20 @@
     </VTooltip>
   </VBtn>
 
-  <VBtn v-if="toCreate" class="mx-2" prepend-icon="ri-add-fill" @click="overlayCreate = !overlayCreate">
+  <VBtn v-if="toCreate" class="mx-2" prepend-icon="ri-add-fill" @click="overlayCreate = !overlayCreate ; selectedAction = 'create'">
     Agregar
     <VOverlay v-model="overlayCreate" scrim="black" class="d-flex align-center justify-center" opacity="0.7">
-      <FormCreateGeneral
-        :type="typeCreate"
-        :name="itemCreate"
-        :fields="fields"
-        @itemCreated="handleItemCreated"
-      />
+      <component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemCreated=handleItemCreated />
     </VOverlay>
   </VBtn>
   <!--
     Edit button (toEdit):
     Opens an overlay containing FormUpdateGeneral to update the item.
   -->
-  <VBtn v-if="toEdit" icon class="action edit" flat color="transparent" desity="compact" @click="overlayEdit = !overlayEdit">
+  <VBtn v-if="toEdit" icon class="action edit" flat color="transparent" desity="compact" @click="overlayEdit = !overlayEdit; selectedAction = 'update'">
     <VIcon icon="ri-edit-box-line" />
     <VOverlay v-model="overlayEdit" scrim="black" class="d-flex align-center justify-center" opacity="0.7">
-      <FormUpdateGeneral
-        :index="toEdit"
-        :type="typeEdit"
-        :name="itemEdit"
-        :fields="fields"
-        :initialData="initialData"
-        @itemEdited="handleItemEdited"
-      />
+      <component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemEdited="handleItemEdited"/>
     </VOverlay>
     <VTooltip activator="parent" location="top">
       Edit
@@ -46,15 +34,10 @@
     Delete button (toDelete):
     Opens an overlay with FormDeleteGeneral to perform a delete action.
   -->
-  <VBtn v-if="toDelete" icon class="action delete" flat color="transparent" desity="compact" @click="overlayDelete = !overlayDelete">
+  <VBtn v-if="toDelete" icon class="action delete" flat color="transparent" desity="compact" @click="overlayDelete = !overlayDelete ; selectedAction = 'delete'">
     <VIcon icon="ri-delete-bin-5-line" />
     <VOverlay v-model="overlayDelete" scrim="black" class="d-flex align-center justify-center" opacity="0.7">
-      <FormDeleteGeneral
-        :index="toDelete"
-        :type="typeDelete"
-        :name="itemDelete"
-        @itemDeleted="handleItemDeleted"
-      />
+      <component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemDeleted="handleItemDeleted"/>
     </VOverlay>
     <VTooltip activator="parent" location="top">
       Delete
@@ -64,11 +47,38 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { FormFactory } from '@/utils/abstract-forms-factory/FormFactory';
+import type { ActionType, EntityType } from  '@/utils/abstract-forms-factory/form-types/formsTypes';
+
 
 // The 'quickActions' component centralizes quick actions (view, edit, delete).
 export default defineComponent({
   name: 'quickActions',
   props: {
+
+    /**
+     * The type of the item to handle (e.g. 'periodo', 'grupo', 'semillero').
+     */
+    type:
+    { type: String as () => EntityType,
+      required: true
+    },
+
+    /**
+     * The index of the item to handle.
+     */
+    index: {
+      type: String,
+      required: false,
+    },
+    /**
+     * The name of the item to handle.
+     */
+    name: {
+      type: String,
+      required: false,
+    },
+
     /**
      * Here are the props received by the component, organized by prefixes:
      * to: index of the item to handle
@@ -85,58 +95,35 @@ export default defineComponent({
       type: Boolean,
       required: false,
     },
-    typeCreate: {
-      type: String,
-      required: false,
-    },
-    itemCreate: {
-      type: String,
-      required: false,
-    },
-    // ---[Edit]---
     toEdit: {
-      type: String,
-      required: false,
-    },
-    typeEdit: {
-      type: String,
-      required: false,
-    },
-    itemEdit: {
-      type: String,
+      type: Boolean,
       required: false,
     },
     // ---[Delete]---
     toDelete: {
-      type: Number,
+      type: Boolean,
       required: false,
     },
-    typeDelete: {
-      type: String,
-      required: false,
-    },
-    itemDelete: {
-      type: String,
-      required: false,
-    },
-
-    /**
-     * Array of field definitions for the edit form,
-     * e.g. [{ key: 'name', label: 'Name', type: 'text' }]
-     */
-    fields: {
-      type: Array as () => Array<{ key: string; label: string; type?: string; options?: Array<{ label: string; value: string }> }>,
-      default: () => [],
-    },
-
     /**
      * Initial data for the edit form (e.g. { name, start_date, ... }).
      */
     initialData: {
       type: Object,
+      required: false,
       default: () => ({}),
     }
   },
+  computed: {
+    ComponentToRender(){
+      const extraProps = {
+        index: this.index,
+        name: this.name,
+        initialData: this.initialData,
+      }
+      return FormFactory.getComponentConfig(this.selectedAction, this.type, extraProps);
+    }
+  },
+
   data() {
     return {
       // ---[Overlays]---
@@ -146,9 +133,12 @@ export default defineComponent({
       overlayEdit: false,
       // Controls the visibility of the delete overlay
       overlayDelete: false,
+      //----
+      selectedAction: '' as ActionType,
 
     };
   },
+
   methods: {
 
     /**
@@ -172,7 +162,7 @@ export default defineComponent({
     handleItemEdited(index: any, name: any) {
       this.$emit('itemEdited', index, name);
       this.overlayEdit = false;
-    }
+    },
 
   }
 });
