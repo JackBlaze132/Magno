@@ -10,21 +10,11 @@
         variant="outlined"
         hide-details
         single-line
-      ></VTextField>
+      />
       <!--<VBtn to="agregar-periodo" class="mx-2" prepend-icon="ri-add-fill"> Agregar</VBtn>-->
       <QuickActions
         toCreate
-        :typeCreate="'periodo'"
-        :itemCreate="'periodo'"
-        :fields="[
-          { key: 'name', label: 'Nombre', type: 'text' },
-          { key: 'start_date', label: 'Fecha de inicio', type: 'date' },
-          { key: 'end_date', label: 'Fecha de fin', type: 'date' },
-          { key: 'is_current', label: 'Estado', type: 'radio-group', options: [
-            { label: 'Activo', value: 'true' },
-            { label: 'Inactivo', value: 'false' }
-          ] }
-        ]"
+        type="periodo"
         @itemCreated="handleItemCreated"
       />
     </VCardTitle>
@@ -42,31 +32,20 @@
       <!--<template v-slot:item.link="{item, index}">-->
         <template v-slot:item.link="{item}">
         <QuickActions
+          type="periodo"
+          toEdit
+          toDelete
+          :index="item.id"
+          :name="item.name"
           :toView="item.id + '/grupos-investigacion'"
-
-          :toEdit="item.id"
-          :itemEdit="item.name"
-          @itemEdited="handleItemEdited"
-          typeEdit="periodo"
-
-          :toDelete="item.id"
-          :itemDelete="item.name"
-          @itemDeleted="handleItemDeleted"
-          typeDelete="periodo"
-
-          :fields="[
-          { key: 'name', label: 'Nombre', type: 'text' },
-          { key: 'start_date', label: 'Fecha de inicio', type: 'date' },
-          { key: 'end_date', label: 'Fecha de fin', type: 'date' }
-          ]"
-
           :initialData="{
             name: item.name,
             start_date: dateFormatter(item.start_date),
             end_date: dateFormatter (item.end_date),
             is_current: item.is_current
           }"
-
+          @itemDeleted="handleItemDeleted"
+          @itemEdited="handleItemEdited"
         />
       </template>
     </VDataTable>
@@ -94,7 +73,6 @@ export default defineComponent({
   components:{
     QuickActions
   },
-
   data() {
     return {
       items: [] as Item[],
@@ -134,11 +112,9 @@ export default defineComponent({
     dateFormatter(date:string){
       return Formatter.dateFormatter(date);
     },
-
     handleItemCreated() {
       this.getPeriods();
     },
-
     handleItemDeleted(index: number) {
       this.items.splice(index, 1);
       this.getPeriods() // Eliminar el elemento del array

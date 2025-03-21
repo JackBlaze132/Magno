@@ -1,0 +1,20 @@
+{
+    "periodo": [
+      { "key": "name", "label": "Nombre", "type": "text" },
+      { "key": "start_date", "label": "Fecha de inicio", "type": "date" },
+      { "key": "end_date", "label": "Fecha de fin", "type": "date" },
+      {
+        "key": "is_current",
+        "label": "Estado",
+        "type": "radio-group",
+        "options": [
+          { "label": "Activo", "value": "true" },
+          { "label": "Inactivo", "value": "false" }
+        ]
+      }
+    ],
+    "globañ-group": [
+      { "key": "name", "label": "Nombre", "type": "text" },
+      { "key": "lines_of_research", "label": "Lineas de investigación", "type": "textarea" }
+    ]
+  }

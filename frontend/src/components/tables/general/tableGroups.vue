@@ -27,10 +27,11 @@
       <template v-slot:item.link="{item}">
         <QuickActions
           :toView="item.id + '/semilleros'"
-          :toEdit="item.id + '/editar-grupo'"
-          :toDelete="item.id"
-          :deleteItem="item.name"
-          deleteType="grupo"
+          toEdit
+          toDelete
+          :name="item.name"
+          :index="item.id"
+          type="grupo"
           @itemDeleted="handleItemDeleted"
           ></QuickActions>
       </template>

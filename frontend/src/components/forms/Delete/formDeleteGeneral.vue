@@ -25,9 +25,9 @@ import { VCardText } from 'vuetify/components';
 export default defineComponent({
   name: 'formUpdateGroup',
   props: {
-    label: {
+    /*label: {
       type: String,
-    },
+    },*/
     type: {
       type: String,
     },
