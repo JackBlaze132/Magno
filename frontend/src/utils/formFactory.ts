@@ -3,7 +3,8 @@ import { defineAsyncComponent, defineComponent } from "vue";
 
 // Importa tus componentes (pueden ser asíncronos para lazy loading)
 // ----[Create]----
-const CreateComponent = defineAsyncComponent(() => import("@/components/forms/Post/formCreateGeneral.vue"));
+//const CreateComponent = defineAsyncComponent(() => import("@/components/forms/Post/formCreateGeneral.vue"));
+const CreateComponent = defineAsyncComponent(() => import("@/components/forms/Post/formAddPeriod copy.vue"));
 //----[Edit]----
 const EditComponent = defineAsyncComponent(() => import("@/components/EditComponent.vue"));
 //----[Delte]----

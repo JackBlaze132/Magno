@@ -43,7 +43,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import API from "@/utils/api";
-import LoadingBtn from '../loadingBtn.vue';
 
 export default defineComponent({
   name: 'formEditGeneral',
@@ -55,10 +54,6 @@ export default defineComponent({
       type: String,
     },
     fields: {
-      type: Array as () => Array<{ key: string; label: string; type?: string; options?: Array<{ label: string; value: string }> }>,
-      default: () => [],
-    },
-    initialData: {
       type: Object,
       default: () => ({}),
     },
@@ -68,7 +63,7 @@ export default defineComponent({
 
       //inputValue: this.itemName, // valor inicial
       loading: false,
-      formValues: {...this.initialData},
+      formValues: {...this.fields},
 
     };
   },
