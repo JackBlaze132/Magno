@@ -19,15 +19,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import API from "@/utils/api";
-import LoadingBtn from '../loadingBtn.vue';
-import { VCardText } from 'vuetify/components';
 
 export default defineComponent({
   name: 'formUpdateGroup',
   props: {
-    /*label: {
-      type: String,
-    },*/
     type: {
       type: String,
     },

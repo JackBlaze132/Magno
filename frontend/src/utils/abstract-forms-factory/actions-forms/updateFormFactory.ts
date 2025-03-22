@@ -5,7 +5,7 @@ import type { EntityType } from  '@/utils/abstract-forms-factory/form-types/form
 import schema from '@/schemas/formUpdateSchemas.json';
 
 const UpdatePeriodo = defineAsyncComponent(() => import("@/components/forms/Put/formUpdateGeneral.vue"));
-const CreateGrupo = defineAsyncComponent(() => import("@/components/forms/Post/formCreateGeneral.vue"));
+const UpdateGrupo = defineAsyncComponent(() => import("@/components/forms/Put/formUpdateGeneral.vue"));
 const CreateSemillero = defineAsyncComponent(() => import("@/components/forms/Post/formCreateGeneral.vue"));
 
 export class UpdateFormFactory extends AbstractFormFactory {
@@ -14,13 +14,21 @@ export class UpdateFormFactory extends AbstractFormFactory {
       periodo: {
         component: UpdatePeriodo,
         props: {
-          name: 'periodo',
           type: type,
           fields: schema.periodo,
           index: extraProps?.index,
           initialData: extraProps?.initialData,
-           } },
-      grupo: { component: CreateGrupo, props: { name: "Crear Grupo", fields: ["nombre", "integrantes"], initialData: {} } },
+        }
+      },
+      grupo: {
+        component: UpdateGrupo,
+        props: {
+          type: type,
+          fields: schema.grupo,
+          index: extraProps?.index,
+          initialData: extraProps?.initialData,
+        }
+       },
       semillero: { component: CreateSemillero, props: { name: "Crear Semillero", fields: ["tema", "lider"], initialData: {} } }
     };
     console.log(componentMap[type].props);

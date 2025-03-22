@@ -2,7 +2,6 @@
 import { AbstractFormFactory } from "../abstractFormsFactory";
 import { defineAsyncComponent } from "vue";
 import type { EntityType } from  '@/utils/abstract-forms-factory/form-types/formsTypes';
-import schema from '@/schemas/formUpdateSchemas.json';
 
 const DeletePeriodo = defineAsyncComponent(() => import("@/components/forms/Delete/formDeleteGeneral.vue"));
 const CreateGrupo = defineAsyncComponent(() => import("@/components/forms/Post/formCreateGeneral.vue"));
@@ -15,7 +14,7 @@ export class DeleteFormFactory extends AbstractFormFactory {
         component: DeletePeriodo,
         props: {
           name: extraProps?.name,
-          type: 'periodo',
+          type: type,
           index: extraProps?.index,
            } },
       grupo: { component: CreateGrupo, props: { name: "Crear Grupo", fields: ["nombre", "integrantes"], initialData: {} } },
