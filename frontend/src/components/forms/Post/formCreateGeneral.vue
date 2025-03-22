@@ -18,7 +18,6 @@
             prepend-icon=""
             prepend-inner-icon="ri-calendar-2-line"
           />
-
           <VRadioGroup v-else-if="field.type === 'radio-group'"
             v-model="formValues[field.key]"
             class="d-flex"
@@ -31,6 +30,15 @@
               :value="option.value"
             />
           </VRadioGroup>
+          <VSelect v-else-if="field.type === 'multiple-select'"
+            multiple
+            v-model="formValues[field.key]"
+            :items="field.options"
+            item-title="label"
+            item-value="value"
+            hint="Seleccione ak menos 2 líneas de investigación"
+            label="Líneas de investigación"
+          />
         </div>
         <VcardItem class="d-flex justify-end">
           <LoadingBtn icon="ri-save-2-line" text="Guardar" :loading="loading" color="primary"/>
@@ -60,7 +68,6 @@ export default defineComponent({
   },
   data() {
     return {
-
       //inputValue: this.itemName, // valor inicial
       loading: false,
       formValues: {...this.fields},

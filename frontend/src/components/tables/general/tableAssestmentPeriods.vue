@@ -15,7 +15,7 @@
       <QuickActions
         toCreate
         type="periodo"
-        @itemCreated="handleItemCreated"
+        @itemCreated="handleItemRefresh"
       />
     </VCardTitle>
     <VDataTable
@@ -38,14 +38,9 @@
           :index="item.id"
           :name="item.name"
           :toView="item.id + '/grupos-investigacion'"
-          :initialData="{
-            name: item.name,
-            start_date: dateFormatter(item.start_date),
-            end_date: dateFormatter (item.end_date),
-            is_current: item.is_current
-          }"
-          @itemDeleted="handleItemDeleted"
-          @itemEdited="handleItemEdited"
+          :initialData="setInitialData(item)"
+          @itemDeleted="handleItemRefresh"
+          @itemEdited="handleItemRefresh"
         />
       </template>
     </VDataTable>
@@ -111,20 +106,17 @@ export default defineComponent({
     dateFormatter(date:string){
       return Formatter.dateFormatter(date);
     },
-    handleItemCreated() {
+    handleItemRefresh(){
       this.getPeriods();
     },
-    handleItemDeleted(index: number) {
-      this.items.splice(index, 1);
-      this.getPeriods() // Eliminar el elemento del array
-    },
-    handleItemEdited(index: number, updatedName: string) {
-      const item = this.items.find((i) => i.id === index);
-      if (item) {
-        item.name = updatedName;
+    setInitialData(item: any) {
+      return {
+        name: item.name,
+        start_date: this.dateFormatter(item.start_date),
+        end_date: this.dateFormatter(item.end_date),
+        is_current: item.is_current,
       }
-      this.getPeriods();
-    },
+    }
   },
 })
 </script>
