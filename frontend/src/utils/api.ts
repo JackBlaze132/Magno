@@ -39,12 +39,13 @@ class API{
   public readonly PATCH_INVESTIGATION_GROUP_NAME:string='updateInvestigationGroupName';
   public readonly PATCH_RESEARCH_SEEDBED_NAME:string='updateResearchSeedbedName';
   public readonly PUT_ACADEMIC_PERIOD:string='academic-periods/';
+  public readonly PUT_INVESTIGATION_GROUP:string='investigation-groups/';
 
 
   //----[DELETE]----
   public readonly DELETE_STUDENT_PROFILE_FROM_RESEARCH_SEEDBED:string='deleteStudentProfileFromAResearchSeedbed';
   public readonly DELETE_RESEARCH_SEEDBED:string='deleteResearchSeedbed/';
-  public readonly DELETE_INVESTIGATION_GROUP: string='deleteInvestigationGroup/';
+  public readonly DELETE_INVESTIGATION_GROUP: string='investigation-groups/';
   public readonly DELETE_ACADEMIC_PERIOD: string='academic-periods/';
 
 
