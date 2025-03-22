@@ -18,6 +18,15 @@
             prepend-icon=""
             prepend-inner-icon="ri-calendar-2-line"
           />
+          <VSelect v-else-if="field.type === 'multiple-select'"
+            multiple
+            v-model="formValues[field.key]"
+            :items="field.options"
+            item-title="label"
+            item-value="value"
+            hint="Seleccione una o varias líneas de investigación"
+            label="Líneas de investigación"
+          />
         </div>
         <VcardItem class="d-flex justify-end">
           <LoadingBtn icon="ri-save-2-line" text="Guardar" :loading="loading" color="primary"/>
@@ -30,7 +39,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import API from "@/utils/api";
-import LoadingBtn from '../loadingBtn.vue';
+import { VSelect } from 'vuetify/components';
 
 export default defineComponent({
   name: 'formEditGeneral',
@@ -38,14 +47,11 @@ export default defineComponent({
     type: {
       type: String,
     },
-    name: {
-      type: String,
-    },
     index: {
       type: Number,
     },
     fields: {
-      type: Array as () => Array<{ key: string; label: string; type?: string }>,
+      type: Array as () => Array<{ key: string; label: string; type?: string, options?: Array<{ label: string; value: string}> }>,
       default: () => [],
     },
     initialData: {

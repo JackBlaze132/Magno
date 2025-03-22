@@ -3,5 +3,15 @@
         { "key": "name", "label": "Nombre", "type": "text" },
         { "key": "start_date", "label": "Fecha de inicio", "type": "date" },
         { "key": "end_date", "label": "Fecha de fin", "type": "date" }
+    ],
+    "grupo": [
+        { "key": "name", "label": "Nombre", "type": "text" },
+        { "key": "lines_of_research", "label": "Lineas de investigación", "type": "multiple-select", "options": [
+            { "label": "Linea 1", "value": "linea1" },
+            { "label": "Linea 2", "value": "linea2" },
+            { "label": "Linea 3", "value": "linea3" },
+            { "label": "Linea 4", "value": "linea4" },
+            { "label": "Linea 5", "value": "linea5" }
+        ] }
     ]
 }
