@@ -13,8 +13,14 @@
         ]
       }
     ],
-    "global-group": [
+    "grupo": [
       { "key": "name", "label": "Nombre", "type": "text" },
-      { "key": "lines_of_research", "label": "Lineas de investigación", "type": "textarea" }
+      { "key": "lines_of_research", "label": "Lineas de investigación", "type": "multiple-select", "options": [
+            { "label": "Agricultura, Silvicultura y Pesca", "value": "AGRICULTURA_SILVICULTURA_Y_PESCA" },
+            { "label": "Arte", "value": "ARTE" },
+            { "label": "Biotecnologia Agricola", "value": "BIOTECNOLOGIA_AGRICOLA" },
+            { "label": "ngenierias Electrica, Electronica e Informatica", "value": "INGENIERIAS_ELECTRICA_ELECTRONICA_E_INFORMATICA" },
+            { "label": "Linea 5", "value": "linea5" }
+        ]  }
     ]
   }

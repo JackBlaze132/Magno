@@ -26,7 +26,7 @@ class API{
   public readonly GET_STUDENT_SEEDBEDS: string='getStudentProfilesResearchSeedbed/';
 
   //----[POST]----
-  public readonly POST_INVESTIGATION_GROUP:string='addInvestigationGroup';
+  public readonly POST_INVESTIGATION_GROUP:string='investigation-groups/';
   public readonly POST_ACADEMIC_PERIOD:string='academic-periods/';
   public readonly POST_RESEARCH_SEEDBED:string='addResearchSeedbed';
   public readonly POST_STUDENT_PROFILE:string='addStudentProfile';

@@ -20,7 +20,14 @@ export class CreateFormFactory extends AbstractFormFactory {
           fields: schema.periodo
         }
       },
-      grupo: { component: CreateGrupo, props: { name: "Crear Grupo", fields: ["nombre", "integrantes"], initialData: {} } },
+      grupo: {
+        component: CreateGrupo,
+        props: {
+          type: type,
+          name: "grupo",
+          fields: schema.grupo,
+        }
+      },
       semillero: { component: CreateSemillero, props: { name: "Crear Semillero", fields: ["tema", "lider"], initialData: {} } }
     };
 

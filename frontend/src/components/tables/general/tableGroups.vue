@@ -11,7 +11,11 @@
         hide-details
         single-line
       ></VTextField>
-      <VBtn to="agregar-grupo" class="mx-2" prepend-icon="ri-add-fill"> Agregar</VBtn>
+      <QuickActions
+      toCreate
+      type="grupo"
+      @itemCreated="handleItemRefresh"
+    />
     </VCardTitle>
     <VDataTable
       :items="items"
@@ -26,13 +30,14 @@
 
       <template v-slot:item.link="{item}">
         <QuickActions
-          :toView="item.id + '/semilleros'"
           toEdit
           toDelete
+          type="grupo"
           :name="item.name"
           :index="item.id"
-          type="grupo"
-          @itemDeleted="handleItemDeleted"
+          :initialData="setInitialData(item)"
+          @itemDeleted="handleItemRefresh"
+          @itemEdited="handleItemRefresh"
           ></QuickActions>
       </template>
     </VDataTable>
@@ -84,9 +89,14 @@ export default defineComponent({
         console.error('Error fetching users:', error);
       }
     },
-    handleItemDeleted(indes:number){
-      this.items.splice(indes, 1);
+    handleItemRefresh() {
       this.getGroups();
+    },
+    setInitialData(item: any) {
+      return {
+        name: item.name,
+        lines_of_research: item.lines_of_research,
+      }
     }
   },
 })
