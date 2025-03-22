@@ -7,9 +7,11 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    copy: typeof import('./src/components/forms/Post/formAddPeriod copy.vue')['default']
     FormAddFunctionary: typeof import('./src/components/forms/Post/formAddFunctionary.vue')['default']
     FormAddGroup: typeof import('./src/components/forms/Post/formAddGroup.vue')['default']
     FormAddPeriod: typeof import('./src/components/forms/Post/formAddPeriod.vue')['default']
+    FormAddPeriod_: typeof import('./src/components/forms/Post/formAddPeriod_.vue')['default']
     FormAddSeedbed: typeof import('./src/components/forms/Post/formAddSeedbed.vue')['default']
     FormAddStudent: typeof import('./src/components/forms/Post/formAddStudent.vue')['default']
     FormAddUser: typeof import('./src/components/forms/Post/formAddUser.vue')['default']

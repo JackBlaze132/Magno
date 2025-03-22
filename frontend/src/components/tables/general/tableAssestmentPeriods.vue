@@ -57,7 +57,6 @@ import { defineComponent } from "vue"
 //utils
 import API from "@/utils/api";
 import Formatter from "@/utils/formatter";
-import { VChip } from "vuetify/components";
 import QuickActions from "@/components/quickActions.vue";
 
 

@@ -13,7 +13,7 @@
         ]
       }
     ],
-    "globañ-group": [
+    "global-group": [
       { "key": "name", "label": "Nombre", "type": "text" },
       { "key": "lines_of_research", "label": "Lineas de investigación", "type": "textarea" }
     ]
