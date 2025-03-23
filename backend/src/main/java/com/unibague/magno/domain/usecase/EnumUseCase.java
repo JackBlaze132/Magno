@@ -6,8 +6,10 @@ import com.unibague.magno.domain.api.IResearchSeedbedServicePort;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class EnumUseCase implements IEnumServicePort {
 
@@ -62,6 +64,21 @@ public class EnumUseCase implements IEnumServicePort {
                 .collect(Collectors.joining(" - "));
     }
 
+    private <E extends Enum<E>> Map<String, String> enumValuesAsMap(Class<E> enumClass) {
+        return Stream.of(enumClass.getEnumConstants())
+                .collect(Collectors.toMap(
+                        Enum::name,
+                        v -> {
+                            try {
+                                return (String) v.getClass().getMethod(GET_FORMATTED_NAME).invoke(v);
+                            } catch (Exception ex) {
+                                throw new IllegalArgumentException(ERROR_MESSAGE, ex);
+                            }
+                        }
+                ));
+    }
+
+
     @Override
     public String getFormattedEnumSetByInvestigationGroupId(Long investigationGroupId){
         return formatEnumSet(investigationGroupServicePort.findById(investigationGroupId).getLinesOfResearch());
@@ -70,5 +87,10 @@ public class EnumUseCase implements IEnumServicePort {
     @Override
     public String getFormattedEnumSetByResearchSeedbedId(Long researchSeedbedId){
         return formatEnumSet(Set.of(researchSeedbedServicePort.findById(researchSeedbedId).getLineOfResearch()));
+    }
+
+    @Override
+    public <E extends Enum<E>> Map<String, String> getAllEnumValuesAMap(Class<E> enumValue){
+        return enumValuesAsMap(enumValue);
     }
 }

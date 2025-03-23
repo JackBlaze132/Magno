@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/enums")
@@ -21,6 +22,15 @@ public class EnumRestController {
         Class<?> enumClass = Class.forName(ENUM_PACKAGE + enumName);
         if (enumClass.isEnum()) {
             return ResponseEntity.ok(enumServicePort.getAllEnumValues((Class<Enum>) enumClass));
+        }
+        throw new EnumBadRequestException("Enum no encontrado: " + enumName);
+    }
+
+    @GetMapping(path = "/{enumName}/values", headers = "API-VERSION=2")
+    public ResponseEntity<Map<String, String>> getEnumValuesAsMap(@PathVariable String enumName) throws ClassNotFoundException {
+        Class<?> enumClass = Class.forName(ENUM_PACKAGE + enumName);
+        if (enumClass.isEnum()) {
+            return ResponseEntity.ok(enumServicePort.getAllEnumValuesAMap((Class<Enum>) enumClass));
         }
         throw new EnumBadRequestException("Enum no encontrado: " + enumName);
     }
