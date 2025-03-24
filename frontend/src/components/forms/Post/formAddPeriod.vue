@@ -13,11 +13,9 @@
 <script lang="ts">
 // ...existing code...
 import { defineComponent } from 'vue';
-import formCreateGeneral from './formCreateGeneral.vue';
 
 export default defineComponent({
   name: 'formAddPeriod',
-  components: { formCreateGeneral },
   props:{
     name: {
       type: String,

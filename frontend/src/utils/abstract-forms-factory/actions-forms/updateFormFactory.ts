@@ -5,7 +5,7 @@ import type { EntityType } from  '@/utils/abstract-forms-factory/form-types/form
 import schema from '@/schemas/formUpdateSchemas.json';
 
 const UpdatePeriodo = defineAsyncComponent(() => import("@/components/forms/Put/formUpdateGeneral.vue"));
-const UpdateGrupo = defineAsyncComponent(() => import("@/components/forms/Put/formUpdateGeneral.vue"));
+const UpdateGrupo = defineAsyncComponent(() => import("@/components/forms/Put/Groups/formUpdateGlobalGroup.vue"));
 const CreateSemillero = defineAsyncComponent(() => import("@/components/forms/Post/formCreateGeneral.vue"));
 
 export class UpdateFormFactory extends AbstractFormFactory {

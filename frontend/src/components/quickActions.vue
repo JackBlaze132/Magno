@@ -20,7 +20,7 @@
     Edit button (toEdit):
     Opens an overlay containing FormUpdateGeneral to update the item.
   -->
-  <VBtn v-if="toEdit" icon class="action edit" flat color="transparent" desity="compact" @click="overlayEdit = !overlayEdit; selectedAction = 'update'">
+  <VBtn v-if="toEdit" icon class="action edit" flat color="transparent" desity="compact" @click="overlayEdit = !overlayEdit; selectedAction = 'update';">
     <VIcon icon="ri-edit-box-line" />
     <VOverlay v-model="overlayEdit" scrim="black" class="d-flex align-center justify-center" opacity="0.7">
       <component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemEdited="handleItemEdited"/>
@@ -54,6 +54,7 @@ import type { ActionType, EntityType } from  '@/utils/abstract-forms-factory/for
 // The 'quickActions' component centralizes quick actions (view, edit, delete).
 export default defineComponent({
   name: 'quickActions',
+  emits: ['itemCreated', 'itemDeleted', 'itemEdited'],
   props: {
 
     /**
@@ -68,7 +69,7 @@ export default defineComponent({
      * The index of the item to handle.
      */
     index: {
-      type: String,
+      type: Number,
       required: false,
     },
     /**
@@ -123,7 +124,6 @@ export default defineComponent({
       return FormFactory.getComponentConfig(this.selectedAction, this.type, extraProps);
     }
   },
-
   data() {
     return {
       // ---[Overlays]---
@@ -140,7 +140,16 @@ export default defineComponent({
   },
 
   methods: {
-
+    runfetch() {
+      // 1) Select the update action
+      // 3) Once overlay is set to true, call the child's runFetchMapData
+      this.$nextTick(() => {
+        const child = this.$refs.updateGlobalGroupRef as any
+        if (child && typeof child.runFetchMapData === 'function') {
+          child.runFetchMapData()
+        }
+      })
+    },
     /**
      * Handles the 'itemCreated' event from FormUpdateGeneral and closes the overlay.
      */

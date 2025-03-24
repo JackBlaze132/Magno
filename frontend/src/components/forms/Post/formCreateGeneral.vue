@@ -54,6 +54,7 @@ import API from "@/utils/api";
 
 export default defineComponent({
   name: 'formEditGeneral',
+  emits: ['itemCreated'],
   props: {
     type: {
       type: String,

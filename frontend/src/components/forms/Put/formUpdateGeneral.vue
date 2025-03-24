@@ -43,6 +43,7 @@ import { VSelect } from 'vuetify/components';
 
 export default defineComponent({
   name: 'formEditGeneral',
+  emits: ['itemEdited'],
   props: {
     type: {
       type: String,

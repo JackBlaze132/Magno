@@ -60,6 +60,7 @@ interface Item {
 
 export default defineComponent({
 
+  emits: ['loaded'],
   data() {
     return {
       items: [] as Item[],
