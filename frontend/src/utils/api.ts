@@ -6,6 +6,9 @@ class API{
   private readonly API_BASE_URL: string = 'http://localhost:8080/api/';
 
   public readonly HEADER_TEST: string='hello/header';
+
+  public readonly LINES_OF_RESEARCH_BY_INVESTIGATION_GROUP: string='enums/get-lines-of-research-by-investigation-group-id/';
+  public readonly LINES_OF_RESEARCH_BY_INVESTIGATION_VALUES: string='enums/LineOfResearch/values';
   // ya se encuentra registrada en el archivo vite.config.mts
   //----[ENDPOINTS]----
   //----[GET]----

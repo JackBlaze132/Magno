@@ -54,7 +54,7 @@ export default defineComponent({
         const headers = { 'API-VERSION': '2' }
         // Suppose rawMap is actually an array like:
         // [ { "CIENCIAS_DE_LA_TIERRA_Y_MEDIOAMBIENTALES": "Ciencias...", ... } ]
-        const rawMap = await API.get('enums/LineOfResearch/values', headers)
+        const rawMap = await API.get(API.LINES_OF_RESEARCH_BY_INVESTIGATION_VALUES, headers)
 
         // If rawMap is an array, take the first element. Otherwise, use rawMap directly.
         const actualObject = Array.isArray(rawMap) ? rawMap[0] : rawMap

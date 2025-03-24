@@ -22,11 +22,15 @@
       :search="search"
       :headers="headers"
     >
-      <!--<template v-slot:item.isActive="{item}">
-        <VChip :color="item.isActive ? 'green' : ''" >
-          {{ periodActivityFormatter(item.isActive)}}
+
+      <template v-slot:item.lines_of_research="{item}">
+      <VChipGroup>
+        <VChip v-for="(line, index) in item.lines_of_research " :key="index">
+          {{ line }}
         </VChip>
-      </template>-->
+      </VChipGroup>
+
+      </template>
 
       <template v-slot:item.link="{item}">
         <QuickActions
@@ -64,6 +68,7 @@ export default defineComponent({
   data() {
     return {
       items: [] as Item[],
+      lines: [] as Array<string>,
       search: '',
       links: '',
       headers: [
@@ -77,6 +82,7 @@ export default defineComponent({
   // ...
   created() {
     this.getGroups();
+
   },
   methods: {
     async getGroups() {
@@ -85,11 +91,31 @@ export default defineComponent({
       }
       try {
         this.items = await API.get(API.GET_INVESTIGATION_GROUPS, apiHeaders);
+        for (const group of this.items) {
+        group.lines_of_research = await API.get(
+          API.LINES_OF_RESEARCH_BY_INVESTIGATION_GROUP + group.id,
+          apiHeaders
+        )
+      }
         this.$emit('loaded');
+        return this.lines;
       } catch (error) {
         console.error('Error fetching users:', error);
       }
     },
+
+    async getLines(index: number) {
+      const apiHeaders = {
+        'API-VERSION': '1',
+      }
+      try {
+        this.lines = await API.get('enums/get-lines-of-research-by-investigation-group-id/' + index, apiHeaders);
+        console.log(this.lines);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    },
+
     handleItemRefresh() {
       this.getGroups();
     },
