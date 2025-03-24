@@ -45,13 +45,13 @@ public class EnumRestController {
         throw new EnumBadRequestException("Enum no encontrado: " + enumName);
     }
 
-    @GetMapping(path = "/get-formatted-values-by-investigation-group-id/{id}", headers = "API-VERSION=1")
-    public ResponseEntity<String> getFormattedValuesByInvestigationGroupId(@PathVariable Long id) {
-        return ResponseEntity.ok(enumServicePort.getFormattedEnumSetByInvestigationGroupId(id));
+    @GetMapping(path = "/get-lines-of-research-by-investigation-group-id/{id}", headers = "API-VERSION=1")
+    public ResponseEntity<List<String>> getLinesOfResearchByInvestigationGroupId(@PathVariable Long id) {
+        return ResponseEntity.ok(enumServicePort.getLinesOfResearchByInvestigationGroupId(id));
     }
 
-    @GetMapping(path = "/get-formatted-values-by-research-seedbed-id/{id}", headers = "API-VERSION=1")
-    public ResponseEntity<String> getFormattedValuesByResearchSeedbedId(@PathVariable Long id) {
-        return ResponseEntity.ok(enumServicePort.getFormattedEnumSetByResearchSeedbedId(id));
+    @GetMapping(path = "/get-lines-of-research-by-research-seedbed-id/{id}", headers = "API-VERSION=1")
+    public ResponseEntity<String> getLinesOfResearchByResearchSeedbedId(@PathVariable Long id) {
+        return ResponseEntity.ok(enumServicePort.getLineOfResearchByResearchSeedbedId(id));
     }
 }

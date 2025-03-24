@@ -52,7 +52,7 @@ public class EnumUseCase implements IEnumServicePort {
                 });
     }
 
-    private <E extends Enum<E>> String formatEnumSet(Set<E> enumSet) {
+    private <E extends Enum<E>> List<String> formatEnumSet(Set<E> enumSet) {
         return enumSet.stream()
                 .map(e -> {
                     try {
@@ -61,7 +61,7 @@ public class EnumUseCase implements IEnumServicePort {
                         throw new IllegalArgumentException(ERROR_MESSAGE);
                     }
                 })
-                .collect(Collectors.joining(" - "));
+                .toList();
     }
 
     private <E extends Enum<E>> Map<String, String> enumValuesAsMap(Class<E> enumClass) {
@@ -80,13 +80,18 @@ public class EnumUseCase implements IEnumServicePort {
 
 
     @Override
-    public String getFormattedEnumSetByInvestigationGroupId(Long investigationGroupId){
+    public List<String> getLinesOfResearchByInvestigationGroupId(Long investigationGroupId){
         return formatEnumSet(investigationGroupServicePort.findById(investigationGroupId).getLinesOfResearch());
     }
 
     @Override
-    public String getFormattedEnumSetByResearchSeedbedId(Long researchSeedbedId){
-        return formatEnumSet(Set.of(researchSeedbedServicePort.findById(researchSeedbedId).getLineOfResearch()));
+    public String getLineOfResearchByResearchSeedbedId(Long researchSeedbedId){
+        List<String> linesOfResearch = formatEnumSet(
+                Set.of(researchSeedbedServicePort.findById(researchSeedbedId).getLineOfResearch()));
+        if (linesOfResearch.isEmpty()) {
+            throw new IllegalArgumentException("The line of research is empty");
+        }
+        return linesOfResearch.stream().findFirst().orElseThrow();
     }
 
     @Override
