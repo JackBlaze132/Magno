@@ -5,7 +5,7 @@ import type { EntityType } from  '@/utils/abstract-forms-factory/form-types/form
 
 const DeletePeriodo = defineAsyncComponent(() => import("@/components/forms/Delete/formDeleteGeneral.vue"));
 const DeleteGrupo = defineAsyncComponent(() => import("@/components/forms/Delete/formDeleteGeneral.vue"));
-const CreateSemillero = defineAsyncComponent(() => import("@/components/forms/Post/formCreateGeneral.vue"));
+const CreateSemillero = defineAsyncComponent(() => import("@/components/forms/Create/formCreateGeneral.vue"));
 
 export class DeleteFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType, extraProps?: Record<any, any>) {

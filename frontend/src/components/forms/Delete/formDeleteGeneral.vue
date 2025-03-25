@@ -48,9 +48,9 @@ export default defineComponent({
       }
 
       const endpoint =
-      this.type === 'semillero' ? API.DELETE_RESEARCH_SEEDBED :
-      this.type === 'grupo' ? API.DELETE_INVESTIGATION_GROUP :
-      this.type === 'periodo' ? API.DELETE_ACADEMIC_PERIOD : '';
+      this.type === 'semillero' ? API.RESEARCH_SEEDBEDS :
+      this.type === 'grupo' ? API.INVESTIGATION_GROUPS :
+      this.type === 'periodo' ? API.ACADEMIC_PERIODS : '';
 
       const expectedValue = `eliminar ${this.name}`;
       if (this.inputValue !== expectedValue) {

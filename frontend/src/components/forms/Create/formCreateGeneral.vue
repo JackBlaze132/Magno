@@ -85,7 +85,7 @@ export default defineComponent({
         let response;
         if (this.type === 'periodo') {
           // Ejemplo hipotético para editar un periodo
-          response = await API.post(API.POST_ACADEMIC_PERIOD, {
+          response = await API.post(API.ACADEMIC_PERIODS, {
             ...this.formValues,
           }, headers);
         } else if (this.type === 'semillero') {
@@ -93,7 +93,7 @@ export default defineComponent({
             ...this.formValues,
           }, headers);
         } else if (this.type === 'grupo') {
-          response = await API.post(API.POST_INVESTIGATION_GROUP, {
+          response = await API.post(API.INVESTIGATION_GROUPS, {
             ...this.formValues,
           }, headers);
         }

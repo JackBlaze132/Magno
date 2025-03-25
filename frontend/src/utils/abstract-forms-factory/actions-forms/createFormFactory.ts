@@ -4,10 +4,10 @@ import { defineAsyncComponent } from "vue";
 import type { EntityType } from  '@/utils/abstract-forms-factory/form-types/formsTypes';
 import schema from '@/schemas/formCreateSchemas.json';
 
-//const CreatePeriodo = defineAsyncComponent(() => import("@/components/forms/Post/formCreateGeneral.vue"));
-const CreatePeriodo = defineAsyncComponent(() => import("@/components/forms/Post/formAddPeriod.vue"));
-const CreateGrupo = defineAsyncComponent(() => import("@/components/forms/Post/formCreateGeneral.vue"));
-const CreateSemillero = defineAsyncComponent(() => import("@/components/forms/Post/formCreateGeneral.vue"));
+//const CreatePeriodo = defineAsyncComponent(() => import("@/components/forms/Create/formCreateGeneral.vue"));
+const CreatePeriodo = defineAsyncComponent(() => import("@/components/forms/Create/Periods/formCreatePeriod.vue"));
+const CreateGrupo = defineAsyncComponent(() => import("@/components/forms/Create/Groups/formCreateGroups.vue"));
+const CreateSemillero = defineAsyncComponent(() => import("@/components/forms/Create/formCreateGeneral.vue"));
 
 export class CreateFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType) {

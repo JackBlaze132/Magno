@@ -29,7 +29,7 @@
           />
         </div>
         <VcardItem class="d-flex justify-end">
-          <LoadingBtn icon="ri-save-2-line" text="Guardar" :loading="loading" color="primary" @click="console.log(this.formValues)"/>
+          <LoadingBtn icon="ri-save-2-line" text="Guardar" :loading="loading" color="primary"/>
         </VcardItem>
       </VForm>
     </VCardText>
@@ -79,7 +79,7 @@ export default defineComponent({
         let response;
         if (this.type === 'periodo') {
           // Ejemplo hipotético para editar un periodo
-          response = await API.put(API.PUT_ACADEMIC_PERIOD + this.index, {
+          response = await API.put(API.ACADEMIC_PERIODS + this.index, {
             ...this.formValues,
           }, headers);
         } else if (this.type === 'semillero') {
@@ -89,7 +89,7 @@ export default defineComponent({
           }, headers);
         } else if (this.type === 'grupo') {
           // Ejemplo hipotético para editar un grupo
-          response = await API.put(API.PUT_INVESTIGATION_GROUP + this.index, {
+          response = await API.put(API.INVESTIGATION_GROUPS + this.index, {
             ...this.formValues,
           }, headers);
         }

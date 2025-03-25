@@ -7,51 +7,58 @@ class API{
 
   public readonly HEADER_TEST: string='hello/header';
 
-  public readonly LINES_OF_RESEARCH_BY_INVESTIGATION_GROUP: string='enums/get-lines-of-research-by-investigation-group-id/';
-  public readonly LINES_OF_RESEARCH_BY_INVESTIGATION_VALUES: string='enums/LineOfResearch/values';
+
   // ya se encuentra registrada en el archivo vite.config.mts
   //----[ENDPOINTS]----
-  //----[GET]----
-  public readonly GET_ACADEMIC_PERIODS: string = 'academic-periods/';
-  public readonly GET_FUNCTIONARY_PROFILES: string = 'getFunctionaryProfiles';
-  public readonly GET_STUDENT_PROFILES: string = 'getStudentProfiles';
-  public readonly GET_INVESTIGATION_GROUPS: string = 'investigation-groups/';
-  public readonly GET_RESEARCH_SEEDBEDS: string = 'getResearchSeedbeds';
-  public readonly GET_USERS: string = 'getUsers';
-  public readonly GET_INVESTIGATION_GROUP_BY_ACADEMIC_PERIOD: string = 'getInvestigationGroupsByAssesmentPeriodId/';
-  public readonly GET_RESEARCH_SEEDBED_BY_GROUP_ID:string='getResearchSeedbedsByInvestigationGroupId/';
-  public readonly GET_COORDINATOR_BY_RESEARCH_SEEDBED_ID: string = 'getCoordinatorByResearchseedbedId/';
-  public readonly GET_EXTERNAL_FUNCTIONARY_PROFILE_BY_SEEDBED_ID: string='getExternalFunctionaryProfilesByResearchSeedbedId/';
-  public readonly GET_STUDENT_PROFLIE_BY_RESEARCH_SEEDBED_ID: string='getStudentProfilesByResearchSeedbedId/';
-  public readonly GET_TUTOR_BY_RESEARCH_SEEDBED_ID: string='getTutorByResearchseedbedId/';
-  public readonly GET_RESEARCH_SEEDBED_BY_ID: string='getResearchSeedbedById/';
-  public readonly GET_FUNNCTIONARY_PROFILES_BY_ASSESMENT_PERIOD_ID:string='getFunctionaryProfileByAssesmentPeriodId/';
-  public readonly GET_STUDENT_SEEDBEDS: string='getStudentProfilesResearchSeedbed/';
+  //----[ENUMS]----
+  public readonly LINES_OF_RESEARCH_BY_INVESTIGATION_GROUP: string='enums/get-lines-of-research-by-investigation-group-id/';
+  public readonly LINES_OF_RESEARCH_BY_INVESTIGATION_VALUES: string='enums/LineOfResearch/values';
 
-  //----[POST]----
-  public readonly POST_INVESTIGATION_GROUP:string='investigation-groups/';
-  public readonly POST_ACADEMIC_PERIOD:string='academic-periods/';
-  public readonly POST_RESEARCH_SEEDBED:string='addResearchSeedbed';
-  public readonly POST_STUDENT_PROFILE:string='addStudentProfile';
-  public readonly POST_USER:string='addUser';
-  public readonly POST_STUDENT_PROFILE_BY_EXCEL:string='addStudentProfileByExcel/';
-  public readonly POST_FUNCTIONARY_PROFILE: string='addFunctionaryProfile';
+  //----[ACADEMIC PERIODS]----
+  public readonly ACADEMIC_PERIODS:string='academic-periods/';
 
-  //----[PATCH]----
-  public readonly PATCH_RESEARCH_SEEDBED_FUNCTIONARY:string='updateResearchSeedbedFunctionary';
-  public readonly PATCH_INVESTIGATION_GROUP_NAME:string='updateInvestigationGroupName';
-  public readonly PATCH_RESEARCH_SEEDBED_NAME:string='updateResearchSeedbedName';
-  public readonly PUT_ACADEMIC_PERIOD:string='academic-periods/';
-  public readonly PUT_INVESTIGATION_GROUP:string='investigation-groups/';
+  //----[ACADEMIC PROGRAMS]----
+  public  readonly ACADEMIC_PROGRAMS:string='academic-programs/';
 
+  //----[DEPENDENCIES]----
+  public readonly DEPENDENCIES:string='dependencies/';
 
-  //----[DELETE]----
-  public readonly DELETE_STUDENT_PROFILE_FROM_RESEARCH_SEEDBED:string='deleteStudentProfileFromAResearchSeedbed';
-  public readonly DELETE_RESEARCH_SEEDBED:string='deleteResearchSeedbed/';
-  public readonly DELETE_INVESTIGATION_GROUP: string='investigation-groups/';
-  public readonly DELETE_ACADEMIC_PERIOD: string='academic-periods/';
+  //----[EXTERNAL USER PROFILES]----q
+  public readonly EXTERNAL_USER_PROFILES:string='external-user-profiles/';
 
+  //----[FUNCTIONARY PROFILES]----
+  public readonly FUNCTIONARY_PROFILES:string='functionary-profiles/';
 
+  //----[INVESTIGATION GLOBAL GROUPS]----
+  public readonly INVESTIGATION_GROUPS:string='investigation-groups/';
+
+  //----[INVESTIGATION GROUPS PROFILES]----
+  public readonly INVESTIGATION_GRUOPS_PROFILES:string='investigation-groups-profiles/';
+  public readonly INVESTIGATION_GROUPS_PROFILES_BY_ACADEMIC_PERIOD:string='investigation-group-profiles/get-all-by-academic-period-id/'; //<---- Requires academic period id
+
+  //----[ROLES]----
+  public readonly ROLES:string='roles/';
+
+  //----[RESEARCH SEEDBEDS]----
+  public readonly RESEARCH_SEEDBEDS:string='research-seedbeds/';
+
+  //----[RESEARCH SEEDBEDS PROFILES]----
+  public readonly RESEARCH_SEEDBEDS_PROFILES:string='research-seedbeds-profiles/';
+  public readonly RESEARCH_SEEDBEDS_PROFILES_BY_INVESTIGATION_GROUP_PROFILE:string='research-seedbed-profiles/get-all-by-investigation-group-profile-id/'; //<---- Requires investigation group profile id
+
+  //----[RESEARCH SEEDBED STUDENT PROFILES]----
+  public readonly RESEARCH_SEEDBED_STUDENT_PROFILES:string='research-seedbed-student-profiles/';
+  public readonly RESEARCH_SEEDBED_STUDENT_PROFILES_UPLOAD_BY_EXCEL:string='research-seedbed-student-profile/add-all-by-excel/'; //<---- Requires research seedbed id
+
+  //----[STUDENT PROFILES]----
+  public readonly STUDENT_PROFILES:string='student-profiles/';
+
+  //----[USERS]----
+  public readonly USERS:string='users/';
+  public readonly USER_INTEGRA:string='users/intregra-user';
+
+  //----[COUNTRIES]----
+  public readonly COUNTRIES:string='users/all-countries';
 
   private static instance: API;
 
@@ -88,16 +95,6 @@ class API{
     }
   }
 
-  /**public async get(endpoint: string) {
-    try {
-      const response = await fetch(this.API_BASE_URL + `${endpoint}`);
-      const data = await response.json();
-      return Array.isArray(data) ? data : [data];
-    } catch (error) {
-      console.error(`Error fetching ${endpoint}:`, error);
-      throw error;
-    }
-  }**/
 
   public async post(endpoint: string, data: any, headers: Record<string, string> = {}) {
     try {

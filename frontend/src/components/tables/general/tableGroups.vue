@@ -22,14 +22,12 @@
       :search="search"
       :headers="headers"
     >
-
       <template v-slot:item.lines_of_research="{item}">
-      <VChipGroup>
-        <VChip v-for="(line, index) in item.lines_of_research " :key="index">
-          {{ line }}
-        </VChip>
-      </VChipGroup>
-
+        <VChipGroup>
+          <VChip v-for="(line, index) in lines[item.id]" :key="index">
+            {{line}}
+          </VChip>
+        </VChipGroup>
       </template>
 
       <template v-slot:item.link="{item}">
@@ -90,27 +88,18 @@ export default defineComponent({
         'API-VERSION': '1',
       }
       try {
-        this.items = await API.get(API.GET_INVESTIGATION_GROUPS, apiHeaders);
-        for (const group of this.items) {
-        group.lines_of_research = await API.get(
+        const groups = await API.get(API.INVESTIGATION_GROUPS, apiHeaders);
+
+        for (const group of groups) {
+        const linesOfResearch = await API.get(
           API.LINES_OF_RESEARCH_BY_INVESTIGATION_GROUP + group.id,
           apiHeaders
         )
-      }
+        this.lines[group.id] = linesOfResearch;
+        }
+        this.items = groups;
         this.$emit('loaded');
-        return this.lines;
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
-    },
-
-    async getLines(index: number) {
-      const apiHeaders = {
-        'API-VERSION': '1',
-      }
-      try {
-        this.lines = await API.get('enums/get-lines-of-research-by-investigation-group-id/' + index, apiHeaders);
-        console.log(this.lines);
+        //return this.lines;
       } catch (error) {
         console.error('Error fetching users:', error);
       }

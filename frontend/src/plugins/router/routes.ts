@@ -24,7 +24,7 @@ export const routes = [
       {
         path: P.PERIODOS,
         redirect: P.PERIODOS + '/' + P.LISTAR_PERIODOS,
-        component: components.ASSESTMENT_PERIODS_INDEX,
+        component: components.ACADEMIC_PERIODS_INDEX,
         children: [
           {
             name: 'listar-periodos',

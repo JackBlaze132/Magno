@@ -5,7 +5,7 @@
     :fields="fields"
     :index="index"
     :initialData="initialData"
-    @itemUpdated="handleItemUpdated"
+    @itemEdited="handleItemEdited"
   />
 </template>
 
@@ -15,7 +15,7 @@ import { defineComponent } from 'vue';
 import API from "@/utils/api";
 
 export default defineComponent({
-  name: 'formUpdateGlobalGroup',
+  name: 'formUpdateGroup',
   emits: ['itemEdited'],
   data() {
     return {
@@ -45,7 +45,7 @@ export default defineComponent({
   },
   methods: {
     // ...existing code...
-    handleItemUpdated() {
+    handleItemEdited() {
       this.$emit('itemEdited');
     },
 
