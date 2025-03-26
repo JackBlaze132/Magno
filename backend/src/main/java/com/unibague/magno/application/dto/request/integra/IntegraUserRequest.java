@@ -6,11 +6,13 @@ import com.unibague.magno.domain.model.enums.JSONIntegraType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class IntegraUserRequest {
 

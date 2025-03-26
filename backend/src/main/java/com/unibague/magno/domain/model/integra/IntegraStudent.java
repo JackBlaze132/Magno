@@ -18,13 +18,14 @@ public class IntegraStudent {
     private String telephone;
     private String sexo;
 
-    public IntegraStudent(String name, String codeStudent, String identification, String programCode,
+    public IntegraStudent(String name, String codeStudent, String identification, String programCode, String program,
                           String formation, String email, String category, String status,
                           String semester, String telephone, String sexo) {
         this.name = name;
         this.codeStudent = codeStudent;
         this.identification = identification;
         this.programCode = programCode;
+        this.program = program;
         this.formation = formation;
         this.email = email;
         this.category = category;
@@ -123,5 +124,13 @@ public class IntegraStudent {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public String getProgram() {
+        return program;
+    }
+
+    public void setProgram(String program) {
+        this.program = program;
     }
 }

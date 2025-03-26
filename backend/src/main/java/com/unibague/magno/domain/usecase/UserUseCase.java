@@ -70,7 +70,6 @@ public class UserUseCase implements IUserServicePort {
 
     @Override
     // Notice that this method suppose that the field with the identifications is called "identification"
-    // Also, if some
     public List<User> getUserListByListOfStudentMaps(List<Map<String, String>> cleanedStudentListOfMaps) {
         return cleanedStudentListOfMaps.stream()
                 .map(studentProfile -> {
@@ -94,6 +93,7 @@ public class UserUseCase implements IUserServicePort {
         return Arrays.stream(countryCodes)
                 .map(countryCode -> Locale.of("", countryCode))
                 .map(countryLocale -> countryLocale.getDisplayCountry(spanishLocale))
+                .sorted()
                 .toList();
     }
 
@@ -151,15 +151,6 @@ public class UserUseCase implements IUserServicePort {
         IntegraStudent integraStudent = integraServicePort.
                 getFirstIntegraStudentFound(userRequest.getIdentification());
 
-        User user = new User();
-        user.setFullName(integraStudent.getName());
-        user.setIdentificationNumber(integraStudent.getIdentification());
-        user.setEmail(integraStudent.getEmail());
-        user.setUserCode(integraStudent.getCodeStudent());
-        user.setExternalUser(false);
-
-        Sex sex = integraStudent.getSexo().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO;
-        user.setSex(sex);
-        return user;
+        return getUserByIntegraStudent(integraStudent);
     }
 }
