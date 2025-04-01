@@ -77,17 +77,17 @@ export default defineComponent({
       }
       try {
         let response;
-        if (this.type === 'periodo') {
+        if (this.type === 'period') {
           // Ejemplo hipotético para editar un periodo
           response = await API.put(API.ACADEMIC_PERIODS + this.index, {
             ...this.formValues,
           }, headers);
-        } else if (this.type === 'semillero') {
+        } else if (this.type === 'seedbed') {
           // Ejemplo hipotético para editar un semillero
-          response = await API.put(API.PUT_RESEARCH_SEEDBED + this.index, {
+          response = await API.put(API.RESEARCH_SEEDBEDS+ this.index, {
             ...this.formValues,
           }, headers);
-        } else if (this.type === 'grupo') {
+        } else if (this.type === 'group') {
           // Ejemplo hipotético para editar un grupo
           response = await API.put(API.INVESTIGATION_GROUPS + this.index, {
             ...this.formValues,

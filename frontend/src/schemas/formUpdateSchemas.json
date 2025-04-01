@@ -1,10 +1,10 @@
 {
-    "periodo":[
+    "period":[
         { "key": "name", "label": "Nombre", "type": "text" },
         { "key": "start_date", "label": "Fecha de inicio", "type": "date" },
         { "key": "end_date", "label": "Fecha de fin", "type": "date" }
     ],
-    "grupo": [
+    "group": [
         { "key": "name", "label": "Nombre", "type": "text" },
         { "key": "lines_of_research", "label": "Lineas de investigación", "type": "multiple-select", "options": [
             

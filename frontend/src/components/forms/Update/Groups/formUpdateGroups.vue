@@ -69,7 +69,7 @@ export default defineComponent({
         const linesField = this.fields.find(f => f.key === 'lines_of_research')
         if (linesField) {
           linesField.options = linesField.options || []
-          linesField.options = [...linesField.options, ...transformedOptions]
+          linesField.options = [...(linesField.options as { label: string; value: string; }[]), ...transformedOptions.map(opt => ({ label: String(opt.label), value: opt.value }))]
           console.log('Updated lines_of_research options:', linesField.options)
         }
       } catch (error) {

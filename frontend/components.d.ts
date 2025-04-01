@@ -15,6 +15,7 @@ declare module 'vue' {
     FormCreateGroupProfile: typeof import('./src/components/forms/Create/Groups/formCreateGroupProfile.vue')['default']
     FormCreateGroups: typeof import('./src/components/forms/Create/Groups/formCreateGroups.vue')['default']
     FormCreatePeriod: typeof import('./src/components/forms/Create/Periods/formCreatePeriod.vue')['default']
+    FormCreateUser: typeof import('./src/components/forms/Create/Users/formCreateUser.vue')['default']
     FormDeleteGeneral: typeof import('./src/components/forms/Delete/formDeleteGeneral.vue')['default']
     FormLogin: typeof import('./src/components/forms/formLogin.vue')['default']
     FormUpdateFunctionary: typeof import('./src/components/forms/Patch/formUpdateFunctionary.vue')['default']
@@ -43,6 +44,6 @@ declare module 'vue' {
     TableStudents: typeof import('./src/components/tables/general/tableStudents.vue')['default']
     TableStudentsSeedbeds: typeof import('./src/components/tables/dynamic/tableStudentsSeedbeds.vue')['default']
     TableTeachers: typeof import('./src/components/tables/lounge/tableTeachers.vue')['default']
-    TableUsers: typeof import('./src/components/tables/general/tableUsers.vue')['default']
+    TableUsers: typeof import('./src/components/tables/users/tableUsers.vue')['default']
   }
 }

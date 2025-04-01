@@ -55,7 +55,7 @@ class API{
 
   //----[USERS]----
   public readonly USERS:string='users/';
-  public readonly USER_INTEGRA:string='users/intregra-user';
+  public readonly USERS_INTEGRA:string='users/integra-user';
 
   //----[COUNTRIES]----
   public readonly COUNTRIES:string='users/all-countries';

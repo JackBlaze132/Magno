@@ -11,27 +11,29 @@ const CreateSemillero = defineAsyncComponent(() => import("@/components/forms/Cr
 export class UpdateFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType, extraProps?: Record<any, any>) {
       const componentMap = {
-      periodo: {
+      period: {
         component: UpdatePeriodo,
         props: {
           type: type,
-          fields: schema.periodo,
+          fields: schema.period,
           index: extraProps?.index,
           initialData: extraProps?.initialData,
         }
       },
-      grupo: {
+      group: {
         component: UpdateGrupo,
         props: {
           type: type,
-          fields: schema.grupo,
+          fields: schema.group,
           index: extraProps?.index,
           initialData: extraProps?.initialData,
         }
        },
       semillero: { component: CreateSemillero, props: { name: "Crear Semillero", fields: ["tema", "lider"], initialData: {} } }
     };
-    console.log(componentMap[type].props);
-    return componentMap[type] || this.getDefaultComponent();
+    if (type in componentMap) {
+      console.log(componentMap[type as keyof typeof componentMap].props);
+  }
+  return componentMap[type as keyof typeof componentMap] || this.getDefaultComponent();
   }
 }

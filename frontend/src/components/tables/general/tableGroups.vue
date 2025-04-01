@@ -13,7 +13,7 @@
       ></VTextField>
       <QuickActions
       toCreate
-      type="grupo"
+      type="group"
       @itemCreated="handleItemRefresh"
     />
     </VCardTitle>
@@ -34,7 +34,7 @@
         <QuickActions
           toEdit
           toDelete
-          type="grupo"
+          type="group"
           :name="item.name"
           :index="item.id"
           :initialData="setInitialData(item)"

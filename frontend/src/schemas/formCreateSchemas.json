@@ -1,5 +1,5 @@
 {
-    "periodo": [
+    "period": [
       { "key": "name", "label": "Nombre", "type": "text" },
       { "key": "start_date", "label": "Fecha de inicio", "type": "date" },
       { "key": "end_date", "label": "Fecha de fin", "type": "date" },
@@ -13,7 +13,7 @@
         ]
       }
     ],
-    "grupo": [
+    "group": [
       { "key": "name", "label": "Nombre", "type": "text" },
       { "key": "lines_of_research", "label": "Lineas de investigación", "type": "multiple-select", "options": [
             { "label": "Agricultura, Silvicultura y Pesca", "value": "AGRICULTURA_SILVICULTURA_Y_PESCA" },
@@ -22,5 +22,9 @@
             { "label": "ngenierias Electrica, Electronica e Informatica", "value": "INGENIERIAS_ELECTRICA_ELECTRONICA_E_INFORMATICA" },
             { "label": "Linea 5", "value": "linea5" }
         ]  }
+    ],
+    "user_integra":[
+        { "key": "identification", "label": "Numero de identificaion", "type": "text" },
+        { "key": "type", "label": "Tipo", "type": "text" }
     ]
   }

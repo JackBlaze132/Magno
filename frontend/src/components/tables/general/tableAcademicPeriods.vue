@@ -14,7 +14,7 @@
       <!--<VBtn to="agregar-periodo" class="mx-2" prepend-icon="ri-add-fill"> Agregar</VBtn>-->
       <QuickActions
         toCreate
-        type="periodo"
+        type="period"
         @itemCreated="handleItemRefresh"
       />
     </VCardTitle>
@@ -32,7 +32,7 @@
       <!--<template v-slot:item.link="{item, index}">-->
         <template v-slot:item.link="{item}">
         <QuickActions
-          type="periodo"
+          type="period"
           toEdit
           toDelete
           :index="item.id"

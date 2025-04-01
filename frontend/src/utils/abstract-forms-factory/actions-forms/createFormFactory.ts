@@ -5,32 +5,40 @@ import type { EntityType } from  '@/utils/abstract-forms-factory/form-types/form
 import schema from '@/schemas/formCreateSchemas.json';
 
 //const CreatePeriodo = defineAsyncComponent(() => import("@/components/forms/Create/formCreateGeneral.vue"));
-const CreatePeriodo = defineAsyncComponent(() => import("@/components/forms/Create/Periods/formCreatePeriod.vue"));
-const CreateGrupo = defineAsyncComponent(() => import("@/components/forms/Create/Groups/formCreateGroups.vue"));
-const CreateSemillero = defineAsyncComponent(() => import("@/components/forms/Create/formCreateGeneral.vue"));
+const CreatePeriod = defineAsyncComponent(() => import("@/components/forms/Create/Periods/formCreatePeriod.vue"));
+const CreateGroup = defineAsyncComponent(() => import("@/components/forms/Create/Groups/formCreateGroups.vue"));
+const CreateSeedbed = defineAsyncComponent(() => import("@/components/forms/Create/formCreateGeneral.vue"));
 
 export class CreateFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType) {
       const componentMap = {
-      periodo: {
-        component: CreatePeriodo,
+      period: {
+        component: CreatePeriod,
         props: {
           type: type,
           name: 'periodo',
-          fields: schema.periodo
+          fields: schema.period
         }
       },
-      grupo: {
-        component: CreateGrupo,
+      group: {
+        component: CreateGroup,
         props: {
           type: type,
           name: "grupo",
-          fields: schema.grupo,
+          fields: schema.group,
         }
       },
-      semillero: { component: CreateSemillero, props: { name: "Crear Semillero", fields: ["tema", "lider"], initialData: {} } }
+      user_integra: {
+        component: CreateSeedbed,
+        props: {
+          type: type,
+          name: "usuario",
+          fields: schema.user_integra
+        }
+      },
+      seedbed: { component: CreateSeedbed, props: { name: "Crear Semillero", fields: ["tema", "lider"], initialData: {} } }
     };
 
-    return componentMap[type] || this.getDefaultComponent();
+    return componentMap[type as keyof typeof componentMap] || this.getDefaultComponent();
   }
 }

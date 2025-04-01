@@ -10,16 +10,19 @@
         hide-details
         single-line
       ></VTextField>
-      <VBtn to="agregar-usuarios" class="mx-2" prepend-icon="ri-add-fill"> Agregar</VBtn>
+      <QuickActions
+      toCreate
+      type="user_integra"
+      @itemCreated="handleItemRefresh"
+    />
     </VCardTitle>
     <VDataTable
       :items="items"
       :search="search"
       :headers="headers"
     >
-      <template v-slot:item.isExternalUser="{item}">
-        {{ externalFormatter(item.isExternalUser)}}
-
+      <template v-slot:item.is_external_user="{item}">
+        {{ externalFormatter(item.is_external_user)}}
       </template>
     </VDataTable>
   </VCard>
@@ -34,9 +37,12 @@ import Formatter from "@/utils/formatter";
 
 interface Item {
   id: number,
-  userIdentification: string,
+  full_name: string,
+  identification_number: string,
+  user_code: string,
   email: string,
-  isExternalUser: boolean,
+  is_external_user: boolean,
+  sex: string,
 }
 
 export default defineComponent({
@@ -47,9 +53,12 @@ export default defineComponent({
       search: '',
       headers: [
         {title: 'ID', key: 'id'},
-        {title: 'Número de identificación', key: 'userIdentification'},
+        {title: 'Nombre', key: 'full_name'},
+        {title: 'Número de identificación', key: 'identification_number'},
+        {title: 'Código de usuario', key: 'user_code'},
         {title: 'Correo electrónico', key: 'email'},
-        {title: 'Afiliación', key: 'isExternalUser'}
+        {title: 'Sexo', key: 'sex'},
+        {title: 'Afiliación', key: 'is_external_user'}
       ]
     }
   },
@@ -60,8 +69,11 @@ export default defineComponent({
   },
   methods: {
     async getUsers() {
+      const headers={
+        'API-VERSION': '1',
+      }
       try {
-        this.items = await API.get(API.GET_USERS);
+        this.items = await API.get(API.USERS, headers);
         this.$emit('loaded');
       } catch (error) {
         console.error('Error fetching users:', error);
@@ -69,6 +81,9 @@ export default defineComponent({
     },
     externalFormatter(state: boolean){
       return Formatter.externalFormatter(state)
+    },
+    handleItemRefresh(){
+      this.getUsers();
     }
   },
 })

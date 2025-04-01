@@ -83,18 +83,18 @@ export default defineComponent({
       }
       try {
         let response;
-        if (this.type === 'periodo') {
+        if (this.type === 'period') {
           // Ejemplo hipotético para editar un periodo
           response = await API.post(API.ACADEMIC_PERIODS, {
             ...this.formValues,
           }, headers);
-        } else if (this.type === 'semillero') {
-          response = await API.post(API.POST_RESEARCH_SEEDBED, {
-            ...this.formValues,
-          }, headers);
-        } else if (this.type === 'grupo') {
+        } else if (this.type === 'group') {
           response = await API.post(API.INVESTIGATION_GROUPS, {
             ...this.formValues,
+          }, headers);
+        } else if (this.type === 'user_integra') {
+          response = await API.post(API.USERS_INTEGRA, {
+           ...this.formValues,
           }, headers);
         }
         if (!response.error) {
