@@ -33,4 +33,6 @@ export const components = {
   LAYOUT_BLANK: () => import('@/layouts/blank.vue'),
   LOGIN_INDEX: () => import('@/views/login/index.vue'),
   LIST_GROUPS: () => import('@/views/investigation-groups/listGroups.vue'),
+  ROLES_INDEX: () => import('@/views/roles/index.vue'),
+  LIST_ROLES: () => import('@/views/roles/listRoles.vue'),
 }

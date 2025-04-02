@@ -167,6 +167,18 @@ export const routes = [
         ],
       },
       {
+        name: 'roles',
+        path: P.ROLES_PATH,
+        redirect: P.ROLES_PATH + '/' + P.ROLES_LISTAR,
+        component: components.ROLES_INDEX,
+        children: [
+          {
+            path: P.ROLES_LISTAR,
+            component: components.LIST_ROLES,
+          },
+        ]
+      },
+      {
         name: 'funcionarios',
         path: P.FUNCIONARIOS_PATH,
         component: components.FUNCTIONARY_INDEX,

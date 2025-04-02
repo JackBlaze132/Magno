@@ -1,6 +1,6 @@
 <template>
   <VCard class="pa-5 ma-5" max-width="600">
-    <VCardTitle>Agregar {{ type }}</VCardTitle>
+    <VCardTitle>Agregar {{ name }}</VCardTitle>
     <VDivider/>
     <VCardText>
       <VForm @submit.prevent="CreateItem">

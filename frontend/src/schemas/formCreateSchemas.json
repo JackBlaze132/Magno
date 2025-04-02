@@ -26,5 +26,10 @@
     "user_integra":[
         { "key": "identification", "label": "Numero de identificaion", "type": "text" },
         { "key": "type", "label": "Tipo", "type": "text" }
+    ],
+    "user_external": [],
+    "role":[
+        { "key": "name", "label": "Nombre", "type": "text" },
+        { "key": "description", "label": "Descripcion", "type": "text-area" }
     ]
   }

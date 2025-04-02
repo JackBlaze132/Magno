@@ -39,10 +39,16 @@
           </v-list-item>
           <v-divider class="px-4 my-4"></v-divider>
           <v-list-item
-            prepend-icon="ri-user-settings-line"
+            prepend-icon="ri-user-line"
             title="Usuarios"
             value="usuarios"
             to="/usuarios">
+          </v-list-item>
+          <v-list-item
+            prepend-icon="ri-user-settings-line"
+            title="Roles"
+            value="roles"
+            to="/roles">
           </v-list-item>
           <v-list-item
             prepend-icon="ri-briefcase-4-line"

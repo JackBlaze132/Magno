@@ -38,4 +38,6 @@ export const paths = {
   ESTUDIANTE_DETALLES_DINAMICO: ':idNumber/detalles-estudiante',
   ESTUDIANTE_DETALLES_NOMBRE: 'detalles-estudiante',
   GROUPS_PATH: '/grupos',
+  ROLES_PATH: '/roles',
+  ROLES_LISTAR: 'listar-roles',
 }
