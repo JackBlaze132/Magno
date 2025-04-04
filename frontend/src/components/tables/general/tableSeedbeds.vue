@@ -70,8 +70,11 @@ export default defineComponent({
   },
   methods: {
     async getSeedBeds() {
+      const headers={
+       "API-VERSION": "1"
+      }
       try {
-        this.items = await API.get(API.GET_RESEARCH_SEEDBEDS);
+        this.items = await API.get(API.RESEARCH_SEEDBEDS, headers);
         this.$emit('loaded');
       } catch (error) {
         console.error('Error fetching users:', error);

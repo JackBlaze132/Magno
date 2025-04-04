@@ -39,6 +39,11 @@
             hint="Seleccione ak menos 2 líneas de investigación"
             label="Líneas de investigación"
           />
+          <VTextarea v-else-if="field.type === 'textarea'"
+            v-model="formValues[field.key]"
+            :label="field.label"
+            rows="5"
+          />
         </div>
         <VcardItem class="d-flex justify-end">
           <LoadingBtn icon="ri-save-2-line" text="Guardar" :loading="loading" color="primary"/>
@@ -95,6 +100,10 @@ export default defineComponent({
         } else if (this.type === 'user_integra') {
           response = await API.post(API.USERS_INTEGRA, {
            ...this.formValues,
+          }, headers);
+        } else if (this.type === 'role') {
+          response = await API.post(API.ROLES, {
+          ...this.formValues,
           }, headers);
         }
         if (!response.error) {

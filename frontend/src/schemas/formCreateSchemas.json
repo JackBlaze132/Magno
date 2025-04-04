@@ -30,6 +30,6 @@
     "user_external": [],
     "role":[
         { "key": "name", "label": "Nombre", "type": "text" },
-        { "key": "description", "label": "Descripcion", "type": "text-area" }
+        { "key": "description", "label": "Descripción", "type": "textarea" }
     ]
   }

@@ -45,7 +45,7 @@
             to="/usuarios">
           </v-list-item>
           <v-list-item
-            prepend-icon="ri-user-settings-line"
+            prepend-icon="ri-shield-line"
             title="Roles"
             value="roles"
             to="/roles">
