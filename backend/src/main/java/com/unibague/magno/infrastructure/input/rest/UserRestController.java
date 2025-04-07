@@ -37,6 +37,18 @@ public class UserRestController {
         return ResponseEntity.ok(countries);
     }
 
+    @GetMapping(path = "/all-functionaries-registered", headers = "API-VERSION=1")
+    ResponseEntity<List<UserResponse>> getAllFunctionariesRegistered() {
+        List<UserResponse> functionaries = userHandler.findAllFunctionariesRegistered();
+        return ResponseEntity.ok(functionaries);
+    }
+
+    @GetMapping(path = "/all-students-registered", headers = "API-VERSION=1")
+    ResponseEntity<List<UserResponse>> getAllStudentsRegistered() {
+        List<UserResponse> students = userHandler.findAllStudentsRegistered();
+        return ResponseEntity.ok(students);
+    }
+
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest) {
         UserResponse userResponse = userHandler.save(userRequest);

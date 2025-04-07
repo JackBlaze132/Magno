@@ -13,5 +13,7 @@ public interface IUserHandler {
     UserResponse updateById(Long id, UserRequest user);
     void deleteById(Long id);
     List<UserResponse> findAll();
+    List<UserResponse> findAllFunctionariesRegistered();
+    List<UserResponse> findAllStudentsRegistered();
     List<String> findAllCountries();
 }

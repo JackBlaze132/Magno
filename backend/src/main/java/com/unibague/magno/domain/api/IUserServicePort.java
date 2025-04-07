@@ -17,6 +17,11 @@ public interface IUserServicePort {
     List<User> findAll();
     List<User> getUserListByListOfStudentMaps(List<Map<String, String>> cleanData);
     List<String> findAllCountries();
+
+    // These two methods are used to get the list of users registered in this app
+    List<User> findAllFunctionariesRegistered();
+    List<User> findAllStudentsRegistered();
+
     User getUserByIntegraStudent(IntegraStudent integraStudent);
     User findUserByIdentification(List<User> users, String identification);
     User mapFromIntegraFunctionary(IntegraUserRequest userRequest);

@@ -14,6 +14,7 @@ import com.unibague.magno.domain.model.integra.IntegraStudent;
 import com.unibague.magno.domain.spi.IUserPersistencePort;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.unibague.magno.domain.usecase.ResearchSeedbedStudentProfileUseCase.IDENTIFICATION;
 
@@ -95,6 +96,37 @@ public class UserUseCase implements IUserServicePort {
                 .map(countryLocale -> countryLocale.getDisplayCountry(spanishLocale))
                 .sorted()
                 .toList();
+    }
+
+    @Override
+    public List<User> findAllFunctionariesRegistered() {
+
+        Set<String> functionaryIdentifications = getFunctionaryIdentifications();
+
+        return findAll()
+                .stream()
+                .filter(user -> functionaryIdentifications.contains(user.getIdentificationNumber()))
+                .filter(user -> !user.isExternalUser())
+                .toList();
+    }
+
+    @Override
+    public List<User> findAllStudentsRegistered() {
+
+        Set<String> functionaryIdentifications = getFunctionaryIdentifications();
+
+        return findAll()
+                .stream()
+                .filter(user -> !functionaryIdentifications.contains(user.getIdentificationNumber()))
+                .filter(user -> !user.isExternalUser())
+                .toList();
+    }
+
+    private Set<String> getFunctionaryIdentifications() {
+        return integraServicePort.getAllFunctionaries()
+                .stream()
+                .map(IntegraFunctionary::getIdentification)
+                .collect(Collectors.toSet());
     }
 
     @Override
