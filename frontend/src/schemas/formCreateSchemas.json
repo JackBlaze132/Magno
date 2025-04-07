@@ -23,6 +23,14 @@
             { "label": "Linea 5", "value": "linea5" }
         ]  }
     ],
+    "seedbed":[
+        { "key": "name", "label": "Nombre", "type": "text" },
+        { "key": "mission", "label": "Misión", "type": "textarea" },
+        { "key": "vision", "label": "Visión", "type": "textarea" },
+        { "key": "research_proposal_description", "label": "Descripcion del proposito", "type": "textarea" },
+        { "key": "creation_date", "label": "Fecha de creación", "type": "date" },
+        { "key": "line_of_research", "label": "Lineas de investigación", "type": "text" }
+    ],
     "user_integra":[
         { "key": "identification", "label": "Numero de identificaion", "type": "text" },
         { "key": "type", "label": "Tipo", "type": "text" }

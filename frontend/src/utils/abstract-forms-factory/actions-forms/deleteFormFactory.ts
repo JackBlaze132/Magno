@@ -3,9 +3,9 @@ import { AbstractFormFactory } from "../abstractFormsFactory";
 import { defineAsyncComponent } from "vue";
 import type { EntityType } from  '@/utils/abstract-forms-factory/form-types/formsTypes';
 
-const DeletePeriod = defineAsyncComponent(() => import("@/components/forms/Delete/formDeleteGeneral.vue"));
-const DeleteGroup = defineAsyncComponent(() => import("@/components/forms/Delete/formDeleteGeneral.vue"));
-const CreateSeedbed = defineAsyncComponent(() => import("@/components/forms/Create/formCreateGeneral.vue"));
+const DeletePeriod = defineAsyncComponent(() => import("@/components/forms/delete/formDeleteGeneral.vue"));
+const DeleteGroup = defineAsyncComponent(() => import("@/components/forms/delete/formDeleteGeneral.vue"));
+const CreateSeedbed = defineAsyncComponent(() => import("@/components/forms/create/formCreateGeneral.vue"));
 
 export class DeleteFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType, extraProps?: Record<any, any>) {

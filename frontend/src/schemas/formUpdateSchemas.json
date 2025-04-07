@@ -9,5 +9,10 @@
         { "key": "lines_of_research", "label": "Lineas de investigación", "type": "multiple-select", "options": [
             
         ] }
+    ],
+    "seedbed": [
+        { "key": "name", "label": "Nombre", "type": "text" },
+        { "key": "line_of_research", "label": "Linea de investigación", "type": "multiple-select", "options": [
+        ] }
     ]
 }

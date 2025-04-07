@@ -4,7 +4,7 @@ import { AbstractFormFactory } from "./abstractFormsFactory";
 import { CreateFormFactory } from "./actions-forms/createFormFactory";
 import { UpdateFormFactory } from "./actions-forms/updateFormFactory";
 import { DeleteFormFactory } from "./actions-forms/deleteFormFactory";
-// Importar otras fábricas (Edit, View, Delete) cuando estén listas
+// Importar otras fábricas (Edit, View, delete) cuando estén listas
 
 export class FormFactory {
   static getFactory(action: ActionType): AbstractFormFactory {

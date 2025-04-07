@@ -43,6 +43,7 @@
             v-model="formValues[field.key]"
             :label="field.label"
             rows="5"
+            class="mb-5"
           />
         </div>
         <VcardItem class="d-flex justify-end">
@@ -96,6 +97,10 @@ export default defineComponent({
         } else if (this.type === 'group') {
           response = await API.post(API.INVESTIGATION_GROUPS, {
             ...this.formValues,
+          }, headers);
+        } else if (this.type === 'seedbed') {
+          response = await API.post(API.RESEARCH_SEEDBEDS, {
+          ...this.formValues,
           }, headers);
         } else if (this.type === 'user_integra') {
           response = await API.post(API.USERS_INTEGRA, {
