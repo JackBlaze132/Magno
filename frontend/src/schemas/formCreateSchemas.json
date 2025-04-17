@@ -15,13 +15,7 @@
     ],
     "group": [
       { "key": "name", "label": "Nombre", "type": "text" },
-      { "key": "lines_of_research", "label": "Lineas de investigación", "type": "multiple-select", "options": [
-            { "label": "Agricultura, Silvicultura y Pesca", "value": "AGRICULTURA_SILVICULTURA_Y_PESCA" },
-            { "label": "Arte", "value": "ARTE" },
-            { "label": "Biotecnologia Agricola", "value": "BIOTECNOLOGIA_AGRICOLA" },
-            { "label": "ngenierias Electrica, Electronica e Informatica", "value": "INGENIERIAS_ELECTRICA_ELECTRONICA_E_INFORMATICA" },
-            { "label": "Linea 5", "value": "linea5" }
-        ]  }
+      { "key": "lines_of_research", "label": "Lineas de investigación", "type": "multiple-select", "options": [] }
     ],
     "seedbed":[
         { "key": "name", "label": "Nombre", "type": "text" },
@@ -29,7 +23,7 @@
         { "key": "vision", "label": "Visión", "type": "textarea" },
         { "key": "research_proposal_description", "label": "Descripcion del proposito", "type": "textarea" },
         { "key": "creation_date", "label": "Fecha de creación", "type": "date" },
-        { "key": "line_of_research", "label": "Lineas de investigación", "type": "text" }
+        { "key": "line_of_research", "label": "Linea de investigación", "type": "select", "options": [] }
     ],
     "user_integra":[
         { "key": "identification", "label": "Numero de identificaion", "type": "text" },

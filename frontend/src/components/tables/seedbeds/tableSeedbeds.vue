@@ -21,12 +21,10 @@
       :search="search"
       :headers="headers"
     >
-    <template v-slot:item.line_of_research>
-      <VChipGroup>
+    <template v-slot:item.line_of_research="{item}">
         <VChip>
-          {{line}}
+          {{item.line_of_research}}
         </VChip>
-      </VChipGroup>
     </template>
 
     <template v-slot:item.link="{item}">
@@ -55,6 +53,10 @@ import Formatter from "@/utils/formatter";
 interface Item {
   id: number,
   name: string,
+  mission: string,
+  vision: string,
+  research_proposal_description:string
+  creation_date: date,
   line_of_research: string
 }
 
@@ -63,23 +65,23 @@ export default defineComponent({
   data() {
     return {
       items: [] as Item[],
-      line: '',
+      line: [] as string[],
       search: '',
       headers: [
         {title: 'ID', key: 'id'},
         {title: 'Nombre', key: 'name'},
-        {title: 'Lineas de investigación', key: 'line_of_research'},
+        {title: 'Linea de investigación', key: 'line_of_research'},
         { key: 'link', sortable: false},
       ]
     }
   },
   // ...
   created() {
-    this.getUsers();
+    this.getSeedbeds();
     //this.externalFormatter();
   },
   methods: {
-    async getUsers() {
+    async getSeedbeds() {
       const headers={
         'API-VERSION': '1',
       }
@@ -88,10 +90,10 @@ export default defineComponent({
 
         for (const seedbed of seedbeds) {
         const lineOfResearch = await API.get(
-          API.LINES_OF_RESEARCH_BY_RESEARCH_SEEDVBED + seedbed.id,
+          API.LINES_OF_RESEARCH_BY_RESEARCH_SEEDBED + seedbed.id,
           headers
         )
-        this.line = lineOfResearch;
+        seedbed.line_of_research = lineOfResearch;
         }
         this.items = seedbeds;
         this.$emit('loaded');
@@ -104,11 +106,15 @@ export default defineComponent({
       return Formatter.externalFormatter(state)
     },
     handleItemRefresh(){
-      this.getUsers();
+      this.getSeedbeds();
     },
     setInitialData(item: any) {
       return {
         name: item.name,
+        mission: item.mission,
+        vision: item.vision,
+        research_proposal_description: item.research_proposal_description,
+        creation_date: item.creation_date,
         line_of_research: item.line_of_research,
       }
     }

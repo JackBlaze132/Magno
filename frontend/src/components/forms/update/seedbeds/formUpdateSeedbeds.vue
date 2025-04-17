@@ -66,7 +66,7 @@ export default defineComponent({
         }))
 
         // Locate the field that needs these options
-        const linesField = this.fields.find(f => f.key === 'lines_of_research')
+        const linesField = this.fields.find(f => f.key === 'line_of_research')
         if (linesField) {
           linesField.options = linesField.options || []
           linesField.options = [...(linesField.options as { label: string; value: string; }[]), ...transformedOptions.map(opt => ({ label: String(opt.label), value: opt.value }))]

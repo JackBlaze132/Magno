@@ -1,6 +1,6 @@
 <template>
   <VCard class="pa-5 ma-5" max-width="600">
-    <VCardTitle>Agregar {{ name }}</VCardTitle>
+    <VCardTitle>Agregar {{ label }}</VCardTitle>
     <VDivider/>
     <VCardText>
       <VForm @submit.prevent="CreateItem">
@@ -30,14 +30,22 @@
               :value="option.value"
             />
           </VRadioGroup>
+          <VSelect v-else-if="field.type === 'select'"
+            v-model="formValues[field.key]"
+            :items="field.options"
+            item-title="label"
+            item-value="value"
+            hint="Seleccione la línea de investigación"
+            :label="field.label"
+          />
           <VSelect v-else-if="field.type === 'multiple-select'"
             multiple
             v-model="formValues[field.key]"
             :items="field.options"
             item-title="label"
             item-value="value"
-            hint="Seleccione ak menos 2 líneas de investigación"
-            label="Líneas de investigación"
+            hint="Seleccione al menos 2 líneas de investigación"
+            :label="field.label"
           />
           <VTextarea v-else-if="field.type === 'textarea'"
             v-model="formValues[field.key]"
@@ -65,7 +73,7 @@ export default defineComponent({
     type: {
       type: String,
     },
-    name: {
+    label: {
       type: String,
     },
     fields: {

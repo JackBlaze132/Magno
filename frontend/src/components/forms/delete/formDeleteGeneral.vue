@@ -1,7 +1,7 @@
 <template>
   <VCard class="pa-5 ma-5" color="surface" max-width="600">
     <VCardTitle>
-      Eliminar {{type}}
+      Eliminar {{label}}
     </VCardTitle>
     <VDivider/>
     <VCardText>
@@ -32,6 +32,9 @@ export default defineComponent({
     index: {
       type: Number,
     },
+    label:{
+      type: String,
+    },
   },
   data() {
     return {
@@ -48,7 +51,7 @@ export default defineComponent({
       }
 
       const endpoint =
-      this.type === 'seedbeds' ? API.RESEARCH_SEEDBEDS :
+      this.type === 'seedbed' ? API.RESEARCH_SEEDBEDS :
       this.type === 'group' ? API.INVESTIGATION_GROUPS :
       this.type === 'period' ? API.ACADEMIC_PERIODS : '';
 

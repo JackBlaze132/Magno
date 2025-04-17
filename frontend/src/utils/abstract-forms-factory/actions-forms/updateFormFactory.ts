@@ -15,6 +15,7 @@ export class UpdateFormFactory extends AbstractFormFactory {
         component: UpdatePeriod,
         props: {
           type: type,
+          label: "periodo",
           fields: schema.period,
           index: extraProps?.index,
           initialData: extraProps?.initialData,
@@ -24,6 +25,7 @@ export class UpdateFormFactory extends AbstractFormFactory {
         component: UpdateGroup,
         props: {
           type: type,
+          label: "grupo",
           fields: schema.group,
           index: extraProps?.index,
           initialData: extraProps?.initialData,
@@ -33,7 +35,9 @@ export class UpdateFormFactory extends AbstractFormFactory {
         component: UpdateSeedbed,
         props: {
           type: type,
+          label: "semillero",
           fields: schema.seedbed,
+          index: extraProps?.index,
           initialData: extraProps?.initialData,
         }
       }

@@ -18,7 +18,7 @@ export class CreateFormFactory extends AbstractFormFactory {
         component: CreatePeriod,
         props: {
           type: type,
-          name: 'periodo',
+          label: 'periodo',
           fields: schema.period
         }
       },
@@ -26,7 +26,7 @@ export class CreateFormFactory extends AbstractFormFactory {
         component: CreateGroup,
         props: {
           type: type,
-          name: "grupo",
+          label: "grupo",
           fields: schema.group,
         }
       },
@@ -34,7 +34,7 @@ export class CreateFormFactory extends AbstractFormFactory {
         component: CreateUser,
         props: {
           type: type,
-          name: "usuario",
+          label: "usuario",
           fields: schema.user_integra
         }
       },
@@ -42,7 +42,7 @@ export class CreateFormFactory extends AbstractFormFactory {
         component: CreateRole,
         props: {
           type: type,
-          name: "rol",
+          label: "rol",
           fields: schema.role
         }
       },
@@ -50,7 +50,7 @@ export class CreateFormFactory extends AbstractFormFactory {
         component: CreateSeedbed,
         props: {
           type: type,
-          name: "rol",
+          label: "semillero",
           fields: schema.seedbed
         }
       }

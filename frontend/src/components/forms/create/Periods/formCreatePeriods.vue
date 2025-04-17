@@ -5,7 +5,7 @@
   <formCreateGeneral
     :type="type"
     :fields="fields"
-    :name="name"
+    :label="label"
     @itemCreated="handleItemCreated"
   />
 </template>

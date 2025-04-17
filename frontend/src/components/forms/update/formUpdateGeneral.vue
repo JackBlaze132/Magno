@@ -1,6 +1,6 @@
 <template>
   <VCard class="pa-5 ma-5" max-width="600">
-    <VCardTitle>Editar {{ type }}</VCardTitle>
+    <VCardTitle>Editar {{ label }}</VCardTitle>
     <VDivider/>
     <VCardText>
       <VForm @submit.prevent="editItem">
@@ -18,14 +18,40 @@
             prepend-icon=""
             prepend-inner-icon="ri-calendar-2-line"
           />
+          <VRadioGroup v-else-if="field.type === 'radio-group'"
+            v-model="formValues[field.key]"
+            class="d-flex"
+            inline
+          >
+            <VRadio
+             v-for="(option,index) in field.options"
+             :key="index"
+              :label="option.label"
+              :value="option.value"
+            />
+          </VRadioGroup>
+          <VSelect v-else-if="field.type === 'select'"
+            v-model="formValues[field.key]"
+            :items="field.options"
+            item-title="label"
+            item-value="value"
+            hint="Seleccione la línea de investigación"
+            :label="field.label"
+          />
           <VSelect v-else-if="field.type === 'multiple-select'"
             multiple
             v-model="formValues[field.key]"
             :items="field.options"
             item-title="label"
             item-value="value"
-            hint="Seleccione una o varias líneas de investigación"
-            label="Líneas de investigación"
+            hint="Seleccione al menos 2 líneas de investigación"
+            :label="field.label"
+          />
+          <VTextarea v-else-if="field.type === 'textarea'"
+            v-model="formValues[field.key]"
+            :label="field.label"
+            rows="5"
+            class="mb-5"
           />
         </div>
         <VcardItem class="d-flex justify-end">
@@ -50,6 +76,9 @@ export default defineComponent({
     },
     index: {
       type: Number,
+    },
+    label: {
+      type: String,
     },
     fields: {
       type: Array as () => Array<{ key: string; label: string; type?: string, options?: Array<{ label: string; value: string}> }>,

@@ -6,13 +6,14 @@
     ],
     "group": [
         { "key": "name", "label": "Nombre", "type": "text" },
-        { "key": "lines_of_research", "label": "Lineas de investigación", "type": "multiple-select", "options": [
-            
-        ] }
+        { "key": "lines_of_research", "label": "Lineas de investigación", "type": "multiple-select", "options": [] }
     ],
     "seedbed": [
         { "key": "name", "label": "Nombre", "type": "text" },
-        { "key": "line_of_research", "label": "Linea de investigación", "type": "multiple-select", "options": [
-        ] }
+        { "key": "mission", "label": "Misión", "type": "textarea" },
+        { "key": "vision", "label": "Visión", "type": "textarea" },
+        { "key": "research_proposal_description", "label": "Descripcion del proposito", "type": "textarea" },
+        { "key": "creation_date", "label": "Fecha de creación", "type": "date" },
+        { "key": "line_of_research", "label": "Linea de investigación", "type": "select", "options": [] }
     ]
 }
