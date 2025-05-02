@@ -28,7 +28,7 @@ class API{
   public readonly EXTERNAL_USER_PROFILES:string='external-user-profiles/';
 
   //----[FUNCTIONARY PROFILES]----
-  public readonly FUNCTIONARY_PROFILES:string='functionary-profiles/';
+  public readonly FUNCTIONARY_PROFILES:string='functionaries-profiles/';
 
   //----[INVESTIGATION GLOBAL GROUPS]----
   public readonly INVESTIGATION_GROUPS:string='investigation-groups/';
@@ -57,6 +57,8 @@ class API{
   //----[USERS]----
   public readonly USERS:string='users/';
   public readonly USERS_INTEGRA:string='users/integra-user';
+  public readonly USERS_FUNCTIONARY:string='users/all-functionaries-registered';
+  public readonly USERS_STUDENTS:string='users/all-students-registered';
 
   //----[COUNTRIES]----
   public readonly COUNTRIES:string='users/all-countries';

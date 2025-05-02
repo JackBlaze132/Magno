@@ -10,23 +10,24 @@
         hide-details
         single-line
       ></VTextField>
-
+      <QuickActions
+      toCreate
+      type="user_integra"
+      @itemCreated="handleItemRefresh"
+    />
     </VCardTitle>
     <VDataTable
       :items="items"
       :search="search"
       :headers="headers"
     >
-      <template v-slot:item.userStudent.isExternalUser="{item}">
-        {{ externalFormatter(item.userStudent.isExternalUser)}}
-
+      <template v-slot:item.is_external_user="{item}">
+        {{ externalFormatter(item.is_external_user)}}
       </template>
-
       <template v-slot:item.link="{item}">
         <QuickActions
-          :toView="item.identificationNumber + '/detalles-estudiante'"
-          ></QuickActions>
-
+          :toView="item.id + '/grupos-investigacion'"
+        />
       </template>
     </VDataTable>
   </VCard>
@@ -41,9 +42,12 @@ import Formatter from "@/utils/formatter";
 
 interface Item {
   id: number,
-  userIdentification: string,
+  full_name: string,
+  identification_number: string,
+  user_code: string,
   email: string,
-  isExternalUser: boolean,
+  is_external_user: boolean,
+  sex: string,
 }
 
 export default defineComponent({
@@ -54,35 +58,43 @@ export default defineComponent({
       search: '',
       headers: [
         {title: 'ID', key: 'id'},
-        {title: 'Nombre', key: 'name'},
-        {title: 'Código', key: 'userCode'},
-        {title: 'Identificación', key: 'identificationNumber'},
-        {title: 'Semestre', key: 'semester'},
-        {title: 'Teléfono', key: 'phoneNumber'},
-        {title: 'Correo', key: 'email'},
+        {title: 'Nombre', key: 'full_name'},
+        {title: 'Número de identificación', key: 'identification_number'},
+        {title: 'Código de usuario', key: 'user_code'},
+        {title: 'Correo electrónico', key: 'email'},
         {title: 'Sexo', key: 'sex'},
-        { key: 'link', sortable: false},
-      ],
+        {title: 'Afiliación', key: 'is_external_user'},
+        {key: 'link', sortable: false},
+
+      ]
     }
   },
   // ...
   created() {
     this.getUsers();
+    //this.externalFormatter();
   },
   methods: {
     async getUsers() {
+      const headers={
+        'API-VERSION': '1',
+      }
       try {
-        this.items = await API.get(API.GET_STUDENT_PROFILES);
+        this.items = await API.get(API.USERS_STUDENTS, headers);
         this.$emit('loaded');
       } catch (error) {
         console.error('Error fetching users:', error);
       }
     },
-    externalFormatter(state:boolean){
+    externalFormatter(state: boolean){
       return Formatter.externalFormatter(state)
+    },
+    handleItemRefresh(){
+      this.getUsers();
     }
   },
 })
+
 
 </script>
 

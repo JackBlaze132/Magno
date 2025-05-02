@@ -30,7 +30,7 @@
         </VChip>
       </template>
       <!--<template v-slot:item.link="{item, index}">-->
-        <template v-slot:item.link="{item}">
+      <template v-slot:item.link="{item}">
         <QuickActions
           type="period"
           toEdit
