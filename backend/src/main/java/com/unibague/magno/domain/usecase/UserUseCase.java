@@ -122,6 +122,11 @@ public class UserUseCase implements IUserServicePort {
                 .toList();
     }
 
+    @Override
+    public List<User> findAllExternalUsersRegistered() {
+        return userPersistencePort.findAllExternalUsers();
+    }
+
     private Set<String> getFunctionaryIdentifications() {
         return integraServicePort.getAllFunctionaries()
                 .stream()

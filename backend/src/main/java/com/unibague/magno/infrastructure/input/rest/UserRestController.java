@@ -49,6 +49,12 @@ public class UserRestController {
         return ResponseEntity.ok(students);
     }
 
+    @GetMapping(path = "/all-external-users-registered", headers = "API-VERSION=1")
+    ResponseEntity<List<UserResponse>> getAllExternalUsersRegistered() {
+        List<UserResponse> externalUsers = userHandler.findAllExternalUsersRegistered();
+        return ResponseEntity.ok(externalUsers);
+    }
+
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest) {
         UserResponse userResponse = userHandler.save(userRequest);

@@ -12,4 +12,5 @@ public interface IUserPersistencePort {
     Optional<User> findByUserIdentification(String identification);
     void deleteById(Long id);
     List<User> findAll();
+    List<User> findAllExternalUsers();
 }

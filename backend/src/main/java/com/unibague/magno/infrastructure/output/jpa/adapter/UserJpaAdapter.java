@@ -53,4 +53,12 @@ public class UserJpaAdapter implements IUserPersistencePort {
     public List<User> findAll() {
         return userEntityMapper.toUserList(userRepository.findAll());
     }
+
+    @Override
+    public List<User> findAllExternalUsers() {
+        return userRepository.findAllByExternalUserIsTrue()
+                .stream()
+                .map(userEntityMapper::toUser)
+                .toList();
+    }
 }

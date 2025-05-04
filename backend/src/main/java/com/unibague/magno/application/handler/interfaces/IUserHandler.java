@@ -15,5 +15,6 @@ public interface IUserHandler {
     List<UserResponse> findAll();
     List<UserResponse> findAllFunctionariesRegistered();
     List<UserResponse> findAllStudentsRegistered();
+    List<UserResponse> findAllExternalUsersRegistered();
     List<String> findAllCountries();
 }

@@ -69,6 +69,14 @@ public class UserHandler implements IUserHandler {
     }
 
     @Override
+    public List<UserResponse> findAllExternalUsersRegistered() {
+        return userServicePort.findAllExternalUsersRegistered()
+                .stream()
+                .map(userResponseMapper::toResponse)
+                .toList();
+    }
+
+    @Override
     public List<String> findAllCountries() {
         return userServicePort.findAllCountries();
     }
