@@ -38,6 +38,7 @@ declare module 'vue' {
     TableCoordinator: typeof import('./src/components/tables/lounge/tableCoordinator.vue')['default']
     TableEmployees: typeof import('./src/components/tables/general/tableEmployees.vue')['default']
     TableExternal: typeof import('./src/components/tables/lounge/tableExternal.vue')['default']
+    TableExternals: typeof import('./src/components/tables/users/external/tableExternals.vue')['default']
     TableFunctionaries: typeof import('./src/components/tables/users/functionaries/tableFunctionaries.vue')['default']
     TableGroups: typeof import('./src/components/tables/groups/tableGroups.vue')['default']
     TableGroupsByPeriod: typeof import('./src/components/tables/dynamic/tableGroupsByPeriod.vue')['default']

@@ -35,6 +35,8 @@ export const paths = {
   FUNCIONARIOS_AGREGAR: 'agregar-funcionarios',
   ESTUDIANTES_PATH: '/estudiantes',
   ESTUDIANTES_LISTAR: 'listar-estudiantes',
+  EXTERNALS_PATH: '/aliados-externos',
+  EXTERNALS_LIST: 'listar-aliados-externos',
   ESTUDIANTE_DETALLES_DINAMICO: ':idNumber/detalles-estudiante',
   ESTUDIANTE_DETALLES_NOMBRE: 'detalles-estudiante',
   GROUPS_PATH: '/grupos',

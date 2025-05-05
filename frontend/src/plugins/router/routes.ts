@@ -217,6 +217,20 @@ export const routes = [
           },
         ],
       },
+      {
+        path: P.EXTERNALS_PATH,
+        component: components.EXTERNALS_INDEX,
+        redirect: (to: RouteLocationNormalized) => {
+          return { name: 'listar-aliados-externos' }
+        },
+        children: [
+          {
+            path: P.EXTERNALS_LIST,
+            name: 'listar-aliados-externos',
+            component: components.EXTERNALS_LIST,
+          },
+        ],
+      }
     ],
   },
   {

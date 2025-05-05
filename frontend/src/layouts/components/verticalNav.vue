@@ -66,7 +66,7 @@
             prepend-icon="ri-external-link-line"
             title="Aliados externos"
             value="aliados"
-            to="/aliados">
+            to="/aliados-externos">
           </v-list-item>
         </v-list>
         <template v-slot:append>
