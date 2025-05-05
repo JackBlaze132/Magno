@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface IUserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByIdentificationNumber(String identificationNumber);
-    List<UserEntity> findAllByExternalUserIsTrue();
+    List<UserEntity> findAllByIsExternalUserTrue();
 }
