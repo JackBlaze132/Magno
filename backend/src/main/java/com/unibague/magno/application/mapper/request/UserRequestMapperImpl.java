@@ -30,7 +30,7 @@ public class UserRequestMapperImpl implements UserRequestMapper {
         user.setIdentificationNumber( userRequest.getIdentificationNumber() );
         user.setEmail( userRequest.getEmail() );
         user.setUserCode( userRequest.getUserCode() );
-        user.setExternalUser( userRequest.isExternalUser() );
+        user.setExternalUser( userRequest.getIsExternalUser() );
         user.setSex( userRequest.getSex() );
 
         return user;
