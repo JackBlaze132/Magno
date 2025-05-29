@@ -39,4 +39,6 @@ export const components = {
   LIST_GROUPS: () => import('@/views/investigation-groups/listGroups.vue'),
   ROLES_INDEX: () => import('@/views/roles/index.vue'),
   LIST_ROLES: () => import('@/views/roles/listRoles.vue'),
+  FUNCTIONARY_PROFILES_INDEX: () => import('@/views/functionaries/functionaryProfiles/index.vue'),
+  FUNCTIONARY_PROFILES_LIST: () => import('@/views/functionaries/functionaryProfiles/listFunctionaryProfiles.vue'),
 }

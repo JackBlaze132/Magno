@@ -42,4 +42,6 @@ export const paths = {
   GROUPS_PATH: '/grupos',
   ROLES_PATH: '/roles',
   ROLES_LISTAR: 'listar-roles',
+  PROFILES_PATH: '/perfiles',
+  PROFILES_LIST: 'listar-perfiles',
 }

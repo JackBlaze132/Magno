@@ -196,6 +196,21 @@ export const routes = [
             name: 'agregar-funcionarios',
             component: components.ADD_FUNCTIONARY,
           },
+          {
+            path: ':idFunctionary' + P.PROFILES_PATH,
+            name: 'perfiles-funcionario',
+            component: components.FUNCTIONARY_PROFILES_INDEX,
+            redirect: (to: RouteLocationNormalized) => {
+              return { name: 'listar-perfiles-funcionario', params: { idFunctionary: to.params.idFunctionary } }
+            },
+            children: [
+              {
+                name: 'listar-perfiles-funcionario',
+                path: P.PROFILES_LIST,
+                component: components.FUNCTIONARY_PROFILES_LIST,
+              },
+            ],
+          }
         ],
       },
       {

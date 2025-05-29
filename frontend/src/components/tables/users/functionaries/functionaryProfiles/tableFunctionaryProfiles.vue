@@ -26,7 +26,7 @@
       </template>
       <template v-slot:item.link="{item}">
         <QuickActions
-          :toView="item.id + '/perfiles'"
+          :toView="item.id + 'perfiles-funcionario'"
         />
       </template>
     </VDataTable>
@@ -42,12 +42,18 @@ import Formatter from "@/utils/formatter";
 
 interface Item {
   id: number,
-  full_name: string,
-  identification_number: string,
-  user_code: string,
-  email: string,
-  is_external_user: boolean,
-  sex: string,
+  user: {
+    full_name: string,
+    identification_number: string,
+    user_code: string,
+    email: string,
+  },
+  academic_period: {
+    name: string,
+  },
+  dependency: {
+    name: string,
+  },
 }
 
 export default defineComponent({
@@ -58,14 +64,12 @@ export default defineComponent({
       search: '',
       headers: [
         {title: 'ID', key: 'id'},
-        {title: 'Nombre', key: 'full_name'},
-        {title: 'Número de identificación', key: 'identification_number'},
-        {title: 'Código de usuario', key: 'user_code'},
-        {title: 'Correo electrónico', key: 'email'},
-        {title: 'Sexo', key: 'sex'},
-        {title: 'Afiliación', key: 'is_external_user'},
-        {key: 'link', sortable: false},
-
+        {title: 'Nombre', key: 'user.full_name'},
+        {title: 'Número de identificación', key: 'user.identification_number'},
+        {title: 'Código de usuario', key: 'user.user_code'},
+        {title: 'Correo electrónico', key: 'user.email'},
+        {title: 'Período académico', key: 'academic_period.name'},
+        {title: 'Dependencia', key: 'dependency.name'},
       ]
     }
   },
@@ -80,7 +84,7 @@ export default defineComponent({
         'API-VERSION': '1',
       }
       try {
-        this.items = await API.get(API.USERS_FUNCTIONARY, headers);
+        this.items = await API.get(API.FUNCTIONARY_PROFILES + this.$route.params.idFunctionary, headers);
         this.$emit('loaded');
       } catch (error) {
         console.error('Error fetching users:', error);

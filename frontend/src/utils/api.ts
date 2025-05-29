@@ -7,7 +7,6 @@ class API{
 
   public readonly HEADER_TEST: string='hello/header';
 
-
   // ya se encuentra registrada en el archivo vite.config.mts
   //----[ENDPOINTS]----
   //----[ENUMS]----
@@ -28,7 +27,7 @@ class API{
   public readonly EXTERNAL_USER_PROFILES:string='external-user-profiles/';
 
   //----[FUNCTIONARY PROFILES]----
-  public readonly FUNCTIONARY_PROFILES:string='functionaries-profiles/';
+  public readonly FUNCTIONARY_PROFILES:string='functionary-profiles/';
 
   //----[INVESTIGATION GLOBAL GROUPS]----
   public readonly INVESTIGATION_GROUPS:string='investigation-groups/';

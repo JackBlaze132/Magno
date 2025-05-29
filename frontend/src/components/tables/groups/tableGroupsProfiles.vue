@@ -11,27 +11,35 @@
         hide-details
         single-line
       ></VTextField>
-      <VBtn to="agregar-grupo" class="mx-2" prepend-icon="ri-add-fill"> Agregar</VBtn>
+      <QuickActions
+      toCreate
+      type="group"
+      @itemCreated="handleItemRefresh"
+    />
     </VCardTitle>
     <VDataTable
       :items="items"
       :search="search"
       :headers="headers"
     >
-      <!--<template v-slot:item.isActive="{item}">
-        <VChip :color="item.isActive ? 'green' : ''" >
-          {{ periodActivityFormatter(item.isActive)}}
-        </VChip>
-      </template>-->
+      <template v-slot:item.lines_of_research="{item}">
+        <VChipGroup>
+          <VChip v-for="(line, index) in lines[item.id]" :key="index">
+            {{line}}
+          </VChip>
+        </VChipGroup>
+      </template>
 
       <template v-slot:item.link="{item}">
         <QuickActions
-          :toView="item.id + '/semilleros'"
-          :toEdit="item.id + '/editar-grupo'"
-          :toDelete="item.id"
-          :deleteItem="item.name"
-          deleteType="grupo"
-          @itemDeleted="handleItemDeleted"
+          toEdit
+          toDelete
+          type="group"
+          :name="item.name"
+          :index="item.id"
+          :initialData="setInitialData(item)"
+          @itemDeleted="handleItemRefresh"
+          @itemEdited="handleItemRefresh"
           ></QuickActions>
       </template>
     </VDataTable>
@@ -49,22 +57,22 @@ import API from "@/utils/api";
 interface Item {
   id: number,
   name: string,
-  coordninator: {
-    name: string
-  }
+  lines_of_research: Array<string>,
 }
 
 export default defineComponent({
 
+  emits: ['loaded'],
   data() {
     return {
       items: [] as Item[],
+      lines: [] as Array<string>,
       search: '',
       links: '',
       headers: [
         {title: 'ID', key: 'id'},
         {title: 'Nombre', key: 'name'},
-        {title: 'Director', key: 'coordinator.name'},
+        {title: 'Lineas de investigaión', key: 'lines_of_research'},
         { key: 'link', sortable: false},
       ],
     }
@@ -72,22 +80,39 @@ export default defineComponent({
   // ...
   created() {
     this.getGroups();
+
   },
   methods: {
     async getGroups() {
-      const headers = {
-        'API-VERSION': '1 '
+      const apiHeaders = {
+        'API-VERSION': '1',
       }
       try {
-        this.items = await API.get(API.INVESTIGATION_GROUPS_PROFILES_BY_ACADEMIC_PERIOD + this.$route.params.idPeriodo, headers);
+        const groups = await API.get(API.INVESTIGATION_GROUPS, apiHeaders);
+
+        for (const group of groups) {
+        const linesOfResearch = await API.get(
+          API.LINES_OF_RESEARCH_BY_INVESTIGATION_GROUP + group.id,
+          apiHeaders
+        )
+        this.lines[group.id] = linesOfResearch;
+        }
+        this.items = groups;
         this.$emit('loaded');
+        //return this.lines;
       } catch (error) {
         console.error('Error fetching users:', error);
       }
     },
-    handleItemDeleted(indes:number){
-      this.items.splice(indes, 1);
+
+    handleItemRefresh() {
       this.getGroups();
+    },
+    setInitialData(item: any) {
+      return {
+        name: item.name,
+        lines_of_research: item.lines_of_research,
+      }
     }
   },
 })
