@@ -12,7 +12,7 @@
       ></VTextField>
       <QuickActions
       toCreate
-      type="user_integra"
+      type="functionary_profile"
       @itemCreated="handleItemRefresh"
     />
     </VCardTitle>

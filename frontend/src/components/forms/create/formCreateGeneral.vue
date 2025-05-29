@@ -36,6 +36,7 @@
             item-title="label"
             item-value="value"
             hint="Seleccione la línea de investigación"
+            class="mb-5"
             :label="field.label"
           />
           <VSelect v-else-if="field.type === 'multiple-select'"
@@ -46,6 +47,7 @@
             item-value="value"
             hint="Seleccione al menos 2 líneas de investigación"
             :label="field.label"
+            class="mb-5"
           />
           <VTextarea v-else-if="field.type === 'textarea'"
             v-model="formValues[field.key]"
@@ -80,12 +82,16 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
+    additionalData: {
+      type: Object,
+      default: () => ({}),
+    }
   },
   data() {
     return {
       //inputValue: this.itemName, // valor inicial
       loading: false,
-      formValues: {...this.fields},
+      formValues: {...this.fields, ...this.additionalData},
 
     };
   },
@@ -117,6 +123,10 @@ export default defineComponent({
         } else if (this.type === 'role') {
           response = await API.post(API.ROLES, {
           ...this.formValues,
+          }, headers);
+        } else if (this.type === 'functionary_profile') {
+          response = await API.post(API.FUNCTIONARY_PROFILES, {
+         ...this.formValues,
           }, headers);
         }
         if (!response.error) {

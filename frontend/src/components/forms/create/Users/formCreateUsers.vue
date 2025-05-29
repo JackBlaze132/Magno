@@ -1,5 +1,3 @@
-```vue
-// filepath: c:\Users\ederd\Documents\Github\Unibague\Magno\frontend\src\components\forms\Post\formAddPeriod.vue
 <template>
   <!-- Reemplaza tu lógica anterior con formCreateGeneral -->
   <formCreateGeneral

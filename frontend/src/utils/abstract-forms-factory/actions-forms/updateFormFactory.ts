@@ -40,7 +40,7 @@ export class UpdateFormFactory extends AbstractFormFactory {
           index: extraProps?.index,
           initialData: extraProps?.initialData,
         }
-      }
+      },
     };
     if (type in componentMap) {
       console.log(componentMap[type as keyof typeof componentMap].props);

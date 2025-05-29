@@ -10,6 +10,7 @@ const CreateGroup = defineAsyncComponent(() => import("@/components/forms/create
 const CreateSeedbed = defineAsyncComponent(() => import("@/components/forms/create/seedbeds/formCreateSeedbed.vue"));
 const CreateUser = defineAsyncComponent(() => import("@/components/forms/create/Users/formCreateUsers.vue"));
 const CreateRole = defineAsyncComponent(() => import("@/components/forms/create/Roles/formCreateRoles.vue"));
+const CreateFuntionaryProfile = defineAsyncComponent(() => import("@/components/forms/create/Users/formCreateFunctionaryProfile.vue"));
 
 export class CreateFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType) {
@@ -53,7 +54,15 @@ export class CreateFormFactory extends AbstractFormFactory {
           label: "semillero",
           fields: schema.seedbed
         }
-      }
+      },
+      functionary_profile: {
+        component: CreateFuntionaryProfile,
+        props: {
+          type: type,
+          label: "perfil de funcionario",
+          fields: schema.functionary_profile
+        }
+      },
     };
 
     return componentMap[type as keyof typeof componentMap] || this.getDefaultComponent();

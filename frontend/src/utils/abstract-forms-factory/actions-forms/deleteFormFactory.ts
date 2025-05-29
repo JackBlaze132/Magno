@@ -36,7 +36,16 @@ export class DeleteFormFactory extends AbstractFormFactory {
           label: "semillero",
           index: extraProps?.index,
         }
-      }
+      },
+      functionary_profile: {
+        component: DeleteFunctionaryProfile,
+        props: {
+          name: extraProps?.name,
+          type: type,
+          label: "perfil de funcionario",
+          index: extraProps?.index,
+        }
+      },
     };
     if (type in componentMap) {
         console.log(componentMap[type as keyof typeof componentMap].props);
