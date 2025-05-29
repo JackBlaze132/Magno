@@ -31,7 +31,7 @@ public class UserRequest {
     private String userCode;
 
     @NotNull(message = "Field 'is_external_user' is required")
-    private boolean isExternalUser;
+    private Boolean isExternalUser;
 
     @NotNull(message = "Field 'sex' is required")
     Sex sex;
