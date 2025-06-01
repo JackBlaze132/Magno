@@ -3,6 +3,7 @@ package com.unibague.magno.infrastructure.input.rest;
 import com.unibague.magno.application.dto.request.ResearchSeedbedProfileRequest;
 import com.unibague.magno.application.dto.response.ResearchSeedbedProfileResponse;
 import com.unibague.magno.application.handler.impl.ResearchSeedbedProfileHandler;
+import com.unibague.magno.domain.model.projections.SeedbedReportProjection;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,13 @@ public class ResearchSeedbedProfileRestController {
     public ResponseEntity<List<ResearchSeedbedProfileResponse>> getAllByInvestigationGroupProfileId(@PathVariable Long id) {
         List<ResearchSeedbedProfileResponse> responses = researchSeedbedProfileHandler.findAllByInvestigationGroupProfileId(id);
         return ResponseEntity.ok(responses);
+    }
+
+    @GetMapping(path = "/report", headers = "API-VERSION=1")
+    public List<SeedbedReportProjection> getSeedbedReport(
+            @RequestParam("rspId") Long researchSeedbedProfileId,
+            @RequestParam("apId") Long academicPeriodId) {
+        return researchSeedbedProfileHandler.getSeedbedReport(researchSeedbedProfileId, academicPeriodId);
     }
 
     @PostMapping(path = "/", headers = "API-VERSION=1")

@@ -6,7 +6,9 @@ import com.unibague.magno.application.handler.interfaces.IResearchSeedbedProfile
 import com.unibague.magno.application.mapper.request.ResearchSeedbedProfileRequestMapper;
 import com.unibague.magno.application.mapper.response.ResearchSeedbedProfileResponseMapper;
 import com.unibague.magno.domain.api.IResearchSeedbedProfileServicePort;
+import com.unibague.magno.domain.api.IResearchSeedbedServicePort;
 import com.unibague.magno.domain.model.ResearchSeedbedProfile;
+import com.unibague.magno.domain.model.projections.SeedbedReportProjection;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -54,5 +56,10 @@ public class ResearchSeedbedProfileHandler implements IResearchSeedbedProfileHan
     public List<ResearchSeedbedProfileResponse> findAllByInvestigationGroupProfileId(Long id) {
         return researchSeedbedProfileResponseMapper.toResponseList(
                 researchSeedbedProfileServicePort.findAllByInvestigationGroupProfileId(id));
+    }
+
+    @Override
+    public List<SeedbedReportProjection> getSeedbedReport(Long researchSeedbedProfileId, Long academicPeriodId) {
+        return researchSeedbedProfileServicePort.getSeedbedReportById(researchSeedbedProfileId, academicPeriodId);
     }
 }

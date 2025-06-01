@@ -3,6 +3,7 @@ package com.unibague.magno.domain.usecase;
 import com.unibague.magno.domain.api.IResearchSeedbedProfileServicePort;
 import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFoundException;
 import com.unibague.magno.domain.model.ResearchSeedbedProfile;
+import com.unibague.magno.domain.model.projections.SeedbedReportProjection;
 import com.unibague.magno.domain.spi.IResearchSeedbedProfilePersistencePort;
 
 import java.util.List;
@@ -56,5 +57,10 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
     @Override
     public List<ResearchSeedbedProfile> findAllByInvestigationGroupProfileId(Long id) {
         return researchSeedbedProfilePersistencePort.findAllByInvestigationGroupProfileId(id);
+    }
+
+    @Override
+    public List<SeedbedReportProjection> getSeedbedReportById(Long researchSeedbedProfileId, Long academicPeriodId) {
+        return researchSeedbedProfilePersistencePort.getSeedbedReportById(researchSeedbedProfileId, academicPeriodId);
     }
 }

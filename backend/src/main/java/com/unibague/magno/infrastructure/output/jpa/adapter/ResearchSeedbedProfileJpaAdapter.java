@@ -1,6 +1,7 @@
 package com.unibague.magno.infrastructure.output.jpa.adapter;
 
 import com.unibague.magno.domain.model.ResearchSeedbedProfile;
+import com.unibague.magno.domain.model.projections.SeedbedReportProjection;
 import com.unibague.magno.domain.spi.IResearchSeedbedProfilePersistencePort;
 import com.unibague.magno.infrastructure.output.jpa.entity.ResearchSeedbedProfileEntity;
 import com.unibague.magno.infrastructure.output.jpa.mapper.ResearchSeedbedProfileEntityMapper;
@@ -58,5 +59,11 @@ public class ResearchSeedbedProfileJpaAdapter implements IResearchSeedbedProfile
     public List<ResearchSeedbedProfile> findAllByInvestigationGroupProfileId(Long id) {
         return researchSeedbedProfileEntityMapper
                 .toResearchSeedbedProfileList(researchSeedbedProfileRepository.findAllByInvestigationGroupProfileId(id));
+    }
+
+    @Override
+    public List<SeedbedReportProjection> getSeedbedReportById(Long researchSeedbedProfileId, Long academicPeriodId) {
+        return researchSeedbedProfileRepository
+                .getSeedbedReportById(researchSeedbedProfileId, academicPeriodId);
     }
 }
