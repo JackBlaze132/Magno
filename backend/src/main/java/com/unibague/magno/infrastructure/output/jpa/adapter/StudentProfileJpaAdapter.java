@@ -69,4 +69,10 @@ public class StudentProfileJpaAdapter implements IStudentProfilePersistencePort 
         return studentProfileEntityMapper.toStudentProfileList(
                 studentProfileRepository.findAllByAcademicPeriod_Id(academicPeriodId));
     }
+
+    @Override
+    public List<StudentProfile> findAllProfilesByUserId(Long userId) {
+        return studentProfileEntityMapper.toStudentProfileList(
+                studentProfileRepository.findAllByUser_Id(userId));
+    }
 }

@@ -23,4 +23,6 @@ public interface IStudentProfileRepository extends JpaRepository<StudentProfileE
     boolean existsByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId);
 
     List<StudentProfileEntity> findAllByAcademicPeriod_Id(Long academicPeriodId);
+
+    List<StudentProfileEntity> findAllByUser_Id(Long userId);
 }

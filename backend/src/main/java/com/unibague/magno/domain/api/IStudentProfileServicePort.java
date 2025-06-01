@@ -18,6 +18,7 @@ public interface IStudentProfileServicePort {
     List<StudentProfile> findAllByAcademicPeriodId(Long academicPeriodId);
     List<StudentProfile> getOrCreateStudentProfiles(List<Map<String, String>> cleanedStudentListOfMaps,
                                                     List<User> users, Long academicPeriodId);
+    List<StudentProfile> findAllProfilesByUserId(Long userId);
     StudentProfile getOrCreateStudentProfile(Map<String, String> studentProfileMap,
                                              List<User> users, Long academicPeriodId);
     StudentProfile createStudentProfileFromIntegraData(

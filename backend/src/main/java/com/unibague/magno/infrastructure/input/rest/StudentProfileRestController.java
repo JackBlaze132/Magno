@@ -30,6 +30,12 @@ public class StudentProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
+    @GetMapping(path = "/find-all-profiles/{userId}", headers = "API-VERSION=1")
+    public ResponseEntity<List<StudentProfileResponse>> getAllStudentProfilesByUserId(@PathVariable Long userId) {
+        List<StudentProfileResponse> responses = studentProfileHandler.findAllProfilesByUserId(userId);
+        return ResponseEntity.ok(responses);
+    }
+
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<StudentProfileResponse> createStudentProfile
             (@Valid @RequestBody StudentProfileRequest studentProfileRequest) {

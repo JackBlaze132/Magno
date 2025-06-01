@@ -46,4 +46,10 @@ public class StudentProfileHandler implements IStudentProfileHandler {
     public List<StudentProfileResponse> findAll() {
         return studentProfileResponseMapper.toResponseList(studentProfileServicePort.findAll());
     }
+
+    @Override
+    public List<StudentProfileResponse> findAllProfilesByUserId(Long userId) {
+        return studentProfileResponseMapper.toResponseList(
+                studentProfileServicePort.findAllProfilesByUserId(userId));
+    }
 }

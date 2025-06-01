@@ -11,4 +11,5 @@ public interface IStudentProfileHandler {
     StudentProfileResponse updateById(Long id, StudentProfileRequest studentProfile);
     void deleteById(Long id);
     List<StudentProfileResponse> findAll();
+    List<StudentProfileResponse> findAllProfilesByUserId(Long userId);
 }

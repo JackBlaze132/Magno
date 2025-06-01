@@ -14,4 +14,5 @@ public interface IStudentProfilePersistencePort {
     void deleteById(Long id);
     List<StudentProfile> findAll();
     List<StudentProfile> findAllByAcademicPeriodId(Long academicPeriodId);
+    List<StudentProfile> findAllProfilesByUserId(Long userId);
 }

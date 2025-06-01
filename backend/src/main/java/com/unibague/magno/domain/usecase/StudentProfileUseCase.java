@@ -108,6 +108,11 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
     }
 
     @Override
+    public List<StudentProfile> findAllProfilesByUserId(Long userId) {
+        return studentProfilePersistencePort.findAllProfilesByUserId(userId);
+    }
+
+    @Override
     public StudentProfile getOrCreateStudentProfile(Map<String, String> studentProfileMap,
                                                      List<User> users, Long academicPeriodId) {
         String identification = studentProfileMap.get(IDENTIFICATION);
