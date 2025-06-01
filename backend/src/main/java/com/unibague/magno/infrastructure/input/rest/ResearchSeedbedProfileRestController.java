@@ -14,6 +14,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 import java.io.ByteArrayOutputStream;
 import java.net.URI;
@@ -45,47 +47,64 @@ public class ResearchSeedbedProfileRestController {
     }
 
     @GetMapping(path = "/excel", headers = "API-VERSION=1")
-    public ResponseEntity<byte[]> generateExcel() throws Exception{
-        Workbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet("Productos");
+    public ResponseEntity<byte[]> generateExcel(
+            @RequestParam("rspId") Long researchSeedbedProfileId,
+            @RequestParam("apId") Long academicPeriodId) throws Exception{
 
-        // Crea la fila de encabezados
+        // Create a new workbook and sheet
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Reporte");
+
+        // Create the header row
         Row headerRow = sheet.createRow(0);
-        String[] columnas = {"ID", "Nombre", "Precio"};
+        String[] columnas = {"Periodo académico", "Grupo de investigación", "Semillero", "Coordinador", "Estudiante",
+            "Código", "Programa académico", "Semestre", "Sexo"};
         for (int i = 0; i < columnas.length; i++) {
             Cell cell = headerRow.createCell(i);
             cell.setCellValue(columnas[i]);
         }
 
-        // Datos de ejemplo
-        List<Object[]> datos = List.of(
-                new Object[]{1, "Producto A", 5000},
-                new Object[]{2, "Producto B", 8000},
-                new Object[]{3, "Producto C", 10000}
-        );
+        // Data to be filled in
+        List<SeedbedReportProjection> records = this.getSeedbedReport(researchSeedbedProfileId, academicPeriodId);
 
-        // Agrega los datos
+        String researchSeedbedName = records.isEmpty() ? "" : records.getFirst().getResearchSeedbedName().replaceAll("[\\\\/:*?\"<>|]", "");
+        String academicPeriodName = records.isEmpty() ? "" : records.getFirst().getAcademicPeriodName().replaceAll("[\\\\/:*?\"<>|]", "");
+        final String docTitle = String.format("Reporte_de_Semillero_%s_Periodo_Academico_%s.xlsx",
+                researchSeedbedName, academicPeriodName);
+        final String encodedFilename = URLEncoder.encode(docTitle, StandardCharsets.UTF_8)
+                .replaceAll("\\+", "%20");
+        System.out.println(encodedFilename);
+
+
+        // Fill the sheet with data
         int rowNum = 1;
-        for (Object[] fila : datos) {
+        for (SeedbedReportProjection record : records) {
             Row row = sheet.createRow(rowNum++);
-            for (int i = 0; i < fila.length; i++) {
-                row.createCell(i).setCellValue(fila[i].toString());
-            }
+            row.createCell(0).setCellValue(record.getAcademicPeriodName());
+            row.createCell(1).setCellValue(record.getInvestigationGroupName());
+            row.createCell(2).setCellValue(record.getResearchSeedbedName());
+            row.createCell(3).setCellValue(record.getCoordinatorName());
+            row.createCell(4).setCellValue(record.getStudentName());
+            row.createCell(5).setCellValue(record.getCode());
+            row.createCell(6).setCellValue(record.getAcademicProgramName());
+            row.createCell(7).setCellValue(record.getSemester() != null ? record.getSemester() : 0);
+            row.createCell(8).setCellValue(record.getSex());
         }
 
-        // Ajustar tamaño de columnas
+        // Auto-size columns for better readability
         for (int i = 0; i < columnas.length; i++) {
             sheet.autoSizeColumn(i);
         }
 
-        // Escribe el archivo a memoria
+        // Write the workbook to a byte array
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         workbook.write(bos);
         workbook.close();
 
-        // Configura la respuesta HTTP
+        // Configure the response
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=productos.xlsx")
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        "attachment; filename=\"" + docTitle + "\"; filename*=UTF-8''" + encodedFilename)
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(bos.toByteArray());
     }
