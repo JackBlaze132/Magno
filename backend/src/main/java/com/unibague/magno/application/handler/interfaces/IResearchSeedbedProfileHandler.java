@@ -2,7 +2,8 @@ package com.unibague.magno.application.handler.interfaces;
 
 import com.unibague.magno.application.dto.request.ResearchSeedbedProfileRequest;
 import com.unibague.magno.application.dto.response.ResearchSeedbedProfileResponse;
-import com.unibague.magno.domain.model.projections.SeedbedReportProjection;
+import com.unibague.magno.domain.model.excel.projections.ExcelReport;
+import com.unibague.magno.domain.model.excel.projections.metadata.SeedbedReportMetadata;
 
 import java.util.List;
 
@@ -14,5 +15,5 @@ public interface IResearchSeedbedProfileHandler {
     List<ResearchSeedbedProfileResponse> findAll();
     List<ResearchSeedbedProfileResponse> findAllByInvestigationGroupProfileId(Long id);
 
-    List<SeedbedReportProjection> getSeedbedReport(Long researchSeedbedProfileId, Long academicPeriodId);
+    ExcelReport<SeedbedReportMetadata> getExcelBytesReport(Long researchSeedbedProfileId, Long academicPeriodId);
 }

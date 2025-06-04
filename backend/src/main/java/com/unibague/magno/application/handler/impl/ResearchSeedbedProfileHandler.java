@@ -6,9 +6,9 @@ import com.unibague.magno.application.handler.interfaces.IResearchSeedbedProfile
 import com.unibague.magno.application.mapper.request.ResearchSeedbedProfileRequestMapper;
 import com.unibague.magno.application.mapper.response.ResearchSeedbedProfileResponseMapper;
 import com.unibague.magno.domain.api.IResearchSeedbedProfileServicePort;
-import com.unibague.magno.domain.api.IResearchSeedbedServicePort;
 import com.unibague.magno.domain.model.ResearchSeedbedProfile;
-import com.unibague.magno.domain.model.projections.SeedbedReportProjection;
+import com.unibague.magno.domain.model.excel.projections.ExcelReport;
+import com.unibague.magno.domain.model.excel.projections.metadata.SeedbedReportMetadata;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -59,7 +59,7 @@ public class ResearchSeedbedProfileHandler implements IResearchSeedbedProfileHan
     }
 
     @Override
-    public List<SeedbedReportProjection> getSeedbedReport(Long researchSeedbedProfileId, Long academicPeriodId) {
-        return researchSeedbedProfileServicePort.getSeedbedReportById(researchSeedbedProfileId, academicPeriodId);
+    public ExcelReport<SeedbedReportMetadata> getExcelBytesReport(Long researchSeedbedProfileId, Long academicPeriodId) {
+        return researchSeedbedProfileServicePort.getExcelBytesReportById(researchSeedbedProfileId, academicPeriodId);
     }
 }

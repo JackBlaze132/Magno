@@ -3,7 +3,9 @@ package com.unibague.magno.infrastructure.input.rest;
 import com.unibague.magno.application.dto.request.ResearchSeedbedProfileRequest;
 import com.unibague.magno.application.dto.response.ResearchSeedbedProfileResponse;
 import com.unibague.magno.application.handler.impl.ResearchSeedbedProfileHandler;
-import com.unibague.magno.domain.model.projections.SeedbedReportProjection;
+import com.unibague.magno.domain.model.excel.projections.ExcelReport;
+import com.unibague.magno.domain.model.excel.projections.SeedbedReportProjection;
+import com.unibague.magno.domain.model.excel.projections.metadata.SeedbedReportMetadata;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -46,74 +48,22 @@ public class ResearchSeedbedProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
-    @GetMapping(path = "/excel", headers = "API-VERSION=1")
-    public ResponseEntity<byte[]> generateExcel(
-            @RequestParam("rspId") Long researchSeedbedProfileId,
-            @RequestParam("apId") Long academicPeriodId) throws Exception{
-
-        // Create a new workbook and sheet
-        Workbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet("Reporte");
-
-        // Create the header row
-        Row headerRow = sheet.createRow(0);
-        String[] columnas = {"Periodo académico", "Grupo de investigación", "Semillero", "Coordinador", "Estudiante",
-            "Código", "Programa académico", "Semestre", "Sexo"};
-        for (int i = 0; i < columnas.length; i++) {
-            Cell cell = headerRow.createCell(i);
-            cell.setCellValue(columnas[i]);
-        }
-
-        // Data to be filled in
-        List<SeedbedReportProjection> records = this.getSeedbedReport(researchSeedbedProfileId, academicPeriodId);
-
-        String researchSeedbedName = records.isEmpty() ? "" : records.getFirst().getResearchSeedbedName().replaceAll("[\\\\/:*?\"<>|]", "");
-        String academicPeriodName = records.isEmpty() ? "" : records.getFirst().getAcademicPeriodName().replaceAll("[\\\\/:*?\"<>|]", "");
-        final String docTitle = String.format("Reporte_de_Semillero_%s_Periodo_Academico_%s.xlsx",
-                researchSeedbedName, academicPeriodName);
-        final String encodedFilename = URLEncoder.encode(docTitle, StandardCharsets.UTF_8)
-                .replaceAll("\\+", "%20");
-        System.out.println(encodedFilename);
-
-
-        // Fill the sheet with data
-        int rowNum = 1;
-        for (SeedbedReportProjection record : records) {
-            Row row = sheet.createRow(rowNum++);
-            row.createCell(0).setCellValue(record.getAcademicPeriodName());
-            row.createCell(1).setCellValue(record.getInvestigationGroupName());
-            row.createCell(2).setCellValue(record.getResearchSeedbedName());
-            row.createCell(3).setCellValue(record.getCoordinatorName());
-            row.createCell(4).setCellValue(record.getStudentName());
-            row.createCell(5).setCellValue(record.getCode());
-            row.createCell(6).setCellValue(record.getAcademicProgramName());
-            row.createCell(7).setCellValue(record.getSemester() != null ? record.getSemester() : 0);
-            row.createCell(8).setCellValue(record.getSex());
-        }
-
-        // Auto-size columns for better readability
-        for (int i = 0; i < columnas.length; i++) {
-            sheet.autoSizeColumn(i);
-        }
-
-        // Write the workbook to a byte array
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        workbook.write(bos);
-        workbook.close();
-
-        // Configure the response
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION,
-                        "attachment; filename=\"" + docTitle + "\"; filename*=UTF-8''" + encodedFilename)
-                .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .body(bos.toByteArray());
-    }
-
-    @GetMapping(path = "/report", headers = "API-VERSION=1")
-    public List<SeedbedReportProjection> getSeedbedReport(
+    @GetMapping(path = "/generate-seedbed-report", headers = "API-VERSION=1")
+    public ResponseEntity<byte[]> getSeedbedReport(
             @RequestParam("rspId") Long researchSeedbedProfileId,
             @RequestParam("apId") Long academicPeriodId) {
-        return researchSeedbedProfileHandler.getSeedbedReport(researchSeedbedProfileId, academicPeriodId);
+
+        ExcelReport<SeedbedReportMetadata> report = researchSeedbedProfileHandler
+                .getExcelBytesReport(researchSeedbedProfileId, academicPeriodId);
+        SeedbedReportMetadata metadata = report.getMetadata();
+
+        String filename = String.format("Reporte_de_Semillero_%s_Periodo_Academico_%s.xlsx",
+                metadata.getResearchSeedbedName(), metadata.getAcademicPeriodName());
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + URLEncoder.encode(filename, StandardCharsets.UTF_8).replace("+", "%20") + "\"")
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(report.getContent());
     }
 
     @PostMapping(path = "/", headers = "API-VERSION=1")

@@ -1,14 +1,23 @@
 package com.unibague.magno.infrastructure.output.jpa.adapter;
 
 import com.unibague.magno.domain.model.ResearchSeedbedProfile;
-import com.unibague.magno.domain.model.projections.SeedbedReportProjection;
+import com.unibague.magno.domain.model.excel.projections.ExcelReport;
+import com.unibague.magno.domain.model.excel.projections.SeedbedReportProjection;
+import com.unibague.magno.domain.model.excel.projections.metadata.SeedbedReportMetadata;
 import com.unibague.magno.domain.spi.IResearchSeedbedProfilePersistencePort;
 import com.unibague.magno.infrastructure.output.jpa.entity.ResearchSeedbedProfileEntity;
 import com.unibague.magno.infrastructure.output.jpa.mapper.ResearchSeedbedProfileEntityMapper;
 import com.unibague.magno.infrastructure.output.jpa.repository.IResearchSeedbedProfileRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,8 +71,56 @@ public class ResearchSeedbedProfileJpaAdapter implements IResearchSeedbedProfile
     }
 
     @Override
-    public List<SeedbedReportProjection> getSeedbedReportById(Long researchSeedbedProfileId, Long academicPeriodId) {
-        return researchSeedbedProfileRepository
+    public ExcelReport<SeedbedReportMetadata> getExcelBytesReportById(Long researchSeedbedProfileId, Long academicPeriodId) {
+        List<SeedbedReportProjection> records = researchSeedbedProfileRepository
                 .getSeedbedReportById(researchSeedbedProfileId, academicPeriodId);
+        try{
+            return generateExcelReport(records);
+        }
+        catch (IOException e) {
+            throw new RuntimeException("Error generating Excel report", e);
+        }
     }
+
+    private ExcelReport<SeedbedReportMetadata> generateExcelReport(List<SeedbedReportProjection> records) throws IOException {
+        try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
+            Sheet sheet = workbook.createSheet("Reporte");
+
+            String[] columnas = {"Periodo académico", "Grupo de investigación", "Semillero", "Coordinador", "Estudiante",
+                    "Código", "Programa académico", "Semestre", "Sexo"};
+            Row headerRow = sheet.createRow(0);
+            for (int i = 0; i < columnas.length; i++) {
+                headerRow.createCell(i).setCellValue(columnas[i]);
+            }
+
+            String researchSeedbedName = records.isEmpty() ? "" :
+                    records.getFirst().getResearchSeedbedName().replaceAll("[\\\\/:*?\"<>|]", "");
+            String academicPeriodName = records.isEmpty() ? "" :
+                    records.getFirst().getAcademicPeriodName().replaceAll("[\\\\/:*?\"<>|]", "");
+
+            int rowNum = 1;
+            for (SeedbedReportProjection record : records) {
+                Row row = sheet.createRow(rowNum++);
+                row.createCell(0).setCellValue(record.getAcademicPeriodName());
+                row.createCell(1).setCellValue(record.getInvestigationGroupName());
+                row.createCell(2).setCellValue(record.getResearchSeedbedName());
+                row.createCell(3).setCellValue(record.getCoordinatorName());
+                row.createCell(4).setCellValue(record.getStudentName());
+                row.createCell(5).setCellValue(record.getCode());
+                row.createCell(6).setCellValue(record.getAcademicProgramName());
+                row.createCell(7).setCellValue(record.getSemester() != null ? record.getSemester() : 0);
+                row.createCell(8).setCellValue(record.getSex());
+            }
+
+            for (int i = 0; i < columnas.length; i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            workbook.write(bos);
+            SeedbedReportMetadata metadata = new SeedbedReportMetadata(researchSeedbedName, academicPeriodName);
+            return new ExcelReport<>(bos.toByteArray(), metadata);
+        }
+    }
+
+
 }
