@@ -1,8 +1,11 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IExternalUserProfileServicePort;
+import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.exception.externaluser.ExternalUserProfileNotFoundException;
+import com.unibague.magno.domain.exception.externaluser.UserIsNotExternalException;
 import com.unibague.magno.domain.model.ExternalUserProfile;
+import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.spi.IExternalUserProfilePersistencePort;
 
 import java.util.List;
@@ -10,9 +13,12 @@ import java.util.List;
 public class ExternalUserProfileUseCase implements IExternalUserProfileServicePort {
 
     private final IExternalUserProfilePersistencePort externalUserProfilePersistencePort;
+    private final IUserServicePort userServicePort;
 
-    public ExternalUserProfileUseCase(IExternalUserProfilePersistencePort externalUserProfilePersistencePort) {
+    public ExternalUserProfileUseCase(IExternalUserProfilePersistencePort externalUserProfilePersistencePort,
+                                      IUserServicePort userServicePort) {
         this.externalUserProfilePersistencePort = externalUserProfilePersistencePort;
+        this.userServicePort = userServicePort;
     }
 
     @Override
@@ -25,6 +31,14 @@ public class ExternalUserProfileUseCase implements IExternalUserProfileServicePo
 
     @Override
     public ExternalUserProfile save(ExternalUserProfile externalUserProfile) {
+
+        User user = userServicePort.findById(externalUserProfile.getUserId());
+
+        if (!user.isExternalUser()){
+            throw new UserIsNotExternalException(
+                    String.format("User with id %s is not an external user and cannot have an ExternalUserProfile", user.getId())
+            );
+        }
         return externalUserProfilePersistencePort.save(externalUserProfile);
     }
 

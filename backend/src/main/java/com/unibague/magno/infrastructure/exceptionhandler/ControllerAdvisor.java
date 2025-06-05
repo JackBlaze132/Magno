@@ -6,6 +6,7 @@ import com.unibague.magno.domain.exception.dependency.DependencyNotFoundExceptio
 import com.unibague.magno.domain.exception.enums.EnumBadRequestException;
 import com.unibague.magno.domain.exception.excel.UploadExcelException;
 import com.unibague.magno.domain.exception.externaluser.ExternalUserProfileNotFoundException;
+import com.unibague.magno.domain.exception.externaluser.UserIsNotExternalException;
 import com.unibague.magno.domain.exception.functionaryprofile.FunctionaryProfileNotFoundException;
 import com.unibague.magno.domain.exception.integra.IntegraUserNotFoundException;
 import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupNotFoundException;
@@ -219,6 +220,17 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(UploadExcelException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.UPLOAD_EXCEL_ERROR.getCode());
+        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ExceptionHandler(UserIsNotExternalException.class)
+    public ErrorResponse handleUserNotFoundException(UserIsNotExternalException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.USER_IS_NOT_EXTERNAL.getCode());
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());

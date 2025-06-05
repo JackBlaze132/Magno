@@ -189,7 +189,8 @@ public class BeanConfiguration {
 
     @Bean
     public IExternalUserProfileServicePort externalUserProfileServicePort() {
-        return new ExternalUserProfileUseCase(externalUserProfilePersistencePort());
+        return new ExternalUserProfileUseCase(externalUserProfilePersistencePort(),
+                userServicePort());
     }
 
     @Bean
