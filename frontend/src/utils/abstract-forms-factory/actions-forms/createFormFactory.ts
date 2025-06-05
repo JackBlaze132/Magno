@@ -10,7 +10,7 @@ const CreateGroup = defineAsyncComponent(() => import("@/components/forms/create
 const CreateSeedbed = defineAsyncComponent(() => import("@/components/forms/create/seedbeds/formCreateSeedbed.vue"));
 const CreateUser = defineAsyncComponent(() => import("@/components/forms/create/Users/formCreateUsers.vue"));
 const CreateRole = defineAsyncComponent(() => import("@/components/forms/create/Roles/formCreateRoles.vue"));
-const CreateFuntionaryProfile = defineAsyncComponent(() => import("@/components/forms/create/Users/formCreateFunctionaryProfile.vue"));
+const CreateInternalProfile = defineAsyncComponent(() => import("@/components/forms/create/Users/formCreateInternalProfile.vue"));
 
 export class CreateFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType) {
@@ -56,11 +56,19 @@ export class CreateFormFactory extends AbstractFormFactory {
         }
       },
       functionary_profile: {
-        component: CreateFuntionaryProfile,
+        component: CreateInternalProfile,
         props: {
           type: type,
           label: "perfil de funcionario",
-          fields: schema.functionary_profile
+          fields: schema.internal_profile
+        }
+      },
+      student_profile: {
+        component: CreateInternalProfile,
+        props: {
+          type: type,
+          label: "perfil de estudiante",
+          fields: schema.internal_profile
         }
       },
     };

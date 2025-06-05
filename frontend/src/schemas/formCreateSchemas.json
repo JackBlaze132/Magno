@@ -34,7 +34,7 @@
         { "key": "name", "label": "Nombre", "type": "text" },
         { "key": "description", "label": "Descripción", "type": "textarea" }
     ],
-    "functionary_profile":[
+    "internal_profile":[
         { "key": "academic_period_id", "label": "Periodo Académico", "type": "select", "options": []  },
         { "key": "role_ids", "label": "Roles", "type": "multiple-select", "options": [] }
     ]

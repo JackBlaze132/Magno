@@ -192,11 +192,6 @@ export const routes = [
             component: components.LIST_FUNCTIONARIES,
           },
           {
-            path: P.FUNCIONARIOS_AGREGAR,
-            name: 'agregar-funcionarios',
-            component: components.ADD_FUNCTIONARY,
-          },
-          {
             path: ':idFunctionary' + P.PROFILES_PATH,
             name: 'perfiles-funcionario',
             component: components.FUNCTIONARY_PROFILES_INDEX,
@@ -230,6 +225,21 @@ export const routes = [
             name: 'detalles-estudiante',
             component: components.DETAIL_STUDENT,
           },
+          {
+            path: ':idStudent' + P.PROFILES_PATH,
+            name: 'perfiles-estudiante',
+            component: components.FUNCTIONARY_PROFILES_INDEX,
+            redirect: (to: RouteLocationNormalized) => {
+              return { name: 'listar-perfiles-estudiante', params: { idStudent: to.params.idStudent } }
+            },
+            children: [
+              {
+                name: 'listar-perfiles-estudiante',
+                path: P.PROFILES_LIST,
+                component: components.STUDENT_PROFILES_LIST,
+              },
+            ],
+          }
         ],
       },
       {

@@ -5,7 +5,7 @@ import type { EntityType } from  '@/utils/abstract-forms-factory/form-types/form
 import schema from '@/schemas/formUpdateSchemas.json';
 
 const UpdatePeriod = defineAsyncComponent(() => import("@/components/forms/update/formUpdateGeneral.vue"));
-const UpdateGroup = defineAsyncComponent(() => import("@/components/forms/update/Groups/formUpdateGroups.vue"));
+const UpdateGroup = defineAsyncComponent(() => import("@/components/forms/update/groups/formUpdateGroups.vue"));
 const UpdateSeedbed = defineAsyncComponent(() => import("@/components/forms/update/seedbeds/formUpdateSeedbeds.vue"));
 
 export class UpdateFormFactory extends AbstractFormFactory {
@@ -31,16 +31,6 @@ export class UpdateFormFactory extends AbstractFormFactory {
           initialData: extraProps?.initialData,
         }
        },
-       seedbed: {
-        component: UpdateSeedbed,
-        props: {
-          type: type,
-          label: "semillero",
-          fields: schema.seedbed,
-          index: extraProps?.index,
-          initialData: extraProps?.initialData,
-        }
-      },
     };
     if (type in componentMap) {
       console.log(componentMap[type as keyof typeof componentMap].props);

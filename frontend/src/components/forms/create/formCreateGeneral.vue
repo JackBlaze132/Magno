@@ -128,6 +128,10 @@ export default defineComponent({
           response = await API.post(API.FUNCTIONARY_PROFILES, {
          ...this.formValues,
           }, headers);
+        } else if (this.type === 'student_profile') {
+          response = await API.post(API.STUDENT_PROFILES, {
+         ...this.formValues,
+          }, headers);
         }
         if (!response.error) {
           this.$emit('itemCreated', this.formValues.name);

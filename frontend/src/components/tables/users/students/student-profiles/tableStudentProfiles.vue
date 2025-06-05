@@ -12,7 +12,7 @@
       ></VTextField>
       <QuickActions
       toCreate
-      type="user_integra"
+      type="student_profile"
       @itemCreated="handleItemRefresh"
     />
     </VCardTitle>
@@ -24,11 +24,7 @@
       <template v-slot:item.is_external_user="{item}">
         {{ externalFormatter(item.is_external_user)}}
       </template>
-      <template v-slot:item.link="{item}">
-        <QuickActions
-          :toView="item.id + '/perfiles'"
-        />
-      </template>
+
     </VDataTable>
   </VCard>
 </template>
@@ -42,12 +38,18 @@ import Formatter from "@/utils/formatter";
 
 interface Item {
   id: number,
-  full_name: string,
-  identification_number: string,
-  user_code: string,
-  email: string,
-  is_external_user: boolean,
-  sex: string,
+  user: {
+    full_name: string,
+    identification_number: string,
+    user_code: string,
+    email: string,
+  },
+  academic_period: {
+    name: string,
+  },
+  role_ids: Array<{
+    name: string,
+}>,S
 }
 
 export default defineComponent({
@@ -55,32 +57,31 @@ export default defineComponent({
   data() {
     return {
       items: [] as Item[],
+      userRols: [] as Array<String>,
       search: '',
       headers: [
         {title: 'ID', key: 'id'},
-        {title: 'Nombre', key: 'full_name'},
-        {title: 'Número de identificación', key: 'identification_number'},
-        {title: 'Código de usuario', key: 'user_code'},
-        {title: 'Correo electrónico', key: 'email'},
-        {title: 'Sexo', key: 'sex'},
-        {title: 'Afiliación', key: 'is_external_user'},
-        {key: 'link', sortable: false},
-
+        {title: 'Período académico', key: 'academic_period.name'},
+        {title: 'Nombre', key: 'user.full_name'},
+        {title: 'Rol', key: 'role_ids'},
+        {title: 'Número de identificación', key: 'user.identification_number'},
+        {title: 'Código de usuario', key: 'user.user_code'},
+        {title: 'Correo electrónico', key: 'user.email'},
       ]
     }
   },
   // ...
   created() {
-    this.getUsers();
+    this.getProfiles();
     //this.externalFormatter();
   },
   methods: {
-    async getUsers() {
+    async getProfiles() {
       const headers={
         'API-VERSION': '1',
       }
       try {
-        this.items = await API.get(API.USERS_STUDENTS, headers);
+        this.items = await API.get(API.STUDENT_PROFILES_ASIGNED + this.$route.params.idStudent, headers);
         this.$emit('loaded');
       } catch (error) {
         console.error('Error fetching users:', error);
@@ -97,4 +98,6 @@ export default defineComponent({
 
 
 </script>
+
+
 

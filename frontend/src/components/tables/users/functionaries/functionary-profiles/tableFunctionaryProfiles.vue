@@ -24,11 +24,6 @@
       <template v-slot:item.is_external_user="{item}">
         {{ externalFormatter(item.is_external_user)}}
       </template>
-      <template v-slot:item.link="{item}">
-        <QuickActions
-          :toView="item.id + 'perfiles-funcionario'"
-        />
-      </template>
     </VDataTable>
   </VCard>
 </template>
