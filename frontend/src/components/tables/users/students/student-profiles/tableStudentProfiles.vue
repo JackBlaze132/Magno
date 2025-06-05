@@ -24,7 +24,13 @@
       <template v-slot:item.is_external_user="{item}">
         {{ externalFormatter(item.is_external_user)}}
       </template>
-
+      <template v-slot:item.role_ids="{item}">
+        <VChipGroup>
+          <VChip v-for="role in item.role_ids" :key="role.name" size="small" color="primary" variant="outlined">
+            {{ role.name }}
+          </VChip>
+        </VChipGroup>
+      </template>
     </VDataTable>
   </VCard>
 </template>
@@ -91,7 +97,7 @@ export default defineComponent({
       return Formatter.externalFormatter(state)
     },
     handleItemRefresh(){
-      this.getUsers();
+      this.getProfiles();
     }
   },
 })
