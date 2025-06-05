@@ -28,6 +28,7 @@ class API{
 
   //----[FUNCTIONARY PROFILES]----
   public readonly FUNCTIONARY_PROFILES:string='functionary-profiles/';
+  public readonly FUNCTIONARY_PROFILES_ASIGNED:string='functionary-profiles/find-all-profiles/'; //<---- Requires research seedbed id
 
   //----[STUDENT PROFILES]----
   public readonly STUDENT_PROFILES:string='student-profiles/';
