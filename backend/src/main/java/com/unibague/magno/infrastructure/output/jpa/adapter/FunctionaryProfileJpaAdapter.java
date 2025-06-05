@@ -52,4 +52,10 @@ public class FunctionaryProfileJpaAdapter implements IFunctionaryProfilePersiste
         return functionaryProfileEntityMapper.toFunctionaryProfileList(functionaryProfileRepository.findAll());
     }
 
+    @Override
+    public List<FunctionaryProfile> findAllProfilesByUserId(Long userId) {
+        return functionaryProfileEntityMapper.toFunctionaryProfileList(
+                functionaryProfileRepository.findAllByUser_Id(userId));
+    }
+
 }

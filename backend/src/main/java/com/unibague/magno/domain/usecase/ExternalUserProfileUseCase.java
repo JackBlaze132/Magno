@@ -52,4 +52,9 @@ public class ExternalUserProfileUseCase implements IExternalUserProfileServicePo
     public List<ExternalUserProfile> findAll() {
         return externalUserProfilePersistencePort.findAll();
     }
+
+    @Override
+    public List<ExternalUserProfile> findAllProfilesByUserId(Long userId) {
+        return externalUserProfilePersistencePort.findAllProfilesByUserId(userId);
+    }
 }

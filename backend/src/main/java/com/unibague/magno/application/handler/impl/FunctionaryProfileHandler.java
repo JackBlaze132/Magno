@@ -47,4 +47,10 @@ public class FunctionaryProfileHandler implements IFunctionaryProfileHandler {
     public List<FunctionaryProfileResponse> findAll() {
         return functionaryProfileResponseMapper.toResponseList(functionaryProfileServicePort.findAll());
     }
+
+    @Override
+    public List<FunctionaryProfileResponse> findAllProfilesByUserId(Long userId) {
+        return functionaryProfileResponseMapper.toResponseList(
+                functionaryProfileServicePort.findAllProfilesByUserId(userId));
+    }
 }

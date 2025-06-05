@@ -10,4 +10,6 @@ public interface IFunctionaryProfileServicePort {
     FunctionaryProfile update(Long id, FunctionaryProfile functionaryProfile);
     void deleteById(Long id);
     List<FunctionaryProfile> findAll();
+
+    List<FunctionaryProfile> findAllProfilesByUserId(Long userId);
 }

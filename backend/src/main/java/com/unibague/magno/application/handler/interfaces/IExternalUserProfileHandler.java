@@ -11,4 +11,6 @@ public interface IExternalUserProfileHandler {
     ExternalUserProfileResponse updateById(Long id, ExternalUserProfileRequest externalUserProfile);
     void deleteById(Long id);
     List<ExternalUserProfileResponse> findAll();
+
+    List<ExternalUserProfileResponse> findAllProfilesByUserId(Long userId);
 }

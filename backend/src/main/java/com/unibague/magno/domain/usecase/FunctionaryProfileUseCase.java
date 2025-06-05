@@ -52,4 +52,9 @@ public class FunctionaryProfileUseCase implements IFunctionaryProfileServicePort
     public List<FunctionaryProfile> findAll() {
         return functionaryProfilePersistencePort.findAll();
     }
+
+    @Override
+    public List<FunctionaryProfile> findAllProfilesByUserId(Long userId) {
+        return functionaryProfilePersistencePort.findAllProfilesByUserId(userId);
+    }
 }

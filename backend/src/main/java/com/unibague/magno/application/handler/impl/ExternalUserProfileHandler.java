@@ -47,4 +47,10 @@ public class ExternalUserProfileHandler implements IExternalUserProfileHandler {
     public List<ExternalUserProfileResponse> findAll() {
         return externalUserProfileResponseMapper.toResponseList(externalUserProfileServicePort.findAll());
     }
+
+    @Override
+    public List<ExternalUserProfileResponse> findAllProfilesByUserId(Long userId) {
+        return externalUserProfileResponseMapper.toResponseList(
+                externalUserProfileServicePort.findAllProfilesByUserId(userId));
+    }
 }

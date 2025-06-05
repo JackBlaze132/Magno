@@ -30,6 +30,12 @@ public class ExternalUserProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
+    @GetMapping(path = "/find-all-profiles/{userId}", headers = "API-VERSION=1")
+    public ResponseEntity<List<ExternalUserProfileResponse>> getAllExternalUserProfilesByUserId(@PathVariable Long userId) {
+        List<ExternalUserProfileResponse> responses = externalUserProfileHandler.findAllProfilesByUserId(userId);
+        return ResponseEntity.ok(responses);
+    }
+
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<ExternalUserProfileResponse> createExternalUserProfile
             (@Valid @RequestBody ExternalUserProfileRequest externalUserProfileRequest) {

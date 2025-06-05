@@ -10,4 +10,6 @@ public interface IExternalUserProfileServicePort {
     ExternalUserProfile update(Long id, ExternalUserProfile externalUserProfile);
     void deleteById(Long id);
     List<ExternalUserProfile> findAll();
+
+    List<ExternalUserProfile> findAllProfilesByUserId(Long userId);
 }

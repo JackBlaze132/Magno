@@ -11,4 +11,6 @@ public interface IFunctionaryProfileHandler {
     FunctionaryProfileResponse updateById(Long id, FunctionaryProfileRequest functionaryProfile);
     void deleteById(Long id);
     List<FunctionaryProfileResponse> findAll();
+
+    List<FunctionaryProfileResponse> findAllProfilesByUserId(Long userId);
 }
