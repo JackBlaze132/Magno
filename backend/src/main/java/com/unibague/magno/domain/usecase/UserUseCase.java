@@ -5,6 +5,7 @@ import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.integra.IntegraInvalidTypeException;
 import com.unibague.magno.domain.exception.integra.IntegraStudentNotFoundException;
+import com.unibague.magno.domain.exception.user.UserAlreadyExistsException;
 import com.unibague.magno.domain.exception.user.UserNotFoundException;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.enums.JSONIntegraType;
@@ -38,6 +39,10 @@ public class UserUseCase implements IUserServicePort {
 
     @Override
     public User save(User user) {
+        if (findByUserIdentification(user.getIdentificationNumber()).isPresent()){
+            throw new UserAlreadyExistsException(String.format(
+                    "User with identification %s already exists", user.getIdentificationNumber()));
+        }
         return userPersistencePort.save(user);
     }
 

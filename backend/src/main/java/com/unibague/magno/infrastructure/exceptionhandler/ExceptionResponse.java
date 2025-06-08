@@ -10,6 +10,8 @@ public enum ExceptionResponse {
     DEPENDENCY_NOT_FOUND("ERR_DEPENDENCY_001", "Dependency not found."),
     ACADEMIC_PROGRAM_NOT_FOUND("ERR_ACADEMIC_PROGRAM_001", "Academic program not found."),
     USER_NOT_FOUND("ERR_USER_001", "User not found."),
+    USER_ALREADY_EXISTS("ERR_USER_002", "User already exists."),
+    USER_IS_NOT_EXTERNAL("ERR_USER_003", "User is not external."),
     INVESTIGATION_GROUP_NOT_FOUND("ERR_INVESTIGATION_GROUP_001", "Investigation group not found."),
     INVESTIGATION_GROUP_PROFILE_NOT_FOUND("ERR_INVESTIGATION_GROUP_PROFILE_001",
             "Investigation group profile not found."),
@@ -21,7 +23,6 @@ public enum ExceptionResponse {
     FUNCTIONARY_PROFILE_NOT_FOUND("ERR_FUNCTIONARY_PROFILE_001", "Functionary profile not found."),
     STUDENT_PROFILE_NOT_FOUND("ERR_STUDENT_PROFILE_001", "Student profile not found."),
     EXTERNAL_USER_PROFILE_NOT_FOUND("ERR_EXTERNAL_USER_PROFILE_001", "External user profile not found."),
-    USER_IS_NOT_EXTERNAL("ERR_USER_IS_NOT_EXTERNAL_001", "User is not external."),
     ENUM_BAD_REQUEST("ERR_ENUM_001", "Invalid enum value."),
     INTEGRA_API_ERROR("ERR_INTEGRA_API_001", "An error occurred while trying to connect to the " +
             "Integra API."),

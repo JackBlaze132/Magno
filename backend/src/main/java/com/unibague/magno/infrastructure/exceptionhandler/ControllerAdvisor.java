@@ -16,6 +16,7 @@ import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbe
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ResearchSeedbedStudentProfileNotFoundException;
 import com.unibague.magno.domain.exception.role.RoleNotFoundException;
 import com.unibague.magno.domain.exception.studentprofile.StudentProfileNotFoundException;
+import com.unibague.magno.domain.exception.user.UserAlreadyExistsException;
 import com.unibague.magno.domain.exception.user.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import com.unibague.magno.domain.model.ErrorResponse;
@@ -84,6 +85,17 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(UserNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.USER_NOT_FOUND.getCode());
+        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ErrorResponse handleUserNotFoundException(UserAlreadyExistsException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.USER_ALREADY_EXISTS.getCode());
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());

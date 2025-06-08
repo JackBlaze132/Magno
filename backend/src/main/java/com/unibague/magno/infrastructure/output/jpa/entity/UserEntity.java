@@ -24,6 +24,9 @@ public class UserEntity {
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
+    // Identification number isn't unique because the same person can have multiple roles
+    // (e.g., student and functionary) so, the same identification number can be associated with multiple users,
+    // the way to distinguish them is by the email.
     @Column(name = "identification_number", nullable = false)
     private String identificationNumber;
 
