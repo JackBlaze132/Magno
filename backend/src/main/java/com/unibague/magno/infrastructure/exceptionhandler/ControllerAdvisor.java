@@ -15,6 +15,7 @@ import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFou
 import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ResearchSeedbedStudentProfileNotFoundException;
 import com.unibague.magno.domain.exception.role.RoleNotFoundException;
+import com.unibague.magno.domain.exception.studentprofile.StudentProfileAlreadyExistsException;
 import com.unibague.magno.domain.exception.studentprofile.StudentProfileNotFoundException;
 import com.unibague.magno.domain.exception.user.UserAlreadyExistsException;
 import com.unibague.magno.domain.exception.user.UserNotFoundException;
@@ -187,6 +188,17 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(StudentProfileNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.STUDENT_PROFILE_NOT_FOUND.getCode());
+        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(StudentProfileAlreadyExistsException.class)
+    public ErrorResponse handleUserNotFoundException(StudentProfileAlreadyExistsException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.STUDENT_PROFILE_ALREADY_EXISTS.getCode());
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());

@@ -44,10 +44,12 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
 
     @Override
     public StudentProfile save(StudentProfile studentProfile) {
-        Long studentProfileId = studentProfile.getId();
-        if (existsByUserIdAndAcademicPeriodId(studentProfileId, studentProfile.getAcademicPeriodId())) {
+        Long userId = studentProfile.getUserId();
+        Long academicPeriodId = studentProfile.getAcademicPeriodId();
+        if (existsByUserIdAndAcademicPeriodId(userId, academicPeriodId)) {
             throw new StudentProfileAlreadyExistsException(
-                    String.format("StudentProfile with ID %d could not be saved because it already exists", studentProfileId)
+                    String.format("StudentProfile with User ID %d could not be saved because it already exists" +
+                            "in the academic period with ID %d", userId, academicPeriodId)
             );
         }
         return studentProfilePersistencePort.save(studentProfile);
