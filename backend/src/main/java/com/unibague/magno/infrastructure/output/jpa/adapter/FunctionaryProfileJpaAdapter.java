@@ -58,4 +58,9 @@ public class FunctionaryProfileJpaAdapter implements IFunctionaryProfilePersiste
                 functionaryProfileRepository.findAllByUser_Id(userId));
     }
 
+    @Override
+    public boolean existsByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId) {
+        return functionaryProfileRepository.existsByUser_IdAndAcademicPeriod_Id(userId, academicPeriodId);
+    }
+
 }

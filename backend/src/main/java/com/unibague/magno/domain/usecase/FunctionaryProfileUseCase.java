@@ -1,6 +1,7 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IFunctionaryProfileServicePort;
+import com.unibague.magno.domain.exception.functionaryprofile.FunctionaryProfileAlreadyExistsException;
 import com.unibague.magno.domain.exception.functionaryprofile.FunctionaryProfileNotFoundException;
 import com.unibague.magno.domain.model.FunctionaryProfile;
 import com.unibague.magno.domain.spi.IFunctionaryProfilePersistencePort;
@@ -25,6 +26,14 @@ public class FunctionaryProfileUseCase implements IFunctionaryProfileServicePort
 
     @Override
     public FunctionaryProfile save(FunctionaryProfile functionaryProfile) {
+        Long userId = functionaryProfile.getUserId();
+        Long academicPeriodId = functionaryProfile.getAcademicPeriodId();
+        if (functionaryProfilePersistencePort.existsByUserIdAndAcademicPeriodId(userId, academicPeriodId)) {
+            throw new FunctionaryProfileAlreadyExistsException(
+                    String.format("FunctionaryProfile with user ID %d and academic period ID %d already exists",
+                            userId, academicPeriodId)
+            );
+        }
         return functionaryProfilePersistencePort.save(functionaryProfile);
     }
 
@@ -46,6 +55,11 @@ public class FunctionaryProfileUseCase implements IFunctionaryProfileServicePort
             );
         }
         functionaryProfilePersistencePort.deleteById(id);
+    }
+
+    @Override
+    public boolean existsByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId) {
+        return functionaryProfilePersistencePort.existsByUserIdAndAcademicPeriodId(userId, academicPeriodId);
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.unibague.magno.domain.exception.enums.EnumBadRequestException;
 import com.unibague.magno.domain.exception.excel.UploadExcelException;
 import com.unibague.magno.domain.exception.externaluser.ExternalUserProfileNotFoundException;
 import com.unibague.magno.domain.exception.externaluser.UserIsNotExternalException;
+import com.unibague.magno.domain.exception.functionaryprofile.FunctionaryProfileAlreadyExistsException;
 import com.unibague.magno.domain.exception.functionaryprofile.FunctionaryProfileNotFoundException;
 import com.unibague.magno.domain.exception.integra.IntegraUserNotFoundException;
 import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupNotFoundException;
@@ -119,6 +120,17 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(FunctionaryProfileNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.FUNCTIONARY_PROFILE_NOT_FOUND.getCode());
+        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(FunctionaryProfileAlreadyExistsException.class)
+    public ErrorResponse handleUserNotFoundException(FunctionaryProfileAlreadyExistsException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.FUNCTIONARY_PROFILE_ALREADY_EXISTS.getCode());
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());

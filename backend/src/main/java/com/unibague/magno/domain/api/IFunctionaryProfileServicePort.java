@@ -9,6 +9,7 @@ public interface IFunctionaryProfileServicePort {
     FunctionaryProfile save(FunctionaryProfile functionaryProfile);
     FunctionaryProfile update(Long id, FunctionaryProfile functionaryProfile);
     void deleteById(Long id);
+    boolean existsByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId);
     List<FunctionaryProfile> findAll();
 
     List<FunctionaryProfile> findAllProfilesByUserId(Long userId);

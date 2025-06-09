@@ -21,6 +21,7 @@ public enum ExceptionResponse {
     RESEARCH_SEEDBED_STUDENT_PROFILE_NOT_FOUND("ERR_RESEARCH_SEEDBED_STUDENT_PROFILE_001",
             "Research seedbed student profile not found."),
     FUNCTIONARY_PROFILE_NOT_FOUND("ERR_FUNCTIONARY_PROFILE_001", "Functionary profile not found."),
+    FUNCTIONARY_PROFILE_ALREADY_EXISTS("ERR_FUNCTIONARY_PROFILE_002", "Functionary profile already exists."),
     STUDENT_PROFILE_NOT_FOUND("ERR_STUDENT_PROFILE_001", "Student profile not found."),
     STUDENT_PROFILE_ALREADY_EXISTS("ERR_STUDENT_PROFILE_002", "Student profile already exists."),
     EXTERNAL_USER_PROFILE_NOT_FOUND("ERR_EXTERNAL_USER_PROFILE_001", "External user profile not found."),
