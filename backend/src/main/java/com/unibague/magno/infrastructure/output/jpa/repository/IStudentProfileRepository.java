@@ -16,11 +16,7 @@ public interface IStudentProfileRepository extends JpaRepository<StudentProfileE
     Optional<StudentProfileEntity> findByUserIdAndAcademicPeriodId(@Param("userId") Long userId,
                                                                    @Param("academicPeriodId") Long academicPeriodId);
 
-    @Query("SELECT CASE WHEN COUNT(sp) > 0 THEN TRUE ELSE FALSE END " +
-            "FROM StudentProfileEntity sp " +
-            "WHERE sp.user.id = :userId " +
-            "AND sp.academicPeriod.id = :academicPeriodId")
-    boolean existsByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId);
+    boolean existsByUser_IdAndAcademicPeriod_Id(Long userId, Long academicPeriodId);
 
     List<StudentProfileEntity> findAllByAcademicPeriod_Id(Long academicPeriodId);
 

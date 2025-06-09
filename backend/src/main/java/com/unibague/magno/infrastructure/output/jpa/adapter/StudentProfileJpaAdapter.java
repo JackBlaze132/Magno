@@ -51,7 +51,7 @@ public class StudentProfileJpaAdapter implements IStudentProfilePersistencePort 
 
     @Override
     public boolean existsByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId) {
-        return studentProfileRepository.existsByUserIdAndAcademicPeriodId(userId, academicPeriodId);
+        return studentProfileRepository.existsByUser_IdAndAcademicPeriod_Id(userId, academicPeriodId);
     }
 
     @Override
