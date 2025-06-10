@@ -3,15 +3,9 @@ package com.unibague.magno.infrastructure.input.rest;
 import com.unibague.magno.application.dto.request.ResearchSeedbedProfileRequest;
 import com.unibague.magno.application.dto.response.ResearchSeedbedProfileResponse;
 import com.unibague.magno.application.handler.impl.ResearchSeedbedProfileHandler;
-import com.unibague.magno.domain.model.excel.projections.ExcelReport;
-import com.unibague.magno.domain.model.excel.projections.SeedbedReportProjection;
-import com.unibague.magno.domain.model.excel.projections.metadata.SeedbedReportMetadata;
+import com.unibague.magno.domain.model.excel.ExcelReport;
+import com.unibague.magno.domain.model.excel.metadata.SeedbedReportMetadata;
 import lombok.RequiredArgsConstructor;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-import java.io.ByteArrayOutputStream;
 import java.net.URI;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.unibague.magno.domain.model.excel.projections.metadata;
+package com.unibague.magno.domain.model.excel.metadata;
 
 public class SeedbedReportMetadata {
     private final String researchSeedbedName;

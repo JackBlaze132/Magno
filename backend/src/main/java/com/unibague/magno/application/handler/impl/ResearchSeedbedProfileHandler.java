@@ -7,8 +7,8 @@ import com.unibague.magno.application.mapper.request.ResearchSeedbedProfileReque
 import com.unibague.magno.application.mapper.response.ResearchSeedbedProfileResponseMapper;
 import com.unibague.magno.domain.api.IResearchSeedbedProfileServicePort;
 import com.unibague.magno.domain.model.ResearchSeedbedProfile;
-import com.unibague.magno.domain.model.excel.projections.ExcelReport;
-import com.unibague.magno.domain.model.excel.projections.metadata.SeedbedReportMetadata;
+import com.unibague.magno.domain.model.excel.ExcelReport;
+import com.unibague.magno.domain.model.excel.metadata.SeedbedReportMetadata;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,15 +1,14 @@
 package com.unibague.magno.infrastructure.output.jpa.adapter;
 
 import com.unibague.magno.domain.model.ResearchSeedbedProfile;
-import com.unibague.magno.domain.model.excel.projections.ExcelReport;
+import com.unibague.magno.domain.model.excel.ExcelReport;
 import com.unibague.magno.domain.model.excel.projections.SeedbedReportProjection;
-import com.unibague.magno.domain.model.excel.projections.metadata.SeedbedReportMetadata;
+import com.unibague.magno.domain.model.excel.metadata.SeedbedReportMetadata;
 import com.unibague.magno.domain.spi.IResearchSeedbedProfilePersistencePort;
 import com.unibague.magno.infrastructure.output.jpa.entity.ResearchSeedbedProfileEntity;
 import com.unibague.magno.infrastructure.output.jpa.mapper.ResearchSeedbedProfileEntityMapper;
 import com.unibague.magno.infrastructure.output.jpa.repository.IResearchSeedbedProfileRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;

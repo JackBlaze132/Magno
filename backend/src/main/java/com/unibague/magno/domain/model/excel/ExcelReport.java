@@ -1,4 +1,4 @@
-package com.unibague.magno.domain.model.excel.projections;
+package com.unibague.magno.domain.model.excel;
 
 // This class is used to encapsulate the content of an Excel report and its associated metadata.
 public class ExcelReport<T> {

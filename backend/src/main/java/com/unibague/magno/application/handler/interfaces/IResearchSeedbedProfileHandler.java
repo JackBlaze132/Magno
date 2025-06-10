@@ -2,8 +2,8 @@ package com.unibague.magno.application.handler.interfaces;
 
 import com.unibague.magno.application.dto.request.ResearchSeedbedProfileRequest;
 import com.unibague.magno.application.dto.response.ResearchSeedbedProfileResponse;
-import com.unibague.magno.domain.model.excel.projections.ExcelReport;
-import com.unibague.magno.domain.model.excel.projections.metadata.SeedbedReportMetadata;
+import com.unibague.magno.domain.model.excel.ExcelReport;
+import com.unibague.magno.domain.model.excel.metadata.SeedbedReportMetadata;
 
 import java.util.List;
 

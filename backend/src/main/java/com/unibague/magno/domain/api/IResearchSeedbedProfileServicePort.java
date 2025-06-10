@@ -1,8 +1,8 @@
 package com.unibague.magno.domain.api;
 
 import com.unibague.magno.domain.model.ResearchSeedbedProfile;
-import com.unibague.magno.domain.model.excel.projections.ExcelReport;
-import com.unibague.magno.domain.model.excel.projections.metadata.SeedbedReportMetadata;
+import com.unibague.magno.domain.model.excel.ExcelReport;
+import com.unibague.magno.domain.model.excel.metadata.SeedbedReportMetadata;
 
 import java.util.List;
 
