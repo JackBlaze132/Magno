@@ -13,4 +13,6 @@ public interface IFunctionaryProfileHandler {
     List<FunctionaryProfileResponse> findAll();
 
     List<FunctionaryProfileResponse> findAllProfilesByUserId(Long userId);
+
+    List<FunctionaryProfileResponse> findAllProfilesByAcademicPeriodId(Long academicPeriodId);
 }

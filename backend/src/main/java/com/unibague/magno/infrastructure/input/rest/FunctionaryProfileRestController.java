@@ -36,6 +36,12 @@ public class FunctionaryProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
+    @GetMapping(path = "/find-all-profiles-by-academic-period/{academicPeriodId}", headers = "API-VERSION=1")
+    public ResponseEntity<List<FunctionaryProfileResponse>> getAllFunctionaryProfilesByAcademicPeriodId(@PathVariable Long academicPeriodId) {
+        List<FunctionaryProfileResponse> responses = functionaryProfileHandler.findAllProfilesByAcademicPeriodId(academicPeriodId);
+        return ResponseEntity.ok(responses);
+    }
+
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<FunctionaryProfileResponse> createFunctionaryProfile
             (@Valid @RequestBody FunctionaryProfileRequest functionaryProfileRequest) {

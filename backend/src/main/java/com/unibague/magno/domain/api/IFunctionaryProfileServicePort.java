@@ -13,4 +13,6 @@ public interface IFunctionaryProfileServicePort {
     List<FunctionaryProfile> findAll();
 
     List<FunctionaryProfile> findAllProfilesByUserId(Long userId);
+
+    List<FunctionaryProfile> findAllProfilesByAcademicPeriodId(Long academicPeriodId);
 }

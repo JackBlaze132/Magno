@@ -15,4 +15,6 @@ public interface IFunctionaryProfilePersistencePort {
     List<FunctionaryProfile> findAllProfilesByUserId(Long userId);
 
     boolean existsByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId);
+
+    List<FunctionaryProfile> findAllProfilesByAcademicPeriodId(Long academicPeriodId);
 }
