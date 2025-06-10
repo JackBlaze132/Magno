@@ -85,11 +85,11 @@ public class ResearchSeedbedProfileJpaAdapter implements IResearchSeedbedProfile
         try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
             Sheet sheet = workbook.createSheet("Reporte");
 
-            String[] columnas = {"Periodo académico", "Grupo de investigación", "Semillero", "Coordinador", "Estudiante",
+            String[] headers = {"Periodo académico", "Grupo de investigación", "Semillero", "Coordinador", "Estudiante",
                     "Código", "Programa académico", "Semestre", "Sexo"};
             Row headerRow = sheet.createRow(0);
-            for (int i = 0; i < columnas.length; i++) {
-                headerRow.createCell(i).setCellValue(columnas[i]);
+            for (int i = 0; i < headers.length; i++) {
+                headerRow.createCell(i).setCellValue(headers[i]);
             }
 
             String researchSeedbedName = records.isEmpty() ? "" :
@@ -111,7 +111,7 @@ public class ResearchSeedbedProfileJpaAdapter implements IResearchSeedbedProfile
                 row.createCell(8).setCellValue(record.getSex());
             }
 
-            for (int i = 0; i < columnas.length; i++) {
+            for (int i = 0; i < headers.length; i++) {
                 sheet.autoSizeColumn(i);
             }
 

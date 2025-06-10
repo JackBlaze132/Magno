@@ -1,17 +1,12 @@
 package com.unibague.magno.domain.model.excel.projections;
 
-// This interface is used to define the structure of the data returned by the half year seedbed report query.
+// This interface is used to define the structure of the data returned by the half year investigation group report query.
 // The name of the variables in this interface should match the aliases used in the SQL query defined in the repository.
-public interface SeedbedReportProjection {
+public interface InvestigationGroupHYRProjection {
     String getAcademicPeriodName();
     String getInvestigationGroupName();
     String getResearchSeedbedName();
     String getCoordinatorName();
-    String getStudentName();
-    String getCode();
-    String getAcademicProgramName();
-    Integer getSemester();
-    String getSex();
+    Long getStudentCount();
+    Boolean getIsActive();
 }
-
-

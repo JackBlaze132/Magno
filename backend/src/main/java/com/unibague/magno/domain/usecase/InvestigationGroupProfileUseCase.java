@@ -3,6 +3,8 @@ package com.unibague.magno.domain.usecase;
 import com.unibague.magno.domain.api.IInvestigationGroupProfileServicePort;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException;
 import com.unibague.magno.domain.model.InvestigationGroupProfile;
+import com.unibague.magno.domain.model.excel.ExcelReport;
+import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupHYRMetadata;
 import com.unibague.magno.domain.spi.IInvestigationGroupProfilePersistencePort;
 
 import java.util.List;
@@ -57,5 +59,10 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
     @Override
     public List<InvestigationGroupProfile> findAllByAcademicPeriodId(Long academicPeriodId) {
         return investigationGroupProfilePersistencePort.findAllByAcademicPeriodId(academicPeriodId);
+    }
+
+    @Override
+    public ExcelReport<InvestigationGroupHYRMetadata> getExcelBytesForHalfYearInvestigationGroupReport(Long academicPeriodId) {
+        return investigationGroupProfilePersistencePort.getExcelBytesForHalfYearInvestigationGroupReport(academicPeriodId);
     }
 }
