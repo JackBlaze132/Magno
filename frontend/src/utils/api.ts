@@ -30,6 +30,7 @@ class API{
   //----[FUNCTIONARY PROFILES]----
   public readonly FUNCTIONARY_PROFILES:string='functionary-profiles/';
   public readonly FUNCTIONARY_PROFILES_ASSIGNED:string='functionary-profiles/find-all-profiles/'; //<---- Requires research seedbed id
+  public readonly FUNCTIONARY_PROFILES_BY_ACADEMIC_PERIOD:string='functionary-profiles/find-all-profiles-by-academic-period/'; //<---- Requires academic period id
 
   //----[STUDENT PROFILES]----
   public readonly STUDENT_PROFILES:string='student-profiles/';
@@ -39,7 +40,7 @@ class API{
   public readonly INVESTIGATION_GROUPS:string='investigation-groups/';
 
   //----[INVESTIGATION GROUPS PROFILES]----
-  public readonly INVESTIGATION_GRUOPS_PROFILES:string='investigation-groups-profiles/';
+  public readonly INVESTIGATION_GRUOPS_PROFILES:string='investigation-group-profiles/';
   public readonly INVESTIGATION_GROUPS_PROFILES_BY_ACADEMIC_PERIOD:string='investigation-group-profiles/get-all-by-academic-period-id/'; //<---- Requires academic period id
 
   //----[ROLES]----

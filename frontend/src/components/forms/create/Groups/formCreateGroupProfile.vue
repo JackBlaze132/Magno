@@ -50,14 +50,15 @@ export default defineComponent({
         'API-VERSION': '1',
       };
       try {
-        const functionaries = await API.get(API.FUNCTIONARY_PROFILES, headers);
+        const functionaries = await API.get(API.FUNCTIONARY_PROFILES_BY_ACADEMIC_PERIOD + this.$route.params.idPeriodo, headers);
         this.$emit('loaded');
-        console.log("Hola obtuve los roles")
+        console.log("Hola obtuve los funcionarios")
+        console.log(functionaries);
 
-        const functionaryField = this.fields.find(f => f.key === 'role_ids')
+        const functionaryField = this.fields.find(f => f.key === 'coordinator_id')
         if (functionaryField) {
           functionaryField.options = functionaries.map((functionary: any) => ({
-            label: functionary.name,
+            label: functionary.user.full_name,
             value: functionary.id,
           }));
         }

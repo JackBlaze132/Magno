@@ -133,7 +133,7 @@ export default defineComponent({
          ...this.formValues,
           }, headers);
         } else if (this.type === 'group_profile') {
-          response = await API.post(API.INVESTIGATION_GROUPS_PROFILES_BY_ACADEMIC_PERIOD, {
+          response = await API.post(API.INVESTIGATION_GRUOPS_PROFILES, {
             ...this.formValues,
           }, headers);
         }
