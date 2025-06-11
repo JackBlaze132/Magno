@@ -79,7 +79,7 @@ export default defineComponent({
         'API-VERSION': '1',
       }
       try {
-        this.items = await API.get(API.FUNCTIONARY_PROFILES_ASIGNED + this.$route.params.idFunctionary, headers);
+        this.items = await API.get(API.FUNCTIONARY_PROFILES_ASSIGNED + this.$route.params.idFunctionary, headers);
         this.$emit('loaded');
       } catch (error) {
         console.error('Error fetching users:', error);

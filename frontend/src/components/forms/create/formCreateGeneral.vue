@@ -132,6 +132,10 @@ export default defineComponent({
           response = await API.post(API.STUDENT_PROFILES, {
          ...this.formValues,
           }, headers);
+        } else if (this.type === 'group_profile') {
+          response = await API.post(API.INVESTIGATION_GROUPS_PROFILES_BY_ACADEMIC_PERIOD, {
+            ...this.formValues,
+          }, headers);
         }
         if (!response.error) {
           this.$emit('itemCreated', this.formValues.name);

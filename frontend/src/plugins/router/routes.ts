@@ -13,60 +13,40 @@ export const routes = [
     children: [
       {
         name: 'inicio',
-        path: P.INICIO,
+        path: P.HOME,
         component: components.HOME_INDEX,
       },
       {
         name: 'informes',
-        path: P.INFORMES,
+        path: P.REPORTS,
         component: components.REPORTS_INDEX,
       },
       {
-        path: P.PERIODOS,
-        redirect: P.PERIODOS + '/' + P.LISTAR_PERIODOS,
+        path: P.PERIODS,
+        redirect: P.PERIODS + '/' + P.PERIODS_LIST,
         component: components.ACADEMIC_PERIODS_INDEX,
         children: [
           {
             name: 'listar-periodos',
-            path: P.LISTAR_PERIODOS,
-            component: components.LIST_PERIODS,
-          },
-          {
-            name: 'agregar-periodo',
-            path: P.AGREGAR_PERIODO,
-            component: components.ADD_PERIOD,
-          },
-          {
-            name: 'editar-preiodo',
-            path: P.EDITAR_PERIODO_DINAMICO,
-            component: components.EDIT_PERIOD,
+            path: P.PERIODS_LIST,
+            component: components.PERIODS_LIST,
           },
           {
             name: 'grupos-investigacion',
-            path: P.GRUPOS_INVESTIGACION_DINAMICO,
+            path: P.INVESTIGATION_GROUPS_BY_PERIOD,
             redirect: (to: RouteLocationNormalized) => {
               return { name: 'listar-grupos', params: { idPeriodo: to.params.idPeriodo } }
             },
-            component: components.RESEARCH_GROUPS_INDEX,
+            component: components.INVESTIGATION_GROUPS_PROFILES_INDEX,
             children: [
               {
                 name: 'listar-grupos',
-                path: P.LISTAR_GRUPOS,
-                component: components.LIST_GROUPS_BY_PERIOD,
-              },
-              {
-                name: 'agregar-grupo',
-                path: P.AGREGAR_GRUPO,
-                component: components.ADD_GROUP_BY_PERIOD,
-              },
-              {
-                name: 'editar-grupo',
-                path: P.EDITAR_GRUPO_DINAMICO,
-                component: components.EDIT_GROUP_BY_PERIOD,
+                path: P.INVESTIGATION_GROUPS_LIST,
+                component: components.INVESTIGATION_GROUPS_PROFILES_LIST,
               },
               {
                 name: 'semilleros',
-                path: P.SEMILLEROS_DINAMICO,
+                path: P.RESEARCH_SEEDBED_BY_GROUP,
                 redirect: (to: RouteLocationNormalized) => {
                   return {
                     name: 'listar-semilleros',
@@ -76,25 +56,15 @@ export const routes = [
                     },
                   }
                 },
-                component: components.SEEDBEDS_INDEX,
+                component: components.SEEDBEDS_BY_GROUP_INDEX,
                 children: [
                   {
                     name: 'listar-semilleros',
-                    path: P.LISTAR_SEMILLEROS,
-                    component: components.LIST_SEEDBEDS_BY_GROUP,
+                    path: P.RESEARCH_SEEDBEDS_LIST,
+                    component: components.SEEDBEDS_BY_GROUP_LIST,
                   },
                   {
-                    name: 'agregar-semillero',
-                    path: P.AGREGAR_SEMILLERO,
-                    component: components.ADD_SEEDBED_BY_GROUP,
-                  },
-                  {
-                    name: 'editar-semillero',
-                    path: P.EDITAR_SEMILLERO_DINAMICO,
-                    component: components.EDIT_SEEDBED_BY_GROUP,
-                  },
-                  {
-                    path: P.SEMILLERO_DINAMICO,
+                    path: P.RESEARCH_SEEDBED_LOUNGE,
                     redirect: (to: RouteLocationNormalized) => {
                       return {
                         name: 'detalles',
@@ -109,28 +79,8 @@ export const routes = [
                     children: [
                       {
                         name: 'detalles',
-                        path: P.DETALLES_NOMBRE,
+                        path: P.DETAILS,
                         component: components.LOUNGE_MEMBERS,
-                      },
-                      {
-                        name: 'editar-coordinador',
-                        path: P.EDITAR_COORDINADOR,
-                        component: components.LOUNGE_EDIT_COORDINATOR,
-                      },
-                      {
-                        name: 'editar-tutor',
-                        path: P.EDITAR_TUTOR,
-                        component: components.LOUNGE_EDIT_TUTOR,
-                      },
-                      {
-                        name: 'subir-estudiantes',
-                        path: P.SUBIR_ESTUDIANTES,
-                        component: components.LOUNGE_UPLOAD_STUDENT,
-                      },
-                      {
-                        name: 'agregar-estudiante',
-                        path: P.AGREGAR_ESTUDIANTE,
-                        component: components.LOUNGE_ADD_STUDENT,
                       },
                     ],
                   },
@@ -143,26 +93,22 @@ export const routes = [
       {
         name: 'grupos',
         path: P.GROUPS_PATH,
-        component: components.LIST_GROUPS,
+        component: components.GROUPS_LIST,
       },
       {
         name: 'semilleros',
-        path: P.SEMILLEROS_PATH,
+        path: P.RESEARCH_SEEDBEDS_PATH,
         component: components.SEEDBEDS_LIST,
       },
       {
         name: 'usuarios',
-        path: P.USUARIOS_PATH,
-        redirect: P.USUARIOS_PATH + '/' + P.USUARIOS_LISTAR,
+        path: P.USERS_PATH,
+        redirect: P.USERS_PATH + '/' + P.USERS_LIST,
         component: components.USERS_INDEX,
         children: [
           {
-            path: P.USUARIOS_LISTAR,
+            path: P.USERS_LIST,
             component: components.LIST_USER,
-          },
-          {
-            path: P.USUARIOS_AGREGAR,
-            component: components.ADD_USER,
           },
         ],
       },
@@ -174,22 +120,22 @@ export const routes = [
         children: [
           {
             path: P.ROLES_LISTAR,
-            component: components.LIST_ROLES,
+            component: components.ROLES_LIST,
           },
         ]
       },
       {
         name: 'funcionarios',
-        path: P.FUNCIONARIOS_PATH,
-        component: components.FUNCTIONARY_INDEX,
+        path: P.FUNCTIONARIES_PATH,
+        component: components.FUNCTIONARIES_INDEX,
         redirect: (to: RouteLocationNormalized) => {
           return { name: 'listar-funcionarios' }
         },
         children: [
           {
             name: 'listar-funcionarios',
-            path: P.FUNCIONARIOS_LISTAR,
-            component: components.LIST_FUNCTIONARIES,
+            path: P.FUNCTIONARIES_LIST,
+            component: components.FUNCTIONARIES_LIST,
           },
           {
             path: ':idFunctionary' + P.PROFILES_PATH,
@@ -209,21 +155,16 @@ export const routes = [
         ],
       },
       {
-        path: P.ESTUDIANTES_PATH,
+        path: P.STUDENTS_PATH,
         component: components.STUDENTS_INDEX,
         redirect: (to: RouteLocationNormalized) => {
           return { name: 'listar-estudiantes' }
         },
         children: [
           {
-            path: P.ESTUDIANTES_LISTAR,
+            path: P.STUDENTS_LIST,
             name: 'listar-estudiantes',
-            component: components.LIST_STUDENTS,
-          },
-          {
-            path: P.ESTUDIANTE_DETALLES_DINAMICO,
-            name: 'detalles-estudiante',
-            component: components.DETAIL_STUDENT,
+            component: components.STUDENTS_LIST,
           },
           {
             path: ':idStudent' + P.PROFILES_PATH,

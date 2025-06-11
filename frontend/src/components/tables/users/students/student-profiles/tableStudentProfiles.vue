@@ -87,7 +87,7 @@ export default defineComponent({
         'API-VERSION': '1',
       }
       try {
-        this.items = await API.get(API.STUDENT_PROFILES_ASIGNED + this.$route.params.idStudent, headers);
+        this.items = await API.get(API.STUDENT_PROFILES_ASSIGNED + this.$route.params.idStudent, headers);
         this.$emit('loaded');
       } catch (error) {
         console.error('Error fetching users:', error);

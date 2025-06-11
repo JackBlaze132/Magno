@@ -11,6 +11,7 @@ const CreateSeedbed = defineAsyncComponent(() => import("@/components/forms/crea
 const CreateUser = defineAsyncComponent(() => import("@/components/forms/create/Users/formCreateUsers.vue"));
 const CreateRole = defineAsyncComponent(() => import("@/components/forms/create/Roles/formCreateRoles.vue"));
 const CreateInternalProfile = defineAsyncComponent(() => import("@/components/forms/create/Users/formCreateInternalProfile.vue"));
+const CreateGroupProfile = defineAsyncComponent(() => import("@/components/forms/create/Groups/formCreateGroupProfile.vue"));
 
 export class CreateFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType) {
@@ -31,6 +32,7 @@ export class CreateFormFactory extends AbstractFormFactory {
           fields: schema.group,
         }
       },
+
       user_integra: {
         component: CreateUser,
         props: {
@@ -69,6 +71,14 @@ export class CreateFormFactory extends AbstractFormFactory {
           type: type,
           label: "perfil de estudiante",
           fields: schema.internal_profile
+        }
+      },
+      group_profile: {
+        component: CreateGroupProfile,
+        props: {
+          type: type,
+          label: "perfil de grupo",
+          fields: schema.group_profile
         }
       },
     };

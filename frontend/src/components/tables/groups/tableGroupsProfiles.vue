@@ -13,7 +13,7 @@
       ></VTextField>
       <QuickActions
       toCreate
-      type="group"
+      type="group_profile"
       @itemCreated="handleItemRefresh"
     />
     </VCardTitle>
@@ -88,7 +88,7 @@ export default defineComponent({
         'API-VERSION': '1',
       }
       try {
-        const groups = await API.get(API.INVESTIGATION_GROUPS, apiHeaders);
+        const groups = await API.get(API.INVESTIGATION_GROUPS_PROFILES_BY_ACADEMIC_PERIOD, apiHeaders);
 
         for (const group of groups) {
         const linesOfResearch = await API.get(

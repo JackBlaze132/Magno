@@ -52,7 +52,6 @@ export default defineComponent({
         const periods = await API.get(API.ACADEMIC_PERIODS, headers);
         this.$emit('loaded');
         console.log("Hola obtuve los periodos")
-        console.log(this.periods)
 
         const periodField = this.fields.find(f => f.key === 'academic_period_id')
         if (periodField) {

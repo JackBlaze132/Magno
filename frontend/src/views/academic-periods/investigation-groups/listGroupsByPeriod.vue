@@ -1,6 +1,8 @@
 <script lang="ts">
 import LoadingManager from '@/utils/loadingManager';
+import TableGroupsProfiles from "@/components/tables/groups/tableGroupsProfiles.vue";
 export default{
+  components: {TableGroupsProfiles},
   data(){
     return{
       loading:true
@@ -28,5 +30,6 @@ export default{
       <v-progress-circular indeterminate color="primary" size="64"/>
     </VOverlay>
     <tableGroupsByPeriod @loaded="onChildLoeaded"/>
+    <table-groups-profiles @loaded="onChildLoeaded"/>
   </VCard>
 </template>

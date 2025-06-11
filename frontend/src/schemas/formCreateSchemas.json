@@ -37,5 +37,15 @@
     "internal_profile":[
         { "key": "academic_period_id", "label": "Periodo Académico", "type": "select", "options": []  },
         { "key": "role_ids", "label": "Roles", "type": "multiple-select", "options": [] }
+    ],
+    "external_profile": [
+      { "key": "academic_period_id", "label": "Periodo Académico", "type": "select", "options": []  },
+      { "key": "research_seedbed_profile_id", "label": "Semillero", "type": "select", "options": []  },
+
+      { "key": "type_of_external_user", "label": "Tipo", "type": "text" }
+    ],
+    "group_profile": [
+      { "key": "investigation_group_id", "label": "Grupo de Investigación", "type": "select" },
+      { "key": "coordinator_id", "label": "Coordinador", "type": "select" }
     ]
   }

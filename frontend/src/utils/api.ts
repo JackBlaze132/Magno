@@ -25,14 +25,15 @@ class API{
 
   //----[EXTERNAL USER PROFILES]----q
   public readonly EXTERNAL_USER_PROFILES:string='external-user-profiles/';
+  public readonly EXTERNAL_USER_PROFILEs_ASIGNED:string='external-user-profiles/find-all-profiles/';
 
   //----[FUNCTIONARY PROFILES]----
   public readonly FUNCTIONARY_PROFILES:string='functionary-profiles/';
-  public readonly FUNCTIONARY_PROFILES_ASIGNED:string='functionary-profiles/find-all-profiles/'; //<---- Requires research seedbed id
+  public readonly FUNCTIONARY_PROFILES_ASSIGNED:string='functionary-profiles/find-all-profiles/'; //<---- Requires research seedbed id
 
   //----[STUDENT PROFILES]----
   public readonly STUDENT_PROFILES:string='student-profiles/';
-  public readonly STUDENT_PROFILES_ASIGNED:string='student-profiles/find-all-profiles/'; //<---- Requires research seedbed id
+  public readonly STUDENT_PROFILES_ASSIGNED:string='student-profiles/find-all-profiles/'; //<---- Requires research seedbed id
 
   //----[INVESTIGATION GLOBAL GROUPS]----
   public readonly INVESTIGATION_GROUPS:string='investigation-groups/';
@@ -55,7 +56,7 @@ class API{
   public readonly RESEARCH_SEEDBED_STUDENT_PROFILES:string='research-seedbed-student-profiles/';
   public readonly RESEARCH_SEEDBED_STUDENT_PROFILES_UPLOAD_BY_EXCEL:string='research-seedbed-student-profile/add-all-by-excel/'; //<---- Requires research seedbed id
 
-  //----[USERS]----
+  //----[USERS_PATH]----
   public readonly USERS:string='users/';
   public readonly USERS_INTEGRA:string='users/integra-user';
   public readonly USERS_FUNCTIONARY:string='users/all-functionaries-registered';
