@@ -23,7 +23,7 @@
       :headers="headers"
     >
       <template v-slot:item.lines_of_research="{item}">
-        <VChipGroup>
+        <VChipGroup column>
           <VChip v-for="(line, index) in lines[item.id]" :key="index">
             {{line}}
           </VChip>
@@ -32,15 +32,13 @@
 
       <template v-slot:item.link="{item}">
         <QuickActions
-          toEdit
-          toDelete
-          type="group"
-          :name="item.name"
-          :index="item.id"
-          :initialData="setInitialData(item)"
-          @itemDeleted="handleItemRefresh"
-          @itemEdited="handleItemRefresh"
-          ></QuickActions>
+          :toView="item.id + '/semilleros'"
+          :toEdit="item.id + '/editar-grupo'"
+          :toDelete="item.id"
+          :deleteItem="item.name"
+          deleteType="grupo"
+          @itemDeleted="handleItemDeleted"
+        ></QuickActions>
       </template>
     </VDataTable>
   </VCard>
@@ -56,8 +54,16 @@ import API from "@/utils/api";
 
 interface Item {
   id: number,
-  name: string,
-  lines_of_research: Array<string>,
+  investigation_group:{
+    name: string
+    lines_of_research: Array<string>,
+  },
+  coordinator:{
+    user: {
+      full_name: string
+    }
+  }
+
 }
 
 export default defineComponent({
@@ -71,7 +77,8 @@ export default defineComponent({
       links: '',
       headers: [
         {title: 'ID', key: 'id'},
-        {title: 'Nombre', key: 'name'},
+        {title: 'Nombre', key: 'investigation_group.name'},
+        {title: 'Director', key: 'coordinator.user.full_name'},
         {title: 'Lineas de investigaión', key: 'lines_of_research'},
         { key: 'link', sortable: false},
       ],
@@ -88,11 +95,11 @@ export default defineComponent({
         'API-VERSION': '1',
       }
       try {
-        const groups = await API.get(API.INVESTIGATION_GROUPS_PROFILES_BY_ACADEMIC_PERIOD, apiHeaders);
+        const groups = await API.get(API.INVESTIGATION_GROUPS_PROFILES_BY_ACADEMIC_PERIOD + this.$route.params.idPeriodo, apiHeaders);
 
         for (const group of groups) {
         const linesOfResearch = await API.get(
-          API.LINES_OF_RESEARCH_BY_INVESTIGATION_GROUP + group.id,
+          API.LINES_OF_RESEARCH_BY_INVESTIGATION_GROUP + group.investigation_group.id,
           apiHeaders
         )
         this.lines[group.id] = linesOfResearch;
