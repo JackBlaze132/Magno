@@ -4,15 +4,13 @@ import { defineAsyncComponent } from "vue";
 import type { EntityType } from  '@/utils/abstract-forms-factory/form-types/formsTypes';
 import { componentStatus } from "@iconify/utils/lib/emoji/test/parse.js";
 
-const DeletePeriod = defineAsyncComponent(() => import("@/components/forms/delete/formDeleteGeneral.vue"));
-const DeleteGroup = defineAsyncComponent(() => import("@/components/forms/delete/formDeleteGeneral.vue"));
-const DeleteSeedbed = defineAsyncComponent(() => import("@/components/forms/delete/formDeleteGeneral.vue"));
+const DeleteComponent = defineAsyncComponent(() => import("@/components/forms/delete/formDeleteGeneral.vue"));
 
 export class DeleteFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType, extraProps?: Record<any, any>) {
       const componentMap = {
       period: {
-        component: DeletePeriod,
+        component: DeleteComponent,
         props: {
           name: extraProps?.name,
           type: type,
@@ -20,7 +18,7 @@ export class DeleteFormFactory extends AbstractFormFactory {
           index: extraProps?.index,
            } },
       group: {
-        component: DeleteGroup,
+        component: DeleteComponent,
         props: {
           name: extraProps?.name,
           type: type,
@@ -29,7 +27,7 @@ export class DeleteFormFactory extends AbstractFormFactory {
         }
       },
       seedbed: {
-        component: DeleteSeedbed,
+        component: DeleteComponent,
         props: {
           name: extraProps?.name,
           type: type,
@@ -37,6 +35,15 @@ export class DeleteFormFactory extends AbstractFormFactory {
           index: extraProps?.index,
         }
       },
+      group_profile: {
+        component: DeleteComponent,
+        props: {
+          name: extraProps?.name,
+          type: type,
+          label: "perfil de grupo",
+          index: extraProps?.index,
+        }
+      }
     };
     if (type in componentMap) {
         console.log(componentMap[type as keyof typeof componentMap].props);

@@ -35,7 +35,6 @@
             :items="field.options"
             item-title="label"
             item-value="value"
-            hint="Seleccione la línea de investigación"
             class="mb-5"
             :label="field.label"
           />
@@ -45,7 +44,6 @@
             :items="field.options"
             item-title="label"
             item-value="value"
-            hint="Seleccione al menos 2 líneas de investigación"
             :label="field.label"
             class="mb-5"
           />

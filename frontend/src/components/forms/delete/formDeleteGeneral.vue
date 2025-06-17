@@ -5,7 +5,7 @@
     </VCardTitle>
     <VDivider/>
     <VCardText>
-      Esta a punto eliminar el {{ type }} denominado {{name}}, si esta seguro de que desea eliminar este elemento por favor ingrese <span class="px-1" style="background-color:rgb(var(--v-theme-grey-300))"> eliminar {{ name }}</span>en el campo de abajo.
+      Esta a punto eliminar el {{ label }} denominado {{name}}, si esta seguro de que desea eliminar este elemento por favor ingrese <span class="px-1" style="background-color:rgb(var(--v-theme-grey-300))"> eliminar {{ name }}</span>en el campo de abajo.
     </VCardText>
     <VForm validate-on="submit" @submit.prevent="deleteItem">
       <VTextField  name="field" id="field" v-model="inputValue" :placeholder="`eliminar ${name}`"/>
@@ -53,7 +53,8 @@ export default defineComponent({
       const endpoint =
       this.type === 'seedbed' ? API.RESEARCH_SEEDBEDS :
       this.type === 'group' ? API.INVESTIGATION_GROUPS :
-      this.type === 'period' ? API.ACADEMIC_PERIODS : '';
+      this.type === 'period' ? API.ACADEMIC_PERIODS :
+      this.type === 'group_profile' ? API.INVESTIGATION_GRUOPS_PROFILES :'';
 
       const expectedValue = `eliminar ${this.name}`;
       if (this.inputValue !== expectedValue) {

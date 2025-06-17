@@ -7,6 +7,7 @@ import schema from '@/schemas/formUpdateSchemas.json';
 const UpdatePeriod = defineAsyncComponent(() => import("@/components/forms/update/formUpdateGeneral.vue"));
 const UpdateGroup = defineAsyncComponent(() => import("@/components/forms/update/groups/formUpdateGroups.vue"));
 const UpdateSeedbed = defineAsyncComponent(() => import("@/components/forms/update/seedbeds/formUpdateSeedbeds.vue"));
+const UpdateGroupProfile = defineAsyncComponent(() => import("@/components/forms/update/groups/formUpdateGroupProfile.vue"));
 
 export class UpdateFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType, extraProps?: Record<any, any>) {
@@ -31,6 +32,26 @@ export class UpdateFormFactory extends AbstractFormFactory {
           initialData: extraProps?.initialData,
         }
        },
+      seedbed: {
+        component: UpdateSeedbed,
+        props: {
+          type: type,
+          label: "semillero",
+          fields: schema.seedbed,
+          index: extraProps?.index,
+          initialData: extraProps?.initialData,
+        }
+      },
+      group_profile: {
+        component: UpdateGroupProfile,
+        props: {
+          type: type,
+          label: "perfil de grupo",
+          fields: schema.group_profile,
+          index: extraProps?.index,
+          initialData: extraProps?.initialData,
+        }
+      }
     };
     if (type in componentMap) {
       console.log(componentMap[type as keyof typeof componentMap].props);

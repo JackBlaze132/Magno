@@ -24,6 +24,9 @@ export default {
   VChip: {
     elevation: 0,
   },
+  VChipGroup:{
+    column: true
+  },
   VMenu: {
     offset: '2px',
   },

@@ -35,8 +35,8 @@
             :items="field.options"
             item-title="label"
             item-value="value"
-            hint="Seleccione la línea de investigación"
             :label="field.label"
+            class="mb-5"
           />
           <VSelect v-else-if="field.type === 'multiple-select'"
             multiple
@@ -44,7 +44,6 @@
             :items="field.options"
             item-title="label"
             item-value="value"
-            hint="Seleccione al menos 2 líneas de investigación"
             :label="field.label"
           />
           <VTextarea v-else-if="field.type === 'textarea'"
@@ -119,6 +118,10 @@ export default defineComponent({
         } else if (this.type === 'group') {
           // Ejemplo hipotético para editar un grupo
           response = await API.put(API.INVESTIGATION_GROUPS + this.index, {
+            ...this.formValues,
+          }, headers);
+        } else if (this.type === 'group_profile') {
+          response = await API.put(API.INVESTIGATION_GRUOPS_PROFILES + this.index, {
             ...this.formValues,
           }, headers);
         }

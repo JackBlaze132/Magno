@@ -23,21 +23,26 @@
       :headers="headers"
     >
       <template v-slot:item.lines_of_research="{item}">
-        <VChipGroup column>
+        <div style="max-width: 500px">
+        <VChipGroup>
           <VChip v-for="(line, index) in lines[item.id]" :key="index">
             {{line}}
           </VChip>
         </VChipGroup>
+        </div>
       </template>
 
       <template v-slot:item.link="{item}">
         <QuickActions
-          :toView="item.id + '/semilleros'"
-          :toEdit="item.id + '/editar-grupo'"
-          :toDelete="item.id"
-          :deleteItem="item.name"
-          deleteType="grupo"
-          @itemDeleted="handleItemDeleted"
+          toEdit
+          toDelete
+          :toView="item.id + '/semilleros-investigacion'"
+          type="group_profile"
+          :name="item.investigation_group.name"
+          :index="item.id"
+          :initialData="setInitialData(item)"
+          @itemDeleted="handleItemRefresh"
+          @itemEdited="handleItemRefresh"
         ></QuickActions>
       </template>
     </VDataTable>
@@ -117,8 +122,9 @@ export default defineComponent({
     },
     setInitialData(item: any) {
       return {
-        name: item.name,
-        lines_of_research: item.lines_of_research,
+        investigation_group_id: item.investigation_group.id,
+        coordinator_id: item.coordinator.user.id,
+        academic_period_id: this.$route.params.idPeriodo,
       }
     }
   },

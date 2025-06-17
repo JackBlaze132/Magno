@@ -27,6 +27,7 @@ declare module 'vue' {
     FormUpdateFunctionary: typeof import('./src/components/forms/patch/formUpdateFunctionary.vue')['default']
     FormUpdateGeneral: typeof import('./src/components/forms/update/formUpdateGeneral.vue')['default']
     FormUpdateGroup: typeof import('./src/components/forms/patch/formUpdateGroup.vue')['default']
+    FormUpdateGroupProfile: typeof import('./src/components/forms/update/groups/formUpdateGroupProfile.vue')['default']
     FormUpdateGroups: typeof import('./src/components/forms/update/groups/formUpdateGroups.vue')['default']
     FormUpdatePeriod: typeof import('./src/components/forms/patch/formUpdatePeriod.vue')['default']
     FormUpdateSeedbed: typeof import('./src/components/forms/patch/formUpdateSeedbed.vue')['default']
