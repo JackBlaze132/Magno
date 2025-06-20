@@ -2,13 +2,13 @@
 import { AbstractFormFactory } from "../abstractFormsFactory";
 import { defineAsyncComponent } from "vue";
 import type { EntityType } from  '@/utils/abstract-forms-factory/form-types/formsTypes';
-import { componentStatus } from "@iconify/utils/lib/emoji/test/parse.js";
+import { EntityTypes } from '@/utils/abstract-forms-factory/form-types/formsTypes';
 
 const DeleteComponent = defineAsyncComponent(() => import("@/components/forms/delete/formDeleteGeneral.vue"));
 
 export class DeleteFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType, extraProps?: Record<any, any>) {
-      const componentMap = {
+      const componentMap: Partial<Record<EntityType, any>> = {
       period: {
         component: DeleteComponent,
         props: {
@@ -45,9 +45,10 @@ export class DeleteFormFactory extends AbstractFormFactory {
         }
       }
     };
-    if (type in componentMap) {
-        console.log(componentMap[type as keyof typeof componentMap].props);
+    if (!(type in componentMap) || !EntityTypes.includes(type)) {
+      console.log( `Componente no encontrado para el tipo: ${type}`);
+      return this.getDefaultComponent();
     }
-    return componentMap[type as keyof typeof componentMap] || this.getDefaultComponent();
+    return componentMap[type as keyof typeof componentMap]
   }
 }

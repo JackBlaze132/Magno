@@ -1,7 +1,7 @@
 // src/factories/CreateComponentFactory.ts
 import { AbstractFormFactory } from "../abstractFormsFactory";
 import { defineAsyncComponent } from "vue";
-import type { EntityType } from  '@/utils/abstract-forms-factory/form-types/formsTypes';
+import {EntityType, EntityTypes} from '@/utils/abstract-forms-factory/form-types/formsTypes';
 import schema from '@/schemas/formUpdateSchemas.json';
 
 const UpdatePeriod = defineAsyncComponent(() => import("@/components/forms/update/formUpdateGeneral.vue"));
@@ -11,8 +11,9 @@ const UpdateGroupProfile = defineAsyncComponent(() => import("@/components/forms
 
 export class UpdateFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType, extraProps?: Record<any, any>) {
-      const componentMap = {
-      period: {
+      const componentMap: Partial<Record<EntityType, any>> = {
+
+        period: {
         component: UpdatePeriod,
         props: {
           type: type,
@@ -51,11 +52,12 @@ export class UpdateFormFactory extends AbstractFormFactory {
           index: extraProps?.index,
           initialData: extraProps?.initialData,
         }
-      }
+      },
     };
-    if (type in componentMap) {
-      console.log(componentMap[type as keyof typeof componentMap].props);
-  }
-  return componentMap[type as keyof typeof componentMap] || this.getDefaultComponent();
+    if (!(type in componentMap) || !EntityTypes.includes(type)) {
+      console.log( `Componente no encontrado para el tipo: ${type}`);
+      return this.getDefaultComponent();
+    }
+    return componentMap[type as keyof typeof componentMap]
   }
 }

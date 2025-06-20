@@ -2,6 +2,7 @@
 import { AbstractFormFactory } from "../abstractFormsFactory";
 import { defineAsyncComponent } from "vue";
 import type { EntityType } from  '@/utils/abstract-forms-factory/form-types/formsTypes';
+import { EntityTypes } from '@/utils/abstract-forms-factory/form-types/formsTypes';
 import schema from '@/schemas/formCreateSchemas.json';
 
 //const CreatePeriodo = defineAsyncComponent(() => import("@/components/forms/create/formCreateGeneral.vue"));
@@ -15,7 +16,7 @@ const CreateGroupProfile = defineAsyncComponent(() => import("@/components/forms
 
 export class CreateFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType) {
-      const componentMap = {
+      const componentMap: Partial<Record<EntityType, any>> = {
       period: {
         component: CreatePeriod,
         props: {
@@ -82,7 +83,10 @@ export class CreateFormFactory extends AbstractFormFactory {
         }
       },
     };
-
-    return componentMap[type as keyof typeof componentMap] || this.getDefaultComponent();
+    if (!(type in componentMap) || !EntityTypes.includes(type)) {
+      console.log( `Componente no encontrado para el tipo: ${type}`);
+      return this.getDefaultComponent();
+    }
+    return componentMap[type as keyof typeof componentMap]
   }
 }
