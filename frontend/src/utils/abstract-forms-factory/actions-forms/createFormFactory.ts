@@ -13,10 +13,11 @@ const CreateUser = defineAsyncComponent(() => import("@/components/forms/create/
 const CreateRole = defineAsyncComponent(() => import("@/components/forms/create/Roles/formCreateRoles.vue"));
 const CreateInternalProfile = defineAsyncComponent(() => import("@/components/forms/create/Users/formCreateInternalProfile.vue"));
 const CreateGroupProfile = defineAsyncComponent(() => import("@/components/forms/create/Groups/formCreateGroupProfile.vue"));
+const CreateSeedbedProfile = defineAsyncComponent(() => import("@/components/forms/create/seedbeds/formCreateSeedbedProfile.vue"));
 
 export class CreateFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType) {
-      const componentMap: Partial<Record<EntityType, any>> = {
+    const componentMap: Partial<Record<EntityType, any>> = {
       period: {
         component: CreatePeriod,
         props: {
@@ -82,6 +83,14 @@ export class CreateFormFactory extends AbstractFormFactory {
           fields: schema.group_profile
         }
       },
+      seedbed_profile: {
+        component: CreateSeedbedProfile,
+        props: {
+          type: type,
+          label: "perfil de semillero",
+          fields: schema.seedbed_profile
+        }
+      }
     };
     if (!(type in componentMap) || !EntityTypes.includes(type)) {
       console.log( `Componente no encontrado para el tipo: ${type}`);

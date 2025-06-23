@@ -16,7 +16,6 @@
         { "key": "creation_date", "label": "Fecha de creación", "type": "date" },
         { "key": "line_of_research", "label": "Linea de investigación", "type": "select", "options": [] }
     ],
-
     "group_profile": [
         { "key": "investigation_group_id", "label": "Grupo de Investigación", "type": "select", "options": [] },
         { "key": "coordinator_id", "label": "Coordinador", "type": "select", "options": [] }

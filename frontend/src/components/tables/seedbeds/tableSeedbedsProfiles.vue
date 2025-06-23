@@ -12,10 +12,10 @@
         single-line
       ></VTextField>
       <QuickActions
-      toCreate
-      type="group_profile"
-      @itemCreated="handleItemRefresh"
-    />
+        toCreate
+        type="seedbed_profile"
+        @itemCreated="handleItemRefresh"
+      />
     </VCardTitle>
     <VDataTable
       :items="items"
@@ -24,11 +24,11 @@
     >
       <template v-slot:item.lines_of_research="{item}">
         <div style="max-width: 500px">
-        <VChipGroup>
-          <VChip v-for="(line, index) in lines[item.id]" :key="index">
-            {{line}}
-          </VChip>
-        </VChipGroup>
+          <VChipGroup>
+            <VChip v-for="(line, index) in lines[item.id]" :key="index">
+              {{line}}
+            </VChip>
+          </VChipGroup>
         </div>
       </template>
 
@@ -100,14 +100,14 @@ export default defineComponent({
         'API-VERSION': '1',
       }
       try {
-        const groups = await API.get(API.INVESTIGATION_GROUPS_PROFILES_BY_ACADEMIC_PERIOD + this.$route.params.idPeriodo, apiHeaders);
+        const groups = await API.get(API.RESEARCH_SEEDBEDS_PROFILES_BY_INVESTIGATION_GROUP_PROFILE + this.$route.params.idPeriodo, apiHeaders);
 
         for (const group of groups) {
-        const linesOfResearch = await API.get(
-          API.LINES_OF_RESEARCH_BY_INVESTIGATION_GROUP + group.investigation_group.id,
-          apiHeaders
-        )
-        this.lines[group.id] = linesOfResearch;
+          const linesOfResearch = await API.get(
+            API.LINES_OF_RESEARCH_BY_INVESTIGATION_GROUP + group.investigation_group.id,
+            apiHeaders
+          )
+          this.lines[group.id] = linesOfResearch;
         }
         this.items = groups;
         this.$emit('loaded');

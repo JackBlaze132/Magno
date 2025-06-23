@@ -15,7 +15,7 @@
 import { defineComponent } from 'vue';
 import API from '@/utils/api';
 export default defineComponent({
-  name: 'formCreateGroupProfile',
+  name: 'formCreateSeedbedProfile',
   props:{
     name: {
       type: String,
@@ -55,13 +55,18 @@ export default defineComponent({
         console.log("Hola obtuve los funcionarios")
         console.log(functionaries);
 
-        const functionaryField = this.fields.find(f => f.key === 'coordinator_id' )
-        if (functionaryField) {
-          functionaryField.options = functionaries.map((functionary: any) => ({
-            label: functionary.user.full_name,
-            value: functionary.id,
-          }));
-        }
+        // Create the options list once
+        const functionaryOptions = functionaries.map((functionary: any) => ({
+          label: functionary.user.full_name,
+          value: functionary.id,
+        }));
+
+        // Update all matching fields, not just the first one
+        this.fields.forEach(field => {
+          if (field.key === 'coordinator_id' || field.key === 'tutor_id') {
+            field.options = functionaryOptions;
+          }
+        });
       } catch (error) {
         console.error('Error fetching users:', error);
       }
@@ -71,12 +76,12 @@ export default defineComponent({
         'API-VERSION': '1',
       };
       try {
-        const groups = await API.get(API.INVESTIGATION_GROUPS, headers);
+        const groups = await API.get(API.RESEARCH_SEEDBEDS, headers);
         this.$emit('loaded');
-        console.log("Hola obtuve los grupos")
+        console.log("Hola obtuve los semilleros")
         console.log(groups);
 
-        const groupField = this.fields.find(f => f.key === 'investigation_group_id')
+        const groupField = this.fields.find(f => f.key === 'research_seedbed_id')
         if (groupField) {
           groupField.options = groups.map((group: any) => ({
             label: group.name,
@@ -98,6 +103,23 @@ export default defineComponent({
             academic_period_id: periodId
           };
           console.log("ID de funcionario obtenido:", periodId);
+        }
+      } catch (error) {
+        console.error('Error getting user ID from route:', error);
+      }
+
+    },
+
+    getGroupId() {
+      try {
+        const groupId = this.$route.params.idGrupo;
+        if (groupId) {
+          // Agregar el userId al objeto additionalData que se pasará al formulario
+          this.additionalData = {
+            ...this.additionalData,
+            investigation_group_profile_id: groupId
+          };
+          console.log("ID de funcionario obtenido:", groupId);
         }
       } catch (error) {
         console.error('Error getting user ID from route:', error);

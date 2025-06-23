@@ -45,7 +45,7 @@ export const routes = [
                 component: components.INVESTIGATION_GROUPS_PROFILES_LIST,
               },
               {
-                name: 'semilleros',
+                name: 'semilleros-investigacion',
                 path: P.RESEARCH_SEEDBED_BY_GROUP,
                 redirect: (to: RouteLocationNormalized) => {
                   return {

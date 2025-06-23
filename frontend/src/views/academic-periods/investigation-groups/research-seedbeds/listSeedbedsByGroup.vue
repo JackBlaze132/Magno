@@ -4,6 +4,7 @@
       <v-progress-circular indeterminate color="primary" size="64"/>
     </VOverlay>
     <tableSeedbedsByGroup @loaded="onChildLoeaded"/>
+    <tableSeedbedsProfiles @loaded="onChildLoeaded"/>
 </VCard>
 </template>
 
