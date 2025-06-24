@@ -19,5 +19,14 @@
     "group_profile": [
         { "key": "investigation_group_id", "label": "Grupo de Investigación", "type": "select", "options": [] },
         { "key": "coordinator_id", "label": "Coordinador", "type": "select", "options": [] }
+    ],
+    "seedbed_profile": [
+        { "key": "research_seedbed_id", "label": "Semillero de investigación", "type": "select" },
+        { "key": "coordinator_id", "label": "Coordinador", "type": "select" },
+        { "key": "tutor_id", "label": "Tutor", "type": "select" },
+        { "key": "was_active", "label": "Periodo Académico", "type": "radio-group", "options": [
+            { "label": "Activo", "value": true},
+            { "label": "Inactivo", "value": false }
+        ]}
     ]
 }

@@ -36,8 +36,9 @@ export default defineComponent({
   },
   async created() {
     await this.fetchFunctionaries();
-    await this.fetchGroups();
+    await this.fetchSeedbeds();
     this.getPeriodId();
+    this.getGroupId();
     this.loaded = true;
   },
   methods: {
@@ -71,21 +72,21 @@ export default defineComponent({
         console.error('Error fetching users:', error);
       }
     },
-    async fetchGroups() {
+    async fetchSeedbeds() {
       const headers = {
         'API-VERSION': '1',
       };
       try {
-        const groups = await API.get(API.RESEARCH_SEEDBEDS, headers);
+        const seedbeds = await API.get(API.RESEARCH_SEEDBEDS, headers);
         this.$emit('loaded');
         console.log("Hola obtuve los semilleros")
-        console.log(groups);
+        console.log(seedbeds);
 
         const groupField = this.fields.find(f => f.key === 'research_seedbed_id')
         if (groupField) {
-          groupField.options = groups.map((group: any) => ({
-            label: group.name,
-            value: group.id,
+          groupField.options = seedbeds.map((seedbed: any) => ({
+            label: seedbed.name,
+            value: seedbed.id,
           }));
         }
       } catch (error) {
@@ -102,7 +103,7 @@ export default defineComponent({
             ...this.additionalData,
             academic_period_id: periodId
           };
-          console.log("ID de funcionario obtenido:", periodId);
+          console.log("ID de periodo:", periodId);
         }
       } catch (error) {
         console.error('Error getting user ID from route:', error);
@@ -119,7 +120,7 @@ export default defineComponent({
             ...this.additionalData,
             investigation_group_profile_id: groupId
           };
-          console.log("ID de funcionario obtenido:", groupId);
+          console.log("ID de grupo:", groupId);
         }
       } catch (error) {
         console.error('Error getting user ID from route:', error);

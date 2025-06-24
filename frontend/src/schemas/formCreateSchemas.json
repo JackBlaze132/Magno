@@ -4,8 +4,8 @@
     { "key": "start_date", "label": "Fecha de inicio", "type": "date" },
     { "key": "end_date", "label": "Fecha de fin", "type": "date" },
     { "key": "is_current", "label": "Estado", "type": "radio-group","options": [
-        { "label": "Activo", "value": "true" },
-        { "label": "Inactivo", "value": "false" }
+        { "label": "Activo", "value": true },
+        { "label": "Inactivo", "value": false }
       ]
     }
   ],
@@ -48,8 +48,8 @@
     { "key": "coordinator_id", "label": "Coordinador", "type": "select" },
     { "key": "tutor_id", "label": "Tutor", "type": "select" },
     { "key": "was_active", "label": "Periodo Académico", "type": "radio-group", "options": [
-      { "label": "Activo", "value": "true" },
-      { "label": "Inactivo", "value": "false" }
+      { "label": "Activo", "value": true},
+      { "label": "Inactivo", "value": false }
     ]}
   ]
  }

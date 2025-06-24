@@ -134,6 +134,10 @@ export default defineComponent({
           response = await API.post(API.INVESTIGATION_GRUOPS_PROFILES, {
             ...this.formValues,
           }, headers);
+        } else if (this.type === 'seedbed_profile') {
+          response = await API.post(API.RESEARCH_SEEDBEDS_PROFILES, {
+            ...this.formValues,
+          }, headers);
         }
         if (!response.error) {
           this.$emit('itemCreated', this.formValues.name);

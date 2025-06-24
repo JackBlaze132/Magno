@@ -124,6 +124,10 @@ export default defineComponent({
           response = await API.put(API.INVESTIGATION_GRUOPS_PROFILES + this.index, {
             ...this.formValues,
           }, headers);
+        } else if (this.type == 'seedbed_profile'){
+          response = await API.put(API.RESEARCH_SEEDBEDS_PROFILES + this.index, {
+            ...this.formValues,
+          }, headers);
         }
         if (!response.error) {
           this.$emit('itemEdited', this.index, this.formValues.name);

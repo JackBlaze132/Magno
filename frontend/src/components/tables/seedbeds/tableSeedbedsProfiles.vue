@@ -1,5 +1,5 @@
 <template>
-  <h1>Grupos de investigación</h1>
+  <h1>Semilleros de investigación</h1>
   <VCard flat class="pa-5 my-3">
     <VCardTitle class="d-flex align-center justify-end">
       <VTextField
@@ -22,14 +22,10 @@
       :search="search"
       :headers="headers"
     >
-      <template v-slot:item.lines_of_research="{item}">
-        <div style="max-width: 500px">
-          <VChipGroup>
-            <VChip v-for="(line, index) in lines[item.id]" :key="index">
-              {{line}}
-            </VChip>
-          </VChipGroup>
-        </div>
+      <template v-slot:item.research_seedbed.line_of_research="{item}">
+        <VChip>
+          {{item.research_seedbed.line_of_research}}
+        </VChip>
       </template>
 
       <template v-slot:item.link="{item}">
@@ -37,8 +33,8 @@
           toEdit
           toDelete
           :toView="item.id + '/semilleros'"
-          type="group_profile"
-          :name="item.investigation_group.name"
+          type="seedbed_profile"
+          :name="item.research_seedbed.name"
           :index="item.id"
           :initialData="setInitialData(item)"
           @itemDeleted="handleItemRefresh"
@@ -59,16 +55,20 @@ import API from "@/utils/api";
 
 interface Item {
   id: number,
-  investigation_group:{
+  research_seedbed:{
     name: string
-    lines_of_research: Array<string>,
+    line_of_research: Array<string>,
   },
-  coordinator:{
+  coordinator: {
     user: {
       full_name: string
     }
-  }
-
+  },
+  tutor: {
+    user: {
+      full_name: string
+    }
+  },
 }
 
 export default defineComponent({
@@ -77,14 +77,15 @@ export default defineComponent({
   data() {
     return {
       items: [] as Item[],
-      lines: [] as Array<string>,
+      line: [] as string[],
       search: '',
       links: '',
       headers: [
         {title: 'ID', key: 'id'},
-        {title: 'Nombre', key: 'investigation_group.name'},
-        {title: 'Director', key: 'coordinator.user.full_name'},
-        {title: 'Lineas de investigaión', key: 'lines_of_research'},
+        {title: 'Nombre', key: 'research_seedbed.name'},
+        {title: 'coordinator', key: 'coordinator.user.full_name'},
+        {title: 'Tutor', key: 'tutor.user.full_name'},
+        {title: 'Linea de investigaión', key: 'research_seedbed.line_of_research'},
         { key: 'link', sortable: false},
       ],
     }
@@ -96,20 +97,20 @@ export default defineComponent({
   },
   methods: {
     async getGroups() {
-      const apiHeaders = {
+      const headers = {
         'API-VERSION': '1',
       }
       try {
-        const groups = await API.get(API.RESEARCH_SEEDBEDS_PROFILES_BY_INVESTIGATION_GROUP_PROFILE + this.$route.params.idPeriodo, apiHeaders);
+        const seedbeds = await API.get(API.RESEARCH_SEEDBEDS_PROFILES_BY_INVESTIGATION_GROUP_PROFILE + this.$route.params.idGrupo, headers);
 
-        for (const group of groups) {
-          const linesOfResearch = await API.get(
-            API.LINES_OF_RESEARCH_BY_INVESTIGATION_GROUP + group.investigation_group.id,
-            apiHeaders
+        for (const seedbed of seedbeds) {
+          const lineOfResearch = await API.get(
+            API.LINES_OF_RESEARCH_BY_RESEARCH_SEEDBED + seedbed.research_seedbed.id,
+            headers
           )
-          this.lines[group.id] = linesOfResearch;
+          seedbed.research_seedbed.line_of_research = lineOfResearch;
         }
-        this.items = groups;
+        this.items = seedbeds;
         this.$emit('loaded');
         //return this.lines;
       } catch (error) {
@@ -122,9 +123,12 @@ export default defineComponent({
     },
     setInitialData(item: any) {
       return {
-        investigation_group_id: item.investigation_group.id,
+        research_seedbed_id: item.research_seedbed.id,
         coordinator_id: item.coordinator.user.id,
+        tutor_id: item.tutor.user.id,
         academic_period_id: this.$route.params.idPeriodo,
+        investigation_group_profile_id: this.$route.params.idGrupo,
+        was_active: item.was_active,
       }
     }
   },

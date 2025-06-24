@@ -8,12 +8,12 @@ const UpdatePeriod = defineAsyncComponent(() => import("@/components/forms/updat
 const UpdateGroup = defineAsyncComponent(() => import("@/components/forms/update/groups/formUpdateGroups.vue"));
 const UpdateSeedbed = defineAsyncComponent(() => import("@/components/forms/update/seedbeds/formUpdateSeedbeds.vue"));
 const UpdateGroupProfile = defineAsyncComponent(() => import("@/components/forms/update/groups/formUpdateGroupProfile.vue"));
+const UpdateSeedbedProfile = defineAsyncComponent(() => import("@/components/forms/update/seedbeds/formUpdateSeedbedProfile.vue"));
 
 export class UpdateFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType, extraProps?: Record<any, any>) {
-      const componentMap: Partial<Record<EntityType, any>> = {
-
-        period: {
+    const componentMap: Partial<Record<EntityType, any>> = {
+      period: {
         component: UpdatePeriod,
         props: {
           type: type,
@@ -32,7 +32,7 @@ export class UpdateFormFactory extends AbstractFormFactory {
           index: extraProps?.index,
           initialData: extraProps?.initialData,
         }
-       },
+      },
       seedbed: {
         component: UpdateSeedbed,
         props: {
@@ -53,6 +53,16 @@ export class UpdateFormFactory extends AbstractFormFactory {
           initialData: extraProps?.initialData,
         }
       },
+      seedbed_profile: {
+        component: UpdateSeedbedProfile,
+        props: {
+          type: type,
+          label: "perfil de semillero",
+          fields: schema.seedbed_profile,
+          index: extraProps?.index,
+          initialData: extraProps?.initialData,
+        }
+      }
     };
     if (!(type in componentMap) || !EntityTypes.includes(type)) {
       console.log( `Componente no encontrado para el tipo: ${type}`);

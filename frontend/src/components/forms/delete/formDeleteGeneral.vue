@@ -54,7 +54,8 @@ export default defineComponent({
       this.type === 'seedbed' ? API.RESEARCH_SEEDBEDS :
       this.type === 'group' ? API.INVESTIGATION_GROUPS :
       this.type === 'period' ? API.ACADEMIC_PERIODS :
-      this.type === 'group_profile' ? API.INVESTIGATION_GRUOPS_PROFILES :'';
+      this.type === 'group_profile' ? API.INVESTIGATION_GRUOPS_PROFILES :
+      this.type === 'seedbed_profile' ? API.RESEARCH_SEEDBEDS_PROFILES : '';
 
       const expectedValue = `eliminar ${this.name}`;
       if (this.inputValue !== expectedValue) {

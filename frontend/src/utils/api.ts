@@ -50,7 +50,7 @@ class API{
   public readonly RESEARCH_SEEDBEDS:string='research-seedbeds/';
 
   //----[RESEARCH SEEDBEDS PROFILES]----
-  public readonly RESEARCH_SEEDBEDS_PROFILES:string='research-seedbeds-profiles/';
+  public readonly RESEARCH_SEEDBEDS_PROFILES:string='research-seedbed-profiles/';
   public readonly RESEARCH_SEEDBEDS_PROFILES_BY_INVESTIGATION_GROUP_PROFILE:string='research-seedbed-profiles/get-all-by-investigation-group-profile-id/'; //<---- Requires investigation group profile id
 
   //----[RESEARCH SEEDBED STUDENT PROFILES]----

@@ -8,7 +8,7 @@ const DeleteComponent = defineAsyncComponent(() => import("@/components/forms/de
 
 export class DeleteFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType, extraProps?: Record<any, any>) {
-      const componentMap: Partial<Record<EntityType, any>> = {
+    const componentMap: Partial<Record<EntityType, any>> = {
       period: {
         component: DeleteComponent,
         props: {
@@ -43,7 +43,16 @@ export class DeleteFormFactory extends AbstractFormFactory {
           label: "perfil de grupo",
           index: extraProps?.index,
         }
-      }
+      },
+      seedbed_profile: {
+        component: DeleteComponent,
+        props: {
+          name: extraProps?.name,
+          type: type,
+          label: "perfil de semillero",
+          index: extraProps?.index,
+        }
+      },
     };
     if (!(type in componentMap) || !EntityTypes.includes(type)) {
       console.log( `Componente no encontrado para el tipo: ${type}`);

@@ -26,7 +26,7 @@ export default defineComponent({
   },
   async created() {
     await this.fetchFunctionaries()
-    await this.fetchGroups()
+    await this.fetchSeedbeds()
 
     this.loaded = true
   },
@@ -61,37 +61,44 @@ export default defineComponent({
         console.log("Hola obtuve los funcionarios")
         console.log(functionaries);
 
-        const functionaryField = this.fields.find(f => f.key === 'coordinator_id')
-        if (functionaryField) {
-          functionaryField.options = functionaries.map((functionary: any) => ({
-            label: functionary.user.full_name,
-            value: functionary.user.id,
-          }));
-        }
+        // Create the options list once
+        const functionaryOptions = functionaries.map((functionary: any) => ({
+          label: functionary.user.full_name,
+          value: functionary.user.id,
+        }));
+
+        // Update all matching fields, not just the first one
+        this.fields.forEach(field => {
+          if (field.key === 'coordinator_id' || field.key === 'tutor_id') {
+            field.options = functionaryOptions;
+          }
+        });
       } catch (error) {
         console.error('Error fetching users:', error);
       }
     },
-    async fetchGroups() {
+
+    async fetchSeedbeds() {
       const headers = {
         'API-VERSION': '1',
       };
       try {
-        const groups = await API.get(API.INVESTIGATION_GROUPS, headers);
-        console.log("Hola obtuve los grupos")
-        console.log(groups);
+        const seedbeds = await API.get(API.RESEARCH_SEEDBEDS, headers);
+        console.log("Hola obtuve los semilleros")
+        console.log(seedbeds);
 
-        const groupField = this.fields.find(f => f.key === 'investigation_group_id')
+        const groupField = this.fields.find(f => f.key === 'research_seedbed_id')
         if (groupField) {
-          groupField.options = groups.map((group: any) => ({
-            label: group.name,
-            value: group.id,
+          groupField.options = seedbeds.map((seedbed: any) => ({
+            label: seedbed.name,
+            value: seedbed.id,
           }));
         }
       } catch (error) {
         console.error('Error fetching users:', error);
       }
     },
+
     getPeriodId() {
       try {
         const periodId = this.$route.params.idPeriodo;
@@ -102,6 +109,22 @@ export default defineComponent({
             academic_period_id: periodId
           };
           console.log("ID de funcionario obtenido:", periodId);
+        }
+      } catch (error) {
+        console.error('Error getting user ID from route:', error);
+      }
+    },
+
+    getGroupId() {
+      try {
+        const groupId = this.$route.params.idGrupo;
+        if (groupId) {
+          // Agregar el userId al objeto additionalData que se pasará al formulario
+          this.additionalData = {
+            ...this.additionalData,
+            investigation_group_profile_id: groupId
+          };
+          console.log("ID de grupo:", groupId);
         }
       } catch (error) {
         console.error('Error getting user ID from route:', error);
