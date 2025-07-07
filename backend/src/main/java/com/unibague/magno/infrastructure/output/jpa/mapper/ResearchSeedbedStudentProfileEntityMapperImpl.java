@@ -27,7 +27,7 @@ public class ResearchSeedbedStudentProfileEntityMapperImpl implements ResearchSe
         researchSeedbedStudentProfile.setStudentProfileId(researchSeedbedStudentProfileEntity
                 .getStudentProfile().getId());
         researchSeedbedStudentProfile.setWasActive(researchSeedbedStudentProfileEntity.getWasActive());
-        researchSeedbedStudentProfile.setLeader(researchSeedbedStudentProfileEntity.getIsLeader());
+        researchSeedbedStudentProfile.setIsLeader(researchSeedbedStudentProfileEntity.getIsLeader());
 
         return researchSeedbedStudentProfile;
 
@@ -54,7 +54,7 @@ public class ResearchSeedbedStudentProfileEntityMapperImpl implements ResearchSe
         researchSeedbedStudentProfileEntity.setStudentProfile(studentProfileEntity);
 
         researchSeedbedStudentProfileEntity.setWasActive(researchSeedbedStudentProfile.getWasActive());
-        researchSeedbedStudentProfileEntity.setIsLeader(researchSeedbedStudentProfile.getLeader());
+        researchSeedbedStudentProfileEntity.setIsLeader(researchSeedbedStudentProfile.getIsLeader());
         return researchSeedbedStudentProfileEntity;
     }
 
@@ -74,7 +74,7 @@ public class ResearchSeedbedStudentProfileEntityMapperImpl implements ResearchSe
         researchSeedbedStudentProfileEntity.setStudentProfile(studentProfileEntity);
 
         researchSeedbedStudentProfileEntity.setWasActive(researchSeedbedStudentProfile.getWasActive());
-        researchSeedbedStudentProfileEntity.setIsLeader(researchSeedbedStudentProfile.getLeader());
+        researchSeedbedStudentProfileEntity.setIsLeader(researchSeedbedStudentProfile.getIsLeader());
         return researchSeedbedStudentProfileEntity;
     }
 

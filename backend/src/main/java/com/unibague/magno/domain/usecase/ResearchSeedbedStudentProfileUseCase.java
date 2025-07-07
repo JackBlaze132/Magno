@@ -70,7 +70,7 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
     public List<ResearchSeedbedStudentProfile> saveAllByExcel(Long researchSeedbedProfileId,
                                                               List<Map<String, String>> researchSeedbedStudentProfiles) {
 
-        Long academicPeriodId = researchSeedbedProfileServicePort.findById(researchSeedbedProfileId).getId();
+        Long academicPeriodId = researchSeedbedProfileServicePort.findById(researchSeedbedProfileId).getAcademicPeriodId();
 
         // Clean the list because some maps can have empty values
         List<Map<String, String>> cleanedStudentListOfMaps = integraServicePort
@@ -110,7 +110,7 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
         researchSeedbedStudentProfile.setStudentProfileId(studentProfileId);
         researchSeedbedStudentProfile.setResearchSeedbedProfileId(researchSeedbedProfileId);
         researchSeedbedStudentProfile.setWasActive(false);
-        researchSeedbedStudentProfile.setLeader(false);
+        researchSeedbedStudentProfile.setIsLeader(false);
         return researchSeedbedStudentProfilePersistencePort.save(researchSeedbedStudentProfile);
     }
 }

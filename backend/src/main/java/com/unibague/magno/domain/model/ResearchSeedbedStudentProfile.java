@@ -52,11 +52,11 @@ public class ResearchSeedbedStudentProfile {
         this.wasActive = wasActive;
     }
 
-    public Boolean getLeader() {
+    public Boolean getIsLeader() {
         return isLeader;
     }
 
-    public void setLeader(Boolean leader) {
+    public void setIsLeader(Boolean leader) {
         isLeader = leader;
     }
 }

@@ -40,7 +40,7 @@ public class ResearchSeedbedStudentProfileResponseMapperImpl implements Research
                 .researchSeedbedProfile(researchSeedbedProfile)
                 .studentProfile(studentProfile)
                 .wasActive(researchSeedbedStudentProfile.getWasActive())
-                .isLeader(researchSeedbedStudentProfile.getLeader())
+                .isLeader(researchSeedbedStudentProfile.getIsLeader())
                 .build();
     }
 
@@ -79,7 +79,7 @@ public class ResearchSeedbedStudentProfileResponseMapperImpl implements Research
                 .researchSeedbedProfile(researchSeedbedProfile)
                 .studentProfile(studentProfile)
                 .wasActive(researchSeedbedStudentProfile.getWasActive())
-                .isLeader(researchSeedbedStudentProfile.getLeader())
+                .isLeader(researchSeedbedStudentProfile.getIsLeader())
                 .build();
     }
 }
