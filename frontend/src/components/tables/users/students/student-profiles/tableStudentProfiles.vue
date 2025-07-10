@@ -55,7 +55,7 @@ interface Item {
   },
   role_ids: Array<{
     name: string,
-}>,S
+}>,
 }
 
 export default defineComponent({
