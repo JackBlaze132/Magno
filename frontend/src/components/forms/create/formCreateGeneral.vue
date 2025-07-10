@@ -1,5 +1,5 @@
 <template>
-  <VCard class="pa-5 ma-5" max-width="600">
+  <VCard class="pa-5 ma-5 overflow-auto" max-width="600" max-height="85vh">
     <VCardTitle>Agregar {{ label }}</VCardTitle>
     <VDivider/>
     <VCardText>
@@ -47,7 +47,7 @@
             :label="field.label"
             class="mb-5"
           />
-          <VTextarea v-else-if="field.type === 'textarea'"
+          <VTextarea no-resize v-else-if="field.type === 'textarea'"
             v-model="formValues[field.key]"
             :label="field.label"
             rows="5"

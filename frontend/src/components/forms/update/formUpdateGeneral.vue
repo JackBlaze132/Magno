@@ -1,5 +1,5 @@
 <template>
-  <VCard class="pa-5 ma-5" max-width="600">
+  <VCard class="pa-5 ma-5 overflow-auto" max-width="600" max-height="85vh">
     <VCardTitle>Editar {{ label }}</VCardTitle>
     <VDivider/>
     <VCardText>

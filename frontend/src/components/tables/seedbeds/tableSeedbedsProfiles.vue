@@ -32,7 +32,7 @@
         <QuickActions
           toEdit
           toDelete
-          :toView="item.id + '/semilleros'"
+          :toView="item.id + '/detalles'"
           type="seedbed_profile"
           :name="item.research_seedbed.name"
           :index="item.id"
