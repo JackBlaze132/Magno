@@ -98,15 +98,11 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
     @Override
     public List<StudentProfile> getOrCreateStudentProfiles(List<Map<String, String>> cleanedStudentListOfMaps,
                                                             List<User> users, Long academicPeriodId) {
-        List<StudentProfile> existingStudentProfiles = findAllByAcademicPeriodId(academicPeriodId);
-
         List<StudentProfile> newStudentProfiles = cleanedStudentListOfMaps.stream()
                 .map(studentProfileMap -> getOrCreateStudentProfile(studentProfileMap, users, academicPeriodId))
                 .toList();
 
-        List<StudentProfile> allStudentProfiles = new ArrayList<>(existingStudentProfiles);
-        allStudentProfiles.addAll(newStudentProfiles);
-        return allStudentProfiles;
+        return new ArrayList<>(newStudentProfiles);
     }
 
     @Override
