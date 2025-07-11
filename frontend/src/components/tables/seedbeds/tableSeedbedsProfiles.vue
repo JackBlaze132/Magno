@@ -27,6 +27,11 @@
           {{item.research_seedbed.line_of_research}}
         </VChip>
       </template>
+      <template v-slot:item.tutor.user.full_name="{item}">
+        <span :class="item.tutor ? '' : 'opacity-40'">
+        {{ item.tutor?.user?.full_name || 'Sin tutor' }}
+        </span>
+      </template>
 
       <template v-slot:item.link="{item}">
         <QuickActions
@@ -68,7 +73,7 @@ interface Item {
     user: {
       full_name: string
     }
-  },
+  } | null,
 }
 
 export default defineComponent({
@@ -125,7 +130,7 @@ export default defineComponent({
       return {
         research_seedbed_id: item.research_seedbed.id,
         coordinator_id: item.coordinator.user.id,
-        tutor_id: item.tutor.user.id,
+        tutor_id: item.tutor?.user?.id || null,
         academic_period_id: this.$route.params.idPeriodo,
         investigation_group_profile_id: this.$route.params.idGrupo,
         was_active: item.was_active,
