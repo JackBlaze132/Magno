@@ -5,6 +5,7 @@ import com.unibague.magno.domain.exception.investigationgroupprofile.Investigati
 import com.unibague.magno.domain.model.InvestigationGroupProfile;
 import com.unibague.magno.domain.model.excel.ExcelReport;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupHYRMetadata;
+import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupYRMetadata;
 import com.unibague.magno.domain.spi.IInvestigationGroupProfilePersistencePort;
 
 import java.util.List;
@@ -64,5 +65,10 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
     @Override
     public ExcelReport<InvestigationGroupHYRMetadata> getExcelBytesForHalfYearInvestigationGroupReport(Long academicPeriodId) {
         return investigationGroupProfilePersistencePort.getExcelBytesForHalfYearInvestigationGroupReport(academicPeriodId);
+    }
+
+    @Override
+    public ExcelReport<InvestigationGroupYRMetadata> getExcelBytesForAnnualYearInvestigationGroupReport(Long academicPeriodId1, Long academicPeriodId2) {
+        return investigationGroupProfilePersistencePort.getExcelBytesForAnnualYearInvestigationGroupReport(academicPeriodId1, academicPeriodId2);
     }
 }

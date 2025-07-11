@@ -4,7 +4,9 @@ import com.unibague.magno.domain.exception.investigationgroupprofile.Investigati
 import com.unibague.magno.domain.model.InvestigationGroupProfile;
 import com.unibague.magno.domain.model.excel.ExcelReport;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupHYRMetadata;
+import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupYRMetadata;
 import com.unibague.magno.domain.model.excel.projections.InvestigationGroupHYRProjection;
+import com.unibague.magno.domain.model.excel.projections.InvestigationGroupYRProjection;
 import com.unibague.magno.domain.spi.IInvestigationGroupProfilePersistencePort;
 import com.unibague.magno.infrastructure.output.jpa.entity.FunctionaryProfileEntity;
 import com.unibague.magno.infrastructure.output.jpa.entity.InvestigationGroupProfileEntity;
@@ -95,13 +97,24 @@ public class InvestigationGroupProfileJpaAdapter implements IInvestigationGroupP
         List<InvestigationGroupHYRProjection> records = investigationGroupProfileRepository
                 .getInvestigationGroupsReportByAcademicPeriodId(academicPeriodId);
         try {
-            return createExcelReport(records);
+            return createHYExcelReport(records);
         } catch (IOException e) {
             throw new RuntimeException("Error generating Excel report", e);
         }
     }
 
-    private ExcelReport<InvestigationGroupHYRMetadata> createExcelReport(List<InvestigationGroupHYRProjection> records)
+    @Override
+    public ExcelReport<InvestigationGroupYRMetadata> getExcelBytesForAnnualYearInvestigationGroupReport(Long academicPeriodId1, Long academicPeriodId2) {
+        List<InvestigationGroupYRProjection> records = investigationGroupProfileRepository
+                .getInvestigationGroupsReportByAcademicPeriodId1AndAcademicPeriodId2(academicPeriodId1, academicPeriodId2);
+        try {
+            return createYExcelReport(records);
+        } catch (IOException e) {
+            throw new RuntimeException("Error generating Excel report", e);
+        }
+    }
+
+    private ExcelReport<InvestigationGroupHYRMetadata> createHYExcelReport(List<InvestigationGroupHYRProjection> records)
             throws IOException {
         try(Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream bos = new ByteArrayOutputStream()){
             Sheet sheet = workbook.createSheet("Reporte");
@@ -125,7 +138,7 @@ public class InvestigationGroupProfileJpaAdapter implements IInvestigationGroupP
                 row.createCell(2).setCellValue(record.getResearchSeedbedName());
                 row.createCell(3).setCellValue(record.getCoordinatorName());
                 row.createCell(4).setCellValue(record.getStudentCount());
-                row.createCell(5).setCellValue(record.getIsActive() ? "Activo" : "Inactivo");
+                row.createCell(5).setCellValue(Boolean.TRUE.equals(record.getIsActive()) ? "Activo" : "Inactivo");
             }
 
             for (int i = 0; i < headers.length; i++) {
@@ -134,6 +147,46 @@ public class InvestigationGroupProfileJpaAdapter implements IInvestigationGroupP
 
             workbook.write(bos);
             InvestigationGroupHYRMetadata metadata = new InvestigationGroupHYRMetadata(academicPeriodName);
+            return new ExcelReport<>(bos.toByteArray(), metadata);
+        }
+    }
+
+    private ExcelReport<InvestigationGroupYRMetadata> createYExcelReport(List<InvestigationGroupYRProjection> records)
+            throws IOException {
+        try(Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream bos = new ByteArrayOutputStream()){
+
+            Sheet sheet = workbook.createSheet("Reporte");
+            String[] headers = {"Periodos Académico", "Grupo de Investigación", "Semillero",
+                    "Número de estudiantes"};
+
+            Row headerRow = sheet.createRow(0);
+            for (int i = 0; i < headers.length; i++) {
+                headerRow.createCell(i).setCellValue(headers[i]);
+            }
+
+            String academicPeriodName = records.isEmpty() ? "" : records.getFirst().getAcademicPeriodName()
+                    .replaceAll("[\\\\/:*?\"<>|]", "");
+
+            int rowIndex = 1;
+            for (InvestigationGroupYRProjection record : records) {
+                Row row = sheet.createRow(rowIndex++);
+                row.createCell(0).setCellValue(academicPeriodName);
+                row.createCell(1).setCellValue(record.getInvestigationGroupName());
+                row.createCell(2).setCellValue(record.getResearchSeedbedName());
+                row.createCell(3).setCellValue(record.getStudentCount());
+            }
+
+            for (int i = 0; i < headers.length; i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            String[] parts = academicPeriodName.split("__");
+
+            String part1 = parts[0];
+            String part2 = parts[1];
+
+            workbook.write(bos);
+            InvestigationGroupYRMetadata metadata = new InvestigationGroupYRMetadata(part1, part2);
             return new ExcelReport<>(bos.toByteArray(), metadata);
         }
     }

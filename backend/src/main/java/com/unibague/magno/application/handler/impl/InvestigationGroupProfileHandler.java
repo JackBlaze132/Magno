@@ -9,6 +9,7 @@ import com.unibague.magno.domain.api.IInvestigationGroupProfileServicePort;
 import com.unibague.magno.domain.model.InvestigationGroupProfile;
 import com.unibague.magno.domain.model.excel.ExcelReport;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupHYRMetadata;
+import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupYRMetadata;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -61,5 +62,12 @@ public class InvestigationGroupProfileHandler implements IInvestigationGroupProf
     @Override
     public ExcelReport<InvestigationGroupHYRMetadata> getExcelBytesForHalfYearInvestigationGroupReport(Long academicPeriodId) {
         return investigationGroupProfileServicePort.getExcelBytesForHalfYearInvestigationGroupReport(academicPeriodId);
+    }
+
+    @Override
+    public ExcelReport<InvestigationGroupYRMetadata> getExcelBytesForAnnualInvestigationGroupReport(Long academicPeriodId1,
+                                                                                                    Long academicPeriodId2) {
+        return investigationGroupProfileServicePort.getExcelBytesForAnnualYearInvestigationGroupReport(academicPeriodId1,
+                academicPeriodId2);
     }
 }

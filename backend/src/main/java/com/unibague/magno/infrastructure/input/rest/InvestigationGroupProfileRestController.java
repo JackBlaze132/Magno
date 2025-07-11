@@ -5,6 +5,7 @@ import com.unibague.magno.application.dto.response.InvestigationGroupProfileResp
 import com.unibague.magno.application.handler.impl.InvestigationGroupProfileHandler;
 import com.unibague.magno.domain.model.excel.ExcelReport;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupHYRMetadata;
+import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupYRMetadata;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -42,14 +43,31 @@ public class InvestigationGroupProfileRestController {
         List<InvestigationGroupProfileResponse> responses = investigationGroupProfileHandler.findAllByAcademicPeriodId(id);
         return ResponseEntity.ok(responses);
     }
-    @GetMapping(path = "generate-half-year-investigation-report", headers = "API-VERSION=1")
+
+    @GetMapping(path = "generate-investigation-group-half-year-report", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getHalfYearInvestigationGroupReport(@RequestParam("apId") Long academicPeriodId) {
         ExcelReport<InvestigationGroupHYRMetadata> report = investigationGroupProfileHandler
                 .getExcelBytesForHalfYearInvestigationGroupReport(academicPeriodId);
         InvestigationGroupHYRMetadata metadata = report.getMetadata();
 
         String filename = String.format("Reporte_de_Grupos_de_Investigacion_%s.xlsx",
-                metadata.getAcademicPeriodName(), metadata.getAcademicPeriodName());
+                metadata.getAcademicPeriodName());
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + URLEncoder.encode(filename, StandardCharsets.UTF_8).replace("+", "%20") + "\"")
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(report.getContent());
+    }
+
+    @GetMapping(path = "generate-investigation-group-annual-year-report", headers = "API-VERSION=1")
+    public ResponseEntity<byte[]> getAnnualInvestigationGroupReport(@RequestParam("apId1") Long academicPeriodId1,
+                                                                    @RequestParam("apId2") Long academicPeriodId2) {
+        ExcelReport<InvestigationGroupYRMetadata> report = investigationGroupProfileHandler
+                .getExcelBytesForAnnualInvestigationGroupReport(academicPeriodId1, academicPeriodId2);
+        InvestigationGroupYRMetadata metadata = report.getMetadata();
+
+        String filename = String.format("Reporte_de_Grupos_de_Investigacion_%s__%s.xlsx",
+                metadata.getAcademicPeriodName1(), metadata.getAcademicPeriodName2());
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + URLEncoder.encode(filename, StandardCharsets.UTF_8).replace("+", "%20") + "\"")

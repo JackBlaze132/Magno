@@ -3,6 +3,7 @@ package com.unibague.magno.domain.api;
 import com.unibague.magno.domain.model.InvestigationGroupProfile;
 import com.unibague.magno.domain.model.excel.ExcelReport;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupHYRMetadata;
+import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupYRMetadata;
 
 import java.util.List;
 
@@ -15,4 +16,5 @@ public interface IInvestigationGroupProfileServicePort {
     List<InvestigationGroupProfile> findAllByAcademicPeriodId(Long academicPeriodId);
 
     ExcelReport<InvestigationGroupHYRMetadata> getExcelBytesForHalfYearInvestigationGroupReport(Long academicPeriodId);
+    ExcelReport<InvestigationGroupYRMetadata> getExcelBytesForAnnualYearInvestigationGroupReport(Long academicPeriodId1, Long academicPeriodId2);
 }
