@@ -23,9 +23,13 @@ export default {
   },
   VChip: {
     elevation: 0,
+    style: {
+      width: 'max-content',
+    }
   },
   VChipGroup:{
-    column: true
+    column: true,
+    selectedClass: '',
   },
   VMenu: {
     offset: '2px',

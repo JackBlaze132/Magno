@@ -25,11 +25,11 @@
         {{ externalFormatter(item.is_external_user)}}
       </template>
       <template v-slot:item.role_ids="{item}">
-        <VChipGroup>
-          <VChip v-for="role in item.role_ids" :key="role.name" size="small" color="primary" variant="outlined">
+        <VChipGroup column="false">
+          <VChip v-for="role in item.role_ids" :key="role.name" size="small" variant="outlined">
             {{ role.name }}
           </VChip>
-        </VChipGroup>
+        </VChipGroup disabled>
       </template>
     </VDataTable>
   </VCard>
