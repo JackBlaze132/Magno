@@ -4,6 +4,7 @@ import com.unibague.magno.application.dto.request.InvestigationGroupProfileReque
 import com.unibague.magno.application.dto.response.InvestigationGroupProfileResponse;
 import com.unibague.magno.application.handler.impl.InvestigationGroupProfileHandler;
 import com.unibague.magno.domain.model.excel.ExcelReport;
+import com.unibague.magno.domain.model.excel.metadata.ActiveSeedbedsHYRMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupHYRMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupYRMetadata;
 import jakarta.validation.Valid;
@@ -68,6 +69,21 @@ public class InvestigationGroupProfileRestController {
 
         String filename = String.format("Reporte_de_Grupos_de_Investigacion_%s__%s.xlsx",
                 metadata.getAcademicPeriodName1(), metadata.getAcademicPeriodName2());
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + URLEncoder.encode(filename, StandardCharsets.UTF_8).replace("+", "%20") + "\"")
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(report.getContent());
+    }
+
+    @GetMapping(path = "generate-active-seedbeds-half-year-report", headers = "API-VERSION=1")
+    public ResponseEntity<byte[]> getActiveSeedbedsReport(@RequestParam("apId") Long academicPeriodId) {
+        ExcelReport<ActiveSeedbedsHYRMetadata> report = investigationGroupProfileHandler
+                .getExcelBytesForHalfYearActiveSeedbedsReport(academicPeriodId);
+        ActiveSeedbedsHYRMetadata metadata = report.getMetadata();
+
+        String filename = String.format("Semilleros_activos_%s.xlsx",
+                metadata.getAcademicPeriodName());
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + URLEncoder.encode(filename, StandardCharsets.UTF_8).replace("+", "%20") + "\"")

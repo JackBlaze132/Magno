@@ -4,6 +4,7 @@ import com.unibague.magno.domain.api.IInvestigationGroupProfileServicePort;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException;
 import com.unibague.magno.domain.model.InvestigationGroupProfile;
 import com.unibague.magno.domain.model.excel.ExcelReport;
+import com.unibague.magno.domain.model.excel.metadata.ActiveSeedbedsHYRMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupHYRMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupYRMetadata;
 import com.unibague.magno.domain.spi.IInvestigationGroupProfilePersistencePort;
@@ -70,5 +71,10 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
     @Override
     public ExcelReport<InvestigationGroupYRMetadata> getExcelBytesForAnnualYearInvestigationGroupReport(Long academicPeriodId1, Long academicPeriodId2) {
         return investigationGroupProfilePersistencePort.getExcelBytesForAnnualYearInvestigationGroupReport(academicPeriodId1, academicPeriodId2);
+    }
+
+    @Override
+    public ExcelReport<ActiveSeedbedsHYRMetadata> getExcelBytesForHalfYearActiveSeedbedsReport(Long academicPeriodId) {
+        return investigationGroupProfilePersistencePort.getExcelBytesForHalfYearActiveSeedbedsReport(academicPeriodId);
     }
 }

@@ -3,8 +3,10 @@ package com.unibague.magno.infrastructure.output.jpa.adapter;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException;
 import com.unibague.magno.domain.model.InvestigationGroupProfile;
 import com.unibague.magno.domain.model.excel.ExcelReport;
+import com.unibague.magno.domain.model.excel.metadata.ActiveSeedbedsHYRMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupHYRMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupYRMetadata;
+import com.unibague.magno.domain.model.excel.projections.ActiveSeedbedsHYRProjection;
 import com.unibague.magno.domain.model.excel.projections.InvestigationGroupHYRProjection;
 import com.unibague.magno.domain.model.excel.projections.InvestigationGroupYRProjection;
 import com.unibague.magno.domain.spi.IInvestigationGroupProfilePersistencePort;
@@ -114,6 +116,19 @@ public class InvestigationGroupProfileJpaAdapter implements IInvestigationGroupP
         }
     }
 
+    @Override
+    public ExcelReport<ActiveSeedbedsHYRMetadata> getExcelBytesForHalfYearActiveSeedbedsReport(Long academicPeriodId) {
+        List<ActiveSeedbedsHYRProjection> records = investigationGroupProfileRepository
+                .getActiveSeedbedsReportByAcademicPeriod(academicPeriodId);
+
+        try {
+            return createActiveSeedbedsHYRExcelReport(records);
+        }
+        catch (IOException e) {
+            throw new RuntimeException("Error generating Excel report", e);
+        }
+    }
+
     private ExcelReport<InvestigationGroupHYRMetadata> createHYExcelReport(List<InvestigationGroupHYRProjection> records)
             throws IOException {
         try(Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream bos = new ByteArrayOutputStream()){
@@ -187,6 +202,42 @@ public class InvestigationGroupProfileJpaAdapter implements IInvestigationGroupP
 
             workbook.write(bos);
             InvestigationGroupYRMetadata metadata = new InvestigationGroupYRMetadata(part1, part2);
+            return new ExcelReport<>(bos.toByteArray(), metadata);
+        }
+    }
+
+    private ExcelReport<ActiveSeedbedsHYRMetadata> createActiveSeedbedsHYRExcelReport(
+            List<ActiveSeedbedsHYRProjection> records) throws IOException {
+
+        try(Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
+
+            Sheet sheet = workbook.createSheet("Reporte");
+            String[] headers = {"Periodos Académico", "Grupo de Investigación", "Semilleros activos",
+                    "Estudiantes activos por grupo"};
+
+            Row headerRow = sheet.createRow(0);
+            for (int i = 0; i < headers.length; i++) {
+                headerRow.createCell(i).setCellValue(headers[i]);
+            }
+
+            String academicPeriodName = records.isEmpty() ? "" : records.getFirst().getAcademicPeriodName()
+                    .replaceAll("[\\\\/:*?\"<>|]", "");
+
+            int rowIndex = 1;
+            for (ActiveSeedbedsHYRProjection record : records) {
+                Row row = sheet.createRow(rowIndex++);
+                row.createCell(0).setCellValue(academicPeriodName);
+                row.createCell(1).setCellValue(record.getInvestigationGroupName());
+                row.createCell(2).setCellValue(record.getActiveSeedbedsCount());
+                row.createCell(3).setCellValue(record.getActiveStudentsCount());
+            }
+
+            for (int i = 0; i < headers.length; i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            workbook.write(bos);
+            ActiveSeedbedsHYRMetadata metadata = new ActiveSeedbedsHYRMetadata(academicPeriodName);
             return new ExcelReport<>(bos.toByteArray(), metadata);
         }
     }

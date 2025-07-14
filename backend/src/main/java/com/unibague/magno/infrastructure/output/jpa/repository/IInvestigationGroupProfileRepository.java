@@ -1,5 +1,6 @@
 package com.unibague.magno.infrastructure.output.jpa.repository;
 
+import com.unibague.magno.domain.model.excel.projections.ActiveSeedbedsHYRProjection;
 import com.unibague.magno.domain.model.excel.projections.InvestigationGroupHYRProjection;
 import com.unibague.magno.domain.model.excel.projections.InvestigationGroupYRProjection;
 import com.unibague.magno.infrastructure.output.jpa.entity.InvestigationGroupProfileEntity;
@@ -64,5 +65,30 @@ public interface IInvestigationGroupProfileRepository extends JpaRepository<Inve
             @Param("academicPeriodId1") Long academicPeriodId1,
             @Param("academicPeriodId2") Long academicPeriodId2
     );
+
+    // Currently, this query works only with SQL Server, notice that if another database is used, it may need to be adjusted.
+    @Query(value = """
+    SELECT
+        ap.name AS academicPeriodName,
+        ig.name AS investigationGroupName,
+        COUNT(DISTINCT rsp.id) AS activeSeedbedsCount,
+        COUNT(DISTINCT sp.user_id) AS activeStudentsCount
+    FROM research_seedbeds_profiles rsp
+    JOIN academic_periods ap
+        ON ap.id = rsp.academic_period_id
+    JOIN investigation_group_profiles igp
+        ON igp.id = rsp.investigation_group_profile_id
+    JOIN investigation_groups ig
+        ON ig.id = igp.investigation_group_id
+    LEFT JOIN research_seedbeds_student_profiles rssp
+        ON rssp.research_seedbed_profile_id = rsp.id AND rssp.was_active = 1
+    LEFT JOIN student_profiles sp
+        ON sp.id = rssp.student_profile_id
+    WHERE rsp.academic_period_id = :academicPeriodId
+      AND rsp.was_active = 1
+    GROUP BY ap.name, ig.name
+    ORDER BY ig.name
+    """, nativeQuery = true)
+    List<ActiveSeedbedsHYRProjection> getActiveSeedbedsReportByAcademicPeriod(@Param("academicPeriodId") Long academicPeriodId);
 
 }

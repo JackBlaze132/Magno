@@ -3,6 +3,7 @@ package com.unibague.magno.application.handler.interfaces;
 import com.unibague.magno.application.dto.request.InvestigationGroupProfileRequest;
 import com.unibague.magno.application.dto.response.InvestigationGroupProfileResponse;
 import com.unibague.magno.domain.model.excel.ExcelReport;
+import com.unibague.magno.domain.model.excel.metadata.ActiveSeedbedsHYRMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupHYRMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupYRMetadata;
 
@@ -20,4 +21,6 @@ public interface IInvestigationGroupProfileHandler {
 
     ExcelReport<InvestigationGroupYRMetadata> getExcelBytesForAnnualInvestigationGroupReport(Long academicPeriodId1,
                                                                                              Long academicPeriodId2);
+
+    ExcelReport<ActiveSeedbedsHYRMetadata> getExcelBytesForHalfYearActiveSeedbedsReport(Long academicPeriodId);
 }
