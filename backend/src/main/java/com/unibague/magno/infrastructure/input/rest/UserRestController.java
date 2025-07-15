@@ -55,6 +55,12 @@ public class UserRestController {
         return ResponseEntity.ok(externalUsers);
     }
 
+    @GetMapping(path = "/all-internal-users-registered", headers = "API-VERSION=1")
+    ResponseEntity<List<UserResponse>> getAllInternalUsersRegistered() {
+        List<UserResponse> internalUsers = userHandler.findAllInternalUsersRegistered();
+        return ResponseEntity.ok(internalUsers);
+    }
+
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest) {
         UserResponse userResponse = userHandler.save(userRequest);

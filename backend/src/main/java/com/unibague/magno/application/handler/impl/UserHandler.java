@@ -80,4 +80,12 @@ public class UserHandler implements IUserHandler {
     public List<String> findAllCountries() {
         return userServicePort.findAllCountries();
     }
+
+    @Override
+    public List<UserResponse> findAllInternalUsersRegistered() {
+        return userServicePort.findAllInternalUsersRegistered()
+                .stream()
+                .map(userResponseMapper::toResponse)
+                .toList();
+    }
 }

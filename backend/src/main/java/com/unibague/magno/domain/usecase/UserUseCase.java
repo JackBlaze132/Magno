@@ -195,4 +195,9 @@ public class UserUseCase implements IUserServicePort {
 
         return getUserByIntegraStudent(integraStudent);
     }
+
+    @Override
+    public List<User> findAllInternalUsersRegistered() {
+        return userPersistencePort.findAllInternalUsers();
+    }
 }

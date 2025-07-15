@@ -4,6 +4,7 @@ import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -27,4 +28,6 @@ public interface IUserServicePort {
     User findUserByIdentification(List<User> users, String identification);
     User mapFromIntegraFunctionary(IntegraUserRequest userRequest);
     User mapFromIntegraStudent(IntegraUserRequest userRequest);
+
+    List<User> findAllInternalUsersRegistered();
 }

@@ -17,4 +17,6 @@ public interface IUserHandler {
     List<UserResponse> findAllStudentsRegistered();
     List<UserResponse> findAllExternalUsersRegistered();
     List<String> findAllCountries();
+
+    List<UserResponse> findAllInternalUsersRegistered();
 }
