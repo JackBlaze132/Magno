@@ -23,7 +23,7 @@
   ],
   "user_integra":[
     { "key": "identification", "label": "Numero de identificaion", "type": "text" },
-    { "key": "type", "label": "Tipo", "type": "text" }
+    { "key": "type", "label": "Tipo", "type": "select", "options": [] }
   ],
   "user_external": [],
   "role":[

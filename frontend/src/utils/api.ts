@@ -13,6 +13,7 @@ class API{
   public readonly LINES_OF_RESEARCH_BY_INVESTIGATION_GROUP: string='enums/get-lines-of-research-by-investigation-group-id/';
   public readonly LINES_OF_RESEARCH_BY_RESEARCH_SEEDBED: string='enums/get-lines-of-research-by-research-seedbed-id/'
   public readonly LINES_OF_RESEARCH_BY_INVESTIGATION_VALUES: string='enums/LineOfResearch/values';
+  public readonly INTEGRA_USER_TYPES: string='enums/JSONIntegraType/values';
 
   //----[ACADEMIC PERIODS]----
   public readonly ACADEMIC_PERIODS:string='academic-periods/';
