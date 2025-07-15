@@ -1,6 +1,6 @@
 package com.unibague.magno.infrastructure.output.jpa.repository;
 
-import com.unibague.magno.domain.model.excel.projections.ActiveSeedbedsHYRProjection;
+import com.unibague.magno.domain.model.excel.projections.ActiveSeedbedsProjection;
 import com.unibague.magno.domain.model.excel.projections.InvestigationGroupHYRProjection;
 import com.unibague.magno.domain.model.excel.projections.InvestigationGroupYRProjection;
 import com.unibague.magno.infrastructure.output.jpa.entity.InvestigationGroupProfileEntity;
@@ -89,6 +89,45 @@ public interface IInvestigationGroupProfileRepository extends JpaRepository<Inve
     GROUP BY ap.name, ig.name
     ORDER BY ig.name
     """, nativeQuery = true)
-    List<ActiveSeedbedsHYRProjection> getActiveSeedbedsReportByAcademicPeriod(@Param("academicPeriodId") Long academicPeriodId);
+    List<ActiveSeedbedsProjection> getActiveSeedbedsReportByAcademicPeriod(@Param("academicPeriodId") Long academicPeriodId);
 
+    // Currently, this query works only with SQL Server, notice that if another database is used, it may need to be adjusted.
+    @Query(value = """
+    SELECT
+        CONCAT(ap1.name, '__', ap2.name) AS academicPeriodName,
+        ig.name AS investigationGroupName,
+        COUNT(DISTINCT rs.id) AS activeSeedbedsCount,
+        COUNT(DISTINCT sp.user_id) AS activeStudentsCount
+    FROM research_seedbeds_profiles rsp
+    JOIN academic_periods ap
+        ON ap.id = rsp.academic_period_id
+    JOIN academic_periods ap1
+        ON ap1.id = :academicPeriodId1
+    JOIN academic_periods ap2
+        ON ap2.id = :academicPeriodId2
+    JOIN investigation_group_profiles igp
+        ON igp.id = rsp.investigation_group_profile_id
+    JOIN investigation_groups ig
+        ON ig.id = igp.investigation_group_id
+    JOIN research_seedbeds rs
+        ON rs.id = rsp.research_seedbed_id
+    LEFT JOIN research_seedbeds_student_profiles rssp
+        ON rssp.research_seedbed_profile_id = rsp.id
+        AND rssp.was_active = 1
+    LEFT JOIN student_profiles sp
+        ON sp.id = rssp.student_profile_id
+    WHERE
+        rsp.academic_period_id IN (:academicPeriodId1, :academicPeriodId2)
+        AND rsp.was_active = 1
+    GROUP BY
+        ig.name,
+        ap1.name,
+        ap2.name
+    ORDER BY
+        ig.name
+    """, nativeQuery = true)
+    List<ActiveSeedbedsProjection> getActiveSeedbedsReportByAcademicPeriod1AndAcademicPeriodId2(
+            @Param("academicPeriodId1") Long academicPeriodId1,
+            @Param("academicPeriodId2") Long academicPeriodId2
+    );
 }

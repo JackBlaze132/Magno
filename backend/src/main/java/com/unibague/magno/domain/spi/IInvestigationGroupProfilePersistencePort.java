@@ -2,7 +2,7 @@ package com.unibague.magno.domain.spi;
 
 import com.unibague.magno.domain.model.InvestigationGroupProfile;
 import com.unibague.magno.domain.model.excel.ExcelReport;
-import com.unibague.magno.domain.model.excel.metadata.ActiveSeedbedsHYRMetadata;
+import com.unibague.magno.domain.model.excel.metadata.ActiveSeedbedsMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupHYRMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupYRMetadata;
 
@@ -20,5 +20,7 @@ public interface IInvestigationGroupProfilePersistencePort {
     ExcelReport<InvestigationGroupHYRMetadata> getExcelBytesForHalfYearInvestigationGroupReport(Long academicPeriodId);
     ExcelReport<InvestigationGroupYRMetadata> getExcelBytesForAnnualYearInvestigationGroupReport(Long academicPeriodId1, Long academicPeriodId2);
 
-    ExcelReport<ActiveSeedbedsHYRMetadata> getExcelBytesForHalfYearActiveSeedbedsReport(Long academicPeriodId);
+    ExcelReport<ActiveSeedbedsMetadata> getExcelBytesForHalfYearActiveSeedbedsReport(Long academicPeriodId);
+
+    ExcelReport<ActiveSeedbedsMetadata> getExcelBytesForAnnualActiveSeedbedsReport(Long academicPeriodId1, Long academicPeriodId2);
 }

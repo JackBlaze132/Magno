@@ -4,7 +4,7 @@ import com.unibague.magno.application.dto.request.InvestigationGroupProfileReque
 import com.unibague.magno.application.dto.response.InvestigationGroupProfileResponse;
 import com.unibague.magno.application.handler.impl.InvestigationGroupProfileHandler;
 import com.unibague.magno.domain.model.excel.ExcelReport;
-import com.unibague.magno.domain.model.excel.metadata.ActiveSeedbedsHYRMetadata;
+import com.unibague.magno.domain.model.excel.metadata.ActiveSeedbedsMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupHYRMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupYRMetadata;
 import jakarta.validation.Valid;
@@ -77,10 +77,26 @@ public class InvestigationGroupProfileRestController {
     }
 
     @GetMapping(path = "generate-active-seedbeds-half-year-report", headers = "API-VERSION=1")
-    public ResponseEntity<byte[]> getActiveSeedbedsReport(@RequestParam("apId") Long academicPeriodId) {
-        ExcelReport<ActiveSeedbedsHYRMetadata> report = investigationGroupProfileHandler
+    public ResponseEntity<byte[]> getHalfYearActiveSeedbedsReport(@RequestParam("apId") Long academicPeriodId) {
+        ExcelReport<ActiveSeedbedsMetadata> report = investigationGroupProfileHandler
                 .getExcelBytesForHalfYearActiveSeedbedsReport(academicPeriodId);
-        ActiveSeedbedsHYRMetadata metadata = report.getMetadata();
+        ActiveSeedbedsMetadata metadata = report.getMetadata();
+
+        String filename = String.format("Semilleros_activos_%s.xlsx",
+                metadata.getAcademicPeriodName());
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + URLEncoder.encode(filename, StandardCharsets.UTF_8).replace("+", "%20") + "\"")
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(report.getContent());
+    }
+
+    @GetMapping(path = "generate-active-seedbeds-annual-year-report", headers = "API-VERSION=1")
+    public ResponseEntity<byte[]> getAnnualActiveSeedbedsReport(@RequestParam("apId1") Long academicPeriodId1,
+                                                                @RequestParam("apId2") Long academicPeriodId2) {
+        ExcelReport<ActiveSeedbedsMetadata> report = investigationGroupProfileHandler
+                .getExcelBytesForAnnualActiveSeedbedsReport(academicPeriodId1, academicPeriodId2);
+        ActiveSeedbedsMetadata metadata = report.getMetadata();
 
         String filename = String.format("Semilleros_activos_%s.xlsx",
                 metadata.getAcademicPeriodName());

@@ -1,10 +1,10 @@
 package com.unibague.magno.domain.model.excel.metadata;
 
-public class ActiveSeedbedsHYRMetadata {
+public class ActiveSeedbedsMetadata {
 
     private final String academicPeriodName;
 
-    public ActiveSeedbedsHYRMetadata(String academicPeriodName) {
+    public ActiveSeedbedsMetadata(String academicPeriodName) {
         this.academicPeriodName = academicPeriodName;
     }
 

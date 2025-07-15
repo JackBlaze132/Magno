@@ -33,6 +33,8 @@ dependencies {
 	implementation 'org.apache.httpcomponents.client5:httpclient5:5.4.1'
 	implementation 'org.apache.poi:poi-ooxml:5.4.0'
 	implementation 'org.hibernate.common:hibernate-commons-annotations:6.0.6.Final'
+	implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
+	implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.4'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
 	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc:12.6.1.jre11'

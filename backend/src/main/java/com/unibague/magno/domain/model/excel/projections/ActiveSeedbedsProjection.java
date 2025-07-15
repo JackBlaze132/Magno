@@ -1,6 +1,6 @@
 package com.unibague.magno.domain.model.excel.projections;
 
-public interface ActiveSeedbedsHYRProjection {
+public interface ActiveSeedbedsProjection {
     String getAcademicPeriodName();
     String getInvestigationGroupName();
     Long getActiveSeedbedsCount();
