@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/academic-programs")
+@RequestMapping("/academic-programs")
 public class AcademicProgramRestController {
 
     private final AcademicProgramHandler academicProgramHandler;

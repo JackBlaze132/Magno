@@ -15,4 +15,6 @@ public interface IUserPersistencePort {
     List<User> findAllExternalUsers();
 
     List<User> findAllInternalUsers();
+
+    Optional<User> findByEmail(String email);
 }

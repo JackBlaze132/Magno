@@ -30,4 +30,6 @@ public interface IUserServicePort {
     User mapFromIntegraStudent(IntegraUserRequest userRequest);
 
     List<User> findAllInternalUsersRegistered();
+
+    User findByEmail(String email);
 }

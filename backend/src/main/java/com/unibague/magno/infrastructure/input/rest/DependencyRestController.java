@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/dependencies")
+@RequestMapping("/dependencies")
 public class DependencyRestController {
 
     private final DependencyHandler dependencyHandler;

@@ -55,4 +55,9 @@ public class RoleJpaAdapter implements IRolePersistencePort {
     public Set<Role> findRolesByIds(Set<Long> ids) {
         return new HashSet<>(roleEntityMapper.toRoleList(roleRepository.findAllById(ids)));
     }
+
+    @Override
+    public List<Role> findAllRolesByUserId(Long userId) {
+        return roleEntityMapper.toRoleList(roleRepository.findAllRolesByUserId(userId));
+    }
 }

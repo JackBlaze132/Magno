@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/external-user-profiles")
+@RequestMapping("/external-user-profiles")
 public class ExternalUserProfileRestController {
 
     private final ExternalUserProfileHandler externalUserProfileHandler;

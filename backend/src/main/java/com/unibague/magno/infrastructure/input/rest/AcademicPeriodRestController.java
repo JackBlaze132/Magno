@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/academic-periods")
+@RequestMapping("/academic-periods")
 public class AcademicPeriodRestController {
 
     private final AcademicPeriodHandler academicPeriodHandler;

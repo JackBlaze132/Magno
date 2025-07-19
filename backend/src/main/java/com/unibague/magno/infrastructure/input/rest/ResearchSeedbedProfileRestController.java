@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/research-seedbed-profiles")
+@RequestMapping("/research-seedbed-profiles")
 public class ResearchSeedbedProfileRestController {
 
     private final ResearchSeedbedProfileHandler researchSeedbedProfileHandler;

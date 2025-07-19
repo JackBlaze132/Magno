@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/investigation-groups")
+@RequestMapping("/investigation-groups")
 public class InvestigationGroupRestController {
 
     private final InvestigationGroupHandler investigationGroupHandler;

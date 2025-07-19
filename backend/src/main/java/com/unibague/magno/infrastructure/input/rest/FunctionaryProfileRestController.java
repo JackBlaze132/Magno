@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/functionary-profiles")
+@RequestMapping("/functionary-profiles")
 public class FunctionaryProfileRestController {
 
     private final FunctionaryProfileHandler functionaryProfileHandler;

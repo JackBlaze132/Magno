@@ -2,6 +2,7 @@ package com.unibague.magno.domain.api;
 
 import com.unibague.magno.domain.model.Role;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -12,4 +13,6 @@ public interface IRoleServicePort {
     void deleteById(Long id);
     List<Role> findAll();
     Set<Role> findRolesByIds(Set<Long> ids);
+
+    List<Role> findAllRolesByUserId(Long userId);
 }

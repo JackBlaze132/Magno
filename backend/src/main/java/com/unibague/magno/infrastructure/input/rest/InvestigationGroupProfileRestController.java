@@ -20,7 +20,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/investigation-group-profiles")
+@RequestMapping("/investigation-group-profiles")
 @RequiredArgsConstructor
 public class InvestigationGroupProfileRestController {
 

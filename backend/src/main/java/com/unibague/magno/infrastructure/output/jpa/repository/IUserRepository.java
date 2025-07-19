@@ -10,4 +10,5 @@ public interface IUserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByIdentificationNumber(String identificationNumber);
     List<UserEntity> findAllByIsExternalUserTrue();
     List<UserEntity> findByIsExternalUserFalse();
+    Optional<UserEntity> findByEmail(String email);
 }

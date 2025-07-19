@@ -13,4 +13,6 @@ public interface IRolePersistencePort {
     void deleteById(Long id);
     List<Role> findAll();
     Set<Role> findRolesByIds(Set<Long> ids);
+
+    List<Role> findAllRolesByUserId(Long userId);
 }

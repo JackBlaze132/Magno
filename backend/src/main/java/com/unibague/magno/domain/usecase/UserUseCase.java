@@ -200,4 +200,11 @@ public class UserUseCase implements IUserServicePort {
     public List<User> findAllInternalUsersRegistered() {
         return userPersistencePort.findAllInternalUsers();
     }
+
+    @Override
+    public User findByEmail(String email) {
+        return userPersistencePort.findByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException(
+                        String.format("User with email %s not found", email)));
+    }
 }

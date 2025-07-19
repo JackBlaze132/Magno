@@ -12,7 +12,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/research-seedbeds")
+@RequestMapping("/research-seedbeds")
 @RequiredArgsConstructor
 public class ResearchSeedbedRestController {
 
