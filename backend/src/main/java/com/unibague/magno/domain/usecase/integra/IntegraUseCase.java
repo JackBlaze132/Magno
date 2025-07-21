@@ -144,4 +144,11 @@ public class IntegraUseCase implements IIntegraServicePort {
     public IntegraDependency getIntegraDependencyByDependencyName(String dependencyName) {
         return integraPersistencePort.getIntegraDependencyByDependencyName(dependencyName);
     }
+
+    @Override
+    public IntegraFunctionary getIntegraFunctionaryByEmail(String email) {
+        return integraPersistencePort.getIntegraFunctionaryByEmail(email)
+                .orElseThrow(() -> new IntegraUserNotFoundException(
+                        String.format("IntegraFunctionary with email %s not found", email)));
+    }
 }

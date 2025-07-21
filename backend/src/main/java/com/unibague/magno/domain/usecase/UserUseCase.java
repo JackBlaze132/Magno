@@ -105,38 +105,23 @@ public class UserUseCase implements IUserServicePort {
 
     @Override
     public List<User> findAllFunctionariesRegistered() {
-
-        Set<String> functionaryIdentifications = getFunctionaryIdentifications();
-
         return findAll()
                 .stream()
-                .filter(user -> functionaryIdentifications.contains(user.getIdentificationNumber()))
-                .filter(user -> !user.isExternalUser())
+                .filter(user -> user.getEmail() != null && user.getEmail().endsWith("@unibague.edu.co"))
                 .toList();
     }
 
     @Override
     public List<User> findAllStudentsRegistered() {
-
-        Set<String> functionaryIdentifications = getFunctionaryIdentifications();
-
         return findAll()
                 .stream()
-                .filter(user -> !functionaryIdentifications.contains(user.getIdentificationNumber()))
-                .filter(user -> !user.isExternalUser())
+                .filter(user -> user.getEmail() != null && user.getEmail().endsWith("@estudiantesunibague.edu.co"))
                 .toList();
     }
 
     @Override
     public List<User> findAllExternalUsersRegistered() {
         return userPersistencePort.findAllExternalUsers();
-    }
-
-    private Set<String> getFunctionaryIdentifications() {
-        return integraServicePort.getAllFunctionaries()
-                .stream()
-                .map(IntegraFunctionary::getIdentification)
-                .collect(Collectors.toSet());
     }
 
     @Override
@@ -148,6 +133,18 @@ public class UserUseCase implements IUserServicePort {
         user.setUserCode(integraStudent.getCodeStudent());
         user.setExternalUser(false);
         user.setSex(integraStudent.getSexo().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO);
+        return user;
+    }
+
+    @Override
+    public User getUserByIntegraFunctionary(IntegraFunctionary integraFunctionary) {
+        User user = new User();
+        user.setFullName(integraFunctionary.getFullName());
+        user.setIdentificationNumber(integraFunctionary.getIdentification());
+        user.setEmail(integraFunctionary.getEmail());
+        user.setUserCode(integraFunctionary.getCodeUser());
+        user.setExternalUser(false);
+        user.setSex(integraFunctionary.getSex().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO);
         return user;
     }
 

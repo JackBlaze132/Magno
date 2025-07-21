@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -107,5 +108,13 @@ public class IntegraUserClient implements IIntegraPersistencePort {
                     String message = String.format("Integra dependency with name %s not found", dependencyName);
                     return new IntegraDependencyNotFoundException(message);
                 });
+    }
+
+    @Override
+    public Optional<IntegraFunctionary> getIntegraFunctionaryByEmail(String email) {
+        return getAllFunctionaries()
+                .stream()
+                .filter(functionary -> functionary.getEmail().equals(email))
+                .findFirst();
     }
 }

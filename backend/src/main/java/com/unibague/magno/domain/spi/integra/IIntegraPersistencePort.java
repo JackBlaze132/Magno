@@ -6,6 +6,7 @@ import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public interface IIntegraPersistencePort {
@@ -14,4 +15,6 @@ public interface IIntegraPersistencePort {
     List<IntegraStudent> getIntegraStudentRecordsByIdentification(String identification);
     List<IntegraAcademicProgram> getIntegraAcademicProgramsByProgramCodes(Set<String> programCodes);
     IntegraDependency getIntegraDependencyByDependencyName(String dependencyName);
+
+    Optional<IntegraFunctionary> getIntegraFunctionaryByEmail(String email);
 }

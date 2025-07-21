@@ -21,4 +21,6 @@ public interface IIntegraServicePort {
     byte getMaxSemester(List<IntegraStudent> studentRecords);
     List<IntegraAcademicProgram> getIntegraAcademicProgramsByProgramCodes(Set<String> programCodes);
     IntegraDependency getIntegraDependencyByDependencyName(String dependencyName);
+
+    IntegraFunctionary getIntegraFunctionaryByEmail(String email);
 }
