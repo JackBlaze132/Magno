@@ -73,7 +73,7 @@ export default defineComponent({
         'API-VERSION': '1',
       }
       try {
-        this.items = await API.get(API.USERS, headers);
+        this.items = await API.get(API.USERS_INTERNAL, headers);
         this.$emit('loaded');
       } catch (error) {
         console.error('Error fetching users:', error);

@@ -9,9 +9,9 @@
     </VCardText>
     <VForm validate-on="submit" @submit.prevent="deleteItem">
       <VTextField  name="field" id="field" v-model="inputValue" :placeholder="`eliminar ${name}`"/>
-      <VcardItem class="d-flex justify-end">
+      <VCardItem class="d-flex justify-end">
         <LoadingBtn icon="ri-delete-bin-5-line" text="Eliminar" :loading="loading" color="error" ></LoadingBtn>
-      </VcardItem>
+      </VCardItem>
     </VForm>
   </VCard>
 </template>

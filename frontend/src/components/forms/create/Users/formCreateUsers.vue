@@ -16,6 +16,7 @@ import API from "@/utils/api";
 
 export default defineComponent({
   name: 'formCreateUser',
+  emits: ['itemCreated', 'loaded'],
   data(){
     return {
       loaded: false,
@@ -50,8 +51,8 @@ export default defineComponent({
       try {
         const integraTyupes = await API.get(API.INTEGRA_USER_TYPES, headers);
         this.$emit('loaded');
-        console.log(integraTyupes);
-        console.log("Hola obtuve los roles")
+        //console.log(integraTyupes);
+        //console.log("Hola obtuve los roles")
         //console.log(this.periods)
 
         const typesField = this.fields.find(f => f.key === 'type')

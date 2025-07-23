@@ -62,6 +62,7 @@
             value="estudiantes"
             to="/estudiantes">
           </v-list-item>
+          <v-divider class="px-4 my-4"></v-divider>
           <v-list-item
             prepend-icon="ri-external-link-line"
             title="Aliados externos"

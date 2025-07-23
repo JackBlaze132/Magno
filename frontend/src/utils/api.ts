@@ -63,6 +63,7 @@ class API{
   public readonly USERS_INTEGRA:string='users/integra-user';
   public readonly USERS_FUNCTIONARY:string='users/all-functionaries-registered';
   public readonly USERS_STUDENTS:string='users/all-students-registered';
+  public readonly USERS_INTERNAL: string ='users/all-internal-users-registered';
   public readonly USERS_EXTERNAL:string='users/all-external-users-registered';
 
   //----[COUNTRIES]----

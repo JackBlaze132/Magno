@@ -13,7 +13,13 @@
   <VBtn v-if="toCreate" class="mx-2" prepend-icon="ri-add-fill" @click="overlayCreate = !overlayCreate ; selectedAction = 'create'">
     Agregar
     <VOverlay v-model="overlayCreate" scrim="black" class="d-flex align-center justify-center" opacity="0.7">
-      <component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemCreated=handleItemCreated />
+      <v-progress-circular
+        v-if="!componentLoaded"
+        indeterminate
+        color="primary"
+        size="64"
+      />
+      <component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemCreated=handleItemCreated @loaded="componentLoaded = true"/>
     </VOverlay>
   </VBtn>
   <!--
@@ -23,7 +29,13 @@
   <VBtn v-if="toEdit" icon class="action edit" flat color="transparent" desity="compact" @click="overlayEdit = !overlayEdit; selectedAction = 'update';">
     <VIcon icon="ri-edit-box-line" />
     <VOverlay v-model="overlayEdit" scrim="black" class="d-flex align-center justify-center" opacity="0.7">
-      <component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemEdited="handleItemEdited"/>
+      <v-progress-circular
+        v-if="!componentLoaded"
+        indeterminate
+        color="primary"
+        size="64"
+      />
+      <component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemEdited="handleItemEdited" @loaded="componentLoaded = true"/>
     </VOverlay>
     <VTooltip activator="parent" location="top">
       Edit
@@ -37,7 +49,13 @@
   <VBtn v-if="toDelete" icon class="action delete" flat color="transparent" desity="compact" @click="overlayDelete = !overlayDelete ; selectedAction = 'delete'">
     <VIcon icon="ri-delete-bin-5-line" />
     <VOverlay v-model="overlayDelete" scrim="black" class="d-flex align-center justify-center" opacity="0.7">
-      <component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemDeleted="handleItemDeleted"/>
+      <v-progress-circular
+        v-if="!componentLoaded"
+        indeterminate
+        color="primary"
+        size="64"
+      />
+      <component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemDeleted="handleItemDeleted" @loaded="componentLoaded = true"/>
     </VOverlay>
     <VTooltip activator="parent" location="top">
       Delete
@@ -124,6 +142,18 @@ export default defineComponent({
       return FormFactory.getComponentConfig(this.selectedAction, this.type, extraProps);
     }
   },
+  watch : {
+    // Watch for changes in the selectedAction to load the component
+    overlayCreate(newVal) {
+      if (newVal) this.componentLoaded = false;
+    },
+    overlayEdit(newVal) {
+      if (newVal) this.componentLoaded = false;
+    },
+    overlayDelete(newVal) {
+      if (newVal) this.componentLoaded = false;
+    }
+  },
   data() {
     return {
       // ---[Overlays]---
@@ -135,6 +165,8 @@ export default defineComponent({
       overlayDelete: false,
       //----
       selectedAction: '' as ActionType,
+
+      componentLoaded: false,
 
     };
   },

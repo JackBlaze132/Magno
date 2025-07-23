@@ -53,9 +53,9 @@
             class="mb-5"
           />
         </div>
-        <VcardItem class="d-flex justify-end">
+        <VCardItem class="d-flex justify-end">
           <LoadingBtn icon="ri-save-2-line" text="Guardar" :loading="loading" color="primary"/>
-        </VcardItem>
+        </VCardItem>
       </VForm>
     </VCardText>
   </VCard>
