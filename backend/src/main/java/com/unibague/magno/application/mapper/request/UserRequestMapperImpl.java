@@ -9,9 +9,6 @@ import com.unibague.magno.domain.model.enums.JSONIntegraType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 @Component
 @RequiredArgsConstructor
 public class UserRequestMapperImpl implements UserRequestMapper {
@@ -26,10 +23,13 @@ public class UserRequestMapperImpl implements UserRequestMapper {
 
         User user = new User();
 
+        String userCode = Boolean.TRUE.equals(userRequest.getIsExternalUser()) ?
+                userRequest.getIdentificationNumber() : userRequest.getUserCode();
+
         user.setFullName( userRequest.getFullName() );
         user.setIdentificationNumber( userRequest.getIdentificationNumber() );
         user.setEmail( userRequest.getEmail() );
-        user.setUserCode( userRequest.getUserCode() );
+        user.setUserCode( userCode );
         user.setExternalUser( userRequest.getIsExternalUser() );
         user.setSex( userRequest.getSex() );
 

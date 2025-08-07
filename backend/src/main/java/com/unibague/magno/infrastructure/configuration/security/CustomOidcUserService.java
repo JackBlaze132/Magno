@@ -51,6 +51,7 @@ public class CustomOidcUserService extends OidcUserService {
                 .map(role -> (GrantedAuthority) new SimpleGrantedAuthority(role.getName()))
                 .toList();
 
+        System.out.println("Roles del usuario: " + authorities.toString() + " token: " + user.getIdToken().getTokenValue());
         return new DefaultOidcUser(authorities, user.getIdToken(), user.getUserInfo());
     }
 
