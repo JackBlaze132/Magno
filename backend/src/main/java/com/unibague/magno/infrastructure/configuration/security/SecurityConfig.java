@@ -60,7 +60,8 @@ public class SecurityConfig {
                             }
                         })
                         .userInfoEndpoint(userInfo -> userInfo.userService(oauth2UserService()))
-                );
+                )
+                .addFilterBefore(googleIdTokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
