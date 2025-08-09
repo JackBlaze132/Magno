@@ -151,4 +151,11 @@ public class IntegraUseCase implements IIntegraServicePort {
                 .orElseThrow(() -> new IntegraUserNotFoundException(
                         String.format("IntegraFunctionary with email %s not found", email)));
     }
+
+    @Override
+    public IntegraStudent getIntegraStudentByEmail(String email) {
+        return integraPersistencePort.getIntegraStudentByEmail(email)
+                .orElseThrow(() -> new IntegraUserNotFoundException(
+                        String.format("IntegraStudent with email %s not found", email)));
+    }
 }

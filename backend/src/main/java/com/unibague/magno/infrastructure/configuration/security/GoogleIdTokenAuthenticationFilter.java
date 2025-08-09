@@ -12,6 +12,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,16 +26,11 @@ import java.util.Enumeration;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class GoogleIdTokenAuthenticationFilter extends OncePerRequestFilter {
 
     private final IUserServicePort userServicePort;
     private final IRoleServicePort roleServicePort;
-
-    public GoogleIdTokenAuthenticationFilter(IUserServicePort userServicePort,
-                                             IRoleServicePort roleServicePort) {
-        this.userServicePort = userServicePort;
-        this.roleServicePort = roleServicePort;
-    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
