@@ -10,7 +10,6 @@ import com.unibague.magno.domain.model.Role;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,7 +26,6 @@ import java.util.List;
 @Service
 public class CustomOidcUserService extends OidcUserService {
 
-    private final String ALLOWED_DOMAIN = "unibague.edu.co";
     private static final String DOMAIN_FUNCTIONARIES = "@unibague.edu.co";
 
     private final IUserServicePort userServicePort;
@@ -49,7 +47,6 @@ public class CustomOidcUserService extends OidcUserService {
                 .map(role -> (GrantedAuthority) new SimpleGrantedAuthority(role.getName()))
                 .toList();
 
-        System.out.println("Roles del usuario: " + authorities.toString() + " token: " + user.getIdToken().getTokenValue());
         return new DefaultOidcUser(authorities, user.getIdToken(), user.getUserInfo());
     }
 
@@ -76,11 +73,10 @@ public class CustomOidcUserService extends OidcUserService {
 
     private void verifyEmail(String email) {
         if (email == null) {
-            System.out.println("Email is null");
             throw new NullEmailException();
         }
+        String ALLOWED_DOMAIN = "unibague.edu.co";
         if (email.isBlank() || (!email.endsWith(ALLOWED_DOMAIN))){
-            System.out.println("Email is not valid: " + email);
             throw new InvalidEmailException();
         }
     }

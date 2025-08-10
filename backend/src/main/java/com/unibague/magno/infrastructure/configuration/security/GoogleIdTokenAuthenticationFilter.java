@@ -13,6 +13,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,12 +23,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.List;
 
 @Component
 @RequiredArgsConstructor
 public class GoogleIdTokenAuthenticationFilter extends OncePerRequestFilter {
+
+    @Value("${spring.security.oauth2.client.registration.google.client-id}")
+    private String googleClientId;
 
     private final IUserServicePort userServicePort;
     private final IRoleServicePort roleServicePort;
@@ -36,16 +39,7 @@ public class GoogleIdTokenAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-        Enumeration<String> headerNames = request.getHeaderNames();
-        while (headerNames.hasMoreElements()) {
-            String headerName = headerNames.nextElement();
-            System.out.println("Header: " + headerName + " = " + request.getHeader(headerName));
-        }
 
-
-
-        System.out.println("Hola desde do filter");
-        System.out.println("token: " + recoveryToken(request));
         String header = request.getHeader("Authorization");
 
         if (header != null && header.startsWith("Bearer ")) {
@@ -53,7 +47,7 @@ public class GoogleIdTokenAuthenticationFilter extends OncePerRequestFilter {
 
             GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(
                     new NetHttpTransport(), new JacksonFactory())
-                    .setAudience(List.of("177640253484-00hna9dcguhp90lq86tnr7ng2umnclki.apps.googleusercontent.com"))
+                    .setAudience(List.of(googleClientId))
                     .build();
 
             try {
@@ -66,14 +60,11 @@ public class GoogleIdTokenAuthenticationFilter extends OncePerRequestFilter {
                     List<Role> roles = roleServicePort.findAllRolesByUserId(user.getId());
 
                     List<GrantedAuthority> authorities = roles.stream()
-                            .map(role -> (GrantedAuthority) new SimpleGrantedAuthority(role.getName()))
+                            .map(role -> (GrantedAuthority) new SimpleGrantedAuthority("ROLE_" + role.getName()))
                             .toList();
 
                     Authentication auth = new UsernamePasswordAuthenticationToken(email, null, authorities);
                     SecurityContextHolder.getContext().setAuthentication(auth);
-                    System.out.println("Token verificado para: " + email);
-                    System.out.println("Roles: " + authorities);
-                    System.out.println("Autenticado: " + SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
                 }
             } catch (Exception e) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -82,15 +73,6 @@ public class GoogleIdTokenAuthenticationFilter extends OncePerRequestFilter {
         }
 
         filterChain.doFilter(request, response);
-    }
-
-    private String recoveryToken(HttpServletRequest request) {
-        String bearerToken = request.getHeader("authorization"); // <-- en minúsculas
-        System.out.println("Authorization header: " + bearerToken);
-        if (bearerToken != null && bearerToken.toLowerCase().startsWith("bearer ")) {
-            return bearerToken.substring(7); // evitar replace
-        }
-        return null;
     }
 
 }

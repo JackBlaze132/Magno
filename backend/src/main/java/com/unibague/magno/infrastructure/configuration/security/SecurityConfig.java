@@ -1,7 +1,6 @@
 package com.unibague.magno.infrastructure.configuration.security;
 
 import com.unibague.magno.domain.api.IUserServicePort;
-import com.unibague.magno.infrastructure.configuration.security.service.CustomOAuth2SuccessHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
