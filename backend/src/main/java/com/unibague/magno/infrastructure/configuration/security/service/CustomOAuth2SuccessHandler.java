@@ -3,7 +3,11 @@ package com.unibague.magno.infrastructure.configuration.security.service;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -14,7 +18,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
-    private final JwTokenService jwTokenService;
+    private final OAuth2AuthorizedClientService authorizedClientService;
 
 
     @Override
@@ -22,11 +26,24 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
                                         Authentication authentication) throws IOException {
         OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
 
-        String token = jwTokenService.generateToken(oidcUser.getEmail());
+        String googleIdToken = oidcUser.getIdToken().getTokenValue();
 
-        // Retornar el token directamente como JSON (opcional: redirigir a una URL con token en query param)
-        response.setContentType("application/json");
-        response.getWriter().write("{\"token\":\"" + token + "\"}");
+        ResponseCookie cookie = ResponseCookie.from("MAGNO_SESSION", googleIdToken)
+                .httpOnly(true)
+                .secure(request.isSecure())
+                .path("/")
+                .maxAge(4 * 60 * 60)
+                .sameSite("Lax")
+                .build();
+
+        response.addHeader("Set-Cookie", cookie.toString());
+
+        if (oidcUser.getEmail().endsWith("@estudiantesunibague.edu.co")) {
+            response.sendRedirect("http://localhost:5173/student/home");
+        } else {
+            response.sendRedirect("http://localhost:5173/actor/home");
+        }
     }
+
 }
 
