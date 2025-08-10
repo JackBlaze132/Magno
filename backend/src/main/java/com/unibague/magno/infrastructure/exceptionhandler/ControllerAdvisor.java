@@ -10,12 +10,15 @@ import com.unibague.magno.domain.exception.externaluser.UserIsNotExternalExcepti
 import com.unibague.magno.domain.exception.functionaryprofile.FunctionaryProfileAlreadyExistsException;
 import com.unibague.magno.domain.exception.functionaryprofile.FunctionaryProfileNotFoundException;
 import com.unibague.magno.domain.exception.integra.IntegraUserNotFoundException;
+import com.unibague.magno.domain.exception.integra.NullIntegraResponseException;
 import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupNotFoundException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ResearchSeedbedStudentProfileNotFoundException;
 import com.unibague.magno.domain.exception.role.RoleNotFoundException;
+import com.unibague.magno.domain.exception.security.InvalidEmailException;
+import com.unibague.magno.domain.exception.security.NullEmailException;
 import com.unibague.magno.domain.exception.studentprofile.StudentProfileAlreadyExistsException;
 import com.unibague.magno.domain.exception.studentprofile.StudentProfileNotFoundException;
 import com.unibague.magno.domain.exception.user.UserAlreadyExistsException;
@@ -291,6 +294,39 @@ public class ControllerAdvisor {
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
 
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NullEmailException.class)
+    public ErrorResponse handleNullEmailException(NullEmailException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.NULL_EMAIL.getCode());
+        errorResponse.setMessage(ExceptionResponse.NULL_EMAIL.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(InvalidEmailException.class)
+    public ErrorResponse handleInvalidEmailException(InvalidEmailException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.INVALID_EMAIL.getCode());
+        errorResponse.setMessage(ExceptionResponse.INVALID_EMAIL.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_GATEWAY)
+    @ExceptionHandler(NullIntegraResponseException.class)
+    public ErrorResponse handleNullIntegraResponseException(NullIntegraResponseException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.NULL_INTEGRA_RESPONSE.getCode());
+        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
     }
 

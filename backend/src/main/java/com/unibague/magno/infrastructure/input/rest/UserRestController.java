@@ -7,6 +7,7 @@ import com.unibague.magno.application.handler.impl.UserHandler;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -25,6 +26,7 @@ public class UserRestController {
         return ResponseEntity.ok(userResponse);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<List<UserResponse>> getAllUsers() {
         List<UserResponse> userResponse = userHandler.findAll();

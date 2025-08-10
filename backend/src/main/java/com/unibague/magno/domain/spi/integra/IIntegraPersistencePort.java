@@ -17,4 +17,6 @@ public interface IIntegraPersistencePort {
     IntegraDependency getIntegraDependencyByDependencyName(String dependencyName);
 
     Optional<IntegraFunctionary> getIntegraFunctionaryByEmail(String email);
+
+    Optional<IntegraStudent> getIntegraStudentByEmail(String email);
 }

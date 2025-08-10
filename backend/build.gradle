@@ -37,7 +37,13 @@ dependencies {
 	implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.4'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation("org.springframework.security:spring-security-core:6.5.0")
+	implementation("io.jsonwebtoken:jjwt-api:0.12.6")
+	implementation("com.auth0:java-jwt:4.5.0")
+	implementation 'com.google.api-client:google-api-client:2.5.0'
+	implementation 'com.google.http-client:google-http-client-jackson2:1.44.1'
 	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly("io.jsonwebtoken:jjwt-api:0.12.6")
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
 	runtimeOnly 'org.postgresql:postgresql'
 	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc:12.6.1.jre11'
 	annotationProcessor 'org.projectlombok:lombok'

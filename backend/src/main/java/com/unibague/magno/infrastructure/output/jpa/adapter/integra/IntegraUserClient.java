@@ -1,6 +1,7 @@
 package com.unibague.magno.infrastructure.output.jpa.adapter.integra;
 
 import com.unibague.magno.domain.exception.integra.IntegraDependencyNotFoundException;
+import com.unibague.magno.domain.exception.integra.NullIntegraResponseException;
 import com.unibague.magno.domain.model.integra.IntegraAcademicProgram;
 import com.unibague.magno.domain.model.integra.IntegraDependency;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
@@ -36,6 +37,9 @@ public class IntegraUserClient implements IIntegraPersistencePort {
     @Value("${integra.student.url2}")
     private String studentsUrl2;
 
+    @Value("${integra.students.all}")
+    private String allStudentsUrl;
+
     @Value("${integra.academic.programs.url}")
     private String academicProgramsUrl;
 
@@ -52,6 +56,9 @@ public class IntegraUserClient implements IIntegraPersistencePort {
                 null,
                 new ParameterizedTypeReference<List<IntegraFunctionary>>() {}
         );
+        if (response.getBody() == null) {
+            throw new NullIntegraResponseException();
+        }
         return response.getBody();
     }
 
@@ -59,12 +66,10 @@ public class IntegraUserClient implements IIntegraPersistencePort {
     public List<IntegraStudent> getIntegraStudentRecordsByIdentification(String identification) {
         final String url = baseUrl + studentsUrl1 + identification + studentsUrl2;
 
-        ResponseEntity<List<IntegraStudent>> response = restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<List<IntegraStudent>>() {}
-        );
+        ResponseEntity<List<IntegraStudent>> response = getListResponseEntity(url);
+        if (response.getBody() == null) {
+            throw new NullIntegraResponseException();
+        }
         return response.getBody();
     }
 
@@ -77,6 +82,10 @@ public class IntegraUserClient implements IIntegraPersistencePort {
                 null,
                 new ParameterizedTypeReference<List<IntegraAcademicProgram>>() {}
         );
+
+        if (response.getBody() == null) {
+            throw new NullIntegraResponseException();
+        }
         return response.getBody();
     }
 
@@ -89,6 +98,19 @@ public class IntegraUserClient implements IIntegraPersistencePort {
                 null,
                 new ParameterizedTypeReference<List<IntegraDependency>>() {}
         );
+        if (response.getBody() == null) {
+            throw new NullIntegraResponseException();
+        }
+        return response.getBody();
+    }
+
+    private List<IntegraStudent> getAllStudents() {
+        final String url = baseUrl + allStudentsUrl;
+
+        ResponseEntity<List<IntegraStudent>> response = getListResponseEntity(url);
+        if (response.getBody() == null) {
+            throw new NullIntegraResponseException();
+        }
         return response.getBody();
     }
 
@@ -116,5 +138,22 @@ public class IntegraUserClient implements IIntegraPersistencePort {
                 .stream()
                 .filter(functionary -> functionary.getEmail().equals(email))
                 .findFirst();
+    }
+
+    @Override
+    public Optional<IntegraStudent> getIntegraStudentByEmail(String email) {
+        return getAllStudents()
+                .stream()
+                .filter(student -> student.getEmail().equals(email))
+                .findFirst();
+    }
+
+    private ResponseEntity<List<IntegraStudent>> getListResponseEntity(String url) {
+        return restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<IntegraStudent>>() {}
+        );
     }
 }

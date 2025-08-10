@@ -29,6 +29,9 @@ public enum ExceptionResponse {
     INTEGRA_API_ERROR("ERR_INTEGRA_API_001", "An error occurred while trying to connect to the " +
             "Integra API."),
     UPLOAD_EXCEL_ERROR("ERR_UPLOAD_EXCEL_001", "An error occurred while trying to upload the Excel file."),
+    NULL_EMAIL("ERR_NULL_EMAIL_001", "Email cannot be null."),
+    INVALID_EMAIL("ERR_INVALID_EMAIL_001", "The provided email is invalid, it must be a valid Unibague email."),
+    NULL_INTEGRA_RESPONSE("ERR_NULL_INTEGRA_RESPONSE_001", "Integra response was null."),
     GENERIC_ERROR("ERR_GENERIC_001", "An unexpected error occurred.");
 
     private final String code;

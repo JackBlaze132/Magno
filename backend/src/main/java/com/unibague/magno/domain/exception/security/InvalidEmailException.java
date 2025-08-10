@@ -1,0 +1,9 @@
+package com.unibague.magno.domain.exception.security;
+
+public class InvalidEmailException extends RuntimeException {
+    public InvalidEmailException(String message) {
+        super(message);
+    }
+    public InvalidEmailException() {
+    }
+}

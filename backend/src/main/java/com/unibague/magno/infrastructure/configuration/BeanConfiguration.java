@@ -6,6 +6,9 @@ import com.unibague.magno.domain.spi.*;
 import com.unibague.magno.domain.spi.integra.IIntegraPersistencePort;
 import com.unibague.magno.domain.usecase.*;
 import com.unibague.magno.domain.usecase.integra.IntegraUseCase;
+import com.unibague.magno.infrastructure.configuration.security.CustomOidcUserService;
+import com.unibague.magno.infrastructure.configuration.security.GoogleIdTokenAuthenticationFilter;
+import com.unibague.magno.infrastructure.configuration.security.SecurityConfig;
 import com.unibague.magno.infrastructure.output.jpa.adapter.*;
 import com.unibague.magno.infrastructure.output.jpa.adapter.integra.IntegraUserClient;
 import com.unibague.magno.infrastructure.output.jpa.mapper.*;
@@ -209,6 +212,23 @@ public class BeanConfiguration {
     @Bean
     public IIntegraServicePort integraServicePort() {
         return new IntegraUseCase(integraPersistencePort());
+    }
+
+    // Security Beans
+
+    @Bean
+    SecurityConfig securityConfig() {
+        return new SecurityConfig(customOidcUserService(), userServicePort(), googleIdTokenAuthenticationFilter());
+    }
+
+    @Bean
+    CustomOidcUserService customOidcUserService() {
+        return new CustomOidcUserService(userServicePort(), integraServicePort(), roleServicePort());
+    }
+
+    @Bean
+    GoogleIdTokenAuthenticationFilter googleIdTokenAuthenticationFilter() {
+        return new GoogleIdTokenAuthenticationFilter(userServicePort(), roleServicePort());
     }
 
 }

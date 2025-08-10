@@ -23,4 +23,6 @@ public interface IIntegraServicePort {
     IntegraDependency getIntegraDependencyByDependencyName(String dependencyName);
 
     IntegraFunctionary getIntegraFunctionaryByEmail(String email);
+
+    IntegraStudent getIntegraStudentByEmail(String email);
 }
