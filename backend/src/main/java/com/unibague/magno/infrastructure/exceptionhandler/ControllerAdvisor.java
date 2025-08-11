@@ -19,6 +19,7 @@ import com.unibague.magno.domain.exception.researchseedbedstudentprofile.Researc
 import com.unibague.magno.domain.exception.role.RoleNotFoundException;
 import com.unibague.magno.domain.exception.security.InvalidEmailException;
 import com.unibague.magno.domain.exception.security.NullEmailException;
+import com.unibague.magno.domain.exception.security.UnsupportedPrincipalException;
 import com.unibague.magno.domain.exception.studentprofile.StudentProfileAlreadyExistsException;
 import com.unibague.magno.domain.exception.studentprofile.StudentProfileNotFoundException;
 import com.unibague.magno.domain.exception.user.UserAlreadyExistsException;
@@ -325,6 +326,17 @@ public class ControllerAdvisor {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.NULL_INTEGRA_RESPONSE.getCode());
         errorResponse.setMessage(exception.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(UnsupportedPrincipalException.class)
+    public ErrorResponse handleUnsupportedPrincipalException(UnsupportedPrincipalException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.UNSUPPORTED_PRINCIPAL.getCode());
+        errorResponse.setMessage(ExceptionResponse.UNSUPPORTED_PRINCIPAL.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
