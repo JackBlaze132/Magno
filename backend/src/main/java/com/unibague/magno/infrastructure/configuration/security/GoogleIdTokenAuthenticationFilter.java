@@ -63,7 +63,7 @@ public class GoogleIdTokenAuthenticationFilter extends OncePerRequestFilter {
                             .map(role -> (GrantedAuthority) new SimpleGrantedAuthority("ROLE_" + role.getName()))
                             .toList();
 
-                    Authentication auth = new UsernamePasswordAuthenticationToken(email, null, authorities);
+                    Authentication auth = new UsernamePasswordAuthenticationToken(payload, null, authorities);
                     SecurityContextHolder.getContext().setAuthentication(auth);
                 }
             } catch (Exception e) {

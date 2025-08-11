@@ -35,12 +35,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
                 .build();
 
         response.addHeader("Set-Cookie", cookie.toString());
-
-        if (oidcUser.getEmail().endsWith("@estudiantesunibague.edu.co")) {
-            response.sendRedirect("http://localhost:5173/student/home");
-        } else {
-            response.sendRedirect("http://localhost:5173/actor/home");
-        }
+        response.sendRedirect("http://localhost:5173/");
     }
 
 }
