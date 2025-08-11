@@ -15,7 +15,7 @@ public class SecurityController {
 
     private final SecurityService securityService;
 
-    @GetMapping("/me")
+    @GetMapping(value = "/me", headers = "API-VERSION=1")
     public GoogleInfoResponse getCurrentUser(Authentication authentication) {
         return securityService.getInfoFromAuthenticatedUser(authentication);
     }
