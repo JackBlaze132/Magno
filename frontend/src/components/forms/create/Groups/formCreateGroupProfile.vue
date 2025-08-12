@@ -97,7 +97,7 @@ export default defineComponent({
             ...this.additionalData,
             academic_period_id: periodId
           };
-          console.log("ID de funcionario obtenido:", periodId);
+          console.log("ID del periodo :", periodId);
         }
       } catch (error) {
         console.error('Error getting user ID from route:', error);

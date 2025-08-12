@@ -14,6 +14,7 @@ class API{
   public readonly LINES_OF_RESEARCH_BY_RESEARCH_SEEDBED: string='enums/get-lines-of-research-by-research-seedbed-id/'
   public readonly LINES_OF_RESEARCH_BY_INVESTIGATION_VALUES: string='enums/LineOfResearch/values';
   public readonly INTEGRA_USER_TYPES: string='enums/JSONIntegraType/values';
+  public readonly SEX_VALUES: string='enums/Sex/values';
 
   //----[ACADEMIC PERIODS]----
   public readonly ACADEMIC_PERIODS:string='academic-periods/';
@@ -69,6 +70,9 @@ class API{
   //----[COUNTRIES]----
   public readonly COUNTRIES:string='users/all-countries';
 
+  //----[GOOGLE]----
+  public readonly GOOGLE_DATA:string='security/me';
+
   private static instance: API;
 
   private constructor() {}
@@ -84,8 +88,11 @@ class API{
     try {
       const response = await fetch(this.API_BASE_URL + `${endpoint}`, {
         method: 'GET',
+        credentials: "include",
         headers: {
           'Content-Type': 'application/json',
+
+          //'Authorization': `Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImJhNjNiNDM2ODM2YTkzOWI3OTViNDEyMmQzZjRkMGQyMjVkMWM3MDAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIxNzc2NDAyNTM0ODQtMDBobmE5ZGNndWhwOTBscTg2dG5yN25nMnVtbmNsa2kuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIxNzc2NDAyNTM0ODQtMDBobmE5ZGNndWhwOTBscTg2dG5yN25nMnVtbmNsa2kuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDc2NTUxNjUwNDQ3MTY2Mjc4NzMiLCJoZCI6ImVzdHVkaWFudGVzdW5pYmFndWUuZWR1LmNvIiwiZW1haWwiOiIyMjIwMjExMDUyQGVzdHVkaWFudGVzdW5pYmFndWUuZWR1LmNvIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJiTmZYV0pSUW4zME9EUmhNNGhlN1JRIiwibm9uY2UiOiJvc3RvTUFNb1J1LUxmYlIzLUZ6LTRRM0NCenpiWm93UVhkOTJHeXh1MXB3IiwibmFtZSI6IkVERVIgREFOSUVMIE1BUlRJTkVaIENBTUFDSE8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSlFXelloekEwbDZ2TlNxTXdNWDV5NWJ1Y0t5dGVTVlJqQ2tlNHRmc2JyTHZLaFl5ZVc9czk2LWMiLCJnaXZlbl9uYW1lIjoiRURFUiBEQU5JRUwiLCJmYW1pbHlfbmFtZSI6Ik1BUlRJTkVaIENBTUFDSE8iLCJpYXQiOjE3NTQ4ODAxNjMsImV4cCI6MTc1NDg4Mzc2M30.qpdp3aYGuvc6Ko5zJ-Gb1Km45Ua9BcBKaJiIINNlCm_BjydvJu5frKVlJE7vsXPRpcJYtKLVfkAsSB8rQQ1xkhfnZG6LE6jHlI7J0UpLaKRPow5OkKjGqj0QTAAc7J0kN0WoW8sMK9_xUSyjsu9grgDhlklPTSG1uzGvTn-Ynt0k25tpai8Fcs7GP_NejM-7LACwPlCDldoRTMNK6q-BbiC2bpZ2wriBhrIfXWsux4E6AIwJdru4gjPFrDqk27irU-X4EPVtbzkuoZ9uQaNhIdloTIRUYe5hVOwfh_qTQ-edJsPHatIAgsi2Q7gYlRwF36mHppOLL6jGC9B2KK8fow`, // Agregar token de autorización si existe
           ...headers, // Agregar headers personalizados si existen
         },
       });
@@ -109,8 +116,10 @@ class API{
     try {
       const response = await fetch(this.API_BASE_URL + `${endpoint}`, {
         method: 'POST',
+        credentials: "include",
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImJhNjNiNDM2ODM2YTkzOWI3OTViNDEyMmQzZjRkMGQyMjVkMWM3MDAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIxNzc2NDAyNTM0ODQtMDBobmE5ZGNndWhwOTBscTg2dG5yN25nMnVtbmNsa2kuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIxNzc2NDAyNTM0ODQtMDBobmE5ZGNndWhwOTBscTg2dG5yN25nMnVtbmNsa2kuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDc2NTUxNjUwNDQ3MTY2Mjc4NzMiLCJoZCI6ImVzdHVkaWFudGVzdW5pYmFndWUuZWR1LmNvIiwiZW1haWwiOiIyMjIwMjExMDUyQGVzdHVkaWFudGVzdW5pYmFndWUuZWR1LmNvIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJiTmZYV0pSUW4zME9EUmhNNGhlN1JRIiwibm9uY2UiOiJvc3RvTUFNb1J1LUxmYlIzLUZ6LTRRM0NCenpiWm93UVhkOTJHeXh1MXB3IiwibmFtZSI6IkVERVIgREFOSUVMIE1BUlRJTkVaIENBTUFDSE8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSlFXelloekEwbDZ2TlNxTXdNWDV5NWJ1Y0t5dGVTVlJqQ2tlNHRmc2JyTHZLaFl5ZVc9czk2LWMiLCJnaXZlbl9uYW1lIjoiRURFUiBEQU5JRUwiLCJmYW1pbHlfbmFtZSI6Ik1BUlRJTkVaIENBTUFDSE8iLCJpYXQiOjE3NTQ4ODAxNjMsImV4cCI6MTc1NDg4Mzc2M30.qpdp3aYGuvc6Ko5zJ-Gb1Km45Ua9BcBKaJiIINNlCm_BjydvJu5frKVlJE7vsXPRpcJYtKLVfkAsSB8rQQ1xkhfnZG6LE6jHlI7J0UpLaKRPow5OkKjGqj0QTAAc7J0kN0WoW8sMK9_xUSyjsu9grgDhlklPTSG1uzGvTn-Ynt0k25tpai8Fcs7GP_NejM-7LACwPlCDldoRTMNK6q-BbiC2bpZ2wriBhrIfXWsux4E6AIwJdru4gjPFrDqk27irU-X4EPVtbzkuoZ9uQaNhIdloTIRUYe5hVOwfh_qTQ-edJsPHatIAgsi2Q7gYlRwF36mHppOLL6jGC9B2KK8fow`, // Agregar token de autorización si existe
           ...headers
         },
         body: JSON.stringify(data)
@@ -126,6 +135,7 @@ class API{
     try {
       const response = await fetch(this.API_BASE_URL + `${endpoint}`, {
         method: 'PUT',
+        credentials: "include",
         headers: {
           'Content-Type': 'application/json',
           ...headers
@@ -143,6 +153,7 @@ class API{
     try{
       const response = await fetch(this.API_BASE_URL + `${endpoint}`, {
         method: 'DELETE',
+        credentials: "include",
         headers: {
           ...headers
         },

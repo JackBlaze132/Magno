@@ -87,7 +87,7 @@ export default defineComponent({
         }
     },
     getUserId() {
-    try {
+      try {
         const userId = this.$route.params.idFunctionary || this.$route.params.idStudent;
         if (userId) {
           // Agregar el userId al objeto additionalData que se pasará al formulario
@@ -100,11 +100,8 @@ export default defineComponent({
       } catch (error) {
         console.error('Error getting user ID from route:', error);
       }
-
+    },
   },
-  },
-
-
 });
 </script>
 ```

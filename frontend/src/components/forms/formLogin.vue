@@ -29,6 +29,11 @@ export default defineComponent({
       required: true,
     },
   },*/
+  methods: {
+    handleGoogleLogin() {
+      window.location.href = '/api/oauth2/authorization/google';
+    }
+  }
 });
 </script>
 
@@ -50,6 +55,7 @@ export default defineComponent({
           class="text-capitalize"
           variant="outlined"
           color="grey-darken-1"
+          @click="handleGoogleLogin"
         >
           <VImg
             :width="24"

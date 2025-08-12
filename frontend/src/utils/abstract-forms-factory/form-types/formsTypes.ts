@@ -13,9 +13,10 @@ export const EntityTypes: string[] = [
   "seedbed",
   "role",
   "user_integra",
-  "external_user",
+  "user_external",
   "functionary_profile",
   "student_profile",
+  "external_profile",
   "group_profile",
   "seedbed_profile"
 ];

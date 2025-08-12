@@ -90,8 +90,10 @@ export default defineComponent({
       //inputValue: this.itemName, // valor inicial
       loading: false,
       formValues: {...this.fields, ...this.additionalData},
-
     };
+  },
+  mounted() {
+    console.log("formvalues are: " + this.formValues)
   },
   methods: {
     async CreateItem() {
@@ -117,6 +119,10 @@ export default defineComponent({
         } else if (this.type === 'user_integra') {
           response = await API.post(API.USERS_INTEGRA, {
            ...this.formValues,
+          }, headers);
+        } else if (this.type === 'user_external') {
+          response = await API.post(API.USERS, {
+            ...this.formValues,
           }, headers);
         } else if (this.type === 'role') {
           response = await API.post(API.ROLES, {
@@ -147,7 +153,6 @@ export default defineComponent({
       } finally {
         this.loading = false;
       }
-
     },
   },
 });

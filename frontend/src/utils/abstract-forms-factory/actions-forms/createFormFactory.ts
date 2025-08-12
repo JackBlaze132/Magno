@@ -43,6 +43,14 @@ export class CreateFormFactory extends AbstractFormFactory {
           fields: schema.user_integra
         }
       },
+      user_external: {
+        component: CreateUser,
+        props: {
+          type: type,
+          label: "usuario externo",
+          fields: schema.user_external
+        }
+      },
       role:{
         component: CreateRole,
         props: {

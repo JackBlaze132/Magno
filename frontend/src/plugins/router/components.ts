@@ -43,4 +43,5 @@ export const components = {
   FUNCTIONARY_PROFILES_LIST: () => import('@/views/functionaries/functionary-profiles/listFunctionaryProfiles.vue'),
   STUDENT_PROFILES_INDEX: () => import('@/views/students/student-profiles/index.vue'),
   STUDENT_PROFILES_LIST: () => import('@/views/students/student-profiles/listStudentProfiles.vue'),
+  EXTERNALS_PROFILES_LIST: () => import('@/views/externals/external-profiles/listExternalProfiles.vue'),
 }

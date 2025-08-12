@@ -1,10 +1,11 @@
 <template>
   <!-- Reemplaza tu lógica anterior con formCreateGeneral -->
   <formCreateGeneral
-    :v-if="loaded"
+    v-if="loaded"
     :type="type"
     :fields="fields"
     :name="name"
+    :additionalData="additionalData"
     @itemCreated="handleItemCreated"
   />
 </template>
@@ -12,17 +13,9 @@
 <script lang="ts">
 // ...existing code...
 import { defineComponent } from 'vue';
-import API from "@/utils/api";
-
+import API from '@/utils/api';
 export default defineComponent({
   name: 'formCreateUser',
-  emits: ['itemCreated', 'loaded'],
-  data(){
-    return {
-      loaded: false,
-      options: [],
-    }
-  },
   props:{
     name: {
       type: String,
@@ -35,21 +28,30 @@ export default defineComponent({
       type: String,
     }
   },
+  data() {
+    return {
+      loaded: false,
+      additionalData: {},
+    };
+  },
   async created() {
     await this.fetchTypes();
+    await this.fetchSex();
+    this.setAffiliation();
     this.loaded = true;
   },
+
   methods: {
-    // ...existing code...
     handleItemCreated() {
       this.$emit('itemCreated');
     },
+
     async fetchTypes() {
       const headers = {
         'API-VERSION': '1',
       };
       try {
-        const integraTyupes = await API.get(API.INTEGRA_USER_TYPES, headers);
+        const integraTypes = await API.get(API.INTEGRA_USER_TYPES, headers);
         this.$emit('loaded');
         //console.log(integraTyupes);
         //console.log("Hola obtuve los roles")
@@ -57,7 +59,7 @@ export default defineComponent({
 
         const typesField = this.fields.find(f => f.key === 'type')
         if (typesField) {
-          typesField.options = integraTyupes.map((intType: any) => ({
+          typesField.options = integraTypes.map((intType: any) => ({
             label: intType,
             value: intType.toUpperCase(),
           }));
@@ -66,7 +68,43 @@ export default defineComponent({
         console.error('Error fetching users:', error);
       }
     },
-  },
+
+    async fetchSex() {
+      const headers = {
+        'API-VERSION': '1',
+      };
+      try {
+        const sexValues = await API.get(API.SEX_VALUES, headers);
+        this.$emit('loaded');
+        //console.log(integraTyupes);
+        //console.log("Hola obtuve los roles")
+        //console.log(this.periods)
+
+        const sexField = this.fields.find(f => f.key === 'sex')
+        if (sexField) {
+          sexField.options = sexValues.map((intType: any) => ({
+            label: intType,
+            value: intType.toUpperCase(),
+          }));
+        }
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    },
+
+    setAffiliation() {
+      try {
+        // Agregar el userId al objeto additionalData que se pasará al formulario
+        this.additionalData = {
+          ...this.additionalData,
+          is_external_user: true
+        };
+        console.log("ID del periodo :", this.additionalData);
+      } catch (error) {
+        console.error('Error getting user ID from route:', error);
+      }
+    },
+  }
 });
 </script>
 ```

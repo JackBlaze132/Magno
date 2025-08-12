@@ -195,6 +195,21 @@ export const routes = [
             name: 'listar-aliados-externos',
             component: components.EXTERNALS_LIST,
           },
+          {
+            path: ':idExternal' + P.PROFILES_PATH,
+            name: 'perfiles-aliado-externo',
+            component: components.FUNCTIONARY_PROFILES_INDEX,
+            redirect: (to: RouteLocationNormalized) => {
+              return { name: 'listar-perfiles-aliado-externo', params: { idExternal: to.params.idExternal } }
+            },
+            children: [
+              {
+                name: 'listar-perfiles-aliado-externo',
+                path: P.PROFILES_LIST,
+                component: components.EXTERNALS_PROFILES_LIST
+              }
+            ],
+          },
         ],
       }
     ],

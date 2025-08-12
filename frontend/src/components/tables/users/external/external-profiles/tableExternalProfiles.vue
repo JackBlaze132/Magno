@@ -11,10 +11,10 @@
         single-line
       ></VTextField>
       <QuickActions
-      toCreate
-      type="user_external"
-      @itemCreated="handleItemRefresh"
-    />
+        toCreate
+        type="external_profile"
+        @itemCreated="handleItemRefresh"
+      />
     </VCardTitle>
     <VDataTable
       :items="items"
@@ -24,10 +24,12 @@
       <template v-slot:item.is_external_user="{item}">
         {{ externalFormatter(item.is_external_user)}}
       </template>
-      <template v-slot:item.link="{item}">
-        <QuickActions
-          :toView="item.id + '/perfiles'"
-        />
+      <template v-slot:item.role_ids="{item}">
+        <VChipGroup column="false">
+          <VChip v-for="role in item.role_ids" :key="role.name" size="small" variant="outlined">
+            {{ role.name }}
+          </VChip>
+        </VChipGroup disabled>
       </template>
     </VDataTable>
   </VCard>
@@ -42,12 +44,21 @@ import Formatter from "@/utils/formatter";
 
 interface Item {
   id: number,
-  full_name: string,
-  identification_number: string,
-  user_code: string,
-  email: string,
-  is_external_user: boolean,
-  sex: string,
+  user: {
+    full_name: string,
+    identification_number: string,
+    user_code: string,
+    email: string,
+  },
+  academic_period: {
+    name: string,
+  },
+  dependency: {
+    name: string,
+  },
+  role_ids: Array<{
+    name: string,
+  }>,
 }
 
 export default defineComponent({
@@ -58,14 +69,13 @@ export default defineComponent({
       search: '',
       headers: [
         {title: 'ID', key: 'id'},
-        {title: 'Nombre', key: 'full_name'},
-        {title: 'Número de identificación', key: 'identification_number'},
-        {title: 'Código de usuario', key: 'user_code'},
-        {title: 'Correo electrónico', key: 'email'},
-        {title: 'Sexo', key: 'sex'},
-        {title: 'Afiliación', key: 'is_external_user'},
-        {key: 'link', sortable: false},
-
+        {title: 'Período académico', key: 'academic_period.name'},
+        {title: 'Nombre', key: 'user.full_name'},
+        {title: 'Rol', key: 'role_ids'},
+        {title: 'Número de identificación', key: 'user.identification_number'},
+        {title: 'Código de usuario', key: 'user.user_code'},
+        {title: 'Correo electrónico', key: 'user.email'},
+        {title: 'Dependencia', key: 'dependency.name'},
       ]
     }
   },
@@ -80,7 +90,7 @@ export default defineComponent({
         'API-VERSION': '1',
       }
       try {
-        this.items = await API.get(API.USERS_EXTERNAL, headers);
+        this.items = await API.get(API.FUNCTIONARY_PROFILES_ASSIGNED + this.$route.params.idFunctionary, headers);
         this.$emit('loaded');
       } catch (error) {
         console.error('Error fetching users:', error);
@@ -91,7 +101,7 @@ export default defineComponent({
     },
     handleItemRefresh(){
       this.getUsers();
-    },
+    }
   },
 })
 

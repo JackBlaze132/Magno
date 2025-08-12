@@ -25,7 +25,13 @@
     { "key": "identification", "label": "Numero de identificaion", "type": "text" },
     { "key": "type", "label": "Tipo", "type": "select", "options": [] }
   ],
-  "user_external": [],
+  "user_external": [
+    { "key": "full_name", "label": "Nombre", "type": "text" },
+    { "key": "identification_number", "label": "Numero de Identificación", "type": "text" },
+    { "key": "email", "label": "Correo electrónico", "type": "text" },
+    { "key": "user_code", "label": "Código de usuario", "type": "text" },
+    { "key": "sex", "label": "Sexo", "type": "select", "options": [] }
+  ],
   "role":[
     { "key": "name", "label": "Nombre", "type": "text" },
     { "key": "description", "label": "Descripción", "type": "textarea" }
@@ -37,6 +43,7 @@
   "external_profile": [
     { "key": "academic_period_id", "label": "Periodo Académico", "type": "select", "options": []  },
     { "key": "research_seedbed_profile_id", "label": "Semillero", "type": "select", "options": []  },
+    { "key": "country", "label":  "País", "type": "select", "options":  [] },
     { "key": "type_of_external_user", "label": "Tipo", "type": "text" }
   ],
   "group_profile": [
