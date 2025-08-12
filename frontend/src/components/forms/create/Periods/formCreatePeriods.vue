@@ -1,5 +1,3 @@
-```vue
-// filepath: c:\Users\ederd\Documents\Github\Unibague\Magno\frontend\src\components\forms\Post\formAddPeriod.vue
 <template>
   <!-- Reemplaza tu lógica anterior con formCreateGeneral -->
   <formCreateGeneral
@@ -28,6 +26,10 @@ export default defineComponent({
       type: String,
     }
   },
+  async created(){
+    this.$emit('loaded');
+  },
+
   methods: {
     // ...existing code...
     handleItemCreated() {
@@ -36,4 +38,4 @@ export default defineComponent({
   },
 });
 </script>
-```
+

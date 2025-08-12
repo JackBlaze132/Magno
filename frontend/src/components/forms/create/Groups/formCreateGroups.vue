@@ -26,6 +26,7 @@ export default defineComponent({
   async created() {
     await this.fetchMapData()
     this.loaded = true
+    this.$emit('loaded');
   },
   props:{
     fields:{

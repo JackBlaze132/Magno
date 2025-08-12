@@ -40,6 +40,7 @@ export default defineComponent({
     this.getPeriodId();
     this.getGroupId();
     this.loaded = true;
+    this.$emit('loaded');
   },
   methods: {
     handleItemCreated() {

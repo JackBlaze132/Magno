@@ -39,6 +39,7 @@ export default defineComponent({
     await this.fetchGroups();
     this.getPeriodId();
     this.loaded = true;
+    this.$emit('loaded');
   },
   methods: {
     handleItemCreated() {

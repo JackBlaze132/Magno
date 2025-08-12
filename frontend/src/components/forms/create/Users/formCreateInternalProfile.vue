@@ -39,6 +39,7 @@ export default defineComponent({
     await this.fetchRoles();
     this.getUserId();
     this.loaded = true;
+    this.$emit('loaded');
   },
   methods: {
     handleItemCreated() {

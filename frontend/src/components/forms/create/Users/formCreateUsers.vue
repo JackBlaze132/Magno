@@ -75,7 +75,7 @@ export default defineComponent({
       };
       try {
         const sexValues = await API.get(API.SEX_VALUES, headers);
-        this.$emit('loaded');
+
         //console.log(integraTyupes);
         //console.log("Hola obtuve los roles")
         //console.log(this.periods)

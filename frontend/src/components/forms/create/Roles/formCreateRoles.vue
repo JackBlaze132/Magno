@@ -28,6 +28,9 @@ export default defineComponent({
       type: String,
     }
   },
+  async created(){
+    this.$emit('loaded');
+  },
   methods: {
     // ...existing code...
     handleItemCreated() {
