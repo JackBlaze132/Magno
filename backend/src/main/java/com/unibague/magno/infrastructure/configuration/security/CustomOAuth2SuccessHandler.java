@@ -35,7 +35,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
                 .build();
 
         response.addHeader("Set-Cookie", cookie.toString());
-        response.sendRedirect("http://localhost:5173/");
+        response.sendRedirect("http://localhost:5173/Inicio");
     }
 
 }
