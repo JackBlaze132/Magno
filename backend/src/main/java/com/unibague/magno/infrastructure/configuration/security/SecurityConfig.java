@@ -1,6 +1,8 @@
 package com.unibague.magno.infrastructure.configuration.security;
 
 import com.unibague.magno.domain.api.IUserServicePort;
+import com.unibague.magno.infrastructure.configuration.security.handler.CustomLogoutSuccessHandler;
+import com.unibague.magno.infrastructure.configuration.security.handler.CustomOAuth2SuccessHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,8 +25,10 @@ public class SecurityConfig {
     private final GoogleIdTokenAuthenticationFilter googleIdTokenAuthenticationFilter;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, CustomOAuth2SuccessHandler customOAuth2SuccessHandler) throws Exception {
-        http
+    public SecurityFilterChain securityFilterChain(HttpSecurity http,
+                                                   CustomOAuth2SuccessHandler customOAuth2SuccessHandler,
+                                                   CustomLogoutSuccessHandler customLogoutSuccessHandler)throws Exception {
+        return http
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
@@ -34,9 +38,13 @@ public class SecurityConfig {
                 .oauth2Login(oauth2 -> oauth2
                         .successHandler(customOAuth2SuccessHandler)
                 )
-                .addFilterBefore(googleIdTokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-
-        return http.build();
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .clearAuthentication(true)
+                        .logoutSuccessHandler(customLogoutSuccessHandler)
+                )
+                .addFilterBefore(googleIdTokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 
     @Bean
