@@ -32,7 +32,7 @@ export default defineConfig({
     }),
     svgLoader(),
     Components({
-      dirs: ['src/@core/components', 'src/components'],
+      dirs: ['src/@core/components', 'src/components', 'src/layouts'],
       dts: true,
     }),
   ],
