@@ -23,13 +23,7 @@
               Tu perfil
             </VBtn>
             <VDivider class="my-3"></VDivider>
-            <VBtn
-              color="black"
-              block
-              prepend-icon="ri-logout-box-line"
-            >
-              Cerrar sesión
-            </VBtn>
+            <LogoutBtn/>
           </div>
         </VCardText>
       </VCard>
@@ -41,6 +35,7 @@
 import {defineComponent} from 'vue';
 import AvatarPicture from './avatarPicture.vue';
 import API from '@/utils/api';
+//import LogoutBtn from "./logoutBtn.vue";
 
 interface Item {
   name: string;
@@ -51,6 +46,7 @@ interface Item {
 export default defineComponent({
   name: "ProfilePicture",
   components: {
+    //LogoutBtn,
     AvatarPicture
   },
   data(){

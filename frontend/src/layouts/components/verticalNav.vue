@@ -71,15 +71,7 @@
           </v-list-item>
         </v-list>
         <template v-slot:append>
-          <div class="pa-2">
-            <v-btn
-            color="black"
-            block
-            prepend-icon="ri-logout-box-line"
-            >
-              Cerrar sesión
-            </v-btn>
-          </div>
+          <LogoutBtn/>
         </template>
       </v-navigation-drawer>
       <v-main></v-main>
@@ -90,4 +82,5 @@
 <script setup lang="ts">
   //import magnoDark from '@images/logos/magno-dark.svg?raw'
 import { VDivider } from 'vuetify/components';
+  //import LogoutBtn from "@layouts/components/logoutBtn.vue";
 </script>

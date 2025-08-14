@@ -72,6 +72,8 @@ class API{
 
   //----[GOOGLE]----
   public readonly GOOGLE_DATA:string='security/me';
+  public readonly GOOGLE_LOGOUT:string='logout';
+  public readonly GOOGLE_LOGIN:string='oauth2/authorization/google';
 
   private static instance: API;
 
@@ -168,6 +170,13 @@ class API{
     }
   }
 
+  public login() {
+    window.location.href = this.API_BASE_URL + this.GOOGLE_LOGIN;
+  }
+
+  public logout() {
+    window.location.href = this.API_BASE_URL + this.GOOGLE_LOGOUT;
+  }
 }
 
 export default API.getInstance()

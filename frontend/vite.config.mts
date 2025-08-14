@@ -21,7 +21,6 @@ export default defineConfig({
     vueJsx(),
     // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#readme
     Vuetify(),
-    Components(),
     ViteFonts({
       google: {
         families: [{
@@ -32,7 +31,12 @@ export default defineConfig({
     }),
     svgLoader(),
     Components({
-      dirs: ['src/@core/components', 'src/components', 'src/layouts'],
+      dirs: [
+        'src/@core/components',
+        'src/components',
+        'src/layouts/components',
+        'src/layouts'
+      ],
       dts: true,
     }),
   ],

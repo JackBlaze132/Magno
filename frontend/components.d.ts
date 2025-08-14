@@ -7,13 +7,14 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AppThemeSwitcher: typeof import('./src/layouts/components/appThemeSwitcher.vue')['default']
+    AvatarPicture: typeof import('./src/layouts/components/avatarPicture.vue')['default']
+    Blank: typeof import('./src/layouts/blank.vue')['default']
+    Default: typeof import('./src/layouts/default.vue')['default']
     FormAddFunctionary: typeof import('./src/components/forms/create/formAddFunctionary.vue')['default']
     FormAddSeedbed: typeof import('./src/components/forms/create/formAddSeedbed.vue')['default']
     FormAddStudent: typeof import('./src/components/forms/create/formAddStudent.vue')['default']
     FormAddUser: typeof import('./src/components/forms/create/formAddUser.vue')['default']
-    FormCreateFunctionaryProfile: typeof import('./src/components/forms/create/Users/formCreateFunctionaryProfile.vue')['default']
-    FormCreateFunctionayProfile: typeof import('./src/components/forms/create/Users/formCreateFunctionayProfile.vue')['default']
-    FormCreateFunctionayProfiles: typeof import('./src/components/forms/create/Users/formCreateFunctionayProfiles.vue')['default']
     FormCreateGeneral: typeof import('./src/components/forms/create/formCreateGeneral.vue')['default']
     FormCreateGroupProfile: typeof import('./src/components/forms/create/Groups/formCreateGroupProfile.vue')['default']
     FormCreateGroups: typeof import('./src/components/forms/create/Groups/formCreateGroups.vue')['default']
@@ -23,7 +24,6 @@ declare module 'vue' {
     FormCreateSeedbed: typeof import('./src/components/forms/create/seedbeds/formCreateSeedbed.vue')['default']
     FormCreateSeedbedProfile: typeof import('./src/components/forms/create/seedbeds/formCreateSeedbedProfile.vue')['default']
     FormCreateUsers: typeof import('./src/components/forms/create/Users/formCreateUsers.vue')['default']
-    FormCreateUsers_C: typeof import('./src/components/forms/create/Users/formCreateUsers_C.vue')['default']
     FormDeleteGeneral: typeof import('./src/components/forms/delete/formDeleteGeneral.vue')['default']
     FormLogin: typeof import('./src/components/forms/formLogin.vue')['default']
     FormUpdateFunctionary: typeof import('./src/components/forms/patch/formUpdateFunctionary.vue')['default']
@@ -38,7 +38,9 @@ declare module 'vue' {
     FormUploadStudent: typeof import('./src/components/forms/patch/formUploadStudent.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     LoadingBtn: typeof import('./src/components/loadingBtn.vue')['default']
+    LogoutBtn: typeof import('./src/layouts/components/logoutBtn.vue')['default']
     Navbar: typeof import('./src/components/navbar.vue')['default']
+    ProfilePicture: typeof import('./src/layouts/components/profilePicture.vue')['default']
     QuickActions: typeof import('./src/components/quickActions.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -63,5 +65,7 @@ declare module 'vue' {
     TableStudentsSeedbeds: typeof import('./src/components/tables/dynamic/tableStudentsSeedbeds.vue')['default']
     TableTeachers: typeof import('./src/components/tables/lounge/tableTeachers.vue')['default']
     TableUsers: typeof import('./src/components/tables/users/tableUsers.vue')['default']
+    ThemeSwitcher: typeof import('./src/layouts/components/themeSwitcher.vue')['default']
+    VerticalNav: typeof import('./src/layouts/components/verticalNav.vue')['default']
   }
 }

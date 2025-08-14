@@ -2,6 +2,7 @@
 import { defineComponent, ref } from 'vue';
 import google from '@images/logos/google.png'
 import magnoLight from '@images/logos/magno-light.svg?raw'
+import API from '@/utils/api';
 
 const form = ref({
   email: '',
@@ -31,7 +32,7 @@ export default defineComponent({
   },*/
   methods: {
     handleGoogleLogin() {
-      window.location.href = '/api/oauth2/authorization/google';
+      API.login();
     }
   }
 });
