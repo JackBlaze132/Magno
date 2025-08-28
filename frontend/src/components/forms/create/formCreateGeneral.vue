@@ -31,12 +31,18 @@
             />
           </VRadioGroup>
           <VSelect v-else-if="field.type === 'select'"
+            :key="`${field.key}-${componentKey}`"
             v-model="formValues[field.key]"
             :items="field.options"
             item-title="label"
             item-value="value"
+            :disabled="field.disabled"
+            :required="field.required"
+            clearable
+            :ref="`select_${field.key}`"
             class="mb-5"
             :label="field.label"
+            @update:model-value="handleFieldChange(field.key, $event)"
           />
           <VSelect v-else-if="field.type === 'multiple-select'"
             multiple
@@ -68,7 +74,7 @@ import API from "@/utils/api";
 
 export default defineComponent({
   name: 'formEditGeneral',
-  emits: ['itemCreated'],
+  emits: ['itemCreated', 'fieldChanged'],
   props: {
     type: {
       type: String,
@@ -87,15 +93,30 @@ export default defineComponent({
   },
   data() {
     return {
-      //inputValue: this.itemName, // valor inicial
       loading: false,
       formValues: {...this.fields, ...this.additionalData},
+      componentKey: 0,
     };
   },
-  mounted() {
-    console.log("formvalues are: " + this.formValues)
-  },
   methods: {
+    handleFieldChange(fieldKey, value) {
+      this.formValues[fieldKey] = value;
+
+      if (value === null) {
+        this.componentKey++;
+      }
+
+      this.$emit('fieldChanged', fieldKey, value);
+    },
+
+    clearField(fieldKey) {
+      this.formValues[fieldKey] = null;
+      this.componentKey++;
+      this.$nextTick(() => {
+        this.$forceUpdate();
+      });
+    },
+
     async CreateItem() {
       this.loading = true;
       const headers = {
@@ -135,6 +156,10 @@ export default defineComponent({
         } else if (this.type === 'student_profile') {
           response = await API.post(API.STUDENT_PROFILES, {
          ...this.formValues,
+          }, headers);
+        } else if (this.type === 'external_profile'){
+          response = await API.post(API.EXTERNAL_USER_PROFILES, {
+            ...this.formValues,
           }, headers);
         } else if (this.type === 'group_profile') {
           response = await API.post(API.INVESTIGATION_GRUOPS_PROFILES, {

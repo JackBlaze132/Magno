@@ -12,6 +12,7 @@ const CreateSeedbed = defineAsyncComponent(() => import("@/components/forms/crea
 const CreateUser = defineAsyncComponent(() => import("@/components/forms/create/Users/formCreateUsers.vue"));
 const CreateRole = defineAsyncComponent(() => import("@/components/forms/create/Roles/formCreateRoles.vue"));
 const CreateInternalProfile = defineAsyncComponent(() => import("@/components/forms/create/Users/formCreateInternalProfile.vue"));
+const CreateExternalProfile = defineAsyncComponent(() => import("@/components/forms/create/Users/formCreateExternalProfile.vue"));
 const CreateGroupProfile = defineAsyncComponent(() => import("@/components/forms/create/Groups/formCreateGroupProfile.vue"));
 const CreateSeedbedProfile = defineAsyncComponent(() => import("@/components/forms/create/seedbeds/formCreateSeedbedProfile.vue"));
 
@@ -81,6 +82,14 @@ export class CreateFormFactory extends AbstractFormFactory {
           type: type,
           label: "perfil de estudiante",
           fields: schema.internal_profile
+        }
+      },
+      external_profile: {
+        component: CreateExternalProfile,
+        props: {
+          type: type,
+          label: "perfil de aliado externo",
+          fields: schema.external_profile
         }
       },
       group_profile: {

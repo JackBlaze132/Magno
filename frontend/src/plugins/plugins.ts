@@ -10,36 +10,7 @@ import type { App } from 'vue'
  * @returns void
  *
  * @example
- * ```ts
- * // File: src/plugins/vuetify/index.ts
- *
- * import type { App } from 'vue'
- * import { createVuetify } from 'vuetify'
- *
- * const vuetify = createVuetify({ ... })
- *
- * export default function (app: App) {
- *   app.use(vuetify)
- * }
- * ```
- *
- * All you have to do is use this helper function in `main.ts` file like below:
- * ```ts
- * // File: src/main.ts
- * import { registerPlugins } from '@core/utils/plugins'
- * import { createApp } from 'vue'
- * import App from '@/App.vue'
- *
- * // Create vue app
- * const app = createApp(App)
- *
- * // Register plugins
- * registerPlugins(app) // [!code focus]
- *
- * // Mount vue app
- * app.mount('#app')
- * ```
- */
+/*/
 
 export const registerPlugins = (app: App) => {
   const imports = import.meta.glob<{ default: (app: App) => void }>(['./*/index.{ts,js}'], { eager: true })

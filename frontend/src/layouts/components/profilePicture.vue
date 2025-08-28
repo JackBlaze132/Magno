@@ -54,8 +54,8 @@ export default defineComponent({
       item: {} as Item
     }
   },
-  created() {
-    this.fetchGoogle();
+  async created() {
+    await this.fetchGoogle();
   },
   methods: {
     async fetchGoogle(){

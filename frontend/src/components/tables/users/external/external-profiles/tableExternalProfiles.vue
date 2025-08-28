@@ -53,12 +53,17 @@ interface Item {
   academic_period: {
     name: string,
   },
-  dependency: {
-    name: string,
+  research_seedbed_profile: {
+    research_seedbed: {
+      name: string,
+    },
+    investigation_group_profile:{
+      investigation_group: {
+        name: string,
+      },
+    }
+
   },
-  role_ids: Array<{
-    name: string,
-  }>,
 }
 
 export default defineComponent({
@@ -69,13 +74,13 @@ export default defineComponent({
       search: '',
       headers: [
         {title: 'ID', key: 'id'},
-        {title: 'Período académico', key: 'academic_period.name'},
         {title: 'Nombre', key: 'user.full_name'},
-        {title: 'Rol', key: 'role_ids'},
+        {title: 'Período', key: 'academic_period.name'},
+        {title: 'Grupo', key: 'research_seedbed_profile.investigation_group_profile.investigation_group.name'},
+        {title: 'Semillero', key: 'research_seedbed_profile.research_seedbed.name'},
         {title: 'Número de identificación', key: 'user.identification_number'},
         {title: 'Código de usuario', key: 'user.user_code'},
         {title: 'Correo electrónico', key: 'user.email'},
-        {title: 'Dependencia', key: 'dependency.name'},
       ]
     }
   },
@@ -90,7 +95,7 @@ export default defineComponent({
         'API-VERSION': '1',
       }
       try {
-        this.items = await API.get(API.FUNCTIONARY_PROFILES_ASSIGNED + this.$route.params.idFunctionary, headers);
+        this.items = await API.get(API.EXTERNAL_USER_PROFILEs_ASIGNED + this.$route.params.idExternal, headers);
         this.$emit('loaded');
       } catch (error) {
         console.error('Error fetching users:', error);
