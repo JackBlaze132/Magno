@@ -26,6 +26,7 @@ public enum ExceptionResponse {
     STUDENT_PROFILE_ALREADY_EXISTS("ERR_STUDENT_PROFILE_002", "Student profile already exists."),
     EXTERNAL_USER_PROFILE_NOT_FOUND("ERR_EXTERNAL_USER_PROFILE_001", "External user profile not found."),
     ENUM_BAD_REQUEST("ERR_ENUM_001", "Invalid enum value."),
+    INVALID_SEEDBED_ROLE("ERR_ENUM_002", "Invalid SeedbedRole value."),
     INTEGRA_API_ERROR("ERR_INTEGRA_API_001", "An error occurred while trying to connect to the " +
             "Integra API."),
     UPLOAD_EXCEL_ERROR("ERR_UPLOAD_EXCEL_001", "An error occurred while trying to upload the Excel file."),

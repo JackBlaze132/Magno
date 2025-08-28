@@ -1,6 +1,8 @@
 package com.unibague.magno.application.dto.request;
 
+import com.unibague.magno.domain.model.enums.SeedbedRole;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,8 +10,8 @@ import lombok.Setter;
 @Setter
 public class RoleRequest {
 
-    @NotBlank(message = "Field name is required")
-    private String name;
+    @NotNull(message = "Field name is required")
+    private SeedbedRole name;
 
     @NotBlank(message = "Field description is required")
     private String description;

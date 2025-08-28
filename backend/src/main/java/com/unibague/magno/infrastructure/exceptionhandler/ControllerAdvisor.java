@@ -26,6 +26,7 @@ import com.unibague.magno.domain.exception.user.UserAlreadyExistsException;
 import com.unibague.magno.domain.exception.user.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import com.unibague.magno.domain.model.ErrorResponse;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -38,6 +39,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.unibague.magno.infrastructure.exceptionhandler.ExceptionResponse.ACADEMIC_PERIOD_NOT_FOUND;
+import static com.unibague.magno.infrastructure.exceptionhandler.ExceptionResponse.INVALID_SEEDBED_ROLE;
 
 @RestControllerAdvice
 public class ControllerAdvisor {
@@ -295,6 +297,25 @@ public class ControllerAdvisor {
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
 
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ErrorResponse handleHttpMessageNotReadableException(HttpMessageNotReadableException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        String errorMessage = exception.getMessage();
+
+        if (errorMessage != null && errorMessage.contains("Cannot deserialize value of type `com.unibague.magno.domain.model.enums.SeedbedRole`")) {
+            errorResponse.setCode(INVALID_SEEDBED_ROLE.getCode());
+            errorResponse.setMessage(INVALID_SEEDBED_ROLE.getMessage());
+        } else {
+            errorResponse.setCode(ExceptionResponse.GENERIC_ERROR.getCode());
+            errorResponse.setMessage("Request body is not readable.");
+        }
+        errorResponse.setDetails(Collections.singletonList(errorMessage));
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
     }
 

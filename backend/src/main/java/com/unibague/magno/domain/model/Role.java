@@ -1,12 +1,14 @@
 package com.unibague.magno.domain.model;
 
+import com.unibague.magno.domain.model.enums.SeedbedRole;
+
 public class Role {
 
     private Long id;
-    private String name;
+    private SeedbedRole name;
     private String description;
 
-    public Role(Long id, String name, String description) {
+    public Role(Long id, SeedbedRole name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -23,11 +25,11 @@ public class Role {
         this.id = id;
     }
 
-    public String getName() {
+    public SeedbedRole getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(SeedbedRole name) {
         this.name = name;
     }
 
