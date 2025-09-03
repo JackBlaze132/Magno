@@ -64,6 +64,12 @@ public class ResearchSeedbedStudentProfileHandler implements IResearchSeedbedStu
         return researchSeedbedStudentProfileResponseMapper.toSummaryResponseList(researchSeedbedStudentProfiles);
     }
 
+    @Override
+    public List<ResearchSeedbedStudentProfileResponse> findAllByResearchSeedbedProfileId(Long researchSeedbedProfileId) {
+        List<ResearchSeedbedStudentProfile> researchSeedbedStudentProfiles = researchSeedbedStudentProfileServicePort.findAllByResearchSeedbedProfileId(researchSeedbedProfileId);
+        return researchSeedbedStudentProfileResponseMapper.toResponseList(researchSeedbedStudentProfiles);
+    }
+
     private List<Map<String, String>> getListOfMaps(MultipartFile file) {
         try {
             return uploadService.uploadExcel(file);

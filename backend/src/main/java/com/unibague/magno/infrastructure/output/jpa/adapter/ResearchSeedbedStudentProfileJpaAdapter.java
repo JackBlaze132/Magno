@@ -58,4 +58,10 @@ public class ResearchSeedbedStudentProfileJpaAdapter implements IResearchSeedbed
     public boolean existsByStudentProfileIdAndResearchSeedbedProfileId(Long studentProfileId, Long researchSeedbedProfileId) {
         return researchSeedbedStudentProfileRepository.existsByStudentProfileIdAndResearchSeedbedProfileId(studentProfileId, researchSeedbedProfileId);
     }
+
+    @Override
+    public List<ResearchSeedbedStudentProfile> findAllByResearchSeedbedProfileId(Long researchSeedbedProfileId) {
+        List<ResearchSeedbedStudentProfileEntity> entities = researchSeedbedStudentProfileRepository.findAllByResearchSeedbedProfileId(researchSeedbedProfileId);
+        return researchSeedbedStudentProfileMapper.toResearchSeedbedStudentProfileList(entities);
+    }
 }

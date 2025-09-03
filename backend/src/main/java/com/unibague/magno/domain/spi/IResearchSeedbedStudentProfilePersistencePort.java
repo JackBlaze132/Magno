@@ -13,4 +13,5 @@ public interface IResearchSeedbedStudentProfilePersistencePort {
     void deleteById(Long id);
     List<ResearchSeedbedStudentProfile> findAll();
     boolean existsByStudentProfileIdAndResearchSeedbedProfileId(Long studentProfileId, Long researchSeedbedProfileId);
+    List<ResearchSeedbedStudentProfile> findAllByResearchSeedbedProfileId(Long researchSeedbedProfileId);
 }

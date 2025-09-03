@@ -94,6 +94,11 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
         );
     }
 
+    @Override
+    public List<ResearchSeedbedStudentProfile> findAllByResearchSeedbedProfileId(Long researchSeedbedProfileId) {
+        return researchSeedbedStudentProfilePersistencePort.findAllByResearchSeedbedProfileId(researchSeedbedProfileId);
+    }
+
     private List<ResearchSeedbedStudentProfile> createResearchSeedbedStudentProfiles(
             List<StudentProfile> allStudentProfiles, Long researchSeedbedProfileId) {
         return allStudentProfiles.stream()

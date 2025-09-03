@@ -14,4 +14,6 @@ public interface IResearchSeedbedStudentProfileServicePort {
     List<ResearchSeedbedStudentProfile> saveAllByExcel(Long researchSeedbedProfileId,
                                                        List<Map<String, String>> researchSeedbedStudentProfiles);
     boolean existsByStudentProfileIdAndResearchSeedbedProfileId(Long studentProfileId, Long researchSeedbedProfileId);
+
+    List<ResearchSeedbedStudentProfile> findAllByResearchSeedbedProfileId(Long researchSeedbedProfileId);
 }

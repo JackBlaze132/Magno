@@ -14,4 +14,5 @@ public interface IResearchSeedbedStudentProfileHandler {
     void deleteById(Long id);
     List<ResearchSeedbedStudentProfileResponse> findAll();
     List<ResearchSeedbedStudentProfileSummaryResponse> saveAllByExcel(Long researchSeedbedProfileId, MultipartFile file);
+    List<ResearchSeedbedStudentProfileResponse> findAllByResearchSeedbedProfileId(Long researchSeedbedProfileId);
 }
