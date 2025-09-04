@@ -36,6 +36,12 @@ public class ExternalUserProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
+        @GetMapping(path = "/research-seedbed-profile/{researchSeedbedProfileId}", headers = "API-VERSION=1")
+    public ResponseEntity<List<ExternalUserProfileResponse>> getAllExternalUserProfilesByResearchSeedbedProfileId(@PathVariable Long researchSeedbedProfileId) {
+        List<ExternalUserProfileResponse> responses = externalUserProfileHandler.findAllByResearchSeedbedProfileId(researchSeedbedProfileId);
+        return ResponseEntity.ok(responses);
+    }
+
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<ExternalUserProfileResponse> createExternalUserProfile
             (@Valid @RequestBody ExternalUserProfileRequest externalUserProfileRequest) {

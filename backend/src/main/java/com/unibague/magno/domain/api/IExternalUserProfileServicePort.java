@@ -12,4 +12,5 @@ public interface IExternalUserProfileServicePort {
     List<ExternalUserProfile> findAll();
 
     List<ExternalUserProfile> findAllProfilesByUserId(Long userId);
+    List<ExternalUserProfile> findAllByResearchSeedbedProfileId(Long researchSeedbedProfileId);
 }

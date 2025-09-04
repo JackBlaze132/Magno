@@ -57,4 +57,10 @@ public class ExternalUserProfileJpaAdapter implements IExternalUserProfilePersis
         return externalUserProfileEntityMapper.toExternalUserProfileList(
                 externalUserProfileRepository.findAllByUser_Id(userId));
     }
+
+    @Override
+    public List<ExternalUserProfile> findAllByResearchSeedbedProfileId(Long researchSeedbedProfileId) {
+        List<ExternalUserProfileEntity> entities = externalUserProfileRepository.findAllByResearchSeedbedProfileId(researchSeedbedProfileId);
+        return externalUserProfileEntityMapper.toExternalUserProfileList(entities);
+    }
 }

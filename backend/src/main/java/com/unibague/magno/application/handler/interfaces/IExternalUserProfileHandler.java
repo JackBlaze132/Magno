@@ -13,4 +13,5 @@ public interface IExternalUserProfileHandler {
     List<ExternalUserProfileResponse> findAll();
 
     List<ExternalUserProfileResponse> findAllProfilesByUserId(Long userId);
+    List<ExternalUserProfileResponse> findAllByResearchSeedbedProfileId(Long researchSeedbedProfileId);
 }

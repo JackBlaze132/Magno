@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface IExternalUserProfileRepository extends JpaRepository<ExternalUserProfileEntity, Long> {
     List<ExternalUserProfileEntity> findAllByUser_Id(Long userId);
+    List<ExternalUserProfileEntity> findAllByResearchSeedbedProfileId(Long researchSeedbedProfileId);
 }
