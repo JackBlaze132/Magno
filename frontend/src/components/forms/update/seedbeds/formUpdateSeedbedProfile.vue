@@ -16,7 +16,7 @@ import API from "@/utils/api";
 
 export default defineComponent({
   name: 'formUpdateGroup',
-  emits: ['itemEdited'],
+  emits: ['itemEdited', 'loaded'],
   data() {
     return {
       additionalData: {},
@@ -27,6 +27,7 @@ export default defineComponent({
   async created() {
     await this.fetchFunctionaries()
     await this.fetchSeedbeds()
+    this.$emit('loaded')
 
     this.loaded = true
   },
@@ -64,7 +65,7 @@ export default defineComponent({
         // Create the options list once
         const functionaryOptions = functionaries.map((functionary: any) => ({
           label: functionary.user.full_name,
-          value: functionary.user.id,
+          value: functionary.id,
         }));
 
         // Update all matching fields, not just the first one

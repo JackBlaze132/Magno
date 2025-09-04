@@ -29,6 +29,7 @@ class API{
   //----[EXTERNAL USER PROFILES]----q
   public readonly EXTERNAL_USER_PROFILES:string='external-user-profiles/';
   public readonly EXTERNAL_USER_PROFILEs_ASIGNED:string='external-user-profiles/find-all-profiles/';
+  public readonly EXTERNAL_USER_PROFILES_BY_RESEARCH_SEEDBED:string='external-user-profiles/research-seedbed-profile/'; //<---- Requires academic period id
 
   //----[FUNCTIONARY PROFILES]----
   public readonly FUNCTIONARY_PROFILES:string='functionary-profiles/';
@@ -57,7 +58,7 @@ class API{
   public readonly RESEARCH_SEEDBEDS_PROFILES_BY_INVESTIGATION_GROUP_PROFILE:string='research-seedbed-profiles/get-all-by-investigation-group-profile-id/'; //<---- Requires investigation group profile id
 
   //----[RESEARCH SEEDBED STUDENT PROFILES]----
-  public readonly RESEARCH_SEEDBED_STUDENT_PROFILES:string='research-seedbed-student-profiles/';
+  public readonly RESEARCH_SEEDBED_STUDENT_PROFILES:string='research-seedbed-student-profile/research-seedbed-profile/';
   public readonly RESEARCH_SEEDBED_STUDENT_PROFILES_UPLOAD_BY_EXCEL:string='research-seedbed-student-profile/add-all-by-excel/'; //<---- Requires research seedbed id
 
   //----[USERS_PATH]----
