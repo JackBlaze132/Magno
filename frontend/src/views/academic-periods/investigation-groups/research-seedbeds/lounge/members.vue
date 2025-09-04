@@ -21,7 +21,7 @@ export default {
   },
   // ...
   created() {
-    this.getData();
+    //this.getData();
     LoadingManager.setTotalComponents(4);
     LoadingManager.reset();
   },

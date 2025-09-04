@@ -5,39 +5,23 @@ import { defineComponent } from "vue"
 import API from "@/utils/api";
 import Formater from "@/utils/formatter";
 
-interface Item {
-  id: number,
-  name: string
-  userCode: string,
-  identificationNumber: string,
-  phoneNumber: string,
-  semester: number,
-  email: string,
-  wasActive: boolean,
-  sex: string,
-  userStudent: {
-    isExternalUser: boolean
-  }
-}
 
 export default defineComponent({
 
   data() {
     return {
-      items: [] as Item[],
+      items: [] as any[],
       search: '',
       links: '',
       loaded: false,
       headers: [
         {title: 'ID', key: 'id'},
-        {title: 'Nombre', key: 'name'},
-        {title: 'Código', key: 'userCode'},
-        {title: 'Identificación', key: 'identificationNumber'},
-        {title: 'Teléfono', key: 'phoneNumber'},
-        {title: 'Semestre', key: 'semester'},
-        {title: 'Correo', key: 'email'},
-        {title: 'Sexo', key: 'sex'},
-        {title: 'Activo', key: 'userStudent.isExternalUser'},
+        {title: 'Nombre', key: 'student_profile.user.full_name'},
+        {title: 'Código', key: 'student_profile.user.user_code'},
+        {title: 'Identificación', key: 'student_profile.user.identification_number'},
+        {title: 'Semestre', key: 'student_profile.semester'},
+        {title: 'Correo', key: 'student_profile.user.email'},
+        {title: 'Sexo', key: 'student_profile.user.sex'},
         { key: 'link', sortable: false},
       ],
     }
@@ -48,8 +32,12 @@ export default defineComponent({
   },
   methods: {
     async getSeedBeds() {
+      const  headers = {
+          'API-VERSION': '1',
+      }
       try {
-        this.items = await API.get(API.GET_STUDENT_PROFLIE_BY_RESEARCH_SEEDBED_ID + this.$route.params.idSemillero);
+        this.items = await API.get(API.RESEARCH_SEEDBED_STUDENT_PROFILES + this.$route.params.idSemillero, headers);
+        console.log("members:" + this.items);
         this.$emit('loaded');
       } catch (error) {
         console.error('Error fetching users:', error);

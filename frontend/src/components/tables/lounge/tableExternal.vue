@@ -6,31 +6,23 @@ import API from "@/utils/api";
 
 
 
-interface Item {
-  id: number,
-  name: string
-  userCode: string,
-  identificationNumber: string,
-  email: string,
-  sex: string,
 
-}
 
 export default defineComponent({
 
   data() {
     return {
-      items: [] as Item[],
+      items: [] as any[],
       search: '',
       links: '',
       loaded: false,
       headers: [
         {title: 'ID', key: 'id'},
-        {title: 'Nombre', key: 'name'},
-        {title: 'Código', key: 'userCode'},
-        {title: 'Identificación', key: 'identificationNumber'},
-        {title: 'Correo', key: 'email'},
-        {title: 'Sexo', key: 'sex'},
+        {title: 'Nombre', key: 'user.full_name'},
+        {title: 'Código', key: 'user.user_code'},
+        {title: 'Identificación', key: 'user.identification_number'},
+        {title: 'Correo', key: 'user.email'},
+        {title: 'Sexo', key: 'user.sex'},
         { key: 'link', sortable: false},
       ],
     }
@@ -41,8 +33,11 @@ export default defineComponent({
   },
   methods: {
     async getSeedBeds() {
+      const  headers = {
+          'API-VERSION': '1',
+      }
       try {
-        this.items = await API.get(API.GET_EXTERNAL_FUNCTIONARY_PROFILE_BY_SEEDBED_ID + this.$route.params.idSemillero);
+        this.items = await API.get(API.EXTERNAL_USER_PROFILES_BY_RESEARCH_SEEDBED + this.$route.params.idSemillero, headers);
         this.$emit('loaded')
       } catch (error) {
         console.error('Error fetching users:', error);

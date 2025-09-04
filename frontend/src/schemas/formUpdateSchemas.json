@@ -12,7 +12,7 @@
         { "key": "name", "label": "Nombre", "type": "text" },
         { "key": "mission", "label": "Misión", "type": "textarea" },
         { "key": "vision", "label": "Visión", "type": "textarea" },
-        { "key": "research_proposal_description", "label": "Descripcion del proposito", "type": "textarea" },
+        { "key": "research_proposal_description", "label": "Descripción del propósito", "type": "textarea" },
         { "key": "creation_date", "label": "Fecha de creación", "type": "date" },
         { "key": "line_of_research", "label": "Linea de investigación", "type": "select", "options": [] }
     ],
@@ -28,5 +28,11 @@
             { "label": "Activo", "value": true},
             { "label": "Inactivo", "value": false }
         ]}
+    ],
+    "seedbed_coordinator": [
+        { "key": "coordinator_id", "label": "Coordinador", "type": "select" }
+    ],
+    "seedbed_tutor": [
+        { "key": "tutor_id", "label": "Tutor", "type": "select" }
     ]
 }

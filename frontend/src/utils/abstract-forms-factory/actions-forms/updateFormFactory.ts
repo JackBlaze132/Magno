@@ -62,6 +62,26 @@ export class UpdateFormFactory extends AbstractFormFactory {
           index: extraProps?.index,
           initialData: extraProps?.initialData,
         }
+      },
+      seedbed_coordinator: {
+        component: UpdateSeedbedProfile,
+        props: {
+          type: type,
+          label: "coordinador de semillero",
+          fields: schema.seedbed_coordinator,
+          index: extraProps?.index,
+          initialData: extraProps?.initialData,
+        }
+      },
+      seedbed_tutor: {
+        component: UpdateSeedbedProfile,
+        props: {
+          type: type,
+          label: "Tutor de semillero",
+          fields: schema.seedbed_tutor,
+          index: extraProps?.index,
+          initialData: extraProps?.initialData,
+        }
       }
     };
     if (!(type in componentMap) || !EntityTypes.includes(type)) {
