@@ -12,4 +12,5 @@ public interface IStudentProfileHandler {
     void deleteById(Long id);
     List<StudentProfileResponse> findAll();
     List<StudentProfileResponse> findAllProfilesByUserId(Long userId);
+    List<StudentProfileResponse> findAllProfilesByAcademicPeriodId(Long academicPeriodId);
 }

@@ -52,4 +52,10 @@ public class StudentProfileHandler implements IStudentProfileHandler {
         return studentProfileResponseMapper.toResponseList(
                 studentProfileServicePort.findAllProfilesByUserId(userId));
     }
+
+    @Override
+    public List<StudentProfileResponse> findAllProfilesByAcademicPeriodId(Long academicPeriodId) {
+        return studentProfileResponseMapper.toResponseList(
+                studentProfileServicePort.findAllByAcademicPeriodId(academicPeriodId));
+    }
 }

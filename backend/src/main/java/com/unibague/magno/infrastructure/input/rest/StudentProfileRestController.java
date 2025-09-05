@@ -36,6 +36,12 @@ public class StudentProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
+    @GetMapping(path = "/academic-period/{academicPeriodId}", headers = "API-VERSION=1")
+    public ResponseEntity<List<StudentProfileResponse>> getAllStudentProfilesByAcademicPeriodId(@PathVariable Long academicPeriodId) {
+        List<StudentProfileResponse> responses = studentProfileHandler.findAllProfilesByAcademicPeriodId(academicPeriodId);
+        return ResponseEntity.ok(responses);
+    }
+
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<StudentProfileResponse> createStudentProfile
             (@Valid @RequestBody StudentProfileRequest studentProfileRequest) {
