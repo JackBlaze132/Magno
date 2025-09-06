@@ -36,7 +36,11 @@ export default defineComponent({
       }>,
       default: () => [],
     },
-    type: { type: String }
+    type: { type: String },
+    additionalData : {
+      type: Object,
+      default: () => ({}),
+    },
   },
   data() {
     return {
@@ -51,7 +55,8 @@ export default defineComponent({
     await this.fetchPeriods();
     this.setUserId();
     await this.fetchCountry();
-    await this.fetchExternalType()
+    await this.fetchExternalType();
+    await this.fetchExternalUsers();
     this.loaded = true;
     this.$emit('loaded');
   },
@@ -90,7 +95,7 @@ export default defineComponent({
         this.enableField('research_group_profile_id');
 
         // Fetch groups for the selected period
-        await this.fetchGroupsByPeriod(periodId);
+        await this.fetchExternalUsers(periodId);
 
         // Reset dependent fields (seedbeds)
         this.resetDependentFields(['research_seedbed_profile_id']);
@@ -219,6 +224,43 @@ export default defineComponent({
       }
     },
 
+    async fetchExternalUsers() {
+      const headers = { 'API-VERSION': '1' };
+
+      const userField = this.processedFields.find(f => f.key === 'user_id');
+      if (userField) {
+        userField.options = [];
+      }
+
+      try {
+        const users = await API.get(API.USERS_EXTERNAL, headers);
+
+        if (userField) {
+          if (users && users.length > 0) {
+            userField.options = users.map((group: any) => ({
+              label: group.full_name,
+              value: group.id,
+            }));
+          } else {
+            userField.options = [{
+              label: 'No hay grupos disponibles para este período',
+              value: null,
+              disabled: true
+            }];
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching groups:', error);
+        if (userField) {
+          userField.options = [{
+            label: 'No hay grupos para este período',
+            value: null,
+            disabled: true
+          }];
+        }
+      }
+    },
+
     async fetchSeedbedsByGroup(groupProfileId: string) {
       const headers = { 'API-VERSION': '1' };
 
@@ -326,12 +368,35 @@ export default defineComponent({
       try {
         const userId = this.$route.params.idExternal;
         console.log('usedId: ' + userId);
+
+        const academicPeriodId = this.$route.params.idPeriodo;
+        console.log('PeriodId: ' + academicPeriodId);
+
+        const researchSeedbedProfileId = this.$route.params.idSemillero;
+        console.log('researchSeedbedProfileId: ' + researchSeedbedProfileId);
+
+
         if (userId) {
           this.additionalData = {
             ...this.additionalData,
             user_id: userId
           };
         }
+
+        if (academicPeriodId) {
+          this.additionalData = {
+            ...this.additionalData,
+            academic_period_id: academicPeriodId
+          };
+        }
+
+        if (researchSeedbedProfileId) {
+          this.additionalData = {
+            ...this.additionalData,
+            research_seedbed_profile_id: researchSeedbedProfileId
+          };
+        }
+
       } catch (error) {
         console.error('Error getting user ID from route:', error);
       }

@@ -4,9 +4,12 @@ import { defineComponent } from "vue"
 //utils
 import API from "@/utils/api";
 import Formater from "@/utils/formatter";
+import QuickControl from "@/components/quickControl.vue";
+import Formatter from "@/utils/formatter";
 
 
 export default defineComponent({
+  components: {QuickControl},
 
   data() {
     return {
@@ -15,6 +18,7 @@ export default defineComponent({
       links: '',
       loaded: false,
       headers: [
+        { key: 'is_leader', sortable: false},
         {title: 'ID', key: 'id'},
         {title: 'Nombre', key: 'student_profile.user.full_name'},
         {title: 'Código', key: 'student_profile.user.user_code'},
@@ -22,7 +26,6 @@ export default defineComponent({
         {title: 'Semestre', key: 'student_profile.semester'},
         {title: 'Correo', key: 'student_profile.user.email'},
         {title: 'Sexo', key: 'student_profile.user.sex'},
-        { key: 'link', sortable: false},
       ],
     }
   },
@@ -31,6 +34,20 @@ export default defineComponent({
     this.getSeedBeds();
   },
   methods: {
+    Formatter() {
+      return Formatter
+    },
+    handleItemRefresh(){
+      this.getSeedBeds();
+    },
+    setInitialData(item: any) {
+      return {
+        student_profile_id: item.student_profile.id,
+        research_seedbed_profile_id: this.$route.params.idSemillero,
+        is_leader: item.is_leader,
+        was_active: item.was_active,
+      };
+    },
     async getSeedBeds() {
       const  headers = {
           'API-VERSION': '1',
@@ -63,8 +80,15 @@ export default defineComponent({
         hide-details
         single-line
       ></VTextField>
+
       <VBtn to="subir-estudiantes" class="mx-2" prepend-icon="ri-upload-cloud-2-fill" color="black"> Subir</VBtn>
-      <VBtn to="agregar-estudiante" class="mx-2" prepend-icon="ri-add-fill"> Agregar</VBtn>
+      <QuickControl
+        toCreate
+        type="seedbed_member"
+        @itemCreated="handleItemRefresh"
+        :index="parseInt($route.params.idSemillero as string)"
+        :initialData="items.length ? setInitialData(items[0]) : {}"
+      />
 
     </VCardTitle>
     <VDataTable
@@ -72,8 +96,8 @@ export default defineComponent({
       :search="search"
       :headers="headers"
     >
-    <template v-slot:item.userStudent.isExternalUser="{item}">
-      {{ externalFormatter(item.userStudent.isExternalUser)}}
+    <template v-slot:item.is_leader="{item}">
+      {{ Formatter().leaderFormatter(item.is_leader) }}
 
     </template>
 

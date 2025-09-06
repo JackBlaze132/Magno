@@ -5,8 +5,10 @@ import { defineComponent } from "vue"
 import API from "@/utils/api";
 import type {ActionType} from "@/utils/abstract-forms-factory/form-types/formsTypes";
 import {FormFactory} from "@/utils/abstract-forms-factory/FormFactory";
+import QuickControl from "@/components/quickControl.vue";
 
 export default defineComponent({
+  components: {QuickControl},
 
   data() {
     return {
@@ -32,6 +34,7 @@ export default defineComponent({
   // ...
   created() {
     this.getSeedBeds();
+    console.log(this.$route.params.idSemillero);
   },
   watch  : {
     overlayEdit(newVal) {
@@ -49,6 +52,9 @@ export default defineComponent({
     }
   },
   methods: {
+    handleItemRefresh(){
+      this.getSeedBeds();
+    },
     async getSeedBeds() {
       const headers = {
         'API-VERSION': '1',
@@ -84,19 +90,13 @@ export default defineComponent({
   <VCard flat>
     <h2>Coordinador</h2>
     <VCardTitle class="d-flex align-center justify-end">
-      <VBtn prepend-icon="ri-pencil-fill" class="rmx-2"  @click="overlayEdit = !overlayEdit; selectedAction = 'update';">
-        <VOverlay v-model="overlayEdit" scrim="black" class="d-flex align-center justify-center" opacity="0.7">
-          <v-progress-circular
-            v-if="!componentLoaded"
-            indeterminate
-            color="primary"
-            size="64"
-          />
-
-          <<component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemEdited="handleItemEdited" @loaded="componentLoaded = true"/>
-        </VOverlay>
-        Editar
-      </VBtn>
+      <QuickControl
+        toEdit
+        type="seedbed_tutor"
+        @itemEdited="handleItemRefresh"
+        :index="parseInt($route.params.idSemillero as string)"
+        :initialData="items.length ? setInitialData(items[0]) : {}"
+      />
     </VCardTitle>
     <VDataTableVirtual
       :items="items"
@@ -104,7 +104,6 @@ export default defineComponent({
       :headers="headers"
       @itemEdited="handleItemEdited"
     >
-
     </VDataTableVirtual>
   </VCard>
 </template>

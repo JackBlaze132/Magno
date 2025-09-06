@@ -26,6 +26,10 @@ class Formatter{
     //'T05:00:00.000Z' is added to the date to avoid the date to be displayed as the previous day
     return new Date(date + 'T05:00:00.000Z');
   }
+
+  public leaderFormatter(isLeader: boolean){
+    return isLeader? '⭐' : '';
+  }
 }
 
 export default Formatter.getInstance();

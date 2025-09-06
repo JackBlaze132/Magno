@@ -59,6 +59,13 @@
             rows="5"
             class="mb-5"
           />
+          <VCheckbox v-else-if="field.type === 'checkbox'"
+            v-model="formValues[field.key]"
+            :label="field.label"
+            class="mb-5"
+            :true-value="true"
+            :false-value="false"
+          />
         </div>
         <VCardItem class="d-flex justify-end">
           <LoadingBtn icon="ri-save-2-line" text="Guardar" :loading="loading" color="primary"/>
@@ -157,7 +164,7 @@ export default defineComponent({
           response = await API.post(API.STUDENT_PROFILES, {
          ...this.formValues,
           }, headers);
-        } else if (this.type === 'external_profile'){
+        } else if (this.type === 'external_profile' || this.type === 'external_seedbed_profile') {
           response = await API.post(API.EXTERNAL_USER_PROFILES, {
             ...this.formValues,
           }, headers);
@@ -169,6 +176,10 @@ export default defineComponent({
           response = await API.post(API.RESEARCH_SEEDBEDS_PROFILES, {
             ...this.formValues,
           }, headers);
+        } else if (this.type === 'seedbed_member') {
+          response = await API.post(API.RESEARCH_SEEDBEDS_MEMBERS, {
+              ...this.formValues,
+            }, headers);
         }
         if (!response.error) {
           this.$emit('itemCreated', this.formValues.name);

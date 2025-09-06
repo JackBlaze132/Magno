@@ -15,6 +15,7 @@ const CreateInternalProfile = defineAsyncComponent(() => import("@/components/fo
 const CreateExternalProfile = defineAsyncComponent(() => import("@/components/forms/create/Users/formCreateExternalProfile.vue"));
 const CreateGroupProfile = defineAsyncComponent(() => import("@/components/forms/create/Groups/formCreateGroupProfile.vue"));
 const CreateSeedbedProfile = defineAsyncComponent(() => import("@/components/forms/create/seedbeds/formCreateSeedbedProfile.vue"));
+const CreateSeedbedMember = defineAsyncComponent(() => import("@/components/forms/create/seedbeds/formCreateSeedbedMember.vue"));
 
 export class CreateFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType) {
@@ -92,6 +93,14 @@ export class CreateFormFactory extends AbstractFormFactory {
           fields: schema.external_profile
         }
       },
+      external_seedbed_profile: {
+        component: CreateExternalProfile,
+        props: {
+          type: type,
+          label: "perfil de aliado externo en semillero",
+          fields: schema.external_seedbed_profile
+        }
+      },
       group_profile: {
         component: CreateGroupProfile,
         props: {
@@ -107,7 +116,15 @@ export class CreateFormFactory extends AbstractFormFactory {
           label: "perfil de semillero",
           fields: schema.seedbed_profile
         }
-      }
+      },
+      seedbed_member: {
+        component: CreateSeedbedMember,
+        props: {
+          type: type,
+          label: "miembro de semillero",
+          fields: schema.seedbed_member
+        }
+      },
     };
     if (!(type in componentMap) || !EntityTypes.includes(type)) {
       console.log( `Componente no encontrado para el tipo: ${type}`);

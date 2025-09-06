@@ -3,12 +3,14 @@ import { defineComponent } from "vue"
 
 //utils
 import API from "@/utils/api";
+import QuickControl from "@/components/quickControl.vue";
 
 
 
 
 
 export default defineComponent({
+  components: {QuickControl},
 
   data() {
     return {
@@ -19,6 +21,7 @@ export default defineComponent({
       headers: [
         {title: 'ID', key: 'id'},
         {title: 'Nombre', key: 'user.full_name'},
+        {title: 'País', key: 'country'},
         {title: 'Código', key: 'user.user_code'},
         {title: 'Identificación', key: 'user.identification_number'},
         {title: 'Correo', key: 'user.email'},
@@ -32,6 +35,9 @@ export default defineComponent({
     this.getSeedBeds();
   },
   methods: {
+    handleItemRefresh(){
+      this.getSeedBeds();
+    },
     async getSeedBeds() {
       const  headers = {
           'API-VERSION': '1',
@@ -60,6 +66,12 @@ export default defineComponent({
         hide-details
         single-line
       ></VTextField>
+      <QuickControl
+        toCreate
+        type="external_seedbed_profile"
+        @itemCreated="handleItemRefresh"
+        :index="parseInt($route.params.idSemillero as string)"
+      />
       <VBtn to="addPeriod" class="mx-2" prepend-icon="ri-add-fill"> Agregar</VBtn>
     </VCardTitle>
     <VDataTable

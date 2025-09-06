@@ -130,7 +130,7 @@ export default defineComponent({
       return {
         research_seedbed_id: item.research_seedbed.id,
         coordinator_id: item.coordinator.id,
-        tutor_id: item.tutor?.user?.id || null,
+        tutor_id: item.tutor?.id || null,
         academic_period_id: this.$route.params.idPeriodo,
         investigation_group_profile_id: this.$route.params.idGrupo,
         was_active: item.was_active,

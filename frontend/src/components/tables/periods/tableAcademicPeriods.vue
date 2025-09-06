@@ -12,7 +12,7 @@
         single-line
       />
       <!--<VBtn to="agregar-periodo" class="mx-2" prepend-icon="ri-add-fill"> Agregar</VBtn>-->
-      <QuickActions
+      <QuickControl
         toCreate
         type="period"
         @itemCreated="handleItemRefresh"

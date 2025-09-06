@@ -47,6 +47,11 @@
     { "key": "country", "label":  "País", "type": "select", "options":  [] },
     { "key": "type_of_external_user", "label": "Tipo", "type": "select", "options":  [] }
   ],
+  "external_seedbed_profile": [
+    { "key": "user_id", "label": "Aliado Externo", "type": "select", "options": []},
+    { "key": "country", "label":  "País", "type": "select", "options":  [] },
+    { "key": "type_of_external_user", "label": "Tipo", "type": "select", "options":  [] }
+  ],
   "group_profile": [
     { "key": "investigation_group_id", "label": "Grupo de Investigación", "type": "select" },
     { "key": "coordinator_id", "label": "Coordinador", "type": "select" }
@@ -59,5 +64,14 @@
       { "label": "Activo", "value": true},
       { "label": "Inactivo", "value": false }
     ]}
-  ]
+  ],
+    "seedbed_member": [
+        { "key": "student_profile_id", "label": "Estudiante", "type": "select" },
+        { "key": "was_active", "label": "Estado", "type": "radio-group","options": [
+          { "label": "Activo", "value": true },
+          { "label": "Inactivo", "value": false }
+        ]
+        },
+      { "key": "is_leader", "label": "Es líder", "type": "checkbox" }
+    ]
  }

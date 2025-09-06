@@ -75,6 +75,7 @@ export default defineComponent({
       headers: [
         {title: 'ID', key: 'id'},
         {title: 'Nombre', key: 'user.full_name'},
+        {title: 'País', key: 'country'},
         {title: 'Período', key: 'academic_period.name'},
         {title: 'Grupo', key: 'research_seedbed_profile.investigation_group_profile.investigation_group.name'},
         {title: 'Semillero', key: 'research_seedbed_profile.research_seedbed.name'},

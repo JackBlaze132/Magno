@@ -5,6 +5,7 @@ import { defineComponent } from "vue"
 import API from "@/utils/api";
 import type {ActionType} from "@/utils/abstract-forms-factory/form-types/formsTypes";
 import {FormFactory} from "@/utils/abstract-forms-factory/FormFactory";
+import QuickControl from "@/components/quickControl.vue";
 
 /*interface Item {
   coordinator:{
@@ -23,6 +24,7 @@ import {FormFactory} from "@/utils/abstract-forms-factory/FormFactory";
 }¨/*/
 
 export default defineComponent({
+  components: {QuickControl},
 
   data() {
     return {
@@ -72,11 +74,14 @@ export default defineComponent({
       try {
       this.items = await API.get(API.RESEARCH_SEEDBEDS_PROFILES + this.$route.params.idSemillero, headers);
         //
-      console.log(this.items);
+      console.log("items" + this.items);
         this.$emit('loaded');
       } catch (error) {
         console.error('Error fetching users:', error);
       }
+    },
+    handleItemRefresh(){
+      this.getSeedBeds();
     },
     handleItemEdited(index: any, name: any) {
       this.getSeedBeds()
@@ -86,7 +91,7 @@ export default defineComponent({
       return {
         research_seedbed_id: item.research_seedbed.id,
         coordinator_id: item.coordinator.id,
-        tutor_id: item.tutor?.user?.id || null,
+        tutor_id: item.tutor?.id || null,
         academic_period_id: this.$route.params.idPeriodo,
         investigation_group_profile_id: this.$route.params.idGrupo,
         was_active: item.was_active,
@@ -100,19 +105,13 @@ export default defineComponent({
   <VCard flat>
     <h2>Coordinador</h2>
     <VCardTitle class="d-flex align-center justify-end">
-      <VBtn prepend-icon="ri-pencil-fill" class="rmx-2"  @click="overlayEdit = !overlayEdit; selectedAction = 'update';">
-        <VOverlay v-model="overlayEdit" scrim="black" class="d-flex align-center justify-center" opacity="0.7">
-          <v-progress-circular
-            v-if="!componentLoaded"
-            indeterminate
-            color="primary"
-            size="64"
-          />
-
-          <<component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemEdited="handleItemEdited" @loaded="componentLoaded = true"/>
-        </VOverlay>
-        Editar
-      </VBtn>
+      <QuickControl
+        toEdit
+        type="seedbed_coordinator"
+        @itemEdited="handleItemRefresh"
+        :index="parseInt($route.params.idSemillero as string)"
+        :initialData="items.length ? setInitialData(items[0]) : {}"
+      />
     </VCardTitle>
     <VDataTableVirtual
       :items="items"

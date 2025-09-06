@@ -39,6 +39,7 @@ class API{
   //----[STUDENT PROFILES]----
   public readonly STUDENT_PROFILES:string='student-profiles/';
   public readonly STUDENT_PROFILES_ASSIGNED:string='student-profiles/find-all-profiles/'; //<---- Requires research seedbed id
+  public readonly STUDENT_PROFILES_BY_ACADEMIC_PERIOD:string='student-profiles/academic-period/'; //<---- Requires academic period id
 
   //----[INVESTIGATION GLOBAL GROUPS]----
   public readonly INVESTIGATION_GROUPS:string='investigation-groups/';
@@ -56,6 +57,7 @@ class API{
   //----[RESEARCH SEEDBEDS PROFILES]----
   public readonly RESEARCH_SEEDBEDS_PROFILES:string='research-seedbed-profiles/';
   public readonly RESEARCH_SEEDBEDS_PROFILES_BY_INVESTIGATION_GROUP_PROFILE:string='research-seedbed-profiles/get-all-by-investigation-group-profile-id/'; //<---- Requires investigation group profile id
+  public readonly RESEARCH_SEEDBEDS_MEMBERS:string='research-seedbed-student-profile/'; //<---- Requires research seedbed id
 
   //----[RESEARCH SEEDBED STUDENT PROFILES]----
   public readonly RESEARCH_SEEDBED_STUDENT_PROFILES:string='research-seedbed-student-profile/research-seedbed-profile/';
