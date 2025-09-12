@@ -15,4 +15,6 @@ public interface IAcademicProgramPersistencePort {
     Set<AcademicProgram> findAcademicProgramsByIds(Set<Long> ids);
     Set<AcademicProgram> findAcademicProgramsByAcademicProgramCodes(Set<String> academicProgramCodes);
     boolean existsByProgramCodeAndProgramName(String programCode, String programName);
+
+    AcademicProgram findByAcademicProgramCode(String academicProgramCode);
 }

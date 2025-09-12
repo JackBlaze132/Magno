@@ -2,10 +2,7 @@ package com.unibague.magno.infrastructure.output.jpa.adapter.integra;
 
 import com.unibague.magno.domain.exception.integra.IntegraDependencyNotFoundException;
 import com.unibague.magno.domain.exception.integra.NullIntegraResponseException;
-import com.unibague.magno.domain.model.integra.IntegraAcademicProgram;
-import com.unibague.magno.domain.model.integra.IntegraDependency;
-import com.unibague.magno.domain.model.integra.IntegraFunctionary;
-import com.unibague.magno.domain.model.integra.IntegraStudent;
+import com.unibague.magno.domain.model.integra.*;
 import com.unibague.magno.domain.spi.integra.IIntegraPersistencePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,9 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -46,6 +45,44 @@ public class IntegraUserClient implements IIntegraPersistencePort {
     @Value("${integra.all.dependencies.url}")
     private String dependenciesUrl;
 
+    @Value("${INTEGRA_ACADEMIC_PROGRAMS_ACADEMIA_URL}")
+    private String academiaAcademicProgramsGeneralUrl;
+
+    private final String undergraduate = "1";
+    private final String postgraduate = "2";
+
+    public List<AcademiaAcademicProgram> getAcademiaAcademicPrograms1(){
+        String path = academiaAcademicProgramsGeneralUrl + undergraduate;
+        ResponseEntity<List<AcademiaAcademicProgram>> response = restTemplate.exchange(
+                path,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<AcademiaAcademicProgram>>() {}
+        );
+
+        if (response.getBody() == null) {
+            throw new NullIntegraResponseException();
+        }
+
+        return response.getBody();
+    }
+
+    public List<AcademiaAcademicProgram> getAcademiaAcademicPrograms2(){
+        String path = academiaAcademicProgramsGeneralUrl + postgraduate;
+        ResponseEntity<List<AcademiaAcademicProgram>> response = restTemplate.exchange(
+                path,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<AcademiaAcademicProgram>>() {}
+        );
+
+        if (response.getBody() == null) {
+            throw new NullIntegraResponseException();
+        }
+
+        return response.getBody();
+    }
+
     @Override
     public List<IntegraFunctionary> getAllFunctionaries() {
         final String url = baseUrl + allFunctionariesUrl;
@@ -73,7 +110,40 @@ public class IntegraUserClient implements IIntegraPersistencePort {
         return response.getBody();
     }
 
-    private List<IntegraAcademicProgram> getAllAcademicPrograms() {
+    public List<IntegraAcademicProgram> getAllAcademicPrograms() {
+        // 1. Obtener listas desde Integra y Academia
+        List<IntegraAcademicProgram> integraPrograms = getAllAcademicProgramsDeprecated();
+        List<AcademiaAcademicProgram> academiaUndergrad = getAcademiaAcademicPrograms1();
+        List<AcademiaAcademicProgram> academiaPostgrad = getAcademiaAcademicPrograms2();
+
+        // 2. Mapear las listas de Academia hacia IntegraAcademicProgram
+        List<IntegraAcademicProgram> academiaPrograms = Stream.concat(
+                        academiaUndergrad.stream(),
+                        academiaPostgrad.stream()
+                ).map(this::mapAcademiaToIntegra)
+                .toList();
+
+        // 3. Unir todo en una sola lista
+        List<IntegraAcademicProgram> allPrograms = new ArrayList<>();
+        allPrograms.addAll(integraPrograms);
+        allPrograms.addAll(academiaPrograms);
+
+        return allPrograms;
+    }
+
+    private IntegraAcademicProgram mapAcademiaToIntegra(AcademiaAcademicProgram academia) {
+        return new IntegraAcademicProgram(
+                academia.getProgramCode(),
+                academia.getProgramName(),
+                null, // Academia no tiene sedeCode
+                academia.getSedeName(),
+                academia.getMethodology(),
+                academia.getModality(),
+                null  // Academia no tiene formation
+        );
+    }
+
+    private List<IntegraAcademicProgram> getAllAcademicProgramsDeprecated() {
         final String url = baseUrl + academicProgramsUrl;
 
         ResponseEntity<List<IntegraAcademicProgram>> response = restTemplate.exchange(
@@ -155,5 +225,9 @@ public class IntegraUserClient implements IIntegraPersistencePort {
                 null,
                 new ParameterizedTypeReference<List<IntegraStudent>>() {}
         );
+    }
+
+    public String getUndergraduate() {
+        return undergraduate;
     }
 }

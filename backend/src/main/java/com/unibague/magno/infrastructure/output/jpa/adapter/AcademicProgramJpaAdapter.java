@@ -1,6 +1,7 @@
 package com.unibague.magno.infrastructure.output.jpa.adapter;
 
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
+import com.unibague.magno.domain.exception.academicprogram.AcademicProgramNotFoundByCodeInExcelException;
 import com.unibague.magno.domain.model.AcademicProgram;
 import com.unibague.magno.domain.spi.IAcademicProgramPersistencePort;
 import com.unibague.magno.infrastructure.output.jpa.entity.AcademicProgramEntity;
@@ -69,5 +70,13 @@ public class AcademicProgramJpaAdapter implements IAcademicProgramPersistencePor
     @Override
     public boolean existsByProgramCodeAndProgramName(String programCode, String programName) {
         return academicProgramRepository.existsByProgramCodeAndName(programCode, programName);
+    }
+
+    @Override
+    public AcademicProgram findByAcademicProgramCode(String academicProgramCode) {
+        AcademicProgramEntity ap = academicProgramRepository.findByProgramCode(academicProgramCode)
+                .orElseThrow(() -> new AcademicProgramNotFoundByCodeInExcelException("Academic program with code "
+                        + academicProgramCode + " not found in the DB."));
+        return academicProgramEntityMapper.toAcademicProgram(ap);
     }
 }

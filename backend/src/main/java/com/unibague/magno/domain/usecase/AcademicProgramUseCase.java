@@ -3,6 +3,7 @@ package com.unibague.magno.domain.usecase;
 import com.unibague.magno.domain.api.IAcademicProgramServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.academicprogram.AcademicProgramAlreadyExistsException;
+import com.unibague.magno.domain.exception.academicprogram.AcademicProgramNotFoundByCodeInExcelException;
 import com.unibague.magno.domain.exception.academicprogram.AcademicProgramNotFoundException;
 import com.unibague.magno.domain.model.AcademicProgram;
 import com.unibague.magno.domain.model.enums.AcademicProgramType;
@@ -34,9 +35,7 @@ public class AcademicProgramUseCase implements IAcademicProgramServicePort {
     @Override
     public AcademicProgram save(AcademicProgram academicProgram) {
         if (existsByProgramCodeAndProgramName(academicProgram.getProgramCode(), academicProgram.getName())) {
-            throw new AcademicProgramAlreadyExistsException(
-                    String.format("AcademicProgram with program code %s and program name %s already exists",
-                            academicProgram.getProgramCode(), academicProgram.getName()));
+            return findByAcademicProgramCode(academicProgram.getProgramCode());
         }
         return academicProgramPersistencePort.save(academicProgram);
     }
@@ -133,5 +132,10 @@ public class AcademicProgramUseCase implements IAcademicProgramServicePort {
     @Override
     public boolean existsByProgramCodeAndProgramName(String programCode, String programName) {
         return academicProgramPersistencePort.existsByProgramCodeAndProgramName(programCode, programName);
+    }
+
+    @Override
+    public AcademicProgram findByAcademicProgramCode(String academicProgramCode) {
+        return academicProgramPersistencePort.findByAcademicProgramCode(academicProgramCode);
     }
 }

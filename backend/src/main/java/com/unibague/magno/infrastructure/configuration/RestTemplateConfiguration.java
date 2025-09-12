@@ -13,6 +13,7 @@ import org.apache.hc.core5.ssl.TrustStrategy;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
@@ -22,15 +23,12 @@ import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
+import java.util.Arrays;
 
 @Configuration
-public class RestTemplateConfiguration{
+public class RestTemplateConfiguration {
 
     @Bean
-    /**
-     * Due to the fact that Integra API does not have a valid certificate, is necessary
-     * to ignore the certificate validation.
-     */
     public RestTemplate restTemplate() throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
 
         // SSL configuration to ignore certificate validation
@@ -43,7 +41,7 @@ public class RestTemplateConfiguration{
         // SSLConnectionSocketFactory configuration to ignore the common name validation (CN)
         SSLConnectionSocketFactory csf = new SSLConnectionSocketFactory(
                 sslContext,
-                NoopHostnameVerifier.INSTANCE // Ignore the common name validation (CN)
+                NoopHostnameVerifier.INSTANCE
         );
 
         PoolingHttpClientConnectionManager connectionManager = PoolingHttpClientConnectionManagerBuilder.create()
@@ -65,9 +63,13 @@ public class RestTemplateConfiguration{
 
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
         converter.setObjectMapper(objectMapper);
+        converter.setSupportedMediaTypes(
+                Arrays.asList(MediaType.APPLICATION_JSON, MediaType.TEXT_HTML, MediaType.TEXT_PLAIN)
+        );
 
         restTemplate.getMessageConverters().addFirst(converter);
 
         return restTemplate;
     }
 }
+
