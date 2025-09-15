@@ -5,6 +5,7 @@ import com.unibague.magno.application.dto.response.ResearchSeedbedStudentProfile
 import com.unibague.magno.application.dto.response.ResearchSeedbedStudentProfileSummaryResponse;
 import com.unibague.magno.application.handler.impl.ResearchSeedbedStudentProfileHandler;
 import com.unibague.magno.infrastructure.util.UploadService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +42,7 @@ public class ResearchSeedbedStudentProfileRestController {
 
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<ResearchSeedbedStudentProfileResponse> createResearchSeedbedStudentProfile
-            (@RequestBody ResearchSeedbedStudentProfileRequest researchSeedbedStudentProfileRequest) {
+            (@RequestBody @Valid ResearchSeedbedStudentProfileRequest researchSeedbedStudentProfileRequest) {
         ResearchSeedbedStudentProfileResponse created = researchSeedbedStudentProfileHandler.save(researchSeedbedStudentProfileRequest);
         URI location = URI.create("/api/research-seedbed-student-profile/" + created.getId());
         return ResponseEntity.created(location).body(created);

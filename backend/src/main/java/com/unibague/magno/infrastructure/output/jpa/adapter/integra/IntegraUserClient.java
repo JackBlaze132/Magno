@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
@@ -111,35 +112,41 @@ public class IntegraUserClient implements IIntegraPersistencePort {
     }
 
     public List<IntegraAcademicProgram> getAllAcademicPrograms() {
-        // 1. Obtener listas desde Integra y Academia
+
         List<IntegraAcademicProgram> integraPrograms = getAllAcademicProgramsDeprecated();
         List<AcademiaAcademicProgram> academiaUndergrad = getAcademiaAcademicPrograms1();
         List<AcademiaAcademicProgram> academiaPostgrad = getAcademiaAcademicPrograms2();
 
-        // 2. Mapear las listas de Academia hacia IntegraAcademicProgram
         List<IntegraAcademicProgram> academiaPrograms = Stream.concat(
                         academiaUndergrad.stream(),
                         academiaPostgrad.stream()
                 ).map(this::mapAcademiaToIntegra)
                 .toList();
 
-        // 3. Unir todo en una sola lista
         List<IntegraAcademicProgram> allPrograms = new ArrayList<>();
         allPrograms.addAll(integraPrograms);
         allPrograms.addAll(academiaPrograms);
 
-        return allPrograms;
+        return allPrograms.stream()
+                .collect(Collectors.toMap(
+                        IntegraAcademicProgram::getProgramCode,
+                        program -> program,
+                        (existing, replacement) -> existing
+                ))
+                .values()
+                .stream()
+                .toList();
     }
 
     private IntegraAcademicProgram mapAcademiaToIntegra(AcademiaAcademicProgram academia) {
         return new IntegraAcademicProgram(
                 academia.getProgramCode(),
                 academia.getProgramName(),
-                null, // Academia no tiene sedeCode
+                null,
                 academia.getSedeName(),
                 academia.getMethodology(),
                 academia.getModality(),
-                null  // Academia no tiene formation
+                null
         );
     }
 

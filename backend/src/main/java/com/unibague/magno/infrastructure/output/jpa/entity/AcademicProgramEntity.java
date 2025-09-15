@@ -2,19 +2,18 @@ package com.unibague.magno.infrastructure.output.jpa.entity;
 
 import com.unibague.magno.domain.model.enums.AcademicProgramType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 
 @Getter
 @Setter
 @Entity
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "academic_programs")
+@ToString(exclude = "studentProfiles")
 public class AcademicProgramEntity {
 
     @Id

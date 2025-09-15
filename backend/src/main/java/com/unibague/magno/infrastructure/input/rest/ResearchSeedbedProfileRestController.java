@@ -5,6 +5,7 @@ import com.unibague.magno.application.dto.response.ResearchSeedbedProfileRespons
 import com.unibague.magno.application.handler.impl.ResearchSeedbedProfileHandler;
 import com.unibague.magno.domain.model.excel.ExcelReport;
 import com.unibague.magno.domain.model.excel.metadata.SeedbedReportMetadata;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -61,7 +62,7 @@ public class ResearchSeedbedProfileRestController {
 
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<ResearchSeedbedProfileResponse> createResearchSeedbedProfile
-            (@RequestBody ResearchSeedbedProfileRequest researchSeedbedProfileRequest) {
+            (@RequestBody @Valid ResearchSeedbedProfileRequest researchSeedbedProfileRequest) {
         ResearchSeedbedProfileResponse created = researchSeedbedProfileHandler.save(researchSeedbedProfileRequest);
         URI location = URI.create(String.format("/api/research-seedbed-profiles/%d", created.getId()));
         return ResponseEntity.created(location).body(created);
