@@ -1,11 +1,24 @@
 <template>
+  <VBtn v-if="toUpload" prepend-icon="ri-upload-cloud-fill" class="mx-2" color="black" @click="overlayUpload = !overlayUpload; selectedAction = 'upload';">
+    Subir
+    <VOverlay v-model="overlayUpload" class="d-flex align-center justify-center" opacity="0.7">
+      <v-progress-circular
+        v-if="!componentLoaded"
+        indeterminate
+        color="primary"
+        size="64"
+      />
+      <component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemUploaded="handleItemUploaded" @loaded="componentLoaded = true"/>
+    </VOverlay>
+  </VBtn>
+
   <!--
     Create button (toCreate):
     Opens an overlay containing the appropriate create form component.
   -->
   <VBtn v-if="toCreate" class="mx-2" prepend-icon="ri-add-fill" @click="overlayCreate = !overlayCreate ; selectedAction = 'create'">
     Agregar
-    <VOverlay v-model="overlayCreate" scrim="scrim" class="d-flex align-center justify-center" opacity="0.7">
+    <VOverlay v-model="overlayCreate"  class="d-flex align-center justify-center" opacity="0.7">
       <v-progress-circular
         v-if="!componentLoaded"
         indeterminate
@@ -22,7 +35,7 @@
   -->
   <VBtn v-if="toEdit" prepend-icon="ri-pencil-fill" class="mx-2" @click="overlayEdit = !overlayEdit; selectedAction = 'update';">
     Editar
-    <VOverlay v-model="overlayEdit" scrim="scrim" class="d-flex align-center justify-center" opacity="0.7">
+    <VOverlay v-model="overlayEdit" class="d-flex align-center justify-center" opacity="0.7">
       <v-progress-circular
         v-if="!componentLoaded"
         indeterminate
@@ -32,6 +45,8 @@
       <component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemEdited="handleItemEdited" @loaded="componentLoaded = true"/>
     </VOverlay>
   </VBtn>
+
+
 </template>
 
 <script lang="ts">
@@ -42,7 +57,7 @@ import type { ActionType, EntityType } from  '@/utils/abstract-forms-factory/for
 // The 'quickControl' component handles create and edit actions for entities.
 export default defineComponent({
   name: 'quickControl',
-  emits: ['itemCreated', 'itemEdited'],
+  emits: ['itemCreated', 'itemEdited', "itemUploaded"],
   props: {
     /**
      * The type of the item to handle (e.g. 'periodo', 'grupo', 'semillero').
@@ -80,6 +95,11 @@ export default defineComponent({
      * Flag to enable the edit action.
      */
     toEdit: {
+      type: Boolean,
+      required: false,
+    },
+
+    toUpload: {
       type: Boolean,
       required: false,
     },
@@ -122,7 +142,10 @@ export default defineComponent({
       overlayCreate: false,
       // Controls the visibility of the edit overlay
       overlayEdit: false,
-      selectedAction: 'create' as ActionType,
+      // Controls the visibility of the upload overlay
+      overlayUpload: false,
+
+      selectedAction: '' as ActionType,
       componentLoaded: false,
     };
   },
@@ -143,6 +166,11 @@ export default defineComponent({
       this.$emit('itemEdited', index, name);
       this.overlayEdit = false;
     },
+
+    handleItemUploaded() {
+      this.$emit('itemUploaded');
+      this.overlayUpload = false;
+    }
   }
 });
 </script>

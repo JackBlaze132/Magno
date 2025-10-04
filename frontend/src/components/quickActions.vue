@@ -6,13 +6,13 @@
   <VBtn v-if="toView" icon class="action view" flat color="transparent" desity="compact" :to="toView">
     <VIcon icon="ri-eye-line" />
     <VTooltip activator="parent" location="top">
-      View
+      Ingresar
     </VTooltip>
   </VBtn>
 
   <VBtn v-if="toCreate" class="mx-2" prepend-icon="ri-add-fill" @click="overlayCreate = !overlayCreate ; selectedAction = 'create'">
     Agregar
-    <VOverlay v-model="overlayCreate" scrim="black" class="d-flex align-center justify-center" opacity="0.7">
+    <VOverlay v-model="overlayCreate" class="d-flex align-center justify-center" opacity="0.7">
       <v-progress-circular
         v-if="!componentLoaded"
         indeterminate
@@ -28,7 +28,7 @@
   -->
   <VBtn v-if="toEdit" icon class="action edit" flat color="transparent" desity="compact" @click="overlayEdit = !overlayEdit; selectedAction = 'update';">
     <VIcon icon="ri-edit-box-line" />
-    <VOverlay v-model="overlayEdit" scrim="black" class="d-flex align-center justify-center" opacity="0.7">
+    <VOverlay v-model="overlayEdit" class="d-flex align-center justify-center" opacity="0.7">
       <v-progress-circular
         v-if="!componentLoaded"
         indeterminate
@@ -38,7 +38,7 @@
       <component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemEdited="handleItemEdited" @loaded="componentLoaded = true"/>
     </VOverlay>
     <VTooltip activator="parent" location="top">
-      Edit
+      Editar
     </VTooltip>
   </VBtn>
 
@@ -48,7 +48,7 @@
   -->
   <VBtn v-if="toDelete" icon class="action delete" flat color="transparent" desity="compact" @click="overlayDelete = !overlayDelete ; selectedAction = 'delete'">
     <VIcon icon="ri-delete-bin-5-line" />
-    <VOverlay v-model="overlayDelete" scrim="black" class="d-flex align-center justify-center" opacity="0.7">
+    <VOverlay v-model="overlayDelete" class="d-flex align-center justify-center" opacity="0.7">
       <v-progress-circular
         v-if="!componentLoaded"
         indeterminate
@@ -58,7 +58,7 @@
       <component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemDeleted="handleItemDeleted" @loaded="componentLoaded = true"/>
     </VOverlay>
     <VTooltip activator="parent" location="top">
-      Delete
+      Eliminar
     </VTooltip>
   </VBtn>
 </template>
