@@ -72,7 +72,6 @@ export default defineComponent({
         @itemCreated="handleItemRefresh"
         :index="parseInt($route.params.idSemillero as string)"
       />
-      <VBtn to="addPeriod" class="mx-2" prepend-icon="ri-add-fill"> Agregar</VBtn>
     </VCardTitle>
     <VDataTable
       :items="items"

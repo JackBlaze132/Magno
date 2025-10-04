@@ -10,7 +10,7 @@
         hide-details
         single-line
       ></VTextField>
-      <QuickActions
+      <QuickControl
       toCreate
       type="group_profile"
       @itemCreated="handleItemRefresh"
@@ -53,6 +53,7 @@ import { defineComponent } from "vue"
 
 //utils
 import API from "@/utils/api";
+import QuickControl from "@/components/quickControl.vue";
 //import Formatter from "@/utils/formatter";
 
 
@@ -71,6 +72,7 @@ interface Item {
 }
 
 export default defineComponent({
+  components: {QuickControl},
 
   emits: ['loaded'],
   data() {

@@ -10,7 +10,7 @@
         hide-details
         single-line
       ></VTextField>
-      <QuickActions
+      <QuickControl
       toCreate
       type="seedbed"
       @itemCreated="handleItemRefresh"
@@ -49,6 +49,7 @@ import { defineComponent } from "vue"
 //utils
 import API from "@/utils/api";
 import Formatter from "@/utils/formatter";
+import QuickControl from "@/components/quickControl.vue";
 
 interface Item {
   id: number,
@@ -61,6 +62,7 @@ interface Item {
 }
 
 export default defineComponent({
+  components: {QuickControl},
 
   data() {
     return {

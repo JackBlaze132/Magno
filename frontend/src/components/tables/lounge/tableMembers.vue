@@ -81,11 +81,13 @@ export default defineComponent({
         single-line
       ></VTextField>
 
-      <VBtn to="subir-estudiantes" class="mx-2" prepend-icon="ri-upload-cloud-2-fill" color="black"> Subir</VBtn>
+
       <QuickControl
+        toUpload
         toCreate
         type="seedbed_member"
         @itemCreated="handleItemRefresh"
+        @itemUploaded="handleItemRefresh"
         :index="parseInt($route.params.idSemillero as string)"
         :initialData="items.length ? setInitialData(items[0]) : {}"
       />
