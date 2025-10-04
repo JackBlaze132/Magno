@@ -1,0 +1,6 @@
+{
+  "seedbed_member": [
+    { "key": "file", "label": "Tu archivo", "type": "drag-drop" },
+    { "key": "file", "label": "Tu archivo", "type": "file-input" }
+  ]
+}

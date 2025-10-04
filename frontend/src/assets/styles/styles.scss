@@ -121,3 +121,18 @@
   .v-field__input{
     width: 600px;
   }
+
+  .drop-zone{
+    border: 2px dashed;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    color: rgb(var(--v-theme-on-background));
+    opacity: var(--v-medium-emphasis-opacity);
+  }
+
+.drop-zone--active {
+  background-color: rgb(var(--v-theme-primary));
+  border-color: #1976d2;
+}

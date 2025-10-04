@@ -2,6 +2,7 @@
 
 export const ActionTypes: string[] = [
   "create",
+  "upload",
   "update",
   "view",
   "delete"

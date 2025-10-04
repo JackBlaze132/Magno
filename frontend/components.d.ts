@@ -39,6 +39,7 @@ declare module 'vue' {
     FormUpdateSeedbed: typeof import('./src/components/forms/patch/formUpdateSeedbed.vue')['default']
     FormUpdateSeedbedProfile: typeof import('./src/components/forms/update/seedbeds/formUpdateSeedbedProfile.vue')['default']
     FormUpdateSeedbeds: typeof import('./src/components/forms/update/seedbeds/formUpdateSeedbeds.vue')['default']
+    FormUploadGeneral: typeof import('./src/components/forms/upload/formUploadGeneral.vue')['default']
     FormUploadStudent: typeof import('./src/components/forms/patch/formUploadStudent.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     LoadingBtn: typeof import('./src/components/loadingBtn.vue')['default']
