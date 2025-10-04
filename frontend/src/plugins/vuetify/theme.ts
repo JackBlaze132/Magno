@@ -45,6 +45,7 @@ export const themes: Record<string, ThemeDefinition> = {
       'expansion-panel-text-custom-bg': '#fafafa',
       'track-bg': '#F0F2F8',
       'chat-bg': '#F7F6FA',
+      'default': '#6D6878',
     },
 
     variables: {
@@ -116,6 +117,7 @@ export const themes: Record<string, ThemeDefinition> = {
       'expansion-panel-text-custom-bg': '#373350',
       'track-bg': '#474360',
       'chat-bg': '#373452',
+      'default': '#B1ADC7',
     },
 
     variables: {
