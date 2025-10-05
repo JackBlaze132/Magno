@@ -27,7 +27,6 @@ export default defineComponent({
   async created() {
     await this.fetchFunctionaries()
     await this.fetchGroups()
-
     this.loaded = true
   },
   props:{

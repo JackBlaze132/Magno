@@ -42,6 +42,9 @@ export default defineComponent({
       loading: false,
     };
   },
+  created() {
+    this.$emit('loaded');
+  },
   methods: {
     async deleteItem() {
       this.loading = true;

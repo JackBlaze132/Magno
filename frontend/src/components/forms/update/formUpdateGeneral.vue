@@ -68,7 +68,7 @@ import { VSelect } from 'vuetify/components';
 
 export default defineComponent({
   name: 'formEditGeneral',
-  emits: ['itemEdited'],
+  emits: ['itemEdited', 'loaded'],
   props: {
     type: {
       type: String,
@@ -96,6 +96,9 @@ export default defineComponent({
       formValues: {...this.initialData},
 
     };
+  },
+  created() {
+    this.$emit('loaded');
   },
   methods: {
     async editItem() {
