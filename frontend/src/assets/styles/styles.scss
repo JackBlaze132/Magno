@@ -122,17 +122,29 @@
     width: 600px;
   }
 
-  .drop-zone{
+  .drop-zone {
     border: 2px dashed;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
+    border-radius: 8px;
+    padding: 2rem;
     cursor: pointer;
-    color: rgb(var(--v-theme-on-background));
-    opacity: var(--v-medium-emphasis-opacity);
+    transition: all 0.3s ease;
+    min-height: 150px;
   }
 
-.drop-zone--active {
-  background-color: rgb(var(--v-theme-primary));
-  border-color: #1976d2;
-}
+  .drop-zone:hover:not(.drop-zone--disabled) {
+    background-color: rgba(var(--v-theme-primary), 0.1);
+    border-color: rgb(var(--v-theme-primary));
+  }
+
+  .drop-zone--active {
+    background-color: rgba(var(--v-theme-primary), 0.15);
+    border-color: rgb(var(--v-theme-primary));
+    border-style: solid;
+  }
+
+  .drop-zone--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: rgba(var(--v-theme-surface), 0.05);
+    border-color: rgba(var(--v-theme-on-surface), 0.3);
+  }

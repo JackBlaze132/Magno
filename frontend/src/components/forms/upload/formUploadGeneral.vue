@@ -5,49 +5,39 @@
 
     <div v-for="(field, index) in fields" :key="index">
 
-      <div
+      <!-- Drag and drop zone -->
+      <DragDropUpload
         v-if="field.type === 'drag-drop'"
-        class="drop-zone d-flex flex-column align-center justify-center mt-5"
-        :class="{ 'drop-zone--active': isDragging }"
-        @click="openFilePicker(index)"
-        @dragover.prevent="handleDragOver"
-        @dragleave="handleDragLeave"
-        @drop.prevent="handleDrop"
-      >
-        <v-icon size="48">ri-upload-cloud-fill</v-icon>
-        <p class="text-subtitle-1 mt-2">Arrastra tu archivo aquí</p>
-        <p class="text-caption text-medium-emphasis">o haz clic para seleccionarlo</p>
-      </div>
+        :accept="field.accept"
+        :multiple="(field.multiple !== false) && multiple"
+        :disabled="(field.disabled || false) || loading"
+        @files-selected="handleFilesSelected"
+      />
 
-      <v-file-input
-        v-if="field.type === 'file-input'"
-        ref="fileInput"
+      <!-- Traditional file input -->
+      <FileInputUpload
+        v-else-if="field.type === 'file-input' || field.type === 'file'"
         v-model="files"
         :label="field.label"
-        prepend-icon="ri-attachment-2"
+        :accept="field.accept"
+        :multiple="(field.multiple !== false) && multiple"
+        :disabled="(field.disabled || false) || loading"
+        :rules="getFieldRules(field)"
+        :max-size="field.maxSize"
+        @files-selected="handleFilesSelected"
+      />
+
+      <!-- Text input for file paths or URLs -->
+      <v-text-field
+        v-else-if="field.type === 'text'"
+        v-model="formValues[field.key]"
+        :label="field.label"
+        prepend-icon="ri-link"
         variant="outlined"
         class="mt-4"
-        :rules="rules"
-        accept=".xlsx"
-        counter
-        show-size
-      >
-        <!-- Chips personalizados dentro del input -->
-        <template v-slot:selection>
-          <v-chip
-            v-for="(file, index) in files"
-            :key="index"
-            class="me-2 pa-4"
-            size="small"
-            :prepend-icon="getFileIcon(file)"
-            :color="getFileColor(file)"
-            variant="tonal"
+        :disabled="(field.disabled || false) || loading"
+      />
 
-          >
-            {{ file.name }}
-          </v-chip>
-        </template>
-      </v-file-input>
     </div>
 
     <VCardItem class="d-flex justify-end">
@@ -65,15 +55,31 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 import API from "@/utils/api"
-import LoadingBtn from "../loadingBtn.vue"
+
+
+interface UploadField {
+  key: string;
+  label: string;
+  type?: string;
+  accept?: string;
+  rules?: Array<(value: File[]) => true | string>;
+  multiple?: boolean;
+  required?: boolean;
+  disabled?: boolean;
+  maxSize?: number;
+}
 
 export default defineComponent({
   name: "FileUploader",
   emits: ["loaded", 'itemUploaded'],
 
   props: {
+    type: {
+      type: String,
+      required: true
+    },
     fields: {
-      type: Array as () => Array<{ key: string; label: string; type?: string }>,
+      type: Array as () => UploadField[],
       default: () => []
     },
     modelValue: {
@@ -87,30 +93,59 @@ export default defineComponent({
     multiple: {
       type: Boolean,
       default: true
+    },
+    index: {
+      type: [String, Number],
+      default: null
+    },
+    additionalData: {
+      type: Object,
+      default: () => ({})
     }
   },
 
   data() {
     return {
       files: Array.isArray(this.modelValue) ? this.modelValue.slice() : [],
-      isDragging: false,
-      fileInput: null as any,
-      loading: false
+      loading: false,
+      formValues: {} as Record<string, any>
     }
   },
 
   computed: {
-    // Reglas de validación
+    // Dynamic validation rules based on field configuration
     rules(): ((value: File[]) => true | string)[] {
-      return [
+      const field = this.fields[0]; // Assume single field for now
+      if (field?.rules) {
+        return field.rules;
+      }
+
+      // Default rules
+      const defaultRules: ((value: File[]) => true | string)[] = [
         (value: File[]) => {
-          if (!value || !value.length) return "Debes seleccionar al menos un archivo"
-          const invalid = value.some(
-            (f) => (f.name.split(".").pop() || "").toLowerCase() !== "xlsx"
-          )
-          return !invalid || "Solo se permiten archivos .xlsx"
+          if (field?.required !== false && (!value || !value.length)) {
+            return "Debes seleccionar al menos un archivo";
+          }
+          return true;
         }
-      ]
+      ];
+
+      // Add file type validation if accept is specified
+      if (field?.accept) {
+        const acceptedTypes = field.accept.split(',').map((type: string) => type.trim().toLowerCase());
+        defaultRules.push((value: File[]) => {
+          if (!value || !value.length) return true;
+          const invalid = value.some((f) => {
+            const ext = (f.name.split(".").pop() || "").toLowerCase();
+            return !acceptedTypes.some((acceptType: string) =>
+              acceptType.includes(ext) || acceptType === `*.${ext}` || acceptType === `.${ext}`
+            );
+          });
+          return !invalid || `Solo se permiten archivos: ${field.accept}`;
+        });
+      }
+
+      return defaultRules;
     }
   },
 
@@ -130,85 +165,112 @@ export default defineComponent({
   },
 
   methods: {
-    // Drag & drop
-    handleDrop(e: DragEvent) {
-      this.isDragging = false
-      if (e.dataTransfer?.files && e.dataTransfer.files.length) {
-        this.updateFilesFromList(e.dataTransfer.files)
+    // Handle files selected from child components
+    handleFilesSelected(files: File[]) {
+      this.files = files
+    },
+
+    // Get validation rules for a specific field
+    getFieldRules(field: UploadField): ((value: File[]) => true | string)[] {
+      if (field.rules) {
+        return field.rules
       }
-    },
-    handleDragOver(e: DragEvent) {
-      e.preventDefault()
-      this.isDragging = true
-    },
-    handleDragLeave() {
-      this.isDragging = false
+      return this.rules
     },
 
-    // Abrir file picker manualmente
-    openFilePicker(index: number) {
-      const refs = this.$refs.fileInput as any[]
-      const input = refs?.[index]
-      if (input?.$el?.querySelector("input[type=file]")) {
-        input.$el.querySelector("input[type=file]").click()
+    // Get the appropriate API endpoint based on type
+    getApiEndpoint() {
+      console.log('Getting endpoint for type:', this.type);
+      const baseEndpoints = {
+        'seedbed_member': API.RESEARCH_SEEDBED_STUDENT_PROFILES_UPLOAD_BY_EXCEL,
+      };
+
+      const endpoint = baseEndpoints[this.type as keyof typeof baseEndpoints];
+      if (!endpoint) {
+        console.error('Unsupported upload type:', this.type);
+        throw new Error(`Unsupported upload type: ${this.type}`);
       }
+
+      // Add index if provided (for specific resource uploads)
+      const fullEndpoint = this.index ? `${endpoint}${this.index}` : endpoint;
+      console.log('Using endpoint:', fullEndpoint);
+      return fullEndpoint;
     },
 
-    // Actualizar lista de archivos
-    updateFilesFromList(list: FileList | File[]) {
-      const arr = Array.from(list as any as File[])
-      this.files = this.multiple ? arr : arr.length ? [arr[0]] : []
-    },
-    removeFile(index: number) {
-      this.files.splice(index, 1)
+    // Validate files before upload
+    validateFiles(): boolean {
+      if (!this.files.length) {
+        console.error("No files selected");
+        return false;
+      }
+
+      // Run validation rules
+      const validationResults = this.rules.map(rule => rule(this.files));
+      const errors = validationResults.filter(result => result !== true);
+
+      if (errors.length > 0) {
+        console.error("Validation errors:", errors);
+        return false;
+      }
+
+      return true;
     },
 
-    // Helpers de ícono/color
-    getFileIcon(file: File) {
-      const ext = (file.name.split(".").pop() || "").toLowerCase()
-      return ext === "xlsx" ? "ri-file-excel-2-fill" : "ri-file-warning-fill"
-    },
-    getFileColor(file: File) {
-      const ext = (file.name.split(".").pop() || "").toLowerCase()
-      return ext === "xlsx" ? "success" : "error"
-    },
-
-    // 🔥 Lógica de subida de archivos
+    // 🔥 Flexible file upload logic
     async submitFile() {
-      if (!this.files.length) return
+      console.log('Files to upload:', this.files);
+      console.log('Files length:', this.files.length);
 
-      const file = this.files[0]
-      const ext = (file.name.split(".").pop() || "").toLowerCase()
-      if (ext !== "xlsx") {
-        console.error("Solo se permiten archivos .xlsx")
-        return
+      if (!this.validateFiles()) return;
+
+      const formData = new FormData();
+
+      // Add files to form data
+      // Always use 'file' as the key - backend expects this
+      if (this.multiple && this.files.length > 1) {
+        // For multiple files, append each with the same key 'file'
+        this.files.forEach((file, index) => {
+          console.log(`Appending file ${index}:`, file.name);
+          formData.append("file", file);
+        });
+      } else if (this.files.length > 0) {
+        // For single file
+        console.log('Appending single file:', this.files[0].name);
+        formData.append("file", this.files[0]);
       }
 
-      const formData = new FormData()
-      formData.append("file", file)
+      console.log('FormData created with', this.files.length, 'files');
 
-      this.loading = true
-      const  headers = {
+      // Add additional data if provided
+      Object.entries(this.additionalData).forEach(([key, value]) => {
+        formData.append(key, String(value));
+      });
+
+      this.loading = true;
+      const headers = {
         "API-VERSION": "1",
-      }
+      };
+
       try {
-        const data = await API.post(
-          API.RESEARCH_SEEDBED_STUDENT_PROFILES_UPLOAD_BY_EXCEL + this.$route.params.idSemillero,
-          formData, headers
-        )
+        const endpoint = this.getApiEndpoint();
+        const data = await API.post(endpoint, formData, headers);
 
         if (data.error) {
-          console.error("Error al subir archivo:", data.error)
+          console.error("Error al subir archivo:", data.error);
         } else {
-          console.log("Archivo subido correctamente:", data)
-          this.$router.push("detalles")
-          this.$emit('itemUploaded')
+          console.log("Archivo subido correctamente:", data);
+          this.$emit('itemUploaded', data);
+
+          // Optional navigation - can be handled by parent component
+          if (this.$route.name && this.type === 'seedbed_students') {
+            this.$router.push("detalles");
+          }
         }
 
       } catch (err) {
-        console.error("Error al realizar la solicitud", err)
+        console.error("Error al realizar la solicitud", err);
       } finally {
-        this.loading = false
+        this.loading = false;
       }
     }
   }
