@@ -1,6 +1,7 @@
 package com.unibague.magno.infrastructure.output.jpa.adapter;
 
 import com.unibague.magno.domain.model.Role;
+import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.domain.spi.IRolePersistencePort;
 import com.unibague.magno.infrastructure.output.jpa.entity.RoleEntity;
 import com.unibague.magno.infrastructure.output.jpa.mapper.RoleEntityMapper;
@@ -23,6 +24,12 @@ public class RoleJpaAdapter implements IRolePersistencePort {
     @Override
     public Optional<Role> findById(Long id) {
         Optional<RoleEntity> role = roleRepository.findById(id);
+        return role.map(roleEntityMapper::toRole);
+    }
+
+    @Override
+    public Optional<Role> findByName(SeedbedRole name) {
+        Optional<RoleEntity> role = roleRepository.findByName(name);
         return role.map(roleEntityMapper::toRole);
     }
 

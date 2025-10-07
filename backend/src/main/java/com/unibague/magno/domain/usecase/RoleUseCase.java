@@ -3,6 +3,7 @@ package com.unibague.magno.domain.usecase;
 import com.unibague.magno.domain.api.IRoleServicePort;
 import com.unibague.magno.domain.exception.role.RoleNotFoundException;
 import com.unibague.magno.domain.model.Role;
+import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.domain.spi.IRolePersistencePort;
 
 import java.util.List;
@@ -22,6 +23,14 @@ public class RoleUseCase implements IRoleServicePort {
                 .orElseThrow(() -> new RoleNotFoundException(
                         String.format("Role with ID %d not found", id)));
     }
+
+    @Override
+    public Role findByName(SeedbedRole name) {
+        return rolePersistencePort.findByName(name)
+                .orElseThrow(() -> new RoleNotFoundException(
+                        String.format("Role with name %s not found", name)));
+    }
+
 
     @Override
     public Role save(Role role) {

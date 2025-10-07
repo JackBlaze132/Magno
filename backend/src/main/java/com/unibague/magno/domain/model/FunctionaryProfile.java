@@ -8,14 +8,14 @@ public class FunctionaryProfile {
     private Long userId;
     private Long academicPeriodId;
     private Long dependencyId;
-    private Set<Long> roleIds;
+    private Long roleId;
 
-    public FunctionaryProfile(Long id, Long userId, Long academicPeriodId, Long dependencyId, Set<Long> roleIds) {
+    public FunctionaryProfile(Long id, Long userId, Long academicPeriodId, Long dependencyId, Long roleId) {
         this.id = id;
         this.userId = userId;
         this.academicPeriodId = academicPeriodId;
         this.dependencyId = dependencyId;
-        this.roleIds = roleIds;
+        this.roleId = roleId;
     }
 
     public FunctionaryProfile() {
@@ -53,11 +53,11 @@ public class FunctionaryProfile {
         this.dependencyId = dependencyId;
     }
 
-    public Set<Long> getRoleIds() {
-        return roleIds;
+    public Long getRoleId() {
+        return roleId;
     }
 
-    public void setRoleIds(Set<Long> roleIds) {
-        this.roleIds = roleIds;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 }

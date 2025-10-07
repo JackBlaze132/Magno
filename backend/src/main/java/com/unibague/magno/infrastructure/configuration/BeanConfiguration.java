@@ -170,7 +170,7 @@ public class BeanConfiguration {
     @Bean
     public IStudentProfileServicePort studentProfileServicePort() {
         return new StudentProfileUseCase(studentProfilePersistencePort(), userServicePort(),
-                integraServicePort(), academicProgramServicePort());
+                integraServicePort(), academicProgramServicePort(), roleServicePort());
     }
 
     @Bean

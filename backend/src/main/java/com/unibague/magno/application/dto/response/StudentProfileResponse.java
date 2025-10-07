@@ -19,5 +19,5 @@ public class StudentProfileResponse {
     private AcademicPeriodResponse academicPeriod;
     private Byte semester;
     private Set<AcademicProgramResponse> academicPrograms;
-    private Set<RoleResponse> roleIds;
+    private RoleResponse roleId;
 }

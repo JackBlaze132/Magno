@@ -52,8 +52,7 @@ public class FunctionaryProfileResponseMapperImpl implements FunctionaryProfileR
                 .user(userResponse)
                 .academicPeriod(academicPeriodResponse)
                 .dependency(dependencyResponse)
-                .roleIds(roleResponseMapper.toResponseSet(roleServicePort
-                        .findRolesByIds(functionaryProfile.getRoleIds())))
+                .roleId(functionaryProfile.getRoleId())
                 .build();
     }
 

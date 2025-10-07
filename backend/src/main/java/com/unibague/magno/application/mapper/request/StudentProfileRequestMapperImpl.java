@@ -49,7 +49,7 @@ public class StudentProfileRequestMapperImpl implements StudentProfileRequestMap
         studentProfile.setAcademicPeriodId( studentProfileRequest.getAcademicPeriodId() );
         studentProfile.setSemester(semester);
         studentProfile.setAcademicProgramsIds(academicProgramIds);
-        studentProfile.setRoleIds( studentProfileRequest.getRoleIds() );
+        studentProfile.setRoleId(studentProfileRequest.getRoleId());
 
         return studentProfile;
     }

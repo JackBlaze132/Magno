@@ -5,7 +5,6 @@ import com.unibague.magno.infrastructure.output.jpa.entity.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
@@ -29,11 +28,7 @@ public class StudentProfileEntityMapperImpl implements StudentProfileEntityMappe
                 .stream()
                 .map(AcademicProgramEntity::getId)
                 .collect(Collectors.toSet()));
-        Set<Long> roleIds = studentProfileEntity.getRoles()
-                .stream()
-                .map(RoleEntity::getId)
-                .collect(Collectors.toSet());
-        studentProfile.setRoleIds(roleIds);
+        studentProfile.setRoleId(studentProfileEntity.getRole().getId());
 
         return studentProfile;
     }
@@ -66,14 +61,9 @@ public class StudentProfileEntityMapperImpl implements StudentProfileEntityMappe
                 })
                 .collect(Collectors.toSet()));
 
-        studentProfileEntity.setRoles(studentProfile.getRoleIds()
-                .stream()
-                .map(roleId -> {
-                    RoleEntity roleEntity = new RoleEntity();
-                    roleEntity.setId(roleId);
-                    return roleEntity;
-                })
-                .collect(Collectors.toSet()));
+        RoleEntity roleEntity = new RoleEntity();
+        roleEntity.setId(studentProfile.getRoleId());
+        studentProfileEntity.setRole(roleEntity);
 
         return studentProfileEntity;
     }
@@ -106,14 +96,9 @@ public class StudentProfileEntityMapperImpl implements StudentProfileEntityMappe
                 })
                 .collect(Collectors.toSet()));
 
-        studentProfileEntity.setRoles(studentProfile.getRoleIds()
-                .stream()
-                .map(roleId -> {
-                    RoleEntity roleEntity = new RoleEntity();
-                    roleEntity.setId(roleId);
-                    return roleEntity;
-                })
-                .collect(Collectors.toSet()));
+        RoleEntity roleEntity = new RoleEntity();
+        roleEntity.setId(studentProfile.getRoleId());
+        studentProfileEntity.setRole(roleEntity);
 
         return studentProfileEntity;
     }

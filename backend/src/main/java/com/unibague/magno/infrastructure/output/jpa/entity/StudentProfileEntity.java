@@ -42,12 +42,8 @@ public class StudentProfileEntity {
     )
     private Set<AcademicProgramEntity> academicPrograms;
 
-    @ManyToMany
-    @JoinTable(
-            name = "student_profiles_roles",
-            joinColumns = @JoinColumn(name = "student_profile_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<RoleEntity> roles;
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    private RoleEntity role;
 
 }

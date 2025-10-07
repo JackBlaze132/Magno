@@ -1,7 +1,5 @@
 package com.unibague.magno.infrastructure.output.jpa.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.unibague.magno.domain.model.enums.SeedbedRole;
 import jakarta.persistence.*;
 import lombok.*;
@@ -28,11 +26,9 @@ public class RoleEntity {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @ManyToMany(mappedBy = "roles")
-    @JsonIgnore
-    private Set<StudentProfileEntity> studentProfileEntities;
+    @OneToMany(mappedBy = "role")
+    private Set<StudentProfileEntity> studentProfileEntity;
 
-    @ManyToMany(mappedBy = "roles")
-    @JsonIgnore
-    private Set<FunctionaryProfileEntity> functionaryProfileEntities;
+    @OneToMany(mappedBy = "role")
+    private Set<FunctionaryProfileEntity> functionaryProfileEntity;
 }

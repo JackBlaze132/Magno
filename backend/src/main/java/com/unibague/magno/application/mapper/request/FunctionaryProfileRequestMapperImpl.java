@@ -36,7 +36,7 @@ public class FunctionaryProfileRequestMapperImpl implements FunctionaryProfileRe
         Dependency dependency = dependencyServicePort.findByName(integraFunctionary.getProgram());
 
         functionaryProfile.setDependencyId(dependency.getId());
-        functionaryProfile.setRoleIds(functionaryProfileRequest.getRoleIds());
+        functionaryProfile.setRoleId(functionaryProfileRequest.getRoleId());
         return functionaryProfile;
     }
 }

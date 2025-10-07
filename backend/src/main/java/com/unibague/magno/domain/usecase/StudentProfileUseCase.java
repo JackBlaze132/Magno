@@ -1,6 +1,7 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IAcademicProgramServicePort;
+import com.unibague.magno.domain.api.IRoleServicePort;
 import com.unibague.magno.domain.api.IStudentProfileServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
@@ -9,6 +10,7 @@ import com.unibague.magno.domain.exception.studentprofile.StudentProfileNotFound
 import com.unibague.magno.domain.model.AcademicProgram;
 import com.unibague.magno.domain.model.StudentProfile;
 import com.unibague.magno.domain.model.User;
+import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 import com.unibague.magno.domain.spi.IStudentProfilePersistencePort;
 
@@ -23,15 +25,18 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
     private final IUserServicePort userServicePort;
     private final IIntegraServicePort integraServicePort;
     private final IAcademicProgramServicePort academicProgramServicePort;
+    private final IRoleServicePort roleServicePort;
 
     public StudentProfileUseCase(IStudentProfilePersistencePort studentProfilePersistencePort,
                                  IUserServicePort userServicePort,
                                  IIntegraServicePort integraServicePort,
-                                 IAcademicProgramServicePort academicProgramServicePort) {
+                                 IAcademicProgramServicePort academicProgramServicePort,
+                                 IRoleServicePort roleServicePort) {
         this.studentProfilePersistencePort = studentProfilePersistencePort;
         this.userServicePort = userServicePort;
         this.integraServicePort = integraServicePort;
         this.academicProgramServicePort = academicProgramServicePort;
+        this.roleServicePort = roleServicePort;
     }
 
     @Override
@@ -144,7 +149,7 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
                 .collect(Collectors.toSet());
 
         newStudentProfile.setAcademicProgramsIds(academicProgramIds);
-        newStudentProfile.setRoleIds(Set.of(1L)); // This needs to be changed to a dynamic value in the future
+        newStudentProfile.setRoleId(roleServicePort.findByName(SeedbedRole.ESTUDIANTE).getId());
 
         return save(newStudentProfile);
     }

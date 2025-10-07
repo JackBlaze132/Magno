@@ -9,14 +9,15 @@ public class StudentProfile {
     private Long academicPeriodId;
     private Byte semester;
     private Set<Long> academicProgramsIds;
-    private Set<Long> roleIds;
+    private Long roleId;
 
-    public StudentProfile(Long id, Long userId, Long academicPeriodId, Byte semester, Set<Long> academicProgramsIds) {
+    public StudentProfile(Long id, Long userId, Long academicPeriodId, Byte semester, Set<Long> academicProgramsIds, Long roleId) {
         this.id = id;
         this.userId = userId;
         this.academicPeriodId = academicPeriodId;
         this.semester = semester;
         this.academicProgramsIds = academicProgramsIds;
+        this.roleId = roleId;
     }
 
     public StudentProfile() {
@@ -62,11 +63,11 @@ public class StudentProfile {
         this.academicProgramsIds = academicProgramsIds;
     }
 
-    public Set<Long> getRoleIds() {
-        return roleIds;
+    public Long getRoleId() {
+        return roleId;
     }
 
-    public void setRoleIds(Set<Long> roleIds) {
-        this.roleIds = roleIds;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 }

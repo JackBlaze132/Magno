@@ -44,6 +44,7 @@ public class MagnoBackApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        /**
         createAcademicPeriods();
         createInvestigationGroups();
         createResearchSeedbeds();
@@ -53,7 +54,7 @@ public class MagnoBackApplication implements CommandLineRunner {
         createAllProfiles();
         createInvestigationGroupProfiles();
         createResearchSeedbedProfiles();
-        inserStudentsIntoResearchSeedbeds();
+        inserStudentsIntoResearchSeedbeds();*/
     }
 
     private void inserStudentsIntoResearchSeedbeds() {
@@ -253,12 +254,12 @@ public class MagnoBackApplication implements CommandLineRunner {
             Long ap2 = 2L;
             Set<Long> set = Set.of(1L);
             if (userEntity.getEmail().endsWith("@estudiantesunibague.edu.co")) {
-                StudentProfileRequest sp = StudentProfileRequest.builder().userId(userId).academicPeriodId(ap1).roleIds(set).build();
+                StudentProfileRequest sp = StudentProfileRequest.builder().userId(userId).academicPeriodId(ap1).roleId(1L).build();
                 studentProfileRestController.createStudentProfile(sp);
                 sp.setAcademicPeriodId(ap2);
                 studentProfileRestController.createStudentProfile(sp);
             } else {
-                FunctionaryProfileRequest fp = FunctionaryProfileRequest.builder().userId(userId).academicPeriodId(ap1).roleIds(set).build();
+                FunctionaryProfileRequest fp = FunctionaryProfileRequest.builder().userId(userId).academicPeriodId(ap1).roleId(1L).build();
                 functionaryProfileRestController.createFunctionaryProfile(fp);
                 fp.setAcademicPeriodId(ap2);
                 functionaryProfileRestController.createFunctionaryProfile(fp);
