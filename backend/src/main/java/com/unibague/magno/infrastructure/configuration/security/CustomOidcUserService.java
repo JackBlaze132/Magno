@@ -44,7 +44,7 @@ public class CustomOidcUserService extends OidcUserService {
         List<Role> roles = roleServicePort.findAllRolesByUserId(existingUser.getId());
 
         List<GrantedAuthority> authorities = roles.stream()
-                .map(role -> (GrantedAuthority) new SimpleGrantedAuthority(role.getName().name()))
+                .map(role -> (GrantedAuthority) new SimpleGrantedAuthority(role.getName().getAuthority()))
                 .toList();
 
         return new DefaultOidcUser(authorities, user.getIdToken(), user.getUserInfo());

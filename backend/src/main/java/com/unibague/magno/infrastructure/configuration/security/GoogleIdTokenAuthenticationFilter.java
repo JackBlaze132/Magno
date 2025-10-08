@@ -60,7 +60,7 @@ public class GoogleIdTokenAuthenticationFilter extends OncePerRequestFilter {
                     List<Role> roles = roleServicePort.findAllRolesByUserId(user.getId());
 
                     List<GrantedAuthority> authorities = roles.stream()
-                            .map(role -> (GrantedAuthority) new SimpleGrantedAuthority("ROLE_" + role.getName()))
+                            .map(role -> (GrantedAuthority) new SimpleGrantedAuthority(role.getName().getAuthority()))
                             .toList();
 
                     Authentication auth = new UsernamePasswordAuthenticationToken(payload, null, authorities);

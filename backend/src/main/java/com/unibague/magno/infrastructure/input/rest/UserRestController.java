@@ -26,7 +26,6 @@ public class UserRestController {
         return ResponseEntity.ok(userResponse);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<List<UserResponse>> getAllUsers() {
         List<UserResponse> userResponse = userHandler.findAll();
