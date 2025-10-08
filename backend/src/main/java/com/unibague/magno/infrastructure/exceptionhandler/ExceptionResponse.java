@@ -34,6 +34,7 @@ public enum ExceptionResponse {
     INVALID_EMAIL("ERR_INVALID_EMAIL_001", "The provided email is invalid, it must be a valid Unibague email."),
     NULL_INTEGRA_RESPONSE("ERR_NULL_INTEGRA_RESPONSE_001", "Integra response was null."),
     UNSUPPORTED_PRINCIPAL("ERR_UNSUPPORTED_PRINCIPAL_001",  "Unsupported principal (authentication) type."),
+    FORBIDDEN_REQUEST("ERR_FORBIDDEN_001", "You do not have permission to access this resource."),
     GENERIC_ERROR("ERR_GENERIC_001", "An unexpected error occurred.");
 
     private final String code;
