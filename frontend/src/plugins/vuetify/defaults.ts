@@ -148,6 +148,10 @@ export default {
     touchless: true,
   },
   VOverlay: {
+    scrim: 'background',
+    opacity:0.7,
+  },
+  VDialog: {
     scrim: 'background'
   },
   VCard:{

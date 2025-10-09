@@ -15,8 +15,9 @@
           <v-list-item
             prepend-icon="ri-file-chart-line"
             title="Informes"
-            value="informes"
-            to="/informes">
+            @click="openReportDialog"
+            :active="false"
+            link>
           </v-list-item>
           <VDivider class="px-4 my-4"/>
           <v-list-item
@@ -76,11 +77,32 @@
       </v-navigation-drawer>
       <v-main></v-main>
     </v-layout>
+
+    <!-- Report Creation Dialog -->
+    <ReportCreationDialog
+      v-model="showReportDialog"
+      @report-created="onReportCreated"
+      @close="showReportDialog = false"
+    />
   </v-card>
 </template>
 
 <script setup lang="ts">
-  //import magnoDark from '@images/logos/magno-dark.svg?raw'
-import { VDivider } from 'vuetify/components';
-  //import LogoutBtn from "@layouts/components/logoutBtn.vue";
+import { ref } from 'vue'
+import { VDivider } from 'vuetify/components'
+import ReportCreationDialog from '@/components/reports/ReportCreationDialog.vue'
+
+// Reactive state for report dialog
+const showReportDialog = ref(false)
+
+// Methods
+const openReportDialog = () => {
+  showReportDialog.value = true
+}
+
+const onReportCreated = (reportData: any) => {
+  console.log('Report created from navbar:', reportData)
+  showReportDialog.value = false
+  // Optionally navigate to reports page or show success message
+}
 </script>

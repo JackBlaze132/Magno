@@ -70,6 +70,15 @@ class API{
   public readonly USERS_INTERNAL: string ='users/all-internal-users-registered';
   public readonly USERS_EXTERNAL:string='users/all-external-users-registered';
 
+  //----[REPORTS]----
+  public readonly SINGLE_PERIOD_REPORTS_INVESTIGATION_GROUPS:string = 'investigation-group-profiles/generate-investigation-group-half-year-report';
+  readonly SINGLE_PERIOD_REPORTS_ACTIVE_RESEARCH_SEEDBEDS:string = 'investigation-group-profiles/generate-active-seedbeds-half-year-report';
+  readonly CONSOLIDATE_REPORTS_INVESTIGATION_GROUPS:string = 'investigation-group-profiles/generate-investigation-group-annual-year-report';
+  readonly CONSOLIDATE_REPORTS_ACTIVE_RESEARCH_SEEDBEDS:string = 'investigation-group-profiles/generate-active-seedbeds-annual-year-report';
+  readonly ANUAL_REPORTS_RESEARCH_SEEDBEDS_STUDENTS:string = 'research-seedbed-profiles/generate-seedbed-report';
+
+
+
   //----[COUNTRIES]----
   public readonly COUNTRIES:string='users/all-countries';
 
@@ -114,6 +123,17 @@ class API{
       console.error(`Error fetching ${endpoint}:`, error);
       throw error;
     }
+  }
+
+
+  public async download(endpoint: string, headers: Record<string, string> = {}): Promise<Response> {
+    return await fetch(this.API_BASE_URL + `${endpoint}`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        ...headers
+      }
+    });
   }
 
 

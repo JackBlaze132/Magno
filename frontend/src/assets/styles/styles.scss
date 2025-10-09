@@ -148,3 +148,12 @@
     background-color: rgba(var(--v-theme-surface), 0.05);
     border-color: rgba(var(--v-theme-on-surface), 0.3);
   }
+
+  .report-form-title {
+  background: linear-gradient(135deg, #008bd2 0%, #004891  100%);
+  color: white;
+}
+
+.report-form-title .v-icon {
+  color: white;
+}

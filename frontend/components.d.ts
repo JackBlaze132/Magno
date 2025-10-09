@@ -48,6 +48,7 @@ declare module 'vue' {
     ProfilePicture: typeof import('./src/layouts/components/profilePicture.vue')['default']
     QuickActions: typeof import('./src/components/quickActions.vue')['default']
     QuickControl: typeof import('./src/components/quickControl.vue')['default']
+    ReportCreationDialog: typeof import('./src/components/reports/ReportCreationDialog.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TableAcademicPeriods: typeof import('./src/components/tables/periods/tableAcademicPeriods.vue')['default']
