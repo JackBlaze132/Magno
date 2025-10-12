@@ -18,6 +18,8 @@ public enum ExceptionResponse {
     RESEARCH_SEEDBED_NOT_FOUND("ERR_RESEARCH_SEEDBED_001", "Research seedbed not found."),
     RESEARCH_SEEDBED_PROFILE_NOT_FOUND("ERR_RESEARCH_SEEDBED_PROFILE_001",
             "Research seedbed profile not found."),
+    RESEARCH_SEEDBED_PROFILE_SAME_COORDINATOR_AND_TUTOR("ERR_RESEARCH_SEEDBED_PROFILE_002",
+            "The coordinator and tutor cannot be the same person."),
     RESEARCH_SEEDBED_STUDENT_PROFILE_NOT_FOUND("ERR_RESEARCH_SEEDBED_STUDENT_PROFILE_001",
             "Research seedbed student profile not found."),
     FUNCTIONARY_PROFILE_NOT_FOUND("ERR_FUNCTIONARY_PROFILE_001", "Functionary profile not found."),

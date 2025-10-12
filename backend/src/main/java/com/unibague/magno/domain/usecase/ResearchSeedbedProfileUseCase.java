@@ -2,6 +2,7 @@ package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IResearchSeedbedProfileServicePort;
 import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFoundException;
+import com.unibague.magno.domain.exception.researchseedbedprofile.SameCoordinatorAndTutorException;
 import com.unibague.magno.domain.model.ResearchSeedbedProfile;
 import com.unibague.magno.domain.model.excel.ExcelReport;
 import com.unibague.magno.domain.model.excel.metadata.SeedbedReportMetadata;
@@ -27,6 +28,9 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
 
     @Override
     public ResearchSeedbedProfile save(ResearchSeedbedProfile researchSeedbedProfile) {
+        if (researchSeedbedProfile.getCoordinatorId().equals(researchSeedbedProfile.getTutorId())) {
+            throw new SameCoordinatorAndTutorException("Coordinator and Tutor cannot be the same person.");
+        }
         return researchSeedbedProfilePersistencePort.save(researchSeedbedProfile);
     }
 

@@ -15,6 +15,7 @@ import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroup
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileNotFoundException;
+import com.unibague.magno.domain.exception.researchseedbedprofile.SameCoordinatorAndTutorException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ResearchSeedbedStudentProfileNotFoundException;
 import com.unibague.magno.domain.exception.role.RoleNotFoundException;
 import com.unibague.magno.domain.exception.security.InvalidEmailException;
@@ -196,6 +197,17 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(ResearchSeedbedProfileNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_PROFILE_NOT_FOUND.getCode());
+        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(SameCoordinatorAndTutorException.class)
+    public ErrorResponse handleSameCoordinatorAndTutorException(SameCoordinatorAndTutorException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_PROFILE_SAME_COORDINATOR_AND_TUTOR.getCode());
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
