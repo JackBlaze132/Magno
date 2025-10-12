@@ -1,11 +1,13 @@
 package com.unibague.magno.domain.spi.integra;
 
+import com.unibague.magno.domain.model.enums.AcademicProgramType;
 import com.unibague.magno.domain.model.integra.IntegraAcademicProgram;
 import com.unibague.magno.domain.model.integra.IntegraDependency;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -19,4 +21,8 @@ public interface IIntegraPersistencePort {
     Optional<IntegraFunctionary> getIntegraFunctionaryByEmail(String email);
 
     Optional<IntegraStudent> getIntegraStudentByEmail(String email);
+
+    List<IntegraStudent> getAllStudents();
+
+    Map<AcademicProgramType, List<IntegraAcademicProgram>> getAllAcademicProgramsMappedByType();
 }

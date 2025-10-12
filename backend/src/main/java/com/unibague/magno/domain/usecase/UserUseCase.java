@@ -39,9 +39,9 @@ public class UserUseCase implements IUserServicePort {
 
     @Override
     public User save(User user) {
-        if (findByUserIdentification(user.getIdentificationNumber()).isPresent()){
+        if (findByEmailOptional(user.getEmail()).isPresent()){
             throw new UserAlreadyExistsException(String.format(
-                    "User with identification %s already exists", user.getIdentificationNumber()));
+                    "User with email %s already exists", user.getEmail()));
         }
         return userPersistencePort.save(user);
     }
@@ -203,5 +203,9 @@ public class UserUseCase implements IUserServicePort {
         return userPersistencePort.findByEmail(email)
                 .orElseThrow(() -> new UserNotFoundException(
                         String.format("User with email %s not found", email)));
+    }
+
+    private Optional<User> findByEmailOptional(String email) {
+        return userPersistencePort.findByEmail(email);
     }
 }

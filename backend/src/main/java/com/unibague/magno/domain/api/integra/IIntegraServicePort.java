@@ -1,5 +1,6 @@
 package com.unibague.magno.domain.api.integra;
 
+import com.unibague.magno.domain.model.enums.AcademicProgramType;
 import com.unibague.magno.domain.model.integra.IntegraAcademicProgram;
 import com.unibague.magno.domain.model.integra.IntegraDependency;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
@@ -20,9 +21,12 @@ public interface IIntegraServicePort {
     List<Map<String, String>> getCleanedStudentListOfMaps(List<Map<String, String>> researchSeedbedStudentProfiles);
     byte getMaxSemester(List<IntegraStudent> studentRecords);
     List<IntegraAcademicProgram> getIntegraAcademicProgramsByProgramCodes(Set<String> programCodes);
+    Map<AcademicProgramType, List<IntegraAcademicProgram>> getAllAcademicProgramsMappedByType();
     IntegraDependency getIntegraDependencyByDependencyName(String dependencyName);
 
     IntegraFunctionary getIntegraFunctionaryByEmail(String email);
 
     IntegraStudent getIntegraStudentByEmail(String email);
+
+    List<IntegraStudent> getAllStudents();
 }

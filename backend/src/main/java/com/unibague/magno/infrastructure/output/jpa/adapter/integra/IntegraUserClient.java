@@ -2,6 +2,7 @@ package com.unibague.magno.infrastructure.output.jpa.adapter.integra;
 
 import com.unibague.magno.domain.exception.integra.IntegraDependencyNotFoundException;
 import com.unibague.magno.domain.exception.integra.NullIntegraResponseException;
+import com.unibague.magno.domain.model.enums.AcademicProgramType;
 import com.unibague.magno.domain.model.integra.*;
 import com.unibague.magno.domain.spi.integra.IIntegraPersistencePort;
 import lombok.RequiredArgsConstructor;
@@ -12,10 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -181,7 +179,7 @@ public class IntegraUserClient implements IIntegraPersistencePort {
         return response.getBody();
     }
 
-    private List<IntegraStudent> getAllStudents() {
+    public List<IntegraStudent> getAllStudents() {
         final String url = baseUrl + allStudentsUrl;
 
         ResponseEntity<List<IntegraStudent>> response = getListResponseEntity(url);
@@ -189,6 +187,54 @@ public class IntegraUserClient implements IIntegraPersistencePort {
             throw new NullIntegraResponseException();
         }
         return response.getBody();
+    }
+
+    /**
+     * Combines academic programs from both Integra and Academia sources, and maps them by type.
+     * @return A map where the key is the AcademicProgramType (PREGRADO or POSGRADO) and the value
+     * is a list of unique IntegraAcademicProgram objects.
+     */
+    @Override
+    public Map<AcademicProgramType, List<IntegraAcademicProgram>> getAllAcademicProgramsMappedByType() {
+        List<IntegraAcademicProgram> integraPrograms = getAllAcademicProgramsDeprecated();
+        List<AcademiaAcademicProgram> academiaUndergrad = getAcademiaAcademicPrograms1();
+        List<AcademiaAcademicProgram> academiaPostgrad = getAcademiaAcademicPrograms2();
+
+        // Undergraduate programs
+        List<IntegraAcademicProgram> undergradPrograms = new ArrayList<>();
+        undergradPrograms.addAll(integraPrograms);
+        undergradPrograms.addAll(academiaUndergrad.stream()
+                .map(this::mapAcademiaToIntegra)
+                .toList());
+
+        // Postgraduate programs
+        List<IntegraAcademicProgram> postgradPrograms = academiaPostgrad.stream()
+                .map(this::mapAcademiaToIntegra)
+                .toList();
+
+        // Delete duplicates within each type, keeping the first occurrence
+        Map<String, IntegraAcademicProgram> uniqueUndergrad = undergradPrograms.stream()
+                .collect(Collectors.toMap(
+                        IntegraAcademicProgram::getProgramCode,
+                        program -> program,
+                        (existing, replacement) -> existing,
+                        LinkedHashMap::new
+                ));
+
+        Map<String, IntegraAcademicProgram> uniquePostgrad = postgradPrograms.stream()
+                .filter(p -> !uniqueUndergrad.containsKey(p.getProgramCode())) // Avoid duplicates across types
+                .collect(Collectors.toMap(
+                        IntegraAcademicProgram::getProgramCode,
+                        program -> program,
+                        (existing, replacement) -> existing,
+                        LinkedHashMap::new
+                ));
+
+        Map<AcademicProgramType, List<IntegraAcademicProgram>> result = new EnumMap<>(AcademicProgramType.class);
+        result.put(AcademicProgramType.PREGRADO, new ArrayList<>(uniqueUndergrad.values()));
+        result.put(AcademicProgramType.POSGRADO, new ArrayList<>(uniquePostgrad.values()));
+
+        return result;
     }
 
     @Override

@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IUserRepository extends JpaRepository<UserEntity, Long> {
-    Optional<UserEntity> findByIdentificationNumber(String identificationNumber);
+    Optional<UserEntity> findByIdentificationNumber(String identificationNumber) throws Exception;
+    List<UserEntity> findAllByIdentificationNumber(String identificationNumber);
     List<UserEntity> findAllByIsExternalUserTrue();
     List<UserEntity> findByIsExternalUserFalse();
     Optional<UserEntity> findByEmail(String email);

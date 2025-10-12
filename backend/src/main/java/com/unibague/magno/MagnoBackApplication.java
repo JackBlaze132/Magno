@@ -15,12 +15,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
 @SpringBootApplication
+@EnableScheduling
 @RequiredArgsConstructor
 public class MagnoBackApplication implements CommandLineRunner {
 

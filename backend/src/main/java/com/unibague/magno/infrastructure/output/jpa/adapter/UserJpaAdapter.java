@@ -5,7 +5,9 @@ import com.unibague.magno.domain.spi.IUserPersistencePort;
 import com.unibague.magno.infrastructure.output.jpa.entity.UserEntity;
 import com.unibague.magno.infrastructure.output.jpa.mapper.UserEntityMapper;
 import com.unibague.magno.infrastructure.output.jpa.repository.IUserRepository;
+import jakarta.persistence.NonUniqueResultException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -40,7 +42,17 @@ public class UserJpaAdapter implements IUserPersistencePort {
 
     @Override
     public Optional<User> findByUserIdentification(String identification) {
-        Optional<UserEntity> user = userRepository.findByIdentificationNumber(identification);
+        Optional<UserEntity> user = Optional.empty();
+        try {
+            user = userRepository.findByIdentificationNumber(identification);
+        } catch (Exception e) {
+            if (e instanceof IncorrectResultSizeDataAccessException || e instanceof NonUniqueResultException) {
+                return userRepository.findAllByIdentificationNumber(identification)
+                        .stream()
+                        .map(userEntityMapper::toUser)
+                        .findFirst();
+            }
+        }
         return user.map(userEntityMapper::toUser);
     }
 

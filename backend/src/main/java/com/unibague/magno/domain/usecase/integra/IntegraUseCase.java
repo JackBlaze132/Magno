@@ -4,6 +4,7 @@ import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.integra.IntegraAcademicProgramNotFoundException;
 import com.unibague.magno.domain.exception.integra.IntegraStudentNotFoundException;
 import com.unibague.magno.domain.exception.integra.IntegraUserNotFoundException;
+import com.unibague.magno.domain.model.enums.AcademicProgramType;
 import com.unibague.magno.domain.model.integra.IntegraAcademicProgram;
 import com.unibague.magno.domain.model.integra.IntegraDependency;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
@@ -141,6 +142,11 @@ public class IntegraUseCase implements IIntegraServicePort {
     }
 
     @Override
+    public Map<AcademicProgramType, List<IntegraAcademicProgram>> getAllAcademicProgramsMappedByType() {
+        return integraPersistencePort.getAllAcademicProgramsMappedByType();
+    }
+
+    @Override
     public IntegraDependency getIntegraDependencyByDependencyName(String dependencyName) {
         return integraPersistencePort.getIntegraDependencyByDependencyName(dependencyName);
     }
@@ -157,5 +163,10 @@ public class IntegraUseCase implements IIntegraServicePort {
         return integraPersistencePort.getIntegraStudentByEmail(email)
                 .orElseThrow(() -> new IntegraUserNotFoundException(
                         String.format("IntegraStudent with email %s not found", email)));
+    }
+
+    @Override
+    public List<IntegraStudent> getAllStudents() {
+        return integraPersistencePort.getAllStudents();
     }
 }

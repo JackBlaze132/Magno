@@ -1,10 +1,12 @@
 package com.unibague.magno.infrastructure.configuration;
 
 import com.unibague.magno.domain.api.*;
+import com.unibague.magno.domain.api.cronjobs.ICronJobServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.spi.*;
 import com.unibague.magno.domain.spi.integra.IIntegraPersistencePort;
 import com.unibague.magno.domain.usecase.*;
+import com.unibague.magno.domain.usecase.cronjobs.CronJobUseCase;
 import com.unibague.magno.domain.usecase.integra.IntegraUseCase;
 import com.unibague.magno.infrastructure.configuration.security.CustomOidcUserService;
 import com.unibague.magno.infrastructure.configuration.security.GoogleIdTokenAuthenticationFilter;
@@ -212,6 +214,14 @@ public class BeanConfiguration {
     @Bean
     public IIntegraServicePort integraServicePort() {
         return new IntegraUseCase(integraPersistencePort());
+    }
+
+    // CronJob Beans
+
+    @Bean
+    public ICronJobServicePort cronJobServicePort() {
+        return new CronJobUseCase(integraServicePort(), userServicePort(),
+                academicProgramServicePort(), dependencyServicePort());
     }
 
     // Security Beans
