@@ -1,6 +1,7 @@
-package com.unibague.magno.application.mapper.request;
+package com.unibague.magno.application.mapper.request.impl;
 
 import com.unibague.magno.application.dto.request.StudentProfileRequest;
+import com.unibague.magno.application.mapper.request.StudentProfileRequestMapper;
 import com.unibague.magno.domain.api.IAcademicProgramServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;

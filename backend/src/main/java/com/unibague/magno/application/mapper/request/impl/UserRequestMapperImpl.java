@@ -1,7 +1,8 @@
-package com.unibague.magno.application.mapper.request;
+package com.unibague.magno.application.mapper.request.impl;
 
 import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.application.dto.request.UserRequest;
+import com.unibague.magno.application.mapper.request.UserRequestMapper;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.exception.integra.IntegraInvalidTypeException;
 import com.unibague.magno.domain.model.User;

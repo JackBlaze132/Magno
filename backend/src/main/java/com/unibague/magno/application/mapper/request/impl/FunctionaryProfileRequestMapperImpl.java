@@ -1,6 +1,7 @@
-package com.unibague.magno.application.mapper.request;
+package com.unibague.magno.application.mapper.request.impl;
 
 import com.unibague.magno.application.dto.request.FunctionaryProfileRequest;
+import com.unibague.magno.application.mapper.request.FunctionaryProfileRequestMapper;
 import com.unibague.magno.domain.api.IDependencyServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
