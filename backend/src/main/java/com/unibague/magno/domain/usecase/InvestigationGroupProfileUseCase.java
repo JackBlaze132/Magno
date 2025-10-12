@@ -1,23 +1,36 @@
 package com.unibague.magno.domain.usecase;
 
+import com.unibague.magno.domain.api.IFunctionaryProfileServicePort;
 import com.unibague.magno.domain.api.IInvestigationGroupProfileServicePort;
+import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException;
+import com.unibague.magno.domain.model.FunctionaryProfile;
 import com.unibague.magno.domain.model.InvestigationGroupProfile;
 import com.unibague.magno.domain.model.excel.ExcelReport;
 import com.unibague.magno.domain.model.excel.metadata.ActiveSeedbedsMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupHYRMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupYRMetadata;
 import com.unibague.magno.domain.spi.IInvestigationGroupProfilePersistencePort;
+import com.unibague.magno.domain.usecase.helper.IInvestigationGroupProfileHelper;
 
 import java.util.List;
 
 public class InvestigationGroupProfileUseCase implements IInvestigationGroupProfileServicePort {
 
     private final IInvestigationGroupProfilePersistencePort investigationGroupProfilePersistencePort;
+    private final IUserServicePort userServicePort;
+    private final IFunctionaryProfileServicePort functionaryProfileServicePort;
+    private final IInvestigationGroupProfileHelper investigationGroupProfileHelper;
 
     public InvestigationGroupProfileUseCase
-            (IInvestigationGroupProfilePersistencePort investigationGroupProfilePersistencePort) {
+            (IInvestigationGroupProfilePersistencePort investigationGroupProfilePersistencePort,
+             IUserServicePort userServicePort,
+             IFunctionaryProfileServicePort functionaryProfileServicePort,
+             IInvestigationGroupProfileHelper investigationGroupProfileHelper) {
         this.investigationGroupProfilePersistencePort = investigationGroupProfilePersistencePort;
+        this.userServicePort = userServicePort;
+        this.functionaryProfileServicePort = functionaryProfileServicePort;
+        this.investigationGroupProfileHelper = investigationGroupProfileHelper;
     }
 
     @Override
@@ -30,7 +43,8 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
 
     @Override
     public InvestigationGroupProfile save(InvestigationGroupProfile investigationGroupProfile) {
-        return investigationGroupProfilePersistencePort.save(investigationGroupProfile);
+        InvestigationGroupProfile igp = investigationGroupProfileHelper.verifyUserHasFunctionaryProfile(investigationGroupProfile);
+        return investigationGroupProfilePersistencePort.save(igp);
     }
 
     @Override

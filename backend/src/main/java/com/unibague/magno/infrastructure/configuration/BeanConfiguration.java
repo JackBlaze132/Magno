@@ -7,6 +7,8 @@ import com.unibague.magno.domain.spi.*;
 import com.unibague.magno.domain.spi.integra.IIntegraPersistencePort;
 import com.unibague.magno.domain.usecase.*;
 import com.unibague.magno.domain.usecase.cronjobs.CronJobUseCase;
+import com.unibague.magno.domain.usecase.helper.IInvestigationGroupProfileHelper;
+import com.unibague.magno.domain.usecase.helper.InvestigationGroupProfileHelper;
 import com.unibague.magno.domain.usecase.integra.IntegraUseCase;
 import com.unibague.magno.infrastructure.configuration.security.CustomOidcUserService;
 import com.unibague.magno.infrastructure.configuration.security.GoogleIdTokenAuthenticationFilter;
@@ -140,7 +142,8 @@ public class BeanConfiguration {
 
     @Bean
     public IInvestigationGroupProfileServicePort investigationGroupProfileServicePort() {
-        return new InvestigationGroupProfileUseCase(investigationGroupProfilePersistencePort());
+        return new InvestigationGroupProfileUseCase(investigationGroupProfilePersistencePort(), userServicePort(),
+                functionaryProfileServicePort(), investigationGroupProfileHelper());
     }
 
     @Bean
@@ -214,6 +217,13 @@ public class BeanConfiguration {
     @Bean
     public IIntegraServicePort integraServicePort() {
         return new IntegraUseCase(integraPersistencePort());
+    }
+
+    // Helper Bean
+    @Bean
+    public IInvestigationGroupProfileHelper investigationGroupProfileHelper() {
+        return new InvestigationGroupProfileHelper(integraServicePort(), userServicePort(),
+                functionaryProfileServicePort(), dependencyServicePort(), roleServicePort());
     }
 
     // CronJob Beans
