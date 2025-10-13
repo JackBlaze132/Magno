@@ -26,6 +26,7 @@ import com.unibague.magno.domain.exception.studentprofile.StudentProfileAlreadyE
 import com.unibague.magno.domain.exception.studentprofile.StudentProfileNotFoundException;
 import com.unibague.magno.domain.exception.user.UserAlreadyExistsException;
 import com.unibague.magno.domain.exception.user.UserNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import com.unibague.magno.domain.model.ErrorResponse;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -395,6 +396,18 @@ public class ControllerAdvisor {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.FORBIDDEN_REQUEST.getCode());
         errorResponse.setMessage(ExceptionResponse.FORBIDDEN_REQUEST.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ErrorResponse handleSQLException(DataIntegrityViolationException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.SQL_EXCEPTION.getCode());
+        errorResponse.setMessage(ExceptionResponse.SQL_EXCEPTION.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;

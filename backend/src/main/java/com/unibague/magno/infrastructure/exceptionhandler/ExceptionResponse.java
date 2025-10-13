@@ -39,6 +39,7 @@ public enum ExceptionResponse {
     NULL_INTEGRA_RESPONSE("ERR_NULL_INTEGRA_RESPONSE_001", "Integra response was null."),
     UNSUPPORTED_PRINCIPAL("ERR_UNSUPPORTED_PRINCIPAL_001",  "Unsupported principal (authentication) type."),
     FORBIDDEN_REQUEST("ERR_FORBIDDEN_001", "You do not have permission to access this resource."),
+    SQL_EXCEPTION("ERR_SQL_001", "A database error occurred."),
     GENERIC_ERROR("ERR_GENERIC_001", "An unexpected error occurred.");
 
     private final String code;
