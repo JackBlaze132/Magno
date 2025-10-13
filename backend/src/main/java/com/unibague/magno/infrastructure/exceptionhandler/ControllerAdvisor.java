@@ -15,6 +15,7 @@ import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroup
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileDuplicatedInSameAcademicPeriodException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFoundException;
+import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileAlreadyExistsInInvestigationGroup;
 import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbedprofile.SameCoordinatorAndTutorException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ResearchSeedbedStudentProfileNotFoundException;
@@ -223,6 +224,18 @@ public class ControllerAdvisor {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_PROFILE_SAME_COORDINATOR_AND_TUTOR.getCode());
         errorResponse.setMessage(exception.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(ResearchSeedbedProfileAlreadyExistsInInvestigationGroup.class)
+    public ErrorResponse handleRSPAlreadyExistsInIg(ResearchSeedbedProfileAlreadyExistsInInvestigationGroup exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_PROFILE_ALREADY_EXISTS_IN_INVESTIGATION_GROUP.getCode());
+        errorResponse.setMessage(ExceptionResponse.RESEARCH_SEEDBED_PROFILE_ALREADY_EXISTS_IN_INVESTIGATION_GROUP.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;

@@ -22,6 +22,8 @@ public enum ExceptionResponse {
             "Research seedbed profile not found."),
     RESEARCH_SEEDBED_PROFILE_SAME_COORDINATOR_AND_TUTOR("ERR_RESEARCH_SEEDBED_PROFILE_002",
             "The coordinator and tutor cannot be the same person."),
+    RESEARCH_SEEDBED_PROFILE_ALREADY_EXISTS_IN_INVESTIGATION_GROUP("ERR_RESEARCH_SEEDBED_PROFILE_003",
+            "A research seedbed profile for the given research seedbed in the specified investigation group profile already exists."),
     RESEARCH_SEEDBED_STUDENT_PROFILE_NOT_FOUND("ERR_RESEARCH_SEEDBED_STUDENT_PROFILE_001",
             "Research seedbed student profile not found."),
     FUNCTIONARY_PROFILE_NOT_FOUND("ERR_FUNCTIONARY_PROFILE_001", "Functionary profile not found."),

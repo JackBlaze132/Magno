@@ -2,6 +2,7 @@ package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IResearchSeedbedProfileServicePort;
 import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFoundException;
+import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileAlreadyExistsInInvestigationGroup;
 import com.unibague.magno.domain.exception.researchseedbedprofile.SameCoordinatorAndTutorException;
 import com.unibague.magno.domain.model.ResearchSeedbedProfile;
 import com.unibague.magno.domain.model.excel.ExcelReport;
@@ -35,8 +36,22 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
         if (researchSeedbedProfile.getCoordinatorId().equals(researchSeedbedProfile.getTutorId())) {
             throw new SameCoordinatorAndTutorException("Coordinator and Tutor cannot be the same person.");
         }
+        verifyThatResearchSeedbedProfileDoesNotExist(researchSeedbedProfile);
         ResearchSeedbedProfile rsp = researchSeedbedProfileHelper.verifyUsersHasFunctionaryProfiles(researchSeedbedProfile);
         return researchSeedbedProfilePersistencePort.save(rsp);
+    }
+
+    private void verifyThatResearchSeedbedProfileDoesNotExist(ResearchSeedbedProfile researchSeedbedProfile) {
+        Long researchSeedbedId = researchSeedbedProfile.getResearchSeedbedId();
+        List<ResearchSeedbedProfile> existingProfiles = researchSeedbedProfilePersistencePort
+                        .findAllByInvestigationGroupProfileId(researchSeedbedProfile.getInvestigationGroupProfileId());
+        boolean exists = existingProfiles.stream()
+                .anyMatch(profile -> profile.getResearchSeedbedId().equals(researchSeedbedId));
+        if (exists) {
+            throw new ResearchSeedbedProfileAlreadyExistsInInvestigationGroup(
+                    String.format("A ResearchSeedbedProfile for ResearchSeedbed ID %d already exists", researchSeedbedId)
+            );
+        }
     }
 
     @Override
