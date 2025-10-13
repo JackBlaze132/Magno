@@ -12,6 +12,7 @@ import com.unibague.magno.domain.exception.functionaryprofile.FunctionaryProfile
 import com.unibague.magno.domain.exception.integra.IntegraUserNotFoundException;
 import com.unibague.magno.domain.exception.integra.NullIntegraResponseException;
 import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupNotFoundException;
+import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileDuplicatedInSameAcademicPeriodException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileNotFoundException;
@@ -176,6 +177,18 @@ public class ControllerAdvisor {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.INVESTIGATION_GROUP_PROFILE_NOT_FOUND.getCode());
         errorResponse.setMessage(exception.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(InvestigationGroupProfileDuplicatedInSameAcademicPeriodException.class)
+    public ErrorResponse handleUserNotFoundException(InvestigationGroupProfileDuplicatedInSameAcademicPeriodException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.INVESTIGATION_GROUP_PROFILE_DUPLICATED_IN_SAME_ACADEMIC_PERIOD.getCode());
+        errorResponse.setMessage(ExceptionResponse.INVESTIGATION_GROUP_PROFILE_DUPLICATED_IN_SAME_ACADEMIC_PERIOD.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;

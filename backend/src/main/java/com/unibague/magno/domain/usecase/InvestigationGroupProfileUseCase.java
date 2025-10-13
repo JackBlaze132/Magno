@@ -3,8 +3,8 @@ package com.unibague.magno.domain.usecase;
 import com.unibague.magno.domain.api.IFunctionaryProfileServicePort;
 import com.unibague.magno.domain.api.IInvestigationGroupProfileServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
+import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileDuplicatedInSameAcademicPeriodException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException;
-import com.unibague.magno.domain.model.FunctionaryProfile;
 import com.unibague.magno.domain.model.InvestigationGroupProfile;
 import com.unibague.magno.domain.model.excel.ExcelReport;
 import com.unibague.magno.domain.model.excel.metadata.ActiveSeedbedsMetadata;
@@ -43,8 +43,25 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
 
     @Override
     public InvestigationGroupProfile save(InvestigationGroupProfile investigationGroupProfile) {
-        InvestigationGroupProfile igp = investigationGroupProfileHelper.verifyUserHasFunctionaryProfile(investigationGroupProfile);
+        verifyThatInvestigationGroupProfileDoesNotExist(investigationGroupProfile.getAcademicPeriodId(),
+                investigationGroupProfile.getInvestigationGroupId());
+        InvestigationGroupProfile igp =
+                investigationGroupProfileHelper.verifyUserHasFunctionaryProfile(investigationGroupProfile);
         return investigationGroupProfilePersistencePort.save(igp);
+    }
+
+    private void verifyThatInvestigationGroupProfileDoesNotExist(Long academicPeriodId, Long investigationGroupId) {
+        List<InvestigationGroupProfile> existingProfiles =
+                investigationGroupProfilePersistencePort.findAllByAcademicPeriodId(academicPeriodId);
+        boolean exists = existingProfiles.stream()
+                .anyMatch(profile -> profile.getInvestigationGroupId().equals(investigationGroupId));
+        if (exists) {
+            throw new InvestigationGroupProfileDuplicatedInSameAcademicPeriodException(
+                    String.format("An InvestigationGroupProfile for InvestigationGroup ID %d in AcademicPeriod ID %d already exists",
+                            investigationGroupId, academicPeriodId)
+            );
+        }
+
     }
 
     @Override

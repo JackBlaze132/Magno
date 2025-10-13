@@ -18,6 +18,10 @@ public class InvestigationGroupProfileRequest {
     @Positive(message = "Field investigation_group_id must be positive")
     private Long investigationGroupId;
 
+    /**
+     * Although in the model this field refers to the id of a functionary_profile, when the request is made,
+     * it refers to the user_id for UX reasons. This will be handled in the service layer.
+     */
     @NotNull(message = "Field coordinator_id is required")
     @Positive(message = "Field coordinator_id must be positive")
     private Long coordinatorId;

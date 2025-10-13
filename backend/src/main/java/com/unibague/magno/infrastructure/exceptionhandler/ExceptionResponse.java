@@ -15,6 +15,8 @@ public enum ExceptionResponse {
     INVESTIGATION_GROUP_NOT_FOUND("ERR_INVESTIGATION_GROUP_001", "Investigation group not found."),
     INVESTIGATION_GROUP_PROFILE_NOT_FOUND("ERR_INVESTIGATION_GROUP_PROFILE_001",
             "Investigation group profile not found."),
+    INVESTIGATION_GROUP_PROFILE_DUPLICATED_IN_SAME_ACADEMIC_PERIOD("ERR_INVESTIGATION_GROUP_PROFILE_002",
+            "An investigation group profile for the given investigation group in the specified academic period already exists."),
     RESEARCH_SEEDBED_NOT_FOUND("ERR_RESEARCH_SEEDBED_001", "Research seedbed not found."),
     RESEARCH_SEEDBED_PROFILE_NOT_FOUND("ERR_RESEARCH_SEEDBED_PROFILE_001",
             "Research seedbed profile not found."),
