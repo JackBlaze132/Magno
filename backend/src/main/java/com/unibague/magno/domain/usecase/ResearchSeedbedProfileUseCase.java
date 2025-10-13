@@ -7,15 +7,19 @@ import com.unibague.magno.domain.model.ResearchSeedbedProfile;
 import com.unibague.magno.domain.model.excel.ExcelReport;
 import com.unibague.magno.domain.model.excel.metadata.SeedbedReportMetadata;
 import com.unibague.magno.domain.spi.IResearchSeedbedProfilePersistencePort;
+import com.unibague.magno.domain.usecase.helper.IResearchSeedbedProfileHelper;
 
 import java.util.List;
 
 public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileServicePort {
 
     private final IResearchSeedbedProfilePersistencePort researchSeedbedProfilePersistencePort;
+    private final IResearchSeedbedProfileHelper researchSeedbedProfileHelper;
 
-    public ResearchSeedbedProfileUseCase(IResearchSeedbedProfilePersistencePort researchSeedbedPersistencePort) {
+    public ResearchSeedbedProfileUseCase(IResearchSeedbedProfilePersistencePort researchSeedbedPersistencePort,
+                                         IResearchSeedbedProfileHelper researchSeedbedProfileHelper) {
         this.researchSeedbedProfilePersistencePort = researchSeedbedPersistencePort;
+        this.researchSeedbedProfileHelper = researchSeedbedProfileHelper;
     }
 
     @Override
@@ -31,7 +35,8 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
         if (researchSeedbedProfile.getCoordinatorId().equals(researchSeedbedProfile.getTutorId())) {
             throw new SameCoordinatorAndTutorException("Coordinator and Tutor cannot be the same person.");
         }
-        return researchSeedbedProfilePersistencePort.save(researchSeedbedProfile);
+        ResearchSeedbedProfile rsp = researchSeedbedProfileHelper.verifyUsersHasFunctionaryProfiles(researchSeedbedProfile);
+        return researchSeedbedProfilePersistencePort.save(rsp);
     }
 
     @Override

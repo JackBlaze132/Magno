@@ -8,7 +8,9 @@ import com.unibague.magno.domain.spi.integra.IIntegraPersistencePort;
 import com.unibague.magno.domain.usecase.*;
 import com.unibague.magno.domain.usecase.cronjobs.CronJobUseCase;
 import com.unibague.magno.domain.usecase.helper.IInvestigationGroupProfileHelper;
+import com.unibague.magno.domain.usecase.helper.IResearchSeedbedProfileHelper;
 import com.unibague.magno.domain.usecase.helper.InvestigationGroupProfileHelper;
+import com.unibague.magno.domain.usecase.helper.ResearchSeedbedProfileHelper;
 import com.unibague.magno.domain.usecase.integra.IntegraUseCase;
 import com.unibague.magno.infrastructure.configuration.security.CustomOidcUserService;
 import com.unibague.magno.infrastructure.configuration.security.GoogleIdTokenAuthenticationFilter;
@@ -164,7 +166,7 @@ public class BeanConfiguration {
 
     @Bean
     public IResearchSeedbedProfileServicePort researchSeedbedProfileServicePort() {
-        return new ResearchSeedbedProfileUseCase(researchSeedbedProfilePersistencePort());
+        return new ResearchSeedbedProfileUseCase(researchSeedbedProfilePersistencePort(), researchSeedbedProfileHelper());
     }
 
     @Bean
@@ -219,10 +221,17 @@ public class BeanConfiguration {
         return new IntegraUseCase(integraPersistencePort());
     }
 
-    // Helper Bean
+    // Helper Beans
+
     @Bean
     public IInvestigationGroupProfileHelper investigationGroupProfileHelper() {
         return new InvestigationGroupProfileHelper(integraServicePort(), userServicePort(),
+                functionaryProfileServicePort(), dependencyServicePort(), roleServicePort());
+    }
+
+    @Bean
+    public IResearchSeedbedProfileHelper researchSeedbedProfileHelper() {
+        return new ResearchSeedbedProfileHelper(integraServicePort(), userServicePort(),
                 functionaryProfileServicePort(), dependencyServicePort(), roleServicePort());
     }
 
