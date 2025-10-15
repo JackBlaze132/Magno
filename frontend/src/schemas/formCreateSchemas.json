@@ -38,7 +38,7 @@
   ],
   "internal_profile":[
     { "key": "academic_period_id", "label": "Periodo Académico", "type": "select", "options": []  },
-    { "key": "role_ids", "label": "Roles", "type": "multiple-select", "options": [] }
+    { "key": "role_id", "label": "Rol", "type": "select", "options": [] }
   ],
   "external_profile": [
     { "key": "academic_period_id", "label": "Periodo Académico", "type": "select", "options": [], "required": true },

@@ -30,10 +30,50 @@ class Formatter{
   public leaderFormatter(isLeader: boolean){
     return isLeader? '⭐' : '';
   }
+
+  public snakeCaseToTitleCase(text: string): string {
+    if (!text) return '';
+
+    return text
+      .toLowerCase()
+      .split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+
+  public snakeCaseToUpperCase(text: string): string {
+    if (!text) return '';
+
+    return text
+      .toUpperCase()
+      .split('_')
+      .join(' ');
+  }
+
+  public snakeCaseToNaturalTitleCase(text: string): string {
+    if (!text) return '';
+
+    // Words that should remain lowercase in natural title case
+    const lowercaseWords = new Set(['de', 'con', 'para', 'en', 'el', 'la', 'los', 'las', 'un', 'una', 'y', 'o', 'a', 'del', 'al']);
+
+    return text
+      .toLowerCase()
+      .split('_')
+      .map((word, index) => {
+        // Always capitalize the first word
+        if (index === 0) {
+          return word.charAt(0).toUpperCase() + word.slice(1);
+        }
+        // Keep certain words lowercase, capitalize others
+        if (lowercaseWords.has(word)) {
+          return word;
+        }
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      })
+      .join(' ');
+  }
 }
 
 export default Formatter.getInstance();
-
-
 
 

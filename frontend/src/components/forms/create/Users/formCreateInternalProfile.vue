@@ -14,6 +14,7 @@
 // ...existing code...
 import { defineComponent } from 'vue';
 import API from '@/utils/api';
+import Formatter from '@/utils/formatter';
 export default defineComponent({
   name: 'formCreateUser',
   props:{
@@ -74,9 +75,9 @@ export default defineComponent({
         const roles = await API.get(API.ROLES, headers);
         this.$emit('loaded');
         console.log("Hola obtuve los roles")
-        console.log(this.periods)
+        console.log(roles)
 
-        const rolesField = this.fields.find(f => f.key === 'role_ids')
+        const rolesField = this.fields.find(f => f.key === 'role_id')
         if (rolesField) {
           rolesField.options = roles.map((role: any) => ({
             label: role.name,

@@ -24,10 +24,10 @@
       <template v-slot:item.is_external_user="{item}">
         {{ externalFormatter(item.is_external_user)}}
       </template>
-      <template v-slot:item.role_ids="{item}">
+      <template v-slot:item.role.name="{item}">
         <VChipGroup column="false">
-          <VChip v-for="role in item.role_ids" :key="role.name" size="small" variant="outlined">
-            {{ role.name }}
+          <VChip size="small" variant="outlined">
+            {{ item.role.name }}
           </VChip>
         </VChipGroup disabled>
       </template>
@@ -57,9 +57,10 @@ interface Item {
   dependency: {
     name: string,
   },
-  role_ids: Array<{
+  role:{
+    id: number,
     name: string,
-  }>,
+  }
 }
 
 export default defineComponent({
@@ -73,11 +74,10 @@ export default defineComponent({
         {title: 'ID', key: 'id'},
         {title: 'Período académico', key: 'academic_period.name'},
         {title: 'Nombre', key: 'user.full_name'},
-        {title: 'Rol', key: 'role_ids'},
+        {title: 'Rol', key: 'role.name'},
         {title: 'Número de identificación', key: 'user.identification_number'},
         {title: 'Código de usuario', key: 'user.user_code'},
         {title: 'Correo electrónico', key: 'user.email'},
-
         {title: 'Dependencia', key: 'dependency.name'},
       ]
     }
