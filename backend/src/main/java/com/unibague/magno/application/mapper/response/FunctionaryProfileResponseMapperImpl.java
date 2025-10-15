@@ -1,9 +1,6 @@
 package com.unibague.magno.application.mapper.response;
 
-import com.unibague.magno.application.dto.response.AcademicPeriodResponse;
-import com.unibague.magno.application.dto.response.DependencyResponse;
-import com.unibague.magno.application.dto.response.FunctionaryProfileResponse;
-import com.unibague.magno.application.dto.response.UserResponse;
+import com.unibague.magno.application.dto.response.*;
 import com.unibague.magno.domain.api.IAcademicPeriodServicePort;
 import com.unibague.magno.domain.api.IDependencyServicePort;
 import com.unibague.magno.domain.api.IRoleServicePort;
@@ -47,12 +44,17 @@ public class FunctionaryProfileResponseMapperImpl implements FunctionaryProfileR
                 .toResponse(dependencyServicePort
                 .findById(dependencyId));
 
+        Long roleId = functionaryProfile.getRoleId();
+        RoleResponse roleResponse = roleResponseMapper
+                .toResponse(roleServicePort
+                .findById(roleId));
+
         return FunctionaryProfileResponse.builder()
                 .id(functionaryProfile.getId())
                 .user(userResponse)
                 .academicPeriod(academicPeriodResponse)
                 .dependency(dependencyResponse)
-                .roleId(functionaryProfile.getRoleId())
+                .role(roleResponse)
                 .build();
     }
 

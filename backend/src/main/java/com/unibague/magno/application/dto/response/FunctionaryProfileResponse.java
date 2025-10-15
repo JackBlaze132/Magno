@@ -16,5 +16,5 @@ public class FunctionaryProfileResponse {
     private UserResponse user;
     private AcademicPeriodResponse academicPeriod;
     private DependencyResponse dependency;
-    private Long roleId;
+    private RoleResponse role;
 }

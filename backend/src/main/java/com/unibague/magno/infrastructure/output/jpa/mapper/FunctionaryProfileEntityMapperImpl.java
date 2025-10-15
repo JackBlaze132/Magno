@@ -21,7 +21,7 @@ public class FunctionaryProfileEntityMapperImpl implements FunctionaryProfileEnt
         functionaryProfile.setUserId(functionaryProfileEntity.getUser().getId());
         functionaryProfile.setAcademicPeriodId(functionaryProfileEntity.getAcademicPeriod().getId());
         functionaryProfile.setDependencyId(functionaryProfileEntity.getDependency().getId());
-        functionaryProfile.setRoleId(functionaryProfile.getRoleId());
+        functionaryProfile.setRoleId(functionaryProfileEntity.getRole().getId());
 
         return functionaryProfile;
     }
