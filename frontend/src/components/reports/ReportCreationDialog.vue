@@ -41,7 +41,7 @@
             <VCol cols="12" md="6">
               <VSelect
                 v-model="reportData.periodType"
-                :items="availablePeriodTypes"
+                :items="periodTypes"
                 item-title="label"
                 item-value="value"
                 label="Tipo de Período"
@@ -60,12 +60,12 @@
             <VCol cols="12" md="6">
               <VSelect
                 v-model="reportData.academicPeriodId"
-                :items="filteredAcademicPeriods"
+                :items="filteredAcademicPeriods(reportData.academicPeriodId2)"
                 item-title="name"
                 item-value="id"
-                :label="reportData.periodType === 'annual' ? 'Período Académico Inicial' : 'Período Académico'"
+                :label="reportData.periodType === 'consolidate' ? 'Período Académico Inicial' : 'Período Académico'"
                 variant="outlined"
-                :rules="[(v: any) => !!v || (reportData.periodType === 'annual' ? 'Seleccione el período académico inicial' : 'Seleccione el período académico')]"
+                :rules="[(v: any) => !!v || (reportData.periodType === 'consolidate' ? 'Seleccione el período académico inicial' : 'Seleccione el período académico')]"
                 prepend-inner-icon="ri-calendar-start"
                 :loading="loadingPeriods"
                 :disabled="!reportData.periodType && reportData.reportType !== 'students-seedbeds'"
@@ -76,15 +76,15 @@
             <VCol cols="12" md="6">
               <VSelect
                 v-model="reportData.academicPeriodId2"
-                :items="filteredAcademicPeriods"
+                :items="filteredAcademicPeriods(reportData.academicPeriodId)"
                 item-title="name"
                 item-value="id"
-                :label="reportData.periodType === 'annual' ? 'Período Académico Final' : 'Período Académico'"
+                :label="reportData.periodType === 'consolidate' ? 'Período Académico Final' : 'Período Académico'"
                 variant="outlined"
-                :rules="reportData.periodType === 'annual' ? [(v: any) => !!v || 'Seleccione el período académico final'] : []"
+                :rules="reportData.periodType === 'consolidate' ? [(v: any) => !!v || 'Seleccione el período académico final'] : []"
                 prepend-inner-icon="ri-calendar-end"
                 :loading="loadingPeriods"
-                :disabled="!reportData.periodType || reportData.periodType !== 'annual'"
+                :disabled="!reportData.periodType || reportData.periodType !== 'consolidate'"
                 required
                 @update:model-value="onSecondAcademicPeriodChange"
               />
@@ -97,7 +97,7 @@
       <VcardItem class="pe-5 ps-5"><VDivider/></VcardItem>
 
       <VCardItem class="d-flex justify-end">
-        <LoadingBtn class="me-3"  text="Cancelar" :loading="loading" color="error" @click="closeDialog"/>
+        <LoadingBtn class="me-3"  text="Cancelar" color="error" @click="closeDialog"/>
         <LoadingBtn icon="ri-file-chart-line" text="Generar Informe" :loading="loading" color="primary" @click="createReport" />
       </VCardItem>
 
@@ -111,7 +111,7 @@ import API from '@/utils/api'
 
 interface ReportData {
   reportType: 'investigation-group' | 'students-seedbeds' | 'active-seedbeds' | null
-  periodType: 'single' | 'annual' | null
+  periodType: 'single' | 'consolidate' | null
   academicPeriodId: number | string | null
   academicPeriodId2?: number | string | null
 }
@@ -149,21 +149,19 @@ export default defineComponent({
 
       periodTypes: [
         { label: 'Periodo único', value: 'single' },
-        { label: 'Consolidado', value: 'annual' }
+        { label: 'Consolidado', value: 'consolidate' }
       ]
     }
   },
 
   computed: {
-    availablePeriodTypes() {
-      // All report types can be either single or annual now
-      return this.periodTypes
-    },
-
     filteredAcademicPeriods() {
-      // For both single and annual reports, show all individual academic periods
-      // Users can select any two periods for consolidated reports
-      return this.academicPeriods
+      return (excludeId: number | string | null = null) => {
+        if (this.reportData.periodType === 'consolidate' && excludeId) {
+          return this.academicPeriods.filter(period => period.id !== excludeId)
+        }
+        return this.academicPeriods
+      }
     }
   },
 
@@ -176,12 +174,6 @@ export default defineComponent({
         }
       },
       immediate: true
-    },
-
-    'reportData.academicPeriodId': {
-      handler() {
-        // No longer need to load targets since we removed target selection
-      }
     }
   },
 
@@ -243,9 +235,60 @@ export default defineComponent({
       this.reportData.academicPeriodId2 = value
     },
 
-    onAcademicPeriodChange(value: any) {
-      // Handle academic period selection changes (legacy method)
-      this.reportData.academicPeriodId = value
+    getEndpointAndParams() {
+      const endpoints = {
+        'investigation-group': {
+          single: API.SINGLE_PERIOD_REPORTS_INVESTIGATION_GROUPS,
+          consolidate: API.CONSOLIDATE_REPORTS_INVESTIGATION_GROUPS
+        },
+        'active-seedbeds': {
+          single: API.SINGLE_PERIOD_REPORTS_ACTIVE_RESEARCH_SEEDBEDS,
+          consolidate: API.CONSOLIDATE_REPORTS_ACTIVE_RESEARCH_SEEDBEDS
+        }
+      }
+
+      if (this.reportData.reportType === 'students-seedbeds') {
+        const rspId = this.reportData.academicPeriodId
+        return {
+          endpoint: API.ANUAL_REPORTS_RESEARCH_SEEDBEDS_STUDENTS,
+          params: `?rspId=${rspId}&apId=${this.reportData.academicPeriodId}`
+        }
+      }
+
+      const endpoint = endpoints[this.reportData.reportType as keyof typeof endpoints]?.[this.reportData.periodType as 'single' | 'consolidate']
+
+      if (!endpoint) return null
+
+      if (this.reportData.periodType === 'single') {
+        return { endpoint, params: `?apId=${this.reportData.academicPeriodId}` }
+      } else {
+        if (!this.reportData.academicPeriodId2) {
+          throw new Error('Debe seleccionar el período académico final para Informes consolidados')
+        }
+        return { endpoint, params: `?apId1=${this.reportData.academicPeriodId}&apId2=${this.reportData.academicPeriodId2}` }
+      }
+    },
+
+    generateFilename() {
+      const reportNames = {
+        'investigation-group': 'Informe_Grupos_Investigacion',
+        'students-seedbeds': 'Informe_Estudiantes_Semilleros',
+        'active-seedbeds': 'Informe_Semilleros_Activos'
+      }
+
+      const baseName = reportNames[this.reportData.reportType as keyof typeof reportNames]
+      let periodInfo = ''
+
+      if (this.reportData.periodType === 'consolidate') {
+        const period1 = this.academicPeriods.find(p => p.id === this.reportData.academicPeriodId)
+        const period2 = this.academicPeriods.find(p => p.id === this.reportData.academicPeriodId2)
+        periodInfo = `${period1?.name || ''}_${period2?.name || ''}`
+      } else {
+        const period = this.academicPeriods.find(p => p.id === this.reportData.academicPeriodId)
+        periodInfo = period?.name || ''
+      }
+
+      return `${baseName}_${periodInfo}.xlsx`
     },
 
     async createReport() {
@@ -259,47 +302,13 @@ export default defineComponent({
 
       this.loading = true
       try {
-
-        // Determine the correct endpoint and parameters based on report type and period type
-        let endpoint = ''
-        let params = ''
-
-        if (this.reportData.reportType === 'students-seedbeds') {
-          // Students in seedbeds uses rspId (research seedbed ID) and apId (academic period ID) parameters
-          endpoint = API.ANUAL_REPORTS_RESEARCH_SEEDBEDS_STUDENTS
-          // TODO: Determine what rspId should be - currently using academicPeriodId as placeholder
-          // rspId might be a research seedbed profile ID that needs to be selected or derived
-          const rspId = this.reportData.academicPeriodId // TODO: Replace with correct rspId source
-          params = `?rspId=${rspId}&apId=${this.reportData.academicPeriodId}`
-
-        } else if (this.reportData.periodType === 'single') {
-          // single reports use ?apId parameter
-          if (this.reportData.reportType === 'investigation-group') {
-            endpoint = API.SINGLE_PERIOD_REPORTS_INVESTIGATION_GROUPS
-          } else if (this.reportData.reportType === 'active-seedbeds') {
-            endpoint = API.SINGLE_PERIOD_REPORTS_ACTIVE_RESEARCH_SEEDBEDS
-          }
-          params = `?apId=${this.reportData.academicPeriodId}`
-
-        } else if (this.reportData.periodType === 'annual') {
-          // Annual reports use ?apId1 and ?apId2 parameters
-          if (this.reportData.reportType === 'investigation-group') {
-            endpoint = API.CONSOLIDATE_REPORTS_INVESTIGATION_GROUPS
-          } else if (this.reportData.reportType === 'active-seedbeds') {
-            endpoint = API.CONSOLIDATE_REPORTS_ACTIVE_RESEARCH_SEEDBEDS
-          }
-
-          // For consolidated reports, use the two separate academic period fields
-          if (!this.reportData.academicPeriodId2) {
-            throw new Error('Debe seleccionar el período académico final para Informes consolidados')
-          }
-
-          params = `?apId1=${this.reportData.academicPeriodId}&apId2=${this.reportData.academicPeriodId2}`
-        }
-
-        if (!endpoint) {
+        // Get endpoint and parameters using helper method
+        const endpointData = this.getEndpointAndParams()
+        if (!endpointData) {
           throw new Error('Tipo de Informe no válido')
         }
+
+        const { endpoint, params } = endpointData
          const headers = { 'API-VERSION': '1' }
         // Make the API call and handle blob response
         const fullEndpoint = `${endpoint}${params}`
@@ -313,17 +322,8 @@ export default defineComponent({
         const blob = await response.blob()
         const url = window.URL.createObjectURL(blob)
 
-        // Generate filename based on report type and period type
-        let filename = ''
-        const timestamp = new Date().toISOString().split('T')[0] // YYYY-MM-DD format
-
-        if (this.reportData.reportType === 'investigation-group') {
-          filename = `Informe_Grupos_Investigacion_${this.reportData.periodType === 'annual' ? 'Consolidado' : 'Periodo único'}_${timestamp}.xlsx`
-        } else if (this.reportData.reportType === 'students-seedbeds') {
-          filename = `Informe_Estudiantes_Semilleros_${this.reportData.periodType === 'annual' ? 'Consolidado' : 'Periodo único'}_${timestamp}.xlsx`
-        } else if (this.reportData.reportType === 'active-seedbeds') {
-          filename = `Informe_Semilleros_Activos_${this.reportData.periodType === 'annual' ? 'Consolidado' : 'Periodo único'}_${timestamp}.xlsx`
-        }
+        // Generate filename using helper method
+        const filename = this.generateFilename()
 
         // Create download link and trigger download
         const a = document.createElement('a')
