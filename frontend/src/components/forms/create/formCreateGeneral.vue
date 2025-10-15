@@ -106,7 +106,7 @@ export default defineComponent({
     };
   },
   methods: {
-    handleFieldChange(fieldKey, value) {
+    handleFieldChange(fieldKey: string | number, value: null) {
       this.formValues[fieldKey] = value;
 
       if (value === null) {
@@ -116,7 +116,7 @@ export default defineComponent({
       this.$emit('fieldChanged', fieldKey, value);
     },
 
-    clearField(fieldKey) {
+    clearField(fieldKey: string | number) {
       this.formValues[fieldKey] = null;
       this.componentKey++;
       this.$nextTick(() => {
