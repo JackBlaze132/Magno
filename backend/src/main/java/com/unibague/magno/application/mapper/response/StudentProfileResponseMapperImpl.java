@@ -53,7 +53,7 @@ public class StudentProfileResponseMapperImpl implements StudentProfileResponseM
                 .academicPeriod(academicPeriodResponse)
                 .semester(studentProfile.getSemester())
                 .academicPrograms(academicProgramResponses)
-                .roleId(roleResponseMapper.toResponse(roleServicePort.findById(studentProfile.getRoleId())))
+                .role(roleResponseMapper.toResponse(roleServicePort.findById(studentProfile.getRoleId())))
                 .build();
     }
 
