@@ -52,14 +52,14 @@ export default defineComponent({
         'API-VERSION': '1',
       };
       try {
-        const functionaries = await API.get(API.STUDENT_PROFILES_BY_ACADEMIC_PERIOD + this.$route.params.idPeriodo, headers);
+        const students = await API.get(API.USERS_STUDENTS, headers);
         this.$emit('loaded');
         console.log("Hola obtuve los funcionarios")
-        console.log(functionaries);
+        console.log(students);
 
         // Create the options list once
-        const functionaryOptions = functionaries.map((functionary: any) => ({
-          label: functionary.user.full_name,
+        const functionaryOptions = students.map((functionary: any) => ({
+          label: functionary.full_name,
           value: functionary.id,
         }));
 

@@ -21,7 +21,7 @@ export default defineComponent({
   components: {
     formCreateGeneral
   },
-  emits: ['loaded', 'itemCreated'],
+  emits: ['loaded', 'itemCreated', 'fieldChanged'],
   props: {
     name: { type: String },
     fields: {
@@ -95,7 +95,7 @@ export default defineComponent({
         this.enableField('research_group_profile_id');
 
         // Fetch groups for the selected period
-        await this.fetchExternalUsers(periodId);
+        await this.fetchGroupsByPeriod(periodId);
 
         // Reset dependent fields (seedbeds)
         this.resetDependentFields(['research_seedbed_profile_id']);
@@ -128,6 +128,15 @@ export default defineComponent({
       }
     },
 
+    disableField(fieldKey: string) {
+      const field = this.processedFields.find(f => f.key === fieldKey);
+      if (field) {
+        field.disabled = true;
+        this.formData[fieldKey] = null;
+        this.$forceUpdate();
+      }
+    },
+
     resetDependentFields(fieldKeys: string[]) {
       fieldKeys.forEach(key => {
         const field = this.processedFields.find(f => f.key === key);
@@ -143,9 +152,6 @@ export default defineComponent({
       fieldKeys.forEach(key => {
         this.formData[key] = null;
 
-        if (this.$refs.formComponent) {
-          this.$refs.formComponent.clearField(key);
-        }
       });
 
       this.$nextTick(() => {
@@ -241,23 +247,32 @@ export default defineComponent({
               label: group.full_name,
               value: group.id,
             }));
+            // Enable country and type fields when external users are available
+            this.enableField('country');
+            this.enableField('type_of_external_user');
           } else {
             userField.options = [{
-              label: 'No hay grupos disponibles para este período',
+              label: 'No hay aliados externos disponibles para este semillero',
               value: null,
               disabled: true
             }];
+            // Disable country and type fields when no external users are available
+            this.disableField('country');
+            this.disableField('type_of_external_user');
           }
         }
       } catch (error) {
         console.error('Error fetching groups:', error);
         if (userField) {
           userField.options = [{
-            label: 'No hay grupos para este período',
+            label: 'No hay aliados externos disponibles para este semillero',
             value: null,
             disabled: true
           }];
         }
+        // Disable country and type fields when there's an error
+        this.disableField('country');
+        this.disableField('type_of_external_user');
       }
     },
 
