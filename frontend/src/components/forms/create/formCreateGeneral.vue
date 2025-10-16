@@ -30,7 +30,7 @@
               :value="option.value"
             />
           </VRadioGroup>
-          <VSelect v-else-if="field.type === 'select'"
+          <VAutocomplete v-else-if="field.type === 'select'"
             :key="`${field.key}-${componentKey}`"
             v-model="formValues[field.key]"
             :items="field.options"

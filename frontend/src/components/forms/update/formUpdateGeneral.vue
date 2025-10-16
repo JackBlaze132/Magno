@@ -30,7 +30,7 @@
               :value="option.value"
             />
           </VRadioGroup>
-          <VSelect v-else-if="field.type === 'select'"
+          <VAutocomplete v-else-if="field.type === 'select'"
             v-model="formValues[field.key]"
             :items="field.options"
             item-title="label"
@@ -64,7 +64,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import API from "@/utils/api";
-import { VSelect } from 'vuetify/components';
+import { VAutocomplete, VSelect } from 'vuetify/components';
 
 export default defineComponent({
   name: 'formEditGeneral',
