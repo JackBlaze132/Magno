@@ -5,6 +5,7 @@ import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ResearchSeedbedStudentProfileNotFoundException;
 import com.unibague.magno.domain.model.*;
 import com.unibague.magno.domain.spi.IResearchSeedbedStudentProfilePersistencePort;
+import com.unibague.magno.domain.usecase.helper.IResearchSeedbedStudentProfileHelper;
 
 import java.util.*;
 
@@ -15,6 +16,7 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
     private final IIntegraServicePort integraServicePort;
     private final IStudentProfileServicePort studentProfileServicePort;
     private final IResearchSeedbedProfileServicePort researchSeedbedProfileServicePort;
+    private final IResearchSeedbedStudentProfileHelper researchSeedbedStudentProfileHelper;
 
     public static final String IDENTIFICATION = "identification";
 
@@ -23,12 +25,14 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
             IUserServicePort userServicePort,
             IIntegraServicePort integraServicePort,
             IStudentProfileServicePort studentProfileServicePort,
-            IResearchSeedbedProfileServicePort researchSeedbedProfileServicePort) {
+            IResearchSeedbedProfileServicePort researchSeedbedProfileServicePort,
+            IResearchSeedbedStudentProfileHelper researchSeedbedStudentProfileHelper) {
         this.researchSeedbedStudentProfilePersistencePort = researchSeedbedStudentProfilePersistencePort;
         this.userServicePort = userServicePort;
         this.integraServicePort = integraServicePort;
         this.studentProfileServicePort = studentProfileServicePort;
         this.researchSeedbedProfileServicePort = researchSeedbedProfileServicePort;
+        this.researchSeedbedStudentProfileHelper = researchSeedbedStudentProfileHelper;
     }
 
     @Override
@@ -40,7 +44,9 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
 
     @Override
     public ResearchSeedbedStudentProfile save(ResearchSeedbedStudentProfile researchSeedbedStudentProfile) {
-        return researchSeedbedStudentProfilePersistencePort.save(researchSeedbedStudentProfile);
+        ResearchSeedbedStudentProfile rssp = researchSeedbedStudentProfileHelper
+                .verifyStudentHasAProfile(researchSeedbedStudentProfile);
+        return researchSeedbedStudentProfilePersistencePort.save(rssp);
     }
 
     @Override

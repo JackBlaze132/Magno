@@ -18,6 +18,10 @@ public class ResearchSeedbedStudentProfileRequest {
     @Positive(message = "research_seedbed_profile_id must be positive")
     private Long researchSeedbedProfileId;
 
+    /**
+     * Although in the database this value refers to the student's profile ID
+     * in the request it refers to the student's user ID.
+     */
     @NotNull(message = "student_profile_id is required")
     @Positive(message = "student_profile_id must be positive")
     private Long studentProfileId;
