@@ -22,4 +22,5 @@ public interface IRoleRepository extends JpaRepository<RoleEntity, Long> {
     List<RoleEntity> findAllRolesByUserId(@Param("userId") Long userId);
 
     Optional<RoleEntity> findByName(SeedbedRole name);
+    boolean existsByName(SeedbedRole name);
 }

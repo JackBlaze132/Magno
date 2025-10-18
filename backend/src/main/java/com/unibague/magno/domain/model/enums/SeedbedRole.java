@@ -1,17 +1,19 @@
 package com.unibague.magno.domain.model.enums;
 
 public enum SeedbedRole {
-    ESTUDIANTE("Estudiante"),
-    ESTUDIANTE_LIDER("Estudiante lider"),
-    TUTOR_DE_SEMILLERO("Tutor de semillero"),
-    COORDINADOR_DE_SEMILLERO("Coordinador de semillero"),
-    COORDINADOR_DE_GRUPO_DE_INVESTIGACION("Coordinador de grupo de investigacion"),
-    DIRI("DIRI");
+    ESTUDIANTE("Estudiante", "Rol de estudiante"),
+    ESTUDIANTE_LIDER("Estudiante lider", "Rol de estudiante lider"),
+    TUTOR_DE_SEMILLERO("Tutor de semillero", "Rol de tutor de semillero"),
+    COORDINADOR_DE_SEMILLERO("Coordinador de semillero", "Rol de coordinador de semillero"),
+    COORDINADOR_DE_GRUPO_DE_INVESTIGACION("Coordinador de grupo de investigacion", "Rol de coordinador de grupo de investigacion"),
+    DIRI("DIRI", "Rol de los usuarios de la direccion de investigaciones"),;
 
     private final String formattedName;
+    private final String description;
 
-    SeedbedRole(String formattedName) {
+    SeedbedRole(String formattedName, String description) {
         this.formattedName = formattedName;
+        this.description = description;
     }
 
     public String getFormattedName() {
@@ -20,5 +22,9 @@ public enum SeedbedRole {
 
     public String getAuthority() {
         return "ROLE_" + this.name();
+    }
+
+    public String getDescription() {
+        return description;
     }
 }
