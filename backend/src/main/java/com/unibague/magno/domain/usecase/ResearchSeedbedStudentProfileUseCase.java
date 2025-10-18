@@ -2,6 +2,7 @@ package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.*;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
+import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ALeaderAlreadyExistsInSeedbedException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ResearchSeedbedStudentProfileNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.StudentProfileAlreadyExistsInSeedbedException;
 import com.unibague.magno.domain.model.*;
@@ -45,9 +46,15 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
 
     @Override
     public ResearchSeedbedStudentProfile save(ResearchSeedbedStudentProfile researchSeedbedStudentProfile) {
+
         ResearchSeedbedStudentProfile rssp = researchSeedbedStudentProfileHelper
                 .verifyStudentHasAProfile(researchSeedbedStudentProfile);
+
         verifyStudentProfileAlreadyExistsInSeedbed(rssp.getStudentProfileId(), rssp.getResearchSeedbedProfileId());
+
+        if (Boolean.TRUE.equals(rssp.getIsLeader())) {
+            verifyAlreadyExistsALeader(rssp.getResearchSeedbedProfileId());
+        }
         return researchSeedbedStudentProfilePersistencePort.save(rssp);
     }
 
@@ -58,6 +65,17 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
             throw new StudentProfileAlreadyExistsInSeedbedException(
                     String.format("StudentProfile with id %d is already associated with ResearchSeedbedProfile with id %d",
                             studentProfileId, researchSeedbedProfileId));
+        }
+    }
+
+    private void verifyAlreadyExistsALeader(Long researchSeedbedProfileId) {
+        List<ResearchSeedbedStudentProfile> leaders = researchSeedbedStudentProfilePersistencePort
+                .findAllByResearchSeedbedProfileId(researchSeedbedProfileId);
+        boolean hasLeader = leaders.stream().anyMatch(ResearchSeedbedStudentProfile::getIsLeader);
+        if (hasLeader) {
+            throw new ALeaderAlreadyExistsInSeedbedException(
+                    String.format("ResearchSeedbedProfile with id %d already has a leader assigned",
+                            researchSeedbedProfileId));
         }
     }
 

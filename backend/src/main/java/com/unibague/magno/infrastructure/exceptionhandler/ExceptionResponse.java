@@ -28,6 +28,8 @@ public enum ExceptionResponse {
             "Research seedbed student profile not found."),
     RESEARCH_SEEDBED_STUDENT_PROFILE_ALREADY_EXISTS("ERR_RESEARCH_SEEDBED_STUDENT_PROFILE_002",
             "The student profile is already associated with the research seedbed profile."),
+    RESEARCH_SEEDBED_STUDENT_PROFILE_LEADER_ALREADY_EXISTS("ERR_RESEARCH_SEEDBED_STUDENT_PROFILE_003",
+            "The research seedbed profile already has a leader assigned, unassign the current leader before assigning a new one."),
     FUNCTIONARY_PROFILE_NOT_FOUND("ERR_FUNCTIONARY_PROFILE_001", "Functionary profile not found."),
     FUNCTIONARY_PROFILE_ALREADY_EXISTS("ERR_FUNCTIONARY_PROFILE_002", "Functionary profile already exists."),
     STUDENT_PROFILE_NOT_FOUND("ERR_STUDENT_PROFILE_001", "Student profile not found."),

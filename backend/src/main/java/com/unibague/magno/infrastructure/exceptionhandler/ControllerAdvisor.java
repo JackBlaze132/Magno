@@ -18,6 +18,7 @@ import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFou
 import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileAlreadyExistsInInvestigationGroup;
 import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbedprofile.SameCoordinatorAndTutorException;
+import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ALeaderAlreadyExistsInSeedbedException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ResearchSeedbedStudentProfileNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.StudentProfileAlreadyExistsInSeedbedException;
 import com.unibague.magno.domain.exception.role.RoleNotFoundException;
@@ -281,6 +282,18 @@ public class ControllerAdvisor {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_ALREADY_EXISTS.getCode());
         errorResponse.setMessage(ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_ALREADY_EXISTS.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(ALeaderAlreadyExistsInSeedbedException.class)
+    public ErrorResponse handleLeaderAlreadyExistsInSeedbedException(ALeaderAlreadyExistsInSeedbedException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_LEADER_ALREADY_EXISTS.getCode());
+        errorResponse.setMessage(ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_LEADER_ALREADY_EXISTS.getMessage());
         errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
