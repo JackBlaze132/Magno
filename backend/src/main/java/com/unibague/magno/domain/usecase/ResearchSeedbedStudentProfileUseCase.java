@@ -3,6 +3,7 @@ package com.unibague.magno.domain.usecase;
 import com.unibague.magno.domain.api.*;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ResearchSeedbedStudentProfileNotFoundException;
+import com.unibague.magno.domain.exception.researchseedbedstudentprofile.StudentProfileAlreadyExistsInSeedbedException;
 import com.unibague.magno.domain.model.*;
 import com.unibague.magno.domain.spi.IResearchSeedbedStudentProfilePersistencePort;
 import com.unibague.magno.domain.usecase.helper.IResearchSeedbedStudentProfileHelper;
@@ -46,7 +47,18 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
     public ResearchSeedbedStudentProfile save(ResearchSeedbedStudentProfile researchSeedbedStudentProfile) {
         ResearchSeedbedStudentProfile rssp = researchSeedbedStudentProfileHelper
                 .verifyStudentHasAProfile(researchSeedbedStudentProfile);
+        verifyStudentProfileAlreadyExistsInSeedbed(rssp.getStudentProfileId(), rssp.getResearchSeedbedProfileId());
         return researchSeedbedStudentProfilePersistencePort.save(rssp);
+    }
+
+    private void verifyStudentProfileAlreadyExistsInSeedbed(Long studentProfileId, Long researchSeedbedProfileId) {
+        boolean exists = researchSeedbedStudentProfilePersistencePort
+                .existsByStudentProfileIdAndResearchSeedbedProfileId(studentProfileId, researchSeedbedProfileId);
+        if (exists) {
+            throw new StudentProfileAlreadyExistsInSeedbedException(
+                    String.format("StudentProfile with id %d is already associated with ResearchSeedbedProfile with id %d",
+                            studentProfileId, researchSeedbedProfileId));
+        }
     }
 
     @Override

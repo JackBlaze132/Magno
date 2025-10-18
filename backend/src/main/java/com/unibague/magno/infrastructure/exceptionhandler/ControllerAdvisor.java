@@ -19,6 +19,7 @@ import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbe
 import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbedprofile.SameCoordinatorAndTutorException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ResearchSeedbedStudentProfileNotFoundException;
+import com.unibague.magno.domain.exception.researchseedbedstudentprofile.StudentProfileAlreadyExistsInSeedbedException;
 import com.unibague.magno.domain.exception.role.RoleNotFoundException;
 import com.unibague.magno.domain.exception.security.InvalidEmailException;
 import com.unibague.magno.domain.exception.security.NullEmailException;
@@ -269,6 +270,18 @@ public class ControllerAdvisor {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_NOT_FOUND.getCode());
         errorResponse.setMessage(exception.getMessage());
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(StudentProfileAlreadyExistsInSeedbedException.class)
+    public ErrorResponse handleStudentProfileAlreadyExistsInSeedbedException(StudentProfileAlreadyExistsInSeedbedException exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_ALREADY_EXISTS.getCode());
+        errorResponse.setMessage(ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_ALREADY_EXISTS.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
