@@ -1,9 +1,6 @@
 package com.unibague.magno.application.mapper.response;
 
-import com.unibague.magno.application.dto.response.AcademicPeriodResponse;
-import com.unibague.magno.application.dto.response.AcademicProgramResponse;
-import com.unibague.magno.application.dto.response.StudentProfileResponse;
-import com.unibague.magno.application.dto.response.UserResponse;
+import com.unibague.magno.application.dto.response.*;
 import com.unibague.magno.domain.api.IAcademicPeriodServicePort;
 import com.unibague.magno.domain.api.IAcademicProgramServicePort;
 import com.unibague.magno.domain.api.IRoleServicePort;

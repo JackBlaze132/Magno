@@ -40,4 +40,8 @@ public class Role {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getFormattedName() {
+        return getName().getFormattedName();
+    }
 }

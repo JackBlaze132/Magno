@@ -12,6 +12,6 @@ import lombok.Setter;
 public class RoleResponse {
 
     private Long id;
-    private SeedbedRole name;
+    private String name;
     private String description;
 }
