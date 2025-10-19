@@ -56,7 +56,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleAcademicPeriodNotFoundException(AcademicPeriodNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ACADEMIC_PERIOD_NOT_FOUND.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ACADEMIC_PERIOD_NOT_FOUND.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -67,7 +68,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleRoleNotFoundException(RoleNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.ROLE_NOT_FOUND.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.ROLE_NOT_FOUND.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -78,7 +80,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleDependencyNotFoundException(DependencyNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.DEPENDENCY_NOT_FOUND.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.DEPENDENCY_NOT_FOUND.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -89,7 +92,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleDependencyNotFoundException(AcademicProgramNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.ACADEMIC_PROGRAM_NOT_FOUND.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.ACADEMIC_PROGRAM_NOT_FOUND.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -100,7 +104,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(UserNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.USER_NOT_FOUND.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.USER_NOT_FOUND.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -111,7 +116,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(UserAlreadyExistsException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.USER_ALREADY_EXISTS.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.USER_ALREADY_EXISTS.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -122,7 +128,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(InvestigationGroupNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.INVESTIGATION_GROUP_NOT_FOUND.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.INVESTIGATION_GROUP_NOT_FOUND.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -133,7 +140,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(FunctionaryProfileNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.FUNCTIONARY_PROFILE_NOT_FOUND.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.FUNCTIONARY_PROFILE_NOT_FOUND.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -144,7 +152,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(FunctionaryProfileAlreadyExistsException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.FUNCTIONARY_PROFILE_ALREADY_EXISTS.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.FUNCTIONARY_PROFILE_ALREADY_EXISTS.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -169,7 +178,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(IntegraUserNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.INTEGRA_API_ERROR.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.INTEGRA_API_ERROR.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -180,7 +190,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(InvestigationGroupProfileNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.INVESTIGATION_GROUP_PROFILE_NOT_FOUND.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.INVESTIGATION_GROUP_PROFILE_NOT_FOUND.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -203,7 +214,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(ResearchSeedbedNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_NOT_FOUND.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.RESEARCH_SEEDBED_NOT_FOUND.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -214,7 +226,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(ResearchSeedbedProfileNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_PROFILE_NOT_FOUND.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.RESEARCH_SEEDBED_PROFILE_NOT_FOUND.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -225,7 +238,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleSameCoordinatorAndTutorException(SameCoordinatorAndTutorException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_PROFILE_SAME_COORDINATOR_AND_TUTOR.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.RESEARCH_SEEDBED_PROFILE_SAME_COORDINATOR_AND_TUTOR.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -248,7 +262,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(StudentProfileNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.STUDENT_PROFILE_NOT_FOUND.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.STUDENT_PROFILE_NOT_FOUND.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -259,7 +274,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(StudentProfileAlreadyExistsException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.STUDENT_PROFILE_ALREADY_EXISTS.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.STUDENT_PROFILE_ALREADY_EXISTS.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -270,7 +286,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(ResearchSeedbedStudentProfileNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_NOT_FOUND.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_NOT_FOUND.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -305,7 +322,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(ExternalUserProfileNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.EXTERNAL_USER_PROFILE_NOT_FOUND.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.EXTERNAL_USER_PROFILE_NOT_FOUND.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -317,7 +335,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(EnumBadRequestException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.ENUM_BAD_REQUEST.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.ENUM_BAD_REQUEST.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -328,7 +347,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(UploadExcelException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.UPLOAD_EXCEL_ERROR.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.UPLOAD_EXCEL_ERROR.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -339,7 +359,7 @@ public class ControllerAdvisor {
     public ErrorResponse handleUserNotFoundException(UserIsNotExternalException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.USER_IS_NOT_EXTERNAL.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.USER_IS_NOT_EXTERNAL.getMessage());
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -391,6 +411,7 @@ public class ControllerAdvisor {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.NULL_EMAIL.getCode());
         errorResponse.setMessage(ExceptionResponse.NULL_EMAIL.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -402,6 +423,7 @@ public class ControllerAdvisor {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.INVALID_EMAIL.getCode());
         errorResponse.setMessage(ExceptionResponse.INVALID_EMAIL.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -412,7 +434,8 @@ public class ControllerAdvisor {
     public ErrorResponse handleNullIntegraResponseException(NullIntegraResponseException exception) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.NULL_INTEGRA_RESPONSE.getCode());
-        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setMessage(ExceptionResponse.NULL_INTEGRA_RESPONSE.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -424,6 +447,7 @@ public class ControllerAdvisor {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.UNSUPPORTED_PRINCIPAL.getCode());
         errorResponse.setMessage(ExceptionResponse.UNSUPPORTED_PRINCIPAL.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
@@ -435,6 +459,7 @@ public class ControllerAdvisor {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setCode(ExceptionResponse.FORBIDDEN_REQUEST.getCode());
         errorResponse.setMessage(ExceptionResponse.FORBIDDEN_REQUEST.getMessage());
+        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
         return errorResponse;
