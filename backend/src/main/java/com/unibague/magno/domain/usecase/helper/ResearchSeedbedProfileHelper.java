@@ -5,10 +5,7 @@ import com.unibague.magno.domain.api.IFunctionaryProfileServicePort;
 import com.unibague.magno.domain.api.IRoleServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
-import com.unibague.magno.domain.model.Dependency;
-import com.unibague.magno.domain.model.FunctionaryProfile;
-import com.unibague.magno.domain.model.ResearchSeedbedProfile;
-import com.unibague.magno.domain.model.User;
+import com.unibague.magno.domain.model.*;
 import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 
@@ -50,12 +47,26 @@ public class ResearchSeedbedProfileHelper implements IResearchSeedbedProfileHelp
         if (!coordinatorHasProfile) {
             createAndAssignProfile(rsp, coordinatorId, SeedbedRole.COORDINADOR_DE_SEMILLERO, true);
         }
+        else {
+            checkRoleForExistingProfile(coordinatorId, academicPeriodId);
+        }
 
         if (tutorId != null && !tutorHasProfile) {
             createAndAssignProfile(rsp, tutorId, SeedbedRole.TUTOR_DE_SEMILLERO, false);
         }
 
         return rsp;
+    }
+
+    private void checkRoleForExistingProfile(Long functionaryUserId, Long academicPeriodId) {
+        findProfileInAcademicPeriod(functionaryUserId, academicPeriodId)
+                .ifPresent(profile -> {
+                    Role role = roleServicePort.findByName(roleServicePort.findById(profile.getRoleId()).getName());
+                    if (role.getName().equals(SeedbedRole.TUTOR_DE_SEMILLERO)) {
+                        profile.setRoleId(roleServicePort.findByName(SeedbedRole.COORDINADOR_DE_SEMILLERO).getId());
+                        functionaryProfileServicePort.update(profile.getId(), profile);
+                    }
+                });
     }
 
     private void updateExistingProfileIds(ResearchSeedbedProfile rsp, Long coordinatorId,
@@ -106,5 +117,11 @@ public class ResearchSeedbedProfileHelper implements IResearchSeedbedProfileHelp
     private boolean hasProfileInAcademicPeriod(Long userId, Long academicPeriodId) {
         return functionaryProfileServicePort.findAllProfilesByUserId(userId).stream()
                 .anyMatch(profile -> profile.getAcademicPeriodId().equals(academicPeriodId));
+    }
+
+    private Optional<FunctionaryProfile> findProfileInAcademicPeriod(Long userId, Long academicPeriodId) {
+        return functionaryProfileServicePort.findAllProfilesByUserId(userId).stream()
+                .filter(profile -> profile.getAcademicPeriodId().equals(academicPeriodId))
+                .findFirst();
     }
 }
