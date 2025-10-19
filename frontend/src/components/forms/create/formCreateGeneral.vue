@@ -44,7 +44,7 @@
             :label="field.label"
             @update:model-value="handleFieldChange(field.key, $event)"
           />
-          <VSelect v-else-if="field.type === 'multiple-select'"
+          <VAutocomplete v-else-if="field.type === 'multiple-select'"
             multiple
             v-model="formValues[field.key]"
             :items="field.options"
@@ -78,6 +78,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import API from "@/utils/api";
+import { VAutocomplete } from 'vuetify/components';
 
 export default defineComponent({
   name: 'formEditGeneral',

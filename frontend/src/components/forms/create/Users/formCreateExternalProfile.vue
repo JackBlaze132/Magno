@@ -144,6 +144,8 @@ export default defineComponent({
           field.disabled = true;
           field.options = [];
           this.formData[key] = null;
+
+
         }
       });
     },
@@ -151,12 +153,15 @@ export default defineComponent({
     clearFieldValues(fieldKeys: string[]) {
       fieldKeys.forEach(key => {
         this.formData[key] = null;
-
       });
 
       this.$nextTick(() => {
         fieldKeys.forEach(key => {
           this.$emit('fieldChanged', key, null);
+          // Update the child component's formValues
+          if (this.$refs.formComponent) {
+            (this.$refs.formComponent as any).formValues[key] = null;
+          }
         });
       });
     },
