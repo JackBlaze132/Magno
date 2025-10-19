@@ -3,10 +3,10 @@ package com.unibague.magno.application.dto.request;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.unibague.magno.domain.model.enums.Sex;
+import com.unibague.magno.domain.model.enums.TypeOfInternalUser;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,5 +34,7 @@ public class UserRequest {
     private Boolean isExternalUser;
 
     @NotNull(message = "Field 'sex' is required")
-    Sex sex;
+    private Sex sex;
+
+    private TypeOfInternalUser typeOfInternalUser;
 }

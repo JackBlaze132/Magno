@@ -10,6 +10,7 @@ import com.unibague.magno.domain.exception.user.UserNotFoundException;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.enums.JSONIntegraType;
 import com.unibague.magno.domain.model.enums.Sex;
+import com.unibague.magno.domain.model.enums.TypeOfInternalUser;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 import com.unibague.magno.domain.spi.IUserPersistencePort;
@@ -105,18 +106,12 @@ public class UserUseCase implements IUserServicePort {
 
     @Override
     public List<User> findAllFunctionariesRegistered() {
-        return findAll()
-                .stream()
-                .filter(user -> user.getEmail() != null && user.getEmail().endsWith("@unibague.edu.co"))
-                .toList();
+        return userPersistencePort.findAllFunctionaries();
     }
 
     @Override
     public List<User> findAllStudentsRegistered() {
-        return findAll()
-                .stream()
-                .filter(user -> user.getEmail() != null && user.getEmail().endsWith("@estudiantesunibague.edu.co"))
-                .toList();
+        return userPersistencePort.findAllStudents();
     }
 
     @Override
@@ -133,6 +128,7 @@ public class UserUseCase implements IUserServicePort {
         user.setUserCode(integraStudent.getCodeStudent());
         user.setExternalUser(false);
         user.setSex(integraStudent.getSexo().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO);
+        user.setTypeOfInternalUser(TypeOfInternalUser.ESTUDIANTE);
         return user;
     }
 
@@ -145,6 +141,7 @@ public class UserUseCase implements IUserServicePort {
         user.setUserCode(integraFunctionary.getCodeUser());
         user.setExternalUser(false);
         user.setSex(integraFunctionary.getSex().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO);
+        user.setTypeOfInternalUser(TypeOfInternalUser.FUNCIONARIO);
         return user;
     }
 
@@ -177,6 +174,7 @@ public class UserUseCase implements IUserServicePort {
 
         Sex sex = integraFunctionary.getSex().equalsIgnoreCase("M") ? Sex.MASCULINO : Sex.FEMENINO;
         user.setSex(sex);
+        user.setTypeOfInternalUser(TypeOfInternalUser.FUNCIONARIO);
         return user;
     }
 

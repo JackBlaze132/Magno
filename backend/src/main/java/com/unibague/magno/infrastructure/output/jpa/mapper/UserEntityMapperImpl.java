@@ -23,6 +23,7 @@ public class UserEntityMapperImpl implements UserEntityMapper {
         user.setUserCode(userEntity.getUserCode());
         user.setExternalUser(userEntity.isExternalUser());
         user.setSex(userEntity.getSex());
+        user.setTypeOfInternalUser(userEntity.getTypeOfInternalUser());
 
         return user;
     }
@@ -42,6 +43,7 @@ public class UserEntityMapperImpl implements UserEntityMapper {
         userEntity.setUserCode(user.getUserCode());
         userEntity.setExternalUser(user.isExternalUser());
         userEntity.setSex(user.getSex());
+        userEntity.setTypeOfInternalUser(user.getTypeOfInternalUser());
 
         userEntity.setId(id);
 
@@ -63,6 +65,7 @@ public class UserEntityMapperImpl implements UserEntityMapper {
         userEntity.setUserCode(user.getUserCode());
         userEntity.setExternalUser(user.isExternalUser());
         userEntity.setSex(user.getSex());
+        userEntity.setTypeOfInternalUser(user.getTypeOfInternalUser());
 
         return userEntity;
     }

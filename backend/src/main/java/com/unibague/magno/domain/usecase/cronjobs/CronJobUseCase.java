@@ -10,12 +10,12 @@ import com.unibague.magno.domain.model.Dependency;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.enums.AcademicProgramType;
 import com.unibague.magno.domain.model.enums.Sex;
+import com.unibague.magno.domain.model.enums.TypeOfInternalUser;
 import com.unibague.magno.domain.model.integra.IntegraAcademicProgram;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class CronJobUseCase implements ICronJobServicePort {
@@ -142,56 +142,76 @@ public class CronJobUseCase implements ICronJobServicePort {
         }
 
         // ---------------------------------------------------------------------------------------
-        // Users
+        // Users - Functionaries
         // ---------------------------------------------------------------------------------------
 
-        Map<String, User> integraUsersMap = new HashMap<>();
+        // Create map for existing user emails
+        Set<String> existingUserEmails = currentUsers.stream()
+                .map(User::getEmail)
+                .collect(Collectors.toSet());
 
-        // From Integra Students → Users
-        for (IntegraStudent student : integraStudents) {
-            if (student.getEmail() != null && !student.getEmail().isBlank()) {
-                String userEmail = student.getEmail().trim();
+        // Process Functionaries
+        Map<String, User> integraFunctionariesUsersMap = new HashMap<>();
 
-                integraUsersMap.putIfAbsent(userEmail, new User(
-                        null,
-                        student.getName() != null ? student.getName().trim() : null,
-                        student.getIdentification() != null ? student.getIdentification().trim() : null,
-                        userEmail,
-                        student.getCodeStudent() != null ? student.getCodeStudent().trim() : null,
-                        false,
-                        parseSex(student.getSexo())
-                ));
-            }
-        }
-
-        // From Integra Functionaries → Users
         for (IntegraFunctionary functionary : integraFunctionaries) {
             if (functionary.getEmail() != null && !functionary.getEmail().isBlank()) {
                 String userEmail = functionary.getEmail().trim();
 
-                integraUsersMap.putIfAbsent(userEmail, new User(
+                integraFunctionariesUsersMap.putIfAbsent(userEmail, new User(
                         null,
                         functionary.getFullName() != null ? functionary.getFullName().trim() : null,
                         functionary.getIdentification() != null ? functionary.getIdentification().trim() : null,
                         userEmail,
                         functionary.getCodeUser() != null ? functionary.getCodeUser().trim() : null,
                         false,
-                        parseSex(functionary.getSex())
+                        parseSex(functionary.getSex()),
+                        TypeOfInternalUser.FUNCIONARIO
                 ));
             }
         }
 
-        // Add new users that don't exist in the system (by email)
-        Set<String> existingUserEmails = currentUsers.stream()
-                .map(User::getEmail)
-                .collect(Collectors.toSet());
-
-        List<User> newUsers = integraUsersMap.values().stream()
+        // Add new functionaries that don't exist in the system (by email)
+        List<User> newFunctionaries = integraFunctionariesUsersMap.values().stream()
                 .filter(u -> !existingUserEmails.contains(u.getEmail()))
                 .toList();
 
-        for (User user : newUsers) {
-            userServicePort.save(user);
+        for (User functionary : newFunctionaries) {
+            userServicePort.save(functionary);
+            // Update the set with newly added emails
+            existingUserEmails.add(functionary.getEmail());
+        }
+
+        // ---------------------------------------------------------------------------------------
+        // Users - Students
+        // ---------------------------------------------------------------------------------------
+
+        // Process Students
+        Map<String, User> integraStudentsUsersMap = new HashMap<>();
+
+        for (IntegraStudent student : integraStudents) {
+            if (student.getEmail() != null && !student.getEmail().isBlank()) {
+                String userEmail = student.getEmail().trim();
+
+                integraStudentsUsersMap.putIfAbsent(userEmail, new User(
+                        null,
+                        student.getName() != null ? student.getName().trim() : null,
+                        student.getIdentification() != null ? student.getIdentification().trim() : null,
+                        userEmail,
+                        student.getCodeStudent() != null ? student.getCodeStudent().trim() : null,
+                        false,
+                        parseSex(student.getSexo()),
+                        TypeOfInternalUser.ESTUDIANTE
+                ));
+            }
+        }
+
+        // Add new students that don't exist in the system (by email)
+        List<User> newStudents = integraStudentsUsersMap.values().stream()
+                .filter(u -> !existingUserEmails.contains(u.getEmail()))
+                .toList();
+
+        for (User student : newStudents) {
+            userServicePort.save(student);
         }
     }
 

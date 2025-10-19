@@ -1,6 +1,7 @@
 package com.unibague.magno.domain.model;
 
 import com.unibague.magno.domain.model.enums.Sex;
+import com.unibague.magno.domain.model.enums.TypeOfInternalUser;
 
 import java.util.Set;
 
@@ -13,9 +14,10 @@ public class User {
     private String userCode;
     private boolean isExternalUser;
     private Sex sex;
+    private TypeOfInternalUser typeOfInternalUser;
 
     public User(Long id, String fullName, String identificationNumber, String email,
-                String userCode, boolean isExternalUser, Sex sex) {
+                String userCode, boolean isExternalUser, Sex sex, TypeOfInternalUser typeOfInternalUser) {
         this.id = id;
         this.fullName = fullName;
         this.identificationNumber = identificationNumber;
@@ -23,6 +25,7 @@ public class User {
         this.userCode = userCode;
         this.isExternalUser = isExternalUser;
         this.sex = sex;
+        this.typeOfInternalUser = typeOfInternalUser;
     }
 
     public User() {
@@ -82,5 +85,13 @@ public class User {
 
     public void setSex(Sex sex) {
         this.sex = sex;
+    }
+
+    public TypeOfInternalUser getTypeOfInternalUser() {
+        return typeOfInternalUser;
+    }
+
+    public void setTypeOfInternalUser(TypeOfInternalUser typeOfInternalUser) {
+        this.typeOfInternalUser = typeOfInternalUser;
     }
 }

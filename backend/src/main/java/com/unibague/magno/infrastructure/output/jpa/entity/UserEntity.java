@@ -1,6 +1,7 @@
 package com.unibague.magno.infrastructure.output.jpa.entity;
 
 import com.unibague.magno.domain.model.enums.Sex;
+import com.unibague.magno.domain.model.enums.TypeOfInternalUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,6 +43,10 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "sex", nullable = false)
     private Sex sex;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_of_internal_user", nullable = true)
+    private TypeOfInternalUser typeOfInternalUser;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     Set<FunctionaryProfileEntity> functionaryProfiles;

@@ -5,7 +5,6 @@ import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.domain.model.enums.AcademicProgramType;
 import com.unibague.magno.domain.model.enums.JSONIntegraType;
 import com.unibague.magno.domain.model.enums.LineOfResearch;
-import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.domain.model.integra.IntegraAcademicProgram;
 import com.unibague.magno.infrastructure.input.rest.*;
 import com.unibague.magno.infrastructure.output.jpa.adapter.integra.IntegraUserClient;
@@ -51,7 +50,6 @@ public class MagnoBackApplication implements CommandLineRunner {
         createInvestigationGroups();
         createResearchSeedbeds();
         createAllUsers();
-        createRoles();
         createAllAcademicPrograms();
         createAllProfiles();
         createInvestigationGroupProfiles();
@@ -267,45 +265,6 @@ public class MagnoBackApplication implements CommandLineRunner {
                 functionaryProfileRestController.createFunctionaryProfile(fp);
             }
         });
-    }
-
-    private void createRoles() {
-        RoleEntity estudianteRole = RoleEntity.builder()
-                .name(SeedbedRole.ESTUDIANTE)
-                .description("Rol para estudiantes participantes en los semilleros.")
-                .build();
-
-        RoleEntity estudianteLiderRole = RoleEntity.builder()
-                .name(SeedbedRole.ESTUDIANTE_LIDER)
-                .description("Rol para estudiantes líderes que coordinan actividades del semillero.")
-                .build();
-
-        RoleEntity tutorSemilleroRole = RoleEntity.builder()
-                .name(SeedbedRole.TUTOR_DE_SEMILLERO)
-                .description("Rol para tutores encargados de guiar a los semilleros.")
-                .build();
-
-        RoleEntity coordinadorSemilleroRole = RoleEntity.builder()
-                .name(SeedbedRole.COORDINADOR_DE_SEMILLERO)
-                .description("Rol para coordinadores responsables de la gestión de un semillero.")
-                .build();
-
-        RoleEntity coordinadorGrupoRole = RoleEntity.builder()
-                .name(SeedbedRole.COORDINADOR_DE_GRUPO_DE_INVESTIGACION)
-                .description("Rol para coordinadores de grupos de investigación.")
-                .build();
-
-        RoleEntity diriRole = RoleEntity.builder()
-                .name(SeedbedRole.DIRI)
-                .description("Rol con todos los permisos dentro del sistema.")
-                .build();
-
-        roleRepository.save(estudianteRole);
-        roleRepository.save(estudianteLiderRole);
-        roleRepository.save(tutorSemilleroRole);
-        roleRepository.save(coordinadorSemilleroRole);
-        roleRepository.save(coordinadorGrupoRole);
-        roleRepository.save(diriRole);
     }
 
     private void createAllUsers() {
