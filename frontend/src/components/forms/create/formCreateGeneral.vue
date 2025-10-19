@@ -101,11 +101,22 @@ export default defineComponent({
   data() {
     return {
       loading: false,
-      formValues: {...this.fields, ...this.additionalData},
+      formValues: this.initializeFormValues(),
       componentKey: 0,
     };
   },
   methods: {
+    initializeFormValues() {
+      const values: Record<string, any> = { ...this.additionalData };
+      if (Array.isArray(this.fields)) {
+        this.fields.forEach(field => {
+          if (values[field.key] === undefined) {
+            values[field.key] = field.type === 'checkbox' ? false : null;
+          }
+        });
+      }
+      return values;
+    },
     handleFieldChange(fieldKey: string | number, value: null) {
       this.formValues[fieldKey] = value;
 
