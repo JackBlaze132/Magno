@@ -45,6 +45,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.ResourceAccessException;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -228,6 +229,22 @@ public class ControllerAdvisor {
         
         logError(exception, code, message, request);
         
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(ResourceAccessException.class)
+    public ErrorResponse handleUserNotFoundException(ResourceAccessException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.INTEGRA_VPN_ACCESS_ERROR.getCode();
+        String message = ExceptionResponse.INTEGRA_VPN_ACCESS_ERROR.getMessage();
+        List<String> details = Collections
+                .singletonList("Possible reasons: Incorrect path in environment variables or VPN access required.");
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message, details);
+
+        logError(exception, code, message, request);
+
         return errorResponse;
     }
 

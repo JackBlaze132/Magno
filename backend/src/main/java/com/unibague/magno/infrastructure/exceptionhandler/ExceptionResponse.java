@@ -39,6 +39,8 @@ public enum ExceptionResponse {
     INVALID_SEEDBED_ROLE("ERR_ENUM_002", "Invalid SeedbedRole value."),
     INTEGRA_API_ERROR("ERR_INTEGRA_API_001", "An error occurred while trying to connect to the " +
             "Integra API."),
+    INTEGRA_VPN_ACCESS_ERROR("ERR_INTEGRA_API_002", "An error occurred while trying to connect to the " +
+            "Integra API."),
     UPLOAD_EXCEL_ERROR("ERR_UPLOAD_EXCEL_001", "An error occurred while trying to upload the Excel file."),
     NULL_EMAIL("ERR_NULL_EMAIL_001", "Email cannot be null."),
     INVALID_EMAIL("ERR_INVALID_EMAIL_001", "The provided email is invalid, it must be a valid Unibague email."),
