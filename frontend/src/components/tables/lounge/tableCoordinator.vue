@@ -90,7 +90,7 @@ export default defineComponent({
     setInitialData(item: any) {
       return {
         research_seedbed_id: item.research_seedbed.id,
-        coordinator_id: item.coordinator.id,
+        coordinator_id: item.coordinator.user.id,
         tutor_id: item.tutor?.id || null,
         academic_period_id: this.$route.params.idPeriodo,
         investigation_group_profile_id: this.$route.params.idGrupo,

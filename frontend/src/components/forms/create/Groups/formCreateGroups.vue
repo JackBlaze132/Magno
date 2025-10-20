@@ -16,7 +16,7 @@ import API from "@/utils/api";
 
 export default defineComponent({
   name: 'formCreateGroup',
-  emits: ['itemEdited'],
+  emits: ['itemEdited', 'loaded'],
   data() {
     return {
       loaded: false,
@@ -69,8 +69,7 @@ export default defineComponent({
         // Locate the field that needs these options
         const linesField = this.fields.find(f => f.key === 'lines_of_research')
         if (linesField) {
-          linesField.options = linesField.options || []
-          linesField.options = [...linesField.options, ...transformedOptions as { label: string; value: string; }[]];
+          linesField.options = transformedOptions as { label: string; value: string; }[];
           console.log('Updated lines_of_research options:', linesField.options)
         }
       } catch (error) {

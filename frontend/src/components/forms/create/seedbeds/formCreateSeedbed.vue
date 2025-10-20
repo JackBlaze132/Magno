@@ -66,8 +66,7 @@ export default defineComponent({
         // Locate the field that needs these options
         const linesField = this.fields.find(f => f.key === 'line_of_research')
         if (linesField) {
-          linesField.options = linesField.options || []
-          linesField.options = [...linesField.options, ...transformedOptions as { label: string; value: string; }[]];
+          linesField.options = transformedOptions as { label: string; value: string; }[];
         }
       } catch (error) {
         console.error('Error fetching map data:', error)
