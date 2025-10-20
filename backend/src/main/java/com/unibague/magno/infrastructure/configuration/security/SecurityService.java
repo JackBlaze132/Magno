@@ -14,16 +14,20 @@ public class SecurityService {
 
         Object principal = authentication.getPrincipal();
 
-        if (principal instanceof DefaultOidcUser oidcUser) {
+        if (principal instanceof CustomOidcUserWithUserId customUser) {
+            DefaultOidcUser oidcUser = (DefaultOidcUser) customUser.getDelegate();
             return GoogleInfoResponse.builder()
+                    .userId(customUser.getUserId())
                     .name(oidcUser.getAttribute("name"))
                     .email(oidcUser.getAttribute("email"))
                     .picture(oidcUser.getAttribute("picture"))
                     .build();
         }
 
-        if (principal instanceof GoogleIdToken.Payload payload) {
+        if (principal instanceof CustomPrincipalWithUserId customPrincipal) {
+            GoogleIdToken.Payload payload = customPrincipal.getPayload();
             return GoogleInfoResponse.builder()
+                    .userId(customPrincipal.getUserId())
                     .name((String) payload.get("name"))
                     .email(payload.getEmail())
                     .picture((String) payload.get("picture"))

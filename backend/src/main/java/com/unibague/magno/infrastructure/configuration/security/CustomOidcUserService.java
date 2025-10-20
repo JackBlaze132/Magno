@@ -47,7 +47,10 @@ public class CustomOidcUserService extends OidcUserService {
                 .map(role -> (GrantedAuthority) new SimpleGrantedAuthority(role.getName().getAuthority()))
                 .toList();
 
-        return new DefaultOidcUser(authorities, user.getIdToken(), user.getUserInfo());
+        DefaultOidcUser oidcUser = new DefaultOidcUser(authorities, user.getIdToken(), user.getUserInfo());
+
+        // Return a custom OidcUser that includes the application's user ID
+        return new CustomOidcUserWithUserId(oidcUser, existingUser.getId());
     }
 
     private User getUserByEmail(String email) {

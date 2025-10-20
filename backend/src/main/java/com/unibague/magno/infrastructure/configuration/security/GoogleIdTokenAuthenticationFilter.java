@@ -63,7 +63,9 @@ public class GoogleIdTokenAuthenticationFilter extends OncePerRequestFilter {
                             .map(role -> (GrantedAuthority) new SimpleGrantedAuthority(role.getName().getAuthority()))
                             .toList();
 
-                    Authentication auth = new UsernamePasswordAuthenticationToken(payload, null, authorities);
+                    // Create a custom principal that includes the application's user ID
+                    CustomPrincipalWithUserId principal = new CustomPrincipalWithUserId(payload, user.getId());
+                    Authentication auth = new UsernamePasswordAuthenticationToken(principal, null, authorities);
                     SecurityContextHolder.getContext().setAuthentication(auth);
                 }
             } catch (Exception e) {
