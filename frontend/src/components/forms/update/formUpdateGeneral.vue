@@ -65,10 +65,15 @@
 import { defineComponent } from 'vue'
 import API from "@/utils/api";
 import { VAutocomplete, VSelect } from 'vuetify/components';
+import { useFeedbackToast } from '@/utils/useFeedbackToast';
 
 export default defineComponent({
   name: 'formEditGeneral',
   emits: ['itemEdited', 'loaded'],
+  setup() {
+    const { showError, showSuccess } = useFeedbackToast()
+    return { showError, showSuccess }
+  },
   props: {
     type: {
       type: String,
@@ -133,10 +138,12 @@ export default defineComponent({
           }, headers);
         }
         if (!response.error) {
+          this.showSuccess('Elemento actualizado exitosamente');
           this.$emit('itemEdited', this.index, this.formValues.name);
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error al editar", error);
+        this.showError(error.response?.data);
       } finally {
         this.loading = false;
       }

@@ -1,10 +1,7 @@
-<script setup lang="ts">
-  //
-</script>
-
 <template>
   <VApp>
-      <RouterView/>
+    <FeedbackToast/>
+    <RouterView/>
   </VApp>
 </template>
 

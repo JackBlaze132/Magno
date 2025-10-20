@@ -12,6 +12,8 @@ declare module 'vue' {
     Blank: typeof import('./src/layouts/blank.vue')['default']
     Default: typeof import('./src/layouts/default.vue')['default']
     DragDropUpload: typeof import('./src/components/forms/upload/fields/DragDropUpload.vue')['default']
+    ErrorToast: typeof import('./src/components/ErrorToast.vue')['default']
+    FeedbackToast: typeof import('./src/components/feedbackToast.vue')['default']
     FileInputUpload: typeof import('./src/components/forms/upload/fields/FileInputUpload.vue')['default']
     FormAddFunctionary: typeof import('./src/components/forms/create/formAddFunctionary.vue')['default']
     FormAddSeedbed: typeof import('./src/components/forms/create/formAddSeedbed.vue')['default']

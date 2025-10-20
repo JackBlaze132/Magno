@@ -24,7 +24,7 @@
         :prepend-icon="getFileIcon(file)"
         :color="getFileColor(file)"
         variant="tonal"
-        closable
+
         @click:close="removeFile(chipIndex)"
       >
         {{ file.name }}
@@ -199,12 +199,3 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
-.v-chip {
-  max-width: 200px;
-}
-
-.v-chip .text-caption {
-  opacity: 0.7;
-}
-</style>

@@ -55,6 +55,7 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 import API from "@/utils/api"
+import { useFeedbackToast } from '@/utils/useFeedbackToast';
 
 
 interface UploadField {
@@ -72,6 +73,10 @@ interface UploadField {
 export default defineComponent({
   name: "FileUploader",
   emits: ["loaded", 'itemUploaded'],
+  setup() {
+    const { showError, showSuccess } = useFeedbackToast()
+    return { showError, showSuccess }
+  },
 
   props: {
     type: {
@@ -260,6 +265,7 @@ export default defineComponent({
         } else {
           console.log("Archivo subido correctamente:", data);
           this.$emit('itemUploaded', data);
+          this.showSuccess('Archivo subido correctamente');
 
           // Optional navigation - can be handled by parent component
           if (this.$route.name && this.type === 'seedbed_students') {
@@ -267,8 +273,9 @@ export default defineComponent({
           }
         }
 
-      } catch (err) {
-        console.error("Error al realizar la solicitud", err);
+      } catch (error: any) {
+        console.error("Error al realizar la solicitud", error);
+        this.showError(error.response?.data);
       } finally {
         this.loading = false;
       }

@@ -152,7 +152,16 @@ class API{
       };
 
       const response = await fetch(this.API_BASE_URL + `${endpoint}`, fetchOptions);
-      return response.json();
+      const responseData = await response.json();
+      
+      // If status is not ok, throw an error with the response data
+      if (!response.ok) {
+        const error: any = new Error('API Error');
+        error.response = { data: responseData, status: response.status };
+        throw error;
+      }
+      
+      return responseData;
     } catch (error) {
       console.error(`Error posting to ${endpoint}:`, error);
       throw error;
@@ -170,7 +179,16 @@ class API{
         },
         body: JSON.stringify(data)
       });
-      return response.json();
+      const responseData = await response.json();
+      
+      // If status is not ok, throw an error with the response data
+      if (!response.ok) {
+        const error: any = new Error('API Error');
+        error.response = { data: responseData, status: response.status };
+        throw error;
+      }
+      
+      return responseData;
     } catch (error) {
       console.error(`Error patching to ${endpoint}:`, error);
       throw error;

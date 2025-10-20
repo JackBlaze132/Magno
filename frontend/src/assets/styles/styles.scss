@@ -157,3 +157,39 @@
 .report-form-title .v-icon {
   color: white;
 }
+
+.error-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  max-width: 400px;
+  z-index: 9999;
+}
+
+/* Custom slide + fade transition */
+.slide-fade-enter-active {
+  transition: all 0.4s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+.slide-fade-enter-from {
+  transform: translateX(20px);
+  opacity: 0;
+}
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+.text-code {
+  font-size: x-small;
+}
+
+.alert-divider {
+  border: none;
+  border-top: 2px dashed rgba(var(--v-theme-on-secondary), 0.38);
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
