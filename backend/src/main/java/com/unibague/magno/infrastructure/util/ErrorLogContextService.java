@@ -1,7 +1,9 @@
 package com.unibague.magno.infrastructure.util;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.model.ErrorLog;
+import com.unibague.magno.infrastructure.configuration.security.CustomOidcUserWithUserId;
 import com.unibague.magno.infrastructure.configuration.security.SecurityService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ import java.util.Map;
 public class ErrorLogContextService {
 
     private final SecurityService securityService;
+    private final IUserServicePort userServicePort;
 
     public ErrorLog createErrorLog(Exception exception, String errorCode, String errorMessage, 
                                  HttpServletRequest request) {
@@ -122,18 +125,20 @@ public class ErrorLogContextService {
             if (authentication != null && authentication.isAuthenticated()) {
                 Object principal = authentication.getPrincipal();
                 
-                if (principal instanceof DefaultOidcUser oidcUser) {
+                if (principal instanceof CustomOidcUserWithUserId oidcUser) {
                     errorLog.setUserEmail(oidcUser.getAttribute("email"));
-                    // Try to get user ID from the email if possible
-                    // This would require a call to userService, but we'll keep it simple for now
                 } else if (principal instanceof GoogleIdToken.Payload payload) {
                     errorLog.setUserEmail(payload.getEmail());
-                    // Try to get user ID from the email if possible
                 }
             }
         } catch (Exception e) {
             // If we can't extract user info, just continue without it
             // This prevents the error logging itself from failing
+        }
+
+        if (errorLog.getUserEmail() != null) {
+            Long userId = userServicePort.findByEmail(errorLog.getUserEmail()).getId();
+            errorLog.setUserId(userId);
         }
     }
 }
