@@ -28,6 +28,7 @@ public class ResearchSeedbedRequest {
     @NotBlank(message = "Field research_proposal_description is required")
     private String researchProposalDescription;
 
+    @NotNull(message = "Field creation_date is required")
     @PastOrPresent(message = "Field creation_date must be a past or present date")
     private LocalDate creationDate;
 
