@@ -1,5 +1,10 @@
 package com.unibague.magno.infrastructure.exceptionhandler;
 
+import com.unibague.magno.domain.api.IErrorLogServicePort;
+import com.unibague.magno.domain.model.ErrorLog;
+import com.unibague.magno.infrastructure.util.ErrorLogContextService;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotFoundException;
 import com.unibague.magno.domain.exception.academicprogram.AcademicProgramNotFoundException;
 import com.unibague.magno.domain.exception.dependency.DependencyNotFoundException;
@@ -49,327 +54,431 @@ import static com.unibague.magno.infrastructure.exceptionhandler.ExceptionRespon
 import static com.unibague.magno.infrastructure.exceptionhandler.ExceptionResponse.INVALID_SEEDBED_ROLE;
 
 @RestControllerAdvice
+@RequiredArgsConstructor
 public class ControllerAdvisor {
+
+    private final IErrorLogServicePort errorLogServicePort;
+    private final ErrorLogContextService errorLogContextService;
+
+    private void logError(Exception exception, String errorCode, String errorMessage, HttpServletRequest request) {
+        try {
+            ErrorLog errorLog = errorLogContextService.createErrorLog(exception, errorCode, errorMessage, request);
+            errorLogServicePort.save(errorLog);
+        } catch (Exception e) {
+            // If error logging fails, we don't want to interrupt the original error handling
+            // This prevents infinite loops or masking the original error
+        }
+    }
+
+    private ErrorResponse buildErrorResponse(Exception exception, String code, String message, List<String> details) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(code);
+        errorResponse.setMessage(message);
+        errorResponse.setDetails(details);
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
+        return errorResponse;
+    }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(AcademicPeriodNotFoundException.class)
-    public ErrorResponse handleAcademicPeriodNotFoundException(AcademicPeriodNotFoundException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ACADEMIC_PERIOD_NOT_FOUND.getCode());
-        errorResponse.setMessage(ACADEMIC_PERIOD_NOT_FOUND.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleAcademicPeriodNotFoundException(AcademicPeriodNotFoundException exception, HttpServletRequest request) {
+
+        String code = ACADEMIC_PERIOD_NOT_FOUND.getCode();
+        String message = ACADEMIC_PERIOD_NOT_FOUND.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(RoleNotFoundException.class)
-    public ErrorResponse handleRoleNotFoundException(RoleNotFoundException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.ROLE_NOT_FOUND.getCode());
-        errorResponse.setMessage(ExceptionResponse.ROLE_NOT_FOUND.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleRoleNotFoundException(RoleNotFoundException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.ROLE_NOT_FOUND.getCode();
+        String message = ExceptionResponse.ROLE_NOT_FOUND.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(DependencyNotFoundException.class)
-    public ErrorResponse handleDependencyNotFoundException(DependencyNotFoundException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.DEPENDENCY_NOT_FOUND.getCode());
-        errorResponse.setMessage(ExceptionResponse.DEPENDENCY_NOT_FOUND.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleDependencyNotFoundException(DependencyNotFoundException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.DEPENDENCY_NOT_FOUND.getCode();
+        String message = ExceptionResponse.DEPENDENCY_NOT_FOUND.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(AcademicProgramNotFoundException.class)
-    public ErrorResponse handleDependencyNotFoundException(AcademicProgramNotFoundException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.ACADEMIC_PROGRAM_NOT_FOUND.getCode());
-        errorResponse.setMessage(ExceptionResponse.ACADEMIC_PROGRAM_NOT_FOUND.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleDependencyNotFoundException(AcademicProgramNotFoundException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.ACADEMIC_PROGRAM_NOT_FOUND.getCode();
+        String message = ExceptionResponse.ACADEMIC_PROGRAM_NOT_FOUND.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(UserNotFoundException.class)
-    public ErrorResponse handleUserNotFoundException(UserNotFoundException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.USER_NOT_FOUND.getCode());
-        errorResponse.setMessage(ExceptionResponse.USER_NOT_FOUND.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(UserNotFoundException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.USER_NOT_FOUND.getCode();
+        String message = ExceptionResponse.USER_NOT_FOUND.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(UserAlreadyExistsException.class)
-    public ErrorResponse handleUserNotFoundException(UserAlreadyExistsException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.USER_ALREADY_EXISTS.getCode());
-        errorResponse.setMessage(ExceptionResponse.USER_ALREADY_EXISTS.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(UserAlreadyExistsException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.USER_ALREADY_EXISTS.getCode();
+        String message = ExceptionResponse.USER_ALREADY_EXISTS.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(InvestigationGroupNotFoundException.class)
-    public ErrorResponse handleUserNotFoundException(InvestigationGroupNotFoundException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.INVESTIGATION_GROUP_NOT_FOUND.getCode());
-        errorResponse.setMessage(ExceptionResponse.INVESTIGATION_GROUP_NOT_FOUND.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(InvestigationGroupNotFoundException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.INVESTIGATION_GROUP_NOT_FOUND.getCode();
+        String message = ExceptionResponse.INVESTIGATION_GROUP_NOT_FOUND.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(FunctionaryProfileNotFoundException.class)
-    public ErrorResponse handleUserNotFoundException(FunctionaryProfileNotFoundException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.FUNCTIONARY_PROFILE_NOT_FOUND.getCode());
-        errorResponse.setMessage(ExceptionResponse.FUNCTIONARY_PROFILE_NOT_FOUND.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(FunctionaryProfileNotFoundException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.FUNCTIONARY_PROFILE_NOT_FOUND.getCode();
+        String message = ExceptionResponse.FUNCTIONARY_PROFILE_NOT_FOUND.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(FunctionaryProfileAlreadyExistsException.class)
-    public ErrorResponse handleUserNotFoundException(FunctionaryProfileAlreadyExistsException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.FUNCTIONARY_PROFILE_ALREADY_EXISTS.getCode());
-        errorResponse.setMessage(ExceptionResponse.FUNCTIONARY_PROFILE_ALREADY_EXISTS.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(FunctionaryProfileAlreadyExistsException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.FUNCTIONARY_PROFILE_ALREADY_EXISTS.getCode();
+        String message = ExceptionResponse.FUNCTIONARY_PROFILE_ALREADY_EXISTS.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(HttpClientErrorException.NotFound.class)
-    public ErrorResponse handleUserNotFoundException(HttpClientErrorException.NotFound exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.INTEGRA_API_ERROR.getCode());
-        errorResponse.setMessage(ExceptionResponse.INTEGRA_API_ERROR.getMessage());
-        errorResponse.setDetails(
-                Collections.singletonList
-                        ("Possible reasons: Incorrect path in environment variables or VPN access required."));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(HttpClientErrorException.NotFound exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.INTEGRA_API_ERROR.getCode();
+        String message = ExceptionResponse.INTEGRA_API_ERROR.getMessage();
+        List<String> details = Collections
+                .singletonList("Possible reasons: Incorrect path in environment variables or VPN access required.");
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message, details);
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(IntegraUserNotFoundException.class)
-    public ErrorResponse handleUserNotFoundException(IntegraUserNotFoundException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.INTEGRA_API_ERROR.getCode());
-        errorResponse.setMessage(ExceptionResponse.INTEGRA_API_ERROR.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(IntegraUserNotFoundException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.INTEGRA_API_ERROR.getCode();
+        String message = ExceptionResponse.INTEGRA_API_ERROR.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(InvestigationGroupProfileNotFoundException.class)
-    public ErrorResponse handleUserNotFoundException(InvestigationGroupProfileNotFoundException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.INVESTIGATION_GROUP_PROFILE_NOT_FOUND.getCode());
-        errorResponse.setMessage(ExceptionResponse.INVESTIGATION_GROUP_PROFILE_NOT_FOUND.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(InvestigationGroupProfileNotFoundException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.INVESTIGATION_GROUP_PROFILE_NOT_FOUND.getCode();
+        String message = ExceptionResponse.INVESTIGATION_GROUP_PROFILE_NOT_FOUND.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(InvestigationGroupProfileDuplicatedInSameAcademicPeriodException.class)
-    public ErrorResponse handleUserNotFoundException(InvestigationGroupProfileDuplicatedInSameAcademicPeriodException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.INVESTIGATION_GROUP_PROFILE_DUPLICATED_IN_SAME_ACADEMIC_PERIOD.getCode());
-        errorResponse.setMessage(ExceptionResponse.INVESTIGATION_GROUP_PROFILE_DUPLICATED_IN_SAME_ACADEMIC_PERIOD.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(InvestigationGroupProfileDuplicatedInSameAcademicPeriodException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.INVESTIGATION_GROUP_PROFILE_DUPLICATED_IN_SAME_ACADEMIC_PERIOD.getCode();
+        String message = ExceptionResponse.INVESTIGATION_GROUP_PROFILE_DUPLICATED_IN_SAME_ACADEMIC_PERIOD.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ResearchSeedbedNotFoundException.class)
-    public ErrorResponse handleUserNotFoundException(ResearchSeedbedNotFoundException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_NOT_FOUND.getCode());
-        errorResponse.setMessage(ExceptionResponse.RESEARCH_SEEDBED_NOT_FOUND.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(ResearchSeedbedNotFoundException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.RESEARCH_SEEDBED_NOT_FOUND.getCode();
+        String message = ExceptionResponse.RESEARCH_SEEDBED_NOT_FOUND.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ResearchSeedbedProfileNotFoundException.class)
-    public ErrorResponse handleUserNotFoundException(ResearchSeedbedProfileNotFoundException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_PROFILE_NOT_FOUND.getCode());
-        errorResponse.setMessage(ExceptionResponse.RESEARCH_SEEDBED_PROFILE_NOT_FOUND.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(ResearchSeedbedProfileNotFoundException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.RESEARCH_SEEDBED_PROFILE_NOT_FOUND.getCode();
+        String message = ExceptionResponse.RESEARCH_SEEDBED_PROFILE_NOT_FOUND.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(SameCoordinatorAndTutorException.class)
-    public ErrorResponse handleSameCoordinatorAndTutorException(SameCoordinatorAndTutorException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_PROFILE_SAME_COORDINATOR_AND_TUTOR.getCode());
-        errorResponse.setMessage(ExceptionResponse.RESEARCH_SEEDBED_PROFILE_SAME_COORDINATOR_AND_TUTOR.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleSameCoordinatorAndTutorException(SameCoordinatorAndTutorException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.RESEARCH_SEEDBED_PROFILE_SAME_COORDINATOR_AND_TUTOR.getCode();
+        String message = ExceptionResponse.RESEARCH_SEEDBED_PROFILE_SAME_COORDINATOR_AND_TUTOR.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(ResearchSeedbedProfileAlreadyExistsInInvestigationGroup.class)
-    public ErrorResponse handleRSPAlreadyExistsInIg(ResearchSeedbedProfileAlreadyExistsInInvestigationGroup exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_PROFILE_ALREADY_EXISTS_IN_INVESTIGATION_GROUP.getCode());
-        errorResponse.setMessage(ExceptionResponse.RESEARCH_SEEDBED_PROFILE_ALREADY_EXISTS_IN_INVESTIGATION_GROUP.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleRSPAlreadyExistsInIg(ResearchSeedbedProfileAlreadyExistsInInvestigationGroup exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.RESEARCH_SEEDBED_PROFILE_ALREADY_EXISTS_IN_INVESTIGATION_GROUP.getCode();
+        String message = ExceptionResponse.RESEARCH_SEEDBED_PROFILE_ALREADY_EXISTS_IN_INVESTIGATION_GROUP.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(StudentProfileNotFoundException.class)
-    public ErrorResponse handleUserNotFoundException(StudentProfileNotFoundException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.STUDENT_PROFILE_NOT_FOUND.getCode());
-        errorResponse.setMessage(ExceptionResponse.STUDENT_PROFILE_NOT_FOUND.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(StudentProfileNotFoundException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.STUDENT_PROFILE_NOT_FOUND.getCode();
+        String message = ExceptionResponse.STUDENT_PROFILE_NOT_FOUND.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(StudentProfileAlreadyExistsException.class)
-    public ErrorResponse handleUserNotFoundException(StudentProfileAlreadyExistsException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.STUDENT_PROFILE_ALREADY_EXISTS.getCode());
-        errorResponse.setMessage(ExceptionResponse.STUDENT_PROFILE_ALREADY_EXISTS.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(StudentProfileAlreadyExistsException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.STUDENT_PROFILE_ALREADY_EXISTS.getCode();
+        String message = ExceptionResponse.STUDENT_PROFILE_ALREADY_EXISTS.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ResearchSeedbedStudentProfileNotFoundException.class)
-    public ErrorResponse handleUserNotFoundException(ResearchSeedbedStudentProfileNotFoundException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_NOT_FOUND.getCode());
-        errorResponse.setMessage(ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_NOT_FOUND.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(ResearchSeedbedStudentProfileNotFoundException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_NOT_FOUND.getCode();
+        String message = ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_NOT_FOUND.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(StudentProfileAlreadyExistsInSeedbedException.class)
-    public ErrorResponse handleStudentProfileAlreadyExistsInSeedbedException(StudentProfileAlreadyExistsInSeedbedException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_ALREADY_EXISTS.getCode());
-        errorResponse.setMessage(ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_ALREADY_EXISTS.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleStudentProfileAlreadyExistsInSeedbedException(StudentProfileAlreadyExistsInSeedbedException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_ALREADY_EXISTS.getCode();
+        String message = ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_ALREADY_EXISTS.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(ALeaderAlreadyExistsInSeedbedException.class)
-    public ErrorResponse handleLeaderAlreadyExistsInSeedbedException(ALeaderAlreadyExistsInSeedbedException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_LEADER_ALREADY_EXISTS.getCode());
-        errorResponse.setMessage(ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_LEADER_ALREADY_EXISTS.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleLeaderAlreadyExistsInSeedbedException(ALeaderAlreadyExistsInSeedbedException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_LEADER_ALREADY_EXISTS.getCode();
+        String message = ExceptionResponse.RESEARCH_SEEDBED_STUDENT_PROFILE_LEADER_ALREADY_EXISTS.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ExternalUserProfileNotFoundException.class)
-    public ErrorResponse handleUserNotFoundException(ExternalUserProfileNotFoundException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.EXTERNAL_USER_PROFILE_NOT_FOUND.getCode());
-        errorResponse.setMessage(ExceptionResponse.EXTERNAL_USER_PROFILE_NOT_FOUND.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(ExternalUserProfileNotFoundException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.EXTERNAL_USER_PROFILE_NOT_FOUND.getCode();
+        String message = ExceptionResponse.EXTERNAL_USER_PROFILE_NOT_FOUND.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(EnumBadRequestException.class)
-    public ErrorResponse handleUserNotFoundException(EnumBadRequestException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.ENUM_BAD_REQUEST.getCode());
-        errorResponse.setMessage(ExceptionResponse.ENUM_BAD_REQUEST.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(EnumBadRequestException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.ENUM_BAD_REQUEST.getCode();
+        String message = ExceptionResponse.ENUM_BAD_REQUEST.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(UploadExcelException.class)
-    public ErrorResponse handleUserNotFoundException(UploadExcelException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.UPLOAD_EXCEL_ERROR.getCode());
-        errorResponse.setMessage(ExceptionResponse.UPLOAD_EXCEL_ERROR.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(UploadExcelException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.UPLOAD_EXCEL_ERROR.getCode();
+        String message = ExceptionResponse.UPLOAD_EXCEL_ERROR.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(UserIsNotExternalException.class)
-    public ErrorResponse handleUserNotFoundException(UserIsNotExternalException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.USER_IS_NOT_EXTERNAL.getCode());
-        errorResponse.setMessage(ExceptionResponse.USER_IS_NOT_EXTERNAL.getMessage());
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUserNotFoundException(UserIsNotExternalException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.USER_IS_NOT_EXTERNAL.getCode();
+        String message = ExceptionResponse.USER_IS_NOT_EXTERNAL.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ErrorResponse handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
+    public ErrorResponse handleMethodArgumentNotValidException(MethodArgumentNotValidException exception, HttpServletRequest request) {
 
         BindingResult result = exception.getBindingResult();
+        String code = ExceptionResponse.GENERIC_ERROR.getCode();
+        String message = "Validation failed for one or more fields.";
         
         // Generating a list of error messages with the field and its associated message
         List<String> errorDetails = result.getFieldErrors().stream()
@@ -377,115 +486,143 @@ public class ControllerAdvisor {
                 .toList();
 
         ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.GENERIC_ERROR.getCode());
-        errorResponse.setMessage("Validation failed for one or more fields.");
+        errorResponse.setCode(code);
+        errorResponse.setMessage(message);
         errorResponse.setDetails(errorDetails);
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setExceptionClassName(exception.getClass().getName());
+        
+        logError(exception, code, message, request);
 
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ErrorResponse handleHttpMessageNotReadableException(HttpMessageNotReadableException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
+    public ErrorResponse handleHttpMessageNotReadableException(HttpMessageNotReadableException exception, HttpServletRequest request) {
+
         String errorMessage = exception.getMessage();
+        String code;
+        String message;
 
         if (errorMessage != null && errorMessage.contains("Cannot deserialize value of type `com.unibague.magno.domain.model.enums.SeedbedRole`")) {
-            errorResponse.setCode(INVALID_SEEDBED_ROLE.getCode());
-            errorResponse.setMessage(INVALID_SEEDBED_ROLE.getMessage());
+            code = INVALID_SEEDBED_ROLE.getCode();
+            message = INVALID_SEEDBED_ROLE.getMessage();
         } else {
-            errorResponse.setCode(ExceptionResponse.GENERIC_ERROR.getCode());
-            errorResponse.setMessage("Request body is not readable.");
+            code = ExceptionResponse.GENERIC_ERROR.getCode();
+            message = "Request body is not readable.";
         }
-        errorResponse.setDetails(Collections.singletonList(errorMessage));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+        
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(NullEmailException.class)
-    public ErrorResponse handleNullEmailException(NullEmailException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.NULL_EMAIL.getCode());
-        errorResponse.setMessage(ExceptionResponse.NULL_EMAIL.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleNullEmailException(NullEmailException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.NULL_EMAIL.getCode();
+        String message = ExceptionResponse.NULL_EMAIL.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(InvalidEmailException.class)
-    public ErrorResponse handleInvalidEmailException(InvalidEmailException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.INVALID_EMAIL.getCode());
-        errorResponse.setMessage(ExceptionResponse.INVALID_EMAIL.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleInvalidEmailException(InvalidEmailException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.INVALID_EMAIL.getCode();
+        String message = ExceptionResponse.INVALID_EMAIL.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.BAD_GATEWAY)
     @ExceptionHandler(NullIntegraResponseException.class)
-    public ErrorResponse handleNullIntegraResponseException(NullIntegraResponseException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.NULL_INTEGRA_RESPONSE.getCode());
-        errorResponse.setMessage(ExceptionResponse.NULL_INTEGRA_RESPONSE.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleNullIntegraResponseException(NullIntegraResponseException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.NULL_INTEGRA_RESPONSE.getCode();
+        String message = ExceptionResponse.NULL_INTEGRA_RESPONSE.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(UnsupportedPrincipalException.class)
-    public ErrorResponse handleUnsupportedPrincipalException(UnsupportedPrincipalException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.UNSUPPORTED_PRINCIPAL.getCode());
-        errorResponse.setMessage(ExceptionResponse.UNSUPPORTED_PRINCIPAL.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleUnsupportedPrincipalException(UnsupportedPrincipalException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.UNSUPPORTED_PRINCIPAL.getCode();
+        String message = ExceptionResponse.UNSUPPORTED_PRINCIPAL.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(AuthorizationDeniedException.class)
-    public ErrorResponse handleForbiddenExceptions(AuthorizationDeniedException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.FORBIDDEN_REQUEST.getCode());
-        errorResponse.setMessage(ExceptionResponse.FORBIDDEN_REQUEST.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleForbiddenExceptions(AuthorizationDeniedException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.FORBIDDEN_REQUEST.getCode();
+        String message = ExceptionResponse.FORBIDDEN_REQUEST.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ErrorResponse handleSQLException(DataIntegrityViolationException exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.SQL_EXCEPTION.getCode());
-        errorResponse.setMessage(ExceptionResponse.SQL_EXCEPTION.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleSQLException(DataIntegrityViolationException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.SQL_EXCEPTION.getCode();
+        String message = ExceptionResponse.SQL_EXCEPTION.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
-    public ErrorResponse handleGenericError(Exception exception) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(ExceptionResponse.GENERIC_ERROR.getCode());
-        errorResponse.setMessage(ExceptionResponse.GENERIC_ERROR.getMessage());
-        errorResponse.setDetails(Collections.singletonList(exception.getMessage()));
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
+    public ErrorResponse handleGenericError(Exception exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.GENERIC_ERROR.getCode();
+        String message = ExceptionResponse.GENERIC_ERROR.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+        
+        logError(exception, code, message, request);
+        
         return errorResponse;
     }
 }

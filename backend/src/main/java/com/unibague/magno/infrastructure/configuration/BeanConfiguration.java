@@ -64,6 +64,9 @@ public class BeanConfiguration {
     private final IExternalUserProfileRepository externalUserProfileRepository;
     private final ExternalUserProfileEntityMapper externalUserProfileEntityMapper;
 
+    private final IErrorLogRepository errorLogRepository;
+    private final ErrorLogEntityMapper errorLogEntityMapper;
+
     @Bean
     public IAcademicPeriodServicePort academicPeriodServicePort() {
         return new AcademicPeriodUseCase(academicPeriodPersistencePort());
@@ -261,6 +264,18 @@ public class BeanConfiguration {
     @Bean
     GoogleIdTokenAuthenticationFilter googleIdTokenAuthenticationFilter() {
         return new GoogleIdTokenAuthenticationFilter(userServicePort(), roleServicePort());
+    }
+
+    // Error Logging Beans
+
+    @Bean
+    public IErrorLogServicePort errorLogServicePort() {
+        return new ErrorLogUseCase(errorLogPersistencePort());
+    }
+
+    @Bean
+    public IErrorLogPersistencePort errorLogPersistencePort() {
+        return new ErrorLogJpaAdapter(errorLogRepository, errorLogEntityMapper);
     }
 
 }
