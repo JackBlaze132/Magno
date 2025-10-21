@@ -2,7 +2,15 @@ package com.unibague.magno.domain.spi;
 
 import com.unibague.magno.domain.model.ErrorLog;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 public interface IErrorLogPersistencePort {
 
     ErrorLog save(ErrorLog errorLog);
+
+    void deleteLogsOlderThanDays(List<Long> ids);
+
+    List<ErrorLog> getLogsOlderThanDays(LocalDateTime localDateTime);
 }
+

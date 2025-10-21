@@ -246,7 +246,7 @@ public class BeanConfiguration {
     @Bean
     public ICronJobServicePort cronJobServicePort() {
         return new CronJobUseCase(integraServicePort(), userServicePort(),
-                academicProgramServicePort(), dependencyServicePort());
+                academicProgramServicePort(), dependencyServicePort(), errorLogServicePort());
     }
 
     // Security Beans

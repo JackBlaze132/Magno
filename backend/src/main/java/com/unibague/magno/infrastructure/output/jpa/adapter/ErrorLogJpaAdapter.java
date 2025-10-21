@@ -8,6 +8,9 @@ import com.unibague.magno.infrastructure.output.jpa.repository.IErrorLogReposito
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @RequiredArgsConstructor
 @Transactional
 public class ErrorLogJpaAdapter implements IErrorLogPersistencePort {
@@ -21,4 +24,17 @@ public class ErrorLogJpaAdapter implements IErrorLogPersistencePort {
         ErrorLogEntity savedEntity = errorLogRepository.save(entity);
         return errorLogEntityMapper.toDomain(savedEntity);
     }
+
+    @Override
+    public void deleteLogsOlderThanDays(List<Long> ids) {
+        errorLogRepository.deleteByIds(ids);
+    }
+
+    @Override
+    public List<ErrorLog> getLogsOlderThanDays(LocalDateTime localDateTime) {
+        return errorLogEntityMapper.toDomainList(
+                errorLogRepository.findByTimestampBefore(localDateTime)
+        );
+    }
 }
+

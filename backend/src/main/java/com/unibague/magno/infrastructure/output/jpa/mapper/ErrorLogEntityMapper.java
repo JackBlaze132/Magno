@@ -5,6 +5,8 @@ import com.unibague.magno.infrastructure.output.jpa.entity.ErrorLogEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface ErrorLogEntityMapper {
 
@@ -41,4 +43,6 @@ public interface ErrorLogEntityMapper {
     @Mapping(target = "userAgent", source = "userAgent")
     @Mapping(target = "sessionId", source = "sessionId")
     ErrorLogEntity toEntity(ErrorLog domain);
+
+    List<ErrorLog> toDomainList(List<ErrorLogEntity> entities);
 }

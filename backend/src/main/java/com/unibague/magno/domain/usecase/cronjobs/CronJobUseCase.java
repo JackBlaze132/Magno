@@ -2,6 +2,7 @@ package com.unibague.magno.domain.usecase.cronjobs;
 
 import com.unibague.magno.domain.api.IAcademicProgramServicePort;
 import com.unibague.magno.domain.api.IDependencyServicePort;
+import com.unibague.magno.domain.api.IErrorLogServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.api.cronjobs.ICronJobServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
@@ -24,15 +25,18 @@ public class CronJobUseCase implements ICronJobServicePort {
     private final IUserServicePort userServicePort;
     private final IAcademicProgramServicePort academicProgramServicePort;
     private final IDependencyServicePort dependencyServicePort;
+    private final IErrorLogServicePort errorLogServicePort;
 
     public CronJobUseCase(IIntegraServicePort integraServicePort,
                           IUserServicePort userServicePort,
                           IAcademicProgramServicePort academicProgramServicePort,
-                          IDependencyServicePort dependencyServicePort) {
+                          IDependencyServicePort dependencyServicePort,
+                          IErrorLogServicePort errorLogServicePort) {
         this.integraServicePort = integraServicePort;
         this.userServicePort = userServicePort;
         this.academicProgramServicePort = academicProgramServicePort;
         this.dependencyServicePort = dependencyServicePort;
+        this.errorLogServicePort = errorLogServicePort;
     }
 
     /**
@@ -213,6 +217,11 @@ public class CronJobUseCase implements ICronJobServicePort {
         for (User student : newStudents) {
             userServicePort.save(student);
         }
+    }
+
+    @Override
+    public void deleteOldErrorLogs(int days) {
+        errorLogServicePort.deleteLogsOlderThanDays(days);
     }
 
     /**
