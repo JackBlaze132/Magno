@@ -55,7 +55,7 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 import API from "@/utils/api"
-import { useFeedbackToast } from '@/utils/useFeedbackToast';
+import { useFeedbackToast } from '@/composables/useFeedbackToast';
 
 
 interface UploadField {

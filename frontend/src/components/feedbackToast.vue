@@ -49,7 +49,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useFeedbackToast } from '@/utils/useFeedbackToast'
+import { useFeedbackToast } from '@/composables/useFeedbackToast'
 
 interface ErrorResponse {
   code?: string

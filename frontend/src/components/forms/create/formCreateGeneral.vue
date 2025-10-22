@@ -79,7 +79,7 @@
 import { defineComponent } from 'vue'
 import API from "@/utils/api";
 import { VAutocomplete } from 'vuetify/components';
-import { useFeedbackToast } from '@/utils/useFeedbackToast';
+import { useFeedbackToast } from '@/composables/useFeedbackToast';
 
 export default defineComponent({
   name: 'formEditGeneral',

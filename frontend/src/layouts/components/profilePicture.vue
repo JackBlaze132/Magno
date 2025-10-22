@@ -34,7 +34,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import AvatarPicture from './avatarPicture.vue';
-import API from '@/utils/api';
+import { useGoogleProfile } from '@/composables/useGoogleProfile';
 //import LogoutBtn from "./logoutBtn.vue";
 
 interface Item {
@@ -42,6 +42,9 @@ interface Item {
   email: string;
   picture: string | null;
 }
+
+// Get cached profile data (singleton - shared across all instances)
+const { fetchProfile } = useGoogleProfile();
 
 export default defineComponent({
   name: "ProfilePicture",
@@ -51,30 +54,37 @@ export default defineComponent({
   },
   data(){
     return {
-      item: {} as Item
+      item: {
+        name: 'Loading...',
+        email: '',
+        picture: null
+      } as Item
     }
   },
   async created() {
     await this.fetchGoogle();
   },
   methods: {
+    onAvatarLoaded() {
+      // Avatar loaded successfully
+    },
     async fetchGoogle(){
-      const apiHeaders = {
-        'API-VERSION': '1'
+      // Use cached data if available
+      const profile = await fetchProfile();
+      
+      if (profile) {
+        this.item = profile;
+        console.log("✅ Profile loaded (from cache or fresh):", this.item);
+      } else {
+        console.warn("⚠️ No profile data available");
+        this.item = {
+          name: 'User',
+          email: 'Not available',
+          picture: null
+        };
       }
-      try {
-        const response = await API.get(API.GOOGLE_DATA, apiHeaders);
-        console.log("google repsonse: ", response)
-
-        this.item = response[0];
-        console.log("this is the item: ", this.item);
-        console.log("this is the piture", this.item.picture);
-        //this.Items = response.data;
-        this.$emit('loaded')
-      } catch (error) {
-        console.error("Error fetching Google profile:", error);
-        return null;
-      }
+      
+      this.$emit('loaded')
     }
   }
 })
