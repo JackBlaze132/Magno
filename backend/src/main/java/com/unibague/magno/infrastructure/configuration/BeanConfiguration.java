@@ -67,6 +67,9 @@ public class BeanConfiguration {
     private final IErrorLogRepository errorLogRepository;
     private final ErrorLogEntityMapper errorLogEntityMapper;
 
+    private final ICronJobExecutionLogRepository cronJobExecutionLogRepository;
+    private final CronJobExecutionLogEntityMapper cronJobExecutionLogEntityMapper;
+
     @Bean
     public IAcademicPeriodServicePort academicPeriodServicePort() {
         return new AcademicPeriodUseCase(academicPeriodPersistencePort());
@@ -276,6 +279,18 @@ public class BeanConfiguration {
     @Bean
     public IErrorLogPersistencePort errorLogPersistencePort() {
         return new ErrorLogJpaAdapter(errorLogRepository, errorLogEntityMapper);
+    }
+
+    // CronJob Execution Logging Beans
+
+    @Bean
+    public ICronJobExecutionLogServicePort cronJobExecutionLogServicePort() {
+        return new CronJobExecutionLogUseCase(cronJobExecutionLogPersistencePort());
+    }
+
+    @Bean
+    public ICronJobExecutionLogPersistencePort cronJobExecutionLogPersistencePort() {
+        return new CronJobExecutionLogJpaAdapter(cronJobExecutionLogRepository, cronJobExecutionLogEntityMapper);
     }
 
 }
