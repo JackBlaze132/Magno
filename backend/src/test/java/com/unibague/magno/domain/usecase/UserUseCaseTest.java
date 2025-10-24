@@ -7,6 +7,7 @@ import com.unibague.magno.domain.exception.user.UserNotFoundException;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.enums.JSONIntegraType;
 import com.unibague.magno.domain.model.enums.Sex;
+import com.unibague.magno.domain.model.enums.TypeOfInternalUser;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 import com.unibague.magno.domain.spi.IUserPersistencePort;
@@ -46,7 +47,7 @@ class UserUseCaseTest {
     @BeforeEach
     void setUp() {
         user = new User(1L, "Juan Perez", "123456789", "juan@gmail.com",
-                "123456", false, Sex.MASCULINO);
+                "123456", false, Sex.MASCULINO, TypeOfInternalUser.ESTUDIANTE);
 
         functionary = new IntegraFunctionary(
                 "Maria", "Gomez", "Maria Gomez", "123456",
@@ -210,7 +211,7 @@ class UserUseCaseTest {
     void findAll_ReturnsListOfUsers() {
         // Arrange
         List<User> users = List.of(user, new User(2L, "Maria Lopez", "987654321", "maria@gmail.com",
-                "654321", false, Sex.FEMENINO));
+                "654321", false, Sex.FEMENINO, TypeOfInternalUser.FUNCIONARIO));
         when(userPersistencePort.findAll()).thenReturn(users);
 
         // Act

@@ -1,0 +1,30 @@
+package com.unibague.magno.application.dto.response;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class ActionLogResponse {
+
+    private Long id;
+    private String httpMethod;
+    private String requestUrl;
+    private String requestBody;
+    private Integer responseStatus;
+    private String responseBody;
+    private LocalDateTime timestamp;
+    private String userEmail;
+    private Long userId;
+    private String clientIp;
+    private String userAgent;
+    private String sessionId;
+    private Long executionTimeMs;
+}
+
