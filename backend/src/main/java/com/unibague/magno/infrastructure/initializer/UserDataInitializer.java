@@ -17,7 +17,10 @@ public class UserDataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        log.info("\n---------------------------------------\n");
         cronJobServicePort.updateInfoFromIntegra();
+        log.info("\n\nUser data initialization completed.");
+        log.info("\n---------------------------------------\n");
     }
 
 }
