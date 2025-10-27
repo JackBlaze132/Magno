@@ -10,12 +10,14 @@ import LoadingManager from '@/utils/loadingManager';
 
 <script lang="ts">
 interface Item{
-  name: string
+  research_seedbed: {
+    name: string;
+  },
 }
 export default {
   data(){
     return {
-      items: [] as Item[],
+      item: {} as Item,
       loading: true,
     }
   },
@@ -24,12 +26,18 @@ export default {
     //this.getData();
     LoadingManager.setTotalComponents(4);
     LoadingManager.reset();
+    this.getData();
   },
   methods: {
     async getData(){
+      const headers = {
+        'API-VERSION': '1',
+      };
       try {
-        const data = await API.get(API.GET_RESEARCH_SEEDBED_BY_ID + this.$route.params.idSemillero);
-        this.items = data;
+        const data = await API.get(API.RESEARCH_SEEDBEDS_PROFILES + this.$route.params.idSemillero, headers);
+        console.log("Raw API response:", data);
+        this.item = data[0];  // API returns an array, take the first element
+
       } catch (error) {
         console.error('Error fetching users:', error);
       }
@@ -47,7 +55,7 @@ export default {
 
 
 <template>
-  <h1 v-if="items.length != 0">{{items[0].name}}</h1>
+  <h1 v-if="item && item.research_seedbed">{{ item.research_seedbed.name }}</h1>
 
   <VCard class="pa-5 my-3" rounded="lg">
     <VOverlay :model-value="loading" class="d-flex align-center justify-center" opacity="0.85" persistent contained>
