@@ -26,6 +26,8 @@ export default defineComponent({
         {title: 'Semestre', key: 'student_profile.semester'},
         {title: 'Correo', key: 'student_profile.user.email'},
         {title: 'Sexo', key: 'student_profile.user.sex'},
+        {key: 'link', sortable: false},
+
       ],
     }
   },
@@ -102,6 +104,19 @@ export default defineComponent({
       {{ Formatter().leaderFormatter(item.is_leader) }}
 
     </template>
+
+    <template v-slot:item.link="{item}">
+        <QuickActions
+          type="seedbed_member"
+          toEdit
+          toDelete
+          :index="item.id"
+          :name="item.student_profile.user.full_name"
+          :initialData="setInitialData(item)"
+          @itemDeleted="handleItemRefresh"
+          @itemEdited="handleItemRefresh"
+        />
+      </template>
 
       <!--<template v-slot:item.link="{item}">
         <RouterLink :to="item.id.toString()">

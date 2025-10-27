@@ -117,7 +117,7 @@ export default defineComponent({
       if (Array.isArray(this.fields)) {
         this.fields.forEach(field => {
           if (values[field.key] === undefined) {
-            values[field.key] = field.type === 'checkbox' ? false : null;
+            values[field.key] = (field.type === 'checkbox' || field.type === 'radio-group') ? false : null;
           }
         });
       }

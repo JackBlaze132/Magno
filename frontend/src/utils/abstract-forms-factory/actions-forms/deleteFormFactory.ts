@@ -53,6 +53,26 @@ export class DeleteFormFactory extends AbstractFormFactory {
           index: extraProps?.index,
         }
       },
+      seedbed_member: {
+        component: DeleteComponent,
+        props: {
+          name: extraProps?.name,
+          alt_name: 'miembro',
+          type: type,
+          label: "miembro de semillero",
+          index: extraProps?.index,
+        }
+      },
+      external_seedbed_profile: {
+        component: DeleteComponent,
+        props: {
+          name: extraProps?.name,
+          alt_name: 'aliado',
+          type: type,
+          label: "perfil externo de semillero",
+          index: extraProps?.index,
+        }
+      },
     };
     if (!(type in componentMap) || !EntityTypes.includes(type)) {
       console.log( `Componente no encontrado para el tipo: ${type}`);

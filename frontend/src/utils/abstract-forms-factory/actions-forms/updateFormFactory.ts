@@ -9,6 +9,7 @@ const UpdateGroup = defineAsyncComponent(() => import("@/components/forms/update
 const UpdateSeedbed = defineAsyncComponent(() => import("@/components/forms/update/seedbeds/formUpdateSeedbeds.vue"));
 const UpdateGroupProfile = defineAsyncComponent(() => import("@/components/forms/update/groups/formUpdateGroupProfile.vue"));
 const UpdateSeedbedProfile = defineAsyncComponent(() => import("@/components/forms/update/seedbeds/formUpdateSeedbedProfile.vue"));
+const UpdateSeedbedMember = defineAsyncComponent(() => import("@/components/forms/update/seedbeds/formUpdateSeedbedMember.vue"));
 
 export class UpdateFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType, extraProps?: Record<any, any>) {
@@ -82,7 +83,17 @@ export class UpdateFormFactory extends AbstractFormFactory {
           index: extraProps?.index,
           initialData: extraProps?.initialData,
         }
-      }
+      },
+      seedbed_member: {
+        component: UpdateSeedbedMember,
+        props: {
+          type: type,
+          label: "Miembro del semillero",
+          fields: schema.seedbed_member,
+          index: extraProps?.index,
+          initialData: extraProps?.initialData,
+        }
+      },
     };
     if (!(type in componentMap) || !EntityTypes.includes(type)) {
       console.log( `Componente no encontrado para el tipo: ${type}`);

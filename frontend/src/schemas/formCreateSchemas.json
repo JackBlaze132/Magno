@@ -66,12 +66,7 @@
     ]}
   ],
     "seedbed_member": [
-        { "key": "student_profile_id", "label": "Estudiante", "type": "select" },
-        { "key": "was_active", "label": "Estado", "type": "radio-group","options": [
-          { "label": "Activo", "value": true },
-          { "label": "Inactivo", "value": false }
-        ]
-        },
+      { "key": "student_profile_id", "label": "Estudiante", "type": "select" },  
       { "key": "is_leader", "label": "Es líder", "type": "checkbox" }
     ]
  }

@@ -52,6 +52,14 @@
             rows="5"
             class="mb-5"
           />
+
+          <VCheckbox v-else-if="field.type === 'checkbox'"
+            v-model="formValues[field.key]"
+            :label="field.label"
+            class="mb-5"
+            :true-value="true"
+            :false-value="false"
+          />
         </div>
         <VCardItem class="d-flex justify-end">
           <LoadingBtn icon="ri-save-2-line" text="Guardar" :loading="loading" color="primary"/>
@@ -134,6 +142,10 @@ export default defineComponent({
           }, headers);
         } else if (this.type == 'seedbed_profile' || this.type == 'seedbed_coordinator' || this.type == 'seedbed_tutor') {
           response = await API.put(API.RESEARCH_SEEDBEDS_PROFILES + this.index, {
+            ...this.formValues,
+          }, headers);
+        } else if (this.type == 'seedbed_member') {
+          response = await API.put(API.RESEARCH_SEEDBEDS_MEMBERS + this.index, {
             ...this.formValues,
           }, headers);
         }

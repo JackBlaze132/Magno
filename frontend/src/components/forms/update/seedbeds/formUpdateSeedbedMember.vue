@@ -1,25 +1,37 @@
 <template>
-  <!-- Reemplaza tu lógica anterior con formCreateGeneral -->
-  <formCreateGeneral
+  <formUpdateGeneral
     v-if="loaded"
     :type="type"
     :fields="fields"
-    :name="name"
-    :additionalData="additionalData"
-    @itemCreated="handleItemCreated"
+    :index="index"
+    :initialData="initialData"
+    @itemEdited="handleItemEdited"
   />
 </template>
 
 <script lang="ts">
 // ...existing code...
 import { defineComponent } from 'vue';
-import API from '@/utils/api';
+import API from "@/utils/api";
+
 export default defineComponent({
-  name: 'formCreateSeedbedProfile',
+  name: 'formUpdateGroup',
+  emits: ['itemEdited', 'loaded'],
+  data() {
+    return {
+      additionalData: {},
+      loaded: false,
+      options: [],
+    };
+  },
+  async created() {
+    await this.fetchFunctionaries()
+    await this.fetchSeedbeds()
+    this.$emit('loaded')
+
+    this.loaded = true
+  },
   props:{
-    name: {
-      type: String,
-    },
     fields:{
       type: Array as () => Array<{ key: string; label: string; type?: string; options?: Array<{ label: string; value: string }> }>,
       default: () => [],
@@ -27,29 +39,18 @@ export default defineComponent({
     type:{
       type: String,
     },
-    additionalData : {
+    index: {
+      type: Number,
+    },
+    initialData: {
       type: Object,
       default: () => ({}),
     },
   },
-  data() {
-    return {
-      loaded: false,
-      additionalData: {},
-    };
-  },
-  async created() {
-    await this.fetchFunctionaries();
-    await this.fetchSeedbeds();
-    this.getPeriodId();
-    this.getGroupId();
-    this.setUserStatus();
-    this.loaded = true;
-    this.$emit('loaded');
-  },
   methods: {
-    handleItemCreated() {
-      this.$emit('itemCreated');
+    // ...existing code...
+    handleItemEdited() {
+      this.$emit('itemEdited');
     },
 
     async fetchFunctionaries() {
@@ -57,20 +58,19 @@ export default defineComponent({
         'API-VERSION': '1',
       };
       try {
-        const students = await API.get(API.USERS_STUDENTS, headers);
-        this.$emit('loaded');
+        const functionaries = await API.get(API.USERS_FUNCTIONARY, headers);
         console.log("Hola obtuve los funcionarios")
-        console.log(students);
+        console.log(functionaries);
 
         // Create the options list once
-        const functionaryOptions = students.map((functionary: any) => ({
+        const functionaryOptions = functionaries.map((functionary: any) => ({
           label: functionary.full_name,
           value: functionary.id,
         }));
 
         // Update all matching fields, not just the first one
         this.fields.forEach(field => {
-          if (field.key === 'student_profile_id') {
+          if (field.key === 'coordinator_id' || field.key === 'tutor_id') {
             field.options = functionaryOptions;
           }
         });
@@ -78,13 +78,13 @@ export default defineComponent({
         console.error('Error fetching users:', error);
       }
     },
+
     async fetchSeedbeds() {
       const headers = {
         'API-VERSION': '1',
       };
       try {
         const seedbeds = await API.get(API.RESEARCH_SEEDBEDS, headers);
-        this.$emit('loaded');
         console.log("Hola obtuve los semilleros")
         console.log(seedbeds);
 
@@ -109,48 +109,28 @@ export default defineComponent({
             ...this.additionalData,
             academic_period_id: periodId
           };
-          console.log("ID de periodo:", periodId);
+          console.log("ID de funcionario obtenido:", periodId);
         }
       } catch (error) {
         console.error('Error getting user ID from route:', error);
       }
-
     },
 
     getGroupId() {
       try {
-        const SeedbedId = this.$route.params.idSemillero;
-        if (SeedbedId) {
+        const groupId = this.$route.params.idGrupo;
+        if (groupId) {
           // Agregar el userId al objeto additionalData que se pasará al formulario
           this.additionalData = {
             ...this.additionalData,
-            research_seedbed_profile_id: SeedbedId
+            investigation_group_profile_id: groupId
           };
-          console.log("ID de grupo:", SeedbedId);
+          console.log("ID de grupo:", groupId);
         }
       } catch (error) {
         console.error('Error getting user ID from route:', error);
       }
-
-    },
-
-    setUserStatus() {
-      const wasActive = false;
-      try {
-        // Always set was_active to false for new seedbed members
-        this.additionalData = {
-          ...this.additionalData,
-          was_active: wasActive
-        };
-        console.log("was_active set to false for new seedbed member");
-
-      } catch (error) {
-        console.error('Error setting user status:', error);
-      }
     },
   },
-
-
 });
 </script>
-```

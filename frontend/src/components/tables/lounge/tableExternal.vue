@@ -3,14 +3,9 @@ import { defineComponent } from "vue"
 
 //utils
 import API from "@/utils/api";
-import QuickControl from "@/components/quickControl.vue";
-
-
-
-
 
 export default defineComponent({
-  components: {QuickControl},
+
 
   data() {
     return {
@@ -26,7 +21,7 @@ export default defineComponent({
         {title: 'Identificación', key: 'user.identification_number'},
         {title: 'Correo', key: 'user.email'},
         {title: 'Sexo', key: 'user.sex'},
-        { key: 'link', sortable: false},
+        {key: 'link', sortable: false},
       ],
     }
   },
@@ -78,7 +73,15 @@ export default defineComponent({
       :search="search"
       :headers="headers"
     >
-
+      <template v-slot:item.link="{item}">
+        <QuickActions
+          type="external_seedbed_profile"
+          toDelete
+          :index="item.id"
+          :name="item.user.full_name"
+          @itemDeleted="handleItemRefresh"
+        />
+      </template>
 
     </VDataTable>
   </VCard>

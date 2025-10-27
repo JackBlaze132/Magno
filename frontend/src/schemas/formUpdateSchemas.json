@@ -34,5 +34,13 @@
     ],
     "seedbed_tutor": [
         { "key": "tutor_id", "label": "Tutor", "type": "select" }
+    ],
+    "seedbed_member": [
+        { "key": "was_active", "label": "Estado", "type": "radio-group","options": [
+          { "label": "Activo", "value": true },
+          { "label": "Inactivo", "value": false }
+        ]
+        },
+      { "key": "is_leader", "label": "Es líder", "type": "checkbox" }
     ]
 }
