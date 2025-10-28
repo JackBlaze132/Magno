@@ -1,13 +1,14 @@
 package com.unibague.magno.infrastructure.input.rest;
 
+import com.unibague.magno.application.dto.CurrentUserInfo;
 import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.application.dto.request.UserRequest;
 import com.unibague.magno.application.dto.response.UserResponse;
 import com.unibague.magno.application.handler.impl.UserHandler;
+import com.unibague.magno.infrastructure.configuration.annotation.CurrentUser;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -60,6 +61,11 @@ public class UserRestController {
     ResponseEntity<List<UserResponse>> getAllInternalUsersRegistered() {
         List<UserResponse> internalUsers = userHandler.findAllInternalUsersRegistered();
         return ResponseEntity.ok(internalUsers);
+    }
+
+    @GetMapping(path = "/me", headers = "API-VERSION=1")
+    public ResponseEntity<CurrentUserInfo> getCurrentUserInfo(@CurrentUser CurrentUserInfo currentUser) {
+        return ResponseEntity.ok(currentUser);
     }
 
     @PostMapping(path = "/", headers = "API-VERSION=1")
