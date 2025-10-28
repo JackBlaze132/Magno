@@ -1,5 +1,7 @@
 package com.unibague.magno.application.dto;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 // DTO that holds information about the currently authenticated user.
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class CurrentUserInfo {
     private final Long userId;
     private final List<String> roles;
