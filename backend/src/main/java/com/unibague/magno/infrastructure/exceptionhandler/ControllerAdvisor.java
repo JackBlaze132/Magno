@@ -1,6 +1,7 @@
 package com.unibague.magno.infrastructure.exceptionhandler;
 
 import com.unibague.magno.domain.api.IErrorLogServicePort;
+import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
 import com.unibague.magno.domain.model.ErrorLog;
 import com.unibague.magno.infrastructure.util.ErrorLogContextService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -93,6 +94,21 @@ public class ControllerAdvisor {
         
         logError(exception, code, message, request);
         
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(EndDateBeforeStartDateException.class)
+    public ErrorResponse handleEndDateBeforeStartDateException(EndDateBeforeStartDateException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.END_DATE_BEFORE_START_DATE.getCode();
+        String message = ExceptionResponse.END_DATE_BEFORE_START_DATE.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+
+        logError(exception, code, message, request);
+
         return errorResponse;
     }
 

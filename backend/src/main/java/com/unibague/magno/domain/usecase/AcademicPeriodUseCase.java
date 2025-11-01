@@ -2,6 +2,7 @@ package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IAcademicPeriodServicePort;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotFoundException;
+import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
 import com.unibague.magno.domain.model.AcademicPeriod;
 import com.unibague.magno.domain.spi.IAcademicPeriodPersistencePort;
 
@@ -24,16 +25,24 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
 
     @Override
     public AcademicPeriod save(AcademicPeriod academicPeriod) {
+        validationsBeforeSaveOrUpdate(academicPeriod);
         return academicPeriodPersistencePort.save(academicPeriod);
     }
 
     @Override
     public AcademicPeriod update(Long id, AcademicPeriod academicPeriod) {
+        validationsBeforeSaveOrUpdate(academicPeriod);
         if(academicPeriodPersistencePort.findById(id).isEmpty()) {
             throw new AcademicPeriodNotFoundException(
                     String.format("AcademicPeriod with ID %d could not be updated because it does not exist", id));
         }
         return academicPeriodPersistencePort.update(id, academicPeriod);
+    }
+
+    private void validationsBeforeSaveOrUpdate(AcademicPeriod academicPeriod) {
+        if (academicPeriod.getEndDate().isBefore(academicPeriod.getStartDate())){
+            throw new EndDateBeforeStartDateException("The end date cannot be before the start date");
+        }
     }
 
     @Override
