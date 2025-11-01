@@ -23,6 +23,9 @@ public class IntegraUserClient implements IIntegraPersistencePort {
 
     private final RestTemplate restTemplate;
 
+    @Value("${integra.api.token}")
+    private String integraApiToken;
+
     @Value("${integra.base.url}")
     private String baseUrl;
 
@@ -47,11 +50,11 @@ public class IntegraUserClient implements IIntegraPersistencePort {
     @Value("${INTEGRA_ACADEMIC_PROGRAMS_ACADEMIA_URL}")
     private String academiaAcademicProgramsGeneralUrl;
 
-    private final String undergraduate = "1";
-    private final String postgraduate = "2";
+    private static final String UNDERGRADUATE = "1";
+    private static final String POSTGRADUATE = "2";
 
     public List<AcademiaAcademicProgram> getAcademiaAcademicPrograms1(){
-        String path = academiaAcademicProgramsGeneralUrl + undergraduate;
+        String path = academiaAcademicProgramsGeneralUrl + UNDERGRADUATE;
         ResponseEntity<List<AcademiaAcademicProgram>> response = restTemplate.exchange(
                 path,
                 HttpMethod.GET,
@@ -67,7 +70,7 @@ public class IntegraUserClient implements IIntegraPersistencePort {
     }
 
     public List<AcademiaAcademicProgram> getAcademiaAcademicPrograms2(){
-        String path = academiaAcademicProgramsGeneralUrl + postgraduate;
+        String path = academiaAcademicProgramsGeneralUrl + POSTGRADUATE;
         ResponseEntity<List<AcademiaAcademicProgram>> response = restTemplate.exchange(
                 path,
                 HttpMethod.GET,
@@ -84,7 +87,7 @@ public class IntegraUserClient implements IIntegraPersistencePort {
 
     @Override
     public List<IntegraFunctionary> getAllFunctionaries() {
-        final String url = baseUrl + allFunctionariesUrl;
+        final String url = baseUrl + allFunctionariesUrl + integraApiToken;
 
         ResponseEntity<List<IntegraFunctionary>> response = restTemplate.exchange(
                 url,
@@ -100,7 +103,7 @@ public class IntegraUserClient implements IIntegraPersistencePort {
 
     @Override
     public List<IntegraStudent> getIntegraStudentRecordsByIdentification(String identification) {
-        final String url = baseUrl + studentsUrl1 + identification + studentsUrl2;
+        final String url = baseUrl + studentsUrl1 + integraApiToken + "&code_user=" + identification + studentsUrl2;
 
         ResponseEntity<List<IntegraStudent>> response = getListResponseEntity(url);
         if (response.getBody() == null) {
@@ -149,7 +152,7 @@ public class IntegraUserClient implements IIntegraPersistencePort {
     }
 
     private List<IntegraAcademicProgram> getAllAcademicProgramsDeprecated() {
-        final String url = baseUrl + academicProgramsUrl;
+        final String url = baseUrl + academicProgramsUrl + integraApiToken;
 
         ResponseEntity<List<IntegraAcademicProgram>> response = restTemplate.exchange(
                 url,
@@ -165,7 +168,7 @@ public class IntegraUserClient implements IIntegraPersistencePort {
     }
 
     private List<IntegraDependency> getAllDependencies() {
-        final String url = baseUrl + dependenciesUrl;
+        final String url = baseUrl + dependenciesUrl + integraApiToken;
 
         ResponseEntity<List<IntegraDependency>> response = restTemplate.exchange(
                 url,
@@ -180,7 +183,7 @@ public class IntegraUserClient implements IIntegraPersistencePort {
     }
 
     public List<IntegraStudent> getAllStudents() {
-        final String url = baseUrl + allStudentsUrl;
+        final String url = baseUrl + allStudentsUrl + integraApiToken;
 
         ResponseEntity<List<IntegraStudent>> response = getListResponseEntity(url);
         if (response.getBody() == null) {
@@ -280,7 +283,4 @@ public class IntegraUserClient implements IIntegraPersistencePort {
         );
     }
 
-    public String getUndergraduate() {
-        return undergraduate;
-    }
 }
