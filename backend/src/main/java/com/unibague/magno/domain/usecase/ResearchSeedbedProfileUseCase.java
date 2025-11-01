@@ -33,12 +33,16 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
 
     @Override
     public ResearchSeedbedProfile save(ResearchSeedbedProfile researchSeedbedProfile) {
+        verifyThatResearchSeedbedProfileDoesNotExist(researchSeedbedProfile);
+        ResearchSeedbedProfile rsp = verificationsBeforeSaveOrUpdate(researchSeedbedProfile);
+        return researchSeedbedProfilePersistencePort.save(rsp);
+    }
+
+    private ResearchSeedbedProfile verificationsBeforeSaveOrUpdate(ResearchSeedbedProfile researchSeedbedProfile) {
         if (researchSeedbedProfile.getCoordinatorId().equals(researchSeedbedProfile.getTutorId())) {
             throw new SameCoordinatorAndTutorException("Coordinator and Tutor cannot be the same person.");
         }
-        verifyThatResearchSeedbedProfileDoesNotExist(researchSeedbedProfile);
-        ResearchSeedbedProfile rsp = researchSeedbedProfileHelper.verifyUsersHasFunctionaryProfiles(researchSeedbedProfile);
-        return researchSeedbedProfilePersistencePort.save(rsp);
+        return researchSeedbedProfileHelper.verifyUsersHasFunctionaryProfiles(researchSeedbedProfile);
     }
 
     private void verifyThatResearchSeedbedProfileDoesNotExist(ResearchSeedbedProfile researchSeedbedProfile) {
@@ -56,12 +60,14 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
 
     @Override
     public ResearchSeedbedProfile update(Long id, ResearchSeedbedProfile researchSeedbedProfile) {
+        researchSeedbedProfile.setId(id);
         if(researchSeedbedProfilePersistencePort.findById(id).isEmpty()) {
             throw new ResearchSeedbedNotFoundException(
                     String.format("ResearchSeedbedProfile with ID %d could not be updated because it does not exist", id)
             );
         }
-        return researchSeedbedProfilePersistencePort.update(id, researchSeedbedProfile);
+        ResearchSeedbedProfile rsp = verificationsBeforeSaveOrUpdate(researchSeedbedProfile);
+        return researchSeedbedProfilePersistencePort.update(id, rsp);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.unibague.magno.domain.api;
 import com.unibague.magno.domain.model.Dependency;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IDependencyServicePort {
     Dependency findById(Long id);
@@ -11,4 +12,6 @@ public interface IDependencyServicePort {
     void deleteById(Long id);
     List<Dependency> findAll();
     Dependency findByName(String name);
+
+    Optional<Dependency> findByNameOptional(String name);
 }

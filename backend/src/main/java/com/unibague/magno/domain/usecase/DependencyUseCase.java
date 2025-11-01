@@ -64,6 +64,11 @@ public class DependencyUseCase implements IDependencyServicePort {
         return findOrSaveByName(name);
     }
 
+    @Override
+    public Optional<Dependency> findByNameOptional(String name) {
+        return dependencyPersistencePort.findByName(name);
+    }
+
     private Dependency findOrSaveByName(String name) {
         Optional<Dependency> dependency = dependencyPersistencePort.findByName(name);
         if (dependency.isPresent()) {

@@ -40,6 +40,12 @@ public class IntegraUseCase implements IIntegraServicePort {
                 .filter(f -> f.getIdentification().equals(identification))
                 .findFirst();
 
+        if (functionaryOptional.isPresent() && functionaryOptional.get().getProgram().isBlank()) {
+            IntegraFunctionary functionary = functionaryOptional.get();
+            functionary.setProgram("No definido");
+            return functionary;
+        }
+
         return functionaryOptional.orElseThrow(() -> {
             String message = String.
                     format("It wasn't possible to find the functionary with identification %s " +

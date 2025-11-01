@@ -145,6 +145,8 @@ public class CronJobUseCase implements ICronJobServicePort {
             dependencyServicePort.save(dependency);
         }
 
+        createCustomDependency();
+
         // ---------------------------------------------------------------------------------------
         // Users - Functionaries
         // ---------------------------------------------------------------------------------------
@@ -242,6 +244,18 @@ public class CronJobUseCase implements ICronJobServicePort {
         }
 
         return null;
+    }
+
+    /**
+     * Sometimes, integra return null or empty dependencies,
+     * so we need to ensure that at least one dependency exists with the name "No definido"
+     */
+    private void createCustomDependency() {
+        if (dependencyServicePort.findByNameOptional("No definido").isEmpty()){
+            Dependency dependency = new Dependency();
+            dependency.setName("No definido");
+            dependencyServicePort.save(dependency);
+        }
     }
 
 

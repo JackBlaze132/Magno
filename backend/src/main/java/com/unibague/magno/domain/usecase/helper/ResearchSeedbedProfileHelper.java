@@ -48,6 +48,8 @@ public class ResearchSeedbedProfileHelper implements IResearchSeedbedProfileHelp
             createAndAssignProfile(rsp, coordinatorId, SeedbedRole.COORDINADOR_DE_SEMILLERO, true);
         }
         else {
+            findProfileIdByUserAndPeriod(coordinatorId, academicPeriodId)
+                    .ifPresent(rsp::setCoordinatorId);
             checkRoleForExistingProfile(coordinatorId, academicPeriodId);
         }
 
