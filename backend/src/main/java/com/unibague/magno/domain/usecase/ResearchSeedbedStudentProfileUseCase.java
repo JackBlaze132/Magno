@@ -85,7 +85,25 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
             throw new ResearchSeedbedStudentProfileNotFoundException(
                     String.format("ResearchSeedbedStudentProfile with id %d could not be updated because it was not found", id));
         }
+        verifyIfWhenUpdatingTryingToAddMoreThanOneLeader(researchSeedbedStudentProfile);
         return researchSeedbedStudentProfilePersistencePort.update(id, researchSeedbedStudentProfile);
+    }
+
+    private void verifyIfWhenUpdatingTryingToAddMoreThanOneLeader(ResearchSeedbedStudentProfile researchSeedbedStudentProfile) {
+        try {
+            verifyAlreadyExistsALeader(researchSeedbedStudentProfile.getResearchSeedbedProfileId());
+        } catch (ALeaderAlreadyExistsInSeedbedException e) {
+            ResearchSeedbedStudentProfile existingLeader = researchSeedbedStudentProfilePersistencePort
+                    .findAllByResearchSeedbedProfileId(researchSeedbedStudentProfile.getResearchSeedbedProfileId())
+                    .stream()
+                    .filter(ResearchSeedbedStudentProfile::getIsLeader)
+                    .findFirst()
+                    .orElse(null);
+
+            if (existingLeader != null && !existingLeader.getId().equals(researchSeedbedStudentProfile.getStudentProfileId())) {
+                throw e;
+            }
+        }
     }
 
     @Override
