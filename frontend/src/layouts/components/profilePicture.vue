@@ -19,6 +19,7 @@
               variant="text"
               rounded
               prepend-icon="ri-user-smile-line"
+              @click="goToProfile"
             >
               Tu perfil
             </VBtn>
@@ -71,7 +72,7 @@ export default defineComponent({
     async fetchGoogle(){
       // Use cached data if available
       const profile = await fetchProfile();
-      
+
       if (profile) {
         this.item = profile;
         console.log("✅ Profile loaded (from cache or fresh):", this.item);
@@ -83,8 +84,11 @@ export default defineComponent({
           picture: null
         };
       }
-      
+
       this.$emit('loaded')
+    },
+    goToProfile() {
+      this.$router.push('/perfil');
     }
   }
 })

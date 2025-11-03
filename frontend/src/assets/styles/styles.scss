@@ -90,9 +90,17 @@
       inset-block-end: 2em !important;
       inset-inline-start: 2em !important;
     }
+
     
-  
   }
+
+  @media (max-width: 959px){
+    .v-breadcrumbs{
+      display: none!important;
+    }
+  }
+
+
   .magno-logo{
     height: 75px;
     width: 225px!important ;

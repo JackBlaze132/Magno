@@ -24,6 +24,7 @@ export default{
 
 </script>
 <template>
+  <h1>Semilleros de Investigación</h1>
   <VCard variant="flat" color="transparent">
     <VOverlay :model-value="loading" contained class="d-flex align-center justify-center" opacity="0.85" persistent>
       <v-progress-circular indeterminate color="primary" size="64"/>

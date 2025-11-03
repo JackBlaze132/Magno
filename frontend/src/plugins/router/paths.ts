@@ -44,4 +44,5 @@ export const paths = {
   ROLES_LISTAR: 'listar-roles',
   PROFILES_PATH: '/perfiles',
   PROFILES_LIST: 'listar-perfiles',
+  PROFILE_VIEW: '/perfil',
 }

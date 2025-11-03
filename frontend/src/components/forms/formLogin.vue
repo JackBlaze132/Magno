@@ -66,7 +66,7 @@ export default defineComponent({
           google
         </VBtn>
       </VCardText>
-      <VCol cols="12" class="d-flex align-center">
+      <<VCol cols="12" class="d-flex align-center">
         <VDivider />
         <span
           class="v-col-4"
@@ -113,9 +113,7 @@ export default defineComponent({
               <span class="d-flex justify-center">
                 <VBtn rounded="xl"
                   class="px-12 text-capitalize"
-                  type="submit"
                   color="black"
-                  to="/inicio"
                 >
                   Ingresar
                 </VBtn>

@@ -125,6 +125,11 @@ export const routes = [
         ]
       },
       {
+        name: 'perfil',
+        path: P.PROFILE_VIEW,
+        component: components.PROFILE_VIEW,
+      },
+      {
         name: 'funcionarios',
         path: P.FUNCTIONARIES_PATH,
         component: components.FUNCTIONARIES_INDEX,
