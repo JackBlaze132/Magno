@@ -1,11 +1,9 @@
 <template>
-  <VCard class="mx-auto pa-6">
+  <h1>Mi perfil</h1>
+  <VCard class="mx-auto pa-6 my-3">
     <VOverlay :model-value="loading" class="d-flex align-center justify-center" opacity="0.85" persistent contained>
       <v-progress-circular indeterminate color="primary" size="64"/>
     </VOverlay>
-
-    <VCardTitle class="text-h4 mb-4">Mi Perfil</VCardTitle>
-    <VDivider class="mb-6"/>
 
     <VRow>
       <!-- Avatar and Basic Info Section -->
@@ -36,7 +34,7 @@
 
       <!-- Profile Details Section -->
       <VCol cols="12" md="8">
-        <VCard variant="outlined" class="mb-4">
+        <VCard variant="outlined" class="mb-4" border="secondary md">
           <VCardText>
             <div class="d-flex align-center mb-3">
               <VIcon icon="ri-user-line" class="mr-3" color="primary"/>
@@ -54,6 +52,14 @@
               </div>
             </div>
             <VDivider class="my-3"/>
+            <div class="d-flex align-center mb-3">
+              <VIcon icon="ri-account-circle-line" class="mr-3" color="primary"/>
+              <div>
+                <p class="text-caption text-medium-emphasis mb-1">ID de Usuario</p>
+                <p class="text-body-1">{{ userId || 'No disponible' }}</p>
+              </div>
+            </div>
+            <VDivider class="my-3"/>
             <div class="d-flex align-center">
               <VIcon icon="ri-shield-check-line" class="mr-3" color="primary"/>
               <div>
@@ -63,20 +69,13 @@
             </div>
           </VCardText>
         </VCard>
+      </VCol>
+    </VRow>
 
-        <!-- Additional Info Card -->
-        <VCard variant="outlined">
-          <VCardText>
-            <h3 class="text-h6 mb-3">Información adicional</h3>
-            <div class="d-flex align-center mb-3">
-              <VIcon icon="ri-login-circle-line" class="mr-3" color="primary"/>
-              <div>
-                <p class="text-caption text-medium-emphasis mb-1">Método de autenticación</p>
-                <p class="text-body-1">Google OAuth</p>
-              </div>
-            </div>
-          </VCardText>
-        </VCard>
+    <!-- My Profiles Section -->
+    <VRow v-if="userId" class="mt-6">
+      <VCol cols="12">
+        <TableStudentProfiles :user-id="userId" />
       </VCol>
     </VRow>
 
@@ -97,6 +96,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useGoogleProfile } from '@/composables/useGoogleProfile';
+import API from '@/utils/api';
+import TableStudentProfiles from '@/components/tables/users/students/student-profiles/tableStudentProfiles.vue';
 
 interface ProfileData {
   name: string;
@@ -105,10 +106,13 @@ interface ProfileData {
 }
 
 // Get cached profile data
-const { profileData: cachedProfile, fetchProfile } = useGoogleProfile();
+const { fetchProfile } = useGoogleProfile();
 
 export default defineComponent({
   name: 'ProfileView',
+  components: {
+    TableStudentProfiles
+  },
   data() {
     return {
       profileData: {
@@ -116,14 +120,33 @@ export default defineComponent({
         email: '',
         picture: null
       } as ProfileData,
+      userId: null as number | null,
       loading: true,
       imageError: false
     };
   },
   async created() {
     await this.loadProfile();
+    await this.fetchUserId();
   },
   methods: {
+    async fetchUserId() {
+      const headers = {
+        'API-VERSION': '1',
+      };
+      try {
+        const userData = await API.get(API.USERS_ME, headers);
+        console.log("✅ User data fetched:", userData);
+
+        // API.get returns an array, so access first element
+        if (userData && userData[0] && userData[0].user_id) {
+          this.userId = userData[0].user_id;
+          console.log("✅ User ID:", this.userId);
+        }
+      } catch (error) {
+        console.error("❌ Error fetching user ID:", error);
+      }
+    },
     async loadProfile() {
       this.loading = true;
       try {

@@ -62,7 +62,12 @@ interface Item {
 
 export default defineComponent({
   components: {QuickControl},
-
+  props: {
+    userId: {
+      type: Number,
+      default: null
+    }
+  },
   data() {
     return {
       items: [] as Item[],
@@ -90,7 +95,9 @@ export default defineComponent({
         'API-VERSION': '1',
       }
       try {
-        this.items = await API.get(API.STUDENT_PROFILES_ASSIGNED + this.$route.params.idStudent, headers);
+        // Use prop userId if provided, otherwise fall back to route param
+        const id = this.userId || this.$route.params.idStudent;
+        this.items = await API.get(API.STUDENT_PROFILES_ASSIGNED + id, headers);
         this.$emit('loaded');
       } catch (error) {
         console.error('Error fetching users:', error);

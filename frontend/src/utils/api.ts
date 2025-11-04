@@ -64,6 +64,7 @@ class API{
 
   //----[USERS_PATH]----
   public readonly USERS:string='users/';
+  public readonly USERS_ME:string='users/me';
   public readonly USERS_INTEGRA:string='users/integra-user';
   public readonly USERS_FUNCTIONARY:string='users/all-functionaries-registered';
   public readonly USERS_STUDENTS:string='users/all-students-registered';
@@ -153,14 +154,14 @@ class API{
 
       const response = await fetch(this.API_BASE_URL + `${endpoint}`, fetchOptions);
       const responseData = await response.json();
-      
+
       // If status is not ok, throw an error with the response data
       if (!response.ok) {
         const error: any = new Error('API Error');
         error.response = { data: responseData, status: response.status };
         throw error;
       }
-      
+
       return responseData;
     } catch (error) {
       console.error(`Error posting to ${endpoint}:`, error);
@@ -180,14 +181,14 @@ class API{
         body: JSON.stringify(data)
       });
       const responseData = await response.json();
-      
+
       // If status is not ok, throw an error with the response data
       if (!response.ok) {
         const error: any = new Error('API Error');
         error.response = { data: responseData, status: response.status };
         throw error;
       }
-      
+
       return responseData;
     } catch (error) {
       console.error(`Error patching to ${endpoint}:`, error);
