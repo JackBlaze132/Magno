@@ -5,6 +5,7 @@ import com.unibague.magno.domain.api.IErrorLogServicePort;
 import com.unibague.magno.domain.model.CronJobExecutionLog;
 import com.unibague.magno.domain.model.ErrorLog;
 import com.unibague.magno.infrastructure.util.CronJobLogContextService;
+import com.unibague.magno.infrastructure.util.CronJobLogFileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -20,11 +21,13 @@ public class ErrorLogJob {
     private final IErrorLogServicePort errorLogServicePort;
     private final ICronJobExecutionLogServicePort cronJobExecutionLogServicePort;
     private final CronJobLogContextService cronJobLogContextService;
+    private final CronJobLogFileService cronJobLogFileService;
 
     // This cron job is scheduled to run every Sunday at (01:00)
     @Scheduled(cron = "0 0 1 * * 7", zone = "America/Bogota")
     public void execute() {
         CronJobExecutionLog executionLog = cronJobLogContextService.createCronJobExecutionLog("ErrorLogJob");
+        cronJobLogFileService.generateLogFile("ErrorLogJob", DAYS_THRESHOLD);
         
         try {
             // Get old logs to count how many will be deleted

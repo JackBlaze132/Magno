@@ -3,10 +3,14 @@ package com.unibague.magno.infrastructure.util;
 import com.unibague.magno.domain.api.ICronJobExecutionLogServicePort;
 import com.unibague.magno.domain.model.CronJobExecutionLog;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -15,6 +19,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CronJobLogFileService {
 
+    @Value("${magno.cronjob.logs.directory}")
+    private String logDirectory;
+    
     private final ICronJobExecutionLogServicePort cronJobExecutionLogServicePort;
 
     public void generateLogFile(String jobName, int days) {
@@ -31,8 +38,17 @@ public class CronJobLogFileService {
         
         String fileName = generateFileName(jobName, endDate);
         
-        try (FileWriter writer = new FileWriter(fileName)) {
-            writer.write(generateLogContent(logs, jobName, startDate, endDate));
+        try {
+            Path logDir = Paths.get(logDirectory);
+            if (!Files.exists(logDir)) {
+                Files.createDirectories(logDir);
+            }
+
+            Path filePath = logDir.resolve(fileName);
+            
+            try (FileWriter writer = new FileWriter(filePath.toFile())) {
+                writer.write(generateLogContent(logs, jobName, startDate, endDate));
+            }
         } catch (IOException e) {
             throw new RuntimeException("Error generating log file: " + e.getMessage(), e);
         }
