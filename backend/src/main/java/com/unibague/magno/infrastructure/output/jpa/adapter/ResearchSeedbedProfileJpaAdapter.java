@@ -1,5 +1,6 @@
 package com.unibague.magno.infrastructure.output.jpa.adapter;
 
+import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileNotFoundException;
 import com.unibague.magno.domain.model.ResearchSeedbedProfile;
 import com.unibague.magno.domain.model.excel.ExcelReport;
 import com.unibague.magno.domain.model.excel.projections.SeedbedReportProjection;
@@ -45,11 +46,22 @@ public class ResearchSeedbedProfileJpaAdapter implements IResearchSeedbedProfile
 
     @Override
     public ResearchSeedbedProfile update(Long id, ResearchSeedbedProfile researchSeedbedProfile) {
-        ResearchSeedbedProfileEntity researchSeedbedProfileEntity = researchSeedbedProfileEntityMapper
+
+        ResearchSeedbedProfileEntity existingEntity = researchSeedbedProfileRepository.findById(id)
+                .orElseThrow(() -> new ResearchSeedbedProfileNotFoundException("ResearchSeedbedProfile not found with id: " + id));
+
+        ResearchSeedbedProfileEntity updatedEntity = researchSeedbedProfileEntityMapper
                 .toResearchSeedbedProfileEntity(id, researchSeedbedProfile);
-        ResearchSeedbedProfileEntity updatedResearchSeedbedProfileEntity = researchSeedbedProfileRepository
-                .save(researchSeedbedProfileEntity);
-        return researchSeedbedProfileEntityMapper.toResearchSeedbedProfile(updatedResearchSeedbedProfileEntity);
+
+        existingEntity.setResearchSeedbed(updatedEntity.getResearchSeedbed());
+        existingEntity.setCoordinator(updatedEntity.getCoordinator());
+        existingEntity.setTutor(updatedEntity.getTutor());
+        existingEntity.setInvestigationGroupProfile(updatedEntity.getInvestigationGroupProfile());
+        existingEntity.setAcademicPeriod(updatedEntity.getAcademicPeriod());
+        existingEntity.setWasActive(updatedEntity.getWasActive());
+
+        ResearchSeedbedProfileEntity savedEntity = researchSeedbedProfileRepository.save(existingEntity);
+        return researchSeedbedProfileEntityMapper.toResearchSeedbedProfile(savedEntity);
     }
 
     @Override

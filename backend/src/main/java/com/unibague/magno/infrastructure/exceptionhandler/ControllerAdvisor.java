@@ -416,7 +416,7 @@ public class ControllerAdvisor {
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
-    @ExceptionHandler(ResearchSeedbedStudentProfileNotFoundException.class)
+    @ExceptionHandler(FunctionaryNotAllowedToGenerateCertificateException.class)
     public ErrorResponse handleFunctionaryNotAllowedException(FunctionaryNotAllowedToGenerateCertificateException exception, HttpServletRequest request) {
 
         String code = ExceptionResponse.FUNCTIONARY_OR_EXTERNAL_USER_NOT_ALLOWED_TO_GENERATE_CERTIFICATE.getCode();
