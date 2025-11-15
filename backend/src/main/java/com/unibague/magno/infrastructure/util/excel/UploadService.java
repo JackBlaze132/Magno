@@ -1,4 +1,4 @@
-package com.unibague.magno.infrastructure.util;
+package com.unibague.magno.infrastructure.util.excel;
 
 import com.unibague.magno.domain.exception.excel.UploadExcelException;
 import lombok.RequiredArgsConstructor;

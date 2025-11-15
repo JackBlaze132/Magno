@@ -6,13 +6,18 @@ import com.unibague.magno.application.dto.request.UserRequest;
 import com.unibague.magno.application.dto.response.UserResponse;
 import com.unibague.magno.application.handler.impl.UserHandler;
 import com.unibague.magno.infrastructure.configuration.annotation.CurrentUser;
+import com.unibague.magno.infrastructure.util.certificates.HtmlRenderService;
+import com.unibague.magno.infrastructure.util.certificates.PdfService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,6 +25,8 @@ import java.util.List;
 public class UserRestController {
 
     private final UserHandler userHandler;
+    private final HtmlRenderService htmlRenderService;
+    private final PdfService pdfService;
 
     @GetMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
@@ -66,6 +73,44 @@ public class UserRestController {
     @GetMapping(path = "/me", headers = "API-VERSION=1")
     public ResponseEntity<CurrentUserInfo> getCurrentUserInfo(@CurrentUser CurrentUserInfo currentUser) {
         return ResponseEntity.ok(currentUser);
+    }
+
+    @GetMapping(path = "/certificado", headers = "API-VERSION=1")
+    public ResponseEntity<byte[]> getCertificado() throws Exception {
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("nombre", "Mary Andrea Martínez Saavedra");
+        data.put("cedula", "1.110.560.085");
+        data.put("semillero", "PATRIMONIO CULTURAL DEL TOLIMA");
+        data.put("grupo", "RASTRO URBANO");
+        data.put("coordinador", "Eduardo Peñaloza Kairuz");
+
+        data.put("periodos", List.of(
+                "Febrero a mayo de 2018",
+                "Agosto a noviembre de 2020",
+                "Febrero a mayo de 2022",
+                "Febrero a mayo de 2023"
+        ));
+
+        data.put("dia", 15);
+        data.put("mes", "mayo");
+        data.put("anio", 2025);
+
+        // 🔥 RUTAS QUEMADAS (cámbialas según tu proyecto)
+        data.put("logo1Path", "file:src/main/resources/static/images/logo1.png");
+        data.put("logo2Path", "file:src/main/resources/static/images/logo2.png");
+        data.put("firmaPath", "file:src/main/resources/static/firma.png");
+
+        data.put("director", "Jorge Enrique García Melo");
+        data.put("cargo", "Director");
+
+        String html = htmlRenderService.renderCertificado(data);
+        byte[] pdf = pdfService.htmlToPdf(html);
+
+        return ResponseEntity.ok()
+                .header("Content-Disposition", "attachment; filename=certificado.pdf")
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(pdf);
     }
 
     @PostMapping(path = "/", headers = "API-VERSION=1")

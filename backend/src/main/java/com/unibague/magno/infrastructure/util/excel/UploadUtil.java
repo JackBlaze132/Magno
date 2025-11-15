@@ -1,4 +1,4 @@
-package com.unibague.magno.infrastructure.util;
+package com.unibague.magno.infrastructure.util.excel;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.stereotype.Component;

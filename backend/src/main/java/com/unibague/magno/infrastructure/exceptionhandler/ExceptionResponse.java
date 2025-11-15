@@ -27,6 +27,8 @@ public enum ExceptionResponse {
             "A research seedbed profile for the given research seedbed in the specified investigation group profile already exists."),
     RESEARCH_SEEDBED_STUDENT_PROFILE_NOT_FOUND("ERR_RESEARCH_SEEDBED_STUDENT_PROFILE_001",
             "Research seedbed student profile not found."),
+    FUNCTIONARY_OR_EXTERNAL_USER_NOT_ALLOWED_TO_GENERATE_CERTIFICATE("ERR_RESEARCH_SEEDBED_STUDENT_PROFILE_002",
+            "Only students are allowed to generate seedbed participation certificates."),
     RESEARCH_SEEDBED_STUDENT_PROFILE_ALREADY_EXISTS("ERR_RESEARCH_SEEDBED_STUDENT_PROFILE_002",
             "The student profile is already associated with the research seedbed profile."),
     RESEARCH_SEEDBED_STUDENT_PROFILE_LEADER_ALREADY_EXISTS("ERR_RESEARCH_SEEDBED_STUDENT_PROFILE_003",

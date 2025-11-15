@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Certificado</title>
+
+    <style type="text/css">
+        @page {
+            margin: 40px 60px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            font-size: 11pt;
+            color: #000;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logos {
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .logos td {
+            vertical-align: middle;
+        }
+
+        .logos img {
+            display: block;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 40px 0 30px 0;
+            font-size: 16pt;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 20px 0 40px 0;
+            font-size: 14pt;
+            font-weight: bold;
+        }
+
+        p {
+            text-align: justify;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin: 20px 0;
+            padding-left: 40px;
+        }
+
+        ul li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .nombre-destacado {
+            font-weight: normal;
+        }
+
+        .firma-section {
+            margin-top: 80px;
+        }
+
+        .firma-block {
+            margin-top: 20px;
+        }
+
+        .firma-block img {
+            width: 150px;
+            margin-bottom: 5px;
+        }
+
+        .firma-line {
+            width: 200px;
+            border-top: 1px solid #000;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .firma-text {
+            margin: 2px 0;
+            font-weight: bold;
+            font-size: 10pt;
+        }
+
+        .cargo-text {
+            margin: 2px 0;
+            font-size: 10pt;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- LOGOS SUPERIORES -->
+<table class="logos">
+    <tr>
+        <td style="text-align: left; width: 50%;">
+            <img th:src="${logo1Path}" style="width: 110px;" alt="Logo 1" />
+        </td>
+        <td style="text-align: right; width: 50%;">
+            <img th:src="${logo2Path}" style="width: 140px;" alt="Logo 2" />
+        </td>
+    </tr>
+</table>
+
+<!-- ENCABEZADO -->
+<div class="header-section">
+    <h1>LA DIRECCIÓN DE INVESTIGACIONES</h1>
+    <h2>CERTIFICA QUE</h2>
+</div>
+
+<!-- CONTENIDO -->
+<p>
+    <span class="nombre-destacado"><b><span th:text="${nombre}"></span></b></span>, identificada con cédula de ciudadanía No
+    <span th:text="${cedula}"></span> fue integrante del semillero <span th:text="${semillero}"></span>
+    del grupo de investigación <span th:text="${grupo}"></span>, bajo la coordinación del investigador
+    Eduardo Peñaloza Kairuz, durante los periodos comprendidos entre:
+</p>
+
+<ul>
+    <li th:each="p : ${periodos}" th:text="${p}"></li>
+</ul>
+
+<p>
+    Durante su vinculación al semillero participó en actividades y reuniones del mismo.
+</p>
+
+<!-- FECHA DE EXPEDICIÓN -->
+<div class="firma-section">
+    <p>
+        Se expide este certificado en Ibagué – Tolima, a los quince (15) días del mes de
+        <span th:text="${mes}"></span> de <span th:text="${anio}"></span>.
+    </p>
+</div>
+
+<!-- BLOQUE DE FIRMA -->
+<div class="firma-block">
+    <img th:src="${firmaPath}" alt="Firma" />
+    <div class="firma-line"></div>
+    <p class="firma-text" th:text="${director}"></p>
+    <p class="cargo-text" th:text="${cargo}"></p>
+</div>
+
+</body>
+
+</html>

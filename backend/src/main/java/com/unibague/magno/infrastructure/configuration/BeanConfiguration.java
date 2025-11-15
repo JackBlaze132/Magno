@@ -243,8 +243,8 @@ public class BeanConfiguration {
 
     @Bean
     public IResearchSeedbedStudentProfileHelper researchSeedbedStudentProfileHelper() {
-        return new ResearchSeedbedStudentProfileHelper(integraServicePort(),
-                userServicePort(), researchSeedbedProfileServicePort(), studentProfileServicePort());
+        return new ResearchSeedbedStudentProfileHelper(integraServicePort(), userServicePort(),
+                researchSeedbedProfileServicePort(), studentProfileServicePort(), researchSeedbedServicePort());
     }
 
     // CronJob Beans

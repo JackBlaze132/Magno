@@ -2,6 +2,7 @@ package com.unibague.magno.infrastructure.exceptionhandler;
 
 import com.unibague.magno.domain.api.IErrorLogServicePort;
 import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
+import com.unibague.magno.domain.exception.researchseedbedstudentprofile.FunctionaryNotAllowedToGenerateCertificateException;
 import com.unibague.magno.domain.model.ErrorLog;
 import com.unibague.magno.infrastructure.util.ErrorLogContextService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -411,6 +412,21 @@ public class ControllerAdvisor {
         
         logError(exception, code, message, request);
         
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(ResearchSeedbedStudentProfileNotFoundException.class)
+    public ErrorResponse handleFunctionaryNotAllowedException(FunctionaryNotAllowedToGenerateCertificateException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.FUNCTIONARY_OR_EXTERNAL_USER_NOT_ALLOWED_TO_GENERATE_CERTIFICATE.getCode();
+        String message = ExceptionResponse.FUNCTIONARY_OR_EXTERNAL_USER_NOT_ALLOWED_TO_GENERATE_CERTIFICATE.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+
+        logError(exception, code, message, request);
+
         return errorResponse;
     }
 

@@ -9,7 +9,7 @@ import com.unibague.magno.application.mapper.response.ResearchSeedbedStudentProf
 import com.unibague.magno.domain.api.IResearchSeedbedStudentProfileServicePort;
 import com.unibague.magno.domain.exception.excel.UploadExcelException;
 import com.unibague.magno.domain.model.ResearchSeedbedStudentProfile;
-import com.unibague.magno.infrastructure.util.UploadService;
+import com.unibague.magno.infrastructure.util.excel.UploadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

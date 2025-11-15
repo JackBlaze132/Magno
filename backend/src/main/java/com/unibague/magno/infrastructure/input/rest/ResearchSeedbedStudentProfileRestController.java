@@ -4,7 +4,7 @@ import com.unibague.magno.application.dto.request.ResearchSeedbedStudentProfileR
 import com.unibague.magno.application.dto.response.ResearchSeedbedStudentProfileResponse;
 import com.unibague.magno.application.dto.response.ResearchSeedbedStudentProfileSummaryResponse;
 import com.unibague.magno.application.handler.impl.ResearchSeedbedStudentProfileHandler;
-import com.unibague.magno.infrastructure.util.UploadService;
+import com.unibague.magno.infrastructure.util.excel.UploadService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
