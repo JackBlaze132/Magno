@@ -6,11 +6,14 @@ public class StudentSeedbedParticipation {
     private LocalDate startDate;
     private LocalDate endDate;
     private String seedbedCoordinatorName;
+    private String investigationGroupCoordinatorName;
 
-    public StudentSeedbedParticipation(LocalDate startDate, LocalDate endDate, String investigationGroupCoordinatorName) {
+    public StudentSeedbedParticipation(LocalDate startDate, LocalDate endDate,
+                                       String seedbedCoordinatorName, String investigationGroupCoordinatorName) {
         this.startDate = startDate;
         this.endDate = endDate;
-        this.seedbedCoordinatorName = investigationGroupCoordinatorName;
+        this.seedbedCoordinatorName = seedbedCoordinatorName;
+        this.investigationGroupCoordinatorName = investigationGroupCoordinatorName;
     }
 
     public LocalDate getStartDate() {
@@ -35,5 +38,13 @@ public class StudentSeedbedParticipation {
 
     public void setSeedbedCoordinatorName(String seedbedCoordinatorName) {
         this.seedbedCoordinatorName = seedbedCoordinatorName;
+    }
+
+    public String getInvestigationGroupCoordinatorName() {
+        return investigationGroupCoordinatorName;
+    }
+
+    public void setInvestigationGroupCoordinatorName(String investigationGroupCoordinatorName) {
+        this.investigationGroupCoordinatorName = investigationGroupCoordinatorName;
     }
 }
