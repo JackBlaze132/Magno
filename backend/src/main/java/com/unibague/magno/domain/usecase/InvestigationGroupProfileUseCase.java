@@ -71,7 +71,9 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
                     String.format("InvestigationGroupProfile with ID %d could not be updated because it does not exist", id)
             );
         }
-        return investigationGroupProfilePersistencePort.update(id, investigationGroupProfile);
+        InvestigationGroupProfile igp =
+                investigationGroupProfileHelper.verifyUserHasFunctionaryProfile(investigationGroupProfile);
+        return investigationGroupProfilePersistencePort.update(id, igp);
     }
 
     @Override

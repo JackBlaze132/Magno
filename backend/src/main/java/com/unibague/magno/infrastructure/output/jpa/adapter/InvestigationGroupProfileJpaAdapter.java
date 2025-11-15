@@ -54,11 +54,20 @@ public class InvestigationGroupProfileJpaAdapter implements IInvestigationGroupP
 
     @Override
     public InvestigationGroupProfile update(Long id, InvestigationGroupProfile investigationGroupProfile) {
-        InvestigationGroupProfileEntity investigationGroupProfileEntity = investigationGroupProfileEntityMapper
+
+        InvestigationGroupProfileEntity existingEntity = investigationGroupProfileRepository.findById(id)
+                .orElseThrow(() -> new InvestigationGroupProfileNotFoundException(
+                        String.format("InvestigationGroupProfile with id %s not found", id)));
+
+        InvestigationGroupProfileEntity updatedEntity = investigationGroupProfileEntityMapper
                 .toInvestigationGroupProfileEntity(id, investigationGroupProfile);
-        InvestigationGroupProfileEntity updatedInvestigationGroupProfileEntity = investigationGroupProfileRepository
-                .save(investigationGroupProfileEntity);
-        return investigationGroupProfileEntityMapper.toInvestigationGroupProfile(updatedInvestigationGroupProfileEntity);
+
+        existingEntity.setInvestigationGroup(updatedEntity.getInvestigationGroup());
+        existingEntity.setCoordinator(updatedEntity.getCoordinator());
+        existingEntity.setAcademicPeriod(updatedEntity.getAcademicPeriod());
+
+        InvestigationGroupProfileEntity savedEntity = investigationGroupProfileRepository.save(existingEntity);
+        return investigationGroupProfileEntityMapper.toInvestigationGroupProfile(savedEntity);
     }
 
     @Override
