@@ -1,6 +1,6 @@
 package com.unibague.magno.infrastructure.input.rest;
 
-import com.unibague.magno.application.dto.CurrentUserInfo;
+import com.unibague.magno.application.dto.util.CurrentUserInfo;
 import com.unibague.magno.application.dto.request.StudentSeedbedCertificateRequest;
 import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.application.dto.request.UserRequest;
@@ -74,7 +74,7 @@ public class UserRestController {
     public ResponseEntity<byte[]> getStudentSeedbedCertificate(
             @Valid @RequestBody StudentSeedbedCertificateRequest studentSeedbedCertificateRequest) throws Exception {
 
-        byte[] pdf = userHandler.generateStudentSeedbedCertificate(studentSeedbedCertificateRequest);
+        byte[] pdf = userHandler.generateByteStudentSeedbedCertificate(studentSeedbedCertificateRequest);
         return ResponseEntity.ok()
                 .header("Content-Disposition", "attachment; filename=certificado.pdf")
                 .contentType(MediaType.APPLICATION_PDF)

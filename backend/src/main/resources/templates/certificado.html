@@ -129,10 +129,10 @@
 
 <!-- CONTENIDO -->
 <p>
-    <span class="nombre-destacado"><b><span th:text="${nombre}"></span></b></span>, identificada con cédula de ciudadanía No
+    <span class="nombre-destacado"><b><span th:text="${nombre}"></span></b></span>, identificado/a con cédula de ciudadanía No
     <span th:text="${cedula}"></span> fue integrante del semillero <span th:text="${semillero}"></span>
     del grupo de investigación <span th:text="${grupo}"></span>, bajo la coordinación del investigador
-    Eduardo Peñaloza Kairuz, durante los periodos comprendidos entre:
+    <span th:text="${coordinador}"></span>, durante los periodos comprendidos entre:
 </p>
 
 <ul>
@@ -146,8 +146,11 @@
 <!-- FECHA DE EXPEDICIÓN -->
 <div class="firma-section">
     <p>
-        Se expide este certificado en Ibagué – Tolima, a los quince (15) días del mes de
-        <span th:text="${mes}"></span> de <span th:text="${anio}"></span>.
+        Se expide este certificado en Ibagué – Tolima, a los
+        <span th:text="${diaString}"></span>
+        <span th:text="'(' + ${dia} + ')'"></span> días del mes de
+        <span th:text="${mes}"></span> de
+        <span th:text="${anio}"></span>.
     </p>
 </div>
 

@@ -1,12 +1,13 @@
 package com.unibague.magno.domain.usecase;
 
+import com.unibague.magno.application.dto.request.StudentSeedbedCertificateRequest;
 import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.domain.api.IResearchSeedbedServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.integra.IntegraInvalidTypeException;
-import com.unibague.magno.domain.exception.researchseedbedstudentprofile.FunctionaryNotAllowedToGenerateCertificateException;
-import com.unibague.magno.domain.exception.researchseedbedstudentprofile.NoDataAvailableToGenerateCertificateException;
+import com.unibague.magno.domain.exception.user.FunctionaryNotAllowedToGenerateCertificateException;
+import com.unibague.magno.domain.exception.user.NoDataAvailableToGenerateCertificateException;
 import com.unibague.magno.domain.exception.user.UserAlreadyExistsException;
 import com.unibague.magno.domain.exception.user.UserNotFoundException;
 import com.unibague.magno.domain.model.ResearchSeedbed;
@@ -258,5 +259,15 @@ public class UserUseCase implements IUserServicePort {
         }
         certificate.setSeedbedParticipations(participations);
         return certificate;
+    }
+
+    @Override
+    public byte[] generateByteStudentSeedbedCertificate(StudentSeedbedCertificateRequest studentSeedbedCertificateRequest)
+            throws Exception {
+        Long userId = studentSeedbedCertificateRequest.getUserId();
+        Long researchSeedbedId = studentSeedbedCertificateRequest.getResearchSeedbedId();
+        StudentSeedbedCertificate certificate =
+                generateStudentSeedbedCertificate(userId, researchSeedbedId);
+        return userPersistencePort.generateStudentSeedbedCertificate(certificate);
     }
 }

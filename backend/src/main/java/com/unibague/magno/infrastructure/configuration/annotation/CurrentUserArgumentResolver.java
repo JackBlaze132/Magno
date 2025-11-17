@@ -1,6 +1,6 @@
 package com.unibague.magno.infrastructure.configuration.annotation;
 
-import com.unibague.magno.application.dto.CurrentUserInfo;
+import com.unibague.magno.application.dto.util.CurrentUserInfo;
 import com.unibague.magno.domain.exception.security.UnsupportedPrincipalException;
 import com.unibague.magno.infrastructure.configuration.security.CustomOidcUserWithUserId;
 import com.unibague.magno.infrastructure.configuration.security.CustomPrincipalWithUserId;

@@ -1,4 +1,4 @@
-package com.unibague.magno.domain.exception.researchseedbedstudentprofile;
+package com.unibague.magno.domain.exception.user;
 
 public class NoDataAvailableToGenerateCertificateException extends RuntimeException {
     public NoDataAvailableToGenerateCertificateException(String message) {

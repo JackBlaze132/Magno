@@ -1,4 +1,4 @@
-package com.unibague.magno.application.dto;
+package com.unibague.magno.application.dto.util;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

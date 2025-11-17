@@ -3,6 +3,8 @@ package com.unibague.magno.infrastructure.exceptionhandler;
 import com.unibague.magno.domain.api.IErrorLogServicePort;
 import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.*;
+import com.unibague.magno.domain.exception.user.FunctionaryNotAllowedToGenerateCertificateException;
+import com.unibague.magno.domain.exception.user.NoDataAvailableToGenerateCertificateException;
 import com.unibague.magno.domain.model.ErrorLog;
 import com.unibague.magno.infrastructure.util.ErrorLogContextService;
 import jakarta.servlet.http.HttpServletRequest;

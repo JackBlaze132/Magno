@@ -1,5 +1,6 @@
 package com.unibague.magno.application.handler.interfaces;
 
+import com.unibague.magno.application.dto.request.StudentSeedbedCertificateRequest;
 import com.unibague.magno.application.dto.request.UserRequest;
 import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.application.dto.response.UserResponse;
@@ -22,4 +23,7 @@ public interface IUserHandler {
     List<UserResponse> findAllInternalUsersRegistered();
 
     StudentSeedbedCertificate generateStudentSeedbedCertificate(Long userId, Long researchSeedbedId);
+
+    byte[] generateByteStudentSeedbedCertificate(StudentSeedbedCertificateRequest studentSeedbedCertificateRequest)
+            throws Exception;
 }

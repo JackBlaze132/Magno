@@ -16,11 +16,12 @@ import com.unibague.magno.infrastructure.output.jpa.adapter.*;
 import com.unibague.magno.infrastructure.output.jpa.adapter.integra.IntegraUserClient;
 import com.unibague.magno.infrastructure.output.jpa.mapper.*;
 import com.unibague.magno.infrastructure.output.jpa.repository.*;
+import com.unibague.magno.infrastructure.util.certificates.HtmlRenderService;
+import com.unibague.magno.infrastructure.util.certificates.PdfService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.DefaultResourceLoader;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
@@ -75,6 +76,9 @@ public class BeanConfiguration {
     private final IActionLogRepository actionLogRepository;
     private final ActionLogEntityMapper actionLogEntityMapper;
 
+    private final HtmlRenderService htmlRenderService;
+    private final PdfService pdfService;
+
     @Bean
     public IAcademicPeriodServicePort academicPeriodServicePort() {
         return new AcademicPeriodUseCase(academicPeriodPersistencePort());
@@ -122,7 +126,7 @@ public class BeanConfiguration {
 
     @Bean
     public IUserPersistencePort userPersistencePort() {
-        return new UserJpaAdapter(userRepository, userEntityMapper);
+        return new UserJpaAdapter(userRepository, userEntityMapper, htmlRenderService, pdfService);
     }
 
     @Bean

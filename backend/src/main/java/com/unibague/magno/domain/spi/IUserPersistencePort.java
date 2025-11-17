@@ -1,8 +1,11 @@
 package com.unibague.magno.domain.spi;
 
+import com.unibague.magno.application.dto.request.StudentSeedbedCertificateRequest;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.certificates.projections.StudentSeedbedCertificateProjection;
+import com.unibague.magno.domain.model.certificates.studentcertificates.StudentSeedbedCertificate;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,4 +27,7 @@ public interface IUserPersistencePort {
     List<User> findAllStudents();
 
     List<StudentSeedbedCertificateProjection> getStudentParticipationsInSeedbedCertificates(Long userId, Long researchseedbedId);
+
+    byte[] generateStudentSeedbedCertificate(StudentSeedbedCertificate certificate)
+            throws IOException;
 }

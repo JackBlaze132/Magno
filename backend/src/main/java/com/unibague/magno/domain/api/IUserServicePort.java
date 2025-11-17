@@ -1,5 +1,6 @@
 package com.unibague.magno.domain.api;
 
+import com.unibague.magno.application.dto.request.StudentSeedbedCertificateRequest;
 import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.certificates.projections.StudentSeedbedCertificateProjection;
@@ -40,4 +41,7 @@ public interface IUserServicePort {
     List<StudentSeedbedCertificateProjection> getStudentParticipationsInSeedbedCertificates(Long userId, Long researchseedbedId);
 
     StudentSeedbedCertificate generateStudentSeedbedCertificate(Long userId, Long researchSeedbedId);
+
+    byte[] generateByteStudentSeedbedCertificate(StudentSeedbedCertificateRequest studentSeedbedCertificateRequest)
+            throws Exception;
 }
