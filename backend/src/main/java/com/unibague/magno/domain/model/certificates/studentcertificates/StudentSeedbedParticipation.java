@@ -16,6 +16,9 @@ public class StudentSeedbedParticipation {
         this.investigationGroupCoordinatorName = investigationGroupCoordinatorName;
     }
 
+    public StudentSeedbedParticipation() {
+    }
+
     public LocalDate getStartDate() {
         return startDate;
     }

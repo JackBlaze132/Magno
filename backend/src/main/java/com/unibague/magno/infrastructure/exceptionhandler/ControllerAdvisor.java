@@ -2,7 +2,7 @@ package com.unibague.magno.infrastructure.exceptionhandler;
 
 import com.unibague.magno.domain.api.IErrorLogServicePort;
 import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
-import com.unibague.magno.domain.exception.researchseedbedstudentprofile.FunctionaryNotAllowedToGenerateCertificateException;
+import com.unibague.magno.domain.exception.researchseedbedstudentprofile.*;
 import com.unibague.magno.domain.model.ErrorLog;
 import com.unibague.magno.infrastructure.util.ErrorLogContextService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,9 +25,6 @@ import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFou
 import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileAlreadyExistsInInvestigationGroup;
 import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbedprofile.SameCoordinatorAndTutorException;
-import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ALeaderAlreadyExistsInSeedbedException;
-import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ResearchSeedbedStudentProfileNotFoundException;
-import com.unibague.magno.domain.exception.researchseedbedstudentprofile.StudentProfileAlreadyExistsInSeedbedException;
 import com.unibague.magno.domain.exception.role.RoleNotFoundException;
 import com.unibague.magno.domain.exception.security.InvalidEmailException;
 import com.unibague.magno.domain.exception.security.NullEmailException;
@@ -185,6 +182,36 @@ public class ControllerAdvisor {
         
         logError(exception, code, message, request);
         
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(FunctionaryNotAllowedToGenerateCertificateException.class)
+    public ErrorResponse handleFunctionaryNotAllowedException(FunctionaryNotAllowedToGenerateCertificateException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.FUNCTIONARY_OR_EXTERNAL_USER_NOT_ALLOWED_TO_GENERATE_CERTIFICATE.getCode();
+        String message = ExceptionResponse.FUNCTIONARY_OR_EXTERNAL_USER_NOT_ALLOWED_TO_GENERATE_CERTIFICATE.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+
+        logError(exception, code, message, request);
+
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(NoDataAvailableToGenerateCertificateException.class)
+    public ErrorResponse handleNoDataAvailableException(NoDataAvailableToGenerateCertificateException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.NO_DATA_AVAILABLE_TO_GENERATE_SEEDBED_CERTIFICATE.getCode();
+        String message = ExceptionResponse.NO_DATA_AVAILABLE_TO_GENERATE_SEEDBED_CERTIFICATE.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+
+        logError(exception, code, message, request);
+
         return errorResponse;
     }
 
@@ -412,21 +439,6 @@ public class ControllerAdvisor {
         
         logError(exception, code, message, request);
         
-        return errorResponse;
-    }
-
-    @ResponseStatus(HttpStatus.CONFLICT)
-    @ExceptionHandler(FunctionaryNotAllowedToGenerateCertificateException.class)
-    public ErrorResponse handleFunctionaryNotAllowedException(FunctionaryNotAllowedToGenerateCertificateException exception, HttpServletRequest request) {
-
-        String code = ExceptionResponse.FUNCTIONARY_OR_EXTERNAL_USER_NOT_ALLOWED_TO_GENERATE_CERTIFICATE.getCode();
-        String message = ExceptionResponse.FUNCTIONARY_OR_EXTERNAL_USER_NOT_ALLOWED_TO_GENERATE_CERTIFICATE.getMessage();
-
-        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
-                Collections.singletonList(exception.getMessage()));
-
-        logError(exception, code, message, request);
-
         return errorResponse;
     }
 

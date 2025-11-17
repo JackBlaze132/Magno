@@ -1,6 +1,7 @@
 package com.unibague.magno.domain.spi;
 
 import com.unibague.magno.domain.model.User;
+import com.unibague.magno.domain.model.certificates.projections.StudentSeedbedCertificateProjection;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,4 +22,6 @@ public interface IUserPersistencePort {
     List<User> findAllFunctionaries();
 
     List<User> findAllStudents();
+
+    List<StudentSeedbedCertificateProjection> getStudentParticipationsInSeedbedCertificates(Long userId, Long researchseedbedId);
 }

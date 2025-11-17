@@ -5,5 +5,4 @@ import com.unibague.magno.domain.model.certificates.studentcertificates.StudentS
 
 public interface IResearchSeedbedStudentProfileHelper {
     ResearchSeedbedStudentProfile verifyStudentHasAProfile(ResearchSeedbedStudentProfile researchSeedbedStudentProfile);
-    StudentSeedbedCertificate generateStudentSeedbedCertificate(Long userId, Long researchSeedbedId);
 }

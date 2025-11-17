@@ -3,6 +3,7 @@ package com.unibague.magno.application.handler.interfaces;
 import com.unibague.magno.application.dto.request.UserRequest;
 import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.application.dto.response.UserResponse;
+import com.unibague.magno.domain.model.certificates.studentcertificates.StudentSeedbedCertificate;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface IUserHandler {
     List<String> findAllCountries();
 
     List<UserResponse> findAllInternalUsersRegistered();
+
+    StudentSeedbedCertificate generateStudentSeedbedCertificate(Long userId, Long researchSeedbedId);
 }

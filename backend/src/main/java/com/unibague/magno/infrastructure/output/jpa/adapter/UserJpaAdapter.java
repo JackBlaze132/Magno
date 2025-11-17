@@ -1,6 +1,7 @@
 package com.unibague.magno.infrastructure.output.jpa.adapter;
 
 import com.unibague.magno.domain.model.User;
+import com.unibague.magno.domain.model.certificates.projections.StudentSeedbedCertificateProjection;
 import com.unibague.magno.domain.spi.IUserPersistencePort;
 import com.unibague.magno.infrastructure.output.jpa.entity.UserEntity;
 import com.unibague.magno.infrastructure.output.jpa.mapper.UserEntityMapper;
@@ -102,5 +103,10 @@ public class UserJpaAdapter implements IUserPersistencePort {
                 .stream()
                 .map(userEntityMapper::toUser)
                 .toList();
+    }
+
+    @Override
+    public List<StudentSeedbedCertificateProjection> getStudentParticipationsInSeedbedCertificates(Long userId, Long researchseedbedId) {
+        return userRepository.getStudentParticipationsInSeedbedCertificates(userId, researchseedbedId);
     }
 }

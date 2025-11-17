@@ -19,6 +19,8 @@ import com.unibague.magno.infrastructure.output.jpa.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
@@ -115,7 +117,7 @@ public class BeanConfiguration {
 
     @Bean
     public IUserServicePort userServicePort() {
-        return new UserUseCase(userPersistencePort(), integraServicePort());
+        return new UserUseCase(userPersistencePort(), integraServicePort(), researchSeedbedServicePort());
     }
 
     @Bean
@@ -243,8 +245,8 @@ public class BeanConfiguration {
 
     @Bean
     public IResearchSeedbedStudentProfileHelper researchSeedbedStudentProfileHelper() {
-        return new ResearchSeedbedStudentProfileHelper(integraServicePort(), userServicePort(),
-                researchSeedbedProfileServicePort(), studentProfileServicePort(), researchSeedbedServicePort());
+        return new ResearchSeedbedStudentProfileHelper(userServicePort(),
+                researchSeedbedProfileServicePort(), studentProfileServicePort());
     }
 
     // CronJob Beans

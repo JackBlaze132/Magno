@@ -1,13 +1,19 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
+import com.unibague.magno.domain.api.IResearchSeedbedServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.integra.IntegraInvalidTypeException;
-import com.unibague.magno.domain.exception.integra.IntegraStudentNotFoundException;
+import com.unibague.magno.domain.exception.researchseedbedstudentprofile.FunctionaryNotAllowedToGenerateCertificateException;
+import com.unibague.magno.domain.exception.researchseedbedstudentprofile.NoDataAvailableToGenerateCertificateException;
 import com.unibague.magno.domain.exception.user.UserAlreadyExistsException;
 import com.unibague.magno.domain.exception.user.UserNotFoundException;
+import com.unibague.magno.domain.model.ResearchSeedbed;
 import com.unibague.magno.domain.model.User;
+import com.unibague.magno.domain.model.certificates.projections.StudentSeedbedCertificateProjection;
+import com.unibague.magno.domain.model.certificates.studentcertificates.StudentSeedbedCertificate;
+import com.unibague.magno.domain.model.certificates.studentcertificates.StudentSeedbedParticipation;
 import com.unibague.magno.domain.model.enums.JSONIntegraType;
 import com.unibague.magno.domain.model.enums.Sex;
 import com.unibague.magno.domain.model.enums.TypeOfInternalUser;
@@ -15,8 +21,8 @@ import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 import com.unibague.magno.domain.spi.IUserPersistencePort;
 
+import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static com.unibague.magno.domain.usecase.ResearchSeedbedStudentProfileUseCase.IDENTIFICATION;
 
@@ -24,11 +30,14 @@ public class UserUseCase implements IUserServicePort {
 
     private final IUserPersistencePort userPersistencePort;
     private final IIntegraServicePort integraServicePort;
+    private final IResearchSeedbedServicePort researchSeedbedServicePort;
 
     public UserUseCase(IUserPersistencePort userPersistencePort,
-                       IIntegraServicePort integraServicePort) {
+                       IIntegraServicePort integraServicePort,
+                       IResearchSeedbedServicePort researchSeedbedServicePort) {
         this.userPersistencePort = userPersistencePort;
         this.integraServicePort = integraServicePort;
+        this.researchSeedbedServicePort = researchSeedbedServicePort;
     }
 
     @Override
@@ -205,5 +214,49 @@ public class UserUseCase implements IUserServicePort {
 
     private Optional<User> findByEmailOptional(String email) {
         return userPersistencePort.findByEmail(email);
+    }
+
+    @Override
+    public List<StudentSeedbedCertificateProjection> getStudentParticipationsInSeedbedCertificates(Long userId, Long researchseedbedId) {
+        return userPersistencePort.getStudentParticipationsInSeedbedCertificates(userId, researchseedbedId);
+    }
+
+    @Override
+    public StudentSeedbedCertificate generateStudentSeedbedCertificate(Long userId, Long researchSeedbedId) {
+
+        User studentUser = findById(userId);
+        boolean isFunctionaryOrExternal = studentUser.getTypeOfInternalUser().equals(TypeOfInternalUser.FUNCIONARIO)
+                || studentUser.getTypeOfInternalUser() == null;
+
+        if (isFunctionaryOrExternal) {
+            throw new FunctionaryNotAllowedToGenerateCertificateException
+                    ("Functionaries or external users are not allowed to generate student seedbed certificates.");
+        }
+
+        ResearchSeedbed researchSeedbed = researchSeedbedServicePort.findById(researchSeedbedId);
+        List<StudentSeedbedCertificateProjection> certificateData =
+                getStudentParticipationsInSeedbedCertificates(userId, researchSeedbed.getId());
+
+        if (certificateData.isEmpty()) {
+            throw new NoDataAvailableToGenerateCertificateException(
+                    "No data available to generate the student seedbed certificate.");
+        }
+
+        StudentSeedbedCertificate certificate = new StudentSeedbedCertificate();
+        certificate.setStudentName(certificateData.getFirst().getStudentName());
+        certificate.setIdentificationNumber(certificateData.getFirst().getIdentificationNumber());
+        certificate.setSeedbedName(certificateData.getFirst().getSeedbedName());
+        certificate.setInvestigationGroupName(certificateData.getFirst().getInvestigationGroupName());
+        List<StudentSeedbedParticipation> participations = new ArrayList<>();
+        for (StudentSeedbedCertificateProjection data : certificateData) {
+            StudentSeedbedParticipation participation = new StudentSeedbedParticipation();
+            participation.setStartDate(LocalDate.parse(data.getStartDate()));
+            participation.setEndDate(LocalDate.parse(data.getEndDate()));
+            participation.setSeedbedCoordinatorName(data.getSeedbedCoordinatorName());
+            participation.setInvestigationGroupCoordinatorName(data.getInvestigationGroupCoordinatorName());
+            participations.add(participation);
+        }
+        certificate.setSeedbedParticipations(participations);
+        return certificate;
     }
 }

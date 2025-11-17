@@ -2,6 +2,8 @@ package com.unibague.magno.domain.api;
 
 import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.domain.model.User;
+import com.unibague.magno.domain.model.certificates.projections.StudentSeedbedCertificateProjection;
+import com.unibague.magno.domain.model.certificates.studentcertificates.StudentSeedbedCertificate;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 
@@ -34,4 +36,8 @@ public interface IUserServicePort {
     List<User> findAllInternalUsersRegistered();
 
     User findByEmail(String email);
+
+    List<StudentSeedbedCertificateProjection> getStudentParticipationsInSeedbedCertificates(Long userId, Long researchseedbedId);
+
+    StudentSeedbedCertificate generateStudentSeedbedCertificate(Long userId, Long researchSeedbedId);
 }
