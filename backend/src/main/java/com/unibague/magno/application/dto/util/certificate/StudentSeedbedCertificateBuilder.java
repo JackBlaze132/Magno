@@ -65,11 +65,6 @@ public class StudentSeedbedCertificateBuilder {
         return this;
     }
 
-    public StudentSeedbedCertificateBuilder logo2(String v) {
-        values.put(LOGO2, v);
-        return this;
-    }
-
     public StudentSeedbedCertificateBuilder firma(String v) {
         values.put(FIRMA, v);
         return this;

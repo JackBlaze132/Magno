@@ -146,7 +146,6 @@ public class UserJpaAdapter implements IUserPersistencePort {
         LocalDate today = LocalDate.now(ZoneId.of(StudentSeedbedCertificateFields.TIMEZONE_VALUE));
 
         String logo1Path = resourceLoader.getResource("classpath:static/images/logo1.png").getURI().toString();
-        String logo2Path = resourceLoader.getResource("classpath:static/images/logo2.png").getURI().toString();
         String firmaPath = resourceLoader.getResource("classpath:static/firma.png").getURI().toString();
 
         RuleBasedNumberFormat formatter =
@@ -164,7 +163,6 @@ public class UserJpaAdapter implements IUserPersistencePort {
                 .mes(pdfService.spanishMonth(today.getMonthValue(), false))
                 .anio(today.getYear())
                 .logo1(logo1Path)
-                .logo2(logo2Path)
                 .firma(firmaPath)
                 .director(StudentSeedbedCertificateFields.DIRECTOR_VALUE)
                 .cargo(StudentSeedbedCertificateFields.CARGO_VALUE)

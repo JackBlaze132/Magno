@@ -26,31 +26,38 @@
 
         .logos {
             width: 100%;
-            margin-bottom: 40px;
+            margin-bottom: 0;
         }
 
         .logos td {
-            vertical-align: middle;
+            text-align: right;
+            vertical-align: top;
+            padding: 0;
         }
 
         .logos img {
-            display: block;
+            display: inline-block;
+            margin: 0;
         }
 
         h1 {
-            text-align: center;
-            margin: 40px 0 30px 0;
+            text-align: center !important;
+            margin: 20px 0 15px 0;
             font-size: 16pt;
             font-weight: bold;
-            letter-spacing: 3px;
+            letter-spacing: 0;
+            text-align-last: center;
         }
 
         h2 {
-            text-align: center;
-            margin: 20px 0 40px 0;
+            text-align: center !important;
+            margin: 0 0 25px 0;
             font-size: 14pt;
             font-weight: bold;
+            text-align-last: center;
         }
+
+
 
         p {
             text-align: justify;
@@ -74,11 +81,11 @@
         }
 
         .firma-section {
-            margin-top: 80px;
+            margin-top: 20px;
         }
 
         .firma-block {
-            margin-top: 20px;
+            margin-top: 5px;
         }
 
         .firma-block img {
@@ -109,25 +116,19 @@
 
 <body>
 
-<!-- LOGOS SUPERIORES -->
 <table class="logos">
     <tr>
-        <td style="text-align: left; width: 50%;">
-            <img th:src="${logo1Path}" style="width: 110px;" alt="Logo 1" />
-        </td>
         <td style="text-align: right; width: 50%;">
-            <img th:src="${logo2Path}" style="width: 140px;" alt="Logo 2" />
+            <img th:src="${logo1Path}" style="width: 140px;" alt="Logo" />
         </td>
     </tr>
 </table>
 
-<!-- ENCABEZADO -->
 <div class="header-section">
     <h1>LA DIRECCIÓN DE INVESTIGACIONES</h1>
     <h2>CERTIFICA QUE</h2>
 </div>
 
-<!-- CONTENIDO -->
 <p>
     <span class="nombre-destacado"><b><span th:text="${nombre}"></span></b></span>, identificado/a con cédula de ciudadanía No
     <span th:text="${cedula}"></span> fue integrante del semillero <span th:text="${semillero}"></span>
@@ -143,7 +144,6 @@
     Durante su vinculación al semillero participó en actividades y reuniones del mismo.
 </p>
 
-<!-- FECHA DE EXPEDICIÓN -->
 <div class="firma-section">
     <p>
         Se expide este certificado en Ibagué – Tolima, a los
@@ -154,7 +154,6 @@
     </p>
 </div>
 
-<!-- BLOQUE DE FIRMA -->
 <div class="firma-block">
     <img th:src="${firmaPath}" alt="Firma" />
     <div class="firma-line"></div>

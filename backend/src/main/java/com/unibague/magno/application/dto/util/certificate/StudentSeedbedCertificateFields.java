@@ -24,7 +24,6 @@ public class StudentSeedbedCertificateFields {
     public static final String DIRECTOR_VALUE = "Jorge Enrique García Melo";
     public static final String CARGO_VALUE = "Director";
     public static final String LOGO1_VALUE = "classpath:static/images/logo1.png";
-    public static final String LOGO2_VALUE = "classpath:static/images/logo2.png";
     public static final String FIRMA_VALUE = "classpath:static/firma.png";
     public static final String TIMEZONE_VALUE = "America/Bogota";
 
