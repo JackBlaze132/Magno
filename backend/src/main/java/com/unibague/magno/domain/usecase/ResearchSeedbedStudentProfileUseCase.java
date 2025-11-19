@@ -81,11 +81,15 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
 
     @Override
     public ResearchSeedbedStudentProfile update(Long id, ResearchSeedbedStudentProfile researchSeedbedStudentProfile) {
+        researchSeedbedStudentProfile.setId(id);
         if (researchSeedbedStudentProfilePersistencePort.findById(id).isEmpty()) {
             throw new ResearchSeedbedStudentProfileNotFoundException(
                     String.format("ResearchSeedbedStudentProfile with id %d could not be updated because it was not found", id));
         }
-        verifyIfWhenUpdatingTryingToAddMoreThanOneLeader(researchSeedbedStudentProfile);
+        
+        if (Boolean.TRUE.equals(researchSeedbedStudentProfile.getIsLeader())){
+            verifyIfWhenUpdatingTryingToAddMoreThanOneLeader(researchSeedbedStudentProfile);
+        }
         return researchSeedbedStudentProfilePersistencePort.update(id, researchSeedbedStudentProfile);
     }
 
@@ -100,7 +104,7 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
                     .findFirst()
                     .orElse(null);
 
-            if (existingLeader != null && !existingLeader.getId().equals(researchSeedbedStudentProfile.getStudentProfileId())) {
+            if (existingLeader != null && !existingLeader.getId().equals(researchSeedbedStudentProfile.getId())) {
                 throw e;
             }
         }
