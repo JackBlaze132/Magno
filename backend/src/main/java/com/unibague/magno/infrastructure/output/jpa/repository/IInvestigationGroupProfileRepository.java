@@ -66,7 +66,6 @@ public interface IInvestigationGroupProfileRepository extends JpaRepository<Inve
             @Param("academicPeriodId2") Long academicPeriodId2
     );
 
-    // Currently, this query works only with SQL Server, notice that if another database is used, it may need to be adjusted.
     @Query(value = """
     SELECT
         ap.name AS academicPeriodName,
@@ -81,17 +80,16 @@ public interface IInvestigationGroupProfileRepository extends JpaRepository<Inve
     JOIN investigation_groups ig
         ON ig.id = igp.investigation_group_id
     LEFT JOIN research_seedbeds_student_profiles rssp
-        ON rssp.research_seedbed_profile_id = rsp.id AND rssp.was_active = 1
+        ON rssp.research_seedbed_profile_id = rsp.id AND rssp.was_active = true
     LEFT JOIN student_profiles sp
         ON sp.id = rssp.student_profile_id
     WHERE rsp.academic_period_id = :academicPeriodId
-      AND rsp.was_active = 1
+      AND rsp.was_active = true
     GROUP BY ap.name, ig.name
     ORDER BY ig.name
     """, nativeQuery = true)
     List<ActiveSeedbedsProjection> getActiveSeedbedsReportByAcademicPeriod(@Param("academicPeriodId") Long academicPeriodId);
 
-    // Currently, this query works only with SQL Server, notice that if another database is used, it may need to be adjusted.
     @Query(value = """
     SELECT
         CONCAT(ap1.name, '__', ap2.name) AS academicPeriodName,
@@ -113,12 +111,12 @@ public interface IInvestigationGroupProfileRepository extends JpaRepository<Inve
         ON rs.id = rsp.research_seedbed_id
     LEFT JOIN research_seedbeds_student_profiles rssp
         ON rssp.research_seedbed_profile_id = rsp.id
-        AND rssp.was_active = 1
+        AND rssp.was_active = true
     LEFT JOIN student_profiles sp
         ON sp.id = rssp.student_profile_id
     WHERE
         rsp.academic_period_id IN (:academicPeriodId1, :academicPeriodId2)
-        AND rsp.was_active = 1
+        AND rsp.was_active = true
     GROUP BY
         ig.name,
         ap1.name,

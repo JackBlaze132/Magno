@@ -57,8 +57,8 @@ public interface IUserRepository extends JpaRepository<UserEntity, Long> {
         ON sp.user_id = u.id
     WHERE u.id = :userId 
     AND rs.id = :researchSeedbedId
-    AND rssp.was_active = 1
-    AND rsp.was_active = 1
+    AND rssp.was_active = true
+    AND rsp.was_active = true
     """, nativeQuery = true)
     List<StudentSeedbedCertificateProjection> getStudentParticipationsInSeedbedCertificates(
             @Param("userId") Long userId,
