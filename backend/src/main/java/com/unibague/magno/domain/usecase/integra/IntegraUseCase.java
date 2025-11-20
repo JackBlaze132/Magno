@@ -49,7 +49,8 @@ public class IntegraUseCase implements IIntegraServicePort {
         return functionaryOptional.orElseThrow(() -> {
             String message = String.
                     format("It wasn't possible to find the functionary with identification %s " +
-                            "in the returned list", identification);
+                            "This may occur because the official is no longer affiliated with the university." +
+                            "If you believe this is a mistake, please contact the DIRI department.", identification);
             return new IntegraUserNotFoundException(message);
         });
 
@@ -161,7 +162,9 @@ public class IntegraUseCase implements IIntegraServicePort {
     public IntegraFunctionary getIntegraFunctionaryByEmail(String email) {
         return integraPersistencePort.getIntegraFunctionaryByEmail(email)
                 .orElseThrow(() -> new IntegraUserNotFoundException(
-                        String.format("IntegraFunctionary with email %s not found", email)));
+                        String.format("IntegraFunctionary with email %s not found" +
+                                "This may occur because the official is no longer affiliated with the university." +
+                                "If you believe this is a mistake, please contact the DIRI department.", email)));
     }
 
     @Override
