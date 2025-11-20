@@ -1,7 +1,5 @@
 package com.unibague.magno.domain.model;
 
-import java.util.Set;
-
 public class FunctionaryProfile {
 
     private Long id;

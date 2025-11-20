@@ -24,7 +24,7 @@ public class RoleDataInitializer implements CommandLineRunner {
     @Transactional
     public void run(String... args) {
 
-        log.info("---------------------------------------\n");
+        log.info("\n\n\n---------------------------------------\n\n\n");
         log.info("Initializing seedbed roles...");
         Arrays.stream(SeedbedRole.values()).forEach(seedbedRole -> {
             if (!roleRepository.existsByName(seedbedRole)) {
@@ -37,7 +37,7 @@ public class RoleDataInitializer implements CommandLineRunner {
                 roleRepository.save(role);
             }
         });
-        log.info("\n\nSeedbed roles initialization completed.");
-        log.info("---------------------------------------\n");
+        log.info("\n\n\nSeedbed roles initialization completed.\n\n\n");
+        log.info("\n\n\n---------------------------------------\n\n\n");
     }
 }
