@@ -6,6 +6,7 @@ import com.unibague.magno.application.handler.impl.ResearchSeedbedHandler;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -18,18 +19,21 @@ public class ResearchSeedbedRestController {
 
     private final ResearchSeedbedHandler researchSeedbedHandler;
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<ResearchSeedbedResponse> getResearchSeedbedById(@PathVariable Long id) {
         ResearchSeedbedResponse response = researchSeedbedHandler.findById(id);
         return ResponseEntity.ok(response);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
     @GetMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<List<ResearchSeedbedResponse>> getAllResearchSeedbeds() {
         List<ResearchSeedbedResponse> responses = researchSeedbedHandler.findAll();
         return ResponseEntity.ok(responses);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<ResearchSeedbedResponse> createResearchSeedbed
             (@Valid @RequestBody ResearchSeedbedRequest researchSeedbedRequest) {
@@ -38,6 +42,7 @@ public class ResearchSeedbedRestController {
         return ResponseEntity.created(location).body(created);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<ResearchSeedbedResponse> updateResearchSeedbedById
             (@PathVariable Long id, @Valid @RequestBody ResearchSeedbedRequest researchSeedbedRequest) {
@@ -45,6 +50,7 @@ public class ResearchSeedbedRestController {
         return ResponseEntity.ok(updated);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @DeleteMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<Void> deleteResearchSeedbedById(@PathVariable Long id) {
         researchSeedbedHandler.deleteById(id);

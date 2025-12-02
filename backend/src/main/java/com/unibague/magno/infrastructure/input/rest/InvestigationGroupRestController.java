@@ -6,6 +6,7 @@ import com.unibague.magno.application.handler.impl.InvestigationGroupHandler;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -18,18 +19,21 @@ public class InvestigationGroupRestController {
 
     private final InvestigationGroupHandler investigationGroupHandler;
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<InvestigationGroupResponse> getInvestigationGroupById(@PathVariable Long id) {
         InvestigationGroupResponse response = investigationGroupHandler.findById(id);
         return ResponseEntity.ok(response);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<List<InvestigationGroupResponse>> getAllInvestigationGroups() {
         List<InvestigationGroupResponse> responses = investigationGroupHandler.findAll();
         return ResponseEntity.ok(responses);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<InvestigationGroupResponse> createInvestigationGroup
             (@Valid @RequestBody InvestigationGroupRequest investigationGroupRequest) {
@@ -38,6 +42,7 @@ public class InvestigationGroupRestController {
         return ResponseEntity.created(location).body(created);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<InvestigationGroupResponse> updateInvestigationGroupById
             (@PathVariable Long id, @Valid @RequestBody InvestigationGroupRequest investigationGroupRequest) {
@@ -45,6 +50,7 @@ public class InvestigationGroupRestController {
         return ResponseEntity.ok(updated);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @DeleteMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<Void> deleteInvestigationGroupById(@PathVariable Long id) {
         investigationGroupHandler.deleteById(id);
