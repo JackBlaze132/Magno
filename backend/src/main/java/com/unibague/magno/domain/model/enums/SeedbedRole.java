@@ -6,7 +6,7 @@ public enum SeedbedRole {
     TUTOR_DE_SEMILLERO("Tutor de semillero", "Rol de tutor de semillero"),
     COORDINADOR_DE_SEMILLERO("Coordinador de semillero", "Rol de coordinador de semillero"),
     COORDINADOR_DE_GRUPO_DE_INVESTIGACION("Coordinador de grupo de investigacion", "Rol de coordinador de grupo de investigacion"),
-    DIRI("DIRI", "Rol de los usuarios de la direccion de investigaciones"),;
+    DIRI("DIRI", "Rol de los usuarios de la direccion de investigaciones");
 
     private final String formattedName;
     private final String description;

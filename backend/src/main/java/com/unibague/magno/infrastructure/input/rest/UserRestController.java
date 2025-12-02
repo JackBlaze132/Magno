@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -53,6 +54,7 @@ public class UserRestController {
         return ResponseEntity.ok(students);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/all-external-users-registered", headers = "API-VERSION=1")
     ResponseEntity<List<UserResponse>> getAllExternalUsersRegistered() {
         List<UserResponse> externalUsers = userHandler.findAllExternalUsersRegistered();
@@ -81,6 +83,7 @@ public class UserRestController {
                 .body(pdf);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest) {
         UserResponse userResponse = userHandler.save(userRequest);
