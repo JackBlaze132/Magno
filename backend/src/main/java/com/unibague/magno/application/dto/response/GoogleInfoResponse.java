@@ -9,5 +9,5 @@ public class GoogleInfoResponse {
     String name;
     String email;
     String picture;
-    private Long userId;
+    Long userId;
 }

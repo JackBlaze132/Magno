@@ -8,6 +8,7 @@ import com.unibague.magno.infrastructure.util.excel.UploadService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,6 +35,7 @@ public class ResearchSeedbedStudentProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
     @GetMapping(path = "/research-seedbed-profile/{researchSeedbedProfileId}", headers = "API-VERSION=1")
     public ResponseEntity<List<ResearchSeedbedStudentProfileResponse>> getAllResearchSeedbedStudentProfilesByResearchSeedbedProfileId(@PathVariable Long researchSeedbedProfileId) {
         List<ResearchSeedbedStudentProfileResponse> responses = researchSeedbedStudentProfileHandler.findAllByResearchSeedbedProfileId(researchSeedbedProfileId);

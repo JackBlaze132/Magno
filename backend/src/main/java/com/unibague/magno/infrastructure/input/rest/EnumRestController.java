@@ -4,6 +4,7 @@ import com.unibague.magno.domain.api.IEnumServicePort;
 import com.unibague.magno.domain.exception.enums.EnumBadRequestException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,11 +46,13 @@ public class EnumRestController {
         throw new EnumBadRequestException("Enum no encontrado: " + enumName);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
     @GetMapping(path = "/get-lines-of-research-by-investigation-group-id/{id}", headers = "API-VERSION=1")
     public ResponseEntity<List<String>> getLinesOfResearchByInvestigationGroupId(@PathVariable Long id) {
         return ResponseEntity.ok(enumServicePort.getLinesOfResearchByInvestigationGroupId(id));
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
     @GetMapping(path = "/get-lines-of-research-by-research-seedbed-id/{id}", headers = "API-VERSION=1")
     public ResponseEntity<String> getLinesOfResearchByResearchSeedbedId(@PathVariable Long id) {
         return ResponseEntity.ok(enumServicePort.getLineOfResearchByResearchSeedbedId(id));
