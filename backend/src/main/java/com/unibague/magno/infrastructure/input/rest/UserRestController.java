@@ -24,30 +24,35 @@ public class UserRestController {
 
     private final UserHandler userHandler;
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
         UserResponse userResponse = userHandler.findById(id);
         return ResponseEntity.ok(userResponse);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<List<UserResponse>> getAllUsers() {
         List<UserResponse> userResponse = userHandler.findAll();
         return ResponseEntity.ok(userResponse);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).COORDINADOR_DE_SEMILLERO)")
     @GetMapping(path = "/all-countries", headers = "API-VERSION=1")
     ResponseEntity<List<String>> getAllCountries() {
         List<String> countries = userHandler.findAllCountries();
         return ResponseEntity.ok(countries);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).COORDINADOR_DE_SEMILLERO)")
     @GetMapping(path = "/all-functionaries-registered", headers = "API-VERSION=1")
     ResponseEntity<List<UserResponse>> getAllFunctionariesRegistered() {
         List<UserResponse> functionaries = userHandler.findAllFunctionariesRegistered();
         return ResponseEntity.ok(functionaries);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).COORDINADOR_DE_SEMILLERO)")
     @GetMapping(path = "/all-students-registered", headers = "API-VERSION=1")
     ResponseEntity<List<UserResponse>> getAllStudentsRegistered() {
         List<UserResponse> students = userHandler.findAllStudentsRegistered();
@@ -61,17 +66,20 @@ public class UserRestController {
         return ResponseEntity.ok(externalUsers);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).COORDINADOR_DE_SEMILLERO)")
     @GetMapping(path = "/all-internal-users-registered", headers = "API-VERSION=1")
     ResponseEntity<List<UserResponse>> getAllInternalUsersRegistered() {
         List<UserResponse> internalUsers = userHandler.findAllInternalUsersRegistered();
         return ResponseEntity.ok(internalUsers);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
     @GetMapping(path = "/me", headers = "API-VERSION=1")
     public ResponseEntity<CurrentUserInfo> getCurrentUserInfo(@CurrentUser CurrentUserInfo currentUser) {
         return ResponseEntity.ok(currentUser);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
     @GetMapping(path = "/student-seedbed-certificate", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getStudentSeedbedCertificate(
             @Valid @RequestBody StudentSeedbedCertificateRequest studentSeedbedCertificateRequest) throws Exception {
@@ -91,6 +99,7 @@ public class UserRestController {
         return ResponseEntity.created(location).body(userResponse);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @PostMapping(path = "/integra-user", headers = "API-VERSION=1")
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody IntegraUserRequest integraUserRequest) {
         UserResponse userResponse = userHandler.save(integraUserRequest);
@@ -98,6 +107,7 @@ public class UserRestController {
         return ResponseEntity.created(location).body(userResponse);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<UserResponse> updateUserById
             (@PathVariable Long id, @Valid @RequestBody UserRequest userRequest) {
@@ -105,6 +115,7 @@ public class UserRestController {
         return ResponseEntity.ok(userResponse);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @DeleteMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<Void> deleteUserById(@PathVariable Long id) {
         userHandler.deleteById(id);
