@@ -10,4 +10,5 @@ public interface IResearchSeedbedServicePort {
     ResearchSeedbed update(Long id, ResearchSeedbed researchSeedbed);
     void deleteById(Long id);
     List<ResearchSeedbed> findAll();
+    List<ResearchSeedbed> findResearchSeedbedsByUserId(Long id);
 }

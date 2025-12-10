@@ -53,4 +53,9 @@ public class ResearchSeedbedUseCase implements IResearchSeedbedServicePort {
     public List<ResearchSeedbed> findAll() {
         return researchSeedbedPersistencePort.findAll();
     }
+
+    @Override
+    public List<ResearchSeedbed> findResearchSeedbedsByUserId(Long id) {
+        return researchSeedbedPersistencePort.findResearchSeedbedsByUserId(id);
+    }
 }

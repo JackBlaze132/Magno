@@ -3,6 +3,7 @@ package com.unibague.magno.infrastructure.exceptionhandler;
 import com.unibague.magno.domain.api.IErrorLogServicePort;
 import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.*;
+import com.unibague.magno.domain.exception.security.NotAllowedToDoThisActionException;
 import com.unibague.magno.domain.exception.user.FunctionaryNotAllowedToGenerateCertificateException;
 import com.unibague.magno.domain.exception.user.NoDataAvailableToGenerateCertificateException;
 import com.unibague.magno.domain.model.ErrorLog;
@@ -641,6 +642,21 @@ public class ControllerAdvisor {
         
         logError(exception, code, message, request);
         
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(NotAllowedToDoThisActionException.class)
+    public ErrorResponse handleNotAllowedToDoThisActionException(NotAllowedToDoThisActionException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.UNSUPPORTED_PRINCIPAL.getCode();
+        String message = ExceptionResponse.UNSUPPORTED_PRINCIPAL.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+
+        logError(exception, code, message, request);
+
         return errorResponse;
     }
 

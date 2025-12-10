@@ -2,9 +2,12 @@ package com.unibague.magno.infrastructure.input.rest;
 
 import com.unibague.magno.application.dto.request.ResearchSeedbedProfileRequest;
 import com.unibague.magno.application.dto.response.ResearchSeedbedProfileResponse;
+import com.unibague.magno.application.dto.util.CurrentUserInfo;
 import com.unibague.magno.application.handler.impl.ResearchSeedbedProfileHandler;
+import com.unibague.magno.domain.exception.security.NotAllowedToDoThisActionException;
 import com.unibague.magno.domain.model.excel.ExcelReport;
 import com.unibague.magno.domain.model.excel.metadata.SeedbedReportMetadata;
+import com.unibague.magno.infrastructure.configuration.annotation.CurrentUser;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -65,7 +68,12 @@ public class ResearchSeedbedProfileRestController {
 
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<ResearchSeedbedProfileResponse> createResearchSeedbedProfile
-            (@RequestBody @Valid ResearchSeedbedProfileRequest researchSeedbedProfileRequest) {
+            (@RequestBody @Valid ResearchSeedbedProfileRequest researchSeedbedProfileRequest,
+             @CurrentUser CurrentUserInfo currentUserInfo) {
+        /**
+        if (!currentUserInfo.getEmail().endsWith("@unibague.edu.co")) {
+            throw new NotAllowedToDoThisActionException("Only functionaries can create research seedbed profiles.");
+        }*/
         ResearchSeedbedProfileResponse created = researchSeedbedProfileHandler.save(researchSeedbedProfileRequest);
         URI location = URI.create(String.format("/api/research-seedbed-profiles/%d", created.getId()));
         return ResponseEntity.created(location).body(created);

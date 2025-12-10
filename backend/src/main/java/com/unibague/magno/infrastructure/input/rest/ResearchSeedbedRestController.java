@@ -33,6 +33,13 @@ public class ResearchSeedbedRestController {
         return ResponseEntity.ok(responses);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
+    @GetMapping(path = "/seedbeds-by-user-id/{userId}", headers = "API-VERSION=1")
+    public ResponseEntity<List<ResearchSeedbedResponse>> findResearchSeedbedsByUserId(@PathVariable Long userId) {
+        List<ResearchSeedbedResponse> responses = researchSeedbedHandler.findResearchSeedbedsByUserId(userId);
+        return ResponseEntity.ok(responses);
+    }
+
     @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<ResearchSeedbedResponse> createResearchSeedbed

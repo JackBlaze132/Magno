@@ -2,11 +2,14 @@ package com.unibague.magno.infrastructure.input.rest;
 
 import com.unibague.magno.application.dto.request.InvestigationGroupProfileRequest;
 import com.unibague.magno.application.dto.response.InvestigationGroupProfileResponse;
+import com.unibague.magno.application.dto.util.CurrentUserInfo;
 import com.unibague.magno.application.handler.impl.InvestigationGroupProfileHandler;
+import com.unibague.magno.domain.exception.security.NotAllowedToDoThisActionException;
 import com.unibague.magno.domain.model.excel.ExcelReport;
 import com.unibague.magno.domain.model.excel.metadata.ActiveSeedbedsMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupHYRMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupYRMetadata;
+import com.unibague.magno.infrastructure.configuration.annotation.CurrentUser;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -47,7 +50,7 @@ public class InvestigationGroupProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
-    @GetMapping(path = "generate-investigation-group-half-year-report", headers = "API-VERSION=1")
+    @GetMapping(path = "/generate-investigation-group-half-year-report", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getHalfYearInvestigationGroupReport(@RequestParam("apId") Long academicPeriodId) {
         ExcelReport<InvestigationGroupHYRMetadata> report = investigationGroupProfileHandler
                 .getExcelBytesForHalfYearInvestigationGroupReport(academicPeriodId);
@@ -62,7 +65,7 @@ public class InvestigationGroupProfileRestController {
                 .body(report.getContent());
     }
 
-    @GetMapping(path = "generate-investigation-group-annual-year-report", headers = "API-VERSION=1")
+    @GetMapping(path = "/generate-investigation-group-annual-year-report", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getAnnualInvestigationGroupReport(@RequestParam("apId1") Long academicPeriodId1,
                                                                     @RequestParam("apId2") Long academicPeriodId2) {
         ExcelReport<InvestigationGroupYRMetadata> report = investigationGroupProfileHandler
@@ -78,7 +81,7 @@ public class InvestigationGroupProfileRestController {
                 .body(report.getContent());
     }
 
-    @GetMapping(path = "generate-active-seedbeds-half-year-report", headers = "API-VERSION=1")
+    @GetMapping(path = "/generate-active-seedbeds-half-year-report", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getHalfYearActiveSeedbedsReport(@RequestParam("apId") Long academicPeriodId) {
         ExcelReport<ActiveSeedbedsMetadata> report = investigationGroupProfileHandler
                 .getExcelBytesForHalfYearActiveSeedbedsReport(academicPeriodId);
@@ -93,7 +96,7 @@ public class InvestigationGroupProfileRestController {
                 .body(report.getContent());
     }
 
-    @GetMapping(path = "generate-active-seedbeds-annual-year-report", headers = "API-VERSION=1")
+    @GetMapping(path = "/generate-active-seedbeds-annual-year-report", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getAnnualActiveSeedbedsReport(@RequestParam("apId1") Long academicPeriodId1,
                                                                 @RequestParam("apId2") Long academicPeriodId2) {
         ExcelReport<ActiveSeedbedsMetadata> report = investigationGroupProfileHandler
@@ -111,7 +114,12 @@ public class InvestigationGroupProfileRestController {
 
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<InvestigationGroupProfileResponse> createInvestigationGroupProfile
-            (@Valid @RequestBody InvestigationGroupProfileRequest investigationGroupProfileRequest) {
+            (@Valid @RequestBody InvestigationGroupProfileRequest investigationGroupProfileRequest,
+             @CurrentUser CurrentUserInfo currentUserInfo) {
+        /**
+        if (!currentUserInfo.getEmail().endsWith("@unibague.edu.co")) {
+            throw new NotAllowedToDoThisActionException("Only functionaries can create investigation group profiles profiles.");
+        }*/
         InvestigationGroupProfileResponse created = investigationGroupProfileHandler
                 .save(investigationGroupProfileRequest);
         URI location = URI.create(String.format("/api/investigation-group-profiles/%d", created.getId()));

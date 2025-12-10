@@ -11,4 +11,5 @@ public interface IResearchSeedbedHandler {
     ResearchSeedbedResponse updateById(Long id, ResearchSeedbedRequest researchSeedbedRequest);
     void deleteById(Long id);
     List<ResearchSeedbedResponse> findAll();
+    List<ResearchSeedbedResponse> findResearchSeedbedsByUserId(Long userId);
 }
