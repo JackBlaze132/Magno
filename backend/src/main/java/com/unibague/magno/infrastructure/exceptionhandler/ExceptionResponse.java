@@ -7,6 +7,7 @@ public enum ExceptionResponse {
 
     ACADEMIC_PERIOD_NOT_FOUND("ERR_ACADEMIC_PERIOD_001", "Academic period not found."),
     END_DATE_BEFORE_START_DATE("ERR_ACADEMIC_PERIOD_002", "End date cannot be before start date."),
+    ACADEMIC_PERIOD_NOT_CURRENT("ERR_ACADEMIC_PERIOD_003", "The academic period is not marked as current."),
     ROLE_NOT_FOUND("ERR_ROLE_001", "Role not found."),
     DEPENDENCY_NOT_FOUND("ERR_DEPENDENCY_001", "Dependency not found."),
     ACADEMIC_PROGRAM_NOT_FOUND("ERR_ACADEMIC_PROGRAM_001", "Academic program not found."),

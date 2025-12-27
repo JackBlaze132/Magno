@@ -1,8 +1,8 @@
 package com.unibague.magno.domain.usecase.helper;
 
 import com.unibague.magno.domain.model.ResearchSeedbedStudentProfile;
-import com.unibague.magno.domain.model.certificates.studentcertificates.StudentSeedbedCertificate;
 
 public interface IResearchSeedbedStudentProfileHelper {
     ResearchSeedbedStudentProfile verifyStudentHasAProfile(ResearchSeedbedStudentProfile researchSeedbedStudentProfile);
+    boolean verifyAcademicPeriodIsCurrentStatus(Long academicPeriodId);
 }

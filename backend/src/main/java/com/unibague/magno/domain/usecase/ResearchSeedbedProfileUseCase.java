@@ -42,6 +42,10 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
         if (researchSeedbedProfile.getCoordinatorId().equals(researchSeedbedProfile.getTutorId())) {
             throw new SameCoordinatorAndTutorException("Coordinator and Tutor cannot be the same person.");
         }
+        researchSeedbedProfileHelper.verifyAcademicPeriodIsCurrent(
+                researchSeedbedProfile.getAcademicPeriodId(),
+                "Academic period must be in current status to create or update a ResearchSeedbedProfile."
+        );
         return researchSeedbedProfileHelper.verifyUsersHasFunctionaryProfiles(researchSeedbedProfile);
     }
 
@@ -77,6 +81,12 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
                     String.format("ResearchSeedbedProfile with ID %d could not be deleted because it does not exist", id)
             );
         }
+        ResearchSeedbedProfile rsp = findById(id);
+        researchSeedbedProfileHelper.verifyAcademicPeriodIsCurrent(
+                rsp.getAcademicPeriodId(),
+                "Academic period must be in current status to delete a ResearchSeedbedProfile."
+        );
+
         researchSeedbedProfilePersistencePort.deleteById(id);
     }
 

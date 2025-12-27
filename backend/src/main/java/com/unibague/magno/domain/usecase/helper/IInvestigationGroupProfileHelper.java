@@ -4,4 +4,5 @@ import com.unibague.magno.domain.model.InvestigationGroupProfile;
 
 public interface IInvestigationGroupProfileHelper {
     InvestigationGroupProfile verifyUserHasFunctionaryProfile(InvestigationGroupProfile igp);
+    void verifyAcademicPeriodIsCurrent(Long academicPeriodId, String errorMessage);
 }

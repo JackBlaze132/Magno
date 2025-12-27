@@ -1,6 +1,7 @@
 package com.unibague.magno.infrastructure.exceptionhandler;
 
 import com.unibague.magno.domain.api.IErrorLogServicePort;
+import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurrentException;
 import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.*;
 import com.unibague.magno.domain.exception.security.NotAllowedToDoThisActionException;
@@ -53,8 +54,7 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
-import static com.unibague.magno.infrastructure.exceptionhandler.ExceptionResponse.ACADEMIC_PERIOD_NOT_FOUND;
-import static com.unibague.magno.infrastructure.exceptionhandler.ExceptionResponse.INVALID_SEEDBED_ROLE;
+import static com.unibague.magno.infrastructure.exceptionhandler.ExceptionResponse.*;
 
 @RestControllerAdvice
 @RequiredArgsConstructor
@@ -95,6 +95,21 @@ public class ControllerAdvisor {
         
         logError(exception, code, message, request);
         
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(AcademicPeriodNotCurrentException.class)
+    public ErrorResponse handleAcademicPeriodNotCurrentException(AcademicPeriodNotCurrentException exception, HttpServletRequest request) {
+
+        String code = ACADEMIC_PERIOD_NOT_CURRENT.getCode();
+        String message = ACADEMIC_PERIOD_NOT_CURRENT.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+
+        logError(exception, code, message, request);
+
         return errorResponse;
     }
 

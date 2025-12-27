@@ -1,5 +1,6 @@
 package com.unibague.magno.domain.usecase.helper;
 
+import com.unibague.magno.domain.api.IAcademicPeriodServicePort;
 import com.unibague.magno.domain.api.IResearchSeedbedProfileServicePort;
 import com.unibague.magno.domain.api.IStudentProfileServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
@@ -10,13 +11,16 @@ public class ResearchSeedbedStudentProfileHelper implements IResearchSeedbedStud
     private final IUserServicePort userServicePort;
     private final IResearchSeedbedProfileServicePort researchSeedbedProfileServicePort;
     private final IStudentProfileServicePort studentProfileServicePort;
+    private final IAcademicPeriodServicePort academicPeriodServicePort;
 
     public ResearchSeedbedStudentProfileHelper(IUserServicePort userServicePort,
                                                IResearchSeedbedProfileServicePort researchSeedbedProfileServicePort,
-                                               IStudentProfileServicePort studentProfileServicePort) {
+                                               IStudentProfileServicePort studentProfileServicePort,
+                                               IAcademicPeriodServicePort academicPeriodServicePort) {
         this.userServicePort = userServicePort;
         this.researchSeedbedProfileServicePort = researchSeedbedProfileServicePort;
         this.studentProfileServicePort = studentProfileServicePort;
+        this.academicPeriodServicePort = academicPeriodServicePort;
     }
 
     @Override
@@ -46,5 +50,17 @@ public class ResearchSeedbedStudentProfileHelper implements IResearchSeedbedStud
 
         researchSeedbedStudentProfile.setStudentProfileId(studentProfile.getId());
         return researchSeedbedStudentProfile;
+    }
+
+    /**
+     * Verifies if the academic period is not current, if not, returns true, which means it cannot be used to
+     * create, update or delete a researchSeedbedStudentProfile associated to  the academic period.
+     * @param academicPeriodId The ID of the academic period to verify
+     * @return true if the academic period is not current, false otherwise
+     */
+    @Override
+    public boolean verifyAcademicPeriodIsCurrentStatus(Long academicPeriodId) {
+        AcademicPeriod ap = academicPeriodServicePort.findById(academicPeriodId);
+        return !ap.isCurrent();
     }
 }

@@ -43,10 +43,21 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
 
     @Override
     public InvestigationGroupProfile save(InvestigationGroupProfile investigationGroupProfile) {
-        verifyThatInvestigationGroupProfileDoesNotExist(investigationGroupProfile.getAcademicPeriodId(),
-                investigationGroupProfile.getInvestigationGroupId());
-        InvestigationGroupProfile igp =
-                investigationGroupProfileHelper.verifyUserHasFunctionaryProfile(investigationGroupProfile);
+
+        Long academicPeriodId = investigationGroupProfile.getAcademicPeriodId();
+
+        investigationGroupProfileHelper.verifyAcademicPeriodIsCurrent(
+                academicPeriodId,
+                "The academic period must be current to create a new InvestigationGroupProfile"
+        );
+
+        verifyThatInvestigationGroupProfileDoesNotExist(
+                academicPeriodId, investigationGroupProfile.getInvestigationGroupId()
+        );
+
+        InvestigationGroupProfile igp = investigationGroupProfileHelper
+                .verifyUserHasFunctionaryProfile(investigationGroupProfile);
+
         return investigationGroupProfilePersistencePort.save(igp);
     }
 
@@ -71,6 +82,10 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
                     String.format("InvestigationGroupProfile with ID %d could not be updated because it does not exist", id)
             );
         }
+        investigationGroupProfileHelper.verifyAcademicPeriodIsCurrent(
+                investigationGroupProfile.getAcademicPeriodId(),
+                "The academic period must be current to update an InvestigationGroupProfile"
+        );
         InvestigationGroupProfile igp =
                 investigationGroupProfileHelper.verifyUserHasFunctionaryProfile(investigationGroupProfile);
         return investigationGroupProfilePersistencePort.update(id, igp);
@@ -83,7 +98,14 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
                     String.format("InvestigationGroupProfile with ID %d could not be deleted because it does not exist", id)
             );
         }
+        verifyAcademicPeriodIsCurrentStatusBeforeDelete(id);
         investigationGroupProfilePersistencePort.deleteById(id);
+    }
+
+    private void verifyAcademicPeriodIsCurrentStatusBeforeDelete(Long investigationGroupProfileId) {
+        InvestigationGroupProfile igp = findById(investigationGroupProfileId);
+        investigationGroupProfileHelper.verifyAcademicPeriodIsCurrent
+                (igp.getAcademicPeriodId(), "The academic period must be current to delete an InvestigationGroupProfile");
     }
 
     @Override

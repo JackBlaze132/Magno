@@ -212,7 +212,7 @@ public class BeanConfiguration {
     @Bean
     public IExternalUserProfileServicePort externalUserProfileServicePort() {
         return new ExternalUserProfileUseCase(externalUserProfilePersistencePort(),
-                userServicePort());
+                userServicePort(), academicPeriodServicePort());
     }
 
     @Bean
@@ -238,19 +238,19 @@ public class BeanConfiguration {
     @Bean
     public IInvestigationGroupProfileHelper investigationGroupProfileHelper() {
         return new InvestigationGroupProfileHelper(integraServicePort(), userServicePort(),
-                functionaryProfileServicePort(), dependencyServicePort(), roleServicePort());
+                functionaryProfileServicePort(), dependencyServicePort(), roleServicePort(), academicPeriodServicePort());
     }
 
     @Bean
     public IResearchSeedbedProfileHelper researchSeedbedProfileHelper() {
         return new ResearchSeedbedProfileHelper(integraServicePort(), userServicePort(),
-                functionaryProfileServicePort(), dependencyServicePort(), roleServicePort());
+                functionaryProfileServicePort(), dependencyServicePort(), roleServicePort(), academicPeriodServicePort());
     }
 
     @Bean
     public IResearchSeedbedStudentProfileHelper researchSeedbedStudentProfileHelper() {
         return new ResearchSeedbedStudentProfileHelper(userServicePort(),
-                researchSeedbedProfileServicePort(), studentProfileServicePort());
+                researchSeedbedProfileServicePort(), studentProfileServicePort(), academicPeriodServicePort());
     }
 
     // CronJob Beans

@@ -2,6 +2,7 @@ package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.*;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
+import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurrentException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ALeaderAlreadyExistsInSeedbedException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.ResearchSeedbedStudentProfileNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.StudentProfileAlreadyExistsInSeedbedException;
@@ -47,6 +48,11 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
     @Override
     public ResearchSeedbedStudentProfile save(ResearchSeedbedStudentProfile researchSeedbedStudentProfile) {
 
+        verifyAcademicPeriodIsCurrent(
+                researchSeedbedStudentProfile.getResearchSeedbedProfileId(),
+                "Cannot add a student to a research seedbed profile associated with a non-current academic period."
+        );
+
         ResearchSeedbedStudentProfile rssp = researchSeedbedStudentProfileHelper
                 .verifyStudentHasAProfile(researchSeedbedStudentProfile);
 
@@ -86,7 +92,13 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
             throw new ResearchSeedbedStudentProfileNotFoundException(
                     String.format("ResearchSeedbedStudentProfile with id %d could not be updated because it was not found", id));
         }
-        
+
+        verifyAcademicPeriodIsCurrent(
+                researchSeedbedStudentProfile.getResearchSeedbedProfileId(),
+                "Cannot update a student in a research seedbed profile associated with a non-current academic period."
+        );
+
+
         if (Boolean.TRUE.equals(researchSeedbedStudentProfile.getIsLeader())){
             verifyIfWhenUpdatingTryingToAddMoreThanOneLeader(researchSeedbedStudentProfile);
         }
@@ -116,6 +128,12 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
             throw new ResearchSeedbedStudentProfileNotFoundException(
                     String.format("ResearchSeedbedStudentProfile with id %d could not be deleted because it was not found", id));
         }
+        ResearchSeedbedStudentProfile rssp = findById(id);
+        verifyAcademicPeriodIsCurrent(
+                rssp.getResearchSeedbedProfileId(),
+                "Cannot delete a student from a research seedbed profile associated with a non-current academic period."
+        );
+
         researchSeedbedStudentProfilePersistencePort.deleteById(id);
     }
 
@@ -129,6 +147,11 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
                                                               List<Map<String, String>> researchSeedbedStudentProfiles) {
 
         Long academicPeriodId = researchSeedbedProfileServicePort.findById(researchSeedbedProfileId).getAcademicPeriodId();
+
+        verifyAcademicPeriodIsCurrent(
+                researchSeedbedProfileId,
+                "Cannot add students to a research seedbed profile associated with a non-current academic period."
+        );
 
         // Clean the list because some maps can have empty values
         List<Map<String, String>> cleanedStudentListOfMaps = integraServicePort
@@ -176,4 +199,25 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
         researchSeedbedStudentProfile.setIsLeader(false);
         return researchSeedbedStudentProfilePersistencePort.save(researchSeedbedStudentProfile);
     }
+
+    /**
+     * Verifies that the academic period associated with the research seedbed profile
+     * is in current status. Throws an exception otherwise.
+     *
+     * @param researchSeedbedProfileId The ID of the research seedbed profile
+     * @param errorMessage Custom error message for the exception
+     * @throws AcademicPeriodNotCurrentException if the academic period is not current
+     */
+    private void verifyAcademicPeriodIsCurrent(Long researchSeedbedProfileId, String errorMessage) {
+        ResearchSeedbedProfile rsp =
+                researchSeedbedProfileServicePort.findById(researchSeedbedProfileId);
+
+        boolean isNotCurrent =
+                researchSeedbedStudentProfileHelper.verifyAcademicPeriodIsCurrentStatus(rsp.getAcademicPeriodId());
+
+        if (isNotCurrent) {
+            throw new AcademicPeriodNotCurrentException(errorMessage);
+        }
+    }
+
 }

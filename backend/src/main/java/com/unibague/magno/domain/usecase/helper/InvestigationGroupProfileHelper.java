@@ -1,10 +1,8 @@
 package com.unibague.magno.domain.usecase.helper;
 
-import com.unibague.magno.domain.api.IDependencyServicePort;
-import com.unibague.magno.domain.api.IFunctionaryProfileServicePort;
-import com.unibague.magno.domain.api.IRoleServicePort;
-import com.unibague.magno.domain.api.IUserServicePort;
+import com.unibague.magno.domain.api.*;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
+import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurrentException;
 import com.unibague.magno.domain.model.*;
 import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
@@ -19,16 +17,19 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
     private final IFunctionaryProfileServicePort functionaryProfileServicePort;
     private final IDependencyServicePort dependencyServicePort;
     private final IRoleServicePort roleServicePort;
+    private final IAcademicPeriodServicePort academicPeriodServicePort;
 
     public InvestigationGroupProfileHelper(IIntegraServicePort integraServicePort, IUserServicePort userServicePort,
                                             IFunctionaryProfileServicePort functionaryProfileServicePort,
                                            IDependencyServicePort dependencyServicePort,
-                                           IRoleServicePort roleServicePort) {
+                                           IRoleServicePort roleServicePort,
+                                           IAcademicPeriodServicePort academicPeriodServicePort) {
         this.integraServicePort = integraServicePort;
         this.userServicePort = userServicePort;
         this.functionaryProfileServicePort = functionaryProfileServicePort;
         this.dependencyServicePort = dependencyServicePort;
         this.roleServicePort = roleServicePort;
+        this.academicPeriodServicePort = academicPeriodServicePort;
     }
 
     @Override
@@ -58,6 +59,23 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
         // If no profile exists, create a new functionary profile
         return createFunctionaryProfileForInvestigationGroupProfile(igp);
     }
+
+    /**
+     * Verifies that the academic period is in current status.
+     * Throws an exception otherwise.
+     *
+     * @param academicPeriodId The ID of the academic period to verify
+     * @param errorMessage Custom error message for the exception
+     * @throws AcademicPeriodNotCurrentException if the academic period is not current
+     */
+    @Override
+    public void verifyAcademicPeriodIsCurrent(Long academicPeriodId, String errorMessage) {
+        AcademicPeriod ap = academicPeriodServicePort.findById(academicPeriodId);
+        if (!ap.isCurrent()) {
+            throw new AcademicPeriodNotCurrentException(errorMessage);
+        }
+    }
+
 
     /**
      * Ensures the functionary profile has the correct role (COORDINADOR_DE_GRUPO_DE_INVESTIGACION).

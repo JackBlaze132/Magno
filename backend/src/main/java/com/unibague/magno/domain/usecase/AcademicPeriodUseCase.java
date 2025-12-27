@@ -1,6 +1,7 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IAcademicPeriodServicePort;
+import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurrentException;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotFoundException;
 import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
 import com.unibague.magno.domain.model.AcademicPeriod;
@@ -43,6 +44,9 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
         if (academicPeriod.getEndDate().isBefore(academicPeriod.getStartDate())){
             throw new EndDateBeforeStartDateException("The end date cannot be before the start date");
         }
+        verifyAcademicPeriodIsCurrent(academicPeriod,
+                "Cannot save or update AcademicPeriod because it is not current"
+        );
     }
 
     @Override
@@ -51,8 +55,19 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
             throw new AcademicPeriodNotFoundException(
                     String.format("AcademicPeriod with ID %d could not be deleted because it does not exist", id));
         }
+        AcademicPeriod ap = findById(id);
+        verifyAcademicPeriodIsCurrent(ap,
+                "Cannot delete AcademicPeriod because it is not current"
+        );
         academicPeriodPersistencePort.deleteById(id);
     }
+
+    private void verifyAcademicPeriodIsCurrent(AcademicPeriod academicPeriod, String errorMessage) {
+        if (!academicPeriod.isCurrent()) {
+            throw new AcademicPeriodNotCurrentException(errorMessage);
+        }
+    }
+
 
     @Override
     public List<AcademicPeriod> findAll() {
