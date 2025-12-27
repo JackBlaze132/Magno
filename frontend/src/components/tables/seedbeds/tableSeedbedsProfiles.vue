@@ -33,6 +33,12 @@
         </span>
       </template>
 
+      <template v-slot:item.was_active="{item}">
+        <VChip :color="item.was_active ? 'green' : ''" >
+          {{ SeedbedStatus(item.was_active) }}
+        </VChip>
+      </template>
+
       <template v-slot:item.link="{item}">
         <QuickActions
           toEdit
@@ -55,12 +61,14 @@ import { defineComponent } from "vue"
 
 //utils
 import API from "@/utils/api";
-import QuickControl from "@/components/quickControl.vue";
+import QuickControl from "@/components/operators/quickControl.vue";
+import Formatter from "@/utils/formatter";
 //import Formatter from "@/utils/formatter";
 
 
 interface Item {
   id: number,
+  was_active: boolean,
   research_seedbed:{
     name: string
     line_of_research: Array<string>,
@@ -93,6 +101,7 @@ export default defineComponent({
         {title: 'coordinator', key: 'coordinator.user.full_name'},
         {title: 'Tutor', key: 'tutor.user.full_name'},
         {title: 'Linea de investigaión', key: 'research_seedbed.line_of_research'},
+        {title: 'Estado', key: 'was_active'},
         { key: 'link', sortable: false},
       ],
     }
@@ -124,15 +133,17 @@ export default defineComponent({
         console.error('Error fetching users:', error);
       }
     },
-
+    SeedbedStatus(state:boolean){
+      return Formatter.periodActivityFormatter(state);
+    },
     handleItemRefresh() {
       this.getGroups();
     },
     setInitialData(item: any) {
       return {
         research_seedbed_id: item.research_seedbed.id,
-        coordinator_id: item.coordinator.id,
-        tutor_id: item.tutor?.id || null,
+        coordinator_id: item.coordinator.user.id,
+        tutor_id: item.tutor?.user.id || null,
         academic_period_id: this.$route.params.idPeriodo,
         investigation_group_profile_id: this.$route.params.idGrupo,
         was_active: item.was_active,

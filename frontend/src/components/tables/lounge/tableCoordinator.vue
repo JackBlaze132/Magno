@@ -5,7 +5,7 @@ import { defineComponent } from "vue"
 import API from "@/utils/api";
 import type {ActionType} from "@/utils/abstract-forms-factory/form-types/formsTypes";
 import {FormFactory} from "@/utils/abstract-forms-factory/FormFactory";
-import QuickControl from "@/components/quickControl.vue";
+import QuickControl from "@/components/operators/quickControl.vue";
 
 /*interface Item {
   coordinator:{

@@ -13,13 +13,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import API from '@/utils/api';
+import { useAuthStore } from '@/stores/authStore';
 
 export default defineComponent({
   name: 'LogoutBtn',
   methods: {
     handleGoogleLogout() {
-      API.logout();
+      const authStore = useAuthStore();
+      authStore.logout(); // This will clear store and call API.logout()
     }
   }
 });

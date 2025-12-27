@@ -12,6 +12,8 @@
     "@mdi/font": "6.2.95",
     "@vitejs/plugin-vue-jsx": "^4.0.0",
     "@vueuse/core": "^10.11.0",
+    "pinia": "^3.0.4",
+    "pinia-plugin-persistedstate": "^4.7.1",
     "roboto-fontface": "*",
     "vite-svg-loader": "^5.1.0",
     "vue": "^3.4.21",

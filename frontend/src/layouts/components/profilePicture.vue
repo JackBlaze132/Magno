@@ -32,65 +32,49 @@
   </div>
 </template>
 
-<script lang="ts">
-import {defineComponent} from 'vue';
+<script setup lang="ts">
+import { computed, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/authStore';
 import AvatarPicture from './avatarPicture.vue';
-import { useGoogleProfile } from '@/composables/useGoogleProfile';
-//import LogoutBtn from "./logoutBtn.vue";
 
-interface Item {
-  name: string;
-  email: string;
-  picture: string | null;
-}
+const authStore = useAuthStore();
+const router = useRouter();
 
-// Get cached profile data (singleton - shared across all instances)
-const { fetchProfile } = useGoogleProfile();
+const emit = defineEmits<{
+  loaded: []
+}>();
 
-export default defineComponent({
-  name: "ProfilePicture",
-  components: {
-    //LogoutBtn,
-    AvatarPicture
-  },
-  data(){
-    return {
-      item: {
-        name: 'Loading...',
-        email: '',
-        picture: null
-      } as Item
-    }
-  },
-  async created() {
-    await this.fetchGoogle();
-  },
-  methods: {
-    onAvatarLoaded() {
-      // Avatar loaded successfully
-    },
-    async fetchGoogle(){
-      // Use cached data if available
-      const profile = await fetchProfile();
+const item = computed(() => ({
+  name: authStore.userName,
+  email: authStore.userEmail,
+  picture: authStore.userPicture
+}));
 
-      if (profile) {
-        this.item = profile;
-        console.log("✅ Profile loaded (from cache or fresh):", this.item);
-      } else {
-        console.warn("⚠️ No profile data available");
-        this.item = {
-          name: 'User',
-          email: 'Not available',
-          picture: null
-        };
-      }
+const onAvatarLoaded = () => {
+  // Avatar loaded successfully
+};
 
-      this.$emit('loaded')
-    },
-    goToProfile() {
-      this.$router.push('/perfil');
-    }
+const initializeAuth = async () => {
+  if (!authStore.isAuthenticated || !authStore.user) {
+    await authStore.initializeAuth();
   }
-})
+  emit('loaded');
+};
+
+const goToProfile = () => {
+  router.push('/perfil');
+};
+
+onMounted(() => {
+  initializeAuth();
+});
+</script>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+export default defineComponent({
+  name: 'ProfilePicture'
+});
 </script>
 

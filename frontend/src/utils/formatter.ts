@@ -11,6 +11,9 @@ class Formatter{
     return Formatter.instance;
   }
   public externalFormatter(isExternalUser: boolean){
+    if (isExternalUser === null || isExternalUser === undefined) {
+      return null;
+    }
     return isExternalUser? 'externo' : 'interno';
   }
 

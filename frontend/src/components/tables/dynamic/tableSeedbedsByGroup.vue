@@ -20,7 +20,7 @@
     >
       <template v-slot:item.active="{item}">
         <VChip :color="item.active ? 'green' : ''" >
-          {{ periodActivityFormatter(item.active)}}
+          {{ SeedbedStatus(item.active)}}
         </VChip>
       </template>
 
@@ -44,7 +44,7 @@ import { defineComponent } from "vue"
 //utils
 import API from "@/utils/api";
 import Formatter from "@/utils/formatter";
-import quickActions from "@/components/quickActions.vue";
+import quickActions from "@/components/operators/quickActions.vue";
 
 
 interface Item {

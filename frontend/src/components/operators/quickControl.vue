@@ -52,7 +52,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { FormFactory } from '@/utils/abstract-forms-factory/FormFactory';
-import type { ActionType, EntityType } from  '@/utils/abstract-forms-factory/form-types/formsTypes';
+import type { ActionType, EntityType } from '@/utils/abstract-forms-factory/form-types/formsTypes';
 
 // The 'quickControl' component handles create and edit actions for entities.
 export default defineComponent({

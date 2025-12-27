@@ -21,85 +21,69 @@
   </VAvatar>
 </template>
 
-<script lang="ts">
-import {defineComponent} from 'vue';
-import { useGoogleProfile } from '@/composables/useGoogleProfile';
+<script setup lang="ts">
+import { computed, ref, onMounted } from 'vue';
+import { useAuthStore } from '@/stores/authStore';
 
-interface Item {
-  name: string;
-  email: string;
-  picture: string | null;
-}
+const authStore = useAuthStore();
+const imageError = ref(false);
+const loading = ref(true);
 
-// Get cached profile data (shared singleton) - this is reactive!
-const { profileData, fetchProfile } = useGoogleProfile();
+const emit = defineEmits<{
+  loaded: []
+}>();
 
-export default defineComponent({
-  name: 'AvatarPicture',
-  data(){
-    return {
-      imageError: false,
-      loading: true
+const item = computed(() => ({
+  name: authStore.userName,
+  email: authStore.userEmail,
+  picture: authStore.userPicture
+}));
+
+const hasPicture = computed(() => {
+  return !!item.value.picture && item.value.picture.trim() !== '';
+});
+
+const pictureUrlWithParams = computed(() => {
+  if (!item.value.picture) return null;
+  try {
+    const url = new URL(item.value.picture);
+    if (url.hostname.includes('googleusercontent.com')) {
+      url.searchParams.set('sz', '96');
+      url.searchParams.set('c', 'cache');
     }
-  },
-  computed: {
-    // Use the reactive profileData directly
-    item(): Item {
-      return profileData.value || {
-        name: '',
-        email: '',
-        picture: null
-      };
-    },
-    hasPicture(): boolean {
-      return !!this.item.picture && this.item.picture.trim() !== '';
-    },
-    pictureUrlWithParams(): string | null {
-      if (!this.item.picture) return null;
-      // Add cache-busting and size parameters to help with Google rate limits
-      // Use smaller size to reduce bandwidth (96px instead of default)
-      const url = new URL(this.item.picture);
-      // Only add params if it's a Googleusercontent URL
-      if (url.hostname.includes('googleusercontent.com')) {
-        url.searchParams.set('sz', '96'); // Request smaller size
-        url.searchParams.set('c', 'cache'); // Request cacheable version
-      }
-      return url.toString();
-    }
-  },
-  async created(){
-    await this.fetchGoogle()
-  },
-  methods: {
-    async fetchGoogle(){
-      try {
-        // Trigger profile fetch - all components will automatically update
-        // when profileData ref changes
-        await fetchProfile();
-
-        if (profileData.value) {
-          console.log("✅ Avatar auto-updated from reactive profileData");
-        } else {
-          console.warn("⚠️ No cached profile data available");
-        }
-
-        this.$emit('loaded')
-      } catch (error) {
-        console.error("❌ Error loading profile:", error);
-      } finally {
-        this.loading = false;
-      }
-    },
-    handleImageError(event: Event) {
-      console.warn("⚠️ Failed to load profile picture (429 Too Many Requests is common from Google)");
-      console.warn("URL:", this.item.picture);
-
-      // Mark as error to show fallback icon
-      this.imageError = true;
-
-      // Note: Google profile pictures often hit rate limits (429 Too Many Requests)
-      // The fallback icon will be displayed instead
-    }
+    return url.toString();
+  } catch {
+    return item.value.picture;
   }
-})
+});
+
+const initializeAuth = async () => {
+  try {
+    if (!authStore.isAuthenticated || !authStore.user) {
+      await authStore.initializeAuth();
+    }
+    console.log("✅ Avatar using authStore:", item.value);
+    emit('loaded');
+  } catch (error) {
+    console.error("❌ Error loading profile:", error);
+  } finally {
+    loading.value = false;
+  }
+};
+
+const handleImageError = () => {
+  console.warn("⚠️ Failed to load profile picture");
+  imageError.value = true;
+};
+
+onMounted(() => {
+  initializeAuth();
+});
+</script>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+export default defineComponent({
+  name: 'AvatarPicture'
+});
 </script>

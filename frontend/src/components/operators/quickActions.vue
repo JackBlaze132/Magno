@@ -66,7 +66,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { FormFactory } from '@/utils/abstract-forms-factory/FormFactory';
-import type { ActionType, EntityType } from  '@/utils/abstract-forms-factory/form-types/formsTypes';
+import type { ActionType, EntityType } from '@/utils/abstract-forms-factory/form-types/formsTypes';
 
 
 // The 'quickActions' component centralizes quick actions (view, edit, delete).

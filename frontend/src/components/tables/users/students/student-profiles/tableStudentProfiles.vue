@@ -41,7 +41,7 @@ import { defineComponent } from "vue"
 //utils
 import API from "@/utils/api";
 import Formatter from "@/utils/formatter";
-import QuickControl from "@/components/quickControl.vue";
+import QuickControl from "@/components/operators/quickControl.vue";
 
 interface Item {
   id: number,

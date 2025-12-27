@@ -10,24 +10,16 @@
         hide-details
         single-line
       ></VTextField>
-      <QuickControl
-      toCreate
-      type="user_integra"
-      @itemCreated="handleItemRefresh"
-    />
     </VCardTitle>
     <VDataTable
       :items="items"
       :search="search"
       :headers="headers"
     >
-      <template v-slot:item.is_external_user="{item}">
-        {{ null || externalFormatter(item.is_external_user)}}
-      </template>
-      <template v-slot:no-data>
-        <div class="text-center pa-4">
-          <p>No hay datos disponibles</p>
-        </div>
+      <template v-slot:item.link="{item}">
+        <CertBtn
+          @itemEdited="handleItemRefresh"
+        ></CertBtn>
       </template>
     </VDataTable>
   </VCard>
@@ -39,48 +31,62 @@ import { defineComponent } from "vue"
 //utils
 import API from "@/utils/api";
 import Formatter from "@/utils/formatter";
-import QuickControl from "@/components/operators/quickControl.vue";
 
 interface Item {
   id: number,
-  full_name: string,
-  identification_number: string,
-  user_code: string,
-  email: string,
-  is_external_user: boolean,
-  sex: string,
+  user: {
+    full_name: string,
+    identification_number: string,
+    user_code: string,
+    email: string,
+  },
+  academic_period: {
+    name: string,
+  },
+  role:{
+    id: number,
+    name: string,
+  },
 }
 
 export default defineComponent({
-  components: {QuickControl},
-
+  props: {
+    userId: {
+      type: Number,
+      default: null
+    }
+  },
   data() {
     return {
+      items: [] as Item[],
+      userRols: [] as Array<String>,
       search: '',
-      items: [] as Array<Item>,
       headers: [
         {title: 'ID', key: 'id'},
-        {title: 'Nombre', key: 'full_name'},
-        {title: 'Número de identificación', key: 'identification_number'},
-        {title: 'Código de usuario', key: 'user_code'},
-        {title: 'Correo electrónico', key: 'email'},
-        {title: 'Sexo', key: 'sex'},
-        {title: 'Afiliación', key: 'is_external_user'}
+        {title: 'Período académico', key: 'academic_period.name'},
+        {title: 'Nombre', key: 'user.full_name'},
+        {title: 'Rol', key: 'role.name'},
+        {title: 'Número de identificación', key: 'user.identification_number'},
+        {title: 'Código de usuario', key: 'user.user_code'},
+        {title: 'Correo electrónico', key: 'user.email'},
+        {key: 'link', sortable: false}
       ]
     }
   },
   // ...
   created() {
-    this.getUsers();
+    this.getProfiles();
     //this.externalFormatter();
   },
   methods: {
-    async getUsers() {
+    async getProfiles() {
       const headers={
         'API-VERSION': '1',
       }
       try {
-        this.items = await API.get(API.USERS_INTERNAL, headers);
+        // Use prop userId if provided, otherwise fall back to route param
+        const id = this.userId || this.$route.params.idStudent;
+        this.items = await API.get(API.STUDENT_PROFILES_ASSIGNED + id, headers);
         this.$emit('loaded');
       } catch (error) {
         console.error('Error fetching users:', error);
@@ -90,10 +96,13 @@ export default defineComponent({
       return Formatter.externalFormatter(state)
     },
     handleItemRefresh(){
-      this.getUsers();
+      this.getProfiles();
     }
   },
 })
 
 
 </script>
+
+
+

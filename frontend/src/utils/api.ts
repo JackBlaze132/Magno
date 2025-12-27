@@ -52,6 +52,7 @@ class API{
 
   //----[RESEARCH SEEDBEDS]----
   public readonly RESEARCH_SEEDBEDS:string='research-seedbeds/';
+  public readonly RESEARCH_SEEDBEDS_BY_USER_ID:string='research-seedbeds/seedbeds-by-user-id/'; //<---- Requires academic period id
 
   //----[RESEARCH SEEDBEDS PROFILES]----
   public readonly RESEARCH_SEEDBEDS_PROFILES:string='research-seedbed-profiles/';
@@ -77,7 +78,7 @@ class API{
   readonly CONSOLIDATE_REPORTS_INVESTIGATION_GROUPS:string = 'investigation-group-profiles/generate-investigation-group-annual-year-report';
   readonly CONSOLIDATE_REPORTS_ACTIVE_RESEARCH_SEEDBEDS:string = 'investigation-group-profiles/generate-active-seedbeds-annual-year-report';
   readonly ANUAL_REPORTS_RESEARCH_SEEDBEDS_STUDENTS:string = 'research-seedbed-profiles/generate-seedbed-report';
-
+  readonly GENERATE_CERTIFICATES:string = 'users/student-seedbed-certificate';
 
 
   //----[COUNTRIES]----
@@ -153,16 +154,28 @@ class API{
       };
 
       const response = await fetch(this.API_BASE_URL + `${endpoint}`, fetchOptions);
-      const responseData = await response.json();
 
-      // If status is not ok, throw an error with the response data
+      // Check if response is JSON
+      const contentType = response.headers.get('content-type');
+
       if (!response.ok) {
-        const error: any = new Error('API Error');
-        error.response = { data: responseData, status: response.status };
-        throw error;
+        if (contentType && contentType.includes('application/json')) {
+          const responseData = await response.json();
+          const error: any = new Error('API Error');
+          error.response = { data: responseData, status: response.status };
+          throw error;
+        } else {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
       }
 
-      return responseData;
+      // Handle successful responses
+      if (contentType && contentType.includes('application/json')) {
+        return await response.json();
+      } else {
+        // Return the response object for non-JSON data (files, etc.)
+        return response;
+      }
     } catch (error) {
       console.error(`Error posting to ${endpoint}:`, error);
       throw error;

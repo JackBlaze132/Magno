@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { defineComponent, ref } from 'vue';
 import google from '@images/logos/google.png'
-import magnoLight from '@images/logos/magno-light.svg?raw'
 import API from '@/utils/api';
 
 const form = ref({
@@ -53,6 +52,7 @@ export default defineComponent({
         <VBtn
           type="submit"
           rounded="xl"
+          size="large"
           class="text-capitalize"
           variant="outlined"
           color="grey-darken-1"
@@ -66,7 +66,7 @@ export default defineComponent({
           google
         </VBtn>
       </VCardText>
-      <<VCol cols="12" class="d-flex align-center">
+      <VCol cols="12" class="d-flex align-center">
         <VDivider />
         <span
           class="v-col-4"
@@ -81,7 +81,7 @@ export default defineComponent({
             <VCol cols="12">
               <VTextField
                 v-model="form.email"
-                label="correo"
+                label="Correo"
                 placeholder="ejemplo@mail.com"
                 type="email"
                 variant="outlined"
@@ -114,25 +114,13 @@ export default defineComponent({
                 <VBtn rounded="xl"
                   class="px-12 text-capitalize"
                   color="black"
+                  size="small"
                 >
                   Ingresar
                 </VBtn>
               </span>
             </VCol>
-            <VCol
-              cols="12"
-              class="text-center text-base"
-            >
-              <span>
-                Solicitar acceso
-              </span>
-              <RouterLink
-                class="text-primary"
-                to="/register"
-              >
-                aquí
-              </RouterLink>
-            </VCol>
+
 
             <VCol cols="12" class="d-flex align-center justify-center">
               <span>
@@ -147,10 +135,6 @@ export default defineComponent({
       </VCardText>
     </VCard>
 
-    <VImg
-      :width="300"
-      v-html=magnoLight
-      class="position-absolute logo-login"
-    />
+
   </div>
 </template>

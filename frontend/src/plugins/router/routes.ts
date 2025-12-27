@@ -10,16 +10,19 @@ export const routes = [
   {
     path: P.RAIZ,
     component: components.LAYOUT_DEFAULT,
+    meta: { requiresAuth: true },
     children: [
       {
         name: 'inicio',
         path: P.HOME,
         component: components.HOME_INDEX,
+        meta: { requiresAuth: true }
       },
       {
         name: 'informes',
         path: P.REPORTS,
         component: components.REPORTS_INDEX,
+        meta: { requiresAuth: true }
       },
       {
         path: P.PERIODS,
@@ -128,6 +131,7 @@ export const routes = [
         name: 'perfil',
         path: P.PROFILE_VIEW,
         component: components.PROFILE_VIEW,
+        meta: { requiresAuth: true }
       },
       {
         name: 'funcionarios',

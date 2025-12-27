@@ -20,7 +20,7 @@
     >
       <!--<template v-slot:item.isActive="{item}">
         <VChip :color="item.isActive ? 'green' : ''" >
-          {{ periodActivityFormatter(item.isActive)}}
+          {{ SeedbedStatus(item.isActive)}}
         </VChip>
       </template>-->
 

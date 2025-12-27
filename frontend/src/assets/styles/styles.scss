@@ -15,7 +15,7 @@
   
   a {
     font-weight: 500;
-    color: #646cff;
+    color: rgb(var(--v-theme-primary));
     text-decoration: inherit;
   }
   /*a:hover {
@@ -71,6 +71,10 @@
       background-color: #f9f9f9;
     }
   }
+
+  .logo-login{
+    bottom: 10px;
+  }
   
   .login-bg{
     background-image: url(@images/Background_01.jpg);
@@ -89,6 +93,7 @@
     .logo-login{
       inset-block-end: 2em !important;
       inset-inline-start: 2em !important;
+      bottom: 10px;
     }
 
     
@@ -157,12 +162,12 @@
     border-color: rgba(var(--v-theme-on-surface), 0.3);
   }
 
-  .report-form-title {
+  .report-form-title, .certificate-form-title {
   background: linear-gradient(135deg, #008bd2 0%, #004891  100%);
   color: white;
 }
 
-.report-form-title .v-icon {
+.report-form-title .v-icon, .certificate-form-title .v-icon {
   color: white;
 }
 

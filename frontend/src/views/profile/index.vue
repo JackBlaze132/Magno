@@ -75,7 +75,10 @@
     <!-- My Profiles Section -->
     <VRow v-if="userId" class="mt-6">
       <VCol cols="12">
-        <TableStudentProfiles :user-id="userId" />
+        <h2>Mis certificados</h2>
+        <VCard variant="outlined" class="mb-4" border="secondary md">
+          <TableCertificates :user-id="userId" />
+        </VCard>
       </VCol>
     </VRow>
 
@@ -93,96 +96,63 @@
   </VCard>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import { useGoogleProfile } from '@/composables/useGoogleProfile';
-import API from '@/utils/api';
+<script setup lang="ts">
+import { computed, ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/authStore';
 import TableStudentProfiles from '@/components/tables/users/students/student-profiles/tableStudentProfiles.vue';
 
-interface ProfileData {
-  name: string;
-  email: string;
-  picture: string | null;
-}
+const authStore = useAuthStore();
+const router = useRouter();
 
-// Get cached profile data
-const { fetchProfile } = useGoogleProfile();
+const loading = ref(true);
+const imageError = ref(false);
 
-export default defineComponent({
-  name: 'ProfileView',
-  components: {
-    TableStudentProfiles
-  },
-  data() {
-    return {
-      profileData: {
-        name: '',
-        email: '',
-        picture: null
-      } as ProfileData,
-      userId: null as number | null,
-      loading: true,
-      imageError: false
-    };
-  },
-  async created() {
-    await this.loadProfile();
-    await this.fetchUserId();
-  },
-  methods: {
-    async fetchUserId() {
-      const headers = {
-        'API-VERSION': '1',
-      };
-      try {
-        const userData = await API.get(API.USERS_ME, headers);
-        console.log("✅ User data fetched:", userData);
+const profileData = computed(() => ({
+  name: authStore.userName,
+  email: authStore.userEmail,
+  picture: authStore.userPicture
+}));
 
-        // API.get returns an array, so access first element
-        if (userData && userData[0] && userData[0].user_id) {
-          this.userId = userData[0].user_id;
-          console.log("✅ User ID:", this.userId);
-        }
-      } catch (error) {
-        console.error("❌ Error fetching user ID:", error);
-      }
-    },
-    async loadProfile() {
-      this.loading = true;
-      try {
-        // Fetch profile data using cached composable
-        const profile = await fetchProfile();
+const userId = computed(() => authStore.userId);
 
-        if (profile) {
-          this.profileData = profile;
-          console.log("✅ Profile view loaded:", this.profileData);
-        } else {
-          console.warn("⚠️ No profile data available");
-          this.profileData = {
-            name: 'Usuario',
-            email: 'No disponible',
-            picture: null
-          };
-        }
-      } catch (error) {
-        console.error("❌ Error loading profile:", error);
-        this.profileData = {
-          name: 'Usuario',
-          email: 'No disponible',
-          picture: null
-        };
-      } finally {
-        this.loading = false;
-      }
-    },
-    handleImageError() {
-      console.warn("⚠️ Failed to load profile picture");
-      this.imageError = true;
-    },
-    goBack() {
-      this.$router.back();
+const loadProfile = async () => {
+  loading.value = true;
+
+  try {
+    if (!authStore.isAuthenticated || !authStore.user) {
+      await authStore.initializeAuth();
     }
+
+    console.log("✅ Profile view loaded from authStore:", {
+      user: authStore.user,
+      profiles: authStore.userProfiles,
+      roles: authStore.userRoles
+    });
+  } catch (error) {
+    console.error("❌ Error loading profile:", error);
+  } finally {
+    loading.value = false;
   }
+};
+const handleImageError = () => {
+  console.warn("⚠️ Failed to load profile picture");
+  imageError.value = true;
+};
+
+const goBack = () => {
+  router.back();
+};
+
+onMounted(() => {
+  loadProfile();
+});
+</script>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+export default defineComponent({
+  name: 'ProfileView'
 });
 </script>
 

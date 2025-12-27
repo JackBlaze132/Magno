@@ -51,7 +51,7 @@ import { defineComponent } from "vue"
 
 //utils
 import API from "@/utils/api";
-import QuickControl from "@/components/quickControl.vue";
+import QuickControl from "@/components/operators/quickControl.vue";
 //import Formatter from "@/utils/formatter";
 
 

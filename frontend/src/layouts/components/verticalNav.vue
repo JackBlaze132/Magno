@@ -27,6 +27,13 @@
             :active="false"
             link>
           </v-list-item>
+        <v-list-item
+          prepend-icon="ri-verified-badge-line"
+          title="Certificados"
+          @click="handleCertClick"
+          :active="false"
+          link>
+        </v-list-item>
           <VDivider class="px-4 my-4"/>
           <v-list-item
             prepend-icon="ri-calendar-check-fill"
@@ -98,6 +105,13 @@
       @report-created="onReportCreated"
       @close="showReportDialog = false"
     />
+
+    <!-- Certificate Creation Dialog -->
+    <CertificateCreationDialog
+      v-model="showCertDialog"
+      @certificate-created="onCertCreated"
+      @close="showCertDialog = false"
+    />
   </div>
 </template>
 
@@ -108,6 +122,7 @@ import ReportCreationDialog from '@/components/reports/ReportCreationDialog.vue'
 
 // Reactive state
 const showReportDialog = ref(false)
+const showCertDialog = ref(false)
 const drawer = ref(true)
 const windowWidth = ref(window.innerWidth)
 
@@ -119,8 +134,16 @@ const openReportDialog = () => {
   showReportDialog.value = true
 }
 
+const openCertDialog = () => {
+  showCertDialog.value = true
+}
+
 const handleReportClick = () => {
   openReportDialog()
+  closeDrawerOnMobile()
+}
+const handleCertClick = () => {
+  openCertDialog()
   closeDrawerOnMobile()
 }
 
@@ -160,5 +183,11 @@ const onReportCreated = (reportData: any) => {
   console.log('Report created from navbar:', reportData)
   showReportDialog.value = false
   // Optionally navigate to reports page or show success message
+}
+
+const onCertCreated = (certData: any) => {
+  console.log('Certificate created from navbar:', certData)
+  showCertDialog.value = false
+  // Optionally navigate to certificates page or show success message
 }
 </script>
