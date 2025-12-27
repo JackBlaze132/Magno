@@ -80,7 +80,7 @@ public class UserRestController {
     }
 
     @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
-    @GetMapping(path = "/student-seedbed-certificate", headers = "API-VERSION=1")
+    @PostMapping(path = "/student-seedbed-certificate", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getStudentSeedbedCertificate(
             @Valid @RequestBody StudentSeedbedCertificateRequest studentSeedbedCertificateRequest) throws Exception {
 
