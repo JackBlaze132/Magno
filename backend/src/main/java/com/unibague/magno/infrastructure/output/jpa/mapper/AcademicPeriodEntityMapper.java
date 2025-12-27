@@ -14,8 +14,10 @@ public interface AcademicPeriodEntityMapper {
     AcademicPeriod toAcademicPeriod(AcademicPeriodEntity academicPeriodEntity);
 
     @Mapping(source = "id", target = "id")
+    @Mapping(source = "academicPeriod.current", target = "isCurrent")
     AcademicPeriodEntity toAcademicPeriodEntity(Long id, AcademicPeriod academicPeriod);
 
+    @Mapping(source = "current", target = "isCurrent")
     AcademicPeriodEntity toAcademicPeriodEntity(AcademicPeriod academicPeriod);
     List<AcademicPeriod> toAcademicPeriodList(List<AcademicPeriodEntity> academicPeriodEntities);
 }
