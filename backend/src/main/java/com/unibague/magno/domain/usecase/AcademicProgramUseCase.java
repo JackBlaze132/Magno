@@ -29,7 +29,7 @@ public class AcademicProgramUseCase implements IAcademicProgramServicePort {
     public AcademicProgram findById(Long id) {
         return academicProgramPersistencePort.findById(id)
                 .orElseThrow(() -> new AcademicProgramNotFoundException(
-                        String.format("AcademicProgram with ID %d not found", id)));
+                        String.format("Programa académico con ID %d no encontrado", id)));
     }
 
     @Override
@@ -44,7 +44,7 @@ public class AcademicProgramUseCase implements IAcademicProgramServicePort {
     public AcademicProgram update(Long id, AcademicProgram academicProgram) {
         if (academicProgramPersistencePort.findById(id).isEmpty()) {
             throw new AcademicProgramNotFoundException(
-                    String.format("AcademicProgram with ID %d could not be updated because it does not exist", id));
+                    String.format("No se pudo actualizar el programa académico con ID %d porque no existe", id));
         }
         return academicProgramPersistencePort.update(id, academicProgram);
     }
@@ -53,7 +53,7 @@ public class AcademicProgramUseCase implements IAcademicProgramServicePort {
     public void deleteById(Long id) {
         if (academicProgramPersistencePort.findById(id).isEmpty()) {
             throw new AcademicProgramNotFoundException(
-                    String.format("AcademicProgram with ID %d could not be deleted because it does not exist", id));
+                    String.format("No se pudo eliminar el programa académico con ID %d porque no existe", id));
         }
         academicProgramPersistencePort.deleteById(id);
     }
@@ -71,7 +71,7 @@ public class AcademicProgramUseCase implements IAcademicProgramServicePort {
     @Override
     public Set<AcademicProgram> findAcademicProgramsByAcademicProgramCodes(Set<String> academicProgramCodes) {
         if (academicProgramCodes.isEmpty()) {
-            throw new IllegalArgumentException("AcademicProgramCodes cannot be empty");
+            throw new IllegalArgumentException("Los códigos de programa académico no pueden estar vacíos");
         }
         return findOrSaveAcademicPrograms(academicProgramCodes);
     }

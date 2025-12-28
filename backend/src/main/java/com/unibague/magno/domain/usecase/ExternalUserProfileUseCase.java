@@ -31,7 +31,7 @@ public class ExternalUserProfileUseCase implements IExternalUserProfileServicePo
     public ExternalUserProfile findById(Long id) {
         return externalUserProfilePersistencePort.findById(id)
                 .orElseThrow(() -> new ExternalUserProfileNotFoundException(
-                        String.format("ExternalUserProfile with id %s not found", id)
+                        String.format("Perfil de usuario externo con ID %s no encontrado", id)
                 ));
     }
 
@@ -42,12 +42,12 @@ public class ExternalUserProfileUseCase implements IExternalUserProfileServicePo
 
         if (!user.isExternalUser()){
             throw new UserIsNotExternalException(
-                    String.format("User with id %s is not an external user and cannot have an ExternalUserProfile", user.getId())
+                    String.format("El usuario con ID %s no es un usuario externo y no puede tener un perfil de usuario externo", user.getId())
             );
         }
 
         verifyAcademicPeriodIsCurrent(externalUserProfile.getAcademicPeriodId(),
-                "Cannot save ExternalUserProfile because the academic period it's not current"
+                "No se puede guardar el perfil de usuario externo porque el período académico no está activo"
         );
 
         return externalUserProfilePersistencePort.save(externalUserProfile);
@@ -57,11 +57,11 @@ public class ExternalUserProfileUseCase implements IExternalUserProfileServicePo
     public ExternalUserProfile update(Long id, ExternalUserProfile externalUserProfile) {
         if (externalUserProfilePersistencePort.findById(id).isEmpty()) {
             throw new ExternalUserProfileNotFoundException(
-                    String.format("ExternalUserProfile with id %s could not be updated because it does not exist", id)
+                    String.format("No se pudo actualizar el perfil de usuario externo con ID %s porque no existe", id)
             );
         }
         verifyAcademicPeriodIsCurrent(externalUserProfile.getAcademicPeriodId(),
-                "Cannot update ExternalUserProfile because the academic period it's not current"
+                "No se puede actualizar el perfil de usuario externo porque el período académico no está activo"
         );
         return externalUserProfilePersistencePort.update(id, externalUserProfile);
     }
@@ -70,12 +70,12 @@ public class ExternalUserProfileUseCase implements IExternalUserProfileServicePo
     public void deleteById(Long id) {
         if (externalUserProfilePersistencePort.findById(id).isEmpty()) {
             throw new ExternalUserProfileNotFoundException(
-                    String.format("ExternalUserProfile with id %s could not be deleted because it does not exist", id)
+                    String.format("No se pudo eliminar el perfil de usuario externo con ID %s porque no existe", id)
             );
         }
         ExternalUserProfile existingProfile = findById(id);
         verifyAcademicPeriodIsCurrent(existingProfile.getAcademicPeriodId(),
-                "Cannot delete ExternalUserProfile because the academic period it's not current"
+                "No se puede eliminar el perfil de usuario externo porque el período académico no está activo"
         );
         externalUserProfilePersistencePort.deleteById(id);
     }

@@ -118,7 +118,7 @@ public class InvestigationGroupProfileRestController {
              @CurrentUser CurrentUserInfo currentUserInfo) {
         /**
         if (!currentUserInfo.getEmail().endsWith("@unibague.edu.co")) {
-            throw new NotAllowedToDoThisActionException("Only functionaries can create investigation group profiles profiles.");
+            throw new NotAllowedToDoThisActionException("Solo los funcionarios pueden crear perfiles de grupo de investigación.");
         }*/
         InvestigationGroupProfileResponse created = investigationGroupProfileHandler
                 .save(investigationGroupProfileRequest);

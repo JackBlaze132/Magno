@@ -48,9 +48,9 @@ public class IntegraUseCase implements IIntegraServicePort {
 
         return functionaryOptional.orElseThrow(() -> {
             String message = String.
-                    format("It wasn't possible to find the functionary with identification %s " +
-                            "This may occur because the official is no longer affiliated with the university." +
-                            "If you believe this is a mistake, please contact the DIRI department.", identification);
+                    format("No fue posible encontrar el funcionario con identificación %s. " +
+                            "Esto puede ocurrir porque el funcionario ya no está afiliado a la universidad. " +
+                            "Si cree que esto es un error, por favor contacte al departamento DIRI.", identification);
             return new IntegraUserNotFoundException(message);
         });
 
@@ -65,7 +65,7 @@ public class IntegraUseCase implements IIntegraServicePort {
         List<IntegraStudent> students = integraPersistencePort.getIntegraStudentRecordsByIdentification(identification);
         if (students.isEmpty()) {
             throw new IntegraStudentNotFoundException(
-                    String.format("IntegraStudent with identification %s not found", identification)
+                    String.format("Estudiante de Integra con identificación %s no encontrado", identification)
             );
         }
         return students;
@@ -115,7 +115,7 @@ public class IntegraUseCase implements IIntegraServicePort {
         if (!missingIdentifications.isEmpty()) {
             throw new IntegraStudentNotFoundException(
                     String.format(
-                            "The following student identifications were not found in Integra: %s",
+                            "Las siguientes identificaciones de estudiantes no fueron encontradas en Integra: %s",
                             String.join(", ", missingIdentifications)
                     )
             );
@@ -140,7 +140,7 @@ public class IntegraUseCase implements IIntegraServicePort {
 
         if (integraAcademicPrograms.isEmpty()) {
             throw new IntegraAcademicProgramNotFoundException(
-                    String.format("IntegraAcademicPrograms with program codes %s not found",
+                    String.format("Programas académicos de Integra con códigos %s no encontrados",
                             String.join(", ", programCodes))
             );
         }
@@ -162,16 +162,16 @@ public class IntegraUseCase implements IIntegraServicePort {
     public IntegraFunctionary getIntegraFunctionaryByEmail(String email) {
         return integraPersistencePort.getIntegraFunctionaryByEmail(email)
                 .orElseThrow(() -> new IntegraUserNotFoundException(
-                        String.format("IntegraFunctionary with email %s not found" +
-                                "This may occur because the official is no longer affiliated with the university." +
-                                "If you believe this is a mistake, please contact the DIRI department.", email)));
+                        String.format("Funcionario de Integra con correo electrónico %s no encontrado. " +
+                                "Esto puede ocurrir porque el funcionario ya no está afiliado a la universidad. " +
+                                "Si cree que esto es un error, por favor contacte al departamento DIRI.", email)));
     }
 
     @Override
     public IntegraStudent getIntegraStudentByEmail(String email) {
         return integraPersistencePort.getIntegraStudentByEmail(email)
                 .orElseThrow(() -> new IntegraUserNotFoundException(
-                        String.format("IntegraStudent with email %s not found", email)));
+                        String.format("Estudiante de Integra con correo electrónico %s no encontrado", email)));
     }
 
     @Override

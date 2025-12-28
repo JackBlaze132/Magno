@@ -110,7 +110,7 @@ public class InvestigationGroupProfileJpaAdapter implements IInvestigationGroupP
         try {
             return createHYExcelReport(records);
         } catch (IOException e) {
-            throw new RuntimeException("Error generating Excel report", e);
+            throw new RuntimeException("Error al generar el reporte de Excel", e);
         }
     }
 
@@ -121,7 +121,7 @@ public class InvestigationGroupProfileJpaAdapter implements IInvestigationGroupP
         try {
             return createYExcelReport(records);
         } catch (IOException e) {
-            throw new RuntimeException("Error generating Excel report", e);
+            throw new RuntimeException("Error al generar el reporte de Excel", e);
         }
     }
 
@@ -134,7 +134,7 @@ public class InvestigationGroupProfileJpaAdapter implements IInvestigationGroupP
             return createActiveSeedbedsExcelReport(records);
         }
         catch (IOException e) {
-            throw new RuntimeException("Error generating Excel report", e);
+            throw new RuntimeException("Error al generar el reporte de Excel", e);
         }
     }
 
@@ -146,7 +146,7 @@ public class InvestigationGroupProfileJpaAdapter implements IInvestigationGroupP
         try {
             return createActiveSeedbedsExcelReport(records);
         } catch (IOException e) {
-            throw new RuntimeException("Error generating Excel report", e);
+            throw new RuntimeException("Error al generar el reporte de Excel", e);
         }
     }
 

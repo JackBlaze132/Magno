@@ -42,7 +42,7 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
     public ResearchSeedbedStudentProfile findById(Long id) {
         return researchSeedbedStudentProfilePersistencePort.findById(id)
                 .orElseThrow(() -> new ResearchSeedbedStudentProfileNotFoundException(
-                        String.format("ResearchSeedbedStudentProfile with id %d not found", id)));
+                        String.format("Perfil de estudiante de semillero de investigación con ID %d no encontrado", id)));
     }
 
     @Override
@@ -50,7 +50,7 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
 
         verifyAcademicPeriodIsCurrent(
                 researchSeedbedStudentProfile.getResearchSeedbedProfileId(),
-                "Cannot add a student to a research seedbed profile associated with a non-current academic period."
+                "No se puede agregar un estudiante a un perfil de semillero de investigación asociado a un período académico inactivo."
         );
 
         ResearchSeedbedStudentProfile rssp = researchSeedbedStudentProfileHelper
@@ -69,7 +69,7 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
                 .existsByStudentProfileIdAndResearchSeedbedProfileId(studentProfileId, researchSeedbedProfileId);
         if (exists) {
             throw new StudentProfileAlreadyExistsInSeedbedException(
-                    String.format("StudentProfile with id %d is already associated with ResearchSeedbedProfile with id %d",
+                    String.format("El perfil de estudiante con ID %d ya está asociado al perfil de semillero de investigación con ID %d",
                             studentProfileId, researchSeedbedProfileId));
         }
     }
@@ -80,7 +80,7 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
         boolean hasLeader = leaders.stream().anyMatch(ResearchSeedbedStudentProfile::getIsLeader);
         if (hasLeader) {
             throw new ALeaderAlreadyExistsInSeedbedException(
-                    String.format("ResearchSeedbedProfile with id %d already has a leader assigned",
+                    String.format("El perfil de semillero de investigación con ID %d ya tiene un líder asignado",
                             researchSeedbedProfileId));
         }
     }
@@ -90,12 +90,12 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
         researchSeedbedStudentProfile.setId(id);
         if (researchSeedbedStudentProfilePersistencePort.findById(id).isEmpty()) {
             throw new ResearchSeedbedStudentProfileNotFoundException(
-                    String.format("ResearchSeedbedStudentProfile with id %d could not be updated because it was not found", id));
+                    String.format("No se pudo actualizar el perfil de estudiante de semillero de investigación con ID %d porque no fue encontrado", id));
         }
 
         verifyAcademicPeriodIsCurrent(
                 researchSeedbedStudentProfile.getResearchSeedbedProfileId(),
-                "Cannot update a student in a research seedbed profile associated with a non-current academic period."
+                "No se puede actualizar un estudiante en un perfil de semillero de investigación asociado a un período académico inactivo."
         );
 
 
@@ -126,12 +126,12 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
     public void deleteById(Long id) {
         if (researchSeedbedStudentProfilePersistencePort.findById(id).isEmpty()) {
             throw new ResearchSeedbedStudentProfileNotFoundException(
-                    String.format("ResearchSeedbedStudentProfile with id %d could not be deleted because it was not found", id));
+                    String.format("No se pudo eliminar el perfil de estudiante de semillero de investigación con ID %d porque no fue encontrado", id));
         }
         ResearchSeedbedStudentProfile rssp = findById(id);
         verifyAcademicPeriodIsCurrent(
                 rssp.getResearchSeedbedProfileId(),
-                "Cannot delete a student from a research seedbed profile associated with a non-current academic period."
+                "No se puede eliminar un estudiante de un perfil de semillero de investigación asociado a un período académico inactivo."
         );
 
         researchSeedbedStudentProfilePersistencePort.deleteById(id);
@@ -150,7 +150,7 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
 
         verifyAcademicPeriodIsCurrent(
                 researchSeedbedProfileId,
-                "Cannot add students to a research seedbed profile associated with a non-current academic period."
+                "No se pueden agregar estudiantes a un perfil de semillero de investigación asociado a un período académico inactivo."
         );
 
         // Clean the list because some maps can have empty values

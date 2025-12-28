@@ -21,7 +21,7 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
     public AcademicPeriod findById(Long id) {
         return academicPeriodPersistencePort.findById(id)
                 .orElseThrow(() -> new AcademicPeriodNotFoundException(
-                        String.format("AcademicPeriod with ID %d not found", id)));
+                        String.format("Período académico con ID %d no encontrado", id)));
     }
 
     @Override
@@ -35,17 +35,17 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
         validationsBeforeSaveOrUpdate(academicPeriod);
         if(academicPeriodPersistencePort.findById(id).isEmpty()) {
             throw new AcademicPeriodNotFoundException(
-                    String.format("AcademicPeriod with ID %d could not be updated because it does not exist", id));
+                    String.format("No se pudo actualizar el período académico con ID %d porque no existe", id));
         }
         return academicPeriodPersistencePort.update(id, academicPeriod);
     }
 
     private void validationsBeforeSaveOrUpdate(AcademicPeriod academicPeriod) {
         if (academicPeriod.getEndDate().isBefore(academicPeriod.getStartDate())){
-            throw new EndDateBeforeStartDateException("The end date cannot be before the start date");
+            throw new EndDateBeforeStartDateException("La fecha de finalización no puede ser anterior a la fecha de inicio");
         }
         verifyAcademicPeriodIsCurrent(academicPeriod,
-                "Cannot save or update AcademicPeriod because it is not current"
+                "No se puede guardar o actualizar el período académico porque se marca como inactivo"
         );
     }
 
@@ -53,11 +53,11 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
     public void deleteById(Long id) {
         if(academicPeriodPersistencePort.findById(id).isEmpty()) {
             throw new AcademicPeriodNotFoundException(
-                    String.format("AcademicPeriod with ID %d could not be deleted because it does not exist", id));
+                    String.format("No se pudo eliminar el período académico con ID %d porque no existe", id));
         }
         AcademicPeriod ap = findById(id);
         verifyAcademicPeriodIsCurrent(ap,
-                "Cannot delete AcademicPeriod because it is not current"
+                "No se puede eliminar el período académico porque no está activo"
         );
         academicPeriodPersistencePort.deleteById(id);
     }

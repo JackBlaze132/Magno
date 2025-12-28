@@ -37,7 +37,7 @@ public class UploadService {
 
             Optional<Row> optionalHeaderRow = rowStreamSupplier.get().findFirst();
             if (optionalHeaderRow.isEmpty()) {
-                throw new UploadExcelException("The excel file doesn't have a header row");
+                throw new UploadExcelException("El archivo Excel no tiene una fila de encabezado");
             }
 
             Row headerRow = optionalHeaderRow.get();

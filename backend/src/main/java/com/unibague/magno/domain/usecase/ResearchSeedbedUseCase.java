@@ -20,7 +20,7 @@ public class ResearchSeedbedUseCase implements IResearchSeedbedServicePort {
         return researchSeedbedPersistencePort
                 .findById(id)
                 .orElseThrow(() -> new ResearchSeedbedNotFoundException(
-                        String.format("ResearchSeedbed with ID %d not found", id)
+                        String.format("Semillero de investigación con ID %d no encontrado", id)
                 ));
     }
 
@@ -33,7 +33,7 @@ public class ResearchSeedbedUseCase implements IResearchSeedbedServicePort {
     public ResearchSeedbed update(Long id, ResearchSeedbed researchSeedbed) {
         if (researchSeedbedPersistencePort.findById(id).isEmpty()) {
             throw new ResearchSeedbedNotFoundException(
-                    String.format("ResearchSeedbed with ID %d could not be updated because it does not exist", id)
+                    String.format("No se pudo actualizar el semillero de investigación con ID %d porque no existe", id)
             );
         }
         return researchSeedbedPersistencePort.update(id, researchSeedbed);
@@ -43,7 +43,7 @@ public class ResearchSeedbedUseCase implements IResearchSeedbedServicePort {
     public void deleteById(Long id) {
         if (researchSeedbedPersistencePort.findById(id).isEmpty()) {
             throw new ResearchSeedbedNotFoundException(
-                    String.format("ResearchSeedbed with ID %d could not be deleted because it does not exist", id)
+                    String.format("No se pudo eliminar el semillero de investigación con ID %d porque no existe", id)
             );
         }
         researchSeedbedPersistencePort.deleteById(id);

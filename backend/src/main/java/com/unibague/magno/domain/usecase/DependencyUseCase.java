@@ -25,7 +25,7 @@ public class DependencyUseCase implements IDependencyServicePort {
     public Dependency findById(Long id) {
         return dependencyPersistencePort.findById(id)
                 .orElseThrow(() -> new DependencyNotFoundException(
-                        String.format("Dependency with ID %d not found", id)));
+                        String.format("Dependencia con ID %d no encontrada", id)));
     }
 
     @Override
@@ -37,7 +37,7 @@ public class DependencyUseCase implements IDependencyServicePort {
     public Dependency update(Long id, Dependency dependency) {
         if(dependencyPersistencePort.findById(id).isEmpty()) {
             throw new DependencyNotFoundException(
-                    String.format("Dependency with ID %d could not be updated because it does not exist", id));
+                    String.format("No se pudo actualizar la dependencia con ID %d porque no existe", id));
         }
         return dependencyPersistencePort.update(id, dependency);
     }
@@ -46,7 +46,7 @@ public class DependencyUseCase implements IDependencyServicePort {
     public void deleteById(Long id) {
         if(dependencyPersistencePort.findById(id).isEmpty()) {
             throw new DependencyNotFoundException(
-                    String.format("Dependency with ID %d could not be deleted because it does not exist", id));
+                    String.format("No se pudo eliminar la dependencia con ID %d porque no existe", id));
         }
         dependencyPersistencePort.deleteById(id);
     }
@@ -59,7 +59,7 @@ public class DependencyUseCase implements IDependencyServicePort {
     @Override
     public Dependency findByName(String name) {
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("Name cannot be null or empty");
+            throw new IllegalArgumentException("El nombre no puede ser nulo o vacío");
         }
         return findOrSaveByName(name);
     }

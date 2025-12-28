@@ -285,7 +285,7 @@ public class ControllerAdvisor {
         String code = ExceptionResponse.INTEGRA_API_ERROR.getCode();
         String message = ExceptionResponse.INTEGRA_API_ERROR.getMessage();
         List<String> details = Collections
-                .singletonList("Possible reasons: Incorrect path in environment variables or VPN access required.");
+                .singletonList("Posibles razones: Ruta incorrecta en las variables de entorno o se requiere acceso VPN.");
 
         ErrorResponse errorResponse = buildErrorResponse(exception, code, message, details);
         
@@ -301,7 +301,7 @@ public class ControllerAdvisor {
         String code = ExceptionResponse.INTEGRA_VPN_ACCESS_ERROR.getCode();
         String message = ExceptionResponse.INTEGRA_VPN_ACCESS_ERROR.getMessage();
         List<String> details = Collections
-                .singletonList("Possible reasons: Incorrect path in environment variables or VPN access required.");
+                .singletonList("Posibles razones: Ruta incorrecta en las variables de entorno o se requiere acceso VPN.");
 
         ErrorResponse errorResponse = buildErrorResponse(exception, code, message, details);
 
@@ -557,11 +557,11 @@ public class ControllerAdvisor {
 
         BindingResult result = exception.getBindingResult();
         String code = ExceptionResponse.GENERIC_ERROR.getCode();
-        String message = "Validation failed for one or more fields.";
+        String message = "La validación falló para uno o más campos.";
         
         // Generating a list of error messages with the field and its associated message
         List<String> errorDetails = result.getFieldErrors().stream()
-                .map(fieldError -> String.format("Field '%s': %s", fieldError.getField(), fieldError.getDefaultMessage()))
+                .map(fieldError -> String.format("Campo '%s': %s", fieldError.getField(), fieldError.getDefaultMessage()))
                 .toList();
 
         ErrorResponse errorResponse = new ErrorResponse();
@@ -589,7 +589,7 @@ public class ControllerAdvisor {
             message = INVALID_SEEDBED_ROLE.getMessage();
         } else {
             code = ExceptionResponse.GENERIC_ERROR.getCode();
-            message = "Request body is not readable.";
+            message = "El cuerpo de la solicitud no es legible.";
         }
         
         ErrorResponse errorResponse = buildErrorResponse(exception, code, message,

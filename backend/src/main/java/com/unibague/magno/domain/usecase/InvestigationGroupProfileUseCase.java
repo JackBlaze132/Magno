@@ -37,7 +37,7 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
     public InvestigationGroupProfile findById(Long id) {
         return investigationGroupProfilePersistencePort.findById(id)
                 .orElseThrow(() -> new InvestigationGroupProfileNotFoundException(
-                        String.format("InvestigationGroupProfile with ID %d not found", id)
+                        String.format("Perfil de grupo de investigación con ID %d no encontrado", id)
                 ));
     }
 
@@ -48,7 +48,7 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
 
         investigationGroupProfileHelper.verifyAcademicPeriodIsCurrent(
                 academicPeriodId,
-                "The academic period must be current to create a new InvestigationGroupProfile"
+                "El período académico debe estar activo para crear un nuevo perfil de grupo de investigación"
         );
 
         verifyThatInvestigationGroupProfileDoesNotExist(
@@ -68,7 +68,7 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
                 .anyMatch(profile -> profile.getInvestigationGroupId().equals(investigationGroupId));
         if (exists) {
             throw new InvestigationGroupProfileDuplicatedInSameAcademicPeriodException(
-                    String.format("An InvestigationGroupProfile for InvestigationGroup ID %d in AcademicPeriod ID %d already exists",
+                    String.format("Ya existe un perfil de grupo de investigación con ID %d para el período académico con ID %d",
                             investigationGroupId, academicPeriodId)
             );
         }
@@ -79,12 +79,12 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
     public InvestigationGroupProfile update(Long id, InvestigationGroupProfile investigationGroupProfile) {
         if(investigationGroupProfilePersistencePort.findById(id).isEmpty()) {
             throw new InvestigationGroupProfileNotFoundException(
-                    String.format("InvestigationGroupProfile with ID %d could not be updated because it does not exist", id)
+                    String.format("No se pudo actualizar el perfil de grupo de investigación con ID %d porque no existe", id)
             );
         }
         investigationGroupProfileHelper.verifyAcademicPeriodIsCurrent(
                 investigationGroupProfile.getAcademicPeriodId(),
-                "The academic period must be current to update an InvestigationGroupProfile"
+                "El período académico debe estar activo para actualizar un perfil de grupo de investigación"
         );
         InvestigationGroupProfile igp =
                 investigationGroupProfileHelper.verifyUserHasFunctionaryProfile(investigationGroupProfile);
@@ -95,7 +95,7 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
     public void deleteById(Long id) {
         if (investigationGroupProfilePersistencePort.findById(id).isEmpty()) {
             throw new InvestigationGroupProfileNotFoundException(
-                    String.format("InvestigationGroupProfile with ID %d could not be deleted because it does not exist", id)
+                    String.format("No se pudo eliminar el perfil de grupo de investigación con ID %d porque no existe", id)
             );
         }
         verifyAcademicPeriodIsCurrentStatusBeforeDelete(id);
@@ -105,7 +105,7 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
     private void verifyAcademicPeriodIsCurrentStatusBeforeDelete(Long investigationGroupProfileId) {
         InvestigationGroupProfile igp = findById(investigationGroupProfileId);
         investigationGroupProfileHelper.verifyAcademicPeriodIsCurrent
-                (igp.getAcademicPeriodId(), "The academic period must be current to delete an InvestigationGroupProfile");
+                (igp.getAcademicPeriodId(), "El período académico debe estar activo para eliminar un perfil de grupo de investigación");
     }
 
     @Override

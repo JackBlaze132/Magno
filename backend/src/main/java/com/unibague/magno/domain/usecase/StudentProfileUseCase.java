@@ -43,7 +43,7 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
     public StudentProfile findById(Long id) {
         return studentProfilePersistencePort.findById(id)
                 .orElseThrow(() -> new StudentProfileNotFoundException(
-                        String.format("StudentProfile with ID %d not found", id)
+                        String.format("Perfil de estudiante con ID %d no encontrado", id)
                 ));
     }
 
@@ -53,8 +53,8 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
         Long academicPeriodId = studentProfile.getAcademicPeriodId();
         if (existsByUserIdAndAcademicPeriodId(userId, academicPeriodId)) {
             throw new StudentProfileAlreadyExistsException(
-                    String.format("StudentProfile with User ID %d could not be saved because it already exists" +
-                            "in the academic period with ID %d", userId, academicPeriodId)
+                    String.format("No se pudo guardar el perfil de estudiante con ID de usuario %d porque ya existe " +
+                            "en el período académico con ID %d", userId, academicPeriodId)
             );
         }
         return studentProfilePersistencePort.save(studentProfile);
@@ -64,7 +64,7 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
     public StudentProfile update(Long id, StudentProfile studentProfile) {
         if (studentProfilePersistencePort.findById(id).isEmpty()) {
             throw new StudentProfileNotFoundException(
-                    String.format("StudentProfile with ID %d could not be updated because it does not exist", id)
+                    String.format("No se pudo actualizar el perfil de estudiante con ID %d porque no existe", id)
             );
         }
         return studentProfilePersistencePort.update(id, studentProfile);
@@ -84,7 +84,7 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
     public void deleteById(Long id) {
         if (studentProfilePersistencePort.findById(id).isEmpty()) {
             throw new StudentProfileNotFoundException(
-                    String.format("StudentProfile with ID %d could not be deleted because it does not exist", id)
+                    String.format("No se pudo eliminar el perfil de estudiante con ID %d porque no existe", id)
             );
         }
         studentProfilePersistencePort.deleteById(id);

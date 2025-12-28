@@ -50,7 +50,7 @@ public class CronJobLogFileService {
                 writer.write(generateLogContent(logs, jobName, startDate, endDate));
             }
         } catch (IOException e) {
-            throw new RuntimeException("Error generating log file: " + e.getMessage(), e);
+            throw new RuntimeException("Error al generar el archivo de registro: " + e.getMessage(), e);
         }
     }
 

@@ -35,7 +35,7 @@ public class AcademicPeriodJpaAdapter implements IAcademicPeriodPersistencePort 
     @Override
     public AcademicPeriod update(Long id, AcademicPeriod academicPeriod) {
         AcademicPeriodEntity existingEntity = academicPeriodRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("AcademicPeriod not found with id: " + id));
+                .orElseThrow(() -> new RuntimeException("Período académico con ID " + id + " no encontrado"));
         
         existingEntity.setName(academicPeriod.getName());
         existingEntity.setStartDate(academicPeriod.getStartDate());

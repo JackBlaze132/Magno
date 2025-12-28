@@ -21,14 +21,14 @@ public class RoleUseCase implements IRoleServicePort {
     public Role findById(Long id) {
         return rolePersistencePort.findById(id)
                 .orElseThrow(() -> new RoleNotFoundException(
-                        String.format("Role with ID %d not found", id)));
+                        String.format("Rol con ID %d no encontrado", id)));
     }
 
     @Override
     public Role findByName(SeedbedRole name) {
         return rolePersistencePort.findByName(name)
                 .orElseThrow(() -> new RoleNotFoundException(
-                        String.format("Role with name %s not found", name)));
+                        String.format("Rol con nombre %s no encontrado", name)));
     }
 
 
@@ -41,7 +41,7 @@ public class RoleUseCase implements IRoleServicePort {
     public Role update(Long id, Role role) {
         if (rolePersistencePort.findById(id).isEmpty()) {
             throw new RoleNotFoundException(
-                    String.format("Role with ID %d could not be updated because it does not exist", id));
+                    String.format("No se pudo actualizar el rol con ID %d porque no existe", id));
         }
         return rolePersistencePort.update(id, role);
     }
@@ -50,7 +50,7 @@ public class RoleUseCase implements IRoleServicePort {
     public void deleteById(Long id) {
         if (rolePersistencePort.findById(id).isEmpty()) {
             throw new RoleNotFoundException(
-                    String.format("Role with ID %d could not be deleted because it does not exist", id));
+                    String.format("No se pudo eliminar el rol con ID %d porque no existe", id));
         }
         rolePersistencePort.deleteById(id);
     }

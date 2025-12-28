@@ -89,7 +89,7 @@ public class ResearchSeedbedProfileJpaAdapter implements IResearchSeedbedProfile
             return generateExcelReport(records);
         }
         catch (IOException e) {
-            throw new RuntimeException("Error generating Excel report", e);
+            throw new RuntimeException("Error al generar el reporte de Excel", e);
         }
     }
 

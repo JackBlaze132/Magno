@@ -72,7 +72,7 @@ public class ResearchSeedbedProfileRestController {
              @CurrentUser CurrentUserInfo currentUserInfo) {
         /**
         if (!currentUserInfo.getEmail().endsWith("@unibague.edu.co")) {
-            throw new NotAllowedToDoThisActionException("Only functionaries can create research seedbed profiles.");
+            throw new NotAllowedToDoThisActionException("Solo los funcionarios pueden crear perfiles de semillero de investigación.");
         }*/
         ResearchSeedbedProfileResponse created = researchSeedbedProfileHandler.save(researchSeedbedProfileRequest);
         URI location = URI.create(String.format("/api/research-seedbed-profiles/%d", created.getId()));

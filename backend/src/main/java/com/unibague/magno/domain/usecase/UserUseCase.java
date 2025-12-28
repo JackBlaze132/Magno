@@ -45,14 +45,14 @@ public class UserUseCase implements IUserServicePort {
     public User findById(Long id) {
         return userPersistencePort.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(
-                        String.format("User with id %s not found", id)));
+                        String.format("Usuario con ID %s no encontrado", id)));
     }
 
     @Override
     public User save(User user) {
         if (findByEmailOptional(user.getEmail()).isPresent()){
             throw new UserAlreadyExistsException(String.format(
-                    "User with email %s already exists", user.getEmail()));
+                    "El usuario con correo electrónico %s ya existe", user.getEmail()));
         }
         return userPersistencePort.save(user);
     }
@@ -61,7 +61,7 @@ public class UserUseCase implements IUserServicePort {
     public User update(Long id, User user) {
         if(userPersistencePort.findById(id).isEmpty()) {
             throw new UserNotFoundException(
-                    String.format("User with id %s could not be updated because it does not exist", user.getId()));
+                    String.format("No se pudo actualizar el usuario con ID %s porque no existe", user.getId()));
         }
         return userPersistencePort.update(id, user);
     }
@@ -75,7 +75,7 @@ public class UserUseCase implements IUserServicePort {
     public void deleteById(Long id) {
         if (userPersistencePort.findById(id).isEmpty()) {
             throw new UserNotFoundException(
-                    String.format("User with id %s could not be deleted because it does not exist", id));
+                    String.format("No se pudo eliminar el usuario con ID %s porque no existe", id));
         }
         userPersistencePort.deleteById(id);
     }
@@ -161,7 +161,7 @@ public class UserUseCase implements IUserServicePort {
                 .filter(u -> u.getIdentificationNumber().equals(identification))
                 .findFirst()
                 .orElseThrow(() -> new UserNotFoundException(
-                        String.format("User with identification %s not found", identification)
+                        String.format("Usuario con identificación %s no encontrado", identification)
                 ));
     }
 
@@ -169,7 +169,7 @@ public class UserUseCase implements IUserServicePort {
     public User mapFromIntegraFunctionary(IntegraUserRequest userRequest) {
 
         if (userRequest.getType().equals(JSONIntegraType.ESTUDIANTE)) {
-            throw new IntegraInvalidTypeException("The type of the integra user is not valid for this method");
+            throw new IntegraInvalidTypeException("El tipo de usuario de Integra no es válido para este método");
         }
 
         IntegraFunctionary integraFunctionary = integraServicePort.
@@ -192,7 +192,7 @@ public class UserUseCase implements IUserServicePort {
     public User mapFromIntegraStudent(IntegraUserRequest userRequest) {
 
         if (userRequest.getType().equals(JSONIntegraType.FUNCIONARIO)) {
-            throw new IntegraInvalidTypeException("The type of the integra user is not valid for this method");
+            throw new IntegraInvalidTypeException("El tipo de usuario de Integra no es válido para este método");
         }
 
         IntegraStudent integraStudent = integraServicePort.
@@ -210,7 +210,7 @@ public class UserUseCase implements IUserServicePort {
     public User findByEmail(String email) {
         return userPersistencePort.findByEmail(email)
                 .orElseThrow(() -> new UserNotFoundException(
-                        String.format("User with email %s not found", email)));
+                        String.format("Usuario con correo electrónico %s no encontrado", email)));
     }
 
     private Optional<User> findByEmailOptional(String email) {
@@ -231,7 +231,7 @@ public class UserUseCase implements IUserServicePort {
 
         if (isFunctionaryOrExternal) {
             throw new FunctionaryNotAllowedToGenerateCertificateException
-                    ("Functionaries or external users are not allowed to generate student seedbed certificates.");
+                    ("Los funcionarios o usuarios externos no pueden generar certificados de participación en semilleros de investigación.");
         }
 
         ResearchSeedbed researchSeedbed = researchSeedbedServicePort.findById(researchSeedbedId);
@@ -240,7 +240,9 @@ public class UserUseCase implements IUserServicePort {
 
         if (certificateData.isEmpty()) {
             throw new NoDataAvailableToGenerateCertificateException(
-                    "No data available to generate the student seedbed certificate.");
+                    "No hay información disponible para generar el certificado de participación en semillero de investigación." +
+                            "Esto puede suceder debido a que la participación del estudiante se registró como inactiva o el semillero" +
+                            "está marcado como inactivo en los diferentes periodos académicos.");
         }
 
         StudentSeedbedCertificate certificate = new StudentSeedbedCertificate();

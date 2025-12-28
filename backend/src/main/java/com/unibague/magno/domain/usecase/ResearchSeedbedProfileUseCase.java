@@ -27,7 +27,7 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
     public ResearchSeedbedProfile findById(Long id) {
         return researchSeedbedProfilePersistencePort.findById(id)
                 .orElseThrow(() -> new ResearchSeedbedNotFoundException(
-                        String.format("ResearchSeedbedProfile with ID %d not found", id)
+                        String.format("Perfil de semillero de investigación con ID %d no encontrado", id)
                 ));
     }
 
@@ -40,11 +40,11 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
 
     private ResearchSeedbedProfile verificationsBeforeSaveOrUpdate(ResearchSeedbedProfile researchSeedbedProfile) {
         if (researchSeedbedProfile.getCoordinatorId().equals(researchSeedbedProfile.getTutorId())) {
-            throw new SameCoordinatorAndTutorException("Coordinator and Tutor cannot be the same person.");
+            throw new SameCoordinatorAndTutorException("El coordinador y el tutor no pueden ser la misma persona.");
         }
         researchSeedbedProfileHelper.verifyAcademicPeriodIsCurrent(
                 researchSeedbedProfile.getAcademicPeriodId(),
-                "Academic period must be in current status to create or update a ResearchSeedbedProfile."
+                "El período académico debe estar activo para crear o actualizar un perfil de semillero de investigación."
         );
         return researchSeedbedProfileHelper.verifyUsersHasFunctionaryProfiles(researchSeedbedProfile);
     }
@@ -57,7 +57,7 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
                 .anyMatch(profile -> profile.getResearchSeedbedId().equals(researchSeedbedId));
         if (exists) {
             throw new ResearchSeedbedProfileAlreadyExistsInInvestigationGroup(
-                    String.format("A ResearchSeedbedProfile for ResearchSeedbed ID %d already exists", researchSeedbedId)
+                    String.format("Ya existe un perfil de semillero de investigación con ID %d", researchSeedbedId)
             );
         }
     }
@@ -67,7 +67,7 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
         researchSeedbedProfile.setId(id);
         if(researchSeedbedProfilePersistencePort.findById(id).isEmpty()) {
             throw new ResearchSeedbedNotFoundException(
-                    String.format("ResearchSeedbedProfile with ID %d could not be updated because it does not exist", id)
+                    String.format("No se pudo actualizar el perfil de semillero de investigación con ID %d porque no existe", id)
             );
         }
         ResearchSeedbedProfile rsp = verificationsBeforeSaveOrUpdate(researchSeedbedProfile);
@@ -78,13 +78,13 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
     public void deleteById(Long id) {
         if (researchSeedbedProfilePersistencePort.findById(id).isEmpty()) {
             throw new ResearchSeedbedNotFoundException(
-                    String.format("ResearchSeedbedProfile with ID %d could not be deleted because it does not exist", id)
+                    String.format("No se pudo eliminar el perfil de semillero de investigación con ID %d porque no existe", id)
             );
         }
         ResearchSeedbedProfile rsp = findById(id);
         researchSeedbedProfileHelper.verifyAcademicPeriodIsCurrent(
                 rsp.getAcademicPeriodId(),
-                "Academic period must be in current status to delete a ResearchSeedbedProfile."
+                "El período académico debe estar activo para eliminar un perfil de semillero de investigación."
         );
 
         researchSeedbedProfilePersistencePort.deleteById(id);
