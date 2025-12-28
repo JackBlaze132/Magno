@@ -3,6 +3,7 @@ package com.unibague.magno.domain.usecase;
 import com.unibague.magno.application.dto.request.StudentSeedbedCertificateRequest;
 import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.domain.api.IResearchSeedbedServicePort;
+import com.unibague.magno.domain.api.IRoleServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.integra.IntegraInvalidTypeException;
@@ -16,6 +17,7 @@ import com.unibague.magno.domain.model.certificates.projections.StudentSeedbedCe
 import com.unibague.magno.domain.model.certificates.studentcertificates.StudentSeedbedCertificate;
 import com.unibague.magno.domain.model.certificates.studentcertificates.StudentSeedbedParticipation;
 import com.unibague.magno.domain.model.enums.JSONIntegraType;
+import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.domain.model.enums.Sex;
 import com.unibague.magno.domain.model.enums.TypeOfInternalUser;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
@@ -271,5 +273,10 @@ public class UserUseCase implements IUserServicePort {
         StudentSeedbedCertificate certificate =
                 generateStudentSeedbedCertificate(userId, researchSeedbedId);
         return userPersistencePort.generateStudentSeedbedCertificate(certificate);
+    }
+
+    @Override
+    public List<User> findAllDiriUsers() {
+        return userPersistencePort.findAllDistinctUsersByRole(SeedbedRole.DIRI);
     }
 }

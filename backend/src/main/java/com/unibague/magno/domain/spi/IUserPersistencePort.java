@@ -4,6 +4,7 @@ import com.unibague.magno.application.dto.request.StudentSeedbedCertificateReque
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.certificates.projections.StudentSeedbedCertificateProjection;
 import com.unibague.magno.domain.model.certificates.studentcertificates.StudentSeedbedCertificate;
+import com.unibague.magno.domain.model.enums.SeedbedRole;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,4 +31,6 @@ public interface IUserPersistencePort {
 
     byte[] generateStudentSeedbedCertificate(StudentSeedbedCertificate certificate)
             throws IOException;
+
+    List<User> findAllDistinctUsersByRole(SeedbedRole seedbedRole);
 }

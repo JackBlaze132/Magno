@@ -6,6 +6,7 @@ import com.unibague.magno.application.dto.util.certificate.StudentSeedbedCertifi
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.certificates.projections.StudentSeedbedCertificateProjection;
 import com.unibague.magno.domain.model.certificates.studentcertificates.StudentSeedbedCertificate;
+import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.domain.spi.IUserPersistencePort;
 import com.unibague.magno.infrastructure.output.jpa.entity.UserEntity;
 import com.unibague.magno.infrastructure.output.jpa.mapper.UserEntityMapper;
@@ -170,6 +171,14 @@ public class UserJpaAdapter implements IUserPersistencePort {
 
         String html = htmlRenderService.renderCertificado(data);
         return pdfService.htmlToPdf(html);
+    }
+
+    @Override
+    public List<User> findAllDistinctUsersByRole(SeedbedRole seedbedRole) {
+        return userRepository.findAllDistinctUsersByRole(seedbedRole)
+                .stream()
+                .map(userEntityMapper::toUser)
+                .toList();
     }
 
 }

@@ -21,6 +21,7 @@ public interface IUserHandler {
     List<String> findAllCountries();
 
     List<UserResponse> findAllInternalUsersRegistered();
+    List<UserResponse> findAllDiriUsers();
 
     StudentSeedbedCertificate generateStudentSeedbedCertificate(Long userId, Long researchSeedbedId);
 

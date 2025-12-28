@@ -44,4 +44,6 @@ public interface IUserServicePort {
 
     byte[] generateByteStudentSeedbedCertificate(StudentSeedbedCertificateRequest studentSeedbedCertificateRequest)
             throws Exception;
+
+    List<User> findAllDiriUsers();
 }

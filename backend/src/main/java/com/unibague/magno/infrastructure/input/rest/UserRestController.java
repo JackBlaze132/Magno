@@ -79,6 +79,13 @@ public class UserRestController {
         return ResponseEntity.ok(currentUser);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
+    @GetMapping(path = "/all-diri-users", headers = "API-VERSION=1")
+    public ResponseEntity<List<UserResponse>> getAllDiriUsers() {
+        List<UserResponse> diriUsers = userHandler.findAllDiriUsers();
+        return ResponseEntity.ok(diriUsers);
+    }
+
     @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
     @PostMapping(path = "/student-seedbed-certificate", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getStudentSeedbedCertificate(

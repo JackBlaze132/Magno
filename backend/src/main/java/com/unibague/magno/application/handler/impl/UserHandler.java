@@ -92,6 +92,14 @@ public class UserHandler implements IUserHandler {
     }
 
     @Override
+    public List<UserResponse> findAllDiriUsers() {
+        return userServicePort.findAllDiriUsers()
+                .stream()
+                .map(userResponseMapper::toResponse)
+                .toList();
+    }
+
+    @Override
     public StudentSeedbedCertificate generateStudentSeedbedCertificate(Long userId, Long researchSeedbedId) {
         return userServicePort.generateStudentSeedbedCertificate(userId, researchSeedbedId);
     }

@@ -1,6 +1,7 @@
 package com.unibague.magno.infrastructure.output.jpa.repository;
 
 import com.unibague.magno.domain.model.certificates.projections.StudentSeedbedCertificateProjection;
+import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.infrastructure.output.jpa.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -64,4 +65,12 @@ public interface IUserRepository extends JpaRepository<UserEntity, Long> {
             @Param("userId") Long userId,
             @Param("researchSeedbedId") Long researchSeedbedId
     );
+
+    @Query("SELECT DISTINCT u FROM UserEntity u " +
+            "LEFT JOIN u.functionaryProfiles fp " +
+            "LEFT JOIN fp.role fr " +
+            "LEFT JOIN u.studentProfileEntities sp " +
+            "LEFT JOIN sp.role sr " +
+            "WHERE fr.name = :roleName OR sr.name = :roleName")
+    List<UserEntity> findAllDistinctUsersByRole(@Param("roleName") SeedbedRole roleName);
 }
