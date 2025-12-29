@@ -29,16 +29,14 @@
               class="mb-4"
             >
               <template #prepend>
-                <VIcon>mdi-account</VIcon>
+                <VIcon>ri-account-box-line</VIcon>
               </template>
-              <strong>Usuario ID:</strong> {{ userId || 'Cargando...' }}
-              <br>
               <strong>Usuario:</strong> {{ authStore.userName }}
             </VAlert>
           </VCol>
         </VRow>
 
-        <VForm @submit.prevent="generateCertificate" ref="certificateForm">
+        <VForm v-if="seedbeds.length > 0 || loadingSeedbeds" @submit.prevent="generateCertificate" ref="certificateForm">
           <VRow>
             <VCol cols="12">
               <VSelect
@@ -48,7 +46,7 @@
                 item-value="id"
                 label="Seleccionar Semillero"
                 :loading="loadingSeedbeds"
-                :disabled="loadingSeedbeds || !seedbeds.length"
+                :disabled="loadingSeedbeds"
                 variant="outlined"
                 prepend-inner-icon="ri-seedling-line"
                 :rules="[(v: any) => !!v || 'Seleccione un semillero']"
@@ -63,9 +61,20 @@
                 </template>
               </VSelect>
             </VCol>
-
           </VRow>
         </VForm>
+
+        <VRow v-else>
+          <VCol cols="12">
+            <VAlert
+              type="warning"
+              variant="tonal"
+              icon="ri-information-line"
+            >
+              No has sido registrado en ningún semillero.
+            </VAlert>
+          </VCol>
+        </VRow>
       </VCardText>
 
       <VCardItem class="pe-5 ps-5">
@@ -174,14 +183,14 @@ export default defineComponent({
         await this.fetchUserSeedbeds()
       } else {
         console.error('❌ Still no user ID after auth initialization')
-        useFeedbackToast().showError({ message: 'No se pudo obtener la información del usuario' })
+        useFeedbackToast().showError('No se pudo obtener la información del usuario')
       }
     },
 
     async fetchUserSeedbeds() {
       if (!this.userId) {
         console.warn('❌ User ID not available for fetching seedbeds')
-        useFeedbackToast().showError({ message: 'ID de usuario no disponible' })
+        useFeedbackToast().showError('ID de usuario no disponible')
         return
       }
 
@@ -207,16 +216,14 @@ export default defineComponent({
           console.log('✅ Seedbeds loaded successfully:', this.seedbeds)
 
           if (this.seedbeds.length === 0) {
-            useFeedbackToast().showSuccess('No se encontraron semilleros válidos para tu usuario')
+            console.log('⚠️ No valid seedbeds found for user')
           }
         } else {
           this.seedbeds = []
           console.log('⚠️ No seedbeds found in response or empty array')
-          useFeedbackToast().showWarning('No tienes semilleros asignados')
         }
       } catch (error) {
         console.error('❌ Error fetching user seedbeds:', error)
-        useFeedbackToast().showError('Error al cargar los semilleros')
         this.seedbeds = []
       } finally {
         this.loadingSeedbeds = false
@@ -250,42 +257,13 @@ export default defineComponent({
         const response = await API.post(API.GENERATE_CERTIFICATES, requestBody, headers )
 
         if (response) {
-          // Check if response is a PDF file (Response object)
-          if (response instanceof Response) {
-            console.log('📄 PDF response received, creating blob and opening in new window')
+          useFeedbackToast().showSuccess('Certificado generado exitosamente')
+          console.log('Certificate generated:', response)
 
-            // Get the PDF blob
-            const pdfBlob = await response.blob()
-
-            // Create a blob URL
-            const pdfUrl = URL.createObjectURL(pdfBlob)
-
-            // Open in new window
-            const newWindow = window.open(pdfUrl, '_blank')
-
-            // Clean up the blob URL after a delay to ensure the window opened
-            setTimeout(() => {
-              URL.revokeObjectURL(pdfUrl)
-            }, 1000)
-
-            if (newWindow) {
-              useFeedbackToast().showSuccess('Certificado generado y abierto en nueva ventana')
-            } else {
-              // Fallback: create download link if popup blocked
-              const link = document.createElement('a')
-              link.href = pdfUrl
-              link.download = `certificado_${this.userId}_${this.selectedSeedbed}.pdf`
-              link.click()
-              useFeedbackToast().showSuccess('Certificado generado y descargado')
-            }
-          } else {
-            // Handle JSON response (if any)
-            console.log('Certificate generated:', response)
-            useFeedbackToast().showSuccess('Certificado generado exitosamente')
-
-            if (response.downloadUrl || response.fileData) {
-              window.open(response.downloadUrl || response.fileData, '_blank')
-            }
+          // If the response contains a download URL or file data, handle it here
+          if (response.downloadUrl || response.fileData) {
+            // Handle file download
+            window.open(response.downloadUrl || response.fileData, '_blank')
           }
 
           this.$emit('certificate-created', response)
