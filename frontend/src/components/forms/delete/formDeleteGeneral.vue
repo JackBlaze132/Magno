@@ -90,11 +90,11 @@ export default defineComponent({
         if (!response.error) {
           this.showSuccess('Elemento eliminado exitosamente');
           this.$emit('itemDeleted', this.index); // Emitir evento al eliminar el objeto
-        } else {
-          console.error("Error al realizar la solicitud", response.error);
         }
+
       } catch (error) {
         console.error("Error al realizar la solicitud", error);
+        this.showError(error.response?.data);
       } finally {
         this.loading = false;
       }
