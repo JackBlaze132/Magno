@@ -218,7 +218,15 @@ class API{
           ...headers
         },
       });
-      if (response.ok && response.status === 204) {
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        const error: any = new Error('API Error');
+        error.response = { data: responseData, status: response.status };
+        throw error;
+      }
+      else if (response.ok && response.status === 204) {
         return {}; // or return null
       }
       return response.json();

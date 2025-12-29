@@ -42,7 +42,7 @@ const windowWidth = ref(window.innerWidth)
 
 const isMobile = computed(() => windowWidth.value < 960)
 const contentClass = computed(() =>
-  isMobile.value ? 'ma-4 flex-grow-1 content-mobile' : 'content-desktop'
+  isMobile.value ? 'pa-4 flex-grow-1 content-mobile' : 'content-desktop'
 )
 
 const toggleNav = () => {
