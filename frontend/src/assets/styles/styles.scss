@@ -130,11 +130,18 @@
     opacity: 0.8;
   }
 
-  .stat-card {
-    transition: transform 0.2s ease-in-out;
+  .v-card.stat-card {
+    transition: transform 300ms ease-in-out;
+  }
+  
+  .v-card.shortcut-card {
+    transition: transform 300ms ease-in-out;
     &:hover {
-      transform: translateY(-4px);
-    }
+      transform: translateY(-6px);
+    };
+  }
+  .shortcut-card .v-card__overlay {
+    opacity: 0 !important;
   }
 
   .chart-container {

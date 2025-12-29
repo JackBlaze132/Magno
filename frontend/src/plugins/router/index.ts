@@ -29,8 +29,8 @@ router.beforeEach(async (to, from, next) => {
 
   // If route requires auth, try to initialize auth if needed
   if (requiresAuth) {
-    // If not authenticated, try to initialize (might be OAuth callback)
-    if (!authStore.isAuthenticated || !authStore.user) {
+    // If not initialized yet, try to initialize (might be OAuth callback or page reload)
+    if (!authStore.isInitialized) {
       console.log('🔄 Initializing authentication...')
       try {
         await authStore.initializeAuth()

@@ -28,6 +28,7 @@ export const useAuthStore = defineStore('auth', {
     userProfiles: [] as UserProfile[],
     currentRole: null as string | null,
     isAuthenticated: false,
+    isInitialized: false,
     loading: false,
     error: null as string | null,
   }),
@@ -235,9 +236,35 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
+     * Verify if the current token/session is still valid
+     */
+    async verifyAuth() {
+      const headers = {
+        'API-VERSION': '1'
+      }
+
+      try {
+        const response = await API.get(API.USERS_ME, headers)
+        return !!(response && response[0])
+      } catch (error) {
+        console.warn('⚠️ Token invalid or expired:', error)
+        return false
+      }
+    },
+
+    /**
      * Initialize authentication - fetch all user data
      */
     async initializeAuth() {
+      // If we think we are authenticated, verify the token first
+      if (this.isAuthenticated) {
+        const isValid = await this.verifyAuth()
+        if (!isValid) {
+          this.logout()
+          return
+        }
+      }
+
       try {
         // Fetch Google profile first (has picture)
         await this.fetchGoogleProfile()
@@ -260,6 +287,8 @@ export const useAuthStore = defineStore('auth', {
       } catch (error) {
         console.error('❌ Error initializing authentication:', error)
         this.isAuthenticated = false
+      } finally {
+        this.isInitialized = true
       }
     },
 
@@ -287,6 +316,7 @@ export const useAuthStore = defineStore('auth', {
       this.userProfiles = []
       this.currentRole = null
       this.isAuthenticated = false
+      this.isInitialized = false
       this.error = null
 
       // Call API logout
@@ -305,6 +335,6 @@ export const useAuthStore = defineStore('auth', {
   persist: {
     key: 'magno-auth',
     storage: localStorage,
-    paths: ['user', 'userProfiles', 'currentRole', 'isAuthenticated']
+    pick: ['user', 'userProfiles', 'currentRole', 'isAuthenticated']
   }
 })

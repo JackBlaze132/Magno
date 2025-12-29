@@ -1,8 +1,8 @@
 <template>
   <VContainer fluid class="px-2 px-sm-6 py-4 py-sm-6">
-    <VRow class="mb-6">
+    <VRow>
       <VCol cols="12">
-        <VCard class="pa-4">
+        <VCard class="pa-4" variant="flat">
           <!-- Desktop Header: Title and Chip on the same row, Chip at max right -->
           <div class="d-none d-sm-flex align-center pa-4">
             <VIcon class="me-2">ri-home-line</VIcon>
@@ -44,7 +44,7 @@
     </VRow>
     <VRow>
       <VCol cols="12" sm="6" md="4">
-        <VCard class="pa-4 text-center" @click="openCertificateDialog">
+        <VCard class="pa-4 text-center shortcut-card" variant="flat" @click="openCertificateDialog">
           <VCardTitle>
             <VIcon size="48" color="primary">ri-verified-badge-line</VIcon>
           </VCardTitle>
@@ -56,7 +56,7 @@
       </VCol>
 
       <VCol cols="12" sm="6" md="4">
-        <VCard class="pa-4 text-center" @click="navigateToSeedbeds">
+        <VCard class="pa-4 text-center shortcut-card" variant="flat" @click="navigateToSeedbeds">
           <VCardTitle>
             <VIcon size="48" color="success">ri-seedling-line</VIcon>
           </VCardTitle>
@@ -68,7 +68,7 @@
       </VCol>
 
       <VCol cols="12" sm="6" md="4">
-        <VCard class="pa-4 text-center" @click="navigateToProfile">
+        <VCard class="pa-4 text-center shortcut-card" variant="flat" @click="navigateToProfile">
           <VCardTitle>
             <VIcon size="48" color="info">ri-account-box-line</VIcon>
           </VCardTitle>
@@ -81,9 +81,9 @@
     </VRow>
 
     <!-- Quick Stats Section -->
-    <VRow class="mb-6">
+    <VRow>
       <VCol v-for="stat in stats" :key="stat.title" cols="12" sm="6" md="3">
-        <VCard class="pa-4 h-100 stat-card">
+        <VCard class="pa-4 h-100 stat-card" variant="flat" process_messages>
           <div class="d-flex align-center">
             <VAvatar :color="stat.color" variant="tonal" size="48" class="me-4">
               <VIcon :icon="stat.icon" size="24" />
@@ -101,9 +101,9 @@
     </VRow>
 
     <!-- Dashboard Section: Filters and Sex Distribution -->
-    <VRow class="mb-6">
+    <VRow>
       <VCol cols="12" md="4">
-        <VCard class="pa-4 h-100">
+        <VCard class="pa-4 h-100" variant="flat">
           <VCardTitle class="d-flex align-center px-0">
             <VIcon class="me-2" color="primary">ri-filter-3-line</VIcon>
             Filtros de Distribución
@@ -155,7 +155,7 @@
       </VCol>
 
       <VCol cols="12" md="8">
-        <VCard class="pa-4 h-100">
+        <VCard class="pa-4 h-100" variant="flat">
           <VCardTitle class="d-flex align-center px-0">
             <VIcon class="me-2" color="primary">ri-pie-chart-2-line</VIcon>
             Distribución por Sexo
@@ -203,7 +203,7 @@
     <!-- Trends Section -->
     <VRow class="mb-6">
       <VCol cols="12">
-        <VCard class="pa-4">
+        <VCard class="pa-4" variant="flat">
           <VCardTitle class="d-flex align-center px-0">
             <VIcon class="me-2" color="primary">ri-line-chart-line</VIcon>
             Tendencia de Estudiantes por Periodo
