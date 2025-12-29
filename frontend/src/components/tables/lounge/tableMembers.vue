@@ -22,6 +22,7 @@ export default defineComponent({
         {title: 'ID', key: 'id'},
         {title: 'Nombre', key: 'student_profile.user.full_name'},
         {title: 'Código', key: 'student_profile.user.user_code'},
+        {title: 'Estado', key: 'was_active'},
         {title: 'Identificación', key: 'student_profile.user.identification_number'},
         {title: 'Semestre', key: 'student_profile.semester'},
         {title: 'Correo', key: 'student_profile.user.email'},
@@ -100,12 +101,16 @@ export default defineComponent({
       :search="search"
       :headers="headers"
     >
-    <template v-slot:item.is_leader="{item}">
-      {{ Formatter().leaderFormatter(item.is_leader) }}
+      <template v-slot:item.was_active="{item}">
+        <VChip :color="item.was_active ? 'green' : ''" >
+          {{ Formatter().periodActivityFormatter(item.was_active) }}
+        </VChip>
+      </template>
+      <template v-slot:item.is_leader="{item}">
+        {{ Formatter().leaderFormatter(item.is_leader) }}
+      </template>
 
-    </template>
-
-    <template v-slot:item.link="{item}">
+      <template v-slot:item.link="{item}">
         <QuickActions
           type="seedbed_member"
           toEdit

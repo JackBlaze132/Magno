@@ -21,8 +21,13 @@
       :search="search"
       :headers="headers"
     >
+      <template v-slot:item.type_of_internal_user="{item}">
+        <VChip variant="outlined" >
+          {{ formatter().snakeCaseToNaturalTitleCase(item.type_of_internal_user) || ALIADO}}
+        </VChip>
+      </template>
       <template v-slot:item.is_external_user="{item}">
-        {{ null || externalFormatter(item.is_external_user)}}
+        {{ null || formatter().externalFormatter(item.is_external_user)}}
       </template>
       <template v-slot:no-data>
         <div class="text-center pa-4">
@@ -41,16 +46,6 @@ import API from "@/utils/api";
 import Formatter from "@/utils/formatter";
 import QuickControl from "@/components/operators/quickControl.vue";
 
-interface Item {
-  id: number,
-  full_name: string,
-  identification_number: string,
-  user_code: string,
-  email: string,
-  is_external_user: boolean,
-  sex: string,
-}
-
 export default defineComponent({
   components: {QuickControl},
 
@@ -61,6 +56,7 @@ export default defineComponent({
       headers: [
         {title: 'ID', key: 'id'},
         {title: 'Nombre', key: 'full_name'},
+        {title: 'Tipo', key:  'type_of_internal_user'},
         {title: 'Número de identificación', key: 'identification_number'},
         {title: 'Código de usuario', key: 'user_code'},
         {title: 'Correo electrónico', key: 'email'},
@@ -86,9 +82,11 @@ export default defineComponent({
         console.error('Error fetching users:', error);
       }
     },
-    externalFormatter(state: boolean){
-      return Formatter.externalFormatter(state)
+
+    formatter(){
+      return Formatter
     },
+
     handleItemRefresh(){
       this.getUsers();
     }
