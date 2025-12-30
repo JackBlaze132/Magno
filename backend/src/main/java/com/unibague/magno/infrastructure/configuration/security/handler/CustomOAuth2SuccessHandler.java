@@ -3,6 +3,7 @@ package com.unibague.magno.infrastructure.configuration.security.handler;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
@@ -18,6 +19,8 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
 
     private final OAuth2AuthorizedClientService authorizedClientService;
 
+    @Value("${app.frontend.success-redirect}")
+    private String successRedirectUrl;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -35,7 +38,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
                 .build();
 
         response.addHeader("Set-Cookie", cookie.toString());
-        response.sendRedirect("http://localhost:5173/Inicio");
+        response.sendRedirect(successRedirectUrl);
     }
 
 }

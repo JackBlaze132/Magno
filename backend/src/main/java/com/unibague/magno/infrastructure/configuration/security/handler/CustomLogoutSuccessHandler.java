@@ -2,6 +2,7 @@ package com.unibague.magno.infrastructure.configuration.security.handler;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
@@ -11,6 +12,9 @@ import java.io.IOException;
 
 @Component
 public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
+
+    @Value("${app.frontend.login-redirect}")
+    private String loginRedirectUrl;
 
     @Override
     public void onLogoutSuccess(HttpServletRequest request,
@@ -26,7 +30,7 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
                 .build();
 
         response.addHeader("Set-Cookie", deleteCookie.toString());
-        response.sendRedirect("http://localhost:5173/login");
+        response.sendRedirect(loginRedirectUrl);
     }
 }
 
