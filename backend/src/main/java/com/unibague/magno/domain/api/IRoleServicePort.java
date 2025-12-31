@@ -3,7 +3,6 @@ package com.unibague.magno.domain.api;
 import com.unibague.magno.domain.model.Role;
 import com.unibague.magno.domain.model.enums.SeedbedRole;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 

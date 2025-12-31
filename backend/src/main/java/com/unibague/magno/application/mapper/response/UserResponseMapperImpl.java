@@ -1,19 +1,13 @@
 package com.unibague.magno.application.mapper.response;
 
 import com.unibague.magno.application.dto.response.UserResponse;
-import com.unibague.magno.domain.api.IRoleServicePort;
 import com.unibague.magno.domain.model.User;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-@RequiredArgsConstructor
 public class UserResponseMapperImpl implements UserResponseMapper {
-
-    private final IRoleServicePort roleServicePort;
-    private final RoleResponseMapper roleResponseMapper;
 
     @Override
     public UserResponse toResponse(User userResponse) {

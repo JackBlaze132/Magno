@@ -1,7 +1,6 @@
 package com.unibague.magno.application.handler.interfaces;
 
 import com.unibague.magno.application.dto.response.CronJobExecutionLogResponse;
-import com.unibague.magno.domain.model.CronJobExecutionLog;
 
 import java.time.LocalDateTime;
 import java.util.List;

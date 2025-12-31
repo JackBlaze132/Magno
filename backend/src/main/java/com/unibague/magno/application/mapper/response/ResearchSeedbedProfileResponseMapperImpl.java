@@ -19,7 +19,6 @@ public class ResearchSeedbedProfileResponseMapperImpl implements ResearchSeedbed
     private final FunctionaryProfileResponseMapper functionaryProfileResponseMapper;
 
     private final IInvestigationGroupServicePort investigationGroupServicePort;
-    private final InvestigationGroupResponseMapper investigationGroupResponseMapper;
 
     private final IInvestigationGroupProfileServicePort investigationGroupProfileServicePort;
     private final InvestigationGroupProfileResponseMapper investigationGroupProfileResponseMapper;

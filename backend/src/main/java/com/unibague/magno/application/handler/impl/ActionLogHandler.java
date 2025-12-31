@@ -4,7 +4,6 @@ import com.unibague.magno.application.dto.response.ActionLogResponse;
 import com.unibague.magno.application.handler.interfaces.IActionLogHandler;
 import com.unibague.magno.application.mapper.response.ActionLogResponseMapper;
 import com.unibague.magno.domain.api.IActionLogServicePort;
-import com.unibague.magno.domain.model.ActionLog;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

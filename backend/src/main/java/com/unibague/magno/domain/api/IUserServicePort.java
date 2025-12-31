@@ -8,7 +8,6 @@ import com.unibague.magno.domain.model.certificates.studentcertificates.StudentS
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
