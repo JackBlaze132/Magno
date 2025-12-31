@@ -55,6 +55,7 @@ public enum ExceptionResponse {
     NOT_ALLOWED_TO_DO_THIS_ACTION("ERR_SECURITY_001", "No tiene permisos para realizar esta acción."),
     FORBIDDEN_REQUEST("ERR_FORBIDDEN_001", "No tiene autorización para acceder a este recurso."),
     SQL_EXCEPTION("ERR_SQL_001", "Error en la base de datos."),
+    VALIDATION_ERROR("ERR_VALIDATION_001", "Error de validación de datos."),
     GENERIC_ERROR("ERR_GENERIC_001", "Error inesperado del sistema.");
 
     private final String code;

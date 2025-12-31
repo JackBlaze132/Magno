@@ -569,21 +569,15 @@ public class ControllerAdvisor {
     public ErrorResponse handleMethodArgumentNotValidException(MethodArgumentNotValidException exception, HttpServletRequest request) {
 
         BindingResult result = exception.getBindingResult();
-        String code = ExceptionResponse.GENERIC_ERROR.getCode();
-        String message = "La validación falló para uno o más campos.";
+        String code = ExceptionResponse.VALIDATION_ERROR.getCode();
+        String message = ExceptionResponse.VALIDATION_ERROR.getMessage();
         
         // Generating a list of error messages with the field and its associated message
         List<String> errorDetails = result.getFieldErrors().stream()
                 .map(fieldError -> String.format("Campo '%s': %s", fieldError.getField(), fieldError.getDefaultMessage()))
                 .toList();
 
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(code);
-        errorResponse.setMessage(message);
-        errorResponse.setDetails(errorDetails);
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
-        
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message, errorDetails);
         logError(exception, code, message, request);
 
         return errorResponse;
@@ -596,10 +590,10 @@ public class ControllerAdvisor {
             HttpServletRequest request
     ) {
 
-        String code = ExceptionResponse.GENERIC_ERROR.getCode();
-        String message = "La validación falló para uno o más parámetros.";
+        String code = ExceptionResponse.VALIDATION_ERROR.getCode();
+        String message = ExceptionResponse.VALIDATION_ERROR.getMessage();
 
-        List<String> errorDetails = exception.getAllValidationResults().stream()
+        List<String> errorDetails = exception.getValueResults().stream()
                 .flatMap(result ->
                         result.getResolvableErrors().stream()
                                 .map(error -> {
@@ -615,13 +609,7 @@ public class ControllerAdvisor {
                 )
                 .toList();
 
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setCode(code);
-        errorResponse.setMessage(message);
-        errorResponse.setDetails(errorDetails);
-        errorResponse.setTimestamp(LocalDateTime.now());
-        errorResponse.setExceptionClassName(exception.getClass().getName());
-
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message, errorDetails);
         logError(exception, code, message, request);
 
         return errorResponse;
