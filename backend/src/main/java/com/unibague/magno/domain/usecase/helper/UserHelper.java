@@ -6,6 +6,7 @@ import com.unibague.magno.domain.api.IFunctionaryProfileServicePort;
 import com.unibague.magno.domain.api.IRoleServicePort;
 import com.unibague.magno.domain.model.*;
 import com.unibague.magno.domain.model.enums.SeedbedRole;
+import com.unibague.magno.domain.model.util.SystemConstants;
 
 public class UserHelper implements IUserHelper {
 
@@ -28,9 +29,9 @@ public class UserHelper implements IUserHelper {
     public void addDiriUser(String diriIdentification, Long diriUserId) {
         // There's no need to validate if the period exists because if not, an exception will be thrown
         // Same for role and dependency
-        AcademicPeriod apForDiriUsers = academicPeriodServicePort.findByName("Periodo para registrar admins");
+        AcademicPeriod apForDiriUsers = academicPeriodServicePort.findByName(SystemConstants.ADMIN_REGISTRATION_ACADEMIC_PERIOD_NAME);
         Role diriRole = roleServicePort.findByName(SeedbedRole.DIRI);
-        Dependency dependency = dependencyServicePort.findByName("DIRECCION DE INVESTIGACIONES");
+        Dependency dependency = dependencyServicePort.findByName(SystemConstants.DIRI_DEPENDENCY_NAME);
         FunctionaryProfile functionaryProfile = new FunctionaryProfile(
                 null,
                 diriUserId,

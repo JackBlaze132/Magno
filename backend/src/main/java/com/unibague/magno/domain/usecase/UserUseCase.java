@@ -3,7 +3,6 @@ package com.unibague.magno.domain.usecase;
 import com.unibague.magno.application.dto.request.StudentSeedbedCertificateRequest;
 import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.domain.api.IResearchSeedbedServicePort;
-import com.unibague.magno.domain.api.IRoleServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.integra.IntegraInvalidTypeException;

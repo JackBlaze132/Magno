@@ -4,6 +4,8 @@ import com.unibague.magno.domain.api.*;
 import com.unibague.magno.domain.exception.user.UserNotFoundException;
 import com.unibague.magno.domain.model.*;
 import com.unibague.magno.domain.model.enums.SeedbedRole;
+import com.unibague.magno.domain.model.util.SystemConstants;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -31,8 +33,7 @@ public class AdminRegistrationInitializer implements CommandLineRunner {
         log.info("\n\n\n---------------------------------------\n\n\n");
         log.info("¿Desea registrar un usuario administrador? (S/N): ");
 
-        Scanner scanner = new Scanner(System.in);
-        try {
+        try (Scanner scanner = new Scanner(System.in)) {
             String respuesta = scanner.nextLine().trim().toUpperCase();
 
             if (respuesta.equals("S")) {
@@ -67,8 +68,8 @@ public class AdminRegistrationInitializer implements CommandLineRunner {
         if (academicPeriods.isEmpty()) {
             ap = academicPeriodServicePort.save(
                     new AcademicPeriod(
-                            null, "Periodo para registrar admins",LocalDate.now(),
-                            LocalDate.now().plusDays(1), true));
+                            null, SystemConstants.ADMIN_REGISTRATION_ACADEMIC_PERIOD_NAME, LocalDate.MIN,
+                            LocalDate.MAX, true));
 
         }
         else {
@@ -77,7 +78,7 @@ public class AdminRegistrationInitializer implements CommandLineRunner {
 
         Role diriRole = roleServicePort.findByName(SeedbedRole.DIRI);
 
-        Dependency dependency = dependencyServicePort.findByName("DIRECCION DE INVESTIGACIONES");
+        Dependency dependency = dependencyServicePort.findByName(SystemConstants.DIRI_DEPENDENCY_NAME);
         functionaryProfileServicePort.save(new FunctionaryProfile(
                 null, adminUser.getId(), ap.getId(), dependency.getId(), diriRole.getId()
                 )
