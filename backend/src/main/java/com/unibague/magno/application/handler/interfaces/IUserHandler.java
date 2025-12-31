@@ -28,4 +28,6 @@ public interface IUserHandler {
 
     byte[] generateByteStudentSeedbedCertificate(StudentSeedbedCertificateRequest studentSeedbedCertificateRequest)
             throws Exception;
+
+    void deleteDiriUser(String diriIdentification);
 }

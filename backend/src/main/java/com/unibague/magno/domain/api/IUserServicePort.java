@@ -46,4 +46,6 @@ public interface IUserServicePort {
 
     List<User> findAllDiriUsers();
     User addDiriUser(String diriIdentification);
+
+    void deleteDiriUser(String diriIdentification);
 }

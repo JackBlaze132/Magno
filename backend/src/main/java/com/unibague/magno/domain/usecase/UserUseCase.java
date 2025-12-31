@@ -297,4 +297,21 @@ public class UserUseCase implements IUserServicePort {
         userHelper.addDiriUser(diriIdentification, user.getId());
         return user;
     }
+
+    @Override
+    public void deleteDiriUser(String diriIdentification) {
+        List<User> diriUsers = findAllDiriUsers();
+        boolean exists = diriUsers.stream()
+                .anyMatch(user -> user.getIdentificationNumber().equals(diriIdentification));
+        if (!exists) {
+            throw new DiriUserNotFoundException("El usuario que intenta eliminar no es un usuario DIRI.");
+        }
+        Optional<User> userOptional = findByUserIdentification(diriIdentification);
+        if (userOptional.isEmpty()) {
+            throw new UserNotFoundException(
+                    String.format("Usuario con identificación %s no encontrado", diriIdentification));
+        }
+        User user = userOptional.get();
+        userHelper.deleteDiriUser(diriIdentification, user.getId());
+    }
 }

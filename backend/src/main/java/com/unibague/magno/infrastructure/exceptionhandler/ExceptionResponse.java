@@ -20,6 +20,8 @@ public enum ExceptionResponse {
             "No hay información disponible para generar el certificado de participación en semillero."),
     DIRI_USER_ALREADY_EXISTS("ERR_USER_006",
             "El usuario DIRI ya está registrado en el sistema."),
+    DIRI_USER_NOT_FOUND("ERR_USER_007",
+            "El usuario DIRI no está registrado en el sistema."),
     INVESTIGATION_GROUP_NOT_FOUND("ERR_INVESTIGATION_GROUP_001", "Grupo de investigación no encontrado."),
     INVESTIGATION_GROUP_PROFILE_NOT_FOUND("ERR_INVESTIGATION_GROUP_PROFILE_001",
             "Perfil de grupo de investigación no encontrado."),

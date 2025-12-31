@@ -246,6 +246,21 @@ public class ControllerAdvisor {
         return errorResponse;
     }
 
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(DiriUserNotFoundException.class)
+    public ErrorResponse handleDiriUserNotFound(DiriUserNotFoundException exception, HttpServletRequest request) {
+
+        String code = DIRI_USER_NOT_FOUND.getCode();
+        String message = ExceptionResponse.DIRI_USER_NOT_FOUND.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+
+        logError(exception, code, message, request);
+
+        return errorResponse;
+    }
+
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(InvestigationGroupNotFoundException.class)
     public ErrorResponse handleUserNotFoundException(InvestigationGroupNotFoundException exception, HttpServletRequest request) {

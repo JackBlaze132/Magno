@@ -114,4 +114,9 @@ public class UserHandler implements IUserHandler {
             throws Exception {
         return userServicePort.generateByteStudentSeedbedCertificate(studentSeedbedCertificateRequest);
     }
+
+    @Override
+    public void deleteDiriUser(String diriIdentification) {
+        userServicePort.deleteDiriUser(diriIdentification);
+    }
 }

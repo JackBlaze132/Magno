@@ -8,6 +8,8 @@ import com.unibague.magno.domain.model.*;
 import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.domain.model.util.SystemConstants;
 
+import java.util.List;
+
 public class UserHelper implements IUserHelper {
 
     private final IFunctionaryProfileServicePort functionaryProfileServicePort;
@@ -39,5 +41,17 @@ public class UserHelper implements IUserHelper {
                 dependency.getId(),
                 diriRole.getId());
         functionaryProfileServicePort.save(functionaryProfile);
+    }
+
+    @Override
+    public void deleteDiriUser(String diriIdentification, Long diriUserId) {
+        Role diriRole = roleServicePort.findByName(SeedbedRole.DIRI);
+        List<FunctionaryProfile> profilesOfDiriFunctionary =
+                functionaryProfileServicePort.findAllProfilesByUserId(diriUserId).stream()
+                        .filter(profile -> profile.getRoleId().equals(diriRole.getId()))
+                        .toList();
+        for (FunctionaryProfile profile : profilesOfDiriFunctionary) {
+            functionaryProfileServicePort.deleteById(profile.getId());
+        }
     }
 }

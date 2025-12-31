@@ -140,4 +140,15 @@ public class UserRestController {
         userHandler.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
+    @DeleteMapping(path = "/delete-diri-user", headers = "API-VERSION=1")
+    public ResponseEntity<Void> deleteDiriUser(
+            @RequestParam("diri-identification")
+            @NotBlank(message = "La identificación del usuario DIRI no puede estar vacía")
+            String diriIdentification
+    ) {
+        userHandler.deleteDiriUser(diriIdentification);
+        return ResponseEntity.noContent().build();
+    }
 }
