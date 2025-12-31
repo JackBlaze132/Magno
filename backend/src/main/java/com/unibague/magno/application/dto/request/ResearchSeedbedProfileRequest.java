@@ -14,33 +14,33 @@ import lombok.Setter;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ResearchSeedbedProfileRequest {
 
-    @NotNull(message = "research_seedbed_id is required")
-    @Positive(message = "research_seedbed_id must be positive")
+    @NotNull(message = "El campo 'research_seedbed_id' es obligatorio")
+    @Positive(message = "El campo 'research_seedbed_id' debe ser un número positivo")
     private Long researchSeedbedId;
 
     /**
      * Although in the database this value refers to the ID of the functionary_profile, for UX reasons
      * the user_id must be sent in the request.
      */
-    @NotNull(message = "coordinator_id is required")
-    @Positive(message = "coordinator_id must be positive")
+    @NotNull(message = "El campo 'coordinator_id' es obligatorio")
+    @Positive(message = "El campo 'coordinator_id' debe ser un número positivo")
     private Long coordinatorId;
 
     /**
      * Although in the database this value refers to the ID of the functionary_profile, for UX reasons
      * the user_id must be sent in the request.
      */
-    @Positive(message = "tutor_id must be positive")
+    @Positive(message = "El campo 'tutor_id' debe ser un número positivo")
     private Long tutorId;
 
-    @NotNull(message = "investigation_group_profile_id is required")
-    @Positive(message = "investigation_group_profile_id must be positive")
+    @NotNull(message = "El campo 'investigation_group_profile_id' es obligatorio")
+    @Positive(message = "El campo 'investigation_group_profile_id' debe ser un número positivo")
     private Long investigationGroupProfileId;
 
-    @NotNull(message = "academic_period_id is required")
-    @Positive(message = "academic_period_id must be positive")
+    @NotNull(message = "El campo 'academic_period_id' es obligatorio")
+    @Positive(message = "El campo 'academic_period_id' debe ser un número positivo")
     private Long academicPeriodId;
 
-    @NotNull(message = "was_active is required")
+    @NotNull(message = "El campo 'was_active' es obligatorio")
     private Boolean wasActive;
 }

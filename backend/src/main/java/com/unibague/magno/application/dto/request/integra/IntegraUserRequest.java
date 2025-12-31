@@ -16,10 +16,10 @@ import lombok.Setter;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class IntegraUserRequest {
 
-    @NotBlank(message = "Field identification is required")
-    @Pattern(regexp = "^\\d+$", message = "Identification field must be only numbers between 0-9")
+    @NotBlank(message = "El campo 'identification' es obligatorio")
+    @Pattern(regexp = "^\\d+$", message = "El campo 'identification' debe contener solo números")
     private String identification;
 
-    @NotNull(message = "Field 'type' is required")
+    @NotNull(message = "El campo 'type' es obligatorio")
     private JSONIntegraType type;
 }

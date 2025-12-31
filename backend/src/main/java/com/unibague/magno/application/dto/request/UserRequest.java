@@ -17,23 +17,23 @@ import java.util.Set;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class UserRequest {
 
-    @NotBlank(message = "Field 'full_name' is required")
+    @NotBlank(message = "El campo 'full_name' es obligatorio")
     private String fullName;
 
-    @NotBlank(message = "Field 'identification_number' is required")
+    @NotBlank(message = "El campo 'identification_number' es obligatorio")
     private String identificationNumber;
 
-    @NotBlank(message = "Field 'email' is required")
-    @Email(message = "Field 'email' must be a valid email")
+    @NotBlank(message = "El campo 'email' es obligatorio")
+    @Email(message = "El campo 'email' debe ser un correo válido")
     private String email;
 
-    @NotBlank(message = "Field 'user_code' is required")
+    @NotBlank(message = "El campo 'user_code' es obligatorio")
     private String userCode;
 
-    @NotNull(message = "Field 'is_external_user' is required")
+    @NotNull(message = "El campo 'is_external_user' es obligatorio")
     private Boolean isExternalUser;
 
-    @NotNull(message = "Field 'sex' is required")
+    @NotNull(message = "El campo 'sex' es obligatorio")
     private Sex sex;
 
     private TypeOfInternalUser typeOfInternalUser;

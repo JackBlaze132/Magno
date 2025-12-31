@@ -14,24 +14,19 @@ import java.time.LocalDate;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class AcademicPeriodRequest {
 
-    @NotBlank(message = "Field name is required")
+    @NotBlank(message = "El campo 'name' es obligatorio")
     private String name;
 
-    /**
-     * Notice that more annotations are needed to validate the dates but aren't added
-     * like @Past, @Future, @FutureOrPresent, @PastOrPresent
-     * It will be added in te future when the application is more advanced
-     */
-    @NotNull(message = "Field startDate is required")
+    @NotNull(message = "El campo 'start_date' es obligatorio")
     private LocalDate startDate;
 
-    @NotNull(message = "Field endDate is required")
+    @NotNull(message = "El campo 'end_date' es obligatorio")
     private LocalDate endDate;
 
     /**
      * This field use the Boolean class instead of the primitive type
      * because if a primitive type is used, the default value will be false in the mapper
      */
-    @NotNull(message = "Field isCurrent is required")
+    @NotNull(message = "El campo 'is_current' es obligatorio")
     private Boolean isCurrent;
 }

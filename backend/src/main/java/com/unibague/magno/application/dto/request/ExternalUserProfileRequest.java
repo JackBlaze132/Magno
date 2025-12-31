@@ -14,21 +14,21 @@ import lombok.Setter;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ExternalUserProfileRequest {
 
-    @NotNull(message = "user_id field is required")
-    @Positive(message = "user_id field must be positive")
+    @NotNull(message = "El campo 'user_id' es obligatorio")
+    @Positive(message = "El campo 'user_id' debe ser un número positivo")
     private Long userId;
 
-    @NotNull(message = "academic_period_id field is required")
-    @Positive(message = "academic_period_id field must be positive")
+    @NotNull(message = "El campo 'academic_period_id' es obligatorio")
+    @Positive(message = "El campo 'academic_period_id' debe ser un número positivo")
     private Long academicPeriodId;
 
-    @NotNull(message = "research_seedbed_profile_id field is required")
-    @Positive(message = "research_seedbed_profile_id field must be positive")
+    @NotNull(message = "El campo 'research_seedbed_profile_id' es obligatorio")
+    @Positive(message = "El campo 'research_seedbed_profile_id' debe ser un número positivo")
     private Long researchSeedbedProfileId;
 
-    @NotBlank(message = "country field is required")
+    @NotBlank(message = "El campo 'country' es obligatorio")
     private String country;
 
-    @NotNull(message = "type_of_external_user field is required")
+    @NotNull(message = "El campo 'type_of_external_user' es obligatorio")
     private TypeOfExternalUser typeOfExternalUser;
 }

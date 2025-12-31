@@ -13,12 +13,12 @@ import lombok.Setter;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class AcademicProgramRequest {
 
-    @NotBlank(message = "Field name is required")
+    @NotBlank(message = "El campo 'name' es obligatorio")
     private String name;
 
-    @NotBlank(message = "Field code is required")
+    @NotBlank(message = "El campo 'program_code' es obligatorio")
     private String programCode;
 
-    @NotNull(message = "Field type is required")
+    @NotNull(message = "El campo 'type' es obligatorio")
     AcademicProgramType type;
 }

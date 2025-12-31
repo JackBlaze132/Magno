@@ -14,11 +14,11 @@ import lombok.Setter;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class StudentSeedbedCertificateRequest {
 
-    @NotNull(message = "The userId field cannot be null")
-    @Positive(message = "The userId field must be a positive number")
+    @NotNull(message = "El campo 'user_id' es obligatorio")
+    @Positive(message = "El campo 'user_id' debe ser un número positivo")
     private Long userId;
 
-    @NotNull(message = "The researchSeedbedId field cannot be null")
-    @Positive(message = "The researchSeedbedId field must be a positive number")
+    @NotNull(message = "El campo 'research_seedbed_id' es obligatorio")
+    @Positive(message = "El campo 'research_seedbed_id' debe ser un número positivo")
     private Long researchSeedbedId;
 }

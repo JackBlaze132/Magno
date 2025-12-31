@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 public class DependencyRequest {
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "El campo 'name' es obligatorio")
     private String name;
 }

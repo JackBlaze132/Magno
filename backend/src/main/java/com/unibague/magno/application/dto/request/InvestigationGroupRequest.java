@@ -16,10 +16,10 @@ import java.util.Set;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class InvestigationGroupRequest {
 
-    @NotBlank(message = "Name field is required")
+    @NotBlank(message = "El campo 'name' es obligatorio")
     private String name;
 
-    @NotNull(message = "Line of research field is required")
-    @Size(min = 2, max = 5, message = "Line of research field must have between 2 and 5 elements")
+    @NotNull(message = "El campo 'lines_of_research' es obligatorio")
+    @Size(min = 2, max = 5, message = "El campo 'lines_of_research' debe tener entre 2 y 5 elementos")
     private Set<LineOfResearch> linesOfResearch;
 }

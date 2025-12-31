@@ -16,22 +16,22 @@ import java.time.LocalDate;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ResearchSeedbedRequest {
 
-    @NotBlank(message = "Field name is required")
+    @NotBlank(message = "El campo 'name' es obligatorio")
     private String name;
 
-    @NotBlank(message = "Field vision is required")
+    @NotBlank(message = "El campo 'mission' es obligatorio")
     private String mission;
 
-    @NotBlank(message = "Field vision is required")
+    @NotBlank(message = "El campo 'vision' es obligatorio")
     private String vision;
 
-    @NotBlank(message = "Field research_proposal_description is required")
+    @NotBlank(message = "El campo 'research_proposal_description' es obligatorio")
     private String researchProposalDescription;
 
-    @NotNull(message = "Field creation_date is required")
-    @PastOrPresent(message = "Field creation_date must be a past or present date")
+    @NotNull(message = "El campo 'creation_date' es obligatorio")
+    @PastOrPresent(message = "El campo 'creation_date' debe ser una fecha pasada o presente")
     private LocalDate creationDate;
 
-    @NotNull(message = "Field line_of_research is required")
+    @NotNull(message = "El campo 'line_of_research' es obligatorio")
     private LineOfResearch lineOfResearch;
 }

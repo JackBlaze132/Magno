@@ -17,15 +17,15 @@ import java.util.Set;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class FunctionaryProfileRequest {
 
-    @NotNull(message = "Field user_id is required")
-    @Positive(message = "Field user_id must be positive")
+    @NotNull(message = "El campo 'user_id' es obligatorio")
+    @Positive(message = "El campo 'user_id' debe ser un número positivo")
     private Long userId;
 
-    @NotNull(message = "Field academic_period_id is required")
-    @Positive(message = "Field academic_period_id must be positive")
+    @NotNull(message = "El campo 'academic_period_id' es obligatorio")
+    @Positive(message = "El campo 'academic_period_id' debe ser un número positivo")
     private Long academicPeriodId;
 
-    @NotNull(message = "Field 'role_id' is required")
-    @Positive(message = "Field role_id must be positive")
+    @NotNull(message = "El campo 'role_id' es obligatorio")
+    @Positive(message = "El campo 'role_id' debe ser un número positivo")
     private Long roleId;
 }

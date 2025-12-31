@@ -14,21 +14,21 @@ import lombok.Setter;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ResearchSeedbedStudentProfileRequest {
 
-    @NotNull(message = "research_seedbed_profile_id is required")
-    @Positive(message = "research_seedbed_profile_id must be positive")
+    @NotNull(message = "El campo 'research_seedbed_profile_id' es obligatorio")
+    @Positive(message = "El campo 'research_seedbed_profile_id' debe ser un número positivo")
     private Long researchSeedbedProfileId;
 
     /**
      * Although in the database this value refers to the student's profile ID
      * in the request it refers to the student's user ID.
      */
-    @NotNull(message = "student_profile_id is required")
-    @Positive(message = "student_profile_id must be positive")
+    @NotNull(message = "El campo 'student_profile_id' es obligatorio")
+    @Positive(message = "El campo 'student_profile_id' debe ser un número positivo")
     private Long studentProfileId;
 
-    @NotNull(message = "was_active is required")
+    @NotNull(message = "El campo 'was_active' es obligatorio")
     private Boolean wasActive;
 
-    @NotNull(message = "is_leader is required")
+    @NotNull(message = "El campo 'is_leader' es obligatorio")
     private Boolean isLeader;
 }

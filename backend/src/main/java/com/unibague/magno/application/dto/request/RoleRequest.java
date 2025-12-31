@@ -10,9 +10,9 @@ import lombok.Setter;
 @Setter
 public class RoleRequest {
 
-    @NotNull(message = "Field name is required")
+    @NotNull(message = "El campo 'name' es obligatorio")
     private SeedbedRole name;
 
-    @NotBlank(message = "Field description is required")
+    @NotBlank(message = "El campo 'description' es obligatorio")
     private String description;
 }
