@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IAcademicPeriodServicePort {
     AcademicPeriod findById(Long id);
+    AcademicPeriod findByName(String name);
     AcademicPeriod save(AcademicPeriod academicPeriod);
     AcademicPeriod update(Long id, AcademicPeriod academicPeriod);
     void deleteById(Long id);

@@ -8,6 +8,7 @@ import com.unibague.magno.application.dto.response.UserResponse;
 import com.unibague.magno.application.handler.impl.UserHandler;
 import com.unibague.magno.infrastructure.configuration.annotation.CurrentUser;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -84,6 +85,17 @@ public class UserRestController {
     public ResponseEntity<List<UserResponse>> getAllDiriUsers() {
         List<UserResponse> diriUsers = userHandler.findAllDiriUsers();
         return ResponseEntity.ok(diriUsers);
+    }
+
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
+    @PostMapping(path = "/add-diri-user", headers = "API-VERSION=1")
+    public ResponseEntity<UserResponse> addDiriUser(
+            @RequestParam("diri-identification")
+            @NotBlank(message = "La identificación del usuario DIRI no puede estar vacía")
+            String diriIdentification
+    ) {
+        UserResponse diriUser = userHandler.addDiriUser(diriIdentification);
+        return ResponseEntity.ok(diriUser);
     }
 
     @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")

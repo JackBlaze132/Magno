@@ -46,4 +46,5 @@ public interface IUserServicePort {
             throws Exception;
 
     List<User> findAllDiriUsers();
+    User addDiriUser(String diriIdentification);
 }

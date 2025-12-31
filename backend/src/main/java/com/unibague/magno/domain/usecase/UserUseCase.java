@@ -7,10 +7,7 @@ import com.unibague.magno.domain.api.IRoleServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.integra.IntegraInvalidTypeException;
-import com.unibague.magno.domain.exception.user.FunctionaryNotAllowedToGenerateCertificateException;
-import com.unibague.magno.domain.exception.user.NoDataAvailableToGenerateCertificateException;
-import com.unibague.magno.domain.exception.user.UserAlreadyExistsException;
-import com.unibague.magno.domain.exception.user.UserNotFoundException;
+import com.unibague.magno.domain.exception.user.*;
 import com.unibague.magno.domain.model.ResearchSeedbed;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.certificates.projections.StudentSeedbedCertificateProjection;
@@ -23,6 +20,7 @@ import com.unibague.magno.domain.model.enums.TypeOfInternalUser;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 import com.unibague.magno.domain.spi.IUserPersistencePort;
+import com.unibague.magno.domain.usecase.helper.IUserHelper;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -34,13 +32,16 @@ public class UserUseCase implements IUserServicePort {
     private final IUserPersistencePort userPersistencePort;
     private final IIntegraServicePort integraServicePort;
     private final IResearchSeedbedServicePort researchSeedbedServicePort;
+    private final IUserHelper userHelper;
 
     public UserUseCase(IUserPersistencePort userPersistencePort,
                        IIntegraServicePort integraServicePort,
-                       IResearchSeedbedServicePort researchSeedbedServicePort) {
+                       IResearchSeedbedServicePort researchSeedbedServicePort,
+                       IUserHelper userHelper) {
         this.userPersistencePort = userPersistencePort;
         this.integraServicePort = integraServicePort;
         this.researchSeedbedServicePort = researchSeedbedServicePort;
+        this.userHelper = userHelper;
     }
 
     @Override
@@ -278,5 +279,23 @@ public class UserUseCase implements IUserServicePort {
     @Override
     public List<User> findAllDiriUsers() {
         return userPersistencePort.findAllDistinctUsersByRole(SeedbedRole.DIRI);
+    }
+
+    @Override
+    public User addDiriUser(String diriIdentification) {
+        List<User> diriUsers = findAllDiriUsers();
+        boolean alreadyExists = diriUsers.stream()
+                .anyMatch(user -> user.getIdentificationNumber().equals(diriIdentification));
+        if (alreadyExists) {
+            throw new DiriUserAlreadyExistsException("El usuario que intenta agregar ya es un usuario DIRI.");
+        }
+        Optional<User> userOptional = findByUserIdentification(diriIdentification);
+        if (userOptional.isEmpty()) {
+            throw new UserNotFoundException(
+                    String.format("Usuario con identificación %s no encontrado", diriIdentification));
+        }
+        User user = userOptional.get();
+        userHelper.addDiriUser(diriIdentification, user.getId());
+        return user;
     }
 }

@@ -100,6 +100,11 @@ public class UserHandler implements IUserHandler {
     }
 
     @Override
+    public UserResponse addDiriUser(String diriIdentification) {
+        return userResponseMapper.toResponse(userServicePort.addDiriUser(diriIdentification));
+    }
+
+    @Override
     public StudentSeedbedCertificate generateStudentSeedbedCertificate(Long userId, Long researchSeedbedId) {
         return userServicePort.generateStudentSeedbedCertificate(userId, researchSeedbedId);
     }

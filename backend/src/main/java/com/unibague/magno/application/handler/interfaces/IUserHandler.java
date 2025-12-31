@@ -22,6 +22,7 @@ public interface IUserHandler {
 
     List<UserResponse> findAllInternalUsersRegistered();
     List<UserResponse> findAllDiriUsers();
+    UserResponse addDiriUser(String diriIdentification);
 
     StudentSeedbedCertificate generateStudentSeedbedCertificate(Long userId, Long researchSeedbedId);
 

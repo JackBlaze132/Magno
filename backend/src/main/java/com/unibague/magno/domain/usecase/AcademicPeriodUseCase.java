@@ -25,6 +25,13 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
     }
 
     @Override
+    public AcademicPeriod findByName(String name) {
+        return academicPeriodPersistencePort.findByName(name)
+                .orElseThrow(() -> new AcademicPeriodNotFoundException(
+                        String.format("Período académico con nombre %s no encontrado", name)));
+    }
+
+    @Override
     public AcademicPeriod save(AcademicPeriod academicPeriod) {
         validationsBeforeSaveOrUpdate(academicPeriod);
         return academicPeriodPersistencePort.save(academicPeriod);

@@ -18,6 +18,8 @@ public enum ExceptionResponse {
             "Solo los estudiantes pueden generar certificados de participación en semilleros."),
     NO_DATA_AVAILABLE_TO_GENERATE_SEEDBED_CERTIFICATE("ERR_USER_005",
             "No hay información disponible para generar el certificado de participación en semillero."),
+    DIRI_USER_ALREADY_EXISTS("ERR_USER_006",
+            "El usuario DIRI ya está registrado en el sistema."),
     INVESTIGATION_GROUP_NOT_FOUND("ERR_INVESTIGATION_GROUP_001", "Grupo de investigación no encontrado."),
     INVESTIGATION_GROUP_PROFILE_NOT_FOUND("ERR_INVESTIGATION_GROUP_PROFILE_001",
             "Perfil de grupo de investigación no encontrado."),

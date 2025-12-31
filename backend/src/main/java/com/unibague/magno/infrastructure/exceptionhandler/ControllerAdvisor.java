@@ -5,8 +5,7 @@ import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurre
 import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.*;
 import com.unibague.magno.domain.exception.security.NotAllowedToDoThisActionException;
-import com.unibague.magno.domain.exception.user.FunctionaryNotAllowedToGenerateCertificateException;
-import com.unibague.magno.domain.exception.user.NoDataAvailableToGenerateCertificateException;
+import com.unibague.magno.domain.exception.user.*;
 import com.unibague.magno.domain.model.ErrorLog;
 import com.unibague.magno.infrastructure.util.ErrorLogContextService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,8 +34,6 @@ import com.unibague.magno.domain.exception.security.NullEmailException;
 import com.unibague.magno.domain.exception.security.UnsupportedPrincipalException;
 import com.unibague.magno.domain.exception.studentprofile.StudentProfileAlreadyExistsException;
 import com.unibague.magno.domain.exception.studentprofile.StudentProfileNotFoundException;
-import com.unibague.magno.domain.exception.user.UserAlreadyExistsException;
-import com.unibague.magno.domain.exception.user.UserNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import com.unibague.magno.domain.model.ErrorResponse;
@@ -49,6 +46,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
+import org.springframework.web.method.annotation.HandlerMethodValidationException;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -224,6 +222,21 @@ public class ControllerAdvisor {
 
         String code = ExceptionResponse.NO_DATA_AVAILABLE_TO_GENERATE_SEEDBED_CERTIFICATE.getCode();
         String message = ExceptionResponse.NO_DATA_AVAILABLE_TO_GENERATE_SEEDBED_CERTIFICATE.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+
+        logError(exception, code, message, request);
+
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(DiriUserAlreadyExistsException.class)
+    public ErrorResponse handleDiriUserAlreadyExists(DiriUserAlreadyExistsException exception, HttpServletRequest request) {
+
+        String code = DIRI_USER_ALREADY_EXISTS.getCode();
+        String message = ExceptionResponse.DIRI_USER_ALREADY_EXISTS.getMessage();
 
         ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
                 Collections.singletonList(exception.getMessage()));
@@ -575,6 +588,46 @@ public class ControllerAdvisor {
 
         return errorResponse;
     }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(HandlerMethodValidationException.class)
+    public ErrorResponse handleHandlerMethodValidationException(
+            HandlerMethodValidationException exception,
+            HttpServletRequest request
+    ) {
+
+        String code = ExceptionResponse.GENERIC_ERROR.getCode();
+        String message = "La validación falló para uno o más parámetros.";
+
+        List<String> errorDetails = exception.getAllValidationResults().stream()
+                .flatMap(result ->
+                        result.getResolvableErrors().stream()
+                                .map(error -> {
+                                    String paramName = result
+                                            .getMethodParameter()
+                                            .getParameterName();
+                                    return String.format(
+                                            "Parámetro '%s': %s",
+                                            paramName,
+                                            error.getDefaultMessage()
+                                    );
+                                })
+                )
+                .toList();
+
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode(code);
+        errorResponse.setMessage(message);
+        errorResponse.setDetails(errorDetails);
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setExceptionClassName(exception.getClass().getName());
+
+        logError(exception, code, message, request);
+
+        return errorResponse;
+    }
+
+
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(HttpMessageNotReadableException.class)

@@ -25,6 +25,12 @@ public class AcademicPeriodJpaAdapter implements IAcademicPeriodPersistencePort 
     }
 
     @Override
+    public Optional<AcademicPeriod> findByName(String name) {
+        return academicPeriodRepository.findByName(name)
+                .map(academicPeriodEntityMapper::toAcademicPeriod);
+    }
+
+    @Override
     public AcademicPeriod save(AcademicPeriod academicPeriod) {
         AcademicPeriodEntity academicPeriodEntity = academicPeriodEntityMapper
                 .toAcademicPeriodEntity(academicPeriod);
