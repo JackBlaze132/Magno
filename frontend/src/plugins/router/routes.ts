@@ -220,7 +220,21 @@ export const routes = [
             ],
           },
         ],
-      }
+      },
+      {
+        path: P.DIRI_PATH,
+        component: components.DIRI_INDEX,
+        redirect: (to: RouteLocationNormalized) => {
+          return { name: 'listar-diri' }
+        },
+        children: [
+          {
+            name: 'listar-diri',
+            path: P.DIRI_LIST,
+            component: components.DIRI_LIST,
+          },
+        ],
+      },
     ],
   },
   {

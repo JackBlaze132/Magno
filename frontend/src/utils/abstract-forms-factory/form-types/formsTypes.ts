@@ -15,6 +15,7 @@ export const EntityTypes: string[] = [
   "role",
   "user_integra",
   "user_external",
+  "user_diri",
   "functionary_profile",
   "student_profile",
   "external_profile",

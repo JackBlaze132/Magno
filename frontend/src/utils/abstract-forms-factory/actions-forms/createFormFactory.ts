@@ -16,6 +16,7 @@ const CreateExternalProfile = defineAsyncComponent(() => import("@/components/fo
 const CreateGroupProfile = defineAsyncComponent(() => import("@/components/forms/create/Groups/formCreateGroupProfile.vue"));
 const CreateSeedbedProfile = defineAsyncComponent(() => import("@/components/forms/create/seedbeds/formCreateSeedbedProfile.vue"));
 const CreateSeedbedMember = defineAsyncComponent(() => import("@/components/forms/create/seedbeds/formCreateSeedbedMember.vue"));
+const CreateDiriUser = defineAsyncComponent(() => import("@/components/forms/create/Users/formCreateDiriUser.vue"));
 
 export class CreateFormFactory extends AbstractFormFactory {
   getComponentConfig(type: EntityType) {
@@ -43,6 +44,14 @@ export class CreateFormFactory extends AbstractFormFactory {
           type: type,
           label: "usuario",
           fields: schema.user_integra
+        }
+      },
+      user_diri:{
+        component: CreateDiriUser,
+        props: {
+          type: type,
+          label: "usuario DIRI",
+          fields: schema.user_diri
         }
       },
       user_external: {

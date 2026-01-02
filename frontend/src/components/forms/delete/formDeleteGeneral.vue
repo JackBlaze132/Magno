@@ -36,7 +36,7 @@ export default defineComponent({
       type: String,
     },
     index: {
-      type: Number,
+      type: [String, Number],
     },
     label:{
       type: String,
@@ -74,7 +74,8 @@ export default defineComponent({
       this.type === 'group_profile' ? API.INVESTIGATION_GRUOPS_PROFILES :
       this.type === 'seedbed_profile' ? API.RESEARCH_SEEDBEDS_PROFILES :
       this.type === 'seedbed_member' ? API.RESEARCH_SEEDBEDS_MEMBERS :
-      this.type === 'external_seedbed_profile' ? API.EXTERNAL_USER_PROFILES : '';
+      this.type === 'external_seedbed_profile' ? API.EXTERNAL_USER_PROFILES :
+      this.type === 'user_diri' ? `${API.USERS_DIRI}?diri-identification=` : '';
 
       const expectedValue = this.expectedValue;
       if (this.inputValue !== expectedValue) {
@@ -94,7 +95,7 @@ export default defineComponent({
 
       } catch (error) {
         console.error("Error al realizar la solicitud", error);
-        this.showError(error.response?.data);
+        this.showError((error as any).response?.data);
       } finally {
         this.loading = false;
       }

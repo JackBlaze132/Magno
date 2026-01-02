@@ -102,6 +102,11 @@ export default defineComponent({
     additionalData: {
       type: Object,
       default: () => ({}),
+    },
+    index: {
+      type: [String, Number],
+      default: null,
+      required: false,
     }
   },
   data() {
@@ -197,6 +202,8 @@ export default defineComponent({
           response = await API.post(API.RESEARCH_SEEDBEDS_MEMBERS, {
               ...this.formValues,
             }, headers);
+        } else if (this.type === 'user_diri') {
+          response = await API.post(`${API.USERS_DIRI}?diri-identification=${this.formValues.identification}`, undefined, headers);
         }
         if (!response.error) {
           this.showSuccess('Elemento creado exitosamente');

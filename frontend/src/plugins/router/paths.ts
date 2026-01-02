@@ -37,6 +37,8 @@ export const paths = {
   STUDENTS_LIST: 'listar-estudiantes',
   EXTERNALS_PATH: '/aliados-externos',
   EXTERNALS_LIST: 'listar-aliados-externos',
+  DIRI_PATH: '/diri',
+  DIRI_LIST: 'listar-diri',
   //ESTUDIANTE_DETALLES_DINAMICO: ':idNumber/detalles-estudiante',
   //ESTUDIANTE_DETALLES_NOMBRE: 'detalles-estudiante',
   GROUPS_PATH: '/grupos',

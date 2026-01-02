@@ -72,6 +72,13 @@
             @click="closeDrawerOnMobile">
           </v-list-item>
           <v-list-item
+            prepend-icon="ri-lock-line"
+            title="DIRI"
+            value="diri"
+            to="/diri"
+            @click="closeDrawerOnMobile">
+          </v-list-item>
+          <v-list-item
             prepend-icon="ri-briefcase-4-line"
             title="Funcionarios"
             value="funcionarios"

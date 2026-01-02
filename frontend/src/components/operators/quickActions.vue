@@ -87,7 +87,7 @@ export default defineComponent({
      * The index of the item to handle.
      */
     index: {
-      type: Number,
+      type: [String, Number],
       required: false,
     },
     /**

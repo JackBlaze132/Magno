@@ -71,6 +71,7 @@ class API{
   public readonly USERS_STUDENTS:string='users/all-students-registered';
   public readonly USERS_INTERNAL: string ='users/all-internal-users-registered';
   public readonly USERS_EXTERNAL:string='users/all-external-users-registered';
+  public readonly USERS_DIRI:string='users/diri-users';
 
   //----[REPORTS]----
   public readonly SINGLE_PERIOD_REPORTS_INVESTIGATION_GROUPS:string = 'investigation-group-profiles/generate-investigation-group-half-year-report';
@@ -139,7 +140,7 @@ class API{
   }
 
 
-  public async post(endpoint: string, data: any, headers: Record<string, string> = {}) {
+  public async post(endpoint: string, data?: any, headers: Record<string, string> = {}) {
     try {
       const isFormData = data instanceof FormData;
 
@@ -219,6 +220,10 @@ class API{
         },
       });
 
+      if (response.status === 204) {
+        return {};
+      }
+
       const responseData = await response.json();
 
       if (!response.ok) {
@@ -226,10 +231,8 @@ class API{
         error.response = { data: responseData, status: response.status };
         throw error;
       }
-      else if (response.ok && response.status === 204) {
-        return {}; // or return null
-      }
-      return response.json();
+      
+      return responseData;
     }catch(error){
       console.error(`Error deleting to ${endpoint}:`, error);
       throw error

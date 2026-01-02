@@ -46,4 +46,6 @@ export const components = {
   EXTERNALSS_PROFILES_INDEX: () => import('@/views/externals/external-profiles/index.vue'),
   EXTERNALS_PROFILES_LIST: () => import('@/views/externals/external-profiles/listExternalProfiles.vue'),
   PROFILE_VIEW: () => import('@/views/profile/index.vue'),
+  DIRI_INDEX: () => import('@/views/diri/index.vue'),
+  DIRI_LIST: () => import('@/views/diri/listDiri.vue'),
 }

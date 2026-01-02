@@ -25,6 +25,9 @@
     { "key": "identification", "label": "Numero de identificaion", "type": "text" },
     { "key": "type", "label": "Tipo", "type": "select", "options": [] }
   ],
+  "user_diri":[
+    { "key": "identification", "label": "Numero de identificaion", "type": "text" }
+  ],
   "user_external": [
     { "key": "full_name", "label": "Nombre", "type": "text" },
     { "key": "identification_number", "label": "Numero de Identificación", "type": "text" },
