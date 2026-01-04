@@ -8,5 +8,5 @@ public interface IEnumServicePort {
     <E extends Enum<E>> boolean existsInEnum(String value, Class<E> enumClass);
     List<String> getLinesOfResearchByInvestigationGroupId(Long investigationGroupId);
     String getLineOfResearchByResearchSeedbedId(Long researchSeedbedId);
-    <E extends Enum<E>> Map<String, String> getAllEnumValuesAMap(Class<E> enumValue);
+    <E extends Enum<E>> Map<String, String> getAllEnumValuesAsMap(Class<E> enumValue);
 }

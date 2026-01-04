@@ -95,7 +95,7 @@ public class EnumUseCase implements IEnumServicePort {
     }
 
     @Override
-    public <E extends Enum<E>> Map<String, String> getAllEnumValuesAMap(Class<E> enumValue){
+    public <E extends Enum<E>> Map<String, String> getAllEnumValuesAsMap(Class<E> enumValue){
         return enumValuesAsMap(enumValue);
     }
 }

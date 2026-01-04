@@ -31,11 +31,12 @@ public class EnumRestController {
     public ResponseEntity<Map<String, String>> getEnumValuesAsMap(@PathVariable String enumName) throws ClassNotFoundException {
         Class<?> enumClass = Class.forName(ENUM_PACKAGE + enumName);
         if (enumClass.isEnum()) {
-            return ResponseEntity.ok(enumServicePort.getAllEnumValuesAMap((Class<Enum>) enumClass));
+            return ResponseEntity.ok(enumServicePort.getAllEnumValuesAsMap((Class<Enum>) enumClass));
         }
         throw new EnumBadRequestException("Enum no encontrado: " + enumName);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/{enumName}/exists", headers = "API-VERSION=1")
     public ResponseEntity<Boolean> existsInEnum(@PathVariable String enumName, @RequestParam String value)
             throws ClassNotFoundException {
