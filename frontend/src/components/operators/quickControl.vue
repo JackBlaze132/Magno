@@ -1,5 +1,5 @@
 <template>
-  <VBtn v-if="toUpload" prepend-icon="ri-upload-cloud-fill" class="mx-2" color="black" @click="overlayUpload = !overlayUpload; selectedAction = 'upload';">
+  <VBtn v-if="toUpload && authStore.can('upload', type)" prepend-icon="ri-upload-cloud-fill" class="mx-2" color="black" @click="overlayUpload = !overlayUpload; selectedAction = 'upload';">
     Subir
     <VOverlay v-model="overlayUpload" class="d-flex align-center justify-center" opacity="0.7">
       <v-progress-circular
@@ -16,7 +16,7 @@
     Create button (toCreate):
     Opens an overlay containing the appropriate create form component.
   -->
-  <VBtn v-if="toCreate" class="mx-2" prepend-icon="ri-add-fill" @click="overlayCreate = !overlayCreate ; selectedAction = 'create'">
+  <VBtn v-if="toCreate && authStore.can('create', type)" class="mx-2" prepend-icon="ri-add-fill" @click="overlayCreate = !overlayCreate ; selectedAction = 'create'">
     Agregar
     <VOverlay v-model="overlayCreate"  class="d-flex align-center justify-center" opacity="0.7">
       <v-progress-circular
@@ -33,7 +33,7 @@
     Edit button (toEdit):
     Opens an overlay containing the appropriate edit form component.
   -->
-  <VBtn v-if="toEdit" prepend-icon="ri-pencil-fill" class="mx-2" @click="overlayEdit = !overlayEdit; selectedAction = 'update';">
+  <VBtn v-if="toEdit && authStore.can('update', type)" prepend-icon="ri-pencil-fill" class="mx-2" @click="overlayEdit = !overlayEdit; selectedAction = 'update';">
     Editar
     <VOverlay v-model="overlayEdit" class="d-flex align-center justify-center" opacity="0.7">
       <v-progress-circular
@@ -53,11 +53,16 @@
 import { defineComponent } from 'vue';
 import { FormFactory } from '@/utils/abstract-forms-factory/FormFactory';
 import type { ActionType, EntityType } from '@/utils/abstract-forms-factory/form-types/formsTypes';
+import { useAuthStore } from '@/stores/authStore';
 
 // The 'quickControl' component handles create and edit actions for entities.
 export default defineComponent({
   name: 'quickControl',
   emits: ['itemCreated', 'itemEdited', "itemUploaded"],
+  setup() {
+    const authStore = useAuthStore();
+    return { authStore };
+  },
   props: {
     /**
      * The type of the item to handle (e.g. 'periodo', 'grupo', 'semillero').

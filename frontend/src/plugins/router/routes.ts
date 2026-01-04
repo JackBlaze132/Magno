@@ -28,6 +28,10 @@ export const routes = [
         path: P.PERIODS,
         redirect: P.PERIODS + '/' + P.PERIODS_LIST,
         component: components.ACADEMIC_PERIODS_INDEX,
+        meta: {
+          requiresAuth: true,
+          requiredPermission: { action: 'view', entity: 'period' }
+        },
         children: [
           {
             name: 'listar-periodos',
@@ -97,6 +101,10 @@ export const routes = [
         name: 'grupos',
         path: P.GROUPS_PATH,
         component: components.GROUPS_LIST,
+        meta: {
+          requiresAuth: true,
+          requiredPermission: { action: 'view', entity: 'group' }
+        },
       },
       {
         name: 'semilleros',
@@ -108,6 +116,10 @@ export const routes = [
         path: P.USERS_PATH,
         redirect: P.USERS_PATH + '/' + P.USERS_LIST,
         component: components.USERS_INDEX,
+        meta: {
+          requiresAuth: true,
+          requiredPermission: { action: 'view', entity: 'user_integra' }
+        },
         children: [
           {
             path: P.USERS_LIST,
@@ -120,6 +132,10 @@ export const routes = [
         path: P.ROLES_PATH,
         redirect: P.ROLES_PATH + '/' + P.ROLES_LISTAR,
         component: components.ROLES_INDEX,
+        meta: {
+          requiresAuth: true,
+          requiredPermission: { action: 'view', entity: 'role' }
+        },
         children: [
           {
             path: P.ROLES_LISTAR,
@@ -139,6 +155,10 @@ export const routes = [
         component: components.FUNCTIONARIES_INDEX,
         redirect: (to: RouteLocationNormalized) => {
           return { name: 'listar-funcionarios' }
+        },
+        meta: {
+          requiresAuth: true,
+          requiredPermission: { action: 'view', entity: 'functionary_profile' }
         },
         children: [
           {
@@ -169,6 +189,10 @@ export const routes = [
         redirect: (to: RouteLocationNormalized) => {
           return { name: 'listar-estudiantes' }
         },
+        meta: {
+          requiresAuth: true,
+          requiredPermission: { action: 'view', entity: 'student_profile' }
+        },
         children: [
           {
             path: P.STUDENTS_LIST,
@@ -198,6 +222,10 @@ export const routes = [
         redirect: (to: RouteLocationNormalized) => {
           return { name: 'listar-aliados-externos' }
         },
+        meta: {
+          requiresAuth: true,
+          requiredPermission: { action: 'view', entity: 'user_external' }
+        },
         children: [
           {
             path: P.EXTERNALS_LIST,
@@ -224,6 +252,10 @@ export const routes = [
       {
         path: P.DIRI_PATH,
         component: components.DIRI_INDEX,
+        meta: {
+          requiresAuth: true,
+          requiredPermission: { action: 'view', entity: 'user_diri' }
+        },
         redirect: (to: RouteLocationNormalized) => {
           return { name: 'listar-diri' }
         },

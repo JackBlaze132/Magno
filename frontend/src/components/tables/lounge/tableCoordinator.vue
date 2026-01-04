@@ -103,8 +103,8 @@ export default defineComponent({
 
 <template>
   <VCard flat>
-    <h2>Coordinador</h2>
-    <VCardTitle class="d-flex align-center justify-end">
+    <VCardTitle class="d-flex align-center justify-space-between">
+      <h2>Coordinador</h2>
       <QuickControl
         toEdit
         type="seedbed_coordinator"
@@ -114,6 +114,7 @@ export default defineComponent({
       />
     </VCardTitle>
     <VDataTableVirtual
+      class="mb-7"
       :items="items"
       :search="search"
       :headers="headers"

@@ -57,6 +57,16 @@ router.beforeEach(async (to, from, next) => {
         return
       }
     }
+
+    // Check permission-based access if specified
+    if (to.meta.requiredPermission) {
+      const { action, entity } = to.meta.requiredPermission as { action: any, entity: any }
+      if (!authStore.can(action, entity)) {
+        console.warn(`⚠️ User does not have required permission: ${action} on ${entity}`)
+        next('/inicio')
+        return
+      }
+    }
   }
 
   next()

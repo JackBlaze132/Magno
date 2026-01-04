@@ -10,7 +10,7 @@
     </VTooltip>
   </VBtn>
 
-  <VBtn v-if="toCreate" class="mx-2" prepend-icon="ri-add-fill" @click="overlayCreate = !overlayCreate ; selectedAction = 'create'">
+  <VBtn v-if="toCreate && authStore.can('create', type)" class="mx-2" prepend-icon="ri-add-fill" @click="overlayCreate = !overlayCreate ; selectedAction = 'create'">
     Agregar
     <VOverlay v-model="overlayCreate" class="d-flex align-center justify-center" opacity="0.7">
       <v-progress-circular
@@ -26,7 +26,7 @@
     Edit button (toEdit):
     Opens an overlay containing FormUpdateGeneral to update the item.
   -->
-  <VBtn v-if="toEdit" icon class="action edit" flat color="transparent" desity="compact" @click="overlayEdit = !overlayEdit; selectedAction = 'update';">
+  <VBtn v-if="toEdit && authStore.can('update', type)" icon class="action edit" flat color="transparent" desity="compact" @click="overlayEdit = !overlayEdit; selectedAction = 'update';">
     <VIcon icon="ri-edit-box-line" />
     <VOverlay v-model="overlayEdit" class="d-flex align-center justify-center" opacity="0.7">
       <v-progress-circular
@@ -46,7 +46,7 @@
     Delete button (toDelete):
     Opens an overlay with FormDeleteGeneral to perform a delete action.
   -->
-  <VBtn v-if="toDelete" icon class="action delete" flat color="transparent" desity="compact" @click="overlayDelete = !overlayDelete ; selectedAction = 'delete'">
+  <VBtn v-if="toDelete && authStore.can('delete', type)" icon class="action delete" flat color="transparent" desity="compact" @click="overlayDelete = !overlayDelete ; selectedAction = 'delete'">
     <VIcon icon="ri-delete-bin-5-line" />
     <VOverlay v-model="overlayDelete" class="d-flex align-center justify-center" opacity="0.7">
       <v-progress-circular
@@ -67,12 +67,17 @@
 import { defineComponent } from 'vue';
 import { FormFactory } from '@/utils/abstract-forms-factory/FormFactory';
 import type { ActionType, EntityType } from '@/utils/abstract-forms-factory/form-types/formsTypes';
+import { useAuthStore } from '@/stores/authStore';
 
 
 // The 'quickActions' component centralizes quick actions (view, edit, delete).
 export default defineComponent({
   name: 'quickActions',
   emits: ['itemCreated', 'itemDeleted', 'itemEdited'],
+  setup() {
+    const authStore = useAuthStore();
+    return { authStore };
+  },
   props: {
 
     /**

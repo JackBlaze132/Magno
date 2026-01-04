@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 import API from '@/utils/api'
+import { checkPermission } from '@/utils/permissions'
+import type { ActionType, EntityType } from '@/utils/abstract-forms-factory/form-types/formsTypes'
 
 interface User {
   id: number
@@ -8,6 +10,7 @@ interface User {
   picture: string | null
   userCode?: string
   identificationNumber?: string
+  roles?: string[]
 }
 
 interface UserProfile {
@@ -58,8 +61,18 @@ export const useAuthStore = defineStore('auth', {
      * Check if user has a specific role
      */
     hasRole: (state) => (roleName: string) => {
+      const normalizedSearch = roleName.toUpperCase().replace('ROLE_', '')
+
+      // Check in user.roles (from USERS_ME)
+      if (state.user?.roles) {
+        return state.user.roles.some(role =>
+          role.toUpperCase().replace('ROLE_', '') === normalizedSearch
+        )
+      }
+
+      // Fallback to userProfiles (legacy/profiles)
       return state.userProfiles.some(profile =>
-        profile.role.name.toLowerCase() === roleName.toLowerCase()
+        profile.role.name.toUpperCase().replace(/\s+/g, '_') === normalizedSearch
       )
     },
 
@@ -98,6 +111,13 @@ export const useAuthStore = defineStore('auth', {
         profile.role.name.toLowerCase().includes('funcionario')
       )
     },
+
+    /**
+     * Check if user can perform an action on an entity
+     */
+    can: (state) => (action: ActionType, entity: EntityType) => {
+      return checkPermission(state.currentRole, action, entity)
+    }
   },
 
   actions: {
@@ -174,6 +194,7 @@ export const useAuthStore = defineStore('auth', {
             this.user.id = userData.user_id || userData.id
             this.user.userCode = userData.user_code
             this.user.identificationNumber = userData.identification_number
+            this.user.roles = userData.roles || []
           } else {
             this.user = {
               id: userData.user_id || userData.id,
@@ -181,8 +202,16 @@ export const useAuthStore = defineStore('auth', {
               email: userData.email || '',
               picture: null,
               userCode: userData.user_code,
-              identificationNumber: userData.identification_number
+              identificationNumber: userData.identification_number,
+              roles: userData.roles || []
             }
+          }
+
+          // Set current role if roles are available and not already set
+          if (this.user.roles && this.user.roles.length > 0 && !this.currentRole) {
+            // Prefer DIRI if available, otherwise take the first one
+            const hasDiri = this.user.roles.some(r => r.includes('DIRI'))
+            this.currentRole = hasDiri ? 'DIRI' : this.user.roles[0].replace('ROLE_', '')
           }
 
           console.log('✅ User details loaded:', this.user)
@@ -274,8 +303,15 @@ export const useAuthStore = defineStore('auth', {
 
         // Finally fetch profiles with roles
         if (this.user?.id) {
-          await this.fetchUserProfiles()
-          this.isAuthenticated = true
+          // If we have roles from USERS_ME, we don't strictly need fetchUserProfiles for auth
+          // but we might need it for other profile data.
+          // However, we should mark as authenticated if we have user data.
+          if (this.user.roles && this.user.roles.length > 0) {
+             this.isAuthenticated = true
+          } else {
+             await this.fetchUserProfiles()
+             this.isAuthenticated = true
+          }
         }
 
         console.log('✅ Authentication initialized:', {
@@ -296,6 +332,20 @@ export const useAuthStore = defineStore('auth', {
      * Set current active role
      */
     setCurrentRole(roleName: string) {
+      // Check in user.roles (from USERS_ME)
+      if (this.user?.roles) {
+        const normalizedSearch = roleName.toUpperCase().replace('ROLE_', '')
+        const hasRole = this.user.roles.some(role =>
+          role.toUpperCase().replace('ROLE_', '') === normalizedSearch
+        )
+        if (hasRole) {
+          this.currentRole = normalizedSearch
+          console.log('✅ Current role set to:', normalizedSearch)
+          return
+        }
+      }
+
+      // Fallback to userProfiles
       const hasRole = this.userProfiles.some(
         profile => profile.role.name === roleName
       )
