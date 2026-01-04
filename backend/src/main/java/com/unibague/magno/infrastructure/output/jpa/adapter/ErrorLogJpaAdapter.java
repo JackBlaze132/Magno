@@ -26,15 +26,32 @@ public class ErrorLogJpaAdapter implements IErrorLogPersistencePort {
     }
 
     @Override
-    public void deleteLogsOlderThanDays(List<Long> ids) {
+    public List<ErrorLog> findAll() {
+        List<ErrorLogEntity> entities = errorLogRepository.findAll();
+        return errorLogEntityMapper.toDomainList(entities);
+    }
+
+    @Override
+    public List<ErrorLog> findByUserId(Long userId) {
+        List<ErrorLogEntity> entities = errorLogRepository.findByUserId(userId);
+        return errorLogEntityMapper.toDomainList(entities);
+    }
+
+    @Override
+    public List<ErrorLog> findByTimestampBetween(LocalDateTime start, LocalDateTime end) {
+        List<ErrorLogEntity> entities = errorLogRepository.findByTimestampBetween(start, end);
+        return errorLogEntityMapper.toDomainList(entities);
+    }
+
+    @Override
+    public void deleteByIds(List<Long> ids) {
         errorLogRepository.deleteByIds(ids);
     }
 
     @Override
-    public List<ErrorLog> getLogsOlderThanDays(LocalDateTime localDateTime) {
-        return errorLogEntityMapper.toDomainList(
-                errorLogRepository.findByTimestampBefore(localDateTime)
-        );
+    public List<ErrorLog> getLogsOlderThanDays(LocalDateTime date) {
+        List<ErrorLogEntity> entities = errorLogRepository.findByTimestampBefore(date);
+        return errorLogEntityMapper.toDomainList(entities);
     }
 }
 

@@ -5,18 +5,21 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Repository
 public interface IErrorLogRepository extends JpaRepository<ErrorLogEntity, Long> {
 
-    @Modifying(clearAutomatically = true)
-    @Query("DELETE FROM ErrorLogEntity e WHERE e.id IN :ids")
-    int deleteByIds(@Param("ids") List<Long> ids);
+    List<ErrorLogEntity> findByUserId(Long userId);
 
-    List<ErrorLogEntity> findByTimestampBefore(LocalDateTime timestamp);
+    List<ErrorLogEntity> findByTimestampBetween(LocalDateTime start, LocalDateTime end);
+
+    @Query("SELECT e FROM ErrorLogEntity e WHERE e.timestamp < :timestamp")
+    List<ErrorLogEntity> findByTimestampBefore(@Param("timestamp") LocalDateTime timestamp);
+
+    @Modifying
+    @Query("DELETE FROM ErrorLogEntity e WHERE e.id IN :ids")
+    void deleteByIds(@Param("ids") List<Long> ids);
 }
 

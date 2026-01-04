@@ -8,9 +8,10 @@ import java.util.List;
 public interface IErrorLogPersistencePort {
 
     ErrorLog save(ErrorLog errorLog);
-
-    void deleteLogsOlderThanDays(List<Long> ids);
-
-    List<ErrorLog> getLogsOlderThanDays(LocalDateTime localDateTime);
+    List<ErrorLog> findAll();
+    List<ErrorLog> findByUserId(Long userId);
+    List<ErrorLog> findByTimestampBetween(LocalDateTime start, LocalDateTime end);
+    void deleteByIds(List<Long> ids);
+    List<ErrorLog> getLogsOlderThanDays(LocalDateTime date);
 }
 

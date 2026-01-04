@@ -21,19 +21,41 @@ public class ErrorLogUseCase implements IErrorLogServicePort {
     }
 
     @Override
+    public List<ErrorLog> findAll() {
+        return errorLogPersistencePort.findAll();
+    }
+
+    @Override
+    public List<ErrorLog> findByUserId(Long userId) {
+        return errorLogPersistencePort.findByUserId(userId);
+    }
+
+    @Override
+    public List<ErrorLog> findByDateRange(LocalDateTime start, LocalDateTime end) {
+        return errorLogPersistencePort.findByTimestampBetween(start, end);
+    }
+
+    @Override
+    public List<ErrorLog> getLogsOlderThanDays(LocalDateTime date) {
+        return errorLogPersistencePort.getLogsOlderThanDays(date);
+    }
+
+    @Override
     public List<ErrorLog> getLogsOlderThanDays(int days) {
         return errorLogPersistencePort.getLogsOlderThanDays(LocalDateTime.now().minusDays(days));
     }
 
     @Override
     public void deleteLogsOlderThanDays(int days) {
-
-        List<Long> logIds = getLogsOlderThanDays(days)
+        List<Long> logIds = errorLogPersistencePort
+                .getLogsOlderThanDays(LocalDateTime.now().minusDays(days))
                 .stream()
                 .map(ErrorLog::getId)
                 .toList();
 
-        errorLogPersistencePort.deleteLogsOlderThanDays(logIds);
+        if (!logIds.isEmpty()) {
+            errorLogPersistencePort.deleteByIds(logIds);
+        }
     }
 }
 
