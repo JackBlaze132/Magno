@@ -6,6 +6,7 @@ import com.unibague.magno.application.handler.impl.FunctionaryProfileHandler;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -18,30 +19,35 @@ public class FunctionaryProfileRestController {
 
     private final FunctionaryProfileHandler functionaryProfileHandler;
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<FunctionaryProfileResponse> getFunctionaryProfileById(@PathVariable Long id) {
         FunctionaryProfileResponse response = functionaryProfileHandler.findById(id);
         return ResponseEntity.ok(response);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<List<FunctionaryProfileResponse>> getAllFunctionaryProfiles() {
         List<FunctionaryProfileResponse> responses = functionaryProfileHandler.findAll();
         return ResponseEntity.ok(responses);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).TUTOR_DE_SEMILLERO)")
     @GetMapping(path = "/find-all-profiles/{userId}", headers = "API-VERSION=1")
     public ResponseEntity<List<FunctionaryProfileResponse>> getAllFunctionaryProfilesByUserId(@PathVariable Long userId) {
         List<FunctionaryProfileResponse> responses = functionaryProfileHandler.findAllProfilesByUserId(userId);
         return ResponseEntity.ok(responses);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/find-all-profiles-by-academic-period/{academicPeriodId}", headers = "API-VERSION=1")
     public ResponseEntity<List<FunctionaryProfileResponse>> getAllFunctionaryProfilesByAcademicPeriodId(@PathVariable Long academicPeriodId) {
         List<FunctionaryProfileResponse> responses = functionaryProfileHandler.findAllProfilesByAcademicPeriodId(academicPeriodId);
         return ResponseEntity.ok(responses);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<FunctionaryProfileResponse> createFunctionaryProfile
             (@Valid @RequestBody FunctionaryProfileRequest functionaryProfileRequest) {
@@ -50,6 +56,7 @@ public class FunctionaryProfileRestController {
         return ResponseEntity.created(location).body(created);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<FunctionaryProfileResponse> updateFunctionaryProfileById
             (@PathVariable Long id, @Valid @RequestBody FunctionaryProfileRequest functionaryProfileRequest) {
@@ -57,6 +64,7 @@ public class FunctionaryProfileRestController {
         return ResponseEntity.ok(updated);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @DeleteMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<Void> deleteFunctionaryProfileById(@PathVariable Long id) {
         functionaryProfileHandler.deleteById(id);
