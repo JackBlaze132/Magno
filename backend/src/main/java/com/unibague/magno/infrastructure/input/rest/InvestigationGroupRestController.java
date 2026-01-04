@@ -19,14 +19,14 @@ public class InvestigationGroupRestController {
 
     private final InvestigationGroupHandler investigationGroupHandler;
 
-    // No role restriction for this endpoint due to internal logic
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<InvestigationGroupResponse> getInvestigationGroupById(@PathVariable Long id) {
         InvestigationGroupResponse response = investigationGroupHandler.findById(id);
         return ResponseEntity.ok(response);
     }
 
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
+    // No role restriction for this endpoint due to internal logic
     @GetMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<List<InvestigationGroupResponse>> getAllInvestigationGroups() {
         List<InvestigationGroupResponse> responses = investigationGroupHandler.findAll();
