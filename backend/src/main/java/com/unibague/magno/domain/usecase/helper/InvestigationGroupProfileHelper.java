@@ -3,6 +3,7 @@ package com.unibague.magno.domain.usecase.helper;
 import com.unibague.magno.domain.api.*;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurrentException;
+import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileFunctionaryIsAlreadyACoordinatorException;
 import com.unibague.magno.domain.model.*;
 import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
@@ -118,6 +119,20 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
         FunctionaryProfile savedFunctionaryProfile = functionaryProfileServicePort.save(functionaryProfile);
         igp.setCoordinatorId(savedFunctionaryProfile.getId());
         return igp;
+    }
+
+    @Override
+    public void verifyThatUserIsNotAlreadyAInvestigationGroupCoordinator(Long userId, Long academicPeriodId) {
+        List<User> existingIGCoordinators = userServicePort.findInvestigationGroupCoordinatorsByAcademicPeriodId(academicPeriodId);
+
+        boolean isCoordinatorInPeriod = existingIGCoordinators.stream()
+                .anyMatch(user -> user.getId().equals(userId));
+
+        if (isCoordinatorInPeriod) {
+            throw new InvestigationGroupProfileFunctionaryIsAlreadyACoordinatorException
+                    ("El usuario al que intenta asignar como coordinador de grupo de investigación ya es" +
+                            "coordinador de otro grupo de investigación en el período académico especificado.");
+        }
     }
 
 }

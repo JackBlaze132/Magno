@@ -73,4 +73,10 @@ public interface IUserRepository extends JpaRepository<UserEntity, Long> {
             "LEFT JOIN sp.role sr " +
             "WHERE fr.name = :roleName OR sr.name = :roleName")
     List<UserEntity> findAllDistinctUsersByRole(@Param("roleName") SeedbedRole roleName);
+
+    @Query("SELECT DISTINCT u FROM UserEntity u " +
+            "JOIN u.functionaryProfiles fp " +
+            "JOIN fp.investigationGroup igp " +
+            "WHERE igp.academicPeriod.id = :academicPeriodId")
+    List<UserEntity> findInvestigationGroupCoordinatorsByAcademicPeriodId(@Param("academicPeriodId") Long academicPeriodId);
 }

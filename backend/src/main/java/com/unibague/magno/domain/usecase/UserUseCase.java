@@ -314,4 +314,9 @@ public class UserUseCase implements IUserServicePort {
         User user = userOptional.get();
         userHelper.deleteDiriUser(diriIdentification, user.getId());
     }
+
+    @Override
+    public List<User> findInvestigationGroupCoordinatorsByAcademicPeriodId(Long academicPeriodId) {
+        return userPersistencePort.findInvestigationGroupCoordinatorsByAcademicPeriodId(academicPeriodId);
+    }
 }

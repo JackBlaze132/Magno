@@ -48,4 +48,6 @@ public interface IUserServicePort {
     User addDiriUser(String diriIdentification);
 
     void deleteDiriUser(String diriIdentification);
+
+    List<User> findInvestigationGroupCoordinatorsByAcademicPeriodId(Long academicPeriodId);
 }

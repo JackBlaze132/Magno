@@ -55,6 +55,11 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
                 academicPeriodId, investigationGroupProfile.getInvestigationGroupId()
         );
 
+        investigationGroupProfileHelper.verifyThatUserIsNotAlreadyAInvestigationGroupCoordinator(
+                investigationGroupProfile.getCoordinatorId(),
+                academicPeriodId
+        );
+
         InvestigationGroupProfile igp = investigationGroupProfileHelper
                 .verifyUserHasFunctionaryProfile(investigationGroupProfile);
 

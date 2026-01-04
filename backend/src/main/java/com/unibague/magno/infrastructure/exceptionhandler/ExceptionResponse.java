@@ -27,6 +27,8 @@ public enum ExceptionResponse {
             "Perfil de grupo de investigación no encontrado."),
     INVESTIGATION_GROUP_PROFILE_DUPLICATED_IN_SAME_ACADEMIC_PERIOD("ERR_INVESTIGATION_GROUP_PROFILE_002",
             "Ya existe un perfil de grupo de investigación para el período académico especificado."),
+    INVESTIGATION_GROUP_PROFILE_FUNCTIONARY_IS_ALREADY_A_COORDINATOR_EXCEPTION("ERR_INVESTIGATION_GROUP_PROFILE_003",
+            "El usuario ya es coordinador de un grupo de investigación en el período académico especificado."),
     RESEARCH_SEEDBED_NOT_FOUND("ERR_RESEARCH_SEEDBED_001", "Semillero de investigación no encontrado."),
     RESEARCH_SEEDBED_PROFILE_NOT_FOUND("ERR_RESEARCH_SEEDBED_PROFILE_001",
             "Perfil de semillero de investigación no encontrado."),

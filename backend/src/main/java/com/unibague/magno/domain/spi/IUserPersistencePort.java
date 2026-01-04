@@ -33,4 +33,6 @@ public interface IUserPersistencePort {
             throws IOException;
 
     List<User> findAllDistinctUsersByRole(SeedbedRole seedbedRole);
+
+    List<User> findInvestigationGroupCoordinatorsByAcademicPeriodId(Long academicPeriodId);
 }

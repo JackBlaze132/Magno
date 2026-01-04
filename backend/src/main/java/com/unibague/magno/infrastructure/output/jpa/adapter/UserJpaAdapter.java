@@ -181,4 +181,12 @@ public class UserJpaAdapter implements IUserPersistencePort {
                 .toList();
     }
 
+    @Override
+    public List<User> findInvestigationGroupCoordinatorsByAcademicPeriodId(Long academicPeriodId) {
+        return userRepository.findInvestigationGroupCoordinatorsByAcademicPeriodId(academicPeriodId)
+                .stream()
+                .map(userEntityMapper::toUser)
+                .toList();
+    }
+
 }

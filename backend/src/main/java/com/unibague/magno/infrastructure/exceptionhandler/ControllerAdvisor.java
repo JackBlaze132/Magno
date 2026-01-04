@@ -3,6 +3,7 @@ package com.unibague.magno.infrastructure.exceptionhandler;
 import com.unibague.magno.domain.api.IErrorLogServicePort;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurrentException;
 import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
+import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileFunctionaryIsAlreadyACoordinatorException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.*;
 import com.unibague.magno.domain.exception.security.NotAllowedToDoThisActionException;
 import com.unibague.magno.domain.exception.user.*;
@@ -380,6 +381,22 @@ public class ControllerAdvisor {
         
         logError(exception, code, message, request);
         
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(InvestigationGroupProfileFunctionaryIsAlreadyACoordinatorException.class)
+    public ErrorResponse handleIGPFunctionaryIsAlreadyACoordinator
+            (InvestigationGroupProfileFunctionaryIsAlreadyACoordinatorException exception, HttpServletRequest request) {
+
+        String code = INVESTIGATION_GROUP_PROFILE_FUNCTIONARY_IS_ALREADY_A_COORDINATOR_EXCEPTION.getCode();
+        String message = ExceptionResponse.INVESTIGATION_GROUP_PROFILE_FUNCTIONARY_IS_ALREADY_A_COORDINATOR_EXCEPTION.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+
+        logError(exception, code, message, request);
+
         return errorResponse;
     }
 
