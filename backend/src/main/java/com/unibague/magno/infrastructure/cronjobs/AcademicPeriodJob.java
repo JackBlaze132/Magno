@@ -26,8 +26,8 @@ public class AcademicPeriodJob {
     private final CronJobLogContextService cronJobLogContextService;
     private final CronJobLogFileService cronJobLogFileService;
 
-    // This cron job is scheduled to run every Sunday at midnight (02:00)
-    @Scheduled(cron = "0 0 2 * * 7", zone = "America/Bogota")
+    // This cron job is scheduled to run every day at midnight (02:00)
+    @Scheduled(cron = "0 0 2 * * *", zone = "America/Bogota")
     public void execute() {
         CronJobExecutionLog executionLog = cronJobLogContextService.createCronJobExecutionLog("AcademicPeriodJob");
         cronJobLogFileService.generateLogFile("AcademicPeriodJob", DAYS_THRESHOLD);

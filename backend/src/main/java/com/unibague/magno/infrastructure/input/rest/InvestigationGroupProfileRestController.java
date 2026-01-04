@@ -30,12 +30,14 @@ public class InvestigationGroupProfileRestController {
 
     private final InvestigationGroupProfileHandler investigationGroupProfileHandler;
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
     @GetMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<InvestigationGroupProfileResponse> getInvestigationGroupProfileById(@PathVariable Long id) {
         InvestigationGroupProfileResponse response = investigationGroupProfileHandler.findById(id);
         return ResponseEntity.ok(response);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<List<InvestigationGroupProfileResponse>> getAllInvestigationGroupProfiles() {
         List<InvestigationGroupProfileResponse> responses = investigationGroupProfileHandler.findAll();
@@ -50,6 +52,7 @@ public class InvestigationGroupProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/generate-investigation-group-half-year-report", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getHalfYearInvestigationGroupReport(@RequestParam("apId") Long academicPeriodId) {
         ExcelReport<InvestigationGroupHYRMetadata> report = investigationGroupProfileHandler
@@ -65,6 +68,7 @@ public class InvestigationGroupProfileRestController {
                 .body(report.getContent());
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/generate-investigation-group-annual-year-report", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getAnnualInvestigationGroupReport(@RequestParam("apId1") Long academicPeriodId1,
                                                                     @RequestParam("apId2") Long academicPeriodId2) {
@@ -81,6 +85,7 @@ public class InvestigationGroupProfileRestController {
                 .body(report.getContent());
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/generate-active-seedbeds-half-year-report", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getHalfYearActiveSeedbedsReport(@RequestParam("apId") Long academicPeriodId) {
         ExcelReport<ActiveSeedbedsMetadata> report = investigationGroupProfileHandler
@@ -96,6 +101,7 @@ public class InvestigationGroupProfileRestController {
                 .body(report.getContent());
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/generate-active-seedbeds-annual-year-report", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getAnnualActiveSeedbedsReport(@RequestParam("apId1") Long academicPeriodId1,
                                                                 @RequestParam("apId2") Long academicPeriodId2) {
@@ -126,6 +132,7 @@ public class InvestigationGroupProfileRestController {
         return ResponseEntity.created(location).body(created);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<InvestigationGroupProfileResponse> updateInvestigationGroupProfileById
             (@PathVariable Long id, @Valid @RequestBody InvestigationGroupProfileRequest investigationGroupProfileRequest) {
@@ -134,6 +141,7 @@ public class InvestigationGroupProfileRestController {
         return ResponseEntity.ok(updated);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @DeleteMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<Void> deleteInvestigationGroupProfileById(@PathVariable Long id) {
         investigationGroupProfileHandler.deleteById(id);
