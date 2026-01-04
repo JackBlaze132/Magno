@@ -26,7 +26,7 @@ public class ResearchSeedbedRestController {
         return ResponseEntity.ok(response);
     }
 
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
+    // No role restriction for this endpoint due to internal logic
     @GetMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<List<ResearchSeedbedResponse>> getAllResearchSeedbeds() {
         List<ResearchSeedbedResponse> responses = researchSeedbedHandler.findAll();
