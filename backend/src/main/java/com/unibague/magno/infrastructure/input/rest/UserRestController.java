@@ -60,7 +60,7 @@ public class UserRestController {
         return ResponseEntity.ok(students);
     }
 
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).COORDINADOR_DE_SEMILLERO)")
     @GetMapping(path = "/all-external-users-registered", headers = "API-VERSION=1")
     ResponseEntity<List<UserResponse>> getAllExternalUsersRegistered() {
         List<UserResponse> externalUsers = userHandler.findAllExternalUsersRegistered();
@@ -81,14 +81,14 @@ public class UserRestController {
     }
 
     @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
-    @GetMapping(path = "/diri-users", headers = "API-VERSION=1")
+    @GetMapping(path = "/all-diri-users", headers = "API-VERSION=1")
     public ResponseEntity<List<UserResponse>> getAllDiriUsers() {
         List<UserResponse> diriUsers = userHandler.findAllDiriUsers();
         return ResponseEntity.ok(diriUsers);
     }
 
     @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
-    @PostMapping(path = "/diri-users", headers = "API-VERSION=1")
+    @PostMapping(path = "/add-diri-user", headers = "API-VERSION=1")
     public ResponseEntity<UserResponse> addDiriUser(
             @RequestParam("diri-identification")
             @NotBlank(message = "La identificación del usuario DIRI no puede estar vacía")
@@ -142,7 +142,7 @@ public class UserRestController {
     }
 
     @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
-    @DeleteMapping(path = "/diri-users", headers = "API-VERSION=1")
+    @DeleteMapping(path = "/delete-diri-user", headers = "API-VERSION=1")
     public ResponseEntity<Void> deleteDiriUser(
             @RequestParam("diri-identification")
             @NotBlank(message = "La identificación del usuario DIRI no puede estar vacía")
