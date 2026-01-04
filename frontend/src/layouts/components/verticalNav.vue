@@ -21,6 +21,7 @@
             @click="closeDrawerOnMobile">
           </v-list-item>
           <v-list-item
+            v-if="authStore.can('view', 'report')"
             prepend-icon="ri-file-chart-line"
             title="Informes"
             @click="handleReportClick"
@@ -28,6 +29,7 @@
             link>
           </v-list-item>
         <v-list-item
+          v-if="authStore.can('view', 'certificate')"
           prepend-icon="ri-verified-badge-line"
           title="Certificados"
           @click="handleCertClick"
@@ -36,6 +38,7 @@
         </v-list-item>
           <VDivider class="px-4 my-4"/>
           <v-list-item
+            v-if="authStore.can('view', 'period')"
             prepend-icon="ri-calendar-check-fill"
             title="Periodos académicos"
             value="periodos"
@@ -43,6 +46,7 @@
             @click="closeDrawerOnMobile">
           </v-list-item>
           <v-list-item
+            v-if="authStore.can('view', 'group')"
             prepend-icon="ri-apps-line"
             title="Grupos de investigación"
             value="grupos"
@@ -50,14 +54,19 @@
             @click="closeDrawerOnMobile">
           </v-list-item>
           <v-list-item
+            v-if="authStore.can('view', 'seedbed')"
             prepend-icon="ri-seedling-line"
             title="Semilleros"
             value="semilleros"
             to="/semilleros"
             @click="closeDrawerOnMobile">
           </v-list-item>
-          <v-divider class="px-4 my-4"></v-divider>
+          <v-divider
+            v-if="authStore.can('view', 'user_integra') || authStore.can('view', 'role') || authStore.can('view', 'user_diri') || authStore.can('view', 'functionary_profile') || authStore.can('view', 'student_profile')"
+            class="px-4 my-4"
+          ></v-divider>
           <v-list-item
+            v-if="authStore.can('view', 'user_integra')"
             prepend-icon="ri-user-line"
             title="Usuarios"
             value="usuarios"
@@ -65,6 +74,7 @@
             @click="closeDrawerOnMobile">
           </v-list-item>
           <v-list-item
+            v-if="authStore.can('view', 'role')"
             prepend-icon="ri-shield-line"
             title="Roles"
             value="roles"
@@ -72,6 +82,7 @@
             @click="closeDrawerOnMobile">
           </v-list-item>
           <v-list-item
+            v-if="authStore.can('view', 'user_diri')"
             prepend-icon="ri-lock-line"
             title="DIRI"
             value="diri"
@@ -79,6 +90,7 @@
             @click="closeDrawerOnMobile">
           </v-list-item>
           <v-list-item
+            v-if="authStore.can('view', 'functionary_profile')"
             prepend-icon="ri-briefcase-4-line"
             title="Funcionarios"
             value="funcionarios"
@@ -86,14 +98,19 @@
             @click="closeDrawerOnMobile">
           </v-list-item>
           <v-list-item
+            v-if="authStore.can('view', 'student_profile')"
             prepend-icon="ri-graduation-cap-line"
             title="Estudiantes"
             value="estudiantes"
             to="/estudiantes"
             @click="closeDrawerOnMobile">
           </v-list-item>
-          <v-divider class="px-4 my-4"></v-divider>
+          <v-divider
+            v-if="authStore.can('view', 'user_external')"
+            class="px-4 my-4"
+          ></v-divider>
           <v-list-item
+            v-if="authStore.can('view', 'user_external')"
             prepend-icon="ri-external-link-line"
             title="Aliados externos"
             value="aliados"
@@ -126,6 +143,9 @@
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { VDivider } from 'vuetify/components'
 import ReportCreationDialog from '@/components/reports/ReportCreationDialog.vue'
+import { useAuthStore } from '@/stores/authStore'
+
+const authStore = useAuthStore()
 
 // Reactive state
 const showReportDialog = ref(false)
