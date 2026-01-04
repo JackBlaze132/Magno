@@ -35,6 +35,7 @@ public class ResearchSeedbedProfileRestController {
         return ResponseEntity.ok(response);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<List<ResearchSeedbedProfileResponse>> getAllResearchSeedbedProfiles() {
         List<ResearchSeedbedProfileResponse> responses = researchSeedbedProfileHandler.findAll();
@@ -48,6 +49,7 @@ public class ResearchSeedbedProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/generate-seedbed-report", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getSeedbedReport(
             @RequestParam("rspId") Long researchSeedbedProfileId,
@@ -66,6 +68,7 @@ public class ResearchSeedbedProfileRestController {
                 .body(report.getContent());
     }
 
+    // No role restriction to allow creation of profiles by self-registration
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<ResearchSeedbedProfileResponse> createResearchSeedbedProfile
             (@RequestBody @Valid ResearchSeedbedProfileRequest researchSeedbedProfileRequest,
@@ -79,6 +82,7 @@ public class ResearchSeedbedProfileRestController {
         return ResponseEntity.created(location).body(created);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<ResearchSeedbedProfileResponse> updateResearchSeedbedProfileById
             (@PathVariable Long id, @RequestBody ResearchSeedbedProfileRequest researchSeedbedProfileRequest) {
@@ -86,6 +90,7 @@ public class ResearchSeedbedProfileRestController {
         return ResponseEntity.ok(updated);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @DeleteMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<Void> deleteResearchSeedbedProfileById(@PathVariable Long id) {
         researchSeedbedProfileHandler.deleteById(id);
