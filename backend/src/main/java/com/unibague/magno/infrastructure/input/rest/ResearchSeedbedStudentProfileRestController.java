@@ -23,12 +23,14 @@ public class ResearchSeedbedStudentProfileRestController {
     private final ResearchSeedbedStudentProfileHandler researchSeedbedStudentProfileHandler;
     private final UploadService uploadService;
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<ResearchSeedbedStudentProfileResponse> getResearchSeedbedStudentProfileById(@PathVariable Long id) {
         ResearchSeedbedStudentProfileResponse response = researchSeedbedStudentProfileHandler.findById(id);
         return ResponseEntity.ok(response);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<List<ResearchSeedbedStudentProfileResponse>> getAllResearchSeedbedStudentProfiles() {
         List<ResearchSeedbedStudentProfileResponse> responses = researchSeedbedStudentProfileHandler.findAll();
@@ -42,6 +44,7 @@ public class ResearchSeedbedStudentProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).TUTOR_DE_SEMILLERO)")
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<ResearchSeedbedStudentProfileResponse> createResearchSeedbedStudentProfile
             (@RequestBody @Valid ResearchSeedbedStudentProfileRequest researchSeedbedStudentProfileRequest) {
@@ -50,6 +53,7 @@ public class ResearchSeedbedStudentProfileRestController {
         return ResponseEntity.created(location).body(created);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).TUTOR_DE_SEMILLERO)")
     @PostMapping(path = "/add-all-by-excel/{researchSeedbedProfileId}", headers = "API-VERSION=1")
     ResponseEntity<List<ResearchSeedbedStudentProfileSummaryResponse>> addAllResearchSeedbedStudentProfileByExcel(
             @PathVariable Long researchSeedbedProfileId, @RequestParam("file") MultipartFile file) {
@@ -59,6 +63,7 @@ public class ResearchSeedbedStudentProfileRestController {
         return ResponseEntity.created(location).body(responses);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).TUTOR_DE_SEMILLERO)")
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<ResearchSeedbedStudentProfileResponse> updateResearchSeedbedStudentProfileById
             (@PathVariable Long id, @RequestBody ResearchSeedbedStudentProfileRequest researchSeedbedStudentProfileRequest) {
@@ -66,11 +71,11 @@ public class ResearchSeedbedStudentProfileRestController {
         return ResponseEntity.ok(updated);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).TUTOR_DE_SEMILLERO)")
     @DeleteMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<Void> deleteResearchSeedbedStudentProfileById(@PathVariable Long id) {
         researchSeedbedStudentProfileHandler.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-
-
+    
 }
