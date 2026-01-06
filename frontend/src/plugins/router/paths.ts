@@ -47,4 +47,5 @@ export const paths = {
   PROFILES_PATH: '/perfiles',
   PROFILES_LIST: 'listar-perfiles',
   PROFILE_VIEW: '/perfil',
+  LOGS_PATH: '/logs',
 }

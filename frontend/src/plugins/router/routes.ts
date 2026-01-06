@@ -267,6 +267,15 @@ export const routes = [
           },
         ],
       },
+      {
+        name: 'logs',
+        path: P.LOGS_PATH,
+        component: components.LOGS_INDEX,
+        meta: {
+          requiresAuth: true,
+          requiredPermission: { action: 'view', entity: 'logs' }
+        }
+      },
     ],
   },
   {

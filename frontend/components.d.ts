@@ -50,6 +50,7 @@ declare module 'vue' {
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     LoadingBtn: typeof import('./src/components/operators/loadingBtn.vue')['default']
     LogoutBtn: typeof import('./src/layouts/components/logoutBtn.vue')['default']
+    LogTable: typeof import('./src/components/tables/logs/LogTable.vue')['default']
     Navbar: typeof import('./src/components/navbar.vue')['default']
     ProfilePicture: typeof import('./src/layouts/components/profilePicture.vue')['default']
     QuickActions: typeof import('./src/components/operators/quickActions.vue')['default']

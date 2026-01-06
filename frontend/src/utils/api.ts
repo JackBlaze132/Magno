@@ -81,6 +81,11 @@ class API{
   readonly ANUAL_REPORTS_RESEARCH_SEEDBEDS_STUDENTS:string = 'research-seedbed-profiles/generate-seedbed-report';
   readonly GENERATE_CERTIFICATES:string = 'users/student-seedbed-certificate';
 
+  //----[LOGS]----
+  public readonly ACTION_LOGS: string = 'action-logs/';
+  public readonly CRONJOB_LOGS: string = 'cronjob-logs/';
+  public readonly ERROR_LOGS: string = 'error-logs/';
+
 
   //----[COUNTRIES]----
   public readonly COUNTRIES:string='users/all-countries';
@@ -220,10 +225,6 @@ class API{
         },
       });
 
-      if (response.status === 204) {
-        return {};
-      }
-
       const responseData = await response.json();
 
       if (!response.ok) {
@@ -231,8 +232,10 @@ class API{
         error.response = { data: responseData, status: response.status };
         throw error;
       }
-      
-      return responseData;
+      else if (response.ok && response.status === 204) {
+        return {}; // or return null
+      }
+      return response.json();
     }catch(error){
       console.error(`Error deleting to ${endpoint}:`, error);
       throw error

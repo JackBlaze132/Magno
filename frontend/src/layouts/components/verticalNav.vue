@@ -36,6 +36,15 @@
           :active="false"
           link>
         </v-list-item>
+        <VDivider class="px-4 my-4"/>
+        <v-list-item
+            v-if="authStore.can('view', 'logs')"
+            prepend-icon="ri-file-list-3-line"
+            title="Logs"
+            value="logs"
+            to="/logs"
+            @click="closeDrawerOnMobile">
+          </v-list-item>
           <VDivider class="px-4 my-4"/>
           <v-list-item
             v-if="authStore.can('view', 'period')"
@@ -89,6 +98,7 @@
             to="/diri"
             @click="closeDrawerOnMobile">
           </v-list-item>
+
           <v-list-item
             v-if="authStore.can('view', 'functionary_profile')"
             prepend-icon="ri-briefcase-4-line"

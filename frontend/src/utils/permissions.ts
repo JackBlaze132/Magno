@@ -8,6 +8,7 @@ export const PERMISSIONS: Record<string, Partial<Record<EntityType, ActionType[]
   'DIRI': {
     'period': ['create', 'update', 'delete', 'view'],
     'report': ['view'],
+    'logs': ['view'],
     'group': ['create', 'update', 'delete', 'view'],
     'seedbed': ['create', 'update', 'delete', 'view'],
     'role': ['create', 'update', 'delete', 'view'],
