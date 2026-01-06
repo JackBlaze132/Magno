@@ -96,6 +96,16 @@ export const useAuthStore = defineStore('auth', {
      * Check if user is a student
      */
     isStudent: (state) => {
+      // Check in user.roles first (from USERS_ME)
+      if (state.user?.roles) {
+        const hasStudentRole = state.user.roles.some(role =>
+          role.toUpperCase().includes('ESTUDIANTE') ||
+          role.toUpperCase().includes('STUDENT')
+        )
+        if (hasStudentRole) return true
+      }
+
+      // Fallback to userProfiles
       return state.userProfiles.some(profile =>
         profile.role.name.toLowerCase().includes('student') ||
         profile.role.name.toLowerCase().includes('estudiante')

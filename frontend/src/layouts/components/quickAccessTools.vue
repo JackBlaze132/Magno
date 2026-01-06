@@ -29,9 +29,9 @@
               v-bind="props"
             >
               <template #prepend>
-                <img 
-                  v-if="tool.logo" 
-                  :src="tool.logo" 
+                <img
+                  v-if="tool.logo"
+                  :src="tool.logo"
                   :alt="tool.name"
                   class="tool-logo"
                 />
@@ -62,9 +62,9 @@
               v-bind="props"
             >
               <template #prepend>
-                <img 
-                  v-if="tool.logo" 
-                  :src="tool.logo" 
+                <img
+                  v-if="tool.logo"
+                  :src="tool.logo"
                   :alt="tool.name"
                   class="tool-logo"
                 />
@@ -146,6 +146,11 @@ const academicTools: Tool[] = [
     name: 'LanguageTool',
     url: 'https://languagetool.org',
     logo: new URL('@/assets/images/logos/language-tool.png', import.meta.url).href
+  },
+  {
+    name: 'Scopus',
+    url: 'https://www.scopus.com',
+    logo: new URL('@/assets/images/logos/scopus.png', import.meta.url).href
   },
   {
     name: 'Academia.edu',

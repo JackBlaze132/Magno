@@ -2,7 +2,7 @@
   <VContainer fluid class="px-2 px-sm-6 py-4 py-sm-6">
     <VRow>
       <VCol cols="12">
-        <VCard class="pa-4" variant="flat">
+        <VCard class="pa-6" variant="flat">
           <!-- Desktop Header: Title and Chip on the same row, Chip at max right -->
           <div class="d-none d-sm-flex align-center pa-4">
             <VIcon class="me-2">ri-home-line</VIcon>
@@ -42,8 +42,9 @@
         </VCard>
       </VCol>
     </VRow>
-    <VRow>
-      <VCol cols="12" sm="6" md="4">
+    <VRow class="mb-4">
+      <!-- Certificate Generation for Students -->
+      <VCol v-if="authStore.isStudent" cols="12" sm="6" md="4">
         <VCard class="pa-4 text-center shortcut-card" variant="flat" @click="openCertificateDialog">
           <VCardTitle>
             <VIcon size="48" color="primary">ri-verified-badge-line</VIcon>
@@ -51,6 +52,19 @@
           <VCardText>
             <h3>Generar Certificado</h3>
             <p>Crea certificados para tus semilleros asignados.</p>
+          </VCardText>
+        </VCard>
+      </VCol>
+
+      <!-- Report Generation for Non-Students -->
+      <VCol v-else cols="12" sm="6" md="4">
+        <VCard class="pa-4 text-center shortcut-card" variant="flat" @click="openReportDialog">
+          <VCardTitle>
+            <VIcon size="48" color="primary">ri-file-chart-line</VIcon>
+          </VCardTitle>
+          <VCardText>
+            <h3>Generar Informe</h3>
+            <p>Crea informes y reportes de los semilleros.</p>
           </VCardText>
         </VCard>
       </VCol>
@@ -81,146 +95,148 @@
     </VRow>
 
     <!-- Quick Stats Section -->
-    <VRow>
-      <VCol v-for="stat in stats" :key="stat.title" cols="12" sm="6" md="3">
-        <VCard class="pa-4 h-100 stat-card" variant="flat" process_messages>
-          <div class="d-flex align-center">
-            <VAvatar :color="stat.color" variant="tonal" size="48" class="me-4">
-              <VIcon :icon="stat.icon" size="24" />
-            </VAvatar>
-            <div>
-              <div class="text-caption text-uppercase font-weight-bold">{{ stat.title }}</div>
-              <div class="text-h5 font-weight-bold">
-                <VProgressCircular v-if="loadingStats" indeterminate size="20" width="2" color="primary" />
-                <span v-else>{{ stat.value }}</span>
+    <div v-if="authStore.can('view', 'dashboard')">
+      <VRow>
+        <VCol v-for="stat in stats" :key="stat.title" cols="12" sm="6" md="3">
+          <VCard class="pa-4 h-100 stat-card" variant="flat" process_messages>
+            <div class="d-flex align-center">
+              <VAvatar :color="stat.color" variant="tonal" size="48" class="me-4">
+                <VIcon :icon="stat.icon" size="24" />
+              </VAvatar>
+              <div>
+                <div class="text-caption text-uppercase font-weight-bold">{{ stat.title }}</div>
+                <div class="text-h5 font-weight-bold">
+                  <VProgressCircular v-if="loadingStats" indeterminate size="20" width="2" color="primary" />
+                  <span v-else>{{ stat.value }}</span>
+                </div>
               </div>
             </div>
-          </div>
-        </VCard>
-      </VCol>
-    </VRow>
+          </VCard>
+        </VCol>
+      </VRow>
 
-    <!-- Dashboard Section: Filters and Sex Distribution -->
-    <VRow>
-      <VCol cols="12" md="4">
-        <VCard class="pa-4 h-100" variant="flat">
-          <VCardTitle class="d-flex align-center px-0">
-            <VIcon class="me-2" color="primary">ri-filter-3-line</VIcon>
-            Filtros de Distribución
-          </VCardTitle>
-          <VCardText class="px-0 pt-4">
-            <VSelect
-              v-model="selectedPeriod"
-              :items="periods"
-              item-title="name"
-              item-value="id"
-              label="Periodo Académico"
-              variant="outlined"
-              density="compact"
-              class="mb-4"
-              clearable
-              @update:model-value="onPeriodChange"
-            ></VSelect>
-            <VSelect
-              v-model="selectedInvestigationGroup"
-              :items="investigationGroups"
-              item-title="name"
-              item-value="id"
-              :label="selectedPeriod ? 'Seleccionar Grupo de Investigación' : 'Primero seleccione un periodo'"
-              variant="outlined"
-              density="compact"
-              class="mb-4"
-              clearable
-              :disabled="!selectedPeriod"
-              :hint="!selectedPeriod ? 'Debe seleccionar un periodo académico primero' : ''"
-              persistent-hint
-              @update:model-value="onGroupChange"
-            ></VSelect>
-            <VSelect
-              v-model="selectedSeedbed"
-              :items="seedbeds"
-              item-title="name"
-              item-value="id"
-              :label="selectedInvestigationGroup ? 'Seleccionar Semillero' : 'Primero seleccione un grupo'"
-              variant="outlined"
-              density="compact"
-              clearable
-              :disabled="!selectedInvestigationGroup"
-              :hint="!selectedInvestigationGroup ? 'Debe seleccionar un grupo de investigación primero' : ''"
-              persistent-hint
-              @update:model-value="fetchSexData"
-            ></VSelect>
-          </VCardText>
-        </VCard>
-      </VCol>
+      <!-- Dashboard Section: Filters and Sex Distribution -->
+      <VRow>
+        <VCol cols="12" md="4">
+          <VCard class="pa-4 h-100" variant="flat">
+            <VCardTitle class="d-flex align-center px-0">
+              <VIcon class="me-2" color="primary">ri-filter-3-line</VIcon>
+              Filtros de Distribución
+            </VCardTitle>
+            <VCardText class="px-0 pt-4">
+              <VSelect
+                v-model="selectedPeriod"
+                :items="periods"
+                item-title="name"
+                item-value="id"
+                label="Periodo Académico"
+                variant="outlined"
+                density="compact"
+                class="mb-4"
+                clearable
+                @update:model-value="onPeriodChange"
+              ></VSelect>
+              <VSelect
+                v-model="selectedInvestigationGroup"
+                :items="investigationGroups"
+                item-title="name"
+                item-value="id"
+                :label="selectedPeriod ? 'Seleccionar Grupo de Investigación' : 'Primero seleccione un periodo'"
+                variant="outlined"
+                density="compact"
+                class="mb-4"
+                clearable
+                :disabled="!selectedPeriod"
+                :hint="!selectedPeriod ? 'Debe seleccionar un periodo académico primero' : ''"
+                persistent-hint
+                @update:model-value="onGroupChange"
+              ></VSelect>
+              <VSelect
+                v-model="selectedSeedbed"
+                :items="seedbeds"
+                item-title="name"
+                item-value="id"
+                :label="selectedInvestigationGroup ? 'Seleccionar Semillero' : 'Primero seleccione un grupo'"
+                variant="outlined"
+                density="compact"
+                clearable
+                :disabled="!selectedInvestigationGroup"
+                :hint="!selectedInvestigationGroup ? 'Debe seleccionar un grupo de investigación primero' : ''"
+                persistent-hint
+                @update:model-value="fetchSexData"
+              ></VSelect>
+            </VCardText>
+          </VCard>
+        </VCol>
 
-      <VCol cols="12" md="8">
-        <VCard class="pa-4 h-100" variant="flat">
-          <VCardTitle class="d-flex align-center px-0">
-            <VIcon class="me-2" color="primary">ri-pie-chart-2-line</VIcon>
-            Distribución por Sexo
-          </VCardTitle>
-          <VCardText class="d-flex flex-column flex-sm-row align-center justify-space-around py-6">
-            <div v-if="loadingSexData" class="text-center">
-              <VProgressCircular indeterminate color="primary"></VProgressCircular>
-              <div class="mt-2">Cargando datos...</div>
-            </div>
-            <template v-else-if="hasSexData">
-              <div class="text-center mb-4 mb-sm-0">
-                <VProgressCircular
-                  :model-value="malePercentage"
-                  :size="120"
-                  :width="15"
-                  color="info"
-                >
-                  {{ malePercentage }}%
-                </VProgressCircular>
-                <div class="mt-2 font-weight-bold">Masculino</div>
-                <div class="text-caption">{{ maleCount }} estudiantes</div>
+        <VCol cols="12" md="8">
+          <VCard class="pa-4 h-100" variant="flat">
+            <VCardTitle class="d-flex align-center px-0">
+              <VIcon class="me-2" color="primary">ri-pie-chart-2-line</VIcon>
+              Distribución por Sexo
+            </VCardTitle>
+            <VCardText class="d-flex flex-column flex-sm-row align-center justify-space-around py-6">
+              <div v-if="loadingSexData" class="text-center">
+                <VProgressCircular indeterminate color="primary"></VProgressCircular>
+                <div class="mt-2">Cargando datos...</div>
               </div>
-              <div class="text-center">
-                <VProgressCircular
-                  :model-value="femalePercentage"
-                  :size="120"
-                  :width="15"
-                  color="error"
-                >
-                  {{ femalePercentage }}%
-                </VProgressCircular>
-                <div class="mt-2 font-weight-bold">Femenino</div>
-                <div class="text-caption">{{ femaleCount }} estudiantes</div>
+              <template v-else-if="hasSexData">
+                <div class="text-center mb-4 mb-sm-0">
+                  <VProgressCircular
+                    :model-value="malePercentage"
+                    :size="120"
+                    :width="15"
+                    color="info"
+                  >
+                    {{ malePercentage }}%
+                  </VProgressCircular>
+                  <div class="mt-2 font-weight-bold">Masculino</div>
+                  <div class="text-caption">{{ maleCount }} estudiantes</div>
+                </div>
+                <div class="text-center">
+                  <VProgressCircular
+                    :model-value="femalePercentage"
+                    :size="120"
+                    :width="15"
+                    color="error"
+                  >
+                    {{ femalePercentage }}%
+                  </VProgressCircular>
+                  <div class="mt-2 font-weight-bold">Femenino</div>
+                  <div class="text-caption">{{ femaleCount }} estudiantes</div>
+                </div>
+              </template>
+              <div v-else class="text-center text-grey">
+                <VIcon size="48" class="mb-2">ri-information-line</VIcon>
+                <div>Selecciona un semillero para ver la distribución</div>
               </div>
-            </template>
-            <div v-else class="text-center text-grey">
-              <VIcon size="48" class="mb-2">ri-information-line</VIcon>
-              <div>Selecciona un semillero para ver la distribución</div>
-            </div>
-          </VCardText>
-        </VCard>
-      </VCol>
-    </VRow>
+            </VCardText>
+          </VCard>
+        </VCol>
+      </VRow>
 
-    <!-- Trends Section -->
-    <VRow class="mb-6">
-      <VCol cols="12">
-        <VCard class="pa-4" variant="flat">
-          <VCardTitle class="d-flex align-center px-0">
-            <VIcon class="me-2" color="primary">ri-line-chart-line</VIcon>
-            Tendencia de Estudiantes por Periodo
-          </VCardTitle>
-          <VCardText class="px-0 pt-4 chart-container">
-            <div v-if="loadingTrendData" class="d-flex align-center justify-center h-100">
-              <VProgressCircular indeterminate color="primary"></VProgressCircular>
-            </div>
-            <BarChart
-              v-else
-              :data="chartData"
-              :options="chartOptions"
-            />
-          </VCardText>
-        </VCard>
-      </VCol>
-    </VRow>
+      <!-- Trends Section -->
+      <VRow class="mb-1">
+        <VCol cols="12">
+          <VCard class="pa-4" variant="flat">
+            <VCardTitle class="d-flex align-center px-0">
+              <VIcon class="me-2" color="primary">ri-line-chart-line</VIcon>
+              Tendencia de Estudiantes por Periodo
+            </VCardTitle>
+            <VCardText class="px-0 pt-4 chart-container">
+              <div v-if="loadingTrendData" class="d-flex align-center justify-center h-100">
+                <VProgressCircular indeterminate color="primary"></VProgressCircular>
+              </div>
+              <BarChart
+                v-else
+                :data="chartData"
+                :options="chartOptions"
+              />
+            </VCardText>
+          </VCard>
+        </VCol>
+      </VRow>
+    </div>
 
 
 
@@ -229,6 +245,13 @@
       v-model="showCertificateDialog"
       @certificate-created="onCertificateCreated"
       @close="showCertificateDialog = false"
+    />
+
+    <!-- Report Creation Dialog -->
+    <ReportCreationDialog
+      v-model="showReportDialog"
+      @report-created="onReportCreated"
+      @close="showReportDialog = false"
     />
   </VContainer>
 </template>
@@ -239,20 +262,24 @@ import { useAuthStore } from '@/stores/authStore'
 import { useRouter } from 'vue-router'
 import API from '@/utils/api'
 import CertificateCreationDialog from '@/components/certificates/CertificateCreationDialog.vue'
+import ReportCreationDialog from '@/components/reports/ReportCreationDialog.vue'
 import { Bar } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 
+const authStore = useAuthStore()
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default defineComponent({
   name: 'HomeView',
   components: {
     CertificateCreationDialog,
+    ReportCreationDialog,
     BarChart: Bar
   },
   data() {
     return {
       showCertificateDialog: false,
+      showReportDialog: false,
       loadingStats: true,
       loadingSexData: false,
       loadingTrendData: true,
@@ -488,6 +515,9 @@ export default defineComponent({
     openCertificateDialog() {
       this.showCertificateDialog = true
     },
+    openReportDialog() {
+      this.showReportDialog = true
+    },
     navigateToSeedbeds() {
       this.$router.push('/semilleros') // Adjust route as needed
     },
@@ -496,6 +526,10 @@ export default defineComponent({
     },
     onCertificateCreated(data: any) {
       console.log('Certificate created:', data)
+      // Handle post-creation logic, e.g., refresh data
+    },
+    onReportCreated(data: any) {
+      console.log('Report created:', data)
       // Handle post-creation logic, e.g., refresh data
     }
   }

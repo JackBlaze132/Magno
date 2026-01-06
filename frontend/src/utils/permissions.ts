@@ -6,6 +6,7 @@ import type { ActionType, EntityType } from './abstract-forms-factory/form-types
  */
 export const PERMISSIONS: Record<string, Partial<Record<EntityType, ActionType[]>>> = {
   'DIRI': {
+    'dashboard': ['view'],
     'period': ['create', 'update', 'delete', 'view'],
     'report': ['view'],
     'logs': ['view'],

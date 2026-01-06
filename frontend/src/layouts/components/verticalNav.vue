@@ -13,6 +13,8 @@
         <v-list-item>
           <VIcon icon="ri-app-logo"></VIcon>
         </v-list-item>
+
+          <!-- External Links Section -->
           <v-list-item
             prepend-icon="ri-home-3-line"
             title="Inicio"
@@ -36,7 +38,6 @@
           :active="false"
           link>
         </v-list-item>
-        <VDivider class="px-4 my-4"/>
         <v-list-item
             v-if="authStore.can('view', 'logs')"
             prepend-icon="ri-file-list-3-line"
@@ -126,6 +127,28 @@
             value="aliados"
             to="/aliados-externos"
             @click="closeDrawerOnMobile">
+          </v-list-item>
+           <VDivider class="px-4 my-4"/>
+          <v-list-item
+            prepend-icon="ri-group-line"
+            title="Comunidad Investigadora"
+            href="https://investigaciones.unibague.edu.co/comunidad-investigadora"
+            target="_blank"
+            link>
+          </v-list-item>
+          <v-list-item
+            prepend-icon="ri-book-open-line"
+            title="Biblioteca"
+            href="https://biblioteca.unibague.edu.co/"
+            target="_blank"
+            link>
+          </v-list-item>
+          <v-list-item
+            prepend-icon="ri-bank-line"
+            title="Portal Unibagué"
+            href="https://www.unibague.edu.co/"
+            target="_blank"
+            link>
           </v-list-item>
         </v-list>
         <template v-slot:append>

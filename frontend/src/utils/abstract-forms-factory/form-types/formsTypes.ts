@@ -27,7 +27,8 @@ export const EntityTypes: string[] = [
   "seedbed_member",
   "certificate",
   "report",
-  "logs"
+  "logs",
+  "dashboard"
 ];
 export type ActionType = typeof ActionTypes[number];
 export type EntityType = typeof EntityTypes[number];

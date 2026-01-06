@@ -44,7 +44,7 @@ const hasPicture = computed(() => {
 });
 
 const pictureUrlWithParams = computed(() => {
-  if (!item.value.picture) return null;
+  if (!item.value.picture) return '';
   try {
     const url = new URL(item.value.picture);
     if (url.hostname.includes('googleusercontent.com')) {
