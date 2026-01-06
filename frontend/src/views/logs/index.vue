@@ -72,10 +72,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <VContainer fluid>
     <VRow>
       <VCol cols="12">
-        <h1 class="text-h5 mb-4">Gestión de Logs</h1>
+        <h1>Gestión de Logs</h1>
       </VCol>
     </VRow>
 
@@ -182,7 +181,6 @@ export default defineComponent({
         />
       </VCol>
     </VRow>
-  </VContainer>
 </template>
 
 <style scoped>
