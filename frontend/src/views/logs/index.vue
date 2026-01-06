@@ -23,11 +23,11 @@ export default defineComponent({
       loading: false,
       filters: {
         userId: '',
-        startDate: '',
-        endDate: '',
+        startDate: null as Date | null,
+        endDate: null as Date | null,
         jobName: '',
         status: ''
-      } as LogFilters
+      }
     }
   },
   watch: {
@@ -45,8 +45,8 @@ export default defineComponent({
         // Only pass filters that have values
         const activeFilters: LogFilters = {};
         if (this.filters.userId) activeFilters.userId = this.filters.userId;
-        if (this.filters.startDate) activeFilters.startDate = this.filters.startDate;
-        if (this.filters.endDate) activeFilters.endDate = this.filters.endDate;
+        if (this.filters.startDate) activeFilters.startDate = this.filters.startDate.toISOString().replace('Z', '');
+        if (this.filters.endDate) activeFilters.endDate = this.filters.endDate.toISOString().replace('Z', '');
         if (this.filters.jobName) activeFilters.jobName = this.filters.jobName;
         if (this.filters.status) activeFilters.status = this.filters.status;
 
@@ -60,8 +60,8 @@ export default defineComponent({
     clearFilters() {
       this.filters = {
         userId: '',
-        startDate: '',
-        endDate: '',
+        startDate: null,
+        endDate: null,
         jobName: '',
         status: ''
       };
@@ -134,23 +134,22 @@ export default defineComponent({
             <VDateInput
               v-model="filters.startDate"
               label="Desde"
-              type="datetime-local"
-              variant="outlined"
               density="compact"
+              prepend-inner-icon="ri-calendar-start"
+              prepend-icon=""
               hide-details
             />
           </VCol>
 
           <VCol cols="6" sm="4" md="2">
             <VDateInput
+              v-model="filters.endDate"
               label="Hasta"
               density="compact"
               prepend-inner-icon="ri-calendar-start"
               prepend-icon=""
               hide-details
-              t
-              :model="filters.endDate"
-            ></VDateInput>
+            />
           </VCol>
 
           <VCol cols="12" md="3" class="d-flex align-center gap-2">
