@@ -2,7 +2,7 @@
   <VAvatar
     :color="!hasPicture ? 'secondary' : undefined"
     variant="flat"
-    class="ma-1"
+    class="ma-1 avatar-rounded"
   >
     <VImg
       v-if="hasPicture && !imageError"
@@ -87,3 +87,14 @@ export default defineComponent({
   name: 'AvatarPicture'
 });
 </script>
+
+<style scoped>
+.avatar-rounded {
+  border-radius: 50% !important;
+  overflow: hidden;
+}
+
+.avatar-rounded .v-img {
+  border-radius: 50% !important;
+}
+</style>

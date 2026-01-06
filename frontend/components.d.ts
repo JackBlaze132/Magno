@@ -53,6 +53,7 @@ declare module 'vue' {
     LogTable: typeof import('./src/components/tables/logs/LogTable.vue')['default']
     Navbar: typeof import('./src/components/navbar.vue')['default']
     ProfilePicture: typeof import('./src/layouts/components/profilePicture.vue')['default']
+    QuickAccessTools: typeof import('./src/layouts/components/quickAccessTools.vue')['default']
     QuickActions: typeof import('./src/components/operators/quickActions.vue')['default']
     QuickControl: typeof import('./src/components/operators/quickControl.vue')['default']
     ReportCreationDialog: typeof import('./src/components/reports/ReportCreationDialog.vue')['default']

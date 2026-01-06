@@ -296,6 +296,7 @@
 .content-desktop {
   margin-left: 256px;
   padding: 32px;
+  padding-right: 92px;
   flex-grow: 1;
   width: calc(100% - 256px);
 }
@@ -303,7 +304,7 @@
 .desktop-controls {
   position: fixed;
   top: 0;
-  right: 0;
+  right: 92px; // Offset by the width of the quick tools sidebar
   display: flex;
   gap: 8px;
   z-index: 100;

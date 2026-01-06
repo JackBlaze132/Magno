@@ -22,6 +22,9 @@
         <RouterView />
       </div>
 
+      <!-- Quick Access Tools Sidebar (Desktop only) -->
+      <QuickAccessTools v-if="!isMobile" />
+
       <!-- Desktop controls (hidden on mobile) -->
       <div v-if="!isMobile" class="desktop-controls">
         <AppThemeSwitcher class="ma-1" />
@@ -36,6 +39,7 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import AppThemeSwitcher from './components/appThemeSwitcher.vue'
 import verticalNav from './components/verticalNav.vue'
 import ProfilePicture from './components/profilePicture.vue'
+import QuickAccessTools from './components/quickAccessTools.vue'
 
 const navDrawer = ref<any>(null)
 const windowWidth = ref(window.innerWidth)
