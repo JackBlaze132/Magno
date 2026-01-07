@@ -19,7 +19,7 @@
         color="primary"
         size="64"
       />
-      <component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemCreated=handleItemCreated @loaded="componentLoaded = true"/>
+      <component :is="ComponentToRender.component" v-bind="ComponentToRender.props" @itemCreated="handleItemCreated" @loaded="componentLoaded = true"/>
     </VOverlay>
   </VBtn>
   <!--
@@ -198,8 +198,10 @@ export default defineComponent({
      * Handles the 'itemDeleted' event from FormDeleteGeneral and closes the overlay.
      */
     handleItemDeleted(index: any) {
-      this.$emit('itemDeleted', index);
       this.overlayDelete = false;
+      setTimeout(() => {
+        this.$emit('itemDeleted', index);
+      }, 300);
     },
 
     /**

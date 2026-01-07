@@ -199,7 +199,20 @@ class API{
         },
         body: JSON.stringify(data)
       });
-      const responseData = await response.json();
+
+      // Handle 204 No Content
+      if (response.status === 204) {
+        return {};
+      }
+
+      const contentType = response.headers.get('content-type');
+      let responseData: any = null;
+
+      if (contentType && contentType.includes('application/json')) {
+        responseData = await response.json();
+      } else {
+        responseData = await response.text();
+      }
 
       // If status is not ok, throw an error with the response data
       if (!response.ok) {
@@ -210,7 +223,7 @@ class API{
 
       return responseData;
     } catch (error) {
-      console.error(`Error patching to ${endpoint}:`, error);
+      console.error(`Error putting to ${endpoint}:`, error);
       throw error;
     }
   }
@@ -225,17 +238,27 @@ class API{
         },
       });
 
-      const responseData = await response.json();
+      // Handle 204 No Content
+      if (response.status === 204) {
+        return {};
+      }
+
+      const contentType = response.headers.get('content-type');
+      let responseData: any = null;
+
+      if (contentType && contentType.includes('application/json')) {
+        responseData = await response.json();
+      } else {
+        responseData = await response.text();
+      }
 
       if (!response.ok) {
         const error: any = new Error('API Error');
         error.response = { data: responseData, status: response.status };
         throw error;
       }
-      else if (response.ok && response.status === 204) {
-        return {}; // or return null
-      }
-      return response.json();
+
+      return responseData;
     }catch(error){
       console.error(`Error deleting to ${endpoint}:`, error);
       throw error
