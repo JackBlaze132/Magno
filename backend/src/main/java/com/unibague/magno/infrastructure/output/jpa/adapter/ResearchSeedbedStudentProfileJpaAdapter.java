@@ -64,4 +64,12 @@ public class ResearchSeedbedStudentProfileJpaAdapter implements IResearchSeedbed
         List<ResearchSeedbedStudentProfileEntity> entities = researchSeedbedStudentProfileRepository.findAllByResearchSeedbedProfileId(researchSeedbedProfileId);
         return researchSeedbedStudentProfileMapper.toResearchSeedbedStudentProfileList(entities);
     }
+
+    @Override
+    public List<ResearchSeedbedStudentProfile> findAllByStudentProfileIdAndAcademicPeriodId(Long studentProfileId, Long academicPeriodId) {
+        return researchSeedbedStudentProfileMapper
+                .toResearchSeedbedStudentProfileList(
+                        researchSeedbedStudentProfileRepository.findAllByStudentProfileIdAndAcademicPeriodId(studentProfileId, academicPeriodId)
+                );
+    }
 }

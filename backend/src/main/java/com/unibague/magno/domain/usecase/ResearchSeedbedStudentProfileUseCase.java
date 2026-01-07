@@ -134,7 +134,19 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
                 "No se puede eliminar un estudiante de un perfil de semillero de investigación asociado a un período académico inactivo."
         );
 
+        Long studentProfileId = rssp.getStudentProfileId();
+        Long researchSeedbedProfileId = rssp.getResearchSeedbedProfileId();
         researchSeedbedStudentProfilePersistencePort.deleteById(id);
+        ResearchSeedbedProfile rsp = getResearchSeedbedProfile(researchSeedbedProfileId);
+        deleteStudentProfileIfNoMoreRSSP(studentProfileId, rsp.getAcademicPeriodId());
+    }
+
+    private void deleteStudentProfileIfNoMoreRSSP(Long studentProfileId, Long academicPeriodId) {
+        List<ResearchSeedbedStudentProfile> allByStudentProfileId =
+                findAllByStudentProfileIdAndAcademicPeriodId(studentProfileId, academicPeriodId);
+        if (allByStudentProfileId.isEmpty()) {
+            studentProfileServicePort.deleteById(studentProfileId);
+        }
     }
 
     @Override
@@ -180,6 +192,12 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
         return researchSeedbedStudentProfilePersistencePort.findAllByResearchSeedbedProfileId(researchSeedbedProfileId);
     }
 
+    @Override
+    public List<ResearchSeedbedStudentProfile> findAllByStudentProfileIdAndAcademicPeriodId(Long studentProfileId, Long academicPeriodId) {
+        return researchSeedbedStudentProfilePersistencePort
+                .findAllByStudentProfileIdAndAcademicPeriodId(studentProfileId, academicPeriodId);
+    }
+
     private List<ResearchSeedbedStudentProfile> createResearchSeedbedStudentProfiles(
             List<StudentProfile> allStudentProfiles, Long researchSeedbedProfileId) {
         return allStudentProfiles.stream()
@@ -209,8 +227,7 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
      * @throws AcademicPeriodNotCurrentException if the academic period is not current
      */
     private void verifyAcademicPeriodIsCurrent(Long researchSeedbedProfileId, String errorMessage) {
-        ResearchSeedbedProfile rsp =
-                researchSeedbedProfileServicePort.findById(researchSeedbedProfileId);
+        ResearchSeedbedProfile rsp = getResearchSeedbedProfile(researchSeedbedProfileId);
 
         boolean isNotCurrent =
                 researchSeedbedStudentProfileHelper.verifyAcademicPeriodIsCurrentStatus(rsp.getAcademicPeriodId());
@@ -218,6 +235,10 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
         if (isNotCurrent) {
             throw new AcademicPeriodNotCurrentException(errorMessage);
         }
+    }
+
+    private ResearchSeedbedProfile getResearchSeedbedProfile(Long researchSeedbedProfileId) {
+        return researchSeedbedProfileServicePort.findById(researchSeedbedProfileId);
     }
 
 }
