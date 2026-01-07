@@ -138,6 +138,8 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
         }
     }
 
+    // Is not necessary to check if the fp is coordinator in other igps
+    // because is not possible to be one in more than one igp
     @Override
     public void deleteOrUpdateFunctionaryProfile(List<InvestigationGroupProfile> investigationGroupProfiles, Long coordinatorId) {
 
