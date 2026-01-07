@@ -82,6 +82,12 @@ public class ResearchSeedbedProfileJpaAdapter implements IResearchSeedbedProfile
     }
 
     @Override
+    public List<ResearchSeedbedProfile> findAllByAcademicPeriodId(Long academicPeriodId) {
+        return researchSeedbedProfileEntityMapper
+                .toResearchSeedbedProfileList(researchSeedbedProfileRepository.findAllByAcademicPeriod_Id(academicPeriodId));
+    }
+
+    @Override
     public ExcelReport<SeedbedReportMetadata> getExcelBytesReportById(Long researchSeedbedProfileId, Long academicPeriodId) {
         List<SeedbedReportProjection> records = researchSeedbedProfileRepository
                 .getSeedbedReportById(researchSeedbedProfileId, academicPeriodId);

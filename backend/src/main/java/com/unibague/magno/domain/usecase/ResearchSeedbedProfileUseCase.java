@@ -2,7 +2,7 @@ package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IResearchSeedbedProfileServicePort;
 import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFoundException;
-import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileAlreadyExistsInInvestigationGroup;
+import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileAlreadyExistsInAcademicPeriod;
 import com.unibague.magno.domain.exception.researchseedbedprofile.SameCoordinatorAndTutorException;
 import com.unibague.magno.domain.model.ResearchSeedbedProfile;
 import com.unibague.magno.domain.model.excel.ExcelReport;
@@ -52,12 +52,12 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
     private void verifyThatResearchSeedbedProfileDoesNotExist(ResearchSeedbedProfile researchSeedbedProfile) {
         Long researchSeedbedId = researchSeedbedProfile.getResearchSeedbedId();
         List<ResearchSeedbedProfile> existingProfiles = researchSeedbedProfilePersistencePort
-                        .findAllByInvestigationGroupProfileId(researchSeedbedProfile.getInvestigationGroupProfileId());
+                        .findAllByAcademicPeriodId(researchSeedbedProfile.getAcademicPeriodId());
         boolean exists = existingProfiles.stream()
                 .anyMatch(profile -> profile.getResearchSeedbedId().equals(researchSeedbedId));
         if (exists) {
-            throw new ResearchSeedbedProfileAlreadyExistsInInvestigationGroup(
-                    String.format("Ya existe un perfil de semillero de investigación con ID %d", researchSeedbedId)
+            throw new ResearchSeedbedProfileAlreadyExistsInAcademicPeriod(
+                    String.format("Este semillero ya existe en el periodo academico actual")
             );
         }
     }
@@ -98,6 +98,11 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
     @Override
     public List<ResearchSeedbedProfile> findAllByInvestigationGroupProfileId(Long id) {
         return researchSeedbedProfilePersistencePort.findAllByInvestigationGroupProfileId(id);
+    }
+
+    @Override
+    public List<ResearchSeedbedProfile> findAllByAcademicPeriodId(Long academicPeriodId) {
+        return researchSeedbedProfilePersistencePort.findAllByAcademicPeriodId(academicPeriodId);
     }
 
     @Override

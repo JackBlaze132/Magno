@@ -26,7 +26,7 @@ import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroup
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileDuplicatedInSameAcademicPeriodException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFoundException;
-import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileAlreadyExistsInInvestigationGroup;
+import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileAlreadyExistsInAcademicPeriod;
 import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbedprofile.SameCoordinatorAndTutorException;
 import com.unibague.magno.domain.exception.role.RoleNotFoundException;
@@ -446,11 +446,11 @@ public class ControllerAdvisor {
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
-    @ExceptionHandler(ResearchSeedbedProfileAlreadyExistsInInvestigationGroup.class)
-    public ErrorResponse handleRSPAlreadyExistsInIg(ResearchSeedbedProfileAlreadyExistsInInvestigationGroup exception, HttpServletRequest request) {
+    @ExceptionHandler(ResearchSeedbedProfileAlreadyExistsInAcademicPeriod.class)
+    public ErrorResponse handleRSPAlreadyExistsInIg(ResearchSeedbedProfileAlreadyExistsInAcademicPeriod exception, HttpServletRequest request) {
 
-        String code = ExceptionResponse.RESEARCH_SEEDBED_PROFILE_ALREADY_EXISTS_IN_INVESTIGATION_GROUP.getCode();
-        String message = ExceptionResponse.RESEARCH_SEEDBED_PROFILE_ALREADY_EXISTS_IN_INVESTIGATION_GROUP.getMessage();
+        String code = RESEARCH_SEEDBED_PROFILE_ALREADY_EXISTS_IN_ACADEMIC_PERIOD.getCode();
+        String message = RESEARCH_SEEDBED_PROFILE_ALREADY_EXISTS_IN_ACADEMIC_PERIOD.getMessage();
 
         ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
                 Collections.singletonList(exception.getMessage()));

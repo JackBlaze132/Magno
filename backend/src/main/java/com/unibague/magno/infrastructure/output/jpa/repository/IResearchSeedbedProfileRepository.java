@@ -38,4 +38,6 @@ public interface IResearchSeedbedProfileRepository extends JpaRepository<Researc
 """, nativeQuery = true)
     List<SeedbedReportProjection> getSeedbedReportById(
             @Param("rspId") Long researchSeedbedProfileId, @Param("apId") Long academicPeriodId);
+
+    List<ResearchSeedbedProfileEntity> findAllByAcademicPeriod_Id(Long academicPeriodId);
 }

@@ -14,6 +14,6 @@ public interface IResearchSeedbedProfilePersistencePort {
     void deleteById(Long id);
     List<ResearchSeedbedProfile> findAll();
     List<ResearchSeedbedProfile> findAllByInvestigationGroupProfileId(Long id);
-
+    List<ResearchSeedbedProfile> findAllByAcademicPeriodId(Long academicPeriodId);
     ExcelReport<SeedbedReportMetadata> getExcelBytesReportById(Long researchSeedbedProfileId, Long academicPeriodId);
 }
