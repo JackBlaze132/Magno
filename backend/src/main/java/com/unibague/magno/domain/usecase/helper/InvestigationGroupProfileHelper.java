@@ -4,6 +4,7 @@ import com.unibague.magno.domain.api.*;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurrentException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileFunctionaryIsAlreadyACoordinatorException;
+import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileHasResearchSeedbedProfilesException;
 import com.unibague.magno.domain.model.*;
 import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
@@ -138,36 +139,6 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
         }
     }
 
-    // Is not necessary to check if the fp is coordinator in other igps
-    // because is not possible to be one in more than one igp
-    @Override
-    public void handleFunctionaryProfileChangeOnDelete(List<InvestigationGroupProfile> investigationGroupProfiles, Long coordinatorId) {
-
-        boolean isCoordinator = investigationGroupProfiles.stream()
-                .flatMap(igp -> researchSeedbedProfileServicePort
-                        .findAllByInvestigationGroupProfileId(igp.getId())
-                        .stream())
-                .anyMatch(rsp -> coordinatorId.equals(rsp.getCoordinatorId()));
-
-        if (isCoordinator) {
-            updateFunctionaryRole(coordinatorId, SeedbedRole.COORDINADOR_DE_SEMILLERO);
-            return;
-        }
-
-        boolean isTutor = investigationGroupProfiles.stream()
-                .flatMap(igp -> researchSeedbedProfileServicePort
-                        .findAllByInvestigationGroupProfileId(igp.getId())
-                        .stream())
-                .anyMatch(rsp -> coordinatorId.equals(rsp.getTutorId()));
-
-        if (isTutor) {
-            updateFunctionaryRole(coordinatorId, SeedbedRole.TUTOR_DE_SEMILLERO);
-            return;
-        }
-
-        functionaryProfileServicePort.deleteById(coordinatorId);
-    }
-
     private void updateFunctionaryRole(Long functionaryId, SeedbedRole roleName) {
         Role role = roleServicePort.findByName(roleName);
         FunctionaryProfile fp = functionaryProfileServicePort.findById(functionaryId);
@@ -219,6 +190,26 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
 
         // If not used in any seedbed, delete the functionary profile
         functionaryProfileServicePort.deleteById(oldCoordinatorId);
+    }
+
+    /**
+     * Verifies that the investigation group profile has no associated research seedbed profiles.
+     * Throws an exception if any research seedbed profiles are found.
+     *
+     * @param investigationGroupProfileId The ID of the investigation group profile to verify
+     * @throws InvestigationGroupProfileHasResearchSeedbedProfilesException if research seedbed profiles exist
+     */
+    @Override
+    public void verifyThatInvestigationGroupProfileHasNoResearchSeedbedProfiles(Long investigationGroupProfileId) {
+        List<ResearchSeedbedProfile> researchSeedbedProfiles =
+                researchSeedbedProfileServicePort.findAllByInvestigationGroupProfileId(investigationGroupProfileId);
+
+        if (!researchSeedbedProfiles.isEmpty()) {
+            throw new InvestigationGroupProfileHasResearchSeedbedProfilesException(
+                    String.format("No se puede eliminar el perfil de grupo de investigación con ID %d porque tiene %d perfil(es) de semillero de investigación asociado(s)",
+                            investigationGroupProfileId, researchSeedbedProfiles.size())
+            );
+        }
     }
 
 }

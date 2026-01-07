@@ -2,11 +2,14 @@ package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IFunctionaryProfileServicePort;
 import com.unibague.magno.domain.api.IInvestigationGroupProfileServicePort;
+import com.unibague.magno.domain.api.IResearchSeedbedProfileServicePort;
 import com.unibague.magno.domain.api.IRoleServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileDuplicatedInSameAcademicPeriodException;
+import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileHasResearchSeedbedProfilesException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException;
 import com.unibague.magno.domain.model.InvestigationGroupProfile;
+import com.unibague.magno.domain.model.ResearchSeedbedProfile;
 import com.unibague.magno.domain.model.excel.ExcelReport;
 import com.unibague.magno.domain.model.excel.metadata.ActiveSeedbedsMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupHYRMetadata;
@@ -122,23 +125,22 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
         }
         InvestigationGroupProfile igp = findById(id);
         Long coordinatorId = igp.getCoordinatorId();
-        Long academicPeriodId = igp.getAcademicPeriodId();
         verifyAcademicPeriodIsCurrentStatusBeforeDelete(igp);
+        investigationGroupProfileHelper.verifyThatInvestigationGroupProfileHasNoResearchSeedbedProfiles(id);
         investigationGroupProfilePersistencePort.deleteById(id);
-        handleFunctionaryProfileChangeOnDelete(coordinatorId, academicPeriodId);
+        handleFunctionaryProfileChangeOnDelete(coordinatorId);
     }
 
     /**
-     * Deletes or updates the functionary profile of the coordinator of the investigation group profile
-     * after deletion of the investigation group profile.
+     * Since is not possible to be coordinator of more than one investigation group profile in the same
+     * academic period, when an investigation group profile is deleted, the associated functionary profile
+     * is also deleted because is also not possible to delete the investigation group profile if there's
+     * research seedbed profiles associated to it and this is the last scenario where the functionary profile
+     * can be used.
      * @param coordinatorId ID of the coordinator (FunctionaryProfile)
-     * @param academicPeriodId ID of the academic period
      */
-    private void handleFunctionaryProfileChangeOnDelete
-            (Long coordinatorId, Long academicPeriodId) {
-        List<InvestigationGroupProfile> investigationGroupProfiles =
-                investigationGroupProfilePersistencePort.findAllByAcademicPeriodId(academicPeriodId);
-        investigationGroupProfileHelper.handleFunctionaryProfileChangeOnDelete(investigationGroupProfiles, coordinatorId);
+    private void handleFunctionaryProfileChangeOnDelete(Long coordinatorId) {
+        functionaryProfileServicePort.deleteById(coordinatorId);
     }
 
     private void verifyAcademicPeriodIsCurrentStatusBeforeDelete(InvestigationGroupProfile igp) {
