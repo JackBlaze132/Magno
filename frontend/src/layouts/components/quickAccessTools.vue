@@ -188,6 +188,6 @@ const academicTools: Tool[] = [
 }
 
 .tool-item:hover {
-  background-color: rgba(var(--v-theme-primary), 0.08);
+  background-color: transparent !important;
 }
 </style>
