@@ -3,8 +3,10 @@ package com.unibague.magno.infrastructure.output.jpa.adapter;
 import com.unibague.magno.domain.model.ErrorLog;
 import com.unibague.magno.domain.spi.IErrorLogPersistencePort;
 import com.unibague.magno.infrastructure.output.jpa.entity.ErrorLogEntity;
+import com.unibague.magno.infrastructure.output.jpa.entity.UserEntity;
 import com.unibague.magno.infrastructure.output.jpa.mapper.ErrorLogEntityMapper;
 import com.unibague.magno.infrastructure.output.jpa.repository.IErrorLogRepository;
+import com.unibague.magno.infrastructure.output.jpa.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,10 +19,19 @@ public class ErrorLogJpaAdapter implements IErrorLogPersistencePort {
 
     private final IErrorLogRepository errorLogRepository;
     private final ErrorLogEntityMapper errorLogEntityMapper;
+    private final IUserRepository userRepository;
 
     @Override
     public ErrorLog save(ErrorLog errorLog) {
         ErrorLogEntity entity = errorLogEntityMapper.toEntity(errorLog);
+        
+        // Set UserEntity if userId is provided
+        if (errorLog.getUserId() != null) {
+            UserEntity user = userRepository.findById(errorLog.getUserId())
+                    .orElse(null);
+            entity.setUser(user);
+        }
+        
         ErrorLogEntity savedEntity = errorLogRepository.save(entity);
         return errorLogEntityMapper.toDomain(savedEntity);
     }
@@ -33,7 +44,7 @@ public class ErrorLogJpaAdapter implements IErrorLogPersistencePort {
 
     @Override
     public List<ErrorLog> findByUserId(Long userId) {
-        List<ErrorLogEntity> entities = errorLogRepository.findByUserId(userId);
+        List<ErrorLogEntity> entities = errorLogRepository.findByUser_Id(userId);
         return errorLogEntityMapper.toDomainList(entities);
     }
 

@@ -45,8 +45,9 @@ public class ActionLogEntity {
     @Column(name = "user_email", length = 255)
     private String userEmail;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
     @Column(name = "client_ip", length = 45)
     private String clientIp;

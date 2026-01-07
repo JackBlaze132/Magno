@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface IActionLogRepository extends JpaRepository<ActionLogEntity, Long> {
 
-    List<ActionLogEntity> findByUserId(Long userId);
+    List<ActionLogEntity> findByUser_Id(Long userId);
 
     List<ActionLogEntity> findByTimestampBetween(LocalDateTime start, LocalDateTime end);
 

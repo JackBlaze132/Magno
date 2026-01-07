@@ -53,4 +53,10 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     Set<StudentProfileEntity> studentProfileEntities;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REFRESH)
+    Set<ErrorLogEntity> errorLogs;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REFRESH)
+    Set<ActionLogEntity> actionLogs;
 }

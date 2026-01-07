@@ -53,8 +53,9 @@ public class ErrorLogEntity {
     @Column(name = "user_email", length = 255)
     private String userEmail;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
     @Column(name = "user_agent", length = 1000)
     private String userAgent;

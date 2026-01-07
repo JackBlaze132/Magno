@@ -3,8 +3,10 @@ package com.unibague.magno.infrastructure.output.jpa.adapter;
 import com.unibague.magno.domain.model.ActionLog;
 import com.unibague.magno.domain.spi.IActionLogPersistencePort;
 import com.unibague.magno.infrastructure.output.jpa.entity.ActionLogEntity;
+import com.unibague.magno.infrastructure.output.jpa.entity.UserEntity;
 import com.unibague.magno.infrastructure.output.jpa.mapper.ActionLogEntityMapper;
 import com.unibague.magno.infrastructure.output.jpa.repository.IActionLogRepository;
+import com.unibague.magno.infrastructure.output.jpa.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,10 +19,19 @@ public class ActionLogJpaAdapter implements IActionLogPersistencePort {
 
     private final IActionLogRepository actionLogRepository;
     private final ActionLogEntityMapper actionLogEntityMapper;
+    private final IUserRepository userRepository;
 
     @Override
     public ActionLog save(ActionLog actionLog) {
         ActionLogEntity entity = actionLogEntityMapper.toEntity(actionLog);
+        
+        // Set UserEntity if userId is provided
+        if (actionLog.getUserId() != null) {
+            UserEntity user = userRepository.findById(actionLog.getUserId())
+                    .orElse(null);
+            entity.setUser(user);
+        }
+        
         ActionLogEntity savedEntity = actionLogRepository.save(entity);
         return actionLogEntityMapper.toDomain(savedEntity);
     }
@@ -33,7 +44,7 @@ public class ActionLogJpaAdapter implements IActionLogPersistencePort {
 
     @Override
     public List<ActionLog> findByUserId(Long userId) {
-        List<ActionLogEntity> entities = actionLogRepository.findByUserId(userId);
+        List<ActionLogEntity> entities = actionLogRepository.findByUser_Id(userId);
         return actionLogEntityMapper.toDomainList(entities);
     }
 

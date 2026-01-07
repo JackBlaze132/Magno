@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface IErrorLogRepository extends JpaRepository<ErrorLogEntity, Long> {
 
-    List<ErrorLogEntity> findByUserId(Long userId);
+    List<ErrorLogEntity> findByUser_Id(Long userId);
 
     List<ErrorLogEntity> findByTimestampBetween(LocalDateTime start, LocalDateTime end);
 

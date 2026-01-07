@@ -294,7 +294,7 @@ public class BeanConfiguration {
 
     @Bean
     public IErrorLogPersistencePort errorLogPersistencePort() {
-        return new ErrorLogJpaAdapter(errorLogRepository, errorLogEntityMapper);
+        return new ErrorLogJpaAdapter(errorLogRepository, errorLogEntityMapper, userRepository);
     }
 
     // CronJob Execution Logging Beans
@@ -318,7 +318,7 @@ public class BeanConfiguration {
 
     @Bean
     public IActionLogPersistencePort actionLogPersistencePort() {
-        return new ActionLogJpaAdapter(actionLogRepository, actionLogEntityMapper);
+        return new ActionLogJpaAdapter(actionLogRepository, actionLogEntityMapper, userRepository);
     }
 
 }
