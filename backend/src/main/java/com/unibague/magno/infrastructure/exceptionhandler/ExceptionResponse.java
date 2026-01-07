@@ -8,6 +8,8 @@ public enum ExceptionResponse {
     ACADEMIC_PERIOD_NOT_FOUND("ERR_ACADEMIC_PERIOD_001", "Período académico no encontrado."),
     END_DATE_BEFORE_START_DATE("ERR_ACADEMIC_PERIOD_002", "La fecha de finalización no puede ser anterior a la fecha de inicio."),
     ACADEMIC_PERIOD_NOT_CURRENT("ERR_ACADEMIC_PERIOD_003", "El período académico no está marcado como activo."),
+    ACADEMIC_PERIOD_HAS_INVESTIGATION_GROUP_PROFILES("ERR_ACADEMIC_PERIOD_004",
+            "No se puede eliminar el período académico porque tiene perfiles de grupo de investigación asociados."),
     ROLE_NOT_FOUND("ERR_ROLE_001", "Rol no encontrado."),
     DEPENDENCY_NOT_FOUND("ERR_DEPENDENCY_001", "Dependencia no encontrada."),
     ACADEMIC_PROGRAM_NOT_FOUND("ERR_ACADEMIC_PROGRAM_001", "Programa académico no encontrado."),

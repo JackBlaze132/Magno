@@ -1,6 +1,7 @@
 package com.unibague.magno.infrastructure.exceptionhandler;
 
 import com.unibague.magno.domain.api.IErrorLogServicePort;
+import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodHasInvestigationGroupProfilesException;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurrentException;
 import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileFunctionaryIsAlreadyACoordinatorException;
@@ -104,6 +105,22 @@ public class ControllerAdvisor {
 
         String code = ACADEMIC_PERIOD_NOT_CURRENT.getCode();
         String message = ACADEMIC_PERIOD_NOT_CURRENT.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+
+        logError(exception, code, message, request);
+
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(AcademicPeriodHasInvestigationGroupProfilesException.class)
+    public ErrorResponse handleAcademicPeriodHasInvestigationGroupProfilesException
+            (AcademicPeriodHasInvestigationGroupProfilesException exception, HttpServletRequest request) {
+
+        String code = ACADEMIC_PERIOD_HAS_INVESTIGATION_GROUP_PROFILES.getCode();
+        String message = ACADEMIC_PERIOD_HAS_INVESTIGATION_GROUP_PROFILES.getMessage();
 
         ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
                 Collections.singletonList(exception.getMessage()));

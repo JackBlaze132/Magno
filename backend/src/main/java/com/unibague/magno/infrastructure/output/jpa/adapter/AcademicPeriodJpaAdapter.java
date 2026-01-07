@@ -1,5 +1,6 @@
 package com.unibague.magno.infrastructure.output.jpa.adapter;
 
+import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodHasInvestigationGroupProfilesException;
 import com.unibague.magno.domain.model.AcademicPeriod;
 import com.unibague.magno.domain.spi.IAcademicPeriodPersistencePort;
 import com.unibague.magno.infrastructure.output.jpa.entity.AcademicPeriodEntity;
@@ -54,6 +55,12 @@ public class AcademicPeriodJpaAdapter implements IAcademicPeriodPersistencePort 
 
     @Override
     public void deleteById(Long id) {
+        AcademicPeriodEntity existingEntity = academicPeriodRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Período académico con ID " + id + " no encontrado"));
+        if (!existingEntity.getInvestigationGroupProfiles().isEmpty()) {
+            throw new AcademicPeriodHasInvestigationGroupProfilesException
+                    ("No se puede eliminar el período académico porque tiene perfiles de grupo de investigación asociados");
+        }
         academicPeriodRepository.deleteById(id);
     }
 
