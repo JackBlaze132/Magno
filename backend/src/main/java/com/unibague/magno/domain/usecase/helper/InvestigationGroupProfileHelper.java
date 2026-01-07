@@ -19,18 +19,21 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
     private final IDependencyServicePort dependencyServicePort;
     private final IRoleServicePort roleServicePort;
     private final IAcademicPeriodServicePort academicPeriodServicePort;
+    private final IResearchSeedbedProfileServicePort researchSeedbedProfileServicePort;
 
     public InvestigationGroupProfileHelper(IIntegraServicePort integraServicePort, IUserServicePort userServicePort,
                                             IFunctionaryProfileServicePort functionaryProfileServicePort,
                                            IDependencyServicePort dependencyServicePort,
                                            IRoleServicePort roleServicePort,
-                                           IAcademicPeriodServicePort academicPeriodServicePort) {
+                                           IAcademicPeriodServicePort academicPeriodServicePort,
+                                           IResearchSeedbedProfileServicePort researchSeedbedProfileServicePort) {
         this.integraServicePort = integraServicePort;
         this.userServicePort = userServicePort;
         this.functionaryProfileServicePort = functionaryProfileServicePort;
         this.dependencyServicePort = dependencyServicePort;
         this.roleServicePort = roleServicePort;
         this.academicPeriodServicePort = academicPeriodServicePort;
+        this.researchSeedbedProfileServicePort = researchSeedbedProfileServicePort;
     }
 
     @Override
@@ -134,5 +137,41 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
                             "coordinador de otro grupo de investigación en el período académico especificado.");
         }
     }
+
+    @Override
+    public void deleteOrUpdateFunctionaryProfile(List<InvestigationGroupProfile> investigationGroupProfiles, Long coordinatorId) {
+
+        boolean isCoordinator = investigationGroupProfiles.stream()
+                .flatMap(igp -> researchSeedbedProfileServicePort
+                        .findAllByInvestigationGroupProfileId(igp.getId())
+                        .stream())
+                .anyMatch(rsp -> coordinatorId.equals(rsp.getCoordinatorId()));
+
+        if (isCoordinator) {
+            updateFunctionaryRole(coordinatorId, SeedbedRole.COORDINADOR_DE_SEMILLERO);
+            return;
+        }
+
+        boolean isTutor = investigationGroupProfiles.stream()
+                .flatMap(igp -> researchSeedbedProfileServicePort
+                        .findAllByInvestigationGroupProfileId(igp.getId())
+                        .stream())
+                .anyMatch(rsp -> coordinatorId.equals(rsp.getTutorId()));
+
+        if (isTutor) {
+            updateFunctionaryRole(coordinatorId, SeedbedRole.TUTOR_DE_SEMILLERO);
+            return;
+        }
+
+        functionaryProfileServicePort.deleteById(coordinatorId);
+    }
+
+    private void updateFunctionaryRole(Long functionaryId, SeedbedRole roleName) {
+        Role role = roleServicePort.findByName(roleName);
+        FunctionaryProfile fp = functionaryProfileServicePort.findById(functionaryId);
+        fp.setRoleId(role.getId());
+        functionaryProfileServicePort.update(functionaryId, fp);
+    }
+
 
 }

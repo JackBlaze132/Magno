@@ -11,8 +11,8 @@ public interface IFunctionaryProfileServicePort {
     void deleteById(Long id);
     boolean existsByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId);
     List<FunctionaryProfile> findAll();
-
     List<FunctionaryProfile> findAllProfilesByUserId(Long userId);
-
     List<FunctionaryProfile> findAllProfilesByAcademicPeriodId(Long academicPeriodId);
+    List<FunctionaryProfile> findAllProfilesByFunctionaryProfileIdAndAcademicPeriodId
+            (Long functionaryProfileId, Long academicPeriodId);
 }

@@ -76,4 +76,10 @@ public class FunctionaryProfileUseCase implements IFunctionaryProfileServicePort
     public List<FunctionaryProfile> findAllProfilesByAcademicPeriodId(Long academicPeriodId) {
         return functionaryProfilePersistencePort.findAllProfilesByAcademicPeriodId(academicPeriodId);
     }
+
+    @Override
+    public List<FunctionaryProfile> findAllProfilesByFunctionaryProfileIdAndAcademicPeriodId(Long functionaryProfileId, Long academicPeriodId) {
+        return functionaryProfilePersistencePort
+                .findAllProfilesByFunctionaryProfileIdAndAcademicPeriodId(functionaryProfileId, academicPeriodId);
+    }
 }

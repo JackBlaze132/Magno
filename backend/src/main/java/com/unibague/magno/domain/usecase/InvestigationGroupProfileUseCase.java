@@ -2,10 +2,14 @@ package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IFunctionaryProfileServicePort;
 import com.unibague.magno.domain.api.IInvestigationGroupProfileServicePort;
+import com.unibague.magno.domain.api.IRoleServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileDuplicatedInSameAcademicPeriodException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException;
+import com.unibague.magno.domain.model.FunctionaryProfile;
 import com.unibague.magno.domain.model.InvestigationGroupProfile;
+import com.unibague.magno.domain.model.Role;
+import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.domain.model.excel.ExcelReport;
 import com.unibague.magno.domain.model.excel.metadata.ActiveSeedbedsMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupHYRMetadata;
@@ -21,16 +25,19 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
     private final IUserServicePort userServicePort;
     private final IFunctionaryProfileServicePort functionaryProfileServicePort;
     private final IInvestigationGroupProfileHelper investigationGroupProfileHelper;
+    private final IRoleServicePort roleServicePort;
 
     public InvestigationGroupProfileUseCase
             (IInvestigationGroupProfilePersistencePort investigationGroupProfilePersistencePort,
              IUserServicePort userServicePort,
              IFunctionaryProfileServicePort functionaryProfileServicePort,
-             IInvestigationGroupProfileHelper investigationGroupProfileHelper) {
+             IInvestigationGroupProfileHelper investigationGroupProfileHelper,
+             IRoleServicePort roleServicePort) {
         this.investigationGroupProfilePersistencePort = investigationGroupProfilePersistencePort;
         this.userServicePort = userServicePort;
         this.functionaryProfileServicePort = functionaryProfileServicePort;
         this.investigationGroupProfileHelper = investigationGroupProfileHelper;
+        this.roleServicePort = roleServicePort;
     }
 
     @Override
@@ -103,12 +110,28 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
                     String.format("No se pudo eliminar el perfil de grupo de investigación con ID %d porque no existe", id)
             );
         }
-        verifyAcademicPeriodIsCurrentStatusBeforeDelete(id);
+        InvestigationGroupProfile igp = findById(id);
+        Long coordinatorId = igp.getCoordinatorId();
+        Long academicPeriodId = igp.getAcademicPeriodId();
+        verifyAcademicPeriodIsCurrentStatusBeforeDelete(igp);
         investigationGroupProfilePersistencePort.deleteById(id);
+        deleteOrUpdateFunctionaryProfile(coordinatorId, academicPeriodId);
     }
 
-    private void verifyAcademicPeriodIsCurrentStatusBeforeDelete(Long investigationGroupProfileId) {
-        InvestigationGroupProfile igp = findById(investigationGroupProfileId);
+    /**
+     * Deletes or updates the functionary profile of the coordinator of the investigation group profile
+     * after deletion of the investigation group profile.
+     * @param coordinatorId ID of the coordinator (FunctionaryProfile)
+     * @param academicPeriodId ID of the academic period
+     */
+    private void deleteOrUpdateFunctionaryProfile
+            (Long coordinatorId, Long academicPeriodId) {
+        List<InvestigationGroupProfile> investigationGroupProfiles =
+                investigationGroupProfilePersistencePort.findAllByAcademicPeriodId(academicPeriodId);
+        investigationGroupProfileHelper.deleteOrUpdateFunctionaryProfile(investigationGroupProfiles, coordinatorId);
+    }
+
+    private void verifyAcademicPeriodIsCurrentStatusBeforeDelete(InvestigationGroupProfile igp) {
         investigationGroupProfileHelper.verifyAcademicPeriodIsCurrent
                 (igp.getAcademicPeriodId(), "El período académico debe estar activo para eliminar un perfil de grupo de investigación");
     }

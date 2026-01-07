@@ -157,7 +157,7 @@ public class BeanConfiguration {
     @Bean
     public IInvestigationGroupProfileServicePort investigationGroupProfileServicePort() {
         return new InvestigationGroupProfileUseCase(investigationGroupProfilePersistencePort(), userServicePort(),
-                functionaryProfileServicePort(), investigationGroupProfileHelper());
+                functionaryProfileServicePort(), investigationGroupProfileHelper(), roleServicePort());
     }
 
     @Bean
@@ -238,7 +238,8 @@ public class BeanConfiguration {
     @Bean
     public IInvestigationGroupProfileHelper investigationGroupProfileHelper() {
         return new InvestigationGroupProfileHelper(integraServicePort(), userServicePort(),
-                functionaryProfileServicePort(), dependencyServicePort(), roleServicePort(), academicPeriodServicePort());
+                functionaryProfileServicePort(), dependencyServicePort(), roleServicePort(),
+                academicPeriodServicePort(), researchSeedbedProfileServicePort());
     }
 
     @Bean

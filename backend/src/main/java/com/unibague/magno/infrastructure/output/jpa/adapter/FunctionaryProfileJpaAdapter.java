@@ -69,4 +69,10 @@ public class FunctionaryProfileJpaAdapter implements IFunctionaryProfilePersiste
                 functionaryProfileRepository.findAllByAcademicPeriod_Id(academicPeriodId));
     }
 
+    @Override
+    public List<FunctionaryProfile> findAllProfilesByFunctionaryProfileIdAndAcademicPeriodId(Long functionaryProfileId, Long academicPeriodId) {
+        return functionaryProfileEntityMapper.toFunctionaryProfileList(
+                functionaryProfileRepository.findAllByIdAndAcademicPeriod(functionaryProfileId, academicPeriodId));
+    }
+
 }

@@ -11,10 +11,9 @@ public interface IFunctionaryProfilePersistencePort {
     FunctionaryProfile update(Long id, FunctionaryProfile functionaryProfile);
     void deleteById(Long id);
     List<FunctionaryProfile> findAll();
-
     List<FunctionaryProfile> findAllProfilesByUserId(Long userId);
-
     boolean existsByUserIdAndAcademicPeriodId(Long userId, Long academicPeriodId);
-
     List<FunctionaryProfile> findAllProfilesByAcademicPeriodId(Long academicPeriodId);
+    List<FunctionaryProfile> findAllProfilesByFunctionaryProfileIdAndAcademicPeriodId
+            (Long functionaryProfileId, Long academicPeriodId);
 }
