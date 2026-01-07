@@ -8,6 +8,8 @@ import com.unibague.magno.infrastructure.output.jpa.repository.IFunctionaryProfi
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +19,9 @@ public class FunctionaryProfileJpaAdapter implements IFunctionaryProfilePersiste
 
     private final IFunctionaryProfileRepository functionaryProfileRepository;
     private final FunctionaryProfileEntityMapper functionaryProfileEntityMapper;
+    
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public Optional<FunctionaryProfile> findById(Long id) {
@@ -30,6 +35,8 @@ public class FunctionaryProfileJpaAdapter implements IFunctionaryProfilePersiste
                 .toFunctionaryProfileEntity(functionaryProfile);
         FunctionaryProfileEntity savedFunctionaryProfileEntity = functionaryProfileRepository
                 .save(functionaryProfileEntity);
+        // Flush to ensure the entity is persisted before it's used in other operations
+        entityManager.flush();
         return functionaryProfileEntityMapper.toFunctionaryProfile(savedFunctionaryProfileEntity);
     }
 

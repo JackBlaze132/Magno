@@ -8,5 +8,6 @@ public interface IInvestigationGroupProfileHelper {
     InvestigationGroupProfile verifyUserHasFunctionaryProfile(InvestigationGroupProfile igp);
     void verifyAcademicPeriodIsCurrent(Long academicPeriodId, String errorMessage);
     void verifyThatUserIsNotAlreadyAInvestigationGroupCoordinator(Long coordinatorId, Long academicPeriodId);
-    void deleteOrUpdateFunctionaryProfile(List<InvestigationGroupProfile> investigationGroupProfiles, Long functionaryProfileId);
+    void handleFunctionaryProfileChangeOnDelete(List<InvestigationGroupProfile> investigationGroupProfiles, Long functionaryProfileId);
+    void handleFunctionaryProfileChangeOnUpdate(Long oldCoordinatorId, Long academicPeriodId, Long investigationGroupProfileId);
 }

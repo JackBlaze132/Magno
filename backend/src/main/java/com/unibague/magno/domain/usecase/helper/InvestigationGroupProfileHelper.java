@@ -141,7 +141,7 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
     // Is not necessary to check if the fp is coordinator in other igps
     // because is not possible to be one in more than one igp
     @Override
-    public void deleteOrUpdateFunctionaryProfile(List<InvestigationGroupProfile> investigationGroupProfiles, Long coordinatorId) {
+    public void handleFunctionaryProfileChangeOnDelete(List<InvestigationGroupProfile> investigationGroupProfiles, Long coordinatorId) {
 
         boolean isCoordinator = investigationGroupProfiles.stream()
                 .flatMap(igp -> researchSeedbedProfileServicePort
@@ -175,5 +175,50 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
         functionaryProfileServicePort.update(functionaryId, fp);
     }
 
+    /**
+     * Handles functionary profile changes when updating an investigation group profile.
+     * For the old coordinator: checks if it's used in seedbeds and updates/deletes accordingly
+     *
+     * @param oldCoordinatorId The ID of the old coordinator (functionary profile)
+     * @param academicPeriodId The ID of the academic period
+     * @param investigationGroupProfileId The ID of the investigation group profile being updated
+     */
+    @Override
+    public void handleFunctionaryProfileChangeOnUpdate(Long oldCoordinatorId, Long academicPeriodId, Long investigationGroupProfileId) {
+        // Handle old functionary profile
+        handleOldFunctionaryProfile(oldCoordinatorId, academicPeriodId, investigationGroupProfileId);
+    }
+
+    /**
+     * Handles the old functionary profile after coordinator change.
+     * Checks if it's used in seedbeds and updates role or deletes accordingly.
+     * After the update, the old coordinator is no longer the coordinator of this investigation group profile,
+     * so we check all seedbeds in the academic period to see if it's used elsewhere.
+     */
+    private void handleOldFunctionaryProfile(Long oldCoordinatorId, Long academicPeriodId, Long investigationGroupProfileId) {
+        // Get all research seedbed profiles for the academic period
+        List<ResearchSeedbedProfile> allSeedbedProfiles = researchSeedbedProfileServicePort.findAllByAcademicPeriodId(academicPeriodId);
+
+        // Check if old coordinator is used as coordinator in any seedbed
+        boolean isCoordinator = allSeedbedProfiles.stream()
+                .anyMatch(rsp -> oldCoordinatorId.equals(rsp.getCoordinatorId()));
+
+        if (isCoordinator) {
+            updateFunctionaryRole(oldCoordinatorId, SeedbedRole.COORDINADOR_DE_SEMILLERO);
+            return;
+        }
+
+        // Check if old coordinator is used as tutor in any seedbed
+        boolean isTutor = allSeedbedProfiles.stream()
+                .anyMatch(rsp -> oldCoordinatorId.equals(rsp.getTutorId()));
+
+        if (isTutor) {
+            updateFunctionaryRole(oldCoordinatorId, SeedbedRole.TUTOR_DE_SEMILLERO);
+            return;
+        }
+
+        // If not used in any seedbed, delete the functionary profile
+        functionaryProfileServicePort.deleteById(oldCoordinatorId);
+    }
 
 }

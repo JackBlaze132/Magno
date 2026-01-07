@@ -6,10 +6,7 @@ import com.unibague.magno.domain.api.IRoleServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileDuplicatedInSameAcademicPeriodException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException;
-import com.unibague.magno.domain.model.FunctionaryProfile;
 import com.unibague.magno.domain.model.InvestigationGroupProfile;
-import com.unibague.magno.domain.model.Role;
-import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.domain.model.excel.ExcelReport;
 import com.unibague.magno.domain.model.excel.metadata.ActiveSeedbedsMetadata;
 import com.unibague.magno.domain.model.excel.metadata.InvestigationGroupHYRMetadata;
@@ -89,18 +86,31 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
 
     @Override
     public InvestigationGroupProfile update(Long id, InvestigationGroupProfile investigationGroupProfile) {
-        if(investigationGroupProfilePersistencePort.findById(id).isEmpty()) {
-            throw new InvestigationGroupProfileNotFoundException(
-                    String.format("No se pudo actualizar el perfil de grupo de investigación con ID %d porque no existe", id)
-            );
-        }
+        InvestigationGroupProfile existingIgp = findById(id);
+        
         investigationGroupProfileHelper.verifyAcademicPeriodIsCurrent(
                 investigationGroupProfile.getAcademicPeriodId(),
                 "El período académico debe estar activo para actualizar un perfil de grupo de investigación"
         );
+        
+        // Store the old coordinator ID before updating
+        Long oldCoordinatorId = existingIgp.getCoordinatorId();
+        Long academicPeriodId = existingIgp.getAcademicPeriodId();
+        
         InvestigationGroupProfile igp =
                 investigationGroupProfileHelper.verifyUserHasFunctionaryProfile(investigationGroupProfile);
-        return investigationGroupProfilePersistencePort.update(id, igp);
+        
+        InvestigationGroupProfile updatedIgp = investigationGroupProfilePersistencePort.update(id, igp);
+        
+        // Handle functionary profile changes if coordinator changed
+        Long newCoordinatorId = updatedIgp.getCoordinatorId();
+        if (!oldCoordinatorId.equals(newCoordinatorId)) {
+            investigationGroupProfileHelper.handleFunctionaryProfileChangeOnUpdate(
+                    oldCoordinatorId, academicPeriodId, id
+            );
+        }
+        
+        return updatedIgp;
     }
 
     @Override
@@ -115,7 +125,7 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
         Long academicPeriodId = igp.getAcademicPeriodId();
         verifyAcademicPeriodIsCurrentStatusBeforeDelete(igp);
         investigationGroupProfilePersistencePort.deleteById(id);
-        deleteOrUpdateFunctionaryProfile(coordinatorId, academicPeriodId);
+        handleFunctionaryProfileChangeOnDelete(coordinatorId, academicPeriodId);
     }
 
     /**
@@ -124,11 +134,11 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
      * @param coordinatorId ID of the coordinator (FunctionaryProfile)
      * @param academicPeriodId ID of the academic period
      */
-    private void deleteOrUpdateFunctionaryProfile
+    private void handleFunctionaryProfileChangeOnDelete
             (Long coordinatorId, Long academicPeriodId) {
         List<InvestigationGroupProfile> investigationGroupProfiles =
                 investigationGroupProfilePersistencePort.findAllByAcademicPeriodId(academicPeriodId);
-        investigationGroupProfileHelper.deleteOrUpdateFunctionaryProfile(investigationGroupProfiles, coordinatorId);
+        investigationGroupProfileHelper.handleFunctionaryProfileChangeOnDelete(investigationGroupProfiles, coordinatorId);
     }
 
     private void verifyAcademicPeriodIsCurrentStatusBeforeDelete(InvestigationGroupProfile igp) {
