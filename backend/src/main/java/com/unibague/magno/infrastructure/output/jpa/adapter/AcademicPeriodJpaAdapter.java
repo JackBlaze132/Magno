@@ -59,7 +59,8 @@ public class AcademicPeriodJpaAdapter implements IAcademicPeriodPersistencePort 
                 .orElseThrow(() -> new RuntimeException("Período académico con ID " + id + " no encontrado"));
         if (!existingEntity.getInvestigationGroupProfiles().isEmpty()) {
             throw new AcademicPeriodHasInvestigationGroupProfilesException
-                    ("No se puede eliminar el período académico porque tiene perfiles de grupo de investigación asociados");
+                    ("No se puede eliminar el período académico " + existingEntity.getName() +
+                            " porque tiene perfiles de grupo de investigación asociados");
         }
         academicPeriodRepository.deleteById(id);
     }

@@ -40,6 +40,8 @@ public enum ExceptionResponse {
             "El coordinador y el tutor no pueden ser la misma persona."),
     RESEARCH_SEEDBED_PROFILE_ALREADY_EXISTS_IN_ACADEMIC_PERIOD("ERR_RESEARCH_SEEDBED_PROFILE_003",
             "Ya existe un perfil de semillero de investigación en el periodo académico especificado."),
+    RESEARCH_SEEDBED_PROFILE_HAS_STUDENTS_ASSOCIATED("ERR_RESEARCH_SEEDBED_PROFILE_004",
+            "El perfil de semillero de investigación tiene estudiantes asociados."),
     RESEARCH_SEEDBED_STUDENT_PROFILE_NOT_FOUND("ERR_RESEARCH_SEEDBED_STUDENT_PROFILE_001",
             "Perfil de estudiante de semillero no encontrado."),
     RESEARCH_SEEDBED_STUDENT_PROFILE_ALREADY_EXISTS("ERR_RESEARCH_SEEDBED_STUDENT_PROFILE_002",

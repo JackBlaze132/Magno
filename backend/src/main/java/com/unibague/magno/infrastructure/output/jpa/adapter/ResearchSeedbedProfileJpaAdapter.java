@@ -1,5 +1,6 @@
 package com.unibague.magno.infrastructure.output.jpa.adapter;
 
+import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileHasStudentsAssociatedException;
 import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileNotFoundException;
 import com.unibague.magno.domain.model.ResearchSeedbedProfile;
 import com.unibague.magno.domain.model.excel.ExcelReport;
@@ -66,6 +67,14 @@ public class ResearchSeedbedProfileJpaAdapter implements IResearchSeedbedProfile
 
     @Override
     public void deleteById(Long id) {
+        ResearchSeedbedProfileEntity existingEntity = researchSeedbedProfileRepository.findById(id)
+                .orElseThrow(() -> new ResearchSeedbedProfileNotFoundException
+                        ("No se pudo eliminar el perfil de semillero de investigación con ID " + id + " porque no existe"));
+        if (!existingEntity.getResearchSeedbedProfiles().isEmpty()) {
+            throw new ResearchSeedbedProfileHasStudentsAssociatedException
+                    ("No se puede eliminar el perfil de semillero de investigación " + existingEntity.getResearchSeedbed().getName()
+                    + " porque tiene perfiles de usuario asociados.");
+        }
         researchSeedbedProfileRepository.deleteById(id);
     }
 

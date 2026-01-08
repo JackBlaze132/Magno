@@ -206,8 +206,8 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
 
         if (!researchSeedbedProfiles.isEmpty()) {
             throw new InvestigationGroupProfileHasResearchSeedbedProfilesException(
-                    String.format("No se puede eliminar el perfil de grupo de investigación con ID %d porque tiene %d perfil(es) de semillero de investigación asociado(s)",
-                            investigationGroupProfileId, researchSeedbedProfiles.size())
+                    String.format("No se puede eliminar el perfil de grupo de investigación porque tiene %d perfil(es) de semillero de investigación asociado(s)",
+                            researchSeedbedProfiles.size())
             );
         }
     }
