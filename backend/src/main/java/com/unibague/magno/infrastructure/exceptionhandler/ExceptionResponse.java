@@ -34,6 +34,8 @@ public enum ExceptionResponse {
     INVESTIGATION_GROUP_PROFILE_HAS_RESEARCH_SEEDBED_PROFILES_EXCEPTION("ERR_INVESTIGATION_GROUP_PROFILE_004",
             "El perfil de grupo de investigación tiene perfiles de semilleros de investigación asociados y no puede ser eliminado."),
     RESEARCH_SEEDBED_NOT_FOUND("ERR_RESEARCH_SEEDBED_001", "Semillero de investigación no encontrado."),
+    RESEARCH_SEEDBED_HAS_ASSOCIATED_PROFILES("ERR_RESEARCH_SEEDBED_002",
+            "El semillero de investigación tiene perfiles asociados y no puede ser eliminado."),
     RESEARCH_SEEDBED_PROFILE_NOT_FOUND("ERR_RESEARCH_SEEDBED_PROFILE_001",
             "Perfil de semillero de investigación no encontrado."),
     RESEARCH_SEEDBED_PROFILE_SAME_COORDINATOR_AND_TUTOR("ERR_RESEARCH_SEEDBED_PROFILE_002",

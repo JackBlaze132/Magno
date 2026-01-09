@@ -11,4 +11,5 @@ public interface IResearchSeedbedServicePort {
     void deleteById(Long id);
     List<ResearchSeedbed> findAll();
     List<ResearchSeedbed> findResearchSeedbedsByUserId(Long id);
+    List<ResearchSeedbed> findResearchSeedbedsWithAssociatedProfiles();
 }

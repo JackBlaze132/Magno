@@ -6,6 +6,7 @@ import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurre
 import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileFunctionaryIsAlreadyACoordinatorException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileHasResearchSeedbedProfilesException;
+import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedHasAssociatedProfilesException;
 import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileHasStudentsAssociatedException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.*;
 import com.unibague.magno.domain.exception.security.NotAllowedToDoThisActionException;
@@ -447,6 +448,22 @@ public class ControllerAdvisor {
         
         logError(exception, code, message, request);
         
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(ResearchSeedbedHasAssociatedProfilesException.class)
+    public ErrorResponse handlerResearchSeedbedHasProfilesAssociated
+            (ResearchSeedbedHasAssociatedProfilesException exception, HttpServletRequest request) {
+
+        String code = RESEARCH_SEEDBED_HAS_ASSOCIATED_PROFILES.getCode();
+        String message = ExceptionResponse.RESEARCH_SEEDBED_HAS_ASSOCIATED_PROFILES.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+
+        logError(exception, code, message, request);
+
         return errorResponse;
     }
 

@@ -1,6 +1,7 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IResearchSeedbedServicePort;
+import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedHasAssociatedProfilesException;
 import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFoundException;
 import com.unibague.magno.domain.model.ResearchSeedbed;
 import com.unibague.magno.domain.spi.IResearchSeedbedPersistencePort;
@@ -46,6 +47,18 @@ public class ResearchSeedbedUseCase implements IResearchSeedbedServicePort {
                     String.format("No se pudo eliminar el semillero de investigación con ID %d porque no existe", id)
             );
         }
+        ResearchSeedbed researchSeedbed = findById(id);
+        List<ResearchSeedbed> researchSeedbedsWithProfiles =
+                researchSeedbedPersistencePort.findResearchSeedbedsWithAssociatedProfiles();
+        boolean hasAssociatedProfiles = researchSeedbedsWithProfiles.stream()
+                .anyMatch(seedbed -> seedbed.getId().equals(id));
+
+        if (hasAssociatedProfiles) {
+            throw new ResearchSeedbedHasAssociatedProfilesException(
+                    String.format("No se pudo eliminar el semillero de investigación " + researchSeedbed.getName() +
+                            " porque tiene perfiles asociados", id)
+            );
+        }
         researchSeedbedPersistencePort.deleteById(id);
     }
 
@@ -58,4 +71,10 @@ public class ResearchSeedbedUseCase implements IResearchSeedbedServicePort {
     public List<ResearchSeedbed> findResearchSeedbedsByUserId(Long id) {
         return researchSeedbedPersistencePort.findResearchSeedbedsByUserId(id);
     }
+
+    @Override
+    public List<ResearchSeedbed> findResearchSeedbedsWithAssociatedProfiles() {
+        return researchSeedbedPersistencePort.findResearchSeedbedsWithAssociatedProfiles();
+    }
+
 }

@@ -18,4 +18,8 @@ public interface IResearchSeedbedRepository extends JpaRepository<ResearchSeedbe
         WHERE u.id = :userId
         """)
     List<ResearchSeedbedEntity> findResearchSeedbedsByUserId(@Param("userId") Long userId);
+
+    @Query("SELECT DISTINCT rs FROM ResearchSeedbedEntity rs " +
+            "JOIN rs.researchSeedbedProfiles rsp")
+    List<ResearchSeedbedEntity> findResearchSeedbedsWithAssociatedProfiles();
 }

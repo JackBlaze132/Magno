@@ -57,4 +57,10 @@ public class ResearchSeedbedJpaAdapter implements IResearchSeedbedPersistencePor
         return researchSeedbedEntityMapper
                 .toResearchSeedbedList(researchSeedbedRepository.findResearchSeedbedsByUserId(id));
     }
+
+    @Override
+    public List<ResearchSeedbed> findResearchSeedbedsWithAssociatedProfiles() {
+        return researchSeedbedEntityMapper
+                .toResearchSeedbedList(researchSeedbedRepository.findResearchSeedbedsWithAssociatedProfiles());
+    }
 }
