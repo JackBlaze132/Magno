@@ -66,30 +66,68 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
     public ResearchSeedbedProfile update(Long id, ResearchSeedbedProfile researchSeedbedProfile) {
         researchSeedbedProfile.setId(id);
         
-        // Get the existing profile to capture the OLD coordinator ID before updating
+        // Get the existing profile to capture the OLD coordinator and tutor IDs before updating
         ResearchSeedbedProfile existingProfile = findById(id);
         Long oldCoordinatorId = existingProfile.getCoordinatorId();
+        Long oldTutorId = existingProfile.getTutorId(); // Can be null
         Long academicPeriodId = researchSeedbedProfile.getAcademicPeriodId();
 
         ResearchSeedbedProfile rsp = verificationsBeforeSaveOrUpdate(researchSeedbedProfile);
         
-        // Update the profile with the new coordinator
+        // Update the profile with the new coordinator and tutor
         ResearchSeedbedProfile response = researchSeedbedProfilePersistencePort.update(id, rsp);
         
-        // Get the updated list of seedbed profiles AFTER the update
-        List<ResearchSeedbedProfile> researchSeedbedProfiles = findAllByAcademicPeriodId(academicPeriodId);
-        
-        // Handle functionary profile changes only if coordinator changed
+        // Handle functionary profile changes only if coordinator or tutor changed
         Long newCoordinatorId = response.getCoordinatorId();
-        if (!oldCoordinatorId.equals(newCoordinatorId)) {
-            researchSeedbedProfileHelper.handleFunctionaryProfileChangesOnCoordinatorUpdate(
+        Long newTutorId = response.getTutorId(); // Can be null
+        
+        if (coordinatorOrTutorHasChanged(oldCoordinatorId, newCoordinatorId, oldTutorId, newTutorId)) {
+            // Get the updated list of seedbed profiles AFTER the update
+            List<ResearchSeedbedProfile> researchSeedbedProfiles = findAllByAcademicPeriodId(academicPeriodId);
+            
+            researchSeedbedProfileHelper.handleFunctionaryProfileChangesOnUpdate(
                     researchSeedbedProfiles,
                     academicPeriodId,
-                    oldCoordinatorId
+                    oldCoordinatorId,
+                    oldTutorId
             );
         }
         
         return response;
+    }
+    
+    /**
+     * Checks if the coordinator or tutor has changed.
+     * @param oldCoordinatorId The old coordinator ID
+     * @param newCoordinatorId The new coordinator ID
+     * @param oldTutorId The old tutor ID (can be null)
+     * @param newTutorId The new tutor ID (can be null)
+     * @return true if either coordinator or tutor has changed, false otherwise
+     */
+    private boolean coordinatorOrTutorHasChanged(Long oldCoordinatorId, Long newCoordinatorId,
+                                                   Long oldTutorId, Long newTutorId) {
+        boolean coordinatorChanged = !oldCoordinatorId.equals(newCoordinatorId);
+        boolean tutorChanged = tutorHasChanged(oldTutorId, newTutorId);
+        return coordinatorChanged || tutorChanged;
+    }
+    
+    /**
+     * Checks if the tutor has changed, considering that tutor can be null.
+     * @param oldTutorId The old tutor ID (can be null)
+     * @param newTutorId The new tutor ID (can be null)
+     * @return true if the tutor has changed, false otherwise
+     */
+    private boolean tutorHasChanged(Long oldTutorId, Long newTutorId) {
+        // Both null = no change
+        if (oldTutorId == null && newTutorId == null) {
+            return false;
+        }
+        // One is null and the other isn't = change
+        if (oldTutorId == null || newTutorId == null) {
+            return true;
+        }
+        // Both non-null, compare values
+        return !oldTutorId.equals(newTutorId);
     }
 
     @Override

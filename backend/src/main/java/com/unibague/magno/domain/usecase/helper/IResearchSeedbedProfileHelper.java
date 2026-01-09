@@ -8,7 +8,7 @@ public interface IResearchSeedbedProfileHelper {
     ResearchSeedbedProfile verifyUsersHasFunctionaryProfiles(ResearchSeedbedProfile rsp);
     void verifyAcademicPeriodIsCurrent(Long academicPeriodId, String errorMessage);
 
-    void handleFunctionaryProfileChangesOnCoordinatorUpdate
+    void handleFunctionaryProfileChangesOnUpdate
             (List<ResearchSeedbedProfile> researchSeedbedProfiles, Long academicPeriodId,
-             Long oldCoordinatorId);
+             Long oldCoordinatorId, Long oldTutorId);
 }

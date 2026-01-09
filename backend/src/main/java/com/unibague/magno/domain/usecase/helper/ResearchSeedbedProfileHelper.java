@@ -152,18 +152,35 @@ public class ResearchSeedbedProfileHelper implements IResearchSeedbedProfileHelp
     }
 
     @Override
-    public void handleFunctionaryProfileChangesOnCoordinatorUpdate
+    public void handleFunctionaryProfileChangesOnUpdate
             (List<ResearchSeedbedProfile> researchSeedbedProfiles, Long academicPeriodId,
-             Long oldCoordinatorId) {
-
+             Long oldCoordinatorId, Long oldTutorId) {
+        
+        // Get investigation group profiles once for efficiency
         List<InvestigationGroupProfile> investigationGroupProfiles =
                 investigationGroupProfilePersistencePort.findAllByAcademicPeriodId(academicPeriodId);
+        
+        // Handle old coordinator changes
+        handleOldCoordinatorChanges(researchSeedbedProfiles, investigationGroupProfiles, oldCoordinatorId);
+        
+        // Handle old tutor changes (only if there was a tutor)
+        if (oldTutorId != null) {
+            handleOldTutorChanges(researchSeedbedProfiles, investigationGroupProfiles, oldTutorId);
+        }
+    }
+
+    /**
+     * Handles the old coordinator functionary profile changes.
+     * Determines the appropriate action (keep, update role, or delete) based on current usage.
+     */
+    private void handleOldCoordinatorChanges(List<ResearchSeedbedProfile> researchSeedbedProfiles,
+                                              List<InvestigationGroupProfile> investigationGroupProfiles,
+                                              Long oldCoordinatorId) {
 
         boolean isOldCoordinatorInInvestigationGroups = investigationGroupProfiles.stream()
                 .anyMatch(igp -> igp.getCoordinatorId().equals(oldCoordinatorId));
         boolean isOldCoordinatorInOtherSeedbedsAsCoordinator = researchSeedbedProfiles.stream()
                 .anyMatch(rsp -> rsp.getCoordinatorId().equals(oldCoordinatorId));
-        // The comparison must be done with Objects.equals to avoid NullPointerException (TutorId can be null)
         boolean isOldCoordinatorInOtherSeedbedsAsTutor = researchSeedbedProfiles.stream()
                 .anyMatch(rsp -> Objects.equals(rsp.getTutorId(), oldCoordinatorId));
 
@@ -174,20 +191,54 @@ public class ResearchSeedbedProfileHelper implements IResearchSeedbedProfileHelp
 
         // No longer in investigation groups, check seedbed usage
         if (isOldCoordinatorInOtherSeedbedsAsCoordinator) {
-            // Update role to seedbed coordinator
-            FunctionaryProfile oldProfile = functionaryProfileServicePort.findById(oldCoordinatorId);
-            Role coordinatorRole = roleServicePort.findByName(SeedbedRole.COORDINADOR_DE_SEMILLERO);
-            oldProfile.setRoleId(coordinatorRole.getId());
-            functionaryProfileServicePort.update(oldProfile.getId(), oldProfile);
+            updateFunctionaryRole(oldCoordinatorId, SeedbedRole.COORDINADOR_DE_SEMILLERO);
         } else if (isOldCoordinatorInOtherSeedbedsAsTutor) {
-            // Update role to tutor
-            FunctionaryProfile oldProfile = functionaryProfileServicePort.findById(oldCoordinatorId);
-            Role tutorRole = roleServicePort.findByName(SeedbedRole.TUTOR_DE_SEMILLERO);
-            oldProfile.setRoleId(tutorRole.getId());
-            functionaryProfileServicePort.update(oldProfile.getId(), oldProfile);
+            updateFunctionaryRole(oldCoordinatorId, SeedbedRole.TUTOR_DE_SEMILLERO);
         } else {
             // Not used anywhere, delete the functionary profile
             functionaryProfileServicePort.deleteById(oldCoordinatorId);
         }
+    }
+
+    /**
+     * Handles the old tutor functionary profile changes.
+     * Determines the appropriate action (keep, update role, or delete) based on current usage.
+     */
+    private void handleOldTutorChanges(List<ResearchSeedbedProfile> researchSeedbedProfiles,
+                                        List<InvestigationGroupProfile> investigationGroupProfiles,
+                                        Long oldTutorId) {
+
+        boolean isOldTutorInInvestigationGroups = investigationGroupProfiles.stream()
+                .anyMatch(igp -> igp.getCoordinatorId().equals(oldTutorId));
+        boolean isOldTutorInOtherSeedbedsAsCoordinator = researchSeedbedProfiles.stream()
+                .anyMatch(rsp -> rsp.getCoordinatorId().equals(oldTutorId));
+        boolean isOldTutorInOtherSeedbedsAsTutor = researchSeedbedProfiles.stream()
+                .anyMatch(rsp -> Objects.equals(rsp.getTutorId(), oldTutorId));
+
+        // If coordinator of an investigation group, update role to investigation group coordinator
+        if (isOldTutorInInvestigationGroups) {
+            updateFunctionaryRole(oldTutorId, SeedbedRole.COORDINADOR_DE_GRUPO_DE_INVESTIGACION);
+            return;
+        }
+
+        // Not in investigation groups, check seedbed usage
+        if (isOldTutorInOtherSeedbedsAsCoordinator) {
+            updateFunctionaryRole(oldTutorId, SeedbedRole.COORDINADOR_DE_SEMILLERO);
+        } else if (isOldTutorInOtherSeedbedsAsTutor) {
+            updateFunctionaryRole(oldTutorId, SeedbedRole.TUTOR_DE_SEMILLERO);
+        } else {
+            // Not used anywhere, delete the functionary profile
+            functionaryProfileServicePort.deleteById(oldTutorId);
+        }
+    }
+
+    /**
+     * Updates the role of a functionary profile.
+     */
+    private void updateFunctionaryRole(Long functionaryId, SeedbedRole roleName) {
+        FunctionaryProfile profile = functionaryProfileServicePort.findById(functionaryId);
+        Role role = roleServicePort.findByName(roleName);
+        profile.setRoleId(role.getId());
+        functionaryProfileServicePort.update(profile.getId(), profile);
     }
 }
