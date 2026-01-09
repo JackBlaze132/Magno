@@ -6,7 +6,10 @@ import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurre
 import com.unibague.magno.domain.model.*;
 import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
+import com.unibague.magno.domain.spi.IInvestigationGroupProfilePersistencePort;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class ResearchSeedbedProfileHelper implements IResearchSeedbedProfileHelper {
@@ -17,18 +20,21 @@ public class ResearchSeedbedProfileHelper implements IResearchSeedbedProfileHelp
     private final IDependencyServicePort dependencyServicePort;
     private final IRoleServicePort roleServicePort;
     private final IAcademicPeriodServicePort academicPeriodServicePort;
+    private final IInvestigationGroupProfilePersistencePort investigationGroupProfilePersistencePort;
 
     public ResearchSeedbedProfileHelper(IIntegraServicePort integraServicePort, IUserServicePort userServicePort,
                                         IFunctionaryProfileServicePort functionaryProfileServicePort,
                                         IDependencyServicePort dependencyServicePort,
                                         IRoleServicePort roleServicePort,
-                                        IAcademicPeriodServicePort academicPeriodServicePort) {
+                                        IAcademicPeriodServicePort academicPeriodServicePort,
+                                        IInvestigationGroupProfilePersistencePort investigationGroupProfilePersistencePort) {
         this.integraServicePort = integraServicePort;
         this.userServicePort = userServicePort;
         this.functionaryProfileServicePort = functionaryProfileServicePort;
         this.dependencyServicePort = dependencyServicePort;
         this.roleServicePort = roleServicePort;
         this.academicPeriodServicePort = academicPeriodServicePort;
+        this.investigationGroupProfilePersistencePort = investigationGroupProfilePersistencePort;
     }
 
     @Override
@@ -143,5 +149,45 @@ public class ResearchSeedbedProfileHelper implements IResearchSeedbedProfileHelp
         return functionaryProfileServicePort.findAllProfilesByUserId(userId).stream()
                 .filter(profile -> profile.getAcademicPeriodId().equals(academicPeriodId))
                 .findFirst();
+    }
+
+    @Override
+    public void handleFunctionaryProfileChangesOnCoordinatorUpdate
+            (List<ResearchSeedbedProfile> researchSeedbedProfiles, Long academicPeriodId,
+             Long oldCoordinatorId) {
+
+        List<InvestigationGroupProfile> investigationGroupProfiles =
+                investigationGroupProfilePersistencePort.findAllByAcademicPeriodId(academicPeriodId);
+
+        boolean isOldCoordinatorInInvestigationGroups = investigationGroupProfiles.stream()
+                .anyMatch(igp -> igp.getCoordinatorId().equals(oldCoordinatorId));
+        boolean isOldCoordinatorInOtherSeedbedsAsCoordinator = researchSeedbedProfiles.stream()
+                .anyMatch(rsp -> rsp.getCoordinatorId().equals(oldCoordinatorId));
+        // The comparison must be done with Objects.equals to avoid NullPointerException (TutorId can be null)
+        boolean isOldCoordinatorInOtherSeedbedsAsTutor = researchSeedbedProfiles.stream()
+                .anyMatch(rsp -> Objects.equals(rsp.getTutorId(), oldCoordinatorId));
+
+        // If still coordinator of an investigation group, keep the role (do nothing)
+        if (isOldCoordinatorInInvestigationGroups) {
+            return;
+        }
+
+        // No longer in investigation groups, check seedbed usage
+        if (isOldCoordinatorInOtherSeedbedsAsCoordinator) {
+            // Update role to seedbed coordinator
+            FunctionaryProfile oldProfile = functionaryProfileServicePort.findById(oldCoordinatorId);
+            Role coordinatorRole = roleServicePort.findByName(SeedbedRole.COORDINADOR_DE_SEMILLERO);
+            oldProfile.setRoleId(coordinatorRole.getId());
+            functionaryProfileServicePort.update(oldProfile.getId(), oldProfile);
+        } else if (isOldCoordinatorInOtherSeedbedsAsTutor) {
+            // Update role to tutor
+            FunctionaryProfile oldProfile = functionaryProfileServicePort.findById(oldCoordinatorId);
+            Role tutorRole = roleServicePort.findByName(SeedbedRole.TUTOR_DE_SEMILLERO);
+            oldProfile.setRoleId(tutorRole.getId());
+            functionaryProfileServicePort.update(oldProfile.getId(), oldProfile);
+        } else {
+            // Not used anywhere, delete the functionary profile
+            functionaryProfileServicePort.deleteById(oldCoordinatorId);
+        }
     }
 }

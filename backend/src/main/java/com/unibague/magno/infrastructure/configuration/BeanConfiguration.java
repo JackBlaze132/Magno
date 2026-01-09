@@ -19,7 +19,6 @@ import com.unibague.magno.infrastructure.output.jpa.repository.*;
 import com.unibague.magno.infrastructure.util.certificates.HtmlRenderService;
 import com.unibague.magno.infrastructure.util.certificates.PdfService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -245,7 +244,8 @@ public class BeanConfiguration {
     @Bean
     public IResearchSeedbedProfileHelper researchSeedbedProfileHelper() {
         return new ResearchSeedbedProfileHelper(integraServicePort(), userServicePort(),
-                functionaryProfileServicePort(), dependencyServicePort(), roleServicePort(), academicPeriodServicePort());
+                functionaryProfileServicePort(), dependencyServicePort(), roleServicePort(), academicPeriodServicePort(),
+                investigationGroupProfilePersistencePort());
     }
 
     @Bean
