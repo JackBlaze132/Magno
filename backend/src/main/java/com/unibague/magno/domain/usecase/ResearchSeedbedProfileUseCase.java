@@ -132,18 +132,30 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
 
     @Override
     public void deleteById(Long id) {
-        if (researchSeedbedProfilePersistencePort.findById(id).isEmpty()) {
-            throw new ResearchSeedbedNotFoundException(
-                    String.format("No se pudo eliminar el perfil de semillero de investigación con ID %d porque no existe", id)
-            );
-        }
+        // Get the existing profile before deleting to capture coordinator and tutor IDs
         ResearchSeedbedProfile rsp = findById(id);
+        Long coordinatorId = rsp.getCoordinatorId();
+        Long tutorId = rsp.getTutorId(); // Can be null
+        Long academicPeriodId = rsp.getAcademicPeriodId();
+        
         researchSeedbedProfileHelper.verifyAcademicPeriodIsCurrent(
-                rsp.getAcademicPeriodId(),
+                academicPeriodId,
                 "El período académico debe estar activo para eliminar un perfil de semillero de investigación."
         );
 
+        // Delete the research seedbed profile
         researchSeedbedProfilePersistencePort.deleteById(id);
+        
+        // Get the updated list of seedbed profiles AFTER the deletion
+        List<ResearchSeedbedProfile> researchSeedbedProfiles = findAllByAcademicPeriodId(academicPeriodId);
+        
+        // Handle functionary profile changes for the deleted coordinator and tutor
+        researchSeedbedProfileHelper.handleFunctionaryProfileChangesOnUpdate(
+                researchSeedbedProfiles,
+                academicPeriodId,
+                coordinatorId,
+                tutorId
+        );
     }
 
     @Override

@@ -224,9 +224,7 @@ public class ResearchSeedbedProfileHelper implements IResearchSeedbedProfileHelp
         // Not in investigation groups, check seedbed usage
         if (isOldTutorInOtherSeedbedsAsCoordinator) {
             updateFunctionaryRole(oldTutorId, SeedbedRole.COORDINADOR_DE_SEMILLERO);
-        } else if (isOldTutorInOtherSeedbedsAsTutor) {
-            updateFunctionaryRole(oldTutorId, SeedbedRole.TUTOR_DE_SEMILLERO);
-        } else {
+        } else if (!isOldTutorInOtherSeedbedsAsTutor) { // If tutor in other seedbeds, keep role
             // Not used anywhere, delete the functionary profile
             functionaryProfileServicePort.deleteById(oldTutorId);
         }
