@@ -4,6 +4,7 @@ import com.unibague.magno.domain.api.IErrorLogServicePort;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodHasInvestigationGroupProfilesException;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurrentException;
 import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
+import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupHasAssociatedProfilesException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileFunctionaryIsAlreadyACoordinatorException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileHasResearchSeedbedProfilesException;
 import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedHasAssociatedProfilesException;
@@ -294,6 +295,22 @@ public class ControllerAdvisor {
         
         logError(exception, code, message, request);
         
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(InvestigationGroupHasAssociatedProfilesException.class)
+    public ErrorResponse handleInvestigationGroupHasAssociatedProfiles
+            (InvestigationGroupHasAssociatedProfilesException exception, HttpServletRequest request) {
+
+        String code = INVESTIGATION_GROUP_HAS_ASSOCIATED_PROFILES_EXCEPTION.getCode();
+        String message = ExceptionResponse.INVESTIGATION_GROUP_HAS_ASSOCIATED_PROFILES_EXCEPTION.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+
+        logError(exception, code, message, request);
+
         return errorResponse;
     }
 

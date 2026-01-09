@@ -25,6 +25,8 @@ public enum ExceptionResponse {
     DIRI_USER_NOT_FOUND("ERR_USER_007",
             "El usuario DIRI no está registrado en el sistema."),
     INVESTIGATION_GROUP_NOT_FOUND("ERR_INVESTIGATION_GROUP_001", "Grupo de investigación no encontrado."),
+    INVESTIGATION_GROUP_HAS_ASSOCIATED_PROFILES_EXCEPTION("ERR_INVESTIGATION_GROUP_002",
+            "El grupo de investigación tiene perfiles asociados y no puede ser eliminado."),
     INVESTIGATION_GROUP_PROFILE_NOT_FOUND("ERR_INVESTIGATION_GROUP_PROFILE_001",
             "Perfil de grupo de investigación no encontrado."),
     INVESTIGATION_GROUP_PROFILE_DUPLICATED_IN_SAME_ACADEMIC_PERIOD("ERR_INVESTIGATION_GROUP_PROFILE_002",

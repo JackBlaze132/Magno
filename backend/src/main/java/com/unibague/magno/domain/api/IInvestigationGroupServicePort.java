@@ -10,4 +10,5 @@ public interface IInvestigationGroupServicePort {
     InvestigationGroup update(Long id, InvestigationGroup investigationGroup);
     void deleteById(Long id);
     List<InvestigationGroup> findAll();
+    List<InvestigationGroup> findInvestigationGroupsWithAssociatedProfiles();
 }

@@ -54,10 +54,9 @@ public class ResearchSeedbedUseCase implements IResearchSeedbedServicePort {
                 .anyMatch(seedbed -> seedbed.getId().equals(id));
 
         if (hasAssociatedProfiles) {
-            throw new ResearchSeedbedHasAssociatedProfilesException(
-                    String.format("No se pudo eliminar el semillero de investigación " + researchSeedbed.getName() +
-                            " porque tiene perfiles asociados", id)
-            );
+            throw new ResearchSeedbedHasAssociatedProfilesException
+                    ("No se pudo eliminar el semillero de investigación "
+                            + researchSeedbed.getName() + " porque tiene perfiles asociados");
         }
         researchSeedbedPersistencePort.deleteById(id);
     }

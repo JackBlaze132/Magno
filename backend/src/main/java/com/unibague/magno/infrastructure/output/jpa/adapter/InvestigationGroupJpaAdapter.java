@@ -51,4 +51,10 @@ public class InvestigationGroupJpaAdapter implements IInvestigationGroupPersiste
     public List<InvestigationGroup> findAll() {
         return investigationGroupEntityMapper.toInvestigationGroupList(investigationGroupRepository.findAll());
     }
+
+    @Override
+    public List<InvestigationGroup> findInvestigationGroupsWithAssociatedProfiles() {
+        return investigationGroupEntityMapper
+                .toInvestigationGroupList(investigationGroupRepository.findInvestigationGroupsWithAssociatedProfiles());
+    }
 }

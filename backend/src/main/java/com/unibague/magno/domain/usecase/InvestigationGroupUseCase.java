@@ -1,6 +1,7 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IInvestigationGroupServicePort;
+import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupHasAssociatedProfilesException;
 import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupNotFoundException;
 import com.unibague.magno.domain.model.InvestigationGroup;
 import com.unibague.magno.domain.spi.IInvestigationGroupPersistencePort;
@@ -42,11 +43,29 @@ public class InvestigationGroupUseCase implements IInvestigationGroupServicePort
             throw new InvestigationGroupNotFoundException(
                     String.format("InvestigationGroup with ID %d could not be deleted because it does not exist", id));
         }
+
+        InvestigationGroup investigationGroup = findById(id);
+        List<InvestigationGroup> associatedGroups =
+                investigationGroupPersistencePort.findInvestigationGroupsWithAssociatedProfiles();
+
+        boolean hasAssociatedProfiles = associatedGroups.stream()
+                .anyMatch(group -> group.getId().equals(investigationGroup.getId()));
+
+        if (hasAssociatedProfiles) {
+            throw new InvestigationGroupHasAssociatedProfilesException(
+                    "El grupo de investigacion " + investigationGroup.getName()
+                           + " no puede ser eliminado porque tiene perfiles asociados");
+        }
         investigationGroupPersistencePort.deleteById(id);
     }
 
     @Override
     public List<InvestigationGroup> findAll() {
         return investigationGroupPersistencePort.findAll();
+    }
+
+    @Override
+    public List<InvestigationGroup> findInvestigationGroupsWithAssociatedProfiles() {
+        return investigationGroupPersistencePort.findInvestigationGroupsWithAssociatedProfiles();
     }
 }
