@@ -1,6 +1,7 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IInvestigationGroupServicePort;
+import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupAlreadyExistsException;
 import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupHasAssociatedProfilesException;
 import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupNotFoundException;
 import com.unibague.magno.domain.model.InvestigationGroup;
@@ -25,7 +26,30 @@ public class InvestigationGroupUseCase implements IInvestigationGroupServicePort
 
     @Override
     public InvestigationGroup save(InvestigationGroup investigationGroup) {
+        verifyThatInvestigationGroupDoesNotExist(investigationGroup);
         return investigationGroupPersistencePort.save(investigationGroup);
+    }
+
+    /**
+     * Verifies that an investigation group with the same name doesn't already exist.
+     * Uses trim() to ignore leading/trailing whitespaces and case-insensitive comparison.
+     *
+     * @param investigationGroup The investigation group to verify
+     * @throws InvestigationGroupAlreadyExistsException if a group with the same name exists
+     */
+    private void verifyThatInvestigationGroupDoesNotExist(InvestigationGroup investigationGroup) {
+        String normalizedName = investigationGroup.getName().trim().toLowerCase();
+        
+        List<InvestigationGroup> existingGroups = investigationGroupPersistencePort.findAll();
+        boolean exists = existingGroups.stream()
+                .anyMatch(group -> group.getName().trim().toLowerCase().equals(normalizedName));
+        
+        if (exists) {
+            throw new InvestigationGroupAlreadyExistsException(
+                    String.format("Ya existe un grupo de investigación con el nombre '%s'", 
+                            investigationGroup.getName().trim())
+            );
+        }
     }
 
     @Override

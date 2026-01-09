@@ -1,6 +1,7 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IResearchSeedbedServicePort;
+import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedAlreadyExistsException;
 import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedHasAssociatedProfilesException;
 import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFoundException;
 import com.unibague.magno.domain.model.ResearchSeedbed;
@@ -27,7 +28,30 @@ public class ResearchSeedbedUseCase implements IResearchSeedbedServicePort {
 
     @Override
     public ResearchSeedbed save(ResearchSeedbed researchSeedbed) {
+        verifyThatResearchSeedbedDoesNotExist(researchSeedbed);
         return researchSeedbedPersistencePort.save(researchSeedbed);
+    }
+
+    /**
+     * Verifies that a research seedbed with the same name doesn't already exist.
+     * Uses trim() to ignore leading/trailing whitespaces and case-insensitive comparison.
+     *
+     * @param researchSeedbed The research seedbed to verify
+     * @throws ResearchSeedbedAlreadyExistsException if a seedbed with the same name exists
+     */
+    private void verifyThatResearchSeedbedDoesNotExist(ResearchSeedbed researchSeedbed) {
+        String normalizedName = researchSeedbed.getName().trim().toLowerCase();
+        
+        List<ResearchSeedbed> existingSeedbeds = researchSeedbedPersistencePort.findAll();
+        boolean exists = existingSeedbeds.stream()
+                .anyMatch(seedbed -> seedbed.getName().trim().toLowerCase().equals(normalizedName));
+        
+        if (exists) {
+            throw new ResearchSeedbedAlreadyExistsException(
+                    String.format("Ya existe un semillero de investigación con el nombre '%s'", 
+                            researchSeedbed.getName().trim())
+            );
+        }
     }
 
     @Override

@@ -4,9 +4,11 @@ import com.unibague.magno.domain.api.IErrorLogServicePort;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodHasInvestigationGroupProfilesException;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurrentException;
 import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
+import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupAlreadyExistsException;
 import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupHasAssociatedProfilesException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileFunctionaryIsAlreadyACoordinatorException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileHasResearchSeedbedProfilesException;
+import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedAlreadyExistsException;
 import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedHasAssociatedProfilesException;
 import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileHasStudentsAssociatedException;
 import com.unibague.magno.domain.exception.researchseedbedstudentprofile.*;
@@ -314,6 +316,22 @@ public class ControllerAdvisor {
         return errorResponse;
     }
 
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(InvestigationGroupAlreadyExistsException.class)
+    public ErrorResponse handleInvestigationGroupAlreadyExists
+            (InvestigationGroupAlreadyExistsException exception, HttpServletRequest request) {
+
+        String code = INVESTIGATION_GROUP_ALREADY_EXISTS.getCode();
+        String message = INVESTIGATION_GROUP_ALREADY_EXISTS.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+
+        logError(exception, code, message, request);
+
+        return errorResponse;
+    }
+
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(FunctionaryProfileNotFoundException.class)
     public ErrorResponse handleUserNotFoundException(FunctionaryProfileNotFoundException exception, HttpServletRequest request) {
@@ -475,6 +493,22 @@ public class ControllerAdvisor {
 
         String code = RESEARCH_SEEDBED_HAS_ASSOCIATED_PROFILES.getCode();
         String message = ExceptionResponse.RESEARCH_SEEDBED_HAS_ASSOCIATED_PROFILES.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+
+        logError(exception, code, message, request);
+
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(ResearchSeedbedAlreadyExistsException.class)
+    public ErrorResponse handleResearchSeedbedAlreadyExists
+            (ResearchSeedbedAlreadyExistsException exception, HttpServletRequest request) {
+
+        String code = RESEARCH_SEEDBED_ALREADY_EXISTS.getCode();
+        String message = RESEARCH_SEEDBED_ALREADY_EXISTS.getMessage();
 
         ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
                 Collections.singletonList(exception.getMessage()));
