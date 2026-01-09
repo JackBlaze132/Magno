@@ -17,11 +17,11 @@
         { "key": "line_of_research", "label": "Linea de investigación", "type": "select", "options": [] }
     ],
     "group_profile": [
-        { "key": "investigation_group_id", "label": "Grupo de Investigación", "type": "select", "options": [] },
+        { "key": "investigation_group_id", "label": "Grupo de Investigación", "type": "select", "options": [], "disabled": true },
         { "key": "coordinator_id", "label": "Coordinador", "type": "select", "options": [] }
     ],
     "seedbed_profile": [
-        { "key": "research_seedbed_id", "label": "Semillero de investigación", "type": "select" },
+        { "key": "research_seedbed_id", "label": "Semillero de investigación", "type": "select", "disabled": true },
         { "key": "coordinator_id", "label": "Coordinador", "type": "select" },
         { "key": "tutor_id", "label": "Tutor", "type": "select" },
         { "key": "was_active", "label": "Periodo Académico", "type": "radio-group", "options": [

@@ -36,6 +36,7 @@
             item-title="label"
             item-value="value"
             :label="field.label"
+            :disabled="field.disabled"
             class="mb-5"
           />
           <VSelect v-else-if="field.type === 'multiple-select'"
@@ -93,7 +94,7 @@ export default defineComponent({
       type: String,
     },
     fields: {
-      type: Array as () => Array<{ key: string; label: string; type?: string, options?: Array<{ label: string; value: string}> }>,
+      type: Array as () => Array<{ key: string; label: string; type?: string, options?: Array<{ label: string; value: string}>, disabled?: boolean }>,
       default: () => [],
     },
     initialData: {
