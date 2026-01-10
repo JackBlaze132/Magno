@@ -61,6 +61,7 @@ public class ResearchSeedbedUseCase implements IResearchSeedbedServicePort {
                     String.format("No se pudo actualizar el semillero de investigación con ID %d porque no existe", id)
             );
         }
+        verifyThatResearchSeedbedDoesNotExist(researchSeedbed);
         return researchSeedbedPersistencePort.update(id, researchSeedbed);
     }
 

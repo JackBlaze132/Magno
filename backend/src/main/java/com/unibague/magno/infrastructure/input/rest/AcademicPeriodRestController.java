@@ -19,7 +19,7 @@ public class AcademicPeriodRestController {
 
     private final AcademicPeriodHandler academicPeriodHandler;
 
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
+    // No role restriction for this endpoint due to internal logic
     @GetMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<AcademicPeriodResponse> getAcademicPeriodById(@PathVariable Long id) {
         AcademicPeriodResponse response = academicPeriodHandler.findById(id);

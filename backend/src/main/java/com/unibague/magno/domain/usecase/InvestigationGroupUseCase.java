@@ -58,6 +58,7 @@ public class InvestigationGroupUseCase implements IInvestigationGroupServicePort
             throw new InvestigationGroupNotFoundException(
                     String.format("InvestigationGroup with ID %d could not be updated because it does not exist", id));
         }
+        verifyThatInvestigationGroupDoesNotExist(investigationGroup);
         return investigationGroupPersistencePort.update(id, investigationGroup);
     }
 
