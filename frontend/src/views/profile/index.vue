@@ -75,7 +75,7 @@
     <!-- My Profiles Section -->
     <VRow v-if="userId" class="mt-6">
       <VCol cols="12">
-        <h2>Mis certificados</h2>
+        <h2>Mis registros</h2>
         <VCard variant="outlined" class="mb-4" border="secondary md">
           <TableCertificates :user-id="userId" />
         </VCard>

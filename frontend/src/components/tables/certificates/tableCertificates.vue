@@ -16,11 +16,6 @@
       :search="search"
       :headers="headers"
     >
-      <template v-slot:item.link="{item}">
-        <CertBtn
-          @itemEdited="handleItemRefresh"
-        ></CertBtn>
-      </template>
     </VDataTable>
   </VCard>
 </template>
@@ -69,7 +64,6 @@ export default defineComponent({
         {title: 'Número de identificación', key: 'user.identification_number'},
         {title: 'Código de usuario', key: 'user.user_code'},
         {title: 'Correo electrónico', key: 'user.email'},
-        {key: 'link', sortable: false}
       ]
     }
   },
