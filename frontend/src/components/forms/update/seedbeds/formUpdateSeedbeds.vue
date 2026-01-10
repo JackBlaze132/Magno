@@ -4,35 +4,32 @@
     :type="type"
     :fields="fields"
     :index="index"
-    :initialData="initialData"
+    :initialData="transformedInitialData"
     @itemEdited="handleItemEdited"
   />
 </template>
 
 <script lang="ts">
-// ...existing code...
 import { defineComponent } from 'vue';
 import API from "@/utils/api";
 
 export default defineComponent({
-  name: 'formUpdateGroup',
+  name: 'formUpdateSeedbed',
   emits: ['itemEdited'],
   data() {
     return {
       loaded: false,
-      options: [],
+      valueToLabelMap: {} as Record<string, string>,
+      labelToValueMap: {} as Record<string, string>,
+      transformedInitialData: {} as Record<string, any>,
     };
   },
-  async created() {
-    await this.fetchMapData()
-    this.loaded = true
-  },
-  props:{
-    fields:{
+  props: {
+    fields: {
       type: Array as () => Array<{ key: string; label: string; type?: string; options?: Array<{ label: string; value: string }> }>,
       default: () => [],
     },
-    type:{
+    type: {
       type: String,
     },
     index: {
@@ -43,34 +40,58 @@ export default defineComponent({
       default: () => ({}),
     },
   },
+  async created() {
+    await this.fetchMapData()
+    this.transformInitialData()
+    this.loaded = true
+  },
   methods: {
-    // ...existing code...
     handleItemEdited() {
       this.$emit('itemEdited');
+    },
+
+    transformInitialData() {
+      // Create a copy of initialData
+      this.transformedInitialData = { ...this.initialData }
+
+      // Transform line_of_research from label to value if needed
+      if (this.transformedInitialData.line_of_research) {
+        const currentValue = this.transformedInitialData.line_of_research
+        const currentValueLower = String(currentValue).toLowerCase()
+
+        // Check if the current value is a label (not an enum value)
+        // If it exists in labelToValueMap, convert it (case-insensitive lookup)
+        if (this.labelToValueMap[currentValueLower]) {
+          this.transformedInitialData.line_of_research = this.labelToValueMap[currentValueLower]
+        }
+      }
     },
 
     async fetchMapData() {
       try {
         const headers = { 'API-VERSION': '2' }
-        // Suppose rawMap is actually an array like:
-        // [ { "CIENCIAS_DE_LA_TIERRA_Y_MEDIOAMBIENTALES": "Ciencias...", ... } ]
+        // Get the lines of research mapping from the API
         const rawMap = await API.get(API.LINES_OF_RESEARCH_BY_INVESTIGATION_VALUES, headers)
 
         // If rawMap is an array, take the first element. Otherwise, use rawMap directly.
         const actualObject = Array.isArray(rawMap) ? rawMap[0] : rawMap
 
-        // Now convert each key/value into { value, label }
+        // Create both mappings: value->label and label->value
+        Object.entries(actualObject).forEach(([key, val]) => {
+          this.valueToLabelMap[key] = String(val)
+          this.labelToValueMap[String(val).toLowerCase()] = key
+        })
+
+        // Convert to options format for the select field
         const transformedOptions = Object.entries(actualObject).map(([key, val]) => ({
           value: key,
-          label: val
+          label: String(val)
         }))
 
         // Locate the field that needs these options
         const linesField = this.fields.find(f => f.key === 'line_of_research')
         if (linesField) {
-          linesField.options = linesField.options || []
-          linesField.options = [...(linesField.options as { label: string; value: string; }[]), ...transformedOptions.map(opt => ({ label: String(opt.label), value: opt.value }))]
-          console.log('Updated lines_of_research options:', linesField.options)
+          linesField.options = transformedOptions
         }
       } catch (error) {
         console.error('Error fetching map data:', error)
