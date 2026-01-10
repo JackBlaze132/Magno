@@ -2,6 +2,7 @@ package com.unibague.magno.infrastructure.output.jpa.repository;
 
 import com.unibague.magno.infrastructure.output.jpa.entity.StudentProfileEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -21,4 +22,8 @@ public interface IStudentProfileRepository extends JpaRepository<StudentProfileE
     List<StudentProfileEntity> findAllByAcademicPeriod_Id(Long academicPeriodId);
 
     List<StudentProfileEntity> findAllByUser_Id(Long userId);
+
+    @Modifying
+    @Query("UPDATE StudentProfileEntity sp SET sp.role.id = :roleId WHERE sp.id = :studentProfileId")
+    void updateRoleId(@Param("studentProfileId") Long studentProfileId, @Param("roleId") Long roleId);
 }

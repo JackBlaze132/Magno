@@ -153,4 +153,9 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
 
         return save(newStudentProfile);
     }
+
+    @Override
+    public void updateRoleId(Long studentProfileId, Long roleId) {
+        studentProfilePersistencePort.updateRoleId(studentProfileId, roleId);
+    }
 }

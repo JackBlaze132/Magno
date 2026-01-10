@@ -15,4 +15,5 @@ public interface IStudentProfilePersistencePort {
     List<StudentProfile> findAll();
     List<StudentProfile> findAllByAcademicPeriodId(Long academicPeriodId);
     List<StudentProfile> findAllProfilesByUserId(Long userId);
+    void updateRoleId(Long studentProfileId, Long roleId);
 }

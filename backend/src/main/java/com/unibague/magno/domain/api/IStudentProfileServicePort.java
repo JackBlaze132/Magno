@@ -23,4 +23,5 @@ public interface IStudentProfileServicePort {
                                              List<User> users, Long academicPeriodId);
     StudentProfile createStudentProfileFromIntegraData(
             String identification, Long academicPeriodId, User user);
+    void updateRoleId(Long studentProfileId, Long roleId);
 }
