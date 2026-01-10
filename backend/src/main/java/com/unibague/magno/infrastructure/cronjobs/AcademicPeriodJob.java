@@ -46,7 +46,7 @@ public class AcademicPeriodJob {
                         period.getName(),
                         period.getStartDate(),
                         period.getEndDate(),
-                        false
+                            false, true
                     );
                     // Use the persistence port directly to bypass validation that prevents updating inactive periods
                     // This is acceptable for system/cron jobs that need to deactivate expired periods

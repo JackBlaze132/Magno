@@ -69,7 +69,7 @@ public class AdminRegistrationInitializer implements CommandLineRunner {
             ap = academicPeriodServicePort.save(
                     new AcademicPeriod(
                             null, SystemConstants.ADMIN_REGISTRATION_ACADEMIC_PERIOD_NAME, LocalDate.of(1900, 1, 1),
-                            LocalDate.of(3000, 12, 31), true));
+                            LocalDate.of(3000, 12, 31), true, false));
 
         }
         else {

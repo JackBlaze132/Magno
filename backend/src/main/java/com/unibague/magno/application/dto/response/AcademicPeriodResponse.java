@@ -20,4 +20,7 @@ public class AcademicPeriodResponse {
     
     @JsonProperty("is_current")
     private boolean isCurrent;
+    
+    @JsonProperty("is_visible")
+    private boolean isVisible;
 }

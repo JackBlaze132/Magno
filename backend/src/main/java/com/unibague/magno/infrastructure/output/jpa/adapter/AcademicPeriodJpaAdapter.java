@@ -67,7 +67,7 @@ public class AcademicPeriodJpaAdapter implements IAcademicPeriodPersistencePort 
 
     @Override
     public List<AcademicPeriod> findAll() {
-        List<AcademicPeriodEntity> academicPeriodEntities = academicPeriodRepository.findAll();
+        List<AcademicPeriodEntity> academicPeriodEntities = academicPeriodRepository.findAllVisible();
         return academicPeriodEntityMapper.toAcademicPeriodList(academicPeriodEntities);
     }
 }

@@ -31,6 +31,9 @@ public class AcademicPeriodEntity {
     @Column(name = "is_current", nullable = false)
     boolean isCurrent;
 
+    @Column(name = "is_visible", nullable = false)
+    boolean isVisible;
+
     @OneToMany(mappedBy = "academicPeriod", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<FunctionaryProfileEntity> functionaryProfiles;
 

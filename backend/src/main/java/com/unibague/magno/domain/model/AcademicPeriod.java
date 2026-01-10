@@ -9,13 +9,15 @@ public class AcademicPeriod {
     private LocalDate startDate;
     private LocalDate endDate;
     private boolean isCurrent;
+    private boolean isVisible;
 
-    public AcademicPeriod(Long id, String name, LocalDate startDate, LocalDate endDate, boolean isCurrent) {
+    public AcademicPeriod(Long id, String name, LocalDate startDate, LocalDate endDate, boolean isCurrent, boolean isVisible) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
         this.isCurrent = isCurrent;
+        this.isVisible = isVisible;
     }
 
     private AcademicPeriod() {
@@ -59,5 +61,13 @@ public class AcademicPeriod {
 
     public void setCurrent(boolean current) {
         isCurrent = current;
+    }
+
+    public boolean isVisible() {
+        return isVisible;
+    }
+
+    public void setVisible(boolean visible) {
+        isVisible = visible;
     }
 }
