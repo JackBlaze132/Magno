@@ -1,6 +1,7 @@
 package com.unibague.magno.domain.usecase;
 
 import com.unibague.magno.domain.api.IAcademicPeriodServicePort;
+import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodAlreadyExistsException;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurrentException;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotFoundException;
 import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
@@ -34,6 +35,7 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
     @Override
     public AcademicPeriod save(AcademicPeriod academicPeriod) {
         validationsBeforeSaveOrUpdate(academicPeriod);
+        verifyThatAcademicPeriodDoesNotExist(academicPeriod, null);
         return academicPeriodPersistencePort.save(academicPeriod);
     }
 
@@ -44,6 +46,7 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
             throw new AcademicPeriodNotFoundException(
                     String.format("No se pudo actualizar el período académico con ID %d porque no existe", id));
         }
+        verifyThatAcademicPeriodDoesNotExist(academicPeriod, id);
         return academicPeriodPersistencePort.update(id, academicPeriod);
     }
 
@@ -79,5 +82,29 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
     @Override
     public List<AcademicPeriod> findAll() {
         return academicPeriodPersistencePort.findAll();
+    }
+
+    /**
+     * Verifies that an academic period with the same name doesn't already exist.
+     * Uses trim() to ignore leading/trailing whitespaces and case-insensitive comparison.
+     *
+     * @param academicPeriod The academic period to verify
+     * @param currentId The ID of the current academic period (null for save, actual ID for update)
+     * @throws AcademicPeriodAlreadyExistsException if an academic period with the same name exists
+     */
+    private void verifyThatAcademicPeriodDoesNotExist(AcademicPeriod academicPeriod, Long currentId) {
+        String normalizedName = academicPeriod.getName().trim().toLowerCase();
+        
+        List<AcademicPeriod> existingPeriods = academicPeriodPersistencePort.findAll();
+        boolean exists = existingPeriods.stream()
+                .filter(period -> currentId == null || !period.getId().equals(currentId))
+                .anyMatch(period -> period.getName().trim().toLowerCase().equals(normalizedName));
+        
+        if (exists) {
+            throw new AcademicPeriodAlreadyExistsException(
+                    String.format("Ya existe un período académico con el nombre '%s'", 
+                            academicPeriod.getName().trim())
+            );
+        }
     }
 }

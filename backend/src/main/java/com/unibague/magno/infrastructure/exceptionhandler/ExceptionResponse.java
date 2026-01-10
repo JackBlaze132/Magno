@@ -10,6 +10,8 @@ public enum ExceptionResponse {
     ACADEMIC_PERIOD_NOT_CURRENT("ERR_ACADEMIC_PERIOD_003", "El período académico no está marcado como activo."),
     ACADEMIC_PERIOD_HAS_INVESTIGATION_GROUP_PROFILES("ERR_ACADEMIC_PERIOD_004",
             "No se puede eliminar el período académico porque tiene perfiles de grupo de investigación asociados."),
+    ACADEMIC_PERIOD_ALREADY_EXISTS("ERR_ACADEMIC_PERIOD_005",
+            "Ya existe un período académico con ese nombre."),
     ROLE_NOT_FOUND("ERR_ROLE_001", "Rol no encontrado."),
     DEPENDENCY_NOT_FOUND("ERR_DEPENDENCY_001", "Dependencia no encontrada."),
     ACADEMIC_PROGRAM_NOT_FOUND("ERR_ACADEMIC_PROGRAM_001", "Programa académico no encontrado."),
