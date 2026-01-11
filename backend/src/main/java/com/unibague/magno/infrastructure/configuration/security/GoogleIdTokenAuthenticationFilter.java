@@ -8,6 +8,7 @@ import com.unibague.magno.domain.api.IRoleServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.model.Role;
 import com.unibague.magno.domain.model.User;
+import com.unibague.magno.domain.model.enums.SeedbedRole;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -58,6 +59,10 @@ public class GoogleIdTokenAuthenticationFilter extends OncePerRequestFilter {
 
                     User user = userServicePort.findByEmail(email);
                     List<Role> roles = roleServicePort.findAllRolesByUserId(user.getId());
+
+                    if (roles.isEmpty()) {
+                        roles.add(roleServicePort.findByName(SeedbedRole.USUARIO_SIN_ROL));
+                    }
 
                     List<GrantedAuthority> authorities = roles.stream()
                             .map(role -> (GrantedAuthority) new SimpleGrantedAuthority(role.getName().getAuthority()))

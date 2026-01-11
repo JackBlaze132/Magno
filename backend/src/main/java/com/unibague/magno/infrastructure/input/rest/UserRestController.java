@@ -6,6 +6,7 @@ import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
 import com.unibague.magno.application.dto.request.UserRequest;
 import com.unibague.magno.application.dto.response.UserResponse;
 import com.unibague.magno.application.handler.impl.UserHandler;
+import com.unibague.magno.domain.exception.security.NotAllowedToDoThisActionException;
 import com.unibague.magno.infrastructure.configuration.annotation.CurrentUser;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -46,9 +47,13 @@ public class UserRestController {
         return ResponseEntity.ok(countries);
     }
 
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).COORDINADOR_DE_SEMILLERO)")
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).USUARIO_SIN_ROL)")
     @GetMapping(path = "/all-functionaries-registered", headers = "API-VERSION=1")
-    ResponseEntity<List<UserResponse>> getAllFunctionariesRegistered() {
+    ResponseEntity<List<UserResponse>> getAllFunctionariesRegistered(@CurrentUser CurrentUserInfo currentUserInfo) {
+        /**
+        if (!currentUserInfo.getEmail().endsWith("@unibague.edu.co")) {
+            throw new NotAllowedToDoThisActionException("Solo los funcionarios pueden acceder a esta información.");
+        }*/
         List<UserResponse> functionaries = userHandler.findAllFunctionariesRegistered();
         return ResponseEntity.ok(functionaries);
     }
@@ -74,7 +79,7 @@ public class UserRestController {
         return ResponseEntity.ok(internalUsers);
     }
 
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).USUARIO_SIN_ROL)")
     @GetMapping(path = "/me", headers = "API-VERSION=1")
     public ResponseEntity<CurrentUserInfo> getCurrentUserInfo(@CurrentUser CurrentUserInfo currentUser) {
         return ResponseEntity.ok(currentUser);

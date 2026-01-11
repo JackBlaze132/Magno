@@ -118,7 +118,7 @@ public class InvestigationGroupProfileRestController {
                 .body(report.getContent());
     }
 
-    // No role restriction for this endpoint to allow self-registration for investigation group profiles
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).USUARIO_SIN_ROL)")
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<InvestigationGroupProfileResponse> createInvestigationGroupProfile
             (@Valid @RequestBody InvestigationGroupProfileRequest investigationGroupProfileRequest,

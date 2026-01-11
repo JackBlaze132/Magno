@@ -1,6 +1,7 @@
 package com.unibague.magno.domain.model.enums;
 
 public enum SeedbedRole {
+    USUARIO_SIN_ROL("Usuario sin rol", "Rol de usuario que se loguea por primera vez o no tiene rol asignado"),
     ESTUDIANTE("Estudiante", "Rol de estudiante"),
     ESTUDIANTE_LIDER("Estudiante lider", "Rol de estudiante lider"),
     TUTOR_DE_SEMILLERO("Tutor de semillero", "Rol de tutor de semillero"),

@@ -8,6 +8,7 @@ import com.unibague.magno.domain.exception.security.NullEmailException;
 import com.unibague.magno.domain.exception.user.UserNotFoundException;
 import com.unibague.magno.domain.model.Role;
 import com.unibague.magno.domain.model.User;
+import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +43,10 @@ public class CustomOidcUserService extends OidcUserService {
         User existingUser = getUserByEmail(email);
 
         List<Role> roles = roleServicePort.findAllRolesByUserId(existingUser.getId());
+
+        if (roles.isEmpty()) {
+            roles.add(roleServicePort.findByName(SeedbedRole.USUARIO_SIN_ROL));
+        }
 
         List<GrantedAuthority> authorities = roles.stream()
                 .map(role -> (GrantedAuthority) new SimpleGrantedAuthority(role.getName().getAuthority()))

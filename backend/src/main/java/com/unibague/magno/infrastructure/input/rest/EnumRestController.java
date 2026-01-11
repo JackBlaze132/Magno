@@ -18,7 +18,7 @@ public class EnumRestController {
     private final IEnumServicePort enumServicePort;
     private static final String ENUM_PACKAGE = "com.unibague.magno.domain.model.enums.";
 
-    // No role restriction for this endpoint to allow public access to enum values for forms and validations
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).USUARIO_SIN_ROL)")
     @GetMapping(path = "/{enumName}/values", headers = "API-VERSION=1")
     public ResponseEntity<List<String>> getEnumValues(@PathVariable String enumName) throws ClassNotFoundException {
         Class<?> enumClass = Class.forName(ENUM_PACKAGE + enumName);
@@ -28,7 +28,7 @@ public class EnumRestController {
         throw new EnumBadRequestException("Enum no encontrado: " + enumName);
     }
 
-    // No role restriction for this endpoint to allow public access to enum values for forms and validations
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).USUARIO_SIN_ROL)")
     @GetMapping(path = "/{enumName}/values", headers = "API-VERSION=2")
     public ResponseEntity<Map<String, String>> getEnumValuesAsMap(@PathVariable String enumName) throws ClassNotFoundException {
         Class<?> enumClass = Class.forName(ENUM_PACKAGE + enumName);

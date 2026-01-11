@@ -68,7 +68,7 @@ public class ResearchSeedbedProfileRestController {
                 .body(report.getContent());
     }
 
-    // No role restriction to allow creation of profiles by self-registration
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).USUARIO_SIN_ROL)")
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<ResearchSeedbedProfileResponse> createResearchSeedbedProfile
             (@RequestBody @Valid ResearchSeedbedProfileRequest researchSeedbedProfileRequest,

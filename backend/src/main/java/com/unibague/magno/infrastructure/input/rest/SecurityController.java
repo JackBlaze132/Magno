@@ -3,6 +3,7 @@ package com.unibague.magno.infrastructure.input.rest;
 import com.unibague.magno.application.dto.response.GoogleInfoResponse;
 import com.unibague.magno.infrastructure.configuration.security.SecurityService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,7 @@ public class SecurityController {
 
     private final SecurityService securityService;
 
-    // No role restriction for this endpoint to allow any authenticated user to retrieve their own information
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).USUARIO_SIN_ROL)")
     @GetMapping(value = "/me", headers = "API-VERSION=1")
     public GoogleInfoResponse getCurrentUser(Authentication authentication) {
         return securityService.getInfoFromAuthenticatedUser(authentication);
