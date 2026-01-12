@@ -11,7 +11,29 @@ const UpdateGroupProfile = defineAsyncComponent(() => import("@/components/forms
 const UpdateSeedbedProfile = defineAsyncComponent(() => import("@/components/forms/update/seedbeds/formUpdateSeedbedProfile.vue"));
 const UpdateSeedbedMember = defineAsyncComponent(() => import("@/components/forms/update/seedbeds/formUpdateSeedbedMember.vue"));
 
+/**
+ * Factory for creating 'update' form components for different entities.
+ * Returns a component and props for a specific entity type using a pre-defined component map.
+ *
+ * @class UpdateFormFactory
+ * @extends AbstractFormFactory
+ * @example
+ * // Get an update form configuration for a seedbed
+ * const config = new UpdateFormFactory().getComponentConfig('seedbed', { index: 1, initialData: { name: 'Testing' } });
+ */
 export class UpdateFormFactory extends AbstractFormFactory {
+  /**
+   * Returns the component configuration for the given entity type with update-specific props.
+   * Extra props (`index`, `initialData`, etc.) are merged into the component props to support
+   * pre-filling the form and identifying the resource to update.
+   *
+   * @param {EntityType} type - The entity type to generate an update form for
+   * @param {Record<string, any>} [extraProps] - Optional additional props (e.g., `index`, `initialData`)
+   * @returns {{ component: any; props: Record<string, any> }} Component configuration
+   * @example
+   * // Get update form for a group with pre-filled data
+   * UpdateFormFactory.getComponentConfig('group', { index: 12, initialData: { name: 'My Group' } });
+   */
   getComponentConfig(type: EntityType, extraProps?: Record<any, any>) {
     const componentMap: Partial<Record<EntityType, any>> = {
       period: {

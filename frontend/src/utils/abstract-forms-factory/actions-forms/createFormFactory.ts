@@ -18,7 +18,27 @@ const CreateSeedbedProfile = defineAsyncComponent(() => import("@/components/for
 const CreateSeedbedMember = defineAsyncComponent(() => import("@/components/forms/create/seedbeds/formCreateSeedbedMember.vue"));
 const CreateDiriUser = defineAsyncComponent(() => import("@/components/forms/create/Users/formCreateDiriUser.vue"));
 
+/**
+ * Factory for creating 'create' form components for different entities.
+ * Returns a component and props for a specific entity type using a pre-defined component map.
+ *
+ * @class CreateFormFactory
+ * @extends AbstractFormFactory
+ * @example
+ * // Get a create form for periods
+ * const config = new CreateFormFactory().getComponentConfig('period');
+ */
 export class CreateFormFactory extends AbstractFormFactory {
+  /**
+   * Returns the component configuration for the given entity type.
+   * The componentMap maps each EntityType to a lazy-loaded Vue component and the props
+   * that will be passed to it (including the form fields from the JSON schema).
+   *
+   * @param {EntityType} type - The entity type to generate a form for
+   * @returns {{ component: any; props: Record<string, any> }} Component configuration
+   * @example
+   * CreateFormFactory.getComponentConfig('seedbed');
+   */
   getComponentConfig(type: EntityType) {
     const componentMap: Partial<Record<EntityType, any>> = {
       period: {

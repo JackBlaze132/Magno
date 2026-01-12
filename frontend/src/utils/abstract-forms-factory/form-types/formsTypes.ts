@@ -1,5 +1,18 @@
+/**
+ * @fileoverview Defines available action and entity types used by the Abstract Form Factory.
+ * Provides both a typed union (`ActionType`, `EntityType`) derived from constant arrays and
+ * arrays that can be used for UI selects or validation.
+ *
+ * @example
+ * import type { ActionType, EntityType } from './form-types/formsTypes';
+ * const action: ActionType = 'create';
+ */
 // src/types.ts
 
+/**
+ * List of supported action types for form operations.
+ * @constant {string[]}
+ */
 export const ActionTypes: string[] = [
   "create",
   "upload",
@@ -8,6 +21,11 @@ export const ActionTypes: string[] = [
   "delete"
 ];
 
+/**
+ * List of supported entity types for form operations.
+ * These correspond to the different resources managed by the application.
+ * @constant {string[]}
+ */
 export const EntityTypes: string[] = [
   "period",
   "group",
@@ -30,5 +48,15 @@ export const EntityTypes: string[] = [
   "logs",
   "dashboard"
 ];
+
+/**
+ * Union type for ActionType derived from {@link ActionTypes}.
+ * @typedef {typeof ActionTypes[number]} ActionType
+ */
 export type ActionType = typeof ActionTypes[number];
+
+/**
+ * Union type for EntityType derived from {@link EntityTypes}.
+ * @typedef {typeof EntityTypes[number]} EntityType
+ */
 export type EntityType = typeof EntityTypes[number];
