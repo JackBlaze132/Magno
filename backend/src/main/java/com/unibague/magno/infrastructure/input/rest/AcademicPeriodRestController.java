@@ -26,7 +26,7 @@ public class AcademicPeriodRestController {
         return ResponseEntity.ok(response);
     }
 
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).USUARIO_SIN_ROL)")
     @GetMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<List<AcademicPeriodResponse>> getAllAcademicPeriods() {
         List<AcademicPeriodResponse> responses = academicPeriodHandler.findAll();
