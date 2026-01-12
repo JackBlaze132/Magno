@@ -70,7 +70,13 @@ export const PERMISSIONS: Record<string, Partial<Record<EntityType, ActionType[]
     'seedbed_profile': ['view'],
     'seedbed_member': ['view'],
     'certificate': ['view'],
-  }
+  },
+  'USUARIO_SIN_ROL': {
+    'period': ['view'],
+    'group_profile': ['view',  'create'],
+    'seedbed_profile': ['view', 'create'],
+    'seedbed_member': ['view'],
+  },
 };
 
 /**

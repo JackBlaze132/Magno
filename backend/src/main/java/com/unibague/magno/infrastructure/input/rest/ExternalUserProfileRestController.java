@@ -40,7 +40,7 @@ public class ExternalUserProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).USUARIO_SIN_ROL)")
     @GetMapping(path = "/research-seedbed-profile/{researchSeedbedProfileId}", headers = "API-VERSION=1")
     public ResponseEntity<List<ExternalUserProfileResponse>> getAllExternalUserProfilesByResearchSeedbedProfileId(@PathVariable Long researchSeedbedProfileId) {
         List<ExternalUserProfileResponse> responses = externalUserProfileHandler.findAllByResearchSeedbedProfileId(researchSeedbedProfileId);

@@ -30,7 +30,7 @@ public class InvestigationGroupProfileRestController {
 
     private final InvestigationGroupProfileHandler investigationGroupProfileHandler;
 
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).USUARIO_SIN_ROL)")
     @GetMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<InvestigationGroupProfileResponse> getInvestigationGroupProfileById(@PathVariable Long id) {
         InvestigationGroupProfileResponse response = investigationGroupProfileHandler.findById(id);
@@ -44,7 +44,7 @@ public class InvestigationGroupProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).USUARIO_SIN_ROL)")
     @GetMapping(path = "/get-all-by-academic-period-id/{id}", headers = "API-VERSION=1")
     public ResponseEntity<List<InvestigationGroupProfileResponse>> getAllInvestigationGroupProfilesByAcademicPeriodId(
             @PathVariable Long id) {

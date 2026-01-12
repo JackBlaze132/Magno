@@ -49,13 +49,13 @@ public class EnumRestController {
         throw new EnumBadRequestException("Enum no encontrado: " + enumName);
     }
 
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).USUARIO_SIN_ROL)")
     @GetMapping(path = "/get-lines-of-research-by-investigation-group-id/{id}", headers = "API-VERSION=1")
     public ResponseEntity<List<String>> getLinesOfResearchByInvestigationGroupId(@PathVariable Long id) {
         return ResponseEntity.ok(enumServicePort.getLinesOfResearchByInvestigationGroupId(id));
     }
 
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).USUARIO_SIN_ROL)")
     @GetMapping(path = "/get-lines-of-research-by-research-seedbed-id/{id}", headers = "API-VERSION=1")
     public ResponseEntity<String> getLinesOfResearchByResearchSeedbedId(@PathVariable Long id) {
         return ResponseEntity.ok(enumServicePort.getLineOfResearchByResearchSeedbedId(id));

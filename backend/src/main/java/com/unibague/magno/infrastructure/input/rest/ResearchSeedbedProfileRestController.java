@@ -28,7 +28,7 @@ public class ResearchSeedbedProfileRestController {
 
     private final ResearchSeedbedProfileHandler researchSeedbedProfileHandler;
 
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).USUARIO_SIN_ROL)")
     @GetMapping(path = "/{id}", headers = "API-VERSION=1")
     public ResponseEntity<ResearchSeedbedProfileResponse> getResearchSeedbedProfileById(@PathVariable Long id) {
         ResearchSeedbedProfileResponse response = researchSeedbedProfileHandler.findById(id);
@@ -42,7 +42,7 @@ public class ResearchSeedbedProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).ESTUDIANTE)")
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).USUARIO_SIN_ROL)")
     @GetMapping(path = "/get-all-by-investigation-group-profile-id/{id}", headers = "API-VERSION=1")
     public ResponseEntity<List<ResearchSeedbedProfileResponse>> getAllByInvestigationGroupProfileId(@PathVariable Long id) {
         List<ResearchSeedbedProfileResponse> responses = researchSeedbedProfileHandler.findAllByInvestigationGroupProfileId(id);
