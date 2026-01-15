@@ -26,6 +26,29 @@ import java.util.*;
 
 import static com.unibague.magno.domain.usecase.ResearchSeedbedStudentProfileUseCase.IDENTIFICATION;
 
+/**
+ * Use case implementation for managing users in the Magno system.
+ * <p>
+ * Handles business logic for user operations including CRUD operations, user type
+ * management (internal/external, student/functionary), and certificate generation.
+ * This is one of the most comprehensive use cases as users are central to the system.
+ * </p>
+ * <p>
+ * <strong>Why a helper is used:</strong> This use case delegates DIRI user management
+ * to {@link IUserHelper} to encapsulate the specific logic of managing administrative
+ * users and their associated functionary profiles, keeping this use case focused on
+ * general user operations.
+ * </p>
+ * <p>
+ * Key features:
+ * <ul>
+ *   <li>Integration with Integra system for user data synchronization</li>
+ *   <li>Support for bulk user creation from Excel uploads</li>
+ *   <li>Student participation certificate generation</li>
+ *   <li>DIRI (administrative) user management</li>
+ * </ul>
+ * </p>
+ */
 public class UserUseCase implements IUserServicePort {
 
     private final IUserPersistencePort userPersistencePort;
@@ -88,14 +111,12 @@ public class UserUseCase implements IUserServicePort {
     }
 
     @Override
-    // Notice that this method suppose that the field with the identifications is called "identification"
     public List<User> getUserListByListOfStudentMaps(List<Map<String, String>> cleanedStudentListOfMaps) {
         return cleanedStudentListOfMaps.stream()
                 .map(studentProfile -> {
-                    String identification = studentProfile.get(IDENTIFICATION); // Getting the identification from the Map
+                    String identification = studentProfile.get(IDENTIFICATION);
                     return findByUserIdentification(identification)
                             .orElseGet(() -> {
-                                // If the user doesn't exist, we create it
                                 IntegraStudent integraStudent = integraServicePort.
                                         getFirstIntegraStudentFound(identification);
                                 User user = getUserByIntegraStudent(integraStudent);

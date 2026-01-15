@@ -12,6 +12,15 @@ import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Implementation of {@link IInvestigationGroupProfileHelper}.
+ * <p>
+ * Provides auxiliary operations for investigation group profile management,
+ * including functionary profile verification, creation, and lifecycle management.
+ * </p>
+ *
+ * @see IInvestigationGroupProfileHelper
+ */
 public class InvestigationGroupProfileHelper implements IInvestigationGroupProfileHelper {
 
     private final IIntegraServicePort integraServicePort;
@@ -40,39 +49,23 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
     @Override
     public InvestigationGroupProfile verifyUserHasFunctionaryProfile(InvestigationGroupProfile igp) {
 
-        // Retrieve all functionary profiles for the coordinator user
         List<FunctionaryProfile> coordinatorProfiles =
                 functionaryProfileServicePort.findAllProfilesByUserId(igp.getCoordinatorId());
 
-        // Search for a profile matching the academic period
         Optional<FunctionaryProfile> matchingProfile = coordinatorProfiles.stream()
                 .filter(profile -> profile.getAcademicPeriodId().equals(igp.getAcademicPeriodId()))
                 .findFirst();
 
-        // If a profile exists in the academic period, verify and update the role if needed
         if (matchingProfile.isPresent()) {
             FunctionaryProfile profile = matchingProfile.get();
-
-            // Verify if the profile has the correct role
             ensureCorrectRole(profile);
-
-            // Assign the functionary profile ID to the investigation group
             igp.setCoordinatorId(profile.getId());
             return igp;
         }
 
-        // If no profile exists, create a new functionary profile
         return createFunctionaryProfileForInvestigationGroupProfile(igp);
     }
 
-    /**
-     * Verifies that the academic period is in current status.
-     * Throws an exception otherwise.
-     *
-     * @param academicPeriodId The ID of the academic period to verify
-     * @param errorMessage Custom error message for the exception
-     * @throws AcademicPeriodNotCurrentException if the academic period is not current
-     */
     @Override
     public void verifyAcademicPeriodIsCurrent(Long academicPeriodId, String errorMessage) {
         AcademicPeriod ap = academicPeriodServicePort.findById(academicPeriodId);
@@ -81,19 +74,10 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
         }
     }
 
-
-    /**
-     * Ensures the functionary profile has the correct role (COORDINADOR_DE_GRUPO_DE_INVESTIGACION).
-     * If the role is different, updates it to the correct one.
-     *
-     * @param profile The functionary profile to verify
-     */
     private void ensureCorrectRole(FunctionaryProfile profile) {
-
         Long roleId = profile.getRoleId();
         Role currentRole = roleServicePort.findById(roleId);
 
-        // Update role if it doesn't match the required coordinator role
         if (!currentRole.getName().equals(SeedbedRole.COORDINADOR_DE_GRUPO_DE_INVESTIGACION)) {
             Role coordinatorRole = roleServicePort.findByName(SeedbedRole.COORDINADOR_DE_GRUPO_DE_INVESTIGACION);
             profile.setRoleId(coordinatorRole.getId());
@@ -101,11 +85,6 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
         }
     }
 
-    /**
-     * Creates a new FunctionaryProfile for the given InvestigationGroupProfile.
-     * @param igp The InvestigationGroupProfile for which to create the FunctionaryProfile
-     * @return The updated InvestigationGroupProfile with the new FunctionaryProfile ID
-     */
     private InvestigationGroupProfile createFunctionaryProfileForInvestigationGroupProfile(InvestigationGroupProfile igp) {
 
         FunctionaryProfile functionaryProfile = new FunctionaryProfile();
@@ -146,31 +125,14 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
         functionaryProfileServicePort.update(functionaryId, fp);
     }
 
-    /**
-     * Handles functionary profile changes when updating an investigation group profile.
-     * For the old coordinator: checks if it's used in seedbeds and updates/deletes accordingly
-     *
-     * @param oldCoordinatorId The ID of the old coordinator (functionary profile)
-     * @param academicPeriodId The ID of the academic period
-     * @param investigationGroupProfileId The ID of the investigation group profile being updated
-     */
     @Override
     public void handleFunctionaryProfileChangeOnUpdate(Long oldCoordinatorId, Long academicPeriodId, Long investigationGroupProfileId) {
-        // Handle old functionary profile
         handleOldFunctionaryProfile(oldCoordinatorId, academicPeriodId, investigationGroupProfileId);
     }
 
-    /**
-     * Handles the old functionary profile after coordinator change.
-     * Checks if it's used in seedbeds and updates role or deletes accordingly.
-     * After the update, the old coordinator is no longer the coordinator of this investigation group profile,
-     * so we check all seedbeds in the academic period to see if it's used elsewhere.
-     */
     private void handleOldFunctionaryProfile(Long oldCoordinatorId, Long academicPeriodId, Long investigationGroupProfileId) {
-        // Get all research seedbed profiles for the academic period
         List<ResearchSeedbedProfile> allSeedbedProfiles = researchSeedbedProfileServicePort.findAllByAcademicPeriodId(academicPeriodId);
 
-        // Check if old coordinator is used as coordinator in any seedbed
         boolean isCoordinator = allSeedbedProfiles.stream()
                 .anyMatch(rsp -> oldCoordinatorId.equals(rsp.getCoordinatorId()));
 
@@ -179,7 +141,6 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
             return;
         }
 
-        // Check if old coordinator is used as tutor in any seedbed
         boolean isTutor = allSeedbedProfiles.stream()
                 .anyMatch(rsp -> oldCoordinatorId.equals(rsp.getTutorId()));
 
@@ -188,17 +149,9 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
             return;
         }
 
-        // If not used in any seedbed, delete the functionary profile
         functionaryProfileServicePort.deleteById(oldCoordinatorId);
     }
 
-    /**
-     * Verifies that the investigation group profile has no associated research seedbed profiles.
-     * Throws an exception if any research seedbed profiles are found.
-     *
-     * @param investigationGroupProfileId The ID of the investigation group profile to verify
-     * @throws InvestigationGroupProfileHasResearchSeedbedProfilesException if research seedbed profiles exist
-     */
     @Override
     public void verifyThatInvestigationGroupProfileHasNoResearchSeedbedProfiles(Long investigationGroupProfileId) {
         List<ResearchSeedbedProfile> researchSeedbedProfiles =

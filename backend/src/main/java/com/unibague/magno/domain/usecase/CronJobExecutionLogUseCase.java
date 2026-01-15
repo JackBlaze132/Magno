@@ -7,6 +7,14 @@ import com.unibague.magno.domain.spi.ICronJobExecutionLogPersistencePort;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Use case implementation for managing cron job execution logs.
+ * <p>
+ * Handles business logic for tracking and querying scheduled task executions.
+ * This enables monitoring and auditing of automated processes like data
+ * synchronization, cleanup tasks, and periodic reports.
+ * </p>
+ */
 public class CronJobExecutionLogUseCase implements ICronJobExecutionLogServicePort {
 
     private final ICronJobExecutionLogPersistencePort cronJobExecutionLogPersistencePort;

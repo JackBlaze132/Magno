@@ -1,5 +1,8 @@
 package com.unibague.magno.domain.model;
 
+/**
+ * Domain model representing a functionary profile for an academic period.
+ */
 public class FunctionaryProfile {
 
     private Long id;

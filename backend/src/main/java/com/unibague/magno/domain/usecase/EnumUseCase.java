@@ -11,6 +11,18 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Use case implementation for enum-related operations.
+ * <p>
+ * Provides utility methods for working with enums in the Magno system,
+ * including retrieving formatted enum values and validating enum membership.
+ * </p>
+ * <p>
+ * <strong>Note:</strong> Enums used with this service must implement a
+ * {@code getFormattedName()} method that returns a human-readable string
+ * representation of the enum value.
+ * </p>
+ */
 public class EnumUseCase implements IEnumServicePort {
 
     private static final String ERROR_MESSAGE = "El enum no tiene un metodo getFormattedName.";

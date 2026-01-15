@@ -2,6 +2,9 @@ package com.unibague.magno.domain.model;
 
 import java.time.LocalDateTime;
 
+/**
+ * Domain model representing an action log entry for HTTP requests.
+ */
 public class ActionLog {
 
     private Long id;

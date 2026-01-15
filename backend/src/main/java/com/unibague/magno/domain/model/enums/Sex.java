@@ -1,5 +1,8 @@
 package com.unibague.magno.domain.model.enums;
 
+/**
+ * Enum representing biological sex values used in the system.
+ */
 public enum Sex {
     MASCULINO("Masculino"), FEMENINO("Femenino");
 
@@ -9,6 +12,11 @@ public enum Sex {
         this.formattedName = formattedName;
     }
 
+    /**
+     * Returns the display-friendly name for this enum value.
+     *
+     * @return the formatted name
+     */
     public String getFormattedName() {
         return formattedName;
     }

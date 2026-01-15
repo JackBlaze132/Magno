@@ -1,6 +1,8 @@
 package com.unibague.magno.domain.model.excel;
 
-// This class is used to encapsulate the content of an Excel report and its associated metadata.
+/**
+ * Domain model used to encapsulate the content of an Excel report and its metadata.
+ */
 public class ExcelReport<T> {
 
     private final byte[] content;

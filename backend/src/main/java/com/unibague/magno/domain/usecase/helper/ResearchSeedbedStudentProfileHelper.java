@@ -6,6 +6,15 @@ import com.unibague.magno.domain.api.IStudentProfileServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.model.*;
 
+/**
+ * Implementation of {@link IResearchSeedbedStudentProfileHelper}.
+ * <p>
+ * Provides auxiliary operations for research seedbed student profile management,
+ * including student profile verification and creation.
+ * </p>
+ *
+ * @see IResearchSeedbedStudentProfileHelper
+ */
 public class ResearchSeedbedStudentProfileHelper implements IResearchSeedbedStudentProfileHelper{
 
     private final IUserServicePort userServicePort;
@@ -52,12 +61,6 @@ public class ResearchSeedbedStudentProfileHelper implements IResearchSeedbedStud
         return researchSeedbedStudentProfile;
     }
 
-    /**
-     * Verifies if the academic period is not current, if not, returns true, which means it cannot be used to
-     * create, update or delete a researchSeedbedStudentProfile associated to  the academic period.
-     * @param academicPeriodId The ID of the academic period to verify
-     * @return true if the academic period is not current, false otherwise
-     */
     @Override
     public boolean verifyAcademicPeriodIsCurrentStatus(Long academicPeriodId) {
         AcademicPeriod ap = academicPeriodServicePort.findById(academicPeriodId);

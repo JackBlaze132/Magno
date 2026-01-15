@@ -10,6 +10,18 @@ import com.unibague.magno.domain.spi.IDependencyPersistencePort;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Use case implementation for managing dependencies (organizational units).
+ * <p>
+ * Handles business logic for dependency operations. Dependencies represent
+ * organizational units within the university (faculties, departments) to which
+ * investigation groups and functionaries belong.
+ * </p>
+ * <p>
+ * This use case integrates with the Integra system to automatically create
+ * dependencies that don't exist in the local database when searched by name.
+ * </p>
+ */
 public class DependencyUseCase implements IDependencyServicePort {
 
     private final IDependencyPersistencePort dependencyPersistencePort;
@@ -69,6 +81,9 @@ public class DependencyUseCase implements IDependencyServicePort {
         return dependencyPersistencePort.findByName(name);
     }
 
+    /**
+     * Finds a dependency by name or creates it from Integra data if not found locally.
+     */
     private Dependency findOrSaveByName(String name) {
         Optional<Dependency> dependency = dependencyPersistencePort.findByName(name);
         if (dependency.isPresent()) {

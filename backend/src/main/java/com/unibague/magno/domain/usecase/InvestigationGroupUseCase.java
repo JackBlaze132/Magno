@@ -9,6 +9,21 @@ import com.unibague.magno.domain.spi.IInvestigationGroupPersistencePort;
 
 import java.util.List;
 
+/**
+ * Use case implementation for managing investigation groups.
+ * <p>
+ * Handles business logic for investigation group operations. Investigation groups
+ * are organizational units that contain research seedbeds and are associated with
+ * coordinators and researchers.
+ * </p>
+ * <p>
+ * Business rules enforced:
+ * <ul>
+ *   <li>Group names must be unique (case-insensitive)</li>
+ *   <li>Groups with associated profiles cannot be deleted</li>
+ * </ul>
+ * </p>
+ */
 public class InvestigationGroupUseCase implements IInvestigationGroupServicePort {
 
     private final IInvestigationGroupPersistencePort investigationGroupPersistencePort;
@@ -32,9 +47,9 @@ public class InvestigationGroupUseCase implements IInvestigationGroupServicePort
 
     /**
      * Verifies that an investigation group with the same name doesn't already exist.
-     * Uses trim() to ignore leading/trailing whitespaces and case-insensitive comparison.
+     * Uses case-insensitive comparison and trims whitespace.
      *
-     * @param investigationGroup The investigation group to verify
+     * @param investigationGroup the investigation group to verify
      * @throws InvestigationGroupAlreadyExistsException if a group with the same name exists
      */
     private void verifyThatInvestigationGroupDoesNotExist(InvestigationGroup investigationGroup) {

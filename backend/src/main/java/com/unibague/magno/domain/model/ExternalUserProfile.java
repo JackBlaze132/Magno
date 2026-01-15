@@ -2,6 +2,9 @@ package com.unibague.magno.domain.model;
 
 import com.unibague.magno.domain.model.enums.TypeOfExternalUser;
 
+/**
+ * Domain model representing an external user's profile within a research seedbed.
+ */
 public class ExternalUserProfile {
 
     private Long id;

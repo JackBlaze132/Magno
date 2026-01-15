@@ -7,6 +7,14 @@ import com.unibague.magno.domain.spi.IErrorLogPersistencePort;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Use case implementation for managing error logs.
+ * <p>
+ * Handles business logic for error log operations including saving, querying,
+ * and cleanup of system error records. Error logs are used for monitoring,
+ * debugging, and audit purposes.
+ * </p>
+ */
 public class ErrorLogUseCase implements IErrorLogServicePort {
 
     private final IErrorLogPersistencePort errorLogPersistencePort;
@@ -58,4 +66,3 @@ public class ErrorLogUseCase implements IErrorLogServicePort {
         }
     }
 }
-

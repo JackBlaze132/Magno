@@ -1,5 +1,8 @@
 package com.unibague.magno.domain.model.integra;
 
+/**
+ * Domain model representing an academic program record from the Academia source.
+ */
 public class AcademiaAcademicProgram {
     private String programCode;
     private String programName;

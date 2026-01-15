@@ -19,6 +19,30 @@ import com.unibague.magno.domain.usecase.helper.IInvestigationGroupProfileHelper
 
 import java.util.List;
 
+/**
+ * Use case implementation for managing investigation group profiles.
+ * <p>
+ * Handles business logic for investigation group profile operations. An investigation
+ * group profile represents the state and configuration of an investigation group within
+ * a specific academic period, including its coordinator.
+ * </p>
+ * <p>
+ * <strong>Why a helper is used:</strong> This use case delegates complex operations to
+ * {@link IInvestigationGroupProfileHelper} to avoid circular dependencies between use cases
+ * (e.g., this use case needs FunctionaryProfileServicePort, which might need this use case).
+ * The helper also encapsulates auxiliary logic for functionary profile management, keeping
+ * this use case focused on its core responsibilities.
+ * </p>
+ * <p>
+ * Business rules enforced:
+ * <ul>
+ *   <li>An investigation group can only have one profile per academic period</li>
+ *   <li>Only current (active) periods allow profile modifications</li>
+ *   <li>A user can only be coordinator of one investigation group per period</li>
+ *   <li>Profiles with associated research seedbed profiles cannot be deleted</li>
+ * </ul>
+ * </p>
+ */
 public class InvestigationGroupProfileUseCase implements IInvestigationGroupProfileServicePort {
 
     private final IInvestigationGroupProfilePersistencePort investigationGroupProfilePersistencePort;
@@ -132,12 +156,14 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
     }
 
     /**
-     * Since is not possible to be coordinator of more than one investigation group profile in the same
-     * academic period, when an investigation group profile is deleted, the associated functionary profile
-     * is also deleted because is also not possible to delete the investigation group profile if there's
-     * research seedbed profiles associated to it and this is the last scenario where the functionary profile
-     * can be used.
-     * @param coordinatorId ID of the coordinator (FunctionaryProfile)
+     * Handles functionary profile deletion when an investigation group profile is deleted.
+     * <p>
+     * Since a user cannot be coordinator of more than one investigation group per academic period,
+     * and profiles cannot be deleted if they have associated research seedbed profiles, the
+     * functionary profile can be safely deleted when the investigation group profile is deleted.
+     * </p>
+     *
+     * @param coordinatorId the ID of the coordinator's functionary profile
      */
     private void handleFunctionaryProfileChangeOnDelete(Long coordinatorId) {
         functionaryProfileServicePort.deleteById(coordinatorId);

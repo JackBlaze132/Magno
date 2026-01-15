@@ -1,8 +1,10 @@
 package com.unibague.magno.domain.model.enums;
 
 /**
- * This enum is used to represent the types of users that can be created in the system
- * most specifically in the endpoint (POST) /api/users/integra-user
+ * Enum representing the types of users that can be created from Integra requests.
+ * <p>
+ * This is primarily used by the /api/users/integra-user endpoint.
+ * </p>
  */
 public enum JSONIntegraType {
     FUNCIONARIO("Funcionario"), ESTUDIANTE("Estudiante");
@@ -13,6 +15,11 @@ public enum JSONIntegraType {
         this.formattedName = formattedName;
     }
 
+    /**
+     * Returns the display-friendly name for this enum value.
+     *
+     * @return the formatted name
+     */
     public String getFormattedName() {
         return formattedName;
     }

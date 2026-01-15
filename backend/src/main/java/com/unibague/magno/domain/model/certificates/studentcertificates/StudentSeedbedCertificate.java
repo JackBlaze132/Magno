@@ -2,6 +2,9 @@ package com.unibague.magno.domain.model.certificates.studentcertificates;
 
 import java.util.List;
 
+/**
+ * Domain model representing a student seedbed participation certificate.
+ */
 public class StudentSeedbedCertificate {
 
     private String studentName;

@@ -14,6 +14,18 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Use case implementation for managing academic programs.
+ * <p>
+ * Handles business logic for academic program operations. Academic programs
+ * represent the university's degree programs (undergraduate, graduate, etc.)
+ * that students are enrolled in.
+ * </p>
+ * <p>
+ * This use case integrates with the Integra system to automatically create
+ * academic programs that don't exist in the local database when searched by code.
+ * </p>
+ */
 public class AcademicProgramUseCase implements IAcademicProgramServicePort {
 
     private final IAcademicProgramPersistencePort academicProgramPersistencePort;
@@ -76,6 +88,9 @@ public class AcademicProgramUseCase implements IAcademicProgramServicePort {
         return findOrSaveAcademicPrograms(academicProgramCodes);
     }
 
+    /**
+     * Finds academic programs by codes or creates them from Integra data if not found locally.
+     */
     private Set<AcademicProgram> findOrSaveAcademicPrograms(Set<String> academicProgramCodes) {
 
         Set<AcademicProgram> academicPrograms = academicProgramPersistencePort
@@ -102,6 +117,9 @@ public class AcademicProgramUseCase implements IAcademicProgramServicePort {
         return academicPrograms;
     }
 
+    /**
+     * Saves academic programs that exist in Integra but not locally.
+     */
     private Set<AcademicProgram> saveMissingAcademicProgram
             (Set<String> academicProgramCodes, Set<AcademicProgram> academicPrograms) {
         Set<String> academicProgramCodesToFind = academicProgramCodes.stream()

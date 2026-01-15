@@ -1,5 +1,8 @@
 package com.unibague.magno.domain.model;
 
+/**
+ * Domain model representing an institutional dependency or unit.
+ */
 public class Dependency {
 
     private Long id;

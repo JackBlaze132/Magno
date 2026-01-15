@@ -4,6 +4,9 @@ import com.unibague.magno.domain.model.enums.LineOfResearch;
 
 import java.util.Set;
 
+/**
+ * Domain model representing an investigation group.
+ */
 public class InvestigationGroup {
 
     private Long id;

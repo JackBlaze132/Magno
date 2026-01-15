@@ -3,6 +3,9 @@ package com.unibague.magno.domain.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Domain model representing a standardized error response payload.
+ */
 public class ErrorResponse {
 
     private String code;

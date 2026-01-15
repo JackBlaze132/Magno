@@ -13,6 +13,15 @@ import com.unibague.magno.domain.spi.IExternalUserProfilePersistencePort;
 
 import java.util.List;
 
+/**
+ * Use case implementation for managing external user profiles.
+ * <p>
+ * Handles business logic for external user profile operations. External users are
+ * individuals from outside the university (researchers, collaborators) who participate
+ * in research seedbeds. All operations validate that the academic period is current
+ * before allowing modifications.
+ * </p>
+ */
 public class ExternalUserProfileUseCase implements IExternalUserProfileServicePort {
 
     private final IExternalUserProfilePersistencePort externalUserProfilePersistencePort;
@@ -97,10 +106,9 @@ public class ExternalUserProfileUseCase implements IExternalUserProfileServicePo
 
     /**
      * Verifies that the academic period is in current status.
-     * Throws an exception otherwise.
      *
-     * @param academicPeriodId The ID of the academic period to verify
-     * @param errorMessage Custom error message for the exception
+     * @param academicPeriodId the ID of the academic period to verify
+     * @param errorMessage     custom error message for the exception
      * @throws AcademicPeriodNotCurrentException if the academic period is not current
      */
     private void verifyAcademicPeriodIsCurrent(Long academicPeriodId, String errorMessage) {

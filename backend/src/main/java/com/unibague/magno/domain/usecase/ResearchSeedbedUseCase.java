@@ -9,6 +9,21 @@ import com.unibague.magno.domain.spi.IResearchSeedbedPersistencePort;
 
 import java.util.List;
 
+/**
+ * Use case implementation for managing research seedbeds.
+ * <p>
+ * Handles business logic for research seedbed operations. Research seedbeds are groups
+ * within investigation groups where students participate in research activities under
+ * the guidance of tutors and coordinators.
+ * </p>
+ * <p>
+ * Business rules enforced:
+ * <ul>
+ *   <li>Seedbed names must be unique (case-insensitive)</li>
+ *   <li>Seedbeds with associated profiles cannot be deleted</li>
+ * </ul>
+ * </p>
+ */
 public class ResearchSeedbedUseCase implements IResearchSeedbedServicePort {
 
     private final IResearchSeedbedPersistencePort researchSeedbedPersistencePort;
@@ -34,9 +49,9 @@ public class ResearchSeedbedUseCase implements IResearchSeedbedServicePort {
 
     /**
      * Verifies that a research seedbed with the same name doesn't already exist.
-     * Uses trim() to ignore leading/trailing whitespaces and case-insensitive comparison.
+     * Uses case-insensitive comparison and trims whitespace.
      *
-     * @param researchSeedbed The research seedbed to verify
+     * @param researchSeedbed the research seedbed to verify
      * @throws ResearchSeedbedAlreadyExistsException if a seedbed with the same name exists
      */
     private void verifyThatResearchSeedbedDoesNotExist(ResearchSeedbed researchSeedbed) {

@@ -9,6 +9,14 @@ import com.unibague.magno.domain.spi.IRolePersistencePort;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Use case implementation for managing roles in the Magno system.
+ * <p>
+ * Handles business logic for role operations including CRUD operations
+ * and role assignment validation. Roles define permissions and responsibilities
+ * within research seedbeds and investigation groups.
+ * </p>
+ */
 public class RoleUseCase implements IRoleServicePort {
 
     private final IRolePersistencePort rolePersistencePort;

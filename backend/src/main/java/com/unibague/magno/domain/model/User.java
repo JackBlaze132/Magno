@@ -5,6 +5,9 @@ import com.unibague.magno.domain.model.enums.TypeOfInternalUser;
 
 import java.util.Set;
 
+/**
+ * Domain model representing a system user and their core identity data.
+ */
 public class User {
 
     private Long id;

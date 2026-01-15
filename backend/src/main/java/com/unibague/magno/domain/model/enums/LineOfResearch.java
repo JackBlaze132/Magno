@@ -1,7 +1,11 @@
 package com.unibague.magno.domain.model.enums;
 
-// Research lines that will be associated with a research group or seedbed, information extracted
-// from the website: https://minciencias.gov.co/la-ciencia-en-cifras/grupos# on 01/18/25 (43 in total).
+/**
+ * Research lines associated with investigation groups and seedbeds.
+ * <p>
+ * Information extracted from https://minciencias.gov.co/la-ciencia-en-cifras/grupos# on 01/18/25 (43 in total).
+ * </p>
+ */
 public enum LineOfResearch {
     AGRICULTURA_SILVICULTURA_Y_PESCA("Agricultura, Silvicultura y Pesca"),
     ARTE("Arte"),
@@ -53,6 +57,11 @@ public enum LineOfResearch {
         this.formattedName = formattedName;
     }
 
+    /**
+     * Returns the display-friendly name for this enum value.
+     *
+     * @return the formatted name
+     */
     public String getFormattedName() {
         return formattedName;
     }

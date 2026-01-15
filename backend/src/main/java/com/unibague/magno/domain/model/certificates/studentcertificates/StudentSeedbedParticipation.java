@@ -2,6 +2,9 @@ package com.unibague.magno.domain.model.certificates.studentcertificates;
 
 import java.time.LocalDate;
 
+/**
+ * Domain model representing a student's participation period in a seedbed.
+ */
 public class StudentSeedbedParticipation {
     private LocalDate startDate;
     private LocalDate endDate;

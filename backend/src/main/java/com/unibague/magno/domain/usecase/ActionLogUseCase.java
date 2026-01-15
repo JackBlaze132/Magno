@@ -7,6 +7,14 @@ import com.unibague.magno.domain.spi.IActionLogPersistencePort;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Use case implementation for managing action logs.
+ * <p>
+ * Handles business logic for action log operations including saving, querying,
+ * and cleanup of user activity records. Action logs track user activities
+ * and system operations for auditing and monitoring purposes.
+ * </p>
+ */
 public class ActionLogUseCase implements IActionLogServicePort {
 
     private final IActionLogPersistencePort actionLogPersistencePort;
@@ -53,4 +61,3 @@ public class ActionLogUseCase implements IActionLogServicePort {
         }
     }
 }
-

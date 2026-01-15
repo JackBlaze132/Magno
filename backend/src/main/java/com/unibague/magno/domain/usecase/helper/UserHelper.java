@@ -10,6 +10,15 @@ import com.unibague.magno.domain.model.util.SystemConstants;
 
 import java.util.List;
 
+/**
+ * Implementation of {@link IUserHelper}.
+ * <p>
+ * Provides auxiliary operations for managing DIRI (administrative) users,
+ * including creating and removing their special functionary profiles.
+ * </p>
+ *
+ * @see IUserHelper
+ */
 public class UserHelper implements IUserHelper {
 
     private final IFunctionaryProfileServicePort functionaryProfileServicePort;
@@ -29,8 +38,6 @@ public class UserHelper implements IUserHelper {
 
     @Override
     public void addDiriUser(String diriIdentification, Long diriUserId) {
-        // There's no need to validate if the period exists because if not, an exception will be thrown
-        // Same for role and dependency
         AcademicPeriod apForDiriUsers = academicPeriodServicePort.findByName(SystemConstants.ADMIN_REGISTRATION_ACADEMIC_PERIOD_NAME);
         Role diriRole = roleServicePort.findByName(SeedbedRole.DIRI);
         Dependency dependency = dependencyServicePort.findByName(SystemConstants.DIRI_DEPENDENCY_NAME);

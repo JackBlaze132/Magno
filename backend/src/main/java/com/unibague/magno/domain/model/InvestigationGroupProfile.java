@@ -1,5 +1,8 @@
 package com.unibague.magno.domain.model;
 
+/**
+ * Domain model representing an investigation group profile for an academic period.
+ */
 public class InvestigationGroupProfile {
 
     private Long id;

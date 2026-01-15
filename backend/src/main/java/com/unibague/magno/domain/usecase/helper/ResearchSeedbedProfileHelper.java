@@ -12,6 +12,16 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Implementation of {@link IResearchSeedbedProfileHelper}.
+ * <p>
+ * Provides auxiliary operations for research seedbed profile management,
+ * including functionary profile verification, creation, and role management
+ * for coordinators and tutors.
+ * </p>
+ *
+ * @see IResearchSeedbedProfileHelper
+ */
 public class ResearchSeedbedProfileHelper implements IResearchSeedbedProfileHelper {
 
     private final IIntegraServicePort integraServicePort;
@@ -67,14 +77,6 @@ public class ResearchSeedbedProfileHelper implements IResearchSeedbedProfileHelp
         return rsp;
     }
 
-    /**
-     * Verifies that the academic period is in current status.
-     * Throws an exception otherwise.
-     *
-     * @param academicPeriodId The ID of the academic period to verify
-     * @param errorMessage Custom error message for the exception
-     * @throws AcademicPeriodNotCurrentException if the academic period is not current
-     */
     @Override
     public void verifyAcademicPeriodIsCurrent(Long academicPeriodId, String errorMessage) {
         AcademicPeriod ap = academicPeriodServicePort.findById(academicPeriodId);
@@ -156,23 +158,16 @@ public class ResearchSeedbedProfileHelper implements IResearchSeedbedProfileHelp
             (List<ResearchSeedbedProfile> researchSeedbedProfiles, Long academicPeriodId,
              Long oldCoordinatorId, Long oldTutorId) {
         
-        // Get investigation group profiles once for efficiency
         List<InvestigationGroupProfile> investigationGroupProfiles =
                 investigationGroupProfilePersistencePort.findAllByAcademicPeriodId(academicPeriodId);
         
-        // Handle old coordinator changes
         handleOldCoordinatorChanges(researchSeedbedProfiles, investigationGroupProfiles, oldCoordinatorId);
         
-        // Handle old tutor changes (only if there was a tutor)
         if (oldTutorId != null) {
             handleOldTutorChanges(researchSeedbedProfiles, investigationGroupProfiles, oldTutorId);
         }
     }
 
-    /**
-     * Handles the old coordinator functionary profile changes.
-     * Determines the appropriate action (keep, update role, or delete) based on current usage.
-     */
     private void handleOldCoordinatorChanges(List<ResearchSeedbedProfile> researchSeedbedProfiles,
                                               List<InvestigationGroupProfile> investigationGroupProfiles,
                                               Long oldCoordinatorId) {
@@ -184,26 +179,19 @@ public class ResearchSeedbedProfileHelper implements IResearchSeedbedProfileHelp
         boolean isOldCoordinatorInOtherSeedbedsAsTutor = researchSeedbedProfiles.stream()
                 .anyMatch(rsp -> Objects.equals(rsp.getTutorId(), oldCoordinatorId));
 
-        // If still coordinator of an investigation group, keep the role (do nothing)
         if (isOldCoordinatorInInvestigationGroups) {
             return;
         }
 
-        // No longer in investigation groups, check seedbed usage
         if (isOldCoordinatorInOtherSeedbedsAsCoordinator) {
             updateFunctionaryRole(oldCoordinatorId, SeedbedRole.COORDINADOR_DE_SEMILLERO);
         } else if (isOldCoordinatorInOtherSeedbedsAsTutor) {
             updateFunctionaryRole(oldCoordinatorId, SeedbedRole.TUTOR_DE_SEMILLERO);
         } else {
-            // Not used anywhere, delete the functionary profile
             functionaryProfileServicePort.deleteById(oldCoordinatorId);
         }
     }
 
-    /**
-     * Handles the old tutor functionary profile changes.
-     * Determines the appropriate action (keep, update role, or delete) based on current usage.
-     */
     private void handleOldTutorChanges(List<ResearchSeedbedProfile> researchSeedbedProfiles,
                                         List<InvestigationGroupProfile> investigationGroupProfiles,
                                         Long oldTutorId) {
@@ -215,24 +203,18 @@ public class ResearchSeedbedProfileHelper implements IResearchSeedbedProfileHelp
         boolean isOldTutorInOtherSeedbedsAsTutor = researchSeedbedProfiles.stream()
                 .anyMatch(rsp -> Objects.equals(rsp.getTutorId(), oldTutorId));
 
-        // If coordinator of an investigation group, update role to investigation group coordinator
         if (isOldTutorInInvestigationGroups) {
             updateFunctionaryRole(oldTutorId, SeedbedRole.COORDINADOR_DE_GRUPO_DE_INVESTIGACION);
             return;
         }
 
-        // Not in investigation groups, check seedbed usage
         if (isOldTutorInOtherSeedbedsAsCoordinator) {
             updateFunctionaryRole(oldTutorId, SeedbedRole.COORDINADOR_DE_SEMILLERO);
-        } else if (!isOldTutorInOtherSeedbedsAsTutor) { // If tutor in other seedbeds, keep role
-            // Not used anywhere, delete the functionary profile
+        } else if (!isOldTutorInOtherSeedbedsAsTutor) {
             functionaryProfileServicePort.deleteById(oldTutorId);
         }
     }
 
-    /**
-     * Updates the role of a functionary profile.
-     */
     private void updateFunctionaryRole(Long functionaryId, SeedbedRole roleName) {
         FunctionaryProfile profile = functionaryProfileServicePort.findById(functionaryId);
         Role role = roleServicePort.findByName(roleName);

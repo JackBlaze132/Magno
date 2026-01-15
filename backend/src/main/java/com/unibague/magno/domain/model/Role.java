@@ -2,6 +2,9 @@ package com.unibague.magno.domain.model;
 
 import com.unibague.magno.domain.model.enums.SeedbedRole;
 
+/**
+ * Domain model representing a role assigned within research seedbeds.
+ */
 public class Role {
 
     private Long id;
@@ -41,6 +44,11 @@ public class Role {
         this.description = description;
     }
 
+    /**
+     * Returns the display-friendly name for this role.
+     *
+     * @return the formatted role name
+     */
     public String getFormattedName() {
         return getName().getFormattedName();
     }

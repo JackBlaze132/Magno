@@ -1,5 +1,8 @@
 package com.unibague.magno.domain.model.integra;
 
+/**
+ * Domain model representing a dependency record from the Integra system.
+ */
 public class IntegraDependency {
 
     private String depCode;

@@ -4,6 +4,9 @@ import com.unibague.magno.domain.model.enums.LineOfResearch;
 
 import java.time.LocalDate;
 
+/**
+ * Domain model representing a research seedbed and its core information.
+ */
 public class ResearchSeedbed {
 
     private Long id;

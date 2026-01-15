@@ -8,6 +8,20 @@ import com.unibague.magno.domain.spi.IFunctionaryProfilePersistencePort;
 
 import java.util.List;
 
+/**
+ * Use case implementation for managing functionary profiles.
+ * <p>
+ * Handles business logic for functionary profile operations. Functionaries are
+ * university staff members (professors, researchers, coordinators) who participate
+ * in investigation groups and research seedbeds.
+ * </p>
+ * <p>
+ * Business rules enforced:
+ * <ul>
+ *   <li>A user can only have one functionary profile per academic period</li>
+ * </ul>
+ * </p>
+ */
 public class FunctionaryProfileUseCase implements IFunctionaryProfileServicePort {
 
     private final IFunctionaryProfilePersistencePort functionaryProfilePersistencePort;

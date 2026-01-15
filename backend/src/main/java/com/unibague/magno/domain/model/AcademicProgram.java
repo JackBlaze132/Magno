@@ -2,6 +2,9 @@ package com.unibague.magno.domain.model;
 
 import com.unibague.magno.domain.model.enums.AcademicProgramType;
 
+/**
+ * Domain model representing an academic program offered by the institution.
+ */
 public class AcademicProgram {
 
     private Long id;

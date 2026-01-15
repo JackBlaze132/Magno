@@ -1,5 +1,8 @@
 package com.unibague.magno.domain.model.excel.metadata;
 
+/**
+ * Metadata container for yearly investigation group Excel reports.
+ */
 public class InvestigationGroupYRMetadata {
 
     private final String academicPeriodName1;

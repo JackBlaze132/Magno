@@ -12,6 +12,30 @@ import com.unibague.magno.domain.usecase.helper.IResearchSeedbedProfileHelper;
 
 import java.util.List;
 
+/**
+ * Use case implementation for managing research seedbed profiles.
+ * <p>
+ * Handles business logic for research seedbed profile operations. A research seedbed
+ * profile represents the configuration and state of a research seedbed within a specific
+ * academic period, including its coordinator, tutor, and association with an investigation
+ * group profile.
+ * </p>
+ * <p>
+ * <strong>Why a helper is used:</strong> This use case delegates complex operations to
+ * {@link IResearchSeedbedProfileHelper} to avoid circular dependencies between use cases
+ * and to encapsulate the complex logic of managing functionary profiles when coordinators
+ * or tutors change. The helper handles creating, updating, or deleting functionary profiles
+ * based on their usage across all seedbed profiles in an academic period.
+ * </p>
+ * <p>
+ * Business rules enforced:
+ * <ul>
+ *   <li>A research seedbed can only have one profile per academic period</li>
+ *   <li>Only current (active) periods allow profile modifications</li>
+ *   <li>Coordinator and tutor cannot be the same person</li>
+ * </ul>
+ * </p>
+ */
 public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileServicePort {
 
     private final IResearchSeedbedProfilePersistencePort researchSeedbedProfilePersistencePort;
@@ -98,11 +122,6 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
     
     /**
      * Checks if the coordinator or tutor has changed.
-     * @param oldCoordinatorId The old coordinator ID
-     * @param newCoordinatorId The new coordinator ID
-     * @param oldTutorId The old tutor ID (can be null)
-     * @param newTutorId The new tutor ID (can be null)
-     * @return true if either coordinator or tutor has changed, false otherwise
      */
     private boolean coordinatorOrTutorHasChanged(Long oldCoordinatorId, Long newCoordinatorId,
                                                    Long oldTutorId, Long newTutorId) {
@@ -113,9 +132,6 @@ public class ResearchSeedbedProfileUseCase implements IResearchSeedbedProfileSer
     
     /**
      * Checks if the tutor has changed, considering that tutor can be null.
-     * @param oldTutorId The old tutor ID (can be null)
-     * @param newTutorId The new tutor ID (can be null)
-     * @return true if the tutor has changed, false otherwise
      */
     private boolean tutorHasChanged(Long oldTutorId, Long newTutorId) {
         // Both null = no change

@@ -10,6 +10,22 @@ import com.unibague.magno.domain.spi.IAcademicPeriodPersistencePort;
 
 import java.util.List;
 
+/**
+ * Use case implementation for managing academic periods.
+ * <p>
+ * Handles business logic for academic period operations. Academic periods (semesters)
+ * are fundamental organizational units in Magno, as profiles, activities, and reports
+ * are all scoped to specific academic periods.
+ * </p>
+ * <p>
+ * Business rules enforced:
+ * <ul>
+ *   <li>End date must be after start date</li>
+ *   <li>Only current (active) periods can be modified or deleted</li>
+ *   <li>Period names must be unique (case-insensitive)</li>
+ * </ul>
+ * </p>
+ */
 public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
 
     private final IAcademicPeriodPersistencePort academicPeriodPersistencePort;
@@ -86,10 +102,10 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
 
     /**
      * Verifies that an academic period with the same name doesn't already exist.
-     * Uses trim() to ignore leading/trailing whitespaces and case-insensitive comparison.
+     * Uses case-insensitive comparison and trims whitespace.
      *
-     * @param academicPeriod The academic period to verify
-     * @param currentId The ID of the current academic period (null for save, actual ID for update)
+     * @param academicPeriod the academic period to verify
+     * @param currentId      the ID of the current academic period (null for save, actual ID for update)
      * @throws AcademicPeriodAlreadyExistsException if an academic period with the same name exists
      */
     private void verifyThatAcademicPeriodDoesNotExist(AcademicPeriod academicPeriod, Long currentId) {

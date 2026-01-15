@@ -1,5 +1,8 @@
 package com.unibague.magno.domain.model.excel.metadata;
 
+/**
+ * Metadata container for seedbed Excel reports.
+ */
 public class SeedbedReportMetadata {
     private final String researchSeedbedName;
     private final String academicPeriodName;

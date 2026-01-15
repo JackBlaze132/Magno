@@ -2,6 +2,9 @@ package com.unibague.magno.domain.model;
 
 import java.util.Set;
 
+/**
+ * Domain model representing a student's profile for an academic period.
+ */
 public class StudentProfile {
 
     private Long id;

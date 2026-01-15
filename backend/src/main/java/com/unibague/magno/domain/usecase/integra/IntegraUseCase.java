@@ -18,6 +18,23 @@ import java.util.Set;
 
 import static com.unibague.magno.domain.usecase.ResearchSeedbedStudentProfileUseCase.IDENTIFICATION;
 
+/**
+ * Use case implementation for integrating with the university's Integra system.
+ * <p>
+ * This use case provides business logic for retrieving and validating data from Integra,
+ * the university's central information system. Integra is the authoritative source for
+ * official records of functionaries, students, academic programs, and dependencies.
+ * </p>
+ * <p>
+ * Key responsibilities:
+ * <ul>
+ *   <li>Retrieve functionary and student information by various identifiers</li>
+ *   <li>Validate student existence before bulk operations (Excel uploads)</li>
+ *   <li>Provide academic program information organized by type</li>
+ *   <li>Handle missing or invalid data with appropriate exceptions</li>
+ * </ul>
+ * </p>
+ */
 public class IntegraUseCase implements IIntegraServicePort {
 
     private final IIntegraPersistencePort integraPersistencePort;
@@ -95,7 +112,6 @@ public class IntegraUseCase implements IIntegraServicePort {
     }
 
     @Override
-    // This method filters out the student profiles that have empty values and checks if the students exist in Integra
     public List<Map<String, String>> getCleanedStudentListOfMaps(List<Map<String, String>> researchSeedbedStudentProfiles) {
         List<Map<String, String>> cleanedStudentListOfMaps = researchSeedbedStudentProfiles.stream()
                 .filter(map -> map.values().stream().noneMatch(String::isEmpty))
@@ -106,7 +122,7 @@ public class IntegraUseCase implements IIntegraServicePort {
                 .toList();
 
         List<String> missingIdentifications = findMissingStudentIdentificationsInIntegra(studentIdentifications);
-        throwIfStudentsMissing(missingIdentifications); // If there are missing students, we throw an exception
+        throwIfStudentsMissing(missingIdentifications);
 
         return cleanedStudentListOfMaps;
     }

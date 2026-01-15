@@ -19,6 +19,27 @@ import com.unibague.magno.domain.model.integra.IntegraStudent;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Use case implementation for scheduled cron job operations.
+ * <p>
+ * This use case contains business logic executed by scheduled tasks (cron jobs)
+ * from the infrastructure layer. It handles data synchronization between Magno
+ * and the Integra system, as well as maintenance tasks like log cleanup.
+ * </p>
+ * <p>
+ * Key operations:
+ * <ul>
+ *   <li><strong>Data Synchronization:</strong> Synchronizes users, academic programs,
+ *       and dependencies from Integra to keep Magno's database up-to-date</li>
+ *   <li><strong>Log Cleanup:</strong> Removes old error logs to prevent unbounded growth</li>
+ * </ul>
+ * </p>
+ * <p>
+ * <strong>Important:</strong> The synchronization process only adds new records; it does
+ * not modify or delete existing data. This preserves historical information even if
+ * entities are removed from Integra's database.
+ * </p>
+ */
 public class CronJobUseCase implements ICronJobServicePort {
 
     private final IIntegraServicePort integraServicePort;
@@ -40,30 +61,27 @@ public class CronJobUseCase implements ICronJobServicePort {
     }
 
     /**
-     * This method is intended to be called by a scheduled cron job from infrastructure/cronjobs
-     * to update the information of:
-     * ---------------------------------------------------------------------------------------
-     * Users (functionaries and students) - Academic Programs - Dependencies
-     * ---------------------------------------------------------------------------------------
-     * It compares the current information that exists in the system with that which exists in Integra.
-     * Its intention is only to add new information that it finds, not to modify or delete it, because the system
-     * intends to save the information over time, even if a person is no longer in Integra's databases,
-     * an academic program has disappeared, etc.
-     * ---------------------------------------------------------------------------------------
-     * Although there are endpoints that use information from Integra to return the departments and academic programs
-     * that "exist", some of these programs are not in the provided endpoints, so it was necessary to search for all
-     * the programs and departments that exist given the list of students and staff, and then compare it with the
-     * information that exists in Integra.
+     * Synchronizes data from the Integra system to Magno's database.
+     * <p>
+     * This method compares current Magno data with Integra and adds any new:
+     * <ul>
+     *   <li>Users (functionaries and students)</li>
+     *   <li>Academic programs</li>
+     *   <li>Dependencies (organizational units)</li>
+     * </ul>
+     * </p>
+     * <p>
+     * <strong>Note:</strong> This operation only adds new records. Existing data
+     * is never modified or deleted to preserve historical information.
+     * </p>
      */
     @Override
     public void updateInfoFromIntegra() {
 
-        // ---------------------------------------------------------------------------------------
         // Get the current information from the system
         List<User> currentUsers = userServicePort.findAll();
         List<AcademicProgram> currentAcademicPrograms = academicProgramServicePort.findAll();
         List<Dependency> currentDependencies = dependencyServicePort.findAll();
-        // ---------------------------------------------------------------------------------------
 
         // Get the information from Integra
         List<IntegraFunctionary> integraFunctionaries = integraServicePort.getAllFunctionaries();
@@ -80,7 +98,6 @@ public class CronJobUseCase implements ICronJobServicePort {
             }
         }
 
-        // ---------------------------------------------------------------------------------------
         // Extract unique academic programs and dependencies from Integra using Maps
         Map<String, AcademicProgram> integraAcademicProgramsMap = new HashMap<>();
         Map<String, Dependency> integraDependenciesMap = new HashMap<>();
@@ -117,7 +134,6 @@ public class CronJobUseCase implements ICronJobServicePort {
             }
         }
 
-        // ---------------------------------------------------------------------------------------
         // Add new academic programs that don't exist in the system (by programCode)
         Set<String> existingProgramCodes = currentAcademicPrograms.stream()
                 .map(AcademicProgram::getProgramCode)
@@ -131,7 +147,6 @@ public class CronJobUseCase implements ICronJobServicePort {
             academicProgramServicePort.save(program);
         }
 
-        // ---------------------------------------------------------------------------------------
         // Add new dependencies that don't exist in the system
         Set<String> existingDependencyNames = currentDependencies.stream()
                 .map(Dependency::getName)
@@ -147,10 +162,7 @@ public class CronJobUseCase implements ICronJobServicePort {
 
         createCustomDependency();
 
-        // ---------------------------------------------------------------------------------------
         // Users - Functionaries
-        // ---------------------------------------------------------------------------------------
-
         // Create map for existing user emails
         Set<String> existingUserEmails = currentUsers.stream()
                 .map(User::getEmail)
@@ -187,10 +199,7 @@ public class CronJobUseCase implements ICronJobServicePort {
             existingUserEmails.add(functionary.getEmail());
         }
 
-        // ---------------------------------------------------------------------------------------
         // Users - Students
-        // ---------------------------------------------------------------------------------------
-
         // Process Students
         Map<String, User> integraStudentsUsersMap = new HashMap<>();
 
@@ -227,7 +236,7 @@ public class CronJobUseCase implements ICronJobServicePort {
     }
 
     /**
-     * Helper method to parse sex from string to enum
+     * Parses a sex string from Integra to the corresponding Sex enum.
      */
     private Sex parseSex(String sexString) {
 
@@ -247,8 +256,7 @@ public class CronJobUseCase implements ICronJobServicePort {
     }
 
     /**
-     * Sometimes, integra return null or empty dependencies,
-     * so we need to ensure that at least one dependency exists with the name "No definido"
+     * Ensures a default dependency exists for cases where Integra returns null or empty values.
      */
     private void createCustomDependency() {
         if (dependencyServicePort.findByNameOptional("No definido").isEmpty()){

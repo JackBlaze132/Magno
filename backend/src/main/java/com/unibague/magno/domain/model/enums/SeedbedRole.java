@@ -1,5 +1,8 @@
 package com.unibague.magno.domain.model.enums;
 
+/**
+ * Enum representing roles available within research seedbeds.
+ */
 public enum SeedbedRole {
     USUARIO_SIN_ROL("Usuario sin rol", "Rol de usuario que se loguea por primera vez o no tiene rol asignado"),
     ESTUDIANTE("Estudiante", "Rol de estudiante"),
@@ -17,14 +20,29 @@ public enum SeedbedRole {
         this.description = description;
     }
 
+    /**
+     * Returns the display-friendly name for this role.
+     *
+     * @return the formatted name
+     */
     public String getFormattedName() {
         return formattedName;
     }
 
+    /**
+     * Returns the authority string used by the security layer.
+     *
+     * @return the authority string in the format ROLE_ENUM_NAME
+     */
     public String getAuthority() {
         return "ROLE_" + this.name();
     }
 
+    /**
+     * Returns the description for this role.
+     *
+     * @return the role description
+     */
     public String getDescription() {
         return description;
     }

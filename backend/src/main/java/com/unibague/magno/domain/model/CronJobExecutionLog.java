@@ -2,6 +2,9 @@ package com.unibague.magno.domain.model;
 
 import java.time.LocalDateTime;
 
+/**
+ * Domain model representing the execution details of a scheduled job.
+ */
 public class CronJobExecutionLog {
     
     private Long id;

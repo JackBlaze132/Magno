@@ -2,6 +2,9 @@ package com.unibague.magno.domain.model;
 
 import java.time.LocalDate;
 
+/**
+ * Domain model representing an academic period in the academic calendar.
+ */
 public class AcademicPeriod {
 
     private Long id;

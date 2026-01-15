@@ -2,6 +2,9 @@ package com.unibague.magno.domain.model;
 
 import java.time.LocalDateTime;
 
+/**
+ * Domain model representing an error log entry captured by the system.
+ */
 public class ErrorLog {
 
     private Long id;

@@ -1,5 +1,8 @@
 package com.unibague.magno.domain.model;
 
+/**
+ * Domain model representing a research seedbed profile for an academic period.
+ */
 public class ResearchSeedbedProfile {
 
     private Long id;

@@ -13,6 +13,29 @@ import com.unibague.magno.domain.usecase.helper.IResearchSeedbedStudentProfileHe
 
 import java.util.*;
 
+/**
+ * Use case implementation for managing research seedbed student profiles.
+ * <p>
+ * Handles business logic for student participations in research seedbeds. This represents
+ * the many-to-many relationship between students and seedbeds, tracking enrollment,
+ * leadership status, and activity within each seedbed.
+ * </p>
+ * <p>
+ * <strong>Why a helper is used:</strong> This use case delegates operations to
+ * {@link IResearchSeedbedStudentProfileHelper} to avoid circular dependencies and to
+ * encapsulate the logic of verifying and creating student profiles. The helper ensures
+ * students have valid profiles in the academic period before being added to seedbeds.
+ * </p>
+ * <p>
+ * Business rules enforced:
+ * <ul>
+ *   <li>Students can only be added to seedbeds in active academic periods</li>
+ *   <li>Each seedbed can have at most one student leader</li>
+ *   <li>A student cannot be enrolled in the same seedbed twice</li>
+ *   <li>Student roles are automatically updated based on leadership status across all seedbeds</li>
+ * </ul>
+ * </p>
+ */
 public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStudentProfileServicePort {
 
     private final IResearchSeedbedStudentProfilePersistencePort researchSeedbedStudentProfilePersistencePort;
@@ -251,11 +274,10 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
     }
 
     /**
-     * Verifies that the academic period associated with the research seedbed profile
-     * is in current status. Throws an exception otherwise.
+     * Verifies that the academic period associated with the research seedbed profile is current.
      *
-     * @param researchSeedbedProfileId The ID of the research seedbed profile
-     * @param errorMessage Custom error message for the exception
+     * @param researchSeedbedProfileId the ID of the research seedbed profile
+     * @param errorMessage             custom error message for the exception
      * @throws AcademicPeriodNotCurrentException if the academic period is not current
      */
     private void verifyAcademicPeriodIsCurrent(Long researchSeedbedProfileId, String errorMessage) {
@@ -274,12 +296,14 @@ public class ResearchSeedbedStudentProfileUseCase implements IResearchSeedbedStu
     }
 
     /**
-     * Updates the student profile with the appropriate role based on ALL their seedbed profiles
-     * in the current academic period. Assigns ESTUDIANTE_LIDER if the student is a leader in
-     * at least one seedbed, otherwise assigns ESTUDIANTE.
+     * Updates the student profile with the appropriate role based on ALL their seedbed profiles.
+     * <p>
+     * Assigns ESTUDIANTE_LIDER if the student is a leader in at least one seedbed,
+     * otherwise assigns ESTUDIANTE.
+     * </p>
      *
-     * @param studentProfileId The ID of the student profile to update
-     * @param academicPeriodId The ID of the academic period
+     * @param studentProfileId the ID of the student profile to update
+     * @param academicPeriodId the ID of the academic period
      */
     private void updateStudentProfileRole(Long studentProfileId, Long academicPeriodId) {
         // Get all research seedbed student profiles for this student in the academic period

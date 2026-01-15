@@ -19,6 +19,24 @@ import java.util.stream.Collectors;
 
 import static com.unibague.magno.domain.usecase.ResearchSeedbedStudentProfileUseCase.IDENTIFICATION;
 
+/**
+ * Use case implementation for managing student profiles.
+ * <p>
+ * Handles business logic for student profile operations. Student profiles represent
+ * the relationship between a student and an academic period, including their enrolled
+ * academic programs and role in research seedbeds.
+ * </p>
+ * <p>
+ * This use case integrates with the Integra system to automatically create student
+ * profiles with up-to-date academic information (semester, programs) when needed.
+ * </p>
+ * <p>
+ * Business rules enforced:
+ * <ul>
+ *   <li>A student can only have one profile per academic period</li>
+ * </ul>
+ * </p>
+ */
 public class StudentProfileUseCase  implements IStudentProfileServicePort {
 
     private final IStudentProfilePersistencePort studentProfilePersistencePort;
