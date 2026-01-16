@@ -5,6 +5,9 @@ import com.unibague.magno.infrastructure.output.jpa.entity.CronJobExecutionLogEn
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+/**
+ * MapStruct mapper for converting between {@link CronJobExecutionLog} domain model and {@link CronJobExecutionLogEntity} JPA entity.
+ */
 @Mapper(componentModel = "spring")
 public interface CronJobExecutionLogEntityMapper {
 

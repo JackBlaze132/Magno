@@ -7,6 +7,9 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
+/**
+ * MapStruct mapper for converting between {@link ErrorLog} domain model and {@link ErrorLogEntity} JPA entity.
+ */
 @Mapper(componentModel = "spring")
 public interface ErrorLogEntityMapper {
 

@@ -5,6 +5,9 @@ import com.unibague.magno.infrastructure.output.jpa.entity.ExternalUserProfileEn
 
 import java.util.List;
 
+/**
+ * Mapper interface for converting between {@link ExternalUserProfile} domain model and {@link ExternalUserProfileEntity} JPA entity.
+ */
 public interface ExternalUserProfileEntityMapper {
 
     ExternalUserProfile toExternalUserProfile(ExternalUserProfileEntity externalUserProfileEntity);

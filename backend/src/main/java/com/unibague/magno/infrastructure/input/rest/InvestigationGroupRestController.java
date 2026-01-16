@@ -12,6 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * REST controller for managing investigation groups in Magno.
+ * Provides endpoints for CRUD operations on investigation groups,
+ * which are the main research entities at the university that contain
+ * multiple research seedbeds and are led by research directors.
+ *
+ * @see InvestigationGroupHandler
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/investigation-groups")

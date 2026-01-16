@@ -8,6 +8,10 @@ import lombok.Setter;
 
 import java.util.Set;
 
+/**
+ * JPA entity representing the {@code research_seedbeds_profiles} table.
+ * Stores research seedbed configurations for specific academic periods.
+ */
 @Getter
 @Setter
 @Entity

@@ -6,6 +6,9 @@ import com.unibague.magno.infrastructure.output.jpa.entity.DependencyEntity;
 
 import java.util.List;
 
+/**
+ * Mapper interface for converting between {@link Dependency} domain model and {@link DependencyEntity} JPA entity.
+ */
 public interface DependencyEntityMapper {
 
     Dependency toDependency(DependencyEntity dependencyEntity);

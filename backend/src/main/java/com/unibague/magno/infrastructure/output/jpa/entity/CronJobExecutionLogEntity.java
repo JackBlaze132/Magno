@@ -5,6 +5,10 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+/**
+ * JPA entity representing the {@code cronjob_execution_logs} table.
+ * Stores execution logs for scheduled background tasks.
+ */
 @Getter
 @Setter
 @Entity

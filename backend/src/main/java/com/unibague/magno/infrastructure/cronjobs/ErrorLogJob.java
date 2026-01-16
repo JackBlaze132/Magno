@@ -12,6 +12,12 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Scheduled job for cleaning up old error logs.
+ * Deletes error log entries older than 30 days to prevent database bloat
+ * while maintaining recent logs for debugging and monitoring purposes.
+ * Runs every Sunday at 1:00 AM (America/Bogota timezone).
+ */
 @Component
 @RequiredArgsConstructor
 public class ErrorLogJob {

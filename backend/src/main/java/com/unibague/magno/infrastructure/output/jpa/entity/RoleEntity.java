@@ -6,6 +6,10 @@ import lombok.*;
 
 import java.util.Set;
 
+/**
+ * JPA entity representing the {@code roles} table.
+ * Stores seedbed roles with their descriptions.
+ */
 @Getter
 @Setter
 @Entity

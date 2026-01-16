@@ -11,6 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * JPA implementation of {@link IResearchSeedbedStudentProfilePersistencePort} for managing research seedbed student profile persistence.
+ * Handles database operations for student participation in research seedbeds using Spring Data JPA.
+ */
 @RequiredArgsConstructor
 @Transactional
 public class ResearchSeedbedStudentProfileJpaAdapter implements IResearchSeedbedStudentProfilePersistencePort {

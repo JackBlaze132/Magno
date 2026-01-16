@@ -12,6 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * REST controller for managing roles in Magno.
+ * Provides endpoints for CRUD operations on roles,
+ * which define the permissions and access levels for users
+ * within the research group management system.
+ *
+ * @see RoleHandler
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/roles")

@@ -10,7 +10,15 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+/**
+ * Spring Data JPA repository for {@link InvestigationGroupProfileEntity}.
+ * Includes methods for generating Excel reports on investigation groups.
+ */
 public interface IInvestigationGroupProfileRepository extends JpaRepository<InvestigationGroupProfileEntity, Long> {
+
+    /**
+     * Finds investigation group profiles by academic period ID.
+     */
     List<InvestigationGroupProfileEntity> findByAcademicPeriodId(Long academicPeriodId);
 
     @Query(value = """

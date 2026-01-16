@@ -7,6 +7,10 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.Set;
 
+/**
+ * JPA entity representing the {@code research_seedbeds} table.
+ * Stores research seedbed information including mission, vision, and research proposals.
+ */
 @Getter
 @Setter
 @Entity

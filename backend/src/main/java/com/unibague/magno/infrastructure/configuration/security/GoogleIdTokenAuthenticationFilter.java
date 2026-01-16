@@ -26,6 +26,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Security filter for authenticating requests using Google ID tokens.
+ * Validates Bearer tokens in the Authorization header, verifies them with Google,
+ * and establishes the security context with user roles for API requests.
+ */
 @Component
 @RequiredArgsConstructor
 public class GoogleIdTokenAuthenticationFilter extends OncePerRequestFilter {

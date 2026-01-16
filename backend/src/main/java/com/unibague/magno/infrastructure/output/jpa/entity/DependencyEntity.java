@@ -8,6 +8,10 @@ import lombok.Setter;
 
 import java.util.Set;
 
+/**
+ * JPA entity representing the {@code dependencies} table.
+ * Stores university organizational units (faculties, departments).
+ */
 @Getter
 @Setter
 @Entity

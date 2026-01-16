@@ -8,6 +8,10 @@ import lombok.Setter;
 
 import java.util.Set;
 
+/**
+ * JPA entity representing the {@code investigation_group_profiles} table.
+ * Stores investigation group configurations for specific academic periods.
+ */
 @Getter
 @Setter
 @Entity

@@ -17,6 +17,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * REST client implementation of {@link IIntegraPersistencePort} for fetching data from the external Integra system.
+ * Connects to the University of Ibagué's central Integra API to retrieve information about
+ * functionaries, students, academic programs, and organizational dependencies.
+ */
 @Service
 @RequiredArgsConstructor
 public class IntegraUserClient implements IIntegraPersistencePort {

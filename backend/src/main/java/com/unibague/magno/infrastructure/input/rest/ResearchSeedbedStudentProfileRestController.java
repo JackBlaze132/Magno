@@ -15,6 +15,13 @@ import org.springframework.web.multipart.MultipartFile;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * REST controller for managing research seedbed student profiles in Magno.
+ * Provides endpoints for CRUD operations on student participation in research seedbeds,
+ * including the ability to bulk import students from Excel files.
+ *
+ * @see ResearchSeedbedStudentProfileHandler
+ */
 @RestController
 @RequestMapping("/research-seedbed-student-profile")
 @RequiredArgsConstructor
@@ -53,6 +60,13 @@ public class ResearchSeedbedStudentProfileRestController {
         return ResponseEntity.created(location).body(created);
     }
 
+    /**
+     * Bulk imports student profiles to a research seedbed from an Excel file.
+     *
+     * @param researchSeedbedProfileId The ID of the research seedbed profile to add students to.
+     * @param file The Excel file containing student data to import.
+     * @return List of summary responses for each imported student profile.
+     */
     @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).TUTOR_DE_SEMILLERO)")
     @PostMapping(path = "/add-all-by-excel/{researchSeedbedProfileId}", headers = "API-VERSION=1")
     ResponseEntity<List<ResearchSeedbedStudentProfileSummaryResponse>> addAllResearchSeedbedStudentProfileByExcel(

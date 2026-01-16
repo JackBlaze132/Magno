@@ -21,6 +21,15 @@ import java.nio.charset.StandardCharsets;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * REST controller for managing research seedbed profiles in Magno.
+ * Provides endpoints for CRUD operations on research seedbed profiles,
+ * which represent the state and configuration of a research seedbed
+ * for a specific academic period. Also includes endpoints for generating
+ * Excel reports on individual seedbed activities.
+ *
+ * @see ResearchSeedbedProfileHandler
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/research-seedbed-profiles")
@@ -49,6 +58,13 @@ public class ResearchSeedbedProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
+    /**
+     * Generates an Excel report for a specific research seedbed profile and academic period.
+     *
+     * @param researchSeedbedProfileId The ID of the research seedbed profile.
+     * @param academicPeriodId The ID of the academic period.
+     * @return Excel file as byte array with seedbed activity data.
+     */
     @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/generate-seedbed-report", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getSeedbedReport(

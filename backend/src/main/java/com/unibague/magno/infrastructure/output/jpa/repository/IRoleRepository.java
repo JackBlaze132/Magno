@@ -9,7 +9,14 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Spring Data JPA repository for {@link RoleEntity}.
+ */
 public interface IRoleRepository extends JpaRepository<RoleEntity, Long> {
+
+    /**
+     * Finds all roles assigned to a user across both functionary and student profiles.
+     */
     @Query(value = """
         SELECT DISTINCT r.* FROM roles r
         JOIN functionary_profiles fp ON fp.role_id = r.id
@@ -21,6 +28,13 @@ public interface IRoleRepository extends JpaRepository<RoleEntity, Long> {
         """, nativeQuery = true)
     List<RoleEntity> findAllRolesByUserId(@Param("userId") Long userId);
 
+    /**
+     * Finds a role by its name.
+     */
     Optional<RoleEntity> findByName(SeedbedRole name);
+
+    /**
+     * Checks if a role exists by its name.
+     */
     boolean existsByName(SeedbedRole name);
 }

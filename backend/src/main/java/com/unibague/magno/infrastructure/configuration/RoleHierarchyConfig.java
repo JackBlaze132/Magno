@@ -6,6 +6,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 
+/**
+ * Configuration class for Spring Security role hierarchy.
+ * Defines the privilege hierarchy where higher roles inherit permissions from lower roles.
+ * The hierarchy follows: DIRI > Coordinator > Tutor > Student Leader > Student > No Role.
+ */
 @Configuration
 public class RoleHierarchyConfig {
 

@@ -10,6 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * REST controller for querying action logs in Magno.
+ * Provides endpoints for retrieving audit logs of user actions,
+ * including filtering by user, date range, and age of logs.
+ * Used for monitoring and auditing system activity.
+ *
+ * @see ActionLogHandler
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/action-logs")

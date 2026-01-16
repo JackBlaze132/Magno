@@ -22,6 +22,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * JPA implementation of {@link IResearchSeedbedProfilePersistencePort} for managing research seedbed profile persistence.
+ * Handles database operations for research seedbed profiles and Excel report generation using Spring Data JPA.
+ */
 @RequiredArgsConstructor
 @Transactional
 public class ResearchSeedbedProfileJpaAdapter implements IResearchSeedbedProfilePersistencePort {

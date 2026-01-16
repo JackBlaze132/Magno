@@ -6,8 +6,14 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
+/**
+ * Spring Data JPA repository for {@link InvestigationGroupEntity}.
+ */
 public interface IInvestigationGroupRepository extends JpaRepository<InvestigationGroupEntity, Long> {
 
+    /**
+     * Finds investigation groups that have at least one associated profile.
+     */
     @Query("SELECT DISTINCT ig FROM InvestigationGroupEntity ig " +
             "JOIN ig.investigationGroupProfiles igp")
     List<InvestigationGroupEntity> findInvestigationGroupsWithAssociatedProfiles();

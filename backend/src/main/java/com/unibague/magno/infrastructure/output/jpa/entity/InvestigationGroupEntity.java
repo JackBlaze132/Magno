@@ -6,6 +6,10 @@ import lombok.*;
 
 import java.util.Set;
 
+/**
+ * JPA entity representing the {@code investigation_groups} table.
+ * Stores research groups with their associated lines of research.
+ */
 @Getter
 @Setter
 @Entity

@@ -7,6 +7,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 
+/**
+ * Service for PDF generation and date formatting utilities.
+ * Converts HTML content to PDF documents and provides Spanish-language
+ * date formatting methods for certificates.
+ */
 @Service
 public class PdfService {
 

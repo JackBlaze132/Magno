@@ -7,9 +7,19 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Spring Data JPA repository for {@link AcademicPeriodEntity}.
+ */
 public interface IAcademicPeriodRepository extends JpaRepository<AcademicPeriodEntity, Long> {
+
+    /**
+     * Finds an academic period by its name.
+     */
     Optional<AcademicPeriodEntity> findByName(String name);
 
+    /**
+     * Retrieves all visible academic periods (excludes hidden administrative periods).
+     */
     @Query("SELECT a FROM AcademicPeriodEntity a WHERE a.isVisible = true")
     List<AcademicPeriodEntity> findAllVisible();
 }

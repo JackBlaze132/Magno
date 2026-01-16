@@ -8,7 +8,15 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+/**
+ * Spring Data JPA repository for {@link ResearchSeedbedProfileEntity}.
+ * Includes methods for generating Excel reports on seedbed activities.
+ */
 public interface IResearchSeedbedProfileRepository extends JpaRepository<ResearchSeedbedProfileEntity, Long> {
+
+    /**
+     * Finds all research seedbed profiles by investigation group profile ID.
+     */
     List<ResearchSeedbedProfileEntity> findAllByInvestigationGroupProfileId(Long id);
 
     @Query(value = """

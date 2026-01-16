@@ -12,6 +12,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * JPA implementation of {@link ICronJobExecutionLogPersistencePort} for managing cron job execution logs.
+ * Handles database operations for scheduled task execution logs using Spring Data JPA.
+ */
 @Component
 @RequiredArgsConstructor
 public class CronJobExecutionLogJpaAdapter implements ICronJobExecutionLogPersistencePort {

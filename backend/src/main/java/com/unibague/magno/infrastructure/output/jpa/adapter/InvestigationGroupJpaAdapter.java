@@ -11,6 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * JPA implementation of {@link IInvestigationGroupPersistencePort} for managing investigation group persistence.
+ * Handles database operations for research groups using Spring Data JPA.
+ */
 @RequiredArgsConstructor
 @Transactional
 public class InvestigationGroupJpaAdapter implements IInvestigationGroupPersistencePort {

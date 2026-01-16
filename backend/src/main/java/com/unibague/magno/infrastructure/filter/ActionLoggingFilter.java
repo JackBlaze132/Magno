@@ -17,6 +17,12 @@ import org.springframework.web.util.ContentCachingResponseWrapper;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Servlet filter for auditing user actions.
+ * Logs successful non-GET requests (POST, PUT, PATCH, DELETE) including request/response
+ * bodies and execution time. Runs late in the filter chain to capture complete responses.
+ * Logging is performed asynchronously to avoid impacting request performance.
+ */
 @Component
 @Order(Ordered.LOWEST_PRECEDENCE - 1) // Ensure this filter runs late in the chain
 @RequiredArgsConstructor

@@ -13,6 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * JPA implementation of {@link IErrorLogPersistencePort} for managing error log persistence.
+ * Handles database operations for application error logs using Spring Data JPA.
+ */
 @RequiredArgsConstructor
 @Transactional
 public class ErrorLogJpaAdapter implements IErrorLogPersistencePort {

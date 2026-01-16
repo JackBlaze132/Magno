@@ -12,6 +12,13 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * REST controller for managing academic periods in Magno.
+ * Provides endpoints for CRUD operations on academic periods,
+ * which define the time frames for research activities and enrollment.
+ *
+ * @see AcademicPeriodHandler
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/academic-periods")

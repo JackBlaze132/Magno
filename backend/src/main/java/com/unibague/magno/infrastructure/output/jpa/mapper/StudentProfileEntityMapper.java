@@ -6,6 +6,9 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
+/**
+ * Mapper interface for converting between {@link StudentProfile} domain model and {@link StudentProfileEntity} JPA entity.
+ */
 public interface StudentProfileEntityMapper {
 
     StudentProfile toStudentProfile(StudentProfileEntity studentProfileEntity);

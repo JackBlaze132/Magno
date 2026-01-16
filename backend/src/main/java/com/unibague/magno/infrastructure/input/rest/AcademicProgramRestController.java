@@ -12,6 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * REST controller for managing academic programs in Magno.
+ * Provides endpoints for CRUD operations on academic programs,
+ * which represent the university's educational offerings (undergraduate, graduate, etc.)
+ * that students can enroll in.
+ *
+ * @see AcademicProgramHandler
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/academic-programs")

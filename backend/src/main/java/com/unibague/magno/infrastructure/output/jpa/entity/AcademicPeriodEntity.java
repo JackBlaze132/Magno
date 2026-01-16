@@ -6,6 +6,10 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.Set;
 
+/**
+ * JPA entity representing the {@code academic_periods} table.
+ * Stores academic period information with start and end dates.
+ */
 @Getter
 @Setter
 @Entity

@@ -8,6 +8,9 @@ import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
+/**
+ * MapStruct mapper for converting between {@link ResearchSeedbed} domain model and {@link ResearchSeedbedEntity} JPA entity.
+ */
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ResearchSeedbedEntityMapper {
 

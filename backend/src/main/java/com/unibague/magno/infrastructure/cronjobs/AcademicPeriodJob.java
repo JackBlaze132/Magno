@@ -14,6 +14,12 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Scheduled job for managing academic period lifecycle.
+ * Automatically deactivates academic periods that have passed their end date,
+ * ensuring only current periods remain active in the system.
+ * Runs daily at 2:00 AM (America/Bogota timezone).
+ */
 @Component
 @RequiredArgsConstructor
 public class AcademicPeriodJob {

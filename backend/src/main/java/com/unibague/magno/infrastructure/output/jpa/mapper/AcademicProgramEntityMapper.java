@@ -6,6 +6,9 @@ import com.unibague.magno.infrastructure.output.jpa.entity.AcademicProgramEntity
 
 import java.util.List;
 
+/**
+ * Mapper interface for converting between {@link AcademicProgram} domain model and {@link AcademicProgramEntity} JPA entity.
+ */
 public interface AcademicProgramEntityMapper {
 
     AcademicProgram toAcademicProgram(AcademicProgramEntity academicProgramEntity);

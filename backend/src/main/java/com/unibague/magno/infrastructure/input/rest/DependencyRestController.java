@@ -12,6 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * REST controller for managing university dependencies in Magno.
+ * Provides endpoints for CRUD operations on dependencies,
+ * which represent organizational units (faculties, departments, etc.)
+ * within the University of Ibagué.
+ *
+ * @see DependencyHandler
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/dependencies")

@@ -10,6 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * REST controller for querying error logs in Magno.
+ * Provides endpoints for retrieving system error logs,
+ * including filtering by user, date range, and age of logs.
+ * Used for debugging and monitoring application errors.
+ *
+ * @see ErrorLogHandler
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/error-logs")

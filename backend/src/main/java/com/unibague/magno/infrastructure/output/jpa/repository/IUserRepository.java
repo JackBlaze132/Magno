@@ -10,6 +10,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Spring Data JPA repository for {@link UserEntity}.
+ */
 public interface IUserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByIdentificationNumber(String identificationNumber) throws Exception;
     List<UserEntity> findAllByIdentificationNumber(String identificationNumber);

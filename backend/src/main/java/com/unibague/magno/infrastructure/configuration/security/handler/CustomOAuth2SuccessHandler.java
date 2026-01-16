@@ -13,6 +13,11 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+/**
+ * Custom handler for successful OAuth2 authentication.
+ * Sets the Google ID token in an HTTP-only cookie for subsequent API requests
+ * and redirects the user to the frontend application.
+ */
 @Component
 @RequiredArgsConstructor
 public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler {

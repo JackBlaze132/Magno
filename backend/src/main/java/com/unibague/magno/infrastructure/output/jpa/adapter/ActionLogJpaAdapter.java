@@ -13,6 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * JPA implementation of {@link IActionLogPersistencePort} for managing action log persistence.
+ * Handles database operations for user action audit logs using Spring Data JPA.
+ */
 @RequiredArgsConstructor
 @Transactional
 public class ActionLogJpaAdapter implements IActionLogPersistencePort {

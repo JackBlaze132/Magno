@@ -16,6 +16,11 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 import java.util.List;
 
+/**
+ * Argument resolver for the {@link CurrentUser} annotation.
+ * Extracts user information from the security context and injects a {@link CurrentUserInfo}
+ * object into controller method parameters annotated with @CurrentUser.
+ */
 @Component
 public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolver {
 

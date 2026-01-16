@@ -5,6 +5,9 @@ import com.unibague.magno.infrastructure.output.jpa.entity.InvestigationGroupPro
 
 import java.util.List;
 
+/**
+ * Mapper interface for converting between {@link InvestigationGroupProfile} domain model and {@link InvestigationGroupProfileEntity} JPA entity.
+ */
 public interface InvestigationGroupProfileEntityMapper {
 
     InvestigationGroupProfile toInvestigationGroupProfile(

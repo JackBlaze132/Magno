@@ -9,6 +9,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+/**
+ * Scheduled job for synchronizing data from the Integra university system.
+ * Updates academic programs, dependencies, and user information to keep
+ * the application data in sync with the institutional source of truth.
+ * Runs every Sunday at midnight (America/Bogota timezone).
+ */
 @Component
 @RequiredArgsConstructor
 public class UpdateInfoFromIntegraJob {

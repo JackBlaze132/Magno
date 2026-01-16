@@ -9,6 +9,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
+/**
+ * Web MVC configuration class.
+ * Configures CORS policies for allowed origins and registers custom argument resolvers
+ * like {@link CurrentUserArgumentResolver} for injecting authenticated user information.
+ */
 @Configuration
 @RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {

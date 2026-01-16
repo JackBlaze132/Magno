@@ -6,6 +6,10 @@ import lombok.*;
 
 import java.util.Set;
 
+/**
+ * JPA entity representing the {@code academic_programs} table.
+ * Stores academic program information (undergraduate/postgraduate offerings).
+ */
 @Getter
 @Setter
 @Entity

@@ -8,6 +8,10 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+/**
+ * Utility component for Excel file processing operations.
+ * Provides helper methods for streaming rows and cells from Apache POI workbooks.
+ */
 @Component
 public class UploadUtil {
     public Supplier<Stream<Row>> getRowStreamSupplier(Iterable<Row> rows){

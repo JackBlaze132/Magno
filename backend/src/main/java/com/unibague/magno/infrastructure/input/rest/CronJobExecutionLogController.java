@@ -10,6 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * REST controller for querying cron job execution logs in Magno.
+ * Provides endpoints for retrieving logs of scheduled task executions,
+ * including filtering by job name, status, date range, and recent executions.
+ * Used for monitoring the health and status of background jobs.
+ *
+ * @see CronJobExecutionLogHandler
+ */
 @RestController
 @RequestMapping("/cronjob-logs")
 @RequiredArgsConstructor

@@ -8,6 +8,10 @@ import lombok.Setter;
 
 import java.util.Set;
 
+/**
+ * JPA entity representing the {@code functionary_profiles} table.
+ * Stores university staff member profiles with their roles and assignments.
+ */
 @Getter
 @Setter
 @Entity

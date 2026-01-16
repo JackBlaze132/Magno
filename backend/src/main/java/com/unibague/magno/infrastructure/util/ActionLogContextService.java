@@ -19,6 +19,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
+/**
+ * Service for creating action log entries from HTTP requests.
+ * Builds {@link ActionLog} objects with request/response details, user information,
+ * and execution time. Automatically filters sensitive data from request/response bodies.
+ */
 @Service
 @RequiredArgsConstructor
 public class ActionLogContextService {

@@ -12,6 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * REST controller for managing student profiles in Magno.
+ * Provides endpoints for CRUD operations on student profiles,
+ * which represent a student's enrollment in the university for a specific
+ * academic period and academic program.
+ *
+ * @see StudentProfileHandler
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/student-profiles")

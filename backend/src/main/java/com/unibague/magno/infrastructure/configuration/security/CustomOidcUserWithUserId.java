@@ -10,6 +10,11 @@ import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import java.util.Collection;
 import java.util.Map;
 
+/**
+ * Custom OidcUser wrapper that includes the application's internal user ID.
+ * Used during OAuth2 web-based authentication to maintain the link between
+ * Google's OAuth user and the application's User entity.
+ */
 @Getter
 @AllArgsConstructor
 public class CustomOidcUserWithUserId implements OidcUser {

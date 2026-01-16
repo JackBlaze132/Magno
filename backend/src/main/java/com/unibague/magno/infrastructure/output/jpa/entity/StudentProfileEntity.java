@@ -8,6 +8,10 @@ import lombok.Setter;
 
 import java.util.Set;
 
+/**
+ * JPA entity representing the {@code student_profiles} table.
+ * Stores student enrollment information for specific academic periods.
+ */
 @Getter
 @Setter
 @Entity

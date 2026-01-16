@@ -63,6 +63,12 @@ import java.util.List;
 
 import static com.unibague.magno.infrastructure.exceptionhandler.ExceptionResponse.*;
 
+/**
+ * Global exception handler for all REST controllers.
+ * Intercepts exceptions thrown during request processing, converts them to standardized
+ * error responses, and logs them for monitoring and debugging purposes.
+ * Each exception type is mapped to an appropriate HTTP status code and error message.
+ */
 @RestControllerAdvice
 @RequiredArgsConstructor
 public class ControllerAdvisor {

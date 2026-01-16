@@ -2,6 +2,11 @@ package com.unibague.magno.infrastructure.exceptionhandler;
 
 import lombok.Getter;
 
+/**
+ * Enumeration of all application exception codes and messages.
+ * Provides standardized error codes (e.g., ERR_USER_001) and user-friendly messages
+ * in Spanish for consistent error handling across the API.
+ */
 @Getter
 public enum ExceptionResponse {
 

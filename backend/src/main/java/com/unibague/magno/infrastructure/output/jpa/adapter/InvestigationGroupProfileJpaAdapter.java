@@ -27,6 +27,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * JPA implementation of {@link IInvestigationGroupProfilePersistencePort} for managing investigation group profile persistence.
+ * Handles database operations for investigation group profiles and Excel report generation using Spring Data JPA.
+ */
 @RequiredArgsConstructor
 @Transactional
 public class InvestigationGroupProfileJpaAdapter implements IInvestigationGroupProfilePersistencePort {

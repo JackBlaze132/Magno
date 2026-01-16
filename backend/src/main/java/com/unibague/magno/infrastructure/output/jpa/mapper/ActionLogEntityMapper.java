@@ -8,6 +8,9 @@ import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
+/**
+ * MapStruct mapper for converting between {@link ActionLog} domain model and {@link ActionLogEntity} JPA entity.
+ */
 @Mapper(componentModel = "spring",
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         unmappedSourcePolicy = ReportingPolicy.IGNORE)

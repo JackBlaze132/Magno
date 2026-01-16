@@ -5,6 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
+/**
+ * Spring Data JPA repository for {@link DependencyEntity}.
+ */
 public interface IDependencyRepository extends JpaRepository<DependencyEntity, Long> {
+
+    /**
+     * Finds a dependency by its name.
+     */
     Optional<DependencyEntity> findByName(String name);
 }

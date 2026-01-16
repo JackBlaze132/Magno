@@ -23,6 +23,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Custom OIDC user service for Google OAuth2 authentication.
+ * Handles user loading during OAuth2 login, validates university email domain,
+ * creates new users from Integra system if not existing, and assigns roles.
+ */
 @RequiredArgsConstructor
 @Service
 public class CustomOidcUserService extends OidcUserService {

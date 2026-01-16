@@ -5,6 +5,9 @@ import com.unibague.magno.infrastructure.output.jpa.entity.FunctionaryProfileEnt
 
 import java.util.List;
 
+/**
+ * Mapper interface for converting between {@link FunctionaryProfile} domain model and {@link FunctionaryProfileEntity} JPA entity.
+ */
 public interface FunctionaryProfileEntityMapper {
 
     FunctionaryProfile toFunctionaryProfile(FunctionaryProfileEntity functionaryProfileEntity);

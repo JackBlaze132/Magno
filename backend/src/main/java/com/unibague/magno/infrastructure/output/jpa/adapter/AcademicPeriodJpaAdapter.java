@@ -12,6 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * JPA implementation of {@link IAcademicPeriodPersistencePort} for managing academic period persistence.
+ * Handles database operations for academic periods using Spring Data JPA.
+ */
 @RequiredArgsConstructor
 @Transactional
 public class AcademicPeriodJpaAdapter implements IAcademicPeriodPersistencePort {

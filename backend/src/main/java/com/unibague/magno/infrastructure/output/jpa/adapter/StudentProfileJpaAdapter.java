@@ -11,6 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * JPA implementation of {@link IStudentProfilePersistencePort} for managing student profile persistence.
+ * Handles database operations for student profiles using Spring Data JPA.
+ */
 @RequiredArgsConstructor
 @Transactional
 public class StudentProfileJpaAdapter implements IStudentProfilePersistencePort {

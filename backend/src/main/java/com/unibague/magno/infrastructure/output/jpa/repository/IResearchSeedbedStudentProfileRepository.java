@@ -7,9 +7,24 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+/**
+ * Spring Data JPA repository for {@link ResearchSeedbedStudentProfileEntity}.
+ */
 public interface IResearchSeedbedStudentProfileRepository extends JpaRepository<ResearchSeedbedStudentProfileEntity, Long> {
+
+    /**
+     * Checks if a student profile exists in the given research seedbed profile.
+     */
     boolean existsByStudentProfileIdAndResearchSeedbedProfileId(Long studentProfileId, Long researchSeedbedProfileId);
+
+    /**
+     * Finds all student profiles by research seedbed profile ID.
+     */
     List<ResearchSeedbedStudentProfileEntity> findAllByResearchSeedbedProfileId(Long researchSeedbedProfileId);
+
+    /**
+     * Finds all student seedbed profiles by student profile and academic period.
+     */
     @Query("""
         SELECT rsp
         FROM ResearchSeedbedStudentProfileEntity rsp

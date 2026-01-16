@@ -25,6 +25,11 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
 import java.util.Arrays;
 
+/**
+ * Configuration class for RestTemplate used in external API calls.
+ * Configures SSL to trust all certificates (required for Integra system communication)
+ * and sets up JSON serialization with snake_case naming strategy.
+ */
 @Configuration
 public class RestTemplateConfiguration {
 

@@ -8,6 +8,9 @@ import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
+/**
+ * MapStruct mapper for converting between {@link Role} domain model and {@link RoleEntity} JPA entity.
+ */
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface RoleEntityMapper {
 

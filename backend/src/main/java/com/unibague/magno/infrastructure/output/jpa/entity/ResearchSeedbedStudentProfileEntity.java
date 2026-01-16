@@ -6,6 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * JPA entity representing the {@code research_seedbeds_student_profiles} table.
+ * Stores student participation in research seedbeds.
+ */
 @Getter
 @Setter
 @Entity

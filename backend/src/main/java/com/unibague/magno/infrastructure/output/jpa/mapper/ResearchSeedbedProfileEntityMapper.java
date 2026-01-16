@@ -5,6 +5,9 @@ import com.unibague.magno.infrastructure.output.jpa.entity.ResearchSeedbedProfil
 
 import java.util.List;
 
+/**
+ * Mapper interface for converting between {@link ResearchSeedbedProfile} domain model and {@link ResearchSeedbedProfileEntity} JPA entity.
+ */
 public interface ResearchSeedbedProfileEntityMapper {
 
     ResearchSeedbedProfile toResearchSeedbedProfile(

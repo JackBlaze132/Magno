@@ -15,6 +15,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+/**
+ * JPA implementation of {@link IAcademicProgramPersistencePort} for managing academic program persistence.
+ * Handles database operations for academic programs using Spring Data JPA.
+ */
 @RequiredArgsConstructor
 @Transactional
 public class AcademicProgramJpaAdapter implements IAcademicProgramPersistencePort {

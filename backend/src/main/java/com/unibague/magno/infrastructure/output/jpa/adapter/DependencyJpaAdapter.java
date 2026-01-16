@@ -12,6 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * JPA implementation of {@link IDependencyPersistencePort} for managing university dependency persistence.
+ * Handles database operations for organizational units (faculties, departments) using Spring Data JPA.
+ */
 @RequiredArgsConstructor
 @Transactional
 public class DependencyJpaAdapter implements IDependencyPersistencePort {

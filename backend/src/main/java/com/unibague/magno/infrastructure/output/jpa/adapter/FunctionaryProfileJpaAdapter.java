@@ -13,6 +13,10 @@ import jakarta.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * JPA implementation of {@link IFunctionaryProfilePersistencePort} for managing functionary profile persistence.
+ * Handles database operations for university staff member profiles using Spring Data JPA.
+ */
 @RequiredArgsConstructor
 @Transactional
 public class FunctionaryProfileJpaAdapter implements IFunctionaryProfilePersistencePort {

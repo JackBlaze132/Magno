@@ -12,6 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * REST controller for managing research seedbeds in Magno.
+ * Provides endpoints for CRUD operations on research seedbeds,
+ * which are smaller research units within investigation groups where
+ * students participate in research activities under the guidance of tutors.
+ *
+ * @see ResearchSeedbedHandler
+ */
 @RestController
 @RequestMapping("/research-seedbeds")
 @RequiredArgsConstructor

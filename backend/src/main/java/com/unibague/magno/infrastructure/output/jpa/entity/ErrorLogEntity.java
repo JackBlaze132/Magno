@@ -8,6 +8,10 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+/**
+ * JPA entity representing the {@code error_logs} table.
+ * Stores application error information for debugging and monitoring.
+ */
 @Getter
 @Setter
 @Entity

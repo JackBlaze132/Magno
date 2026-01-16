@@ -9,6 +9,11 @@ import java.io.StringWriter;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
+/**
+ * Service for creating and managing cron job execution log contexts.
+ * Provides methods to initialize execution logs at job start and finalize them with
+ * status, duration, and error information when jobs complete.
+ */
 @Service
 @RequiredArgsConstructor
 public class CronJobLogContextService {

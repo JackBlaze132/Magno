@@ -8,6 +8,10 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+/**
+ * JPA entity representing the {@code action_logs} table.
+ * Stores audit logs of user actions including HTTP requests and responses.
+ */
 @Getter
 @Setter
 @Entity

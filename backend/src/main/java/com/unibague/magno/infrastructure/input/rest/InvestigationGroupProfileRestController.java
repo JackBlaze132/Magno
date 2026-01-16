@@ -23,6 +23,15 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+/**
+ * REST controller for managing investigation group profiles in Magno.
+ * Provides endpoints for CRUD operations on investigation group profiles,
+ * which represent the state and configuration of an investigation group
+ * for a specific academic period. Also includes endpoints for generating
+ * Excel reports on investigation groups and active seedbeds.
+ *
+ * @see InvestigationGroupProfileHandler
+ */
 @RestController
 @RequestMapping("/investigation-group-profiles")
 @RequiredArgsConstructor
@@ -52,6 +61,12 @@ public class InvestigationGroupProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
+    /**
+     * Generates an Excel report for investigation groups for a single academic period (half-year).
+     *
+     * @param academicPeriodId The ID of the academic period to generate the report for.
+     * @return Excel file as byte array with investigation group data.
+     */
     @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/generate-investigation-group-half-year-report", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getHalfYearInvestigationGroupReport(@RequestParam("apId") Long academicPeriodId) {
@@ -68,6 +83,13 @@ public class InvestigationGroupProfileRestController {
                 .body(report.getContent());
     }
 
+    /**
+     * Generates an annual Excel report for investigation groups comparing two academic periods.
+     *
+     * @param academicPeriodId1 The ID of the first academic period.
+     * @param academicPeriodId2 The ID of the second academic period.
+     * @return Excel file as byte array with comparative investigation group data.
+     */
     @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/generate-investigation-group-annual-year-report", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getAnnualInvestigationGroupReport(@RequestParam("apId1") Long academicPeriodId1,
@@ -85,6 +107,12 @@ public class InvestigationGroupProfileRestController {
                 .body(report.getContent());
     }
 
+    /**
+     * Generates an Excel report of active seedbeds for a single academic period (half-year).
+     *
+     * @param academicPeriodId The ID of the academic period to generate the report for.
+     * @return Excel file as byte array with active seedbeds data.
+     */
     @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/generate-active-seedbeds-half-year-report", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getHalfYearActiveSeedbedsReport(@RequestParam("apId") Long academicPeriodId) {
@@ -101,6 +129,13 @@ public class InvestigationGroupProfileRestController {
                 .body(report.getContent());
     }
 
+    /**
+     * Generates an annual Excel report of active seedbeds comparing two academic periods.
+     *
+     * @param academicPeriodId1 The ID of the first academic period.
+     * @param academicPeriodId2 The ID of the second academic period.
+     * @return Excel file as byte array with comparative active seedbeds data.
+     */
     @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/generate-active-seedbeds-annual-year-report", headers = "API-VERSION=1")
     public ResponseEntity<byte[]> getAnnualActiveSeedbedsReport(@RequestParam("apId1") Long academicPeriodId1,

@@ -23,6 +23,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * Central Spring configuration class for dependency injection.
+ * Defines all application beans including service ports, persistence ports,
+ * use cases, helpers, and security components following hexagonal architecture.
+ */
 @Configuration
 @RequiredArgsConstructor
 public class BeanConfiguration {

@@ -19,6 +19,11 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Service for creating error log entries from exceptions.
+ * Builds {@link ErrorLog} objects with exception details, HTTP context, and user information.
+ * Automatically filters sensitive parameters and headers from request data.
+ */
 @Service
 @RequiredArgsConstructor
 public class ErrorLogContextService {

@@ -15,6 +15,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+/**
+ * Service for generating text file reports of cron job executions.
+ * Creates formatted log files with execution details, status, duration, and error information
+ * stored in the configured log directory.
+ */
 @Service
 @RequiredArgsConstructor
 public class CronJobLogFileService {

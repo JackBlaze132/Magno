@@ -19,6 +19,11 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Service for processing Excel file uploads.
+ * Reads Excel files and converts their contents into a list of maps,
+ * where each map represents a row with column headers as keys.
+ */
 @Service
 @RequiredArgsConstructor
 public class UploadService {

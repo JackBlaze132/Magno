@@ -10,6 +10,10 @@ import lombok.Setter;
 
 import java.util.Set;
 
+/**
+ * JPA entity representing the {@code users} table.
+ * Stores user information including internal and external university members.
+ */
 @Getter
 @Setter
 @Entity

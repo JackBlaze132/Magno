@@ -10,6 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * REST controller for accessing enum values used throughout Magno.
+ * Provides endpoints for dynamically retrieving enum values by name,
+ * checking if a value exists in an enum, and retrieving lines of research
+ * associated with investigation groups or research seedbeds.
+ *
+ * @see IEnumServicePort
+ */
 @RestController
 @RequestMapping("/enums")
 @RequiredArgsConstructor

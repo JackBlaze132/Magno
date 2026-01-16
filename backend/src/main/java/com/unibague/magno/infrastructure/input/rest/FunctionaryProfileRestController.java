@@ -12,6 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * REST controller for managing functionary profiles in Magno.
+ * Provides endpoints for CRUD operations on functionary profiles,
+ * which represent university staff members (professors, researchers, administrators)
+ * and their roles within research groups and seedbeds for specific academic periods.
+ *
+ * @see FunctionaryProfileHandler
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/functionary-profiles")

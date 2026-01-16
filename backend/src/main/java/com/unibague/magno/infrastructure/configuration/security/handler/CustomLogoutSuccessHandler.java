@@ -10,6 +10,10 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+/**
+ * Custom handler for successful logout operations.
+ * Clears the session cookie and redirects the user to the login page.
+ */
 @Component
 public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
 

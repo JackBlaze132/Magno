@@ -7,6 +7,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * JPA entity representing the {@code external_user_profiles} table.
+ * Stores profiles of non-university participants in research seedbeds.
+ */
 @Getter
 @Setter
 @Entity

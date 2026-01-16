@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+/**
+ * JPA implementation of {@link IRolePersistencePort} for managing role persistence.
+ * Handles database operations for seedbed roles using Spring Data JPA.
+ */
 @RequiredArgsConstructor
 @Transactional
 public class RoleJpaAdapter implements IRolePersistencePort {

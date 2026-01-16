@@ -29,6 +29,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * JPA implementation of {@link IUserPersistencePort} for managing user persistence.
+ * Handles database operations for users and PDF certificate generation using Spring Data JPA.
+ */
 @Component
 @Transactional
 @RequiredArgsConstructor

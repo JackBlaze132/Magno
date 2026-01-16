@@ -16,6 +16,19 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Initializer that provides an interactive prompt at application startup to register
+ * an administrator (DIRI) user.
+ * <p>
+ * This component allows the system administrator to assign the DIRI role to an existing
+ * user during the application startup process. It requires user interaction via the console
+ * to provide the administrator's email address.
+ * </p>
+ * <p>
+ * <strong>Execution order:</strong> {@code @Order(3)} - Runs after {@link UserDataInitializer}
+ * to ensure user data is synchronized before attempting to assign admin roles.
+ * </p>
+ */
 @Slf4j
 @Component
 @RequiredArgsConstructor

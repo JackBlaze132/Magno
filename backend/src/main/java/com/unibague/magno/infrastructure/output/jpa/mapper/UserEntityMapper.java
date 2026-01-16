@@ -8,6 +8,9 @@ import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
+/**
+ * Mapper interface for converting between {@link User} domain model and {@link UserEntity} JPA entity.
+ */
 public interface UserEntityMapper {
 
     User toUser(UserEntity userEntity);

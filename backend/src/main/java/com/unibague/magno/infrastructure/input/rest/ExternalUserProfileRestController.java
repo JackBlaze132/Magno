@@ -12,6 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * REST controller for managing external user profiles in Magno.
+ * Provides endpoints for CRUD operations on profiles of users who are not part
+ * of the University of Ibagué but participate in research seedbeds
+ * (e.g., external collaborators, visiting researchers).
+ *
+ * @see ExternalUserProfileHandler
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/external-user-profiles")

@@ -11,6 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * JPA implementation of {@link IExternalUserProfilePersistencePort} for managing external user profile persistence.
+ * Handles database operations for profiles of non-university participants in research seedbeds.
+ */
 @RequiredArgsConstructor
 @Transactional
 public class ExternalUserProfileJpaAdapter implements IExternalUserProfilePersistencePort {

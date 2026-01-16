@@ -12,6 +12,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 
+/**
+ * Initializer responsible for populating the database with all seedbed roles
+ * defined in the {@link SeedbedRole} enum at application startup.
+ * <p>
+ * This component checks for the existence of each role and creates any missing ones,
+ * ensuring the role table is always synchronized with the enum values.
+ * </p>
+ * <p>
+ * <strong>Execution order:</strong> {@code @Order(1)} - Runs after {@link EnumConstraintInitializer}
+ * to ensure database constraints are updated before inserting roles.
+ * </p>
+ */
 @Slf4j
 @Component
 @RequiredArgsConstructor

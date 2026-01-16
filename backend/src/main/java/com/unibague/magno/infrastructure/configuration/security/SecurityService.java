@@ -7,6 +7,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service for extracting authenticated user information from the security context.
+ * Handles both OAuth2 web-based authentication and Bearer token authentication,
+ * returning a unified response with user details from Google.
+ */
 @Service
 public class SecurityService {
 

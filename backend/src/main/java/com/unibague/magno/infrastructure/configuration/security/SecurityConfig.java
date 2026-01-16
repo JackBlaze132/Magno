@@ -15,6 +15,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * Main Spring Security configuration class.
+ * Configures OAuth2 login with Google, CORS, CSRF, authentication filters,
+ * logout handling, and defines which endpoints require authentication.
+ */
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor

@@ -8,6 +8,10 @@ import java.util.Map;
 import org.thymeleaf.context.Context;
 
 
+/**
+ * Service for rendering HTML content using Thymeleaf templates.
+ * Used for generating HTML content for certificates that are later converted to PDF.
+ */
 @Service
 public class HtmlRenderService {
 
