@@ -7,6 +7,10 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
+/**
+ * Mapper interface for converting cron job execution log domain models to response DTOs.
+ * Auto-implemented by MapStruct.
+ */
 @Mapper(componentModel = "spring")
 public interface CronJobExecutionLogResponseMapper {
 

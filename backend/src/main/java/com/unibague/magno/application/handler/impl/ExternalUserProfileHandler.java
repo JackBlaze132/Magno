@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Implementation of {@link IExternalUserProfileHandler}.
+ */
 @Service
 @RequiredArgsConstructor
 public class ExternalUserProfileHandler implements IExternalUserProfileHandler {

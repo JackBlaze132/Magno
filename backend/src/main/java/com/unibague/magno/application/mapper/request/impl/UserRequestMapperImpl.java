@@ -10,6 +10,10 @@ import com.unibague.magno.domain.model.enums.JSONIntegraType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+/**
+ * Implementation of {@link UserRequestMapper}.
+ * Supports mapping from both direct user requests and Integra system data.
+ */
 @Component
 @RequiredArgsConstructor
 public class UserRequestMapperImpl implements UserRequestMapper {

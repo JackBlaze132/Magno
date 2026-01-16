@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Implementation of {@link IErrorLogHandler}.
+ */
 @Service
 @RequiredArgsConstructor
 public class ErrorLogHandler implements IErrorLogHandler {

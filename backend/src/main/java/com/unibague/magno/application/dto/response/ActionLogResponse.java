@@ -7,6 +7,10 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+/**
+ * Response DTO containing action log information for audit purposes.
+ * Captures HTTP request/response details, user information, and execution metrics.
+ */
 @Getter
 @Setter
 @AllArgsConstructor

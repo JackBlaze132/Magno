@@ -6,6 +6,10 @@ import java.util.Map;
 
 import static com.unibague.magno.application.dto.util.certificate.StudentSeedbedCertificateFields.*;
 
+/**
+ * Builder class for constructing the data map used to populate student seedbed
+ * participation certificates. Uses fluent API pattern for readability.
+ */
 public class StudentSeedbedCertificateBuilder {
 
     private final Map<String, Object> values = new HashMap<>();

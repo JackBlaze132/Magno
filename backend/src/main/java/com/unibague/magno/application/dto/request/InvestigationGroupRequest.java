@@ -11,6 +11,11 @@ import lombok.Setter;
 
 import java.util.Set;
 
+/**
+ * Request DTO for creating or updating an investigation group.
+ * Investigation groups are the main organizational units for research
+ * and may contain multiple research seedbeds.
+ */
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)

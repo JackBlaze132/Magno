@@ -1,5 +1,9 @@
 package com.unibague.magno.application.dto.util.certificate;
 
+/**
+ * Constants class defining field names used in student seedbed participation certificates.
+ * These constants map to placeholders in the certificate template for PDF generation.
+ */
 public class StudentSeedbedCertificateFields {
 
     public static final String NOMBRE = "nombre";

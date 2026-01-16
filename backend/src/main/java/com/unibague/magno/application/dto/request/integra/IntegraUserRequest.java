@@ -10,6 +10,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Request DTO for querying user information from the Integra system.
+ * Integra is the university's external information system that provides
+ * data about students, functionaries, academic programs, and dependencies.
+ */
 @Getter
 @Setter
 @Builder

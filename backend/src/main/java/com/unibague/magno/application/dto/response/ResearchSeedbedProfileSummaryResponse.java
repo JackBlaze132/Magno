@@ -6,6 +6,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Response DTO containing a summarized view of a research seedbed profile.
+ * Provides only essential names (seedbed, coordinator, tutor, group, period)
+ * instead of full nested objects, useful for list views and dropdowns.
+ */
 @Getter
 @Setter
 @Builder

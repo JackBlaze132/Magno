@@ -7,6 +7,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Response DTO containing external user profile information.
+ * External users are individuals outside the university who participate
+ * in research seedbeds (e.g., visiting researchers, external advisors).
+ */
 @Getter
 @Setter
 @Builder

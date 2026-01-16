@@ -6,6 +6,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Response DTO containing a summarized view of a student's membership in a research seedbed.
+ * Uses summarized seedbed profile data instead of full nested objects,
+ * useful for list views displaying student participation across seedbeds.
+ */
 @Getter
 @Setter
 @Builder

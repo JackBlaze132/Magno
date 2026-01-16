@@ -6,6 +6,11 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Request DTO for creating or updating a role within the system.
+ * Roles define the permissions and responsibilities of users
+ * in research groups and seedbeds.
+ */
 @Getter
 @Setter
 public class RoleRequest {

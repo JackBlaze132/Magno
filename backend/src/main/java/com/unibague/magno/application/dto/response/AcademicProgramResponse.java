@@ -6,6 +6,10 @@ import com.unibague.magno.domain.model.enums.AcademicProgramType;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Response DTO containing academic program information.
+ * Includes the program's identifier, name, code, and type classification.
+ */
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)

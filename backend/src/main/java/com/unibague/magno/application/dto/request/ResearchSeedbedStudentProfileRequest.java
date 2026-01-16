@@ -8,6 +8,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Request DTO for creating or updating a student's membership in a research seedbed.
+ * Links a student to a specific research seedbed profile for a given academic period.
+ */
 @Getter
 @Setter
 @Builder
@@ -19,8 +23,10 @@ public class ResearchSeedbedStudentProfileRequest {
     private Long researchSeedbedProfileId;
 
     /**
-     * Although in the database this value refers to the student's profile ID
-     * in the request it refers to the student's user ID.
+     * The user ID of the student to be enrolled.
+     * Note: Although the domain model stores a student_profile ID,
+     * this field accepts a user ID for better UX. The service layer
+     * handles the conversion to student_profile ID.
      */
     @NotNull(message = "El campo 'student_profile_id' es obligatorio")
     @Positive(message = "El campo 'student_profile_id' debe ser un número positivo")

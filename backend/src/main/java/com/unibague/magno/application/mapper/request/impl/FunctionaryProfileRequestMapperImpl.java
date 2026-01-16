@@ -12,6 +12,10 @@ import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+/**
+ * Implementation of {@link FunctionaryProfileRequestMapper}.
+ * Fetches the functionary's dependency from Integra based on their identification.
+ */
 @Component
 @RequiredArgsConstructor
 public class FunctionaryProfileRequestMapperImpl implements FunctionaryProfileRequestMapper {

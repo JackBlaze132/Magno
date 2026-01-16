@@ -7,6 +7,10 @@ import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
+/**
+ * Mapper interface for converting research seedbed domain models to response DTOs.
+ * Auto-implemented by MapStruct.
+ */
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ResearchSeedbedResponseMapper {
     ResearchSeedbedResponse toResponse(ResearchSeedbed researchSeeedbed);

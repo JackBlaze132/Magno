@@ -11,6 +11,11 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+/**
+ * Request DTO for creating or updating a research seedbed.
+ * Research seedbeds are student research groups that operate under
+ * an investigation group, focusing on a specific line of research.
+ */
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)

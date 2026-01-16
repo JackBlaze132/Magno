@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Implementation of {@link IAcademicProgramHandler}.
+ */
 @Service
 @RequiredArgsConstructor
 public class AcademicProgramHandler implements IAcademicProgramHandler {

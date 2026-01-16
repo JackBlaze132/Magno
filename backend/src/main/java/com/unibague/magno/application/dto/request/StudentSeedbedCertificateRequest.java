@@ -8,6 +8,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Request DTO for generating a participation certificate for a student.
+ * The certificate confirms a student's membership and participation
+ * in a specific research seedbed.
+ */
 @Getter
 @Setter
 @Builder

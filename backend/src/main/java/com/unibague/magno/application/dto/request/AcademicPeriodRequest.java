@@ -9,6 +9,10 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+/**
+ * Request DTO for creating or updating an academic period.
+ * Contains the period's name, date range, and current status flag.
+ */
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
@@ -24,8 +28,9 @@ public class AcademicPeriodRequest {
     private LocalDate endDate;
 
     /**
-     * This field use the Boolean class instead of the primitive type
-     * because if a primitive type is used, the default value will be false in the mapper
+     * Indicates whether this is the currently active academic period.
+     * Uses Boolean wrapper class instead of primitive to avoid default false
+     * value during object mapping.
      */
     @NotNull(message = "El campo 'is_current' es obligatorio")
     private Boolean isCurrent;

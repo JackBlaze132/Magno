@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Implementation of {@link UserResponseMapper}.
+ */
 @Component
 public class UserResponseMapperImpl implements UserResponseMapper {
 

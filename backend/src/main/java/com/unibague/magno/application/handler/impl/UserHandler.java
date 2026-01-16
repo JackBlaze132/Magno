@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Implementation of {@link IUserHandler}.
+ */
 @Service
 @RequiredArgsConstructor
 public class UserHandler implements IUserHandler {

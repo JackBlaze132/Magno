@@ -6,6 +6,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Response DTO containing investigation group profile information.
+ * Represents the configuration of an investigation group for a specific academic period,
+ * including its coordinator assignment.
+ */
 @Builder
 @Getter
 @Setter

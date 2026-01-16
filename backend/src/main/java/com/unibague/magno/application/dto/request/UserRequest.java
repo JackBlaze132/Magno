@@ -10,6 +10,10 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Request DTO for creating or updating a user in the system.
+ * Contains personal information such as identification, name, and contact details.
+ */
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)

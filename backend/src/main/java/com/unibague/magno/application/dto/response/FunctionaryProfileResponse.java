@@ -6,6 +6,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Response DTO containing functionary profile information.
+ * Includes the functionary's user data, academic period, dependency, and assigned role.
+ */
 @Getter
 @Setter
 @Builder

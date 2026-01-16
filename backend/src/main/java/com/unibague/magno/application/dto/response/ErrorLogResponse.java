@@ -8,6 +8,10 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+/**
+ * Response DTO containing error log information for debugging and monitoring.
+ * Captures exception details, request context, and user information when errors occur.
+ */
 @Getter
 @Setter
 @Builder

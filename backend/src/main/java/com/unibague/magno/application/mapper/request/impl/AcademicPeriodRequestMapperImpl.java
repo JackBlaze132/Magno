@@ -6,6 +6,9 @@ import com.unibague.magno.domain.model.AcademicPeriod;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+/**
+ * Implementation of {@link AcademicPeriodRequestMapper}.
+ */
 @Component
 @RequiredArgsConstructor
 public class AcademicPeriodRequestMapperImpl implements AcademicPeriodRequestMapper {

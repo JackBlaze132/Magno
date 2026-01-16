@@ -9,9 +9,12 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Implementation of {@link ResearchSeedbedStudentProfileResponseMapper}.
+ */
 @Component
 @RequiredArgsConstructor
-public class ResearchSeedbedStudentProfileResponseMapperImpl implements ResearchSeedbedStudentProfileResponseMapper{
+public class ResearchSeedbedStudentProfileResponseMapperImpl implements ResearchSeedbedStudentProfileResponseMapper {
 
     private final IResearchSeedbedProfileServicePort researchSeedbedProfileServicePort;
     private final ResearchSeedbedProfileResponseMapper researchSeedbedProfileResponseMapper;

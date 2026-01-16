@@ -8,6 +8,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Request DTO for creating or updating a functionary profile.
+ * Functionaries are university staff members who can hold roles such as
+ * coordinator, tutor, or director within research groups and seedbeds.
+ */
 @Getter
 @Setter
 @Builder

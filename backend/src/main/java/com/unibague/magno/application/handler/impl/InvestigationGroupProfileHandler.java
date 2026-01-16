@@ -16,6 +16,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Implementation of {@link IInvestigationGroupProfileHandler}.
+ */
 @Service
 @RequiredArgsConstructor
 public class InvestigationGroupProfileHandler implements IInvestigationGroupProfileHandler {

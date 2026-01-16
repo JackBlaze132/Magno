@@ -4,6 +4,11 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+/**
+ * Response DTO containing cron job execution log information.
+ * Captures job execution details including status, duration, processed records,
+ * and error information if the job failed.
+ */
 @Getter
 @Setter
 @Builder

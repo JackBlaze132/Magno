@@ -13,6 +13,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Implementation of {@link ExternalUserProfileResponseMapper}.
+ */
 @Component
 @RequiredArgsConstructor
 public class ExternalUserProfileResponseMapperImpl implements ExternalUserProfileResponseMapper {

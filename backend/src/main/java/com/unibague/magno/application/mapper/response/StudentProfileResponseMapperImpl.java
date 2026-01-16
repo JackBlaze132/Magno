@@ -12,9 +12,12 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Implementation of {@link StudentProfileResponseMapper}.
+ */
 @Component
 @RequiredArgsConstructor
-public class StudentProfileResponseMapperImpl implements StudentProfileResponseMapper{
+public class StudentProfileResponseMapperImpl implements StudentProfileResponseMapper {
 
     private final IUserServicePort userServicePort;
     private final UserResponseMapper userResponseMapper;

@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Implementation of {@link IFunctionaryProfileHandler}.
+ */
 @Service
 @RequiredArgsConstructor
 public class FunctionaryProfileHandler implements IFunctionaryProfileHandler {

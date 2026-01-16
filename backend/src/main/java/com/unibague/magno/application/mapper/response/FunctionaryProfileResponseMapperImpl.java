@@ -11,9 +11,12 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Implementation of {@link FunctionaryProfileResponseMapper}.
+ */
 @Component
 @RequiredArgsConstructor
-public class FunctionaryProfileResponseMapperImpl implements FunctionaryProfileResponseMapper{
+public class FunctionaryProfileResponseMapperImpl implements FunctionaryProfileResponseMapper {
 
     private final IUserServicePort userServicePort;
     private final UserResponseMapper userResponseMapper;

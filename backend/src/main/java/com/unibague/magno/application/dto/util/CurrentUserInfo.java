@@ -9,11 +9,15 @@ import lombok.ToString;
 
 import java.util.List;
 
+/**
+ * DTO containing information about the currently authenticated user.
+ * Extracted from the security context and used for authorization checks
+ * and audit logging throughout the application.
+ */
 @Getter
 @Builder
 @AllArgsConstructor
 @ToString
-// DTO that holds information about the currently authenticated user.
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class CurrentUserInfo {
     private final Long userId;

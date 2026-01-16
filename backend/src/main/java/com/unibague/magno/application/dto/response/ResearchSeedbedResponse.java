@@ -8,6 +8,11 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+/**
+ * Response DTO containing research seedbed information.
+ * Includes the seedbed's basic data: name, mission, vision,
+ * research proposal, creation date, and line of research.
+ */
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)

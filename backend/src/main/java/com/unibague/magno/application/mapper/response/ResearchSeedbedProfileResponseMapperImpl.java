@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Implementation of {@link ResearchSeedbedProfileResponseMapper}.
+ */
 @Component
 @RequiredArgsConstructor
 public class ResearchSeedbedProfileResponseMapperImpl implements ResearchSeedbedProfileResponseMapper {

@@ -13,9 +13,12 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Implementation of {@link InvestigationGroupProfileResponseMapper}.
+ */
 @Component
 @RequiredArgsConstructor
-public class InvestigationGroupProfileResponseMapperImpl implements InvestigationGroupProfileResponseMapper{
+public class InvestigationGroupProfileResponseMapperImpl implements InvestigationGroupProfileResponseMapper {
 
     private final IInvestigationGroupServicePort investigationGroupServicePort;
     private final InvestigationGroupResponseMapper investigationGroupResponseMapper;

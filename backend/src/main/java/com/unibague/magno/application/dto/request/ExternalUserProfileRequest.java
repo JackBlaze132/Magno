@@ -9,6 +9,11 @@ import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Request DTO for creating or updating an external user profile.
+ * External users are individuals outside the university who participate
+ * in research seedbeds (e.g., visiting researchers, external advisors).
+ */
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)

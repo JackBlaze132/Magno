@@ -17,6 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Implementation of {@link IResearchSeedbedStudentProfileHandler}.
+ */
 @Service
 @RequiredArgsConstructor
 public class ResearchSeedbedStudentProfileHandler implements IResearchSeedbedStudentProfileHandler {

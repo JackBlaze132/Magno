@@ -8,6 +8,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Request DTO for creating or updating an investigation group profile.
+ * Represents the configuration of an investigation group for a specific academic period,
+ * including its assigned coordinator.
+ */
 @Getter
 @Setter
 @Builder
@@ -19,8 +24,10 @@ public class InvestigationGroupProfileRequest {
     private Long investigationGroupId;
 
     /**
-     * Although in the model this field refers to the id of a functionary_profile, when the request is made,
-     * it refers to the user_id for UX reasons. This will be handled in the service layer.
+     * The user ID of the coordinator to be assigned.
+     * Note: Although the domain model stores a functionary_profile ID,
+     * this field accepts a user ID for better UX. The service layer
+     * handles the conversion to functionary_profile ID.
      */
     @NotNull(message = "El campo 'coordinator_id' es obligatorio")
     @Positive(message = "El campo 'coordinator_id' debe ser un número positivo")

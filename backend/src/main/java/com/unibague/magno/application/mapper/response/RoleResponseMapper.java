@@ -9,6 +9,10 @@ import org.mapstruct.ReportingPolicy;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Mapper interface for converting role domain models to response DTOs.
+ * Auto-implemented by MapStruct. Uses custom mapping for the role name formatting.
+ */
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface RoleResponseMapper {
 

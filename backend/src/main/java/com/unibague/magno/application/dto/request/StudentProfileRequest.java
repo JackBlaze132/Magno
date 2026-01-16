@@ -8,6 +8,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Request DTO for creating or updating a student profile.
+ * Student profiles represent a student's participation in the system
+ * for a specific academic period.
+ */
 @Getter
 @Setter
 @Builder

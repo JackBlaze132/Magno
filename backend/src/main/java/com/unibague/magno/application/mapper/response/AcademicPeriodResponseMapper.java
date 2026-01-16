@@ -7,6 +7,10 @@ import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
+/**
+ * Mapper interface for converting academic period domain models to response DTOs.
+ * Auto-implemented by MapStruct.
+ */
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AcademicPeriodResponseMapper {
     AcademicPeriodResponse toResponse(AcademicPeriod academicPeriod);

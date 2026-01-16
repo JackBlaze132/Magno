@@ -9,6 +9,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Response DTO containing user information.
+ * Includes personal data such as identification, name, contact details,
+ * and the user's internal type classification.
+ */
 @Getter
 @Setter
 @Builder

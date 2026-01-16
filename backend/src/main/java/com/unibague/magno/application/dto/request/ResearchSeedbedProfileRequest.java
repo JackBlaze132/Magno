@@ -8,6 +8,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Request DTO for creating or updating a research seedbed profile.
+ * Represents the configuration of a research seedbed for a specific academic period,
+ * including its coordinator, tutor, and parent investigation group.
+ */
 @Getter
 @Setter
 @Builder

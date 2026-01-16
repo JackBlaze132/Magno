@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Implementation of {@link IStudentProfileHandler}.
+ */
 @Service
 @RequiredArgsConstructor
 public class StudentProfileHandler implements IStudentProfileHandler {

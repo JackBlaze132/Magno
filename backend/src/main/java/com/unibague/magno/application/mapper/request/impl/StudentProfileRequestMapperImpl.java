@@ -16,6 +16,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of {@link StudentProfileRequestMapper}.
+ * Fetches the student's semester and academic programs from Integra based on their identification.
+ */
 @Component
 @RequiredArgsConstructor
 public class StudentProfileRequestMapperImpl implements StudentProfileRequestMapper {

@@ -8,6 +8,10 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+/**
+ * Response DTO containing academic period information.
+ * Includes the period's identifier, name, date range, current status, and visibility flag.
+ */
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)

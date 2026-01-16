@@ -6,6 +6,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Response DTO containing detailed research seedbed profile information.
+ * Includes full nested objects for the seedbed, coordinator, tutor,
+ * investigation group profile, and academic period.
+ */
 @Getter
 @Setter
 @Builder
