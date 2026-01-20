@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * Service for extracting authenticated user information from the security context.
- * Handles both OAuth2 web-based authentication and Bearer token authentication,
- * returning a unified response with user details from Google.
+ * Handles OAuth2 web-based authentication, Bearer token authentication (Google),
+ * and development JWT token authentication, returning a unified response with user details.
  */
 @Service
 public class SecurityService {
@@ -36,6 +36,16 @@ public class SecurityService {
                     .name((String) payload.get("name"))
                     .email(payload.getEmail())
                     .picture((String) payload.get("picture"))
+                    .build();
+        }
+
+        // Handle development token principals
+        if (principal instanceof DevTokenPrincipal devPrincipal) {
+            return GoogleInfoResponse.builder()
+                    .userId(devPrincipal.getUserId())
+                    .name(devPrincipal.getName())
+                    .email(devPrincipal.getEmail())
+                    .picture(null) // Development tokens don't include pictures
                     .build();
         }
 

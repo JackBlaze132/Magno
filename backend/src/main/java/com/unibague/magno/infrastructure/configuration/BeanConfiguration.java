@@ -11,6 +11,7 @@ import com.unibague.magno.domain.usecase.helper.*;
 import com.unibague.magno.domain.usecase.integra.IntegraUseCase;
 import com.unibague.magno.infrastructure.configuration.security.CustomOidcUserService;
 import com.unibague.magno.infrastructure.configuration.security.GoogleIdTokenAuthenticationFilter;
+import com.unibague.magno.infrastructure.configuration.security.JwtService;
 import com.unibague.magno.infrastructure.configuration.security.SecurityConfig;
 import com.unibague.magno.infrastructure.output.jpa.adapter.*;
 import com.unibague.magno.infrastructure.output.jpa.adapter.integra.IntegraUserClient;
@@ -277,8 +278,8 @@ public class BeanConfiguration {
     // Security Beans
 
     @Bean
-    SecurityConfig securityConfig() {
-        return new SecurityConfig(customOidcUserService(), userServicePort(), googleIdTokenAuthenticationFilter());
+    SecurityConfig securityConfig(JwtService jwtService) {
+        return new SecurityConfig(customOidcUserService(), userServicePort(), googleIdTokenAuthenticationFilter(jwtService));
     }
 
     @Bean
@@ -287,8 +288,8 @@ public class BeanConfiguration {
     }
 
     @Bean
-    GoogleIdTokenAuthenticationFilter googleIdTokenAuthenticationFilter() {
-        return new GoogleIdTokenAuthenticationFilter(userServicePort(), roleServicePort());
+    GoogleIdTokenAuthenticationFilter googleIdTokenAuthenticationFilter(JwtService jwtService) {
+        return new GoogleIdTokenAuthenticationFilter(userServicePort(), roleServicePort(), jwtService);
     }
 
     // Error Logging Beans
