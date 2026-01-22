@@ -1,7 +1,7 @@
 // Plugins
 import Components from 'unplugin-vue-components/vite'
 import Vue from '@vitejs/plugin-vue'
-import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+import Vuetify from 'vite-plugin-vuetify'
 import ViteFonts from 'unplugin-fonts/vite'
 import svgLoader from 'vite-svg-loader'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -12,6 +12,16 @@ import { fileURLToPath, URL } from 'node:url'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    exclude: ['**/e2e/**', '**/node_modules/**', '**/dist/**'],
+    server: {
+      deps: {
+        inline: ['vuetify'],
+      },
+    },
+  },
   base: '/',
   build:{
     outDir: 'dist',

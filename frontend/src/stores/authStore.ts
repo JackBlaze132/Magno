@@ -61,12 +61,12 @@ export const useAuthStore = defineStore('auth', {
      * Check if user has a specific role
      */
     hasRole: (state) => (roleName: string) => {
-      const normalizedSearch = roleName.toUpperCase().replace('ROLE_', '')
+      const normalizedSearch = roleName.toUpperCase().replace(/\s+/g, '_').replace('ROLE_', '')
 
       // Check in user.roles (from USERS_ME)
       if (state.user?.roles) {
         return state.user.roles.some(role =>
-          role.toUpperCase().replace('ROLE_', '') === normalizedSearch
+          role.toUpperCase().replace(/\s+/g, '_').replace('ROLE_', '') === normalizedSearch
         )
       }
 

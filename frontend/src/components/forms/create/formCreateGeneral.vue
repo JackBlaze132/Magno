@@ -20,6 +20,7 @@
           />
           <VRadioGroup v-else-if="field.type === 'radio-group'"
             v-model="formValues[field.key]"
+            :label="field.label"
             class="d-flex"
             inline
           >

@@ -52,7 +52,7 @@ export default defineComponent({
   data() {
     return {
       search: '',
-      items: [] as Array<Item>,
+      items: [] as Array<any>,
       headers: [
         {title: 'ID', key: 'id'},
         {title: 'Nombre', key: 'full_name'},
