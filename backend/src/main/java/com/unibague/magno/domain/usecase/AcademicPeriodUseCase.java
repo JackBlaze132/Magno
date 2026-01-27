@@ -5,6 +5,7 @@ import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodAlreadyE
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurrentException;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotFoundException;
 import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
+import com.unibague.magno.domain.exception.academicperiod.MultipleActiveAcademicPeriodsException;
 import com.unibague.magno.domain.model.AcademicPeriod;
 import com.unibague.magno.domain.spi.IAcademicPeriodPersistencePort;
 
@@ -52,6 +53,7 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
     public AcademicPeriod save(AcademicPeriod academicPeriod) {
         validationsBeforeSaveOrUpdate(academicPeriod);
         verifyThatAcademicPeriodDoesNotExist(academicPeriod, null);
+        verifyNoOtherActiveAcademicPeriodExists(academicPeriod, null);
         return academicPeriodPersistencePort.save(academicPeriod);
     }
 
@@ -63,6 +65,7 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
                     String.format("No se pudo actualizar el período académico con ID %d porque no existe", id));
         }
         verifyThatAcademicPeriodDoesNotExist(academicPeriod, id);
+        verifyNoOtherActiveAcademicPeriodExists(academicPeriod, id);
         return academicPeriodPersistencePort.update(id, academicPeriod);
     }
 
@@ -100,6 +103,23 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
         return academicPeriodPersistencePort.findAll();
     }
 
+    @Override
+    public AcademicPeriod findActiveAcademicPeriod() {
+        List<AcademicPeriod> activeAndVisiblePeriods = academicPeriodPersistencePort.findAllActiveAndVisible();
+        
+        if (activeAndVisiblePeriods.isEmpty()) {
+            throw new AcademicPeriodNotFoundException("No hay ningún período académico activo en el sistema");
+        }
+        
+        if (activeAndVisiblePeriods.size() > 1) {
+            throw new MultipleActiveAcademicPeriodsException(
+                    String.format("Se encontraron %d períodos académicos activos. Solo debe haber uno.", 
+                            activeAndVisiblePeriods.size()));
+        }
+        
+        return activeAndVisiblePeriods.getFirst();
+    }
+
     /**
      * Verifies that an academic period with the same name doesn't already exist.
      * Uses case-insensitive comparison and trims whitespace.
@@ -121,6 +141,30 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
                     String.format("Ya existe un período académico con el nombre '%s'", 
                             academicPeriod.getName().trim())
             );
+        }
+    }
+
+    /**
+     * Verifies that there is no other active academic period when trying to activate one.
+     * Only checks visible periods.
+     *
+     * @param academicPeriod the academic period being saved/updated
+     * @param currentId      the ID of the current academic period (null for save, actual ID for update)
+     * @throws MultipleActiveAcademicPeriodsException if another active period already exists
+     */
+    private void verifyNoOtherActiveAcademicPeriodExists(AcademicPeriod academicPeriod, Long currentId) {
+        if (!academicPeriod.isCurrent() || !academicPeriod.isVisible()) {
+            return; // No need to check if the period is not being set as active or is not visible
+        }
+
+        List<AcademicPeriod> activeAndVisiblePeriods = academicPeriodPersistencePort.findAllActiveAndVisible();
+        
+        boolean anotherActiveExists = activeAndVisiblePeriods.stream()
+                .anyMatch(period -> !period.getId().equals(currentId));
+        
+        if (anotherActiveExists) {
+            throw new MultipleActiveAcademicPeriodsException(
+                    "Ya existe otro período académico activo. Espere a que el período actual finalice antes de activar uno nuevo.");
         }
     }
 }

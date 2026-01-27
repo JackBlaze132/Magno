@@ -50,4 +50,10 @@ public class AcademicPeriodHandler implements IAcademicPeriodHandler {
     public List<AcademicPeriodResponse> findAll() {
         return academicPeriodResponseMapper.toResponseList(academicPeriodServicePort.findAll());
     }
+
+    @Override
+    public AcademicPeriodResponse findActiveAcademicPeriod() {
+        AcademicPeriod academicPeriod = academicPeriodServicePort.findActiveAcademicPeriod();
+        return academicPeriodResponseMapper.toResponse(academicPeriod);
+    }
 }

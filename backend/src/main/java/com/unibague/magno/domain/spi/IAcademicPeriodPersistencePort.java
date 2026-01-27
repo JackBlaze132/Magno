@@ -28,4 +28,11 @@ public interface IAcademicPeriodPersistencePort {
     AcademicPeriod update(Long id, AcademicPeriod academicPeriod);
     void deleteById(Long id);
     List<AcademicPeriod> findAll();
+
+    /**
+     * Finds all academic periods that are both active and visible.
+     *
+     * @return a list of active and visible academic periods
+     */
+    List<AcademicPeriod> findAllActiveAndVisible();
 }

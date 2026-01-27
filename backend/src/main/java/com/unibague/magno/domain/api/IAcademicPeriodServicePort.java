@@ -1,5 +1,7 @@
 package com.unibague.magno.domain.api;
 
+import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotFoundException;
+import com.unibague.magno.domain.exception.academicperiod.MultipleActiveAcademicPeriodsException;
 import com.unibague.magno.domain.model.AcademicPeriod;
 
 import java.util.List;
@@ -61,4 +63,14 @@ public interface IAcademicPeriodServicePort {
      * @return a list of all academic periods
      */
     List<AcademicPeriod> findAll();
+
+    /**
+     * Retrieves the single active academic period.
+     * Throws an exception if there are multiple active periods or none.
+     *
+     * @return the active academic period
+     * @throws MultipleActiveAcademicPeriodsException if multiple active periods exist
+     * @throws AcademicPeriodNotFoundException if no active period exists
+     */
+    AcademicPeriod findActiveAcademicPeriod();
 }

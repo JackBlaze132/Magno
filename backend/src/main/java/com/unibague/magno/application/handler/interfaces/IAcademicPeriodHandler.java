@@ -16,4 +16,11 @@ public interface IAcademicPeriodHandler {
     AcademicPeriodResponse updateById(Long id, AcademicPeriodRequest academicPeriod);
     void deleteById(Long id);
     List<AcademicPeriodResponse> findAll();
+    
+    /**
+     * Retrieves the single active academic period.
+     *
+     * @return the active academic period response
+     */
+    AcademicPeriodResponse findActiveAcademicPeriod();
 }

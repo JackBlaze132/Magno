@@ -5,6 +5,7 @@ import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodAlreadyE
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodHasInvestigationGroupProfilesException;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurrentException;
 import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
+import com.unibague.magno.domain.exception.academicperiod.MultipleActiveAcademicPeriodsException;
 import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupAlreadyExistsException;
 import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupHasAssociatedProfilesException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileFunctionaryIsAlreadyACoordinatorException;
@@ -149,6 +150,22 @@ public class ControllerAdvisor {
 
         String code = ACADEMIC_PERIOD_ALREADY_EXISTS.getCode();
         String message = ACADEMIC_PERIOD_ALREADY_EXISTS.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+
+        logError(exception, code, message, request);
+
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(MultipleActiveAcademicPeriodsException.class)
+    public ErrorResponse handleMultipleActiveAcademicPeriodsException
+            (MultipleActiveAcademicPeriodsException exception, HttpServletRequest request) {
+
+        String code = MULTIPLE_ACTIVE_ACADEMIC_PERIODS.getCode();
+        String message = MULTIPLE_ACTIVE_ACADEMIC_PERIODS.getMessage();
 
         ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
                 Collections.singletonList(exception.getMessage()));

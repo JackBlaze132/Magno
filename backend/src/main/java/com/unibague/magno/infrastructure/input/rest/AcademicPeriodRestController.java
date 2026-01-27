@@ -41,6 +41,13 @@ public class AcademicPeriodRestController {
     }
 
     @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
+    @GetMapping(path = "/active", headers = "API-VERSION=1")
+    public ResponseEntity<AcademicPeriodResponse> getActiveAcademicPeriod() {
+        AcademicPeriodResponse response = academicPeriodHandler.findActiveAcademicPeriod();
+        return ResponseEntity.ok(response);
+    }
+
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<AcademicPeriodResponse> createAcademicPeriod
             (@Valid @RequestBody AcademicPeriodRequest academicPeriodRequest) {
