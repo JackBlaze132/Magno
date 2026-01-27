@@ -878,8 +878,8 @@ public class ControllerAdvisor {
     @ExceptionHandler(NotAllowedToDoThisActionException.class)
     public ErrorResponse handleNotAllowedToDoThisActionException(NotAllowedToDoThisActionException exception, HttpServletRequest request) {
 
-        String code = ExceptionResponse.UNSUPPORTED_PRINCIPAL.getCode();
-        String message = ExceptionResponse.UNSUPPORTED_PRINCIPAL.getMessage();
+        String code = NOT_ALLOWED_TO_DO_THIS_ACTION.getCode();
+        String message = NOT_ALLOWED_TO_DO_THIS_ACTION.getMessage();
 
         ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
                 Collections.singletonList(exception.getMessage()));

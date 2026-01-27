@@ -3,7 +3,10 @@ package com.unibague.magno.infrastructure.input.rest;
 import com.unibague.magno.application.dto.request.ResearchSeedbedStudentProfileRequest;
 import com.unibague.magno.application.dto.response.ResearchSeedbedStudentProfileResponse;
 import com.unibague.magno.application.dto.response.ResearchSeedbedStudentProfileSummaryResponse;
+import com.unibague.magno.application.dto.util.CurrentUserInfo;
 import com.unibague.magno.application.handler.impl.ResearchSeedbedStudentProfileHandler;
+import com.unibague.magno.infrastructure.configuration.annotation.CurrentUser;
+import com.unibague.magno.infrastructure.configuration.security.ResearchSeedbedProfileAuthorizationService;
 import com.unibague.magno.infrastructure.util.excel.UploadService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +32,7 @@ public class ResearchSeedbedStudentProfileRestController {
 
     private final ResearchSeedbedStudentProfileHandler researchSeedbedStudentProfileHandler;
     private final UploadService uploadService;
+    private final ResearchSeedbedProfileAuthorizationService authorizationService;
 
     @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @GetMapping(path = "/{id}", headers = "API-VERSION=1")
@@ -51,10 +55,13 @@ public class ResearchSeedbedStudentProfileRestController {
         return ResponseEntity.ok(responses);
     }
 
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).TUTOR_DE_SEMILLERO)")
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).COORDINADOR_DE_SEMILLERO)")
     @PostMapping(path = "/", headers = "API-VERSION=1")
-    public ResponseEntity<ResearchSeedbedStudentProfileResponse> createResearchSeedbedStudentProfile
-            (@RequestBody @Valid ResearchSeedbedStudentProfileRequest researchSeedbedStudentProfileRequest) {
+    public ResponseEntity<ResearchSeedbedStudentProfileResponse> createResearchSeedbedStudentProfile(
+            @RequestBody @Valid ResearchSeedbedStudentProfileRequest researchSeedbedStudentProfileRequest,
+            @CurrentUser CurrentUserInfo currentUserInfo) {
+        authorizationService.validateCanAddStudentsToResearchSeedbedProfile(
+                researchSeedbedStudentProfileRequest.getResearchSeedbedProfileId(), currentUserInfo);
         ResearchSeedbedStudentProfileResponse created = researchSeedbedStudentProfileHandler.save(researchSeedbedStudentProfileRequest);
         URI location = URI.create("/api/research-seedbed-student-profile/" + created.getId());
         return ResponseEntity.created(location).body(created);
@@ -65,31 +72,41 @@ public class ResearchSeedbedStudentProfileRestController {
      *
      * @param researchSeedbedProfileId The ID of the research seedbed profile to add students to.
      * @param file The Excel file containing student data to import.
+     * @param currentUserInfo The current authenticated user info.
      * @return List of summary responses for each imported student profile.
      */
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).TUTOR_DE_SEMILLERO)")
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).COORDINADOR_DE_SEMILLERO)")
     @PostMapping(path = "/add-all-by-excel/{researchSeedbedProfileId}", headers = "API-VERSION=1")
     ResponseEntity<List<ResearchSeedbedStudentProfileSummaryResponse>> addAllResearchSeedbedStudentProfileByExcel(
-            @PathVariable Long researchSeedbedProfileId, @RequestParam("file") MultipartFile file) {
+            @PathVariable Long researchSeedbedProfileId,
+            @RequestParam("file") MultipartFile file,
+            @CurrentUser CurrentUserInfo currentUserInfo) {
+        authorizationService.validateCanAddStudentsToResearchSeedbedProfile(researchSeedbedProfileId, currentUserInfo);
         List<ResearchSeedbedStudentProfileSummaryResponse> responses = researchSeedbedStudentProfileHandler
                 .saveAllByExcel(researchSeedbedProfileId, file);
         URI location = URI.create("/api/research-seedbed-student-profile/");
         return ResponseEntity.created(location).body(responses);
     }
 
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).TUTOR_DE_SEMILLERO)")
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).COORDINADOR_DE_SEMILLERO)")
     @PutMapping(path = "/{id}", headers = "API-VERSION=1")
-    public ResponseEntity<ResearchSeedbedStudentProfileResponse> updateResearchSeedbedStudentProfileById
-            (@PathVariable Long id, @RequestBody ResearchSeedbedStudentProfileRequest researchSeedbedStudentProfileRequest) {
+    public ResponseEntity<ResearchSeedbedStudentProfileResponse> updateResearchSeedbedStudentProfileById(
+            @PathVariable Long id,
+            @RequestBody ResearchSeedbedStudentProfileRequest researchSeedbedStudentProfileRequest,
+            @CurrentUser CurrentUserInfo currentUserInfo) {
+        authorizationService.validateCanModifyResearchSeedbedStudentProfile(id, currentUserInfo);
         ResearchSeedbedStudentProfileResponse updated = researchSeedbedStudentProfileHandler.updateById(id, researchSeedbedStudentProfileRequest);
         return ResponseEntity.ok(updated);
     }
 
-    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).TUTOR_DE_SEMILLERO)")
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).COORDINADOR_DE_SEMILLERO)")
     @DeleteMapping(path = "/{id}", headers = "API-VERSION=1")
-    public ResponseEntity<Void> deleteResearchSeedbedStudentProfileById(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteResearchSeedbedStudentProfileById(
+            @PathVariable Long id,
+            @CurrentUser CurrentUserInfo currentUserInfo) {
+        authorizationService.validateCanModifyResearchSeedbedStudentProfile(id, currentUserInfo);
         researchSeedbedStudentProfileHandler.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-    
+
 }
