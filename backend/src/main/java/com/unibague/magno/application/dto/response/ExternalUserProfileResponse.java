@@ -23,5 +23,6 @@ public class ExternalUserProfileResponse {
     private AcademicPeriodResponse academicPeriod;
     private ResearchSeedbedProfileResponse researchSeedbedProfile;
     private String country;
+    private String organizationName;
     private TypeOfExternalUser typeOfExternalUser;
 }

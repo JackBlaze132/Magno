@@ -34,6 +34,9 @@ public class ExternalUserProfileRequest {
     @NotBlank(message = "El campo 'country' es obligatorio")
     private String country;
 
+    @NotBlank(message = "El campo 'organization_name' es obligatorio")
+    private String organizationName;
+
     @NotNull(message = "El campo 'type_of_external_user' es obligatorio")
     private TypeOfExternalUser typeOfExternalUser;
 }

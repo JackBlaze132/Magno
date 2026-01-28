@@ -27,6 +27,7 @@ public class ExternalUserProfileEntityMapperImpl implements ExternalUserProfileE
         externalUserProfile.setAcademicPeriodId(externalUserProfileEntity.getAcademicPeriod().getId());
         externalUserProfile.setResearchSeedbedProfileId(externalUserProfileEntity.getResearchSeedbedProfile().getId());
         externalUserProfile.setCountry(externalUserProfileEntity.getCountry());
+        externalUserProfile.setOrganizationName(externalUserProfileEntity.getOrganizationName());
         externalUserProfile.setTypeOfExternalUser(externalUserProfileEntity.getTypeOfExternalUser());
 
         return externalUserProfile;
@@ -55,6 +56,7 @@ public class ExternalUserProfileEntityMapperImpl implements ExternalUserProfileE
         externalUserProfileEntity.setResearchSeedbedProfile(researchSeedbedProfileEntity);
 
         externalUserProfileEntity.setCountry(externalUserProfile.getCountry());
+        externalUserProfileEntity.setOrganizationName(externalUserProfile.getOrganizationName());
         externalUserProfileEntity.setTypeOfExternalUser(externalUserProfile.getTypeOfExternalUser());
 
         return externalUserProfileEntity;
@@ -82,6 +84,7 @@ public class ExternalUserProfileEntityMapperImpl implements ExternalUserProfileE
         externalUserProfileEntity.setResearchSeedbedProfile(researchSeedbedProfileEntity);
 
         externalUserProfileEntity.setCountry(externalUserProfile.getCountry());
+        externalUserProfileEntity.setOrganizationName(externalUserProfile.getOrganizationName());
         externalUserProfileEntity.setTypeOfExternalUser(externalUserProfile.getTypeOfExternalUser());
 
         return externalUserProfileEntity;

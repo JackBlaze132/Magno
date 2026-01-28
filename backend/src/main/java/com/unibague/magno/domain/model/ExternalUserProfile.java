@@ -12,6 +12,7 @@ public class ExternalUserProfile {
     private Long academicPeriodId;
     private Long researchSeedbedProfileId;
     private String country;
+    private String organizationName;
     private TypeOfExternalUser typeOfExternalUser;
 
     public ExternalUserProfile(Long id, Long userId, Long academicPeriodId, Long researchSeedbedProfileId,
@@ -65,6 +66,14 @@ public class ExternalUserProfile {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getOrganizationName() {
+        return organizationName;
+    }
+
+    public void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
     }
 
     public TypeOfExternalUser getTypeOfExternalUser() {

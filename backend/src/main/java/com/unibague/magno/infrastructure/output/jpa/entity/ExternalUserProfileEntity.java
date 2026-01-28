@@ -26,6 +26,9 @@ public class ExternalUserProfileEntity {
     @Column(name = "country", nullable = false)
     private String country;
 
+    @Column(name = "organization_name", nullable = false)
+    private String organizationName;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "type_of_external_user", nullable = false)
     private TypeOfExternalUser typeOfExternalUser;

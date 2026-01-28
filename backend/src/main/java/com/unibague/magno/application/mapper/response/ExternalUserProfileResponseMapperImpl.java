@@ -49,6 +49,7 @@ public class ExternalUserProfileResponseMapperImpl implements ExternalUserProfil
                 .academicPeriod(academicPeriod)
                 .researchSeedbedProfile(researchSeedbedProfile)
                 .country(externalUserProfile.getCountry())
+                .organizationName(externalUserProfile.getOrganizationName())
                 .typeOfExternalUser(externalUserProfile.getTypeOfExternalUser())
                 .build();
     }
