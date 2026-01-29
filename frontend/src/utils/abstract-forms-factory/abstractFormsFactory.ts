@@ -1,7 +1,6 @@
 // src/factories/AbstractComponentFactory.ts
 import type { EntityType } from "./form-types/formsTypes";
 import { defineComponent, h } from "vue";
-import { useFeedbackToast } from "@/composables/useFeedbackToast";
 
 /**
  * Abstract base class for form factories.

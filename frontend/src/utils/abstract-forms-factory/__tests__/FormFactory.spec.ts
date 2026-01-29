@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect} from 'vitest'
 import { FormFactory } from '../FormFactory'
 import { CreateFormFactory } from '../actions-forms/createFormFactory'
 import { UpdateFormFactory } from '../actions-forms/updateFormFactory'
@@ -16,8 +16,6 @@ describe('FormFactory', () => {
 
   it('getComponentConfig delegates to the correct factory', () => {
     // We can spy on the factory instance returned
-    const factory = FormFactory.getFactory('create')
-    const spy = vi.spyOn(factory, 'getComponentConfig')
 
     FormFactory.getComponentConfig('create', 'period')
 

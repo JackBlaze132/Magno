@@ -1,6 +1,5 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue"
-import Formatter from "@/utils/formatter";
 
 export default defineComponent({
   props: {

@@ -14,7 +14,6 @@
 // ...existing code...
 import { defineComponent } from 'vue';
 import API from '@/utils/api';
-import Formatter from '@/utils/formatter';
 export default defineComponent({
   name: 'formCreateUser',
   props:{

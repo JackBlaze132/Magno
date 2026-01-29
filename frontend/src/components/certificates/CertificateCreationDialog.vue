@@ -183,14 +183,14 @@ export default defineComponent({
         await this.fetchUserSeedbeds()
       } else {
         console.error('❌ Still no user ID after auth initialization')
-        useFeedbackToast().showError('No se pudo obtener la información del usuario')
+        useFeedbackToast().showError({ message: "No se pudo obtener la información del usuario" })
       }
     },
 
     async fetchUserSeedbeds() {
       if (!this.userId) {
         console.warn('❌ User ID not available for fetching seedbeds')
-        useFeedbackToast().showError('ID de usuario no disponible')
+        useFeedbackToast().showError({ message: "ID de usuario no disponible" })
         return
       }
 
@@ -232,12 +232,12 @@ export default defineComponent({
 
     async generateCertificate() {
       if (!this.selectedSeedbed) {
-        useFeedbackToast().showError('Por favor selecciona un semillero')
+        useFeedbackToast().showError({ message: 'Por favor selecciona un semillero' })
         return
       }
 
       if (!this.userId) {
-        useFeedbackToast().showError('ID de usuario no disponible')
+        useFeedbackToast().showError({ message: 'ID de usuario no disponible' })
         return
       }
 
@@ -269,11 +269,11 @@ export default defineComponent({
           this.$emit('certificate-created', response)
           this.closeDialog()
         } else {
-          useFeedbackToast().showError('No se pudo generar el certificado')
+          useFeedbackToast().showError({ message: 'No se pudo generar el certificado' })
         }
       } catch (error) {
         console.error('❌ Error generating certificate:', error)
-        useFeedbackToast().showError('Error al generar el certificado')
+        useFeedbackToast().showError({ message: 'Error al generar el certificado' })
       } finally {
         this.generatingCertificate = false
       }

@@ -19,7 +19,7 @@ describe('feedbackToast.vue', () => {
       data() {
         return {
           visible: true,
-          type: 'success',
+          type: 'success' as const,
           successMessage: 'Operation successful'
         }
       }
@@ -36,7 +36,7 @@ describe('feedbackToast.vue', () => {
       data() {
         return {
           visible: true,
-          type: 'error',
+          type: 'error' as const,
           errorMessage: 'An error occurred'
         }
       }

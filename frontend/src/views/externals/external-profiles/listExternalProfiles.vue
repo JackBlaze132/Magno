@@ -1,10 +1,3 @@
-<script setup lang="ts">
-const items = [
-  { title: 'Aliados Externos', disabled: false, to: '/aliados-externos' },
-  { title: 'Perfiles del aliado', disabled: true },
-];
-</script>
-
 <template	>
   <VCard flat color="transparent">
     <h1>Perfiles del Aliado Externo</h1>
@@ -22,10 +15,15 @@ const items = [
 
 <script lang="ts">
 import LoadingManager from '@/utils/loadingManager';
+
 export default{
   data(){
     return{
-      loading:true
+      loading:true,
+      items: [
+        { title: 'Aliados Externos', disabled: false, to: '/aliados-externos' },
+        { title: 'Perfiles del aliado', disabled: true },
+      ]
     }
   },
   created(){
