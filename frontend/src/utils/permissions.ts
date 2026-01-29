@@ -42,7 +42,7 @@ export const PERMISSIONS: Record<string, Partial<Record<EntityType, ActionType[]
     'logs': ['view'],
     'group': ['create', 'update', 'delete', 'view'],
     'seedbed': ['create', 'update', 'delete', 'view'],
-    'role': ['create', 'update', 'delete', 'view'],
+    'role': ['view'],
     'user_integra': ['create', 'view'],
     'user_external': ['create', 'update', 'delete', 'view'],
     'user_diri': ['create', 'delete', 'view'],

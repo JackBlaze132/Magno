@@ -41,7 +41,7 @@
         <v-list-item
             v-if="authStore.can('view', 'logs')"
             prepend-icon="ri-file-list-3-line"
-            title="Logs"
+            title="Auditoría"
             value="logs"
             to="/logs"
             @click="closeDrawerOnMobile">
