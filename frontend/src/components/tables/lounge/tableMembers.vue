@@ -88,9 +88,11 @@ export default defineComponent({
       <QuickControl
         toUpload
         toCreate
+        toRefresh
         type="seedbed_member"
         @itemCreated="handleItemRefresh"
         @itemUploaded="handleItemRefresh"
+        @refresh="handleItemRefresh"
         :index="parseInt($route.params.idSemillero as string)"
         :initialData="items.length ? setInitialData(items[0]) : {}"
       />

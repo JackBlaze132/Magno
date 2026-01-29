@@ -10,6 +10,11 @@
         hide-details
         single-line
       ></VTextField>
+      <QuickControl
+        toRefresh
+        type="seedbed_profile"
+        @refresh="handleItemRefresh"
+      />
     </VCardTitle>
     <VDataTable
       :items="items"
@@ -75,6 +80,9 @@ export default defineComponent({
     },
     externalFormatter(state:boolean){
       return Formatter.externalFormatter(state)
+    },
+    handleItemRefresh(){
+      this.getUsers();
     }
   },
 })

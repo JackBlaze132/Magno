@@ -12,8 +12,10 @@
       ></VTextField>
       <QuickControl
       toCreate
+      toRefresh
       type="functionary_profile"
       @itemCreated="handleItemRefresh"
+      @refresh="handleItemRefresh"
     />
     </VCardTitle>
     <VDataTable

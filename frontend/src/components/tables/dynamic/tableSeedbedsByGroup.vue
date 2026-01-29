@@ -12,6 +12,11 @@
         single-line
       ></VTextField>
       <VBtn to="agregar-semillero" class="mx-2" prepend-icon="ri-add-fill"> Agregar</VBtn>
+      <QuickControl
+        toRefresh
+        type="seedbed_profile"
+        @refresh="handleItemRefresh"
+      />
     </VCardTitle>
     <VDataTable
       :items="items"
@@ -94,6 +99,9 @@ export default defineComponent({
       this.items.splice(index, 1);
       this.getSeedBeds(); // Eliminar el elemento del array
     },
+    handleItemRefresh(){
+      this.getSeedBeds();
+    }
   },
 })
 </script>

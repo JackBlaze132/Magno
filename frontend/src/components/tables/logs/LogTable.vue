@@ -135,6 +135,11 @@ export default defineComponent({
         hide-details
         single-line
       ></VTextField>
+      <QuickControl
+        toRefresh
+        type="logs"
+        @refresh="$emit('refresh')"
+      />
     </VCardTitle>
 
     <VDataTable

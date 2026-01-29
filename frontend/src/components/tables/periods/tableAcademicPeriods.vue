@@ -14,8 +14,10 @@
       <!--<VBtn to="agregar-periodo" class="mx-2" prepend-icon="ri-add-fill"> Agregar</VBtn>-->
       <QuickControl
         toCreate
+        toRefresh
         type="period"
         @itemCreated="handleItemRefresh"
+        @refresh="handleItemRefresh"
       />
     </VCardTitle>
     <VDataTable

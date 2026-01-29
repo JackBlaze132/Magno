@@ -107,8 +107,10 @@ export default defineComponent({
       <h2>Coordinador</h2>
       <QuickControl
         toEdit
+        toRefresh
         type="seedbed_coordinator"
         @itemEdited="handleItemRefresh"
+        @refresh="handleItemRefresh"
         :index="parseInt($route.params.idSemillero as string)"
         :initialData="items.length ? setInitialData(items[0]) : {}"
       />

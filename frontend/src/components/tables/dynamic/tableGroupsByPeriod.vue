@@ -12,6 +12,11 @@
         single-line
       ></VTextField>
       <VBtn to="agregar-grupo" class="mx-2" prepend-icon="ri-add-fill"> Agregar</VBtn>
+      <QuickControl
+        toRefresh
+        type="group_profile"
+        @refresh="handleItemRefresh"
+      />
     </VCardTitle>
     <VDataTable
       :items="items"
@@ -87,6 +92,9 @@ export default defineComponent({
     },
     handleItemDeleted(indes:number){
       this.items.splice(indes, 1);
+      this.getGroups();
+    },
+    handleItemRefresh(){
       this.getGroups();
     }
   },

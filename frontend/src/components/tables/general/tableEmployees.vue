@@ -41,6 +41,9 @@ export default defineComponent({
     },
     externalFormatter(state:boolean){
       return Formatter.externalFormatter(state)
+    },
+    handleItemRefresh(){
+      this.getUsers();
     }
   },
 })
@@ -61,6 +64,11 @@ export default defineComponent({
         single-line
       ></VTextField>
       <VBtn to="agregar-usuarios" class="mx-2" prepend-icon="ri-add-fill"> Agregar</VBtn>
+      <QuickControl
+        toRefresh
+        type="user_integra"
+        @refresh="handleItemRefresh"
+      />
     </VCardTitle>
     <VDataTable
       :items="items"

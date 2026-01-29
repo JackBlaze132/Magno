@@ -12,8 +12,10 @@
       ></VTextField>
       <QuickControl
         toCreate
+        toRefresh
         type="external_profile"
         @itemCreated="handleItemRefresh"
+        @refresh="handleItemRefresh"
       />
     </VCardTitle>
     <VDataTable
@@ -25,11 +27,11 @@
         {{ externalFormatter(item.is_external_user)}}
       </template>
       <template v-slot:item.role_ids="{item}">
-        <VChipGroup column="false">
+        <VChipGroup :column="false">
           <VChip v-for="role in item.role_ids" :key="role.name" size="small" variant="outlined">
             {{ role.name }}
           </VChip>
-        </VChipGroup disabled>
+        </VChipGroup>
       </template>
     </VDataTable>
   </VCard>
@@ -43,40 +45,17 @@ import API from "@/utils/api";
 import Formatter from "@/utils/formatter";
 import QuickControl from "@/components/operators/quickControl.vue";
 
-interface Item {
-  id: number,
-  user: {
-    full_name: string,
-    identification_number: string,
-    user_code: string,
-    email: string,
-  },
-  academic_period: {
-    name: string,
-  },
-  research_seedbed_profile: {
-    research_seedbed: {
-      name: string,
-    },
-    investigation_group_profile:{
-      investigation_group: {
-        name: string,
-      },
-    }
-
-  },
-}
-
 export default defineComponent({
   components: {QuickControl},
 
   data() {
     return {
-      items: [] as Item[],
+      items: [] as any[],
       search: '',
       headers: [
         {title: 'ID', key: 'id'},
         {title: 'Nombre', key: 'user.full_name'},
+        {title: 'Organización', key: 'organization_name'},
         {title: 'País', key: 'country'},
         {title: 'Período', key: 'academic_period.name'},
         {title: 'Grupo', key: 'research_seedbed_profile.investigation_group_profile.investigation_group.name'},

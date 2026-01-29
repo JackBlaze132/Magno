@@ -10,6 +10,11 @@
         hide-details
         single-line
       ></VTextField>
+      <QuickControl
+        toRefresh
+        type="certificate"
+        @refresh="handleItemRefresh"
+      />
     </VCardTitle>
     <VDataTable
       :items="items"

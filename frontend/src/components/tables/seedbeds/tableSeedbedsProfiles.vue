@@ -13,8 +13,10 @@
       ></VTextField>
       <QuickControl
         toCreate
+        toRefresh
         type="seedbed_profile"
         @itemCreated="handleItemRefresh"
+        @refresh="handleItemRefresh"
       />
     </VCardTitle>
     <VDataTable

@@ -13,8 +13,10 @@
       ></VTextField>
       <QuickControl
       toCreate
+      toRefresh
       type="group"
       @itemCreated="handleItemRefresh"
+      @refresh="handleItemRefresh"
     />
     </VCardTitle>
     <VDataTable

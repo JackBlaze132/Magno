@@ -1,4 +1,14 @@
 <template>
+   <!--
+    Refresh button (toRefresh):
+    Emits a refresh event to the parent component.
+  -->
+  <VBtn v-if="toRefresh"  class="ms-2 pa-1 action view" flat color="transparent"  @click="$emit('refresh')">
+    <VIcon icon="ri-refresh-line" />
+    <VTooltip activator="parent" location="top">
+      Refrescar
+    </VTooltip>
+  </VBtn>
   <VBtn v-if="toUpload && authStore.can('upload', type)" prepend-icon="ri-upload-cloud-fill" class="mx-2" color="black" @click="overlayUpload = !overlayUpload; selectedAction = 'upload';">
     Subir
     <VOverlay v-model="overlayUpload" class="d-flex align-center justify-center" opacity="0.7">
@@ -47,6 +57,8 @@
   </VBtn>
 
 
+
+
 </template>
 
 <script lang="ts">
@@ -58,7 +70,7 @@ import { useAuthStore } from '@/stores/authStore';
 // The 'quickControl' component handles create and edit actions for entities.
 export default defineComponent({
   name: 'quickControl',
-  emits: ['itemCreated', 'itemEdited', "itemUploaded"],
+  emits: ['itemCreated', 'itemEdited', "itemUploaded", "refresh"],
   setup() {
     const authStore = useAuthStore();
     return { authStore };
@@ -105,6 +117,11 @@ export default defineComponent({
     },
 
     toUpload: {
+      type: Boolean,
+      required: false,
+    },
+
+    toRefresh: {
       type: Boolean,
       required: false,
     },

@@ -63,8 +63,10 @@ export default defineComponent({
       ></VTextField>
       <QuickControl
         toCreate
+        toRefresh
         type="external_seedbed_profile"
         @itemCreated="handleItemRefresh"
+        @refresh="handleItemRefresh"
         :index="parseInt($route.params.idSemillero as string)"
       />
     </VCardTitle>

@@ -178,6 +178,7 @@ export default defineComponent({
           :items="logs"
           :type="selectedType"
           :loading="loading"
+          @refresh="fetchLogs"
         />
       </VCol>
     </VRow>

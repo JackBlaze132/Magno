@@ -10,6 +10,13 @@
         hide-details
         single-line
       ></VTextField>
+      <QuickControl
+        toCreate
+        toRefresh
+        type="role"
+        @itemCreated="handleItemRefresh"
+        @refresh="handleItemRefresh"
+      />
     </VCardTitle>
     <VDataTable
       :items="items"

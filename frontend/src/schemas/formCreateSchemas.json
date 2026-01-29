@@ -47,6 +47,7 @@
     { "key": "academic_period_id", "label": "Periodo Académico", "type": "select", "options": [], "required": true },
     { "key": "research_group_profile_id", "label": "Grupo de Investigación", "type": "select", "options": [], "required": true, "dependsOn": "academic_period_id", "disabled": true },
     { "key": "research_seedbed_profile_id", "label": "Semillero", "type": "select", "options": [], "required": true, "dependsOn": "research_group_profile_id", "disabled": true },
+    { "key": "organization_name", "label": "Organización", "type": "text" },
     { "key": "country", "label":  "País", "type": "select", "options":  [] },
     { "key": "type_of_external_user", "label": "Tipo", "type": "select", "options":  [] }
   ],
