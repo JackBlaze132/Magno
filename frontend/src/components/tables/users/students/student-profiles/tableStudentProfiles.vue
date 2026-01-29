@@ -27,7 +27,7 @@
         {{ externalFormatter(item.is_external_user)}}
       </template>
       <template v-slot:item.role.name="{item}">
-        <VChipGroup column="false">
+        <VChipGroup :column="false">
           <VChip size="small" variant="outlined">
             {{ item.role.name }}
           </VChip>
@@ -45,22 +45,6 @@ import API from "@/utils/api";
 import Formatter from "@/utils/formatter";
 import QuickControl from "@/components/operators/quickControl.vue";
 
-interface Item {
-  id: number,
-  user: {
-    full_name: string,
-    identification_number: string,
-    user_code: string,
-    email: string,
-  },
-  academic_period: {
-    name: string,
-  },
-  role:{
-    id: number,
-    name: string,
-  },
-}
 
 export default defineComponent({
   components: {QuickControl},
@@ -72,7 +56,7 @@ export default defineComponent({
   },
   data() {
     return {
-      items: [] as Item[],
+      items: [] as any[],
       userRols: [] as Array<String>,
       search: '',
       headers: [

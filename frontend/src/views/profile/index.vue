@@ -100,7 +100,6 @@
 import { computed, ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/authStore';
-import TableStudentProfiles from '@/components/tables/users/students/student-profiles/tableStudentProfiles.vue';
 
 const authStore = useAuthStore();
 const router = useRouter();

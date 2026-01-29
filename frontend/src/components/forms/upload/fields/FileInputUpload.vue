@@ -105,8 +105,14 @@ export default defineComponent({
   },
 
   methods: {
-    handleFileChange(files: File[] | null) {
-      this.localFiles = files || []
+    handleFileChange(files: File | File[] | null) {
+      if (files === null) {
+        this.localFiles = []
+      } else if (Array.isArray(files)) {
+        this.localFiles = files
+      } else {
+        this.localFiles = [files]
+      }
       this.$emit('update:modelValue', this.localFiles)
       this.$emit('filesSelected', this.localFiles)
     },

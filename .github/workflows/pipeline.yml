@@ -1,0 +1,157 @@
+name: Unified CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    name: Prepare Workflow
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Verify Environment
+        run: |
+          echo "Preparing the build environment..."
+          ls -R
+
+  test-back:
+    name: Test Backend
+    needs: prepare
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Prepare environment (VPN)
+        run: sudo apt-get update && sudo apt-get install -y openconnect
+      - name: Connect to VPN
+        run: |
+          echo "${{ secrets.VPN_PASSWORD }}" | sudo openconnect --protocol=gp --user=${{ secrets.VPN_USER }} --passwd-on-stdin ${{ secrets.VPN_HOST }} -b
+          sleep 10
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'gradle'
+      - name: Run Backend Tests
+        run: |
+          cd backend
+          chmod +x gradlew
+          # Create temporary env file for tests if needed
+          echo "${{ secrets.APP_ENV_PROD }}" > .env.test
+          set -a
+          source .env.test
+          set +a
+          ./gradlew test
+
+  test-front:
+    name: Test Frontend
+    needs: prepare
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Prepare environment (VPN)
+        run: sudo apt-get update && sudo apt-get install -y openconnect
+      - name: Connect to VPN
+        run: |
+          echo "${{ secrets.VPN_PASSWORD }}" | sudo openconnect --protocol=gp --user=${{ secrets.VPN_USER }} --passwd-on-stdin ${{ secrets.VPN_HOST }} -b
+          sleep 10
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install dependencies
+        run: npm install
+      - name: Run Lint
+        run: npm run lint
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Frontend Tests
+        run: npm run test
+
+  deploy-back:
+    name: Deploy Backend
+    needs: test-back
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare environment (VPN & SSH)
+        run: sudo apt-get update && sudo apt-get install -y openconnect sshpass
+      - name: Connect to VPN
+        run: |
+          echo "${{ secrets.VPN_PASSWORD }}" | sudo openconnect --protocol=gp --user=${{ secrets.VPN_USER }} --passwd-on-stdin ${{ secrets.VPN_HOST }} -b
+          sleep 10
+      - name: Deploy to Remote Server
+        run: |
+          sshpass -p "${{ secrets.INTERNAL_SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.INTERNAL_USER }}@${{ secrets.INTERNAL_RESOURCE_IP }} << 'EOF'
+            cd ~/magno/ || exit;
+            if [ ! -d ".git" ]; then
+              git clone git@github.com:JackBlaze132/Magno.git . || (git init && git remote add origin git@github.com:JackBlaze132/Magno.git && git pull origin main)
+            else
+              git pull origin main
+            fi
+            cd backend
+            chmod +x gradlew
+            ./gradlew clean build -x test
+            
+            pid=$(pgrep -f 'java -jar') || true
+            if [ -n "$pid" ]; then
+              echo "Stopping existing Spring Boot application with PID: $pid..."
+              kill -9 $pid
+            fi
+            
+            mkdir -p logs
+            # Create the .env.prod file from the GitHub Secret
+            echo "${{ secrets.APP_ENV_PROD }}" > .env.prod
+
+            echo "Starting Spring Boot application..."
+            # Load the variables from .env.prod into the shell environment
+            # so that application.properties can resolve the ${VARIABLE} placeholders
+            set -a
+            source .env.prod
+            set +a
+            nohup java -jar build/libs/*-SNAPSHOT.jar > logs/app.log 2>&1 &
+          EOF
+
+  deploy-front:
+    name: Deploy Frontend
+    needs: test-front
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare environment (VPN & SSH)
+        run: sudo apt-get update && sudo apt-get install -y openconnect sshpass
+      - name: Connect to VPN
+        run: |
+          echo "${{ secrets.VPN_PASSWORD }}" | sudo openconnect --protocol=gp --user=${{ secrets.VPN_USER }} --passwd-on-stdin ${{ secrets.VPN_HOST }} -b
+          sleep 10
+      - name: Deploy to Remote Server
+        run: |
+          sshpass -p "${{ secrets.INTERNAL_SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.INTERNAL_USER }}@${{ secrets.INTERNAL_RESOURCE_IP }} << 'EOF'
+            cd ~/magno/ || exit;
+            if [ ! -d ".git" ]; then
+              git clone git@github.com:JackBlaze132/Magno.git .
+            else
+              git pull origin main
+            fi
+            cd frontend
+            npm install
+            npm run build
+            
+            export PATH=$PATH:/usr/local/nodejs/bin
+            if pm2 list | grep -q 'Front_Magno'; then
+              pm2 restart Front_Magno
+            else
+              pm2 start 'npx -y serve -s dist -p 3000' --name Front_Magno
+            fi
+          EOF

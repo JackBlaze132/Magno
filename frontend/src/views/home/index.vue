@@ -259,7 +259,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useAuthStore } from '@/stores/authStore'
-import { useRouter } from 'vue-router'
 import API from '@/utils/api'
 import CertificateCreationDialog from '@/components/certificates/CertificateCreationDialog.vue'
 import ReportCreationDialog from '@/components/reports/ReportCreationDialog.vue'

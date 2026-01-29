@@ -25,11 +25,11 @@
     >
       <template v-slot:item.type_of_internal_user="{item}">
         <VChip variant="outlined" >
-          {{ formatter().snakeCaseToNaturalTitleCase(item.type_of_internal_user) || ALIADO}}
+          {{ formatter().snakeCaseToNaturalTitleCase(item.type_of_internal_user) || "Aliado"}}
         </VChip>
       </template>
       <template v-slot:item.is_external_user="{item}">
-        {{ null || formatter().externalFormatter(item.is_external_user)}}
+        {{ formatter().externalFormatter(item.is_external_user)}}
       </template>
       <template v-slot:no-data>
         <div class="text-center pa-4">
