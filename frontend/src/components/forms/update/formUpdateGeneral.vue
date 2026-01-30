@@ -31,13 +31,16 @@
             />
           </VRadioGroup>
           <VAutocomplete v-else-if="field.type === 'select'"
+            :key="`${field.key}-${componentKey}`"
             v-model="formValues[field.key]"
             :items="field.options"
             item-title="label"
             item-value="value"
             :label="field.label"
             :disabled="field.disabled"
+            clearable
             class="mb-5"
+            @update:model-value="handleFieldChange(field.key, $event)"
           />
           <VSelect v-else-if="field.type === 'multiple-select'"
             multiple
@@ -46,12 +49,14 @@
             item-title="label"
             item-value="value"
             :label="field.label"
+            @update:model-value="handleFieldChange(field.key, $event)"
           />
           <VTextarea v-else-if="field.type === 'textarea'"
             v-model="formValues[field.key]"
             :label="field.label"
             rows="5"
             class="mb-5"
+            @update:model-value="handleFieldChange(field.key, $event)"
           />
 
           <VCheckbox v-else-if="field.type === 'checkbox'"
@@ -60,6 +65,7 @@
             class="mb-5"
             :true-value="true"
             :false-value="false"
+            @update:model-value="handleFieldChange(field.key, $event)"
           />
         </div>
         <VCardItem class="d-flex justify-end">
@@ -78,7 +84,7 @@ import { useFeedbackToast } from '@/composables/useFeedbackToast';
 
 export default defineComponent({
   name: 'formEditGeneral',
-  emits: ['itemEdited', 'loaded'],
+  emits: ['itemEdited', 'loaded', 'fieldChanged'],
   setup() {
     const { showError, showSuccess } = useFeedbackToast()
     return { showError, showSuccess }
@@ -101,20 +107,59 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
+    additionalData: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   data() {
     return {
 
       //inputValue: this.itemName, // valor inicial
       loading: false,
-      formValues: {...this.initialData},
+      formValues: this.initializeFormValues(),
+      componentKey: 0,
 
     };
+  },
+  watch: {
+    initialData: {
+      handler(newVal) {
+        this.formValues = { ...this.formValues, ...newVal };
+      },
+      deep: true,
+    },
+    additionalData: {
+      handler(newVal) {
+        this.formValues = { ...this.formValues, ...newVal };
+      },
+      deep: true,
+    },
   },
   created() {
     this.$emit('loaded');
   },
   methods: {
+    initializeFormValues() {
+      const values: Record<string, any> = { ...this.initialData, ...this.additionalData };
+      if (Array.isArray(this.fields)) {
+        this.fields.forEach(field => {
+          if (values[field.key] === undefined) {
+            values[field.key] = (field.type === 'checkbox' || field.type === 'radio-group') ? false : null;
+          }
+        });
+      }
+      return values;
+    },
+    handleFieldChange(fieldKey: string | number, value: any) {
+      this.formValues[fieldKey] = value;
+
+      if (value === null) {
+        this.componentKey++;
+      }
+
+      this.$emit('fieldChanged', fieldKey, value);
+    },
     async editItem() {
       this.loading = true;
       const headers = {
@@ -149,8 +194,20 @@ export default defineComponent({
           response = await API.put(API.RESEARCH_SEEDBEDS_MEMBERS + this.index, {
             ...this.formValues,
           }, headers);
+        } else if (this.type == 'external_profile' || this.type == 'external_seedbed_profile') {
+          response = await API.put(API.EXTERNAL_USER_PROFILES + this.index, {
+            ...this.formValues,
+          }, headers);
+        } else if (this.type == 'student_profile') {
+          response = await API.put(API.STUDENT_PROFILES + this.index, {
+            ...this.formValues,
+          }, headers);
+        } else if (this.type == 'functionary_profile') {
+          response = await API.put(API.FUNCTIONARY_PROFILES + this.index, {
+            ...this.formValues,
+          }, headers);
         }
-        if (!response.error) {
+        if (response && !response.error) {
           this.showSuccess('Elemento actualizado exitosamente');
           this.$emit('itemEdited', this.index, this.formValues.name);
         }

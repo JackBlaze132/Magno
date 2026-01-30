@@ -42,5 +42,10 @@
         ]
         },
       { "key": "is_leader", "label": "Es líder", "type": "checkbox" }
+    ],
+    "external_seedbed_profile": [
+        { "key": "user_id", "label": "Aliado Externo", "type": "select", "options": []},
+        { "key": "country", "label":  "País", "type": "select", "options":  [] },
+        { "key": "type_of_external_user", "label": "Tipo", "type": "select", "options":  [] }
     ]
 }

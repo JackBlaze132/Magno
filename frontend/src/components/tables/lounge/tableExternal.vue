@@ -78,10 +78,13 @@ export default defineComponent({
       <template v-slot:item.link="{item}">
         <QuickActions
           type="external_seedbed_profile"
+          toEdit
           toDelete
           :index="item.id"
           :name="item.user.full_name"
+          :initialData="item"
           @itemDeleted="handleItemRefresh"
+          @itemEdited="handleItemRefresh"
         />
       </template>
 

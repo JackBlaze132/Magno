@@ -10,6 +10,7 @@ const UpdateSeedbed = defineAsyncComponent(() => import("@/components/forms/upda
 const UpdateGroupProfile = defineAsyncComponent(() => import("@/components/forms/update/groups/formUpdateGroupProfile.vue"));
 const UpdateSeedbedProfile = defineAsyncComponent(() => import("@/components/forms/update/seedbeds/formUpdateSeedbedProfile.vue"));
 const UpdateSeedbedMember = defineAsyncComponent(() => import("@/components/forms/update/seedbeds/formUpdateSeedbedMember.vue"));
+const UpdateSeedbedExternalProfile = defineAsyncComponent(() => import("@/components/forms/update/seedbeds/formUpdateSeedbedExternalProfile.vue"));
 
 /**
  * Factory for creating 'update' form components for different entities.
@@ -112,6 +113,16 @@ export class UpdateFormFactory extends AbstractFormFactory {
           type: type,
           label: "Miembro del semillero",
           fields: schema.seedbed_member,
+          index: extraProps?.index,
+          initialData: extraProps?.initialData,
+        }
+      },
+      external_seedbed_profile: {
+        component: UpdateSeedbedExternalProfile,
+        props: {
+          type: type,
+          label: "Perfil de aliado externo",
+          fields: schema.external_seedbed_profile,
           index: extraProps?.index,
           initialData: extraProps?.initialData,
         }
