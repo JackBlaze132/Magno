@@ -35,13 +35,4 @@ const changeTheme = () => {
 watch(() => globalTheme.name.value, val => {
   currentThemeName.value = val
 })
-
-// Load theme from localStorage on component mount
-onMounted(() => {
-  const savedTheme = localStorage.getItem('selectedTheme')
-  if (savedTheme) {
-    globalTheme.name.value = savedTheme
-    currentThemeName.value = savedTheme
-  }
-})
 </script>

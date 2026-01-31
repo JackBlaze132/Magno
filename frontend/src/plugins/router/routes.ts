@@ -288,4 +288,14 @@ export const routes = [
       },
     ],
   },
+  {
+    path: '/:pathMatch(.*)*',
+    component: components.LAYOUT_BLANK,
+    children: [
+      {
+        path: '',
+        component: components.NOT_FOUND,
+      }
+    ]
+  },
 ]

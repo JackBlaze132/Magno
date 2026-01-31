@@ -305,3 +305,124 @@
   gap: 8px;
   z-index: 100;
 }
+
+.not-found-wrapper {
+  background: rgb(var(--v-theme-background));
+  min-height: 100vh;
+}
+
+.magno-logo {
+  width: 180px;
+  height: auto;
+}
+
+.error-code-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-code {
+  font-size: clamp(6rem, 15vw, 10rem);
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(to bottom, rgb(var(--v-theme-primary)), rgb(var(--v-theme-secondary)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  letter-spacing: -5px;
+}
+
+.error-divider {
+  width: 100px;
+  height: 6px;
+  background-color: rgb(var(--v-theme-primary));
+  border-radius: 3px;
+  margin-top: -10px;
+}
+
+.max-w-md {
+  max-width: 500px;
+}
+
+.v-card.working-card {
+  transform: translateY(0);
+  /* This handles the animation for BOTH entering and exiting the hover state */
+  transition: transform 300ms ease;
+  background: transparent;
+}
+
+.working-card:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+  /* You can remove the transition from here unless you want a different speed for the hover-on */
+}
+
+.gap-4 {
+  gap: 1.5rem;
+}
+
+:deep(.v-footer) {
+  background: transparent !important;
+}
+
+.login-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  .footer-link, .copyright-text {
+    color: white !important;
+  }
+}
+
+.top-left-logo {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 180px;
+  z-index: 20;
+}
+
+.mobile-logo {
+
+  z-index: 20;
+}
+
+:deep(.top-left-logo svg),
+:deep(.mobile-logo svg) {
+  width: 100%;
+  height: auto;
+  fill: white !important;
+}
+
+.auth-wrapper {
+  flex-grow: 1;
+  width: 100%;
+  position: relative;
+}
+
+.login-form-container {
+  z-index: 5;
+}
+
+@media (max-width: 960px) {
+  .auth-wrapper {
+    /* Reduce vertical centering to pull form away from bottom */
+    justify-content: center !important;
+    padding-bottom: 80px !important;
+  }
+}
+
+:deep(.v-footer) {
+  /* Maintain transparency to show login background */
+  background: transparent !important;
+  border-top: none !important;
+}
+
+.mb-35{
+  margin-bottom: 140px !important;
+}

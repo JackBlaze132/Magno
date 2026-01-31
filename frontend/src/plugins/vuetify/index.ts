@@ -20,9 +20,8 @@ export default function (app: App) {
     defaults,
     icons,
     theme: {
-      defaultTheme: 'light',
+      defaultTheme: localStorage.getItem('selectedTheme') || 'light',
       themes
-
     },
     components:{
       VDateInput

@@ -49,4 +49,5 @@ export const components = {
   DIRI_INDEX: () => import('@/views/diri/index.vue'),
   DIRI_LIST: () => import('@/views/diri/listDiri.vue'),
   LOGS_INDEX: () => import('@/views/logs/index.vue'),
+  NOT_FOUND: () => import('@/views/errors/NotFound.vue'),
 }

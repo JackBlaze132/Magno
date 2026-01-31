@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AppFooter: typeof import('./src/components/AppFooter.vue')['default']
     AppThemeSwitcher: typeof import('./src/layouts/components/appThemeSwitcher.vue')['default']
     AvatarPicture: typeof import('./src/layouts/components/avatarPicture.vue')['default']
     Blank: typeof import('./src/layouts/blank.vue')['default']
