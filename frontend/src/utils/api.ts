@@ -52,6 +52,8 @@ class API{
   //----[ACADEMIC PERIODS]----
   /** Endpoint for academic periods CRUD operations. */
   public readonly ACADEMIC_PERIODS:string='academic-periods/';
+  /** Endpoint to get the current active academic period. */
+  public readonly ACTIVE_ACADEMIC_PERIOD:string='academic-periods/active';
 
   //----[ACADEMIC PROGRAMS]----
   /** Endpoint for academic programs CRUD operations. */

@@ -16,7 +16,7 @@
 import { useTheme } from 'vuetify'
 import type { ThemeSwitcherTheme } from '@layouts/scripts/types'
 import { useCycleList } from '@vueuse/core'
-import { watch, onMounted } from 'vue';
+import { watch } from 'vue';
 
 const props = defineProps<{
   themes: ThemeSwitcherTheme[]

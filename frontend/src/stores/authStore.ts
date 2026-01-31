@@ -30,6 +30,7 @@ export const useAuthStore = defineStore('auth', {
     user: null as User | null,
     userProfiles: [] as UserProfile[],
     currentRole: null as string | null,
+    currentAcademicPeriod: null as number | null,
     isAuthenticated: false,
     isInitialized: false,
     loading: false,
@@ -235,6 +236,25 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
+     * Fetch the current active academic period
+     */
+    async fetchActivePeriod() {
+      const headers = {
+        'API-VERSION': '1'
+      }
+
+      try {
+        const response = await API.get(API.ACTIVE_ACADEMIC_PERIOD, headers)
+        if (response && response[0]) {
+          this.currentAcademicPeriod = response[0].id
+          console.log('✅ Active academic period loaded:', this.currentAcademicPeriod)
+        }
+      } catch (error) {
+        console.error('❌ Error fetching active academic period:', error)
+      }
+    },
+
+    /**
      * Fetch user profiles with roles
      */
     async fetchUserProfiles() {
@@ -310,6 +330,9 @@ export const useAuthStore = defineStore('auth', {
 
         // Then fetch user details (has user ID)
         await this.fetchUserDetails()
+
+        // Fetch active academic period
+        await this.fetchActivePeriod()
 
         // Finally fetch profiles with roles
         if (this.user?.id) {
@@ -395,6 +418,6 @@ export const useAuthStore = defineStore('auth', {
   persist: {
     key: 'magno-auth',
     storage: localStorage,
-    pick: ['user', 'userProfiles', 'currentRole', 'isAuthenticated']
+    pick: ['user', 'userProfiles', 'currentRole', 'isAuthenticated', 'currentAcademicPeriod']
   }
 })

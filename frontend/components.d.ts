@@ -13,7 +13,6 @@ declare module 'vue' {
     Blank: typeof import('./src/layouts/blank.vue')['default']
     CertBtn: typeof import('./src/components/operators/certBtn.vue')['default']
     CertificateCreationDialog: typeof import('./src/components/certificates/CertificateCreationDialog.vue')['default']
-    copy: typeof import('./src/components/forms/update/seedbeds/formUpdateSeedbedMember copy.vue')['default']
     Default: typeof import('./src/layouts/default.vue')['default']
     DragDropUpload: typeof import('./src/components/forms/upload/fields/DragDropUpload.vue')['default']
     FeedbackToast: typeof import('./src/components/feedbackToast.vue')['default']

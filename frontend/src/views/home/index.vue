@@ -493,11 +493,15 @@ export default defineComponent({
       }
       this.loadingStats = true
       try {
+        const studentEndpoint = this.authStore.currentAcademicPeriod
+          ? API.STUDENT_PROFILES_BY_ACADEMIC_PERIOD + this.authStore.currentAcademicPeriod
+          : API.USERS_STUDENTS
+
         const [periods, groups, seedbeds, students] = await Promise.all([
           API.get(API.ACADEMIC_PERIODS, headers),
           API.get(API.INVESTIGATION_GROUPS, headers),
           API.get(API.RESEARCH_SEEDBEDS, headers),
-          API.get(API.USERS_STUDENTS, headers)
+          API.get(studentEndpoint, headers)
         ])
 
         console.log("periodos:", periods)
