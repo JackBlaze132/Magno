@@ -5,12 +5,9 @@ import com.unibague.magno.domain.exception.integra.NullIntegraResponseException;
 import com.unibague.magno.domain.model.enums.AcademicProgramType;
 import com.unibague.magno.domain.model.integra.*;
 import com.unibague.magno.domain.spi.integra.IIntegraPersistencePort;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
@@ -22,41 +19,45 @@ import java.util.stream.Stream;
  * Connects to the University of Ibagué's central Integra API to retrieve information about
  * functionaries, students, academic programs, and organizational dependencies.
  */
-@Service
-@RequiredArgsConstructor
 public class IntegraUserClient implements IIntegraPersistencePort {
 
     private final RestTemplate restTemplate;
-
-    @Value("${integra.api.token}")
-    private String integraApiToken;
-
-    @Value("${integra.base.url}")
-    private String baseUrl;
-
-    @Value("${integra.all.functionaries.url}")
-    private String allFunctionariesUrl;
-
-    @Value("${integra.student.url1}")
-    private String studentsUrl1;
-
-    @Value("${integra.student.url2}")
-    private String studentsUrl2;
-
-    @Value("${integra.students.all}")
-    private String allStudentsUrl;
-
-    @Value("${integra.academic.programs.url}")
-    private String academicProgramsUrl;
-
-    @Value("${integra.all.dependencies.url}")
-    private String dependenciesUrl;
-
-    @Value("${integra.academic.programs.url.academia}")
-    private String academiaAcademicProgramsGeneralUrl;
+    private final String integraApiToken;
+    private final String baseUrl;
+    private final String allFunctionariesUrl;
+    private final String studentsUrl1;
+    private final String studentsUrl2;
+    private final String allStudentsUrl;
+    private final String academicProgramsUrl;
+    private final String dependenciesUrl;
+    private final String academiaAcademicProgramsGeneralUrl;
 
     private static final String UNDERGRADUATE = "1";
     private static final String POSTGRADUATE = "2";
+
+    public IntegraUserClient(
+            RestTemplate restTemplate,
+            String integraApiToken,
+            String baseUrl,
+            String allFunctionariesUrl,
+            String studentsUrl1,
+            String studentsUrl2,
+            String allStudentsUrl,
+            String academicProgramsUrl,
+            String dependenciesUrl,
+            String academiaAcademicProgramsGeneralUrl
+    ) {
+        this.restTemplate = restTemplate;
+        this.integraApiToken = integraApiToken;
+        this.baseUrl = baseUrl;
+        this.allFunctionariesUrl = allFunctionariesUrl;
+        this.studentsUrl1 = studentsUrl1;
+        this.studentsUrl2 = studentsUrl2;
+        this.allStudentsUrl = allStudentsUrl;
+        this.academicProgramsUrl = academicProgramsUrl;
+        this.dependenciesUrl = dependenciesUrl;
+        this.academiaAcademicProgramsGeneralUrl = academiaAcademicProgramsGeneralUrl;
+    }
 
     public List<AcademiaAcademicProgram> getAcademiaAcademicPrograms1(){
         String path = academiaAcademicProgramsGeneralUrl + UNDERGRADUATE;

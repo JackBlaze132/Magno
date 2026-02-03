@@ -20,6 +20,7 @@ import com.unibague.magno.infrastructure.output.jpa.repository.*;
 import com.unibague.magno.infrastructure.util.certificates.HtmlRenderService;
 import com.unibague.magno.infrastructure.util.certificates.PdfService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -83,6 +84,34 @@ public class BeanConfiguration {
 
     private final HtmlRenderService htmlRenderService;
     private final PdfService pdfService;
+
+    // Integra API configuration properties
+    @Value("${integra.api.token}")
+    private String integraApiToken;
+
+    @Value("${integra.base.url}")
+    private String integraBaseUrl;
+
+    @Value("${integra.all.functionaries.url}")
+    private String allFunctionariesUrl;
+
+    @Value("${integra.student.url1}")
+    private String studentsUrl1;
+
+    @Value("${integra.student.url2}")
+    private String studentsUrl2;
+
+    @Value("${integra.students.all}")
+    private String allStudentsUrl;
+
+    @Value("${integra.academic.programs.url}")
+    private String academicProgramsUrl;
+
+    @Value("${integra.all.dependencies.url}")
+    private String dependenciesUrl;
+
+    @Value("${integra.academic.programs.url.academia}")
+    private String academiaAcademicProgramsGeneralUrl;
 
     @Bean
     public IAcademicPeriodServicePort academicPeriodServicePort() {
@@ -236,7 +265,18 @@ public class BeanConfiguration {
 
     @Bean
     public IIntegraPersistencePort integraPersistencePort() {
-        return new IntegraUserClient(restTemplate());
+        return new IntegraUserClient(
+                restTemplate(),
+                integraApiToken,
+                integraBaseUrl,
+                allFunctionariesUrl,
+                studentsUrl1,
+                studentsUrl2,
+                allStudentsUrl,
+                academicProgramsUrl,
+                dependenciesUrl,
+                academiaAcademicProgramsGeneralUrl
+        );
     }
 
     @Bean
