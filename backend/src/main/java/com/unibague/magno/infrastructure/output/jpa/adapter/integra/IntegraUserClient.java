@@ -22,7 +22,6 @@ import java.util.stream.Stream;
  * Connects to the University of Ibagué's central Integra API to retrieve information about
  * functionaries, students, academic programs, and organizational dependencies.
  */
-@Service
 @RequiredArgsConstructor
 public class IntegraUserClient implements IIntegraPersistencePort {
 

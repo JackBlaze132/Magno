@@ -18,12 +18,12 @@ class API{
 
   /**
    * Base URL for all API requests.
+   * Uses environment variable VITE_API_BASE_URL or defaults to localhost in development.
    * @private
    * @readonly
    * @type {string}
    */
-  //private readonly API_BASE_URL: string = '/api/';
-  private readonly API_BASE_URL: string = 'http://localhost:8080/api/';
+  private readonly API_BASE_URL: string = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api/';
 
   /**
    * Test endpoint for header validation.
