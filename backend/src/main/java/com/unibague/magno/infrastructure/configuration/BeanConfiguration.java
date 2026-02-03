@@ -81,8 +81,6 @@ public class BeanConfiguration {
     private final IActionLogRepository actionLogRepository;
     private final ActionLogEntityMapper actionLogEntityMapper;
 
-    private final IIntegraPersistencePort integraPersistencePort;
-
     private final HtmlRenderService htmlRenderService;
     private final PdfService pdfService;
 
@@ -229,10 +227,16 @@ public class BeanConfiguration {
     }
 
     // "Integra" and related beans
+    private final RestTemplate restTemplate;
+
+    @Bean
+    public IIntegraPersistencePort integraPersistencePort() {
+        return new IntegraUserClient(restTemplate);
+    }
 
     @Bean
     public IIntegraServicePort integraServicePort() {
-        return new IntegraUseCase(integraPersistencePort);
+        return new IntegraUseCase(integraPersistencePort());
     }
 
     // Helper Beans
