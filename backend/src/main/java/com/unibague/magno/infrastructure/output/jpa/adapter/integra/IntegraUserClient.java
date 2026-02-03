@@ -52,7 +52,7 @@ public class IntegraUserClient implements IIntegraPersistencePort {
     @Value("${integra.all.dependencies.url}")
     private String dependenciesUrl;
 
-    @Value("${INTEGRA_ACADEMIC_PROGRAMS_ACADEMIA_URL}")
+    @Value("${integra.academic.programs.url.academia}")
     private String academiaAcademicProgramsGeneralUrl;
 
     private static final String UNDERGRADUATE = "1";
