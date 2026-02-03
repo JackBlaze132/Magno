@@ -118,27 +118,41 @@ jobs:
               git pull origin main
             fi
             cd backend
+            
+            # Stop any existing Gradle daemons to free resources
+            ./gradlew --stop || true
+            
             chmod +x gradlew
             ./gradlew clean build -x test
             
-            pid=$(pgrep -f 'java -jar') || true
+            # Stop existing Spring Boot application
+            pid=$(pgrep -f 'magno-0.0.1-SNAPSHOT.jar') || true
             if [ -n "$pid" ]; then
               echo "Stopping existing Spring Boot application with PID: $pid..."
               kill -9 $pid
+              sleep 2
             fi
             
             mkdir -p logs
             # Create the .env.prod file from the GitHub Secret
             echo "${{ secrets.APP_ENV_PROD }}" > .env.prod
 
-            echo "Starting Spring Boot application..."
+            echo "Starting Spring Boot application with Java 21..."
             # Load variables safely (handles special characters like & in URLs)
             while IFS= read -r line || [ -n "$line" ]; do
               if [[ ! -z "$line" && ! "$line" =~ ^# ]]; then
                 export "$line"
               fi
             done < .env.prod
-            nohup java -jar build/libs/*-SNAPSHOT.jar > logs/app.log 2>&1 &
+            
+            # Use Java 21 explicitly (not Java 18)
+            export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+            export PATH=$JAVA_HOME/bin:$PATH
+            
+            nohup java -jar build/libs/magno-0.0.1-SNAPSHOT.jar > logs/app.log 2>&1 &
+            
+            echo "Backend started with PID: $!"
+            echo "Logs available at: ~/magno/backend/logs/app.log"
           EOF
 
   deploy-front:
