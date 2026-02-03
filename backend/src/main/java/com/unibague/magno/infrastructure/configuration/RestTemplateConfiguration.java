@@ -33,7 +33,7 @@ import java.util.Arrays;
 @Configuration
 public class RestTemplateConfiguration {
 
-    @Bean
+    //@Bean
     public RestTemplate restTemplate() throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
         try{
         // SSL configuration to ignore certificate validation
