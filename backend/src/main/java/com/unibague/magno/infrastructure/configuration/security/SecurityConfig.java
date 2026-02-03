@@ -6,6 +6,7 @@ import com.unibague.magno.infrastructure.configuration.security.handler.CustomOA
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,10 +20,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * Main Spring Security configuration class.
  * Configures OAuth2 login with Google, CORS, CSRF, authentication filters,
  * logout handling, and defines which endpoints require authentication.
+ * This configuration is excluded from test profile.
  */
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
+@Profile("!test")
 public class SecurityConfig {
 
     private final CustomOidcUserService customOidcUserService;
