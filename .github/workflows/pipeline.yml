@@ -37,7 +37,6 @@ jobs:
         env:
           SPRING_PROFILES_ACTIVE: test
           JDBC_DATABASE_USERNAME: sa
-          JDBC_DATABASE_PASSWORD: ""
           JDBC_DATABASE_URL: jdbc:h2:mem:testdb
           INTEGRA_BASE_URL: http://localhost:8081
           INTEGRA_ACADEMIC_PROGRAMS_URL: http://localhost:8081/programs
