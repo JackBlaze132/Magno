@@ -89,7 +89,7 @@ class UserUseCaseTest {
         // Act & Assert
         assertThatThrownBy(() -> userUseCase.findById(99L))
                 .isInstanceOf(UserNotFoundException.class)
-                .hasMessage("User with id 99 not found");
+                .hasMessage("Usuario con ID 99 no encontrado");
 
         verify(userPersistencePort, times(1)).findById(99L);
     }
@@ -140,7 +140,7 @@ class UserUseCaseTest {
         // Act & Assert
         assertThatThrownBy(() -> userUseCase.update(1L, user))
                 .isInstanceOf(UserNotFoundException.class)
-                .hasMessage("User with id 1 could not be updated because it does not exist");
+                .hasMessage("No se pudo actualizar el usuario con ID 1 porque no existe");
 
         verify(userPersistencePort, times(1)).findById(1L);
         verify(userPersistencePort, never()).update(anyLong(), any(User.class));
@@ -200,7 +200,7 @@ class UserUseCaseTest {
         // Act & Assert
         assertThatThrownBy(() -> userUseCase.deleteById(1L))
                 .isInstanceOf(UserNotFoundException.class)
-                .hasMessage("User with id 1 could not be deleted because it does not exist");
+                .hasMessage("No se pudo eliminar el usuario con ID 1 porque no existe");
 
         verify(userPersistencePort, times(1)).findById(1L);
         verify(userPersistencePort, never()).deleteById(anyLong());
