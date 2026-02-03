@@ -256,17 +256,12 @@ public class BeanConfiguration {
     }
 
     // "Integra" and related beans
-    //private final RestTemplate restTemplate;
-
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
+    private final RestTemplate restTemplate;
 
     @Bean
     public IIntegraPersistencePort integraPersistencePort() {
         return new IntegraUserClient(
-                restTemplate(),
+                restTemplate,
                 integraApiToken,
                 integraBaseUrl,
                 allFunctionariesUrl,
