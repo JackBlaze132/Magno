@@ -227,11 +227,16 @@ public class BeanConfiguration {
     }
 
     // "Integra" and related beans
-    private final RestTemplate restTemplate;
+    //private final RestTemplate restTemplate;
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
     @Bean
     public IIntegraPersistencePort integraPersistencePort() {
-        return new IntegraUserClient(restTemplate);
+        return new IntegraUserClient(restTemplate());
     }
 
     @Bean
