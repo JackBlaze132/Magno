@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Profile;
 
 import java.io.IOException;
 
@@ -20,6 +21,7 @@ import java.io.IOException;
  */
 @Component
 @RequiredArgsConstructor
+@Profile("!test")
 public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
     private final OAuth2AuthorizedClientService authorizedClientService;

@@ -22,6 +22,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -34,6 +35,7 @@ import java.util.List;
  */
 @Component
 @RequiredArgsConstructor
+@Profile("!test")
 public class GoogleIdTokenAuthenticationFilter extends OncePerRequestFilter {
 
     @Value("${spring.security.oauth2.client.registration.google.client-id}")

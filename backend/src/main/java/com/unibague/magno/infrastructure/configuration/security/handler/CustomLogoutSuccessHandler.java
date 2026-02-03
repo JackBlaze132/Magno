@@ -7,6 +7,7 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Profile;
 
 import java.io.IOException;
 
@@ -15,6 +16,7 @@ import java.io.IOException;
  * Clears the session cookie and redirects the user to the login page.
  */
 @Component
+@Profile("!test")
 public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
 
     @Value("${app.frontend.login-redirect}")
