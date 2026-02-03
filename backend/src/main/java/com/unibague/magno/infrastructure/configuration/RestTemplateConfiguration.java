@@ -35,7 +35,7 @@ public class RestTemplateConfiguration {
 
     @Bean
     public RestTemplate restTemplate() throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
-
+        try{
         // SSL configuration to ignore certificate validation
         TrustStrategy acceptingTrustStrategy = (X509Certificate[] chain, String authType) -> true;
 
@@ -75,6 +75,10 @@ public class RestTemplateConfiguration {
         restTemplate.getMessageConverters().addFirst(converter);
 
         return restTemplate;
+        } catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException("Error configuring RestTemplate", e);
+        }
     }
 }
 
