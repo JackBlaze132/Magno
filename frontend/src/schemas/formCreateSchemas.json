@@ -22,11 +22,11 @@
     { "key": "line_of_research", "label": "Linea de investigación", "type": "select", "options": [] }
   ],
   "user_integra":[
-    { "key": "identification", "label": "Numero de identificaion", "type": "text" },
+    { "key": "identification", "label": "Numero de identificación", "type": "text" },
     { "key": "type", "label": "Tipo", "type": "select", "options": [] }
   ],
   "user_diri":[
-    { "key": "identification", "label": "Numero de identificaion", "type": "text" }
+    { "key": "identification", "label": "Numero de identificación", "type": "text" }
   ],
   "user_external": [
     { "key": "full_name", "label": "Nombre", "type": "text" },
