@@ -35,4 +35,18 @@ public interface IAcademicPeriodPersistencePort {
      * @return a list of active and visible academic periods
      */
     List<AcademicPeriod> findAllActiveAndVisible();
+
+    /**
+     * Finds all visible academic periods.
+     *
+     * @return a list of visible academic periods
+     */
+    List<AcademicPeriod> findAllVisible();
+
+    /**
+     * Finds all non-visible (hidden) academic periods.
+     *
+     * @return a list of non-visible academic periods
+     */
+    List<AcademicPeriod> findAllNotVisible();
 }

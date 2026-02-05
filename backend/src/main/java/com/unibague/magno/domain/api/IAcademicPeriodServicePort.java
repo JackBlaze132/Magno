@@ -73,4 +73,18 @@ public interface IAcademicPeriodServicePort {
      * @throws AcademicPeriodNotFoundException if no active period exists
      */
     AcademicPeriod findActiveAcademicPeriod();
+
+    /**
+     * Retrieves all visible academic periods.
+     *
+     * @return a list of all visible academic periods
+     */
+    List<AcademicPeriod> findAllVisible();
+
+    /**
+     * Retrieves all non-visible (hidden) academic periods.
+     *
+     * @return a list of all non-visible academic periods
+     */
+    List<AcademicPeriod> findAllNotVisible();
 }

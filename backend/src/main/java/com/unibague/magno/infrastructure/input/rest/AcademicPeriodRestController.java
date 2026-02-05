@@ -47,6 +47,20 @@ public class AcademicPeriodRestController {
         return ResponseEntity.ok(response);
     }
 
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).USUARIO_SIN_ROL)")
+    @GetMapping(path = "/visible", headers = "API-VERSION=1")
+    public ResponseEntity<List<AcademicPeriodResponse>> getAllVisibleAcademicPeriods() {
+        List<AcademicPeriodResponse> responses = academicPeriodHandler.findAllVisible();
+        return ResponseEntity.ok(responses);
+    }
+
+    @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
+    @GetMapping(path = "/not-visible", headers = "API-VERSION=1")
+    public ResponseEntity<List<AcademicPeriodResponse>> getAllNotVisibleAcademicPeriods() {
+        List<AcademicPeriodResponse> responses = academicPeriodHandler.findAllNotVisible();
+        return ResponseEntity.ok(responses);
+    }
+
     @PreAuthorize("hasRole(T(com.unibague.magno.domain.model.enums.SeedbedRole).DIRI)")
     @PostMapping(path = "/", headers = "API-VERSION=1")
     public ResponseEntity<AcademicPeriodResponse> createAcademicPeriod

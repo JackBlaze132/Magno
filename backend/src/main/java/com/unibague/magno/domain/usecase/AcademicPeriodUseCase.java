@@ -104,6 +104,16 @@ public class AcademicPeriodUseCase implements IAcademicPeriodServicePort {
     }
 
     @Override
+    public List<AcademicPeriod> findAllVisible() {
+        return academicPeriodPersistencePort.findAllVisible();
+    }
+
+    @Override
+    public List<AcademicPeriod> findAllNotVisible() {
+        return academicPeriodPersistencePort.findAllNotVisible();
+    }
+
+    @Override
     public AcademicPeriod findActiveAcademicPeriod() {
         List<AcademicPeriod> activeAndVisiblePeriods = academicPeriodPersistencePort.findAllActiveAndVisible();
         

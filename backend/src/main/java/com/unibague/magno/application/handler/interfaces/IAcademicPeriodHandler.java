@@ -23,4 +23,18 @@ public interface IAcademicPeriodHandler {
      * @return the active academic period response
      */
     AcademicPeriodResponse findActiveAcademicPeriod();
+
+    /**
+     * Retrieves all visible academic periods.
+     *
+     * @return a list of visible academic period responses
+     */
+    List<AcademicPeriodResponse> findAllVisible();
+
+    /**
+     * Retrieves all non-visible (hidden) academic periods.
+     *
+     * @return a list of non-visible academic period responses
+     */
+    List<AcademicPeriodResponse> findAllNotVisible();
 }

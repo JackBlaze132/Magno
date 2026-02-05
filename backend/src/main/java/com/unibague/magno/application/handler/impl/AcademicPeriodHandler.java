@@ -56,4 +56,14 @@ public class AcademicPeriodHandler implements IAcademicPeriodHandler {
         AcademicPeriod academicPeriod = academicPeriodServicePort.findActiveAcademicPeriod();
         return academicPeriodResponseMapper.toResponse(academicPeriod);
     }
+
+    @Override
+    public List<AcademicPeriodResponse> findAllVisible() {
+        return academicPeriodResponseMapper.toResponseList(academicPeriodServicePort.findAllVisible());
+    }
+
+    @Override
+    public List<AcademicPeriodResponse> findAllNotVisible() {
+        return academicPeriodResponseMapper.toResponseList(academicPeriodServicePort.findAllNotVisible());
+    }
 }

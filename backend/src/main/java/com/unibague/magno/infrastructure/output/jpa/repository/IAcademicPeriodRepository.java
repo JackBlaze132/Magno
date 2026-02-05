@@ -28,4 +28,10 @@ public interface IAcademicPeriodRepository extends JpaRepository<AcademicPeriodE
      */
     @Query("SELECT a FROM AcademicPeriodEntity a WHERE a.isCurrent = true AND a.isVisible = true")
     List<AcademicPeriodEntity> findAllActiveAndVisible();
+
+    /**
+     * Retrieves all non-visible academic periods (hidden administrative periods).
+     */
+    @Query("SELECT a FROM AcademicPeriodEntity a WHERE a.isVisible = false")
+    List<AcademicPeriodEntity> findAllNotVisible();
 }
