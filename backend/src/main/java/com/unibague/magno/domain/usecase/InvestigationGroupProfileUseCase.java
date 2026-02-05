@@ -82,6 +82,11 @@ public class InvestigationGroupProfileUseCase implements IInvestigationGroupProf
                 "El período académico debe estar activo para crear un nuevo perfil de grupo de investigación"
         );
 
+        investigationGroupProfileHelper.verifyAcademicPeriodIsVisible(
+                academicPeriodId,
+                "No se permite crear perfiles de grupo de investigación en períodos académicos que no son visibles"
+        );
+
         verifyThatInvestigationGroupProfileDoesNotExist(
                 academicPeriodId, investigationGroupProfile.getInvestigationGroupId()
         );

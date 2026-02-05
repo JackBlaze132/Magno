@@ -21,6 +21,8 @@ public enum ExceptionResponse {
             "Existe más de un período académico activo en el sistema."),
     ANOTHER_ACTIVE_ACADEMIC_PERIOD_EXISTS("ERR_ACADEMIC_PERIOD_007",
             "Ya existe otro período académico activo."),
+    ACADEMIC_PERIOD_NOT_VISIBLE("ERR_ACADEMIC_PERIOD_008",
+            "No se permite realizar esta operación en un período académico no visible."),
     ROLE_NOT_FOUND("ERR_ROLE_001", "Rol no encontrado."),
     DEPENDENCY_NOT_FOUND("ERR_DEPENDENCY_001", "Dependencia no encontrada."),
     ACADEMIC_PROGRAM_NOT_FOUND("ERR_ACADEMIC_PROGRAM_001", "Programa académico no encontrado."),

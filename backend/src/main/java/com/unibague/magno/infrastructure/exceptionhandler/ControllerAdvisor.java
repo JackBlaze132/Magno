@@ -4,6 +4,7 @@ import com.unibague.magno.domain.api.IErrorLogServicePort;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodAlreadyExistsException;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodHasInvestigationGroupProfilesException;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurrentException;
+import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotVisibleException;
 import com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException;
 import com.unibague.magno.domain.exception.academicperiod.MultipleActiveAcademicPeriodsException;
 import com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupAlreadyExistsException;
@@ -166,6 +167,22 @@ public class ControllerAdvisor {
 
         String code = MULTIPLE_ACTIVE_ACADEMIC_PERIODS.getCode();
         String message = MULTIPLE_ACTIVE_ACADEMIC_PERIODS.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+
+        logError(exception, code, message, request);
+
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(AcademicPeriodNotVisibleException.class)
+    public ErrorResponse handleAcademicPeriodNotVisibleException
+            (AcademicPeriodNotVisibleException exception, HttpServletRequest request) {
+
+        String code = ACADEMIC_PERIOD_NOT_VISIBLE.getCode();
+        String message = ACADEMIC_PERIOD_NOT_VISIBLE.getMessage();
 
         ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
                 Collections.singletonList(exception.getMessage()));

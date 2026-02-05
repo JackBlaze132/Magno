@@ -3,6 +3,7 @@ package com.unibague.magno.domain.usecase.helper;
 import com.unibague.magno.domain.api.*;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurrentException;
+import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotVisibleException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileFunctionaryIsAlreadyACoordinatorException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileHasResearchSeedbedProfilesException;
 import com.unibague.magno.domain.model.*;
@@ -71,6 +72,14 @@ public class InvestigationGroupProfileHelper implements IInvestigationGroupProfi
         AcademicPeriod ap = academicPeriodServicePort.findById(academicPeriodId);
         if (!ap.isCurrent()) {
             throw new AcademicPeriodNotCurrentException(errorMessage);
+        }
+    }
+
+    @Override
+    public void verifyAcademicPeriodIsVisible(Long academicPeriodId, String errorMessage) {
+        AcademicPeriod ap = academicPeriodServicePort.findById(academicPeriodId);
+        if (!ap.isVisible()) {
+            throw new AcademicPeriodNotVisibleException(errorMessage);
         }
     }
 

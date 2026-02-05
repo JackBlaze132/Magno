@@ -1,6 +1,7 @@
 package com.unibague.magno.domain.usecase.helper;
 
 import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotCurrentException;
+import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotVisibleException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileFunctionaryIsAlreadyACoordinatorException;
 import com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileHasResearchSeedbedProfilesException;
 import com.unibague.magno.domain.model.InvestigationGroupProfile;
@@ -48,6 +49,19 @@ public interface IInvestigationGroupProfileHelper {
      * @throws AcademicPeriodNotCurrentException if the academic period is not current
      */
     void verifyAcademicPeriodIsCurrent(Long academicPeriodId, String errorMessage);
+
+    /**
+     * Verifies that the academic period is visible.
+     * <p>
+     * Non-visible academic periods are hidden from regular users and should not allow
+     * creation of investigation group profiles.
+     * </p>
+     *
+     * @param academicPeriodId the ID of the academic period to verify
+     * @param errorMessage     custom error message for the exception
+     * @throws AcademicPeriodNotVisibleException if the academic period is not visible
+     */
+    void verifyAcademicPeriodIsVisible(Long academicPeriodId, String errorMessage);
 
     /**
      * Verifies that a user is not already a coordinator of another investigation group
