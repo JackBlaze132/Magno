@@ -12,9 +12,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Scanner;
+import java.util.concurrent.*;
 
 /**
  * Initializer that provides an interactive prompt at application startup to register
@@ -23,6 +25,12 @@ import java.util.Scanner;
  * This component allows the system administrator to assign the DIRI role to an existing
  * user during the application startup process. It requires user interaction via the console
  * to provide the administrator's email address.
+ * </p>
+ * <p>
+ * <strong>Timeout:</strong> Each prompt has a 30-second timeout. If no input is received
+ * within this period, the registration process is automatically skipped. This prevents
+ * the application from hanging indefinitely when running in background mode or in
+ * environments without an interactive console (e.g., production deployments).
  * </p>
  * <p>
  * <strong>Execution order:</strong> {@code @Order(3)} - Runs after {@link UserDataInitializer}
@@ -41,27 +49,67 @@ public class AdminRegistrationInitializer implements CommandLineRunner {
     private final IDependencyServicePort dependencyServicePort;
     private final IFunctionaryProfileServicePort functionaryProfileServicePort;
 
+    private static final int TIMEOUT_SECONDS = 30;
+
     @Override
     public void run(String... args) throws Exception {
         log.info("\n\n\n---------------------------------------\n\n\n");
         log.info("¿Desea registrar un usuario administrador? (S/N): ");
+        log.info("Tiene {} segundos para responder. Si no responde, se omitirá este paso.", TIMEOUT_SECONDS);
 
-        try (Scanner scanner = new Scanner(System.in)) {
-            String respuesta = scanner.nextLine().trim().toUpperCase();
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        try {
+            String respuesta = readLineWithTimeout(executor, reader, TIMEOUT_SECONDS);
+
+            if (respuesta == null) {
+                log.info("Tiempo de espera agotado. No se registrará un usuario administrador.");
+                return;
+            }
+
+            respuesta = respuesta.trim().toUpperCase();
 
             if (respuesta.equals("S")) {
                 log.info("Escriba el correo del usuario administrador a registrar: ");
-                String adminEmail = scanner.nextLine().trim();
-                createAdmin(adminEmail);
-                log.info("Usuario administrador registrado exitosamente con email: {}", adminEmail);
+                log.info("Tiene {} segundos para responder.", TIMEOUT_SECONDS);
+
+                String adminEmail = readLineWithTimeout(executor, reader, TIMEOUT_SECONDS);
+
+                if (adminEmail == null || adminEmail.trim().isEmpty()) {
+                    log.info("Tiempo de espera agotado o correo vacío. No se registrará un usuario administrador.");
+                    return;
+                }
+
+                createAdmin(adminEmail.trim());
+                log.info("Usuario administrador registrado exitosamente con email: {}", adminEmail.trim());
             } else {
                 log.info("No se registrará un usuario administrador.");
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             log.error("Error al leer la entrada del usuario: {}", e.getMessage());
+        } finally {
+            executor.shutdownNow();
         }
+    }
 
+    private String readLineWithTimeout(ExecutorService executor, BufferedReader reader, int timeoutSeconds) {
+        Future<String> future = executor.submit(() -> {
+            try {
+                return reader.readLine();
+            } catch (Exception e) {
+                return null;
+            }
+        });
+
+        try {
+            return future.get(timeoutSeconds, TimeUnit.SECONDS);
+        } catch (TimeoutException e) {
+            future.cancel(true);
+            return null;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     private void createAdmin(String adminEmail) {
@@ -92,7 +140,9 @@ public class AdminRegistrationInitializer implements CommandLineRunner {
         Role diriRole = roleServicePort.findByName(SeedbedRole.DIRI);
 
         Dependency dependency = dependencyServicePort.findByName(SystemConstants.DIRI_DEPENDENCY_NAME);
-        functionaryProfileServicePort.save(new FunctionaryProfile(
+        // Use saveIgnoringPeriodVisibility because DIRI users are created in a special
+        // academic period that may not be visible
+        functionaryProfileServicePort.saveIgnoringPeriodVisibility(new FunctionaryProfile(
                 null, adminUser.getId(), ap.getId(), dependency.getId(), diriRole.getId()
                 )
         );

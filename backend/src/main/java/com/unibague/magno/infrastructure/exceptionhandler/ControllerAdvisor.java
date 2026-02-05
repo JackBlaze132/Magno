@@ -39,6 +39,7 @@ import com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFou
 import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileAlreadyExistsInAcademicPeriod;
 import com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileNotFoundException;
 import com.unibague.magno.domain.exception.researchseedbedprofile.SameCoordinatorAndTutorException;
+import com.unibague.magno.domain.exception.role.DiriRoleNotAllowedException;
 import com.unibague.magno.domain.exception.role.RoleNotFoundException;
 import com.unibague.magno.domain.exception.security.InvalidEmailException;
 import com.unibague.magno.domain.exception.security.NullEmailException;
@@ -219,6 +220,21 @@ public class ControllerAdvisor {
         
         logError(exception, code, message, request);
         
+        return errorResponse;
+    }
+
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(DiriRoleNotAllowedException.class)
+    public ErrorResponse handleDiriRoleNotAllowedException(DiriRoleNotAllowedException exception, HttpServletRequest request) {
+
+        String code = ExceptionResponse.DIRI_ROLE_NOT_ALLOWED.getCode();
+        String message = ExceptionResponse.DIRI_ROLE_NOT_ALLOWED.getMessage();
+
+        ErrorResponse errorResponse = buildErrorResponse(exception, code, message,
+                Collections.singletonList(exception.getMessage()));
+
+        logError(exception, code, message, request);
+
         return errorResponse;
     }
 

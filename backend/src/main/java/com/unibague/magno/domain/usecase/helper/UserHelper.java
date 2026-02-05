@@ -47,7 +47,9 @@ public class UserHelper implements IUserHelper {
                 apForDiriUsers.getId(),
                 dependency.getId(),
                 diriRole.getId());
-        functionaryProfileServicePort.save(functionaryProfile);
+        // Use saveIgnoringPeriodVisibility because DIRI users are created in a special
+        // academic period that may not be visible
+        functionaryProfileServicePort.saveIgnoringPeriodVisibility(functionaryProfile);
     }
 
     @Override

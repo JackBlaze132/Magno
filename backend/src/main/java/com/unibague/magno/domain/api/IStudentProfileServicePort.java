@@ -30,11 +30,29 @@ public interface IStudentProfileServicePort {
     
     /**
      * Persists a new student profile.
+     * <p>
+     * This method validates that the academic period associated with the profile is visible.
+     * If the period is not visible, an {@code AcademicPeriodNotVisibleException} will be thrown.
+     * </p>
+     *
+     * @param studentProfile the student profile to save
+     * @return the saved student profile
+     * @throws com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotVisibleException
+     *         if the academic period is not visible
+     */
+    StudentProfile save(StudentProfile studentProfile);
+
+    /**
+     * Persists a new student profile, bypassing the academic period visibility check.
+     * <p>
+     * <strong>WARNING:</strong> This method should only be used for system-level operations
+     * where profiles need to be created in non-visible academic periods.
+     * </p>
      *
      * @param studentProfile the student profile to save
      * @return the saved student profile
      */
-    StudentProfile save(StudentProfile studentProfile);
+    StudentProfile saveIgnoringPeriodVisibility(StudentProfile studentProfile);
     
     /**
      * Updates an existing student profile.

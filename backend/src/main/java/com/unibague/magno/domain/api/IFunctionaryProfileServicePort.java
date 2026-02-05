@@ -26,11 +26,30 @@ public interface IFunctionaryProfileServicePort {
     
     /**
      * Persists a new functionary profile.
+     * <p>
+     * This method validates that the academic period associated with the profile is visible.
+     * If the period is not visible, an {@code AcademicPeriodNotVisibleException} will be thrown.
+     * </p>
+     *
+     * @param functionaryProfile the functionary profile to save
+     * @return the saved functionary profile
+     * @throws com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotVisibleException
+     *         if the academic period is not visible
+     */
+    FunctionaryProfile save(FunctionaryProfile functionaryProfile);
+
+    /**
+     * Persists a new functionary profile, bypassing the academic period visibility check.
+     * <p>
+     * <strong>WARNING:</strong> This method should only be used for system-level operations
+     * such as DIRI (administrator) user creation, where profiles need to be created in
+     * non-visible academic periods.
+     * </p>
      *
      * @param functionaryProfile the functionary profile to save
      * @return the saved functionary profile
      */
-    FunctionaryProfile save(FunctionaryProfile functionaryProfile);
+    FunctionaryProfile saveIgnoringPeriodVisibility(FunctionaryProfile functionaryProfile);
     
     /**
      * Updates an existing functionary profile.

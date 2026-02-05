@@ -1,9 +1,16 @@
 package com.unibague.magno.domain.usecase;
 
+import com.unibague.magno.domain.api.IAcademicPeriodServicePort;
 import com.unibague.magno.domain.api.IFunctionaryProfileServicePort;
+import com.unibague.magno.domain.api.IRoleServicePort;
+import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotVisibleException;
 import com.unibague.magno.domain.exception.functionaryprofile.FunctionaryProfileAlreadyExistsException;
 import com.unibague.magno.domain.exception.functionaryprofile.FunctionaryProfileNotFoundException;
+import com.unibague.magno.domain.exception.role.DiriRoleNotAllowedException;
+import com.unibague.magno.domain.model.AcademicPeriod;
 import com.unibague.magno.domain.model.FunctionaryProfile;
+import com.unibague.magno.domain.model.Role;
+import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.domain.spi.IFunctionaryProfilePersistencePort;
 
 import java.util.List;
@@ -25,9 +32,15 @@ import java.util.List;
 public class FunctionaryProfileUseCase implements IFunctionaryProfileServicePort {
 
     private final IFunctionaryProfilePersistencePort functionaryProfilePersistencePort;
+    private final IAcademicPeriodServicePort academicPeriodServicePort;
+    private final IRoleServicePort roleServicePort;
 
-    public FunctionaryProfileUseCase(IFunctionaryProfilePersistencePort functionaryProfilePersistencePort) {
+    public FunctionaryProfileUseCase(IFunctionaryProfilePersistencePort functionaryProfilePersistencePort,
+                                     IAcademicPeriodServicePort academicPeriodServicePort,
+                                     IRoleServicePort roleServicePort) {
         this.functionaryProfilePersistencePort = functionaryProfilePersistencePort;
+        this.academicPeriodServicePort = academicPeriodServicePort;
+        this.roleServicePort = roleServicePort;
     }
 
     @Override
@@ -42,6 +55,13 @@ public class FunctionaryProfileUseCase implements IFunctionaryProfileServicePort
     public FunctionaryProfile save(FunctionaryProfile functionaryProfile) {
         Long userId = functionaryProfile.getUserId();
         Long academicPeriodId = functionaryProfile.getAcademicPeriodId();
+
+        // Validate that the academic period is visible
+        verifyAcademicPeriodIsVisible(academicPeriodId);
+
+        // Validate that the role is not DIRI
+        verifyRoleIsNotDiri(functionaryProfile.getRoleId());
+
         if (functionaryProfilePersistencePort.existsByUserIdAndAcademicPeriodId(userId, academicPeriodId)) {
             throw new FunctionaryProfileAlreadyExistsException(
                     String.format("FunctionaryProfile with user ID %d and academic period ID %d already exists",
@@ -49,6 +69,38 @@ public class FunctionaryProfileUseCase implements IFunctionaryProfileServicePort
             );
         }
         return functionaryProfilePersistencePort.save(functionaryProfile);
+    }
+
+    @Override
+    public FunctionaryProfile saveIgnoringPeriodVisibility(FunctionaryProfile functionaryProfile) {
+        Long userId = functionaryProfile.getUserId();
+        Long academicPeriodId = functionaryProfile.getAcademicPeriodId();
+
+        if (functionaryProfilePersistencePort.existsByUserIdAndAcademicPeriodId(userId, academicPeriodId)) {
+            throw new FunctionaryProfileAlreadyExistsException(
+                    String.format("FunctionaryProfile with user ID %d and academic period ID %d already exists",
+                            userId, academicPeriodId)
+            );
+        }
+        return functionaryProfilePersistencePort.save(functionaryProfile);
+    }
+
+    private void verifyAcademicPeriodIsVisible(Long academicPeriodId) {
+        AcademicPeriod academicPeriod = academicPeriodServicePort.findById(academicPeriodId);
+        if (!academicPeriod.isVisible()) {
+            throw new AcademicPeriodNotVisibleException(
+                    "No se permite crear perfiles de funcionario en períodos académicos que no son visibles"
+            );
+        }
+    }
+
+    private void verifyRoleIsNotDiri(Long roleId) {
+        Role diriRole = roleServicePort.findByName(SeedbedRole.DIRI);
+        if (diriRole.getId().equals(roleId)) {
+            throw new DiriRoleNotAllowedException(
+                    "No se permite crear perfiles de funcionario con rol DIRI a través de este método"
+            );
+        }
     }
 
     @Override

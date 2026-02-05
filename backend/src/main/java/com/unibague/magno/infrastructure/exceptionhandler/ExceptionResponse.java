@@ -24,6 +24,8 @@ public enum ExceptionResponse {
     ACADEMIC_PERIOD_NOT_VISIBLE("ERR_ACADEMIC_PERIOD_008",
             "No se permite realizar esta operación en un período académico no visible."),
     ROLE_NOT_FOUND("ERR_ROLE_001", "Rol no encontrado."),
+    DIRI_ROLE_NOT_ALLOWED("ERR_ROLE_002",
+            "No se permite crear perfiles con rol DIRI a través de este método."),
     DEPENDENCY_NOT_FOUND("ERR_DEPENDENCY_001", "Dependencia no encontrada."),
     ACADEMIC_PROGRAM_NOT_FOUND("ERR_ACADEMIC_PROGRAM_001", "Programa académico no encontrado."),
     USER_NOT_FOUND("ERR_USER_001", "Usuario no encontrado."),

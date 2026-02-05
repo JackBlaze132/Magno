@@ -180,7 +180,8 @@ public class BeanConfiguration {
 
     @Bean
     public IFunctionaryProfileServicePort functionaryProfileServicePort() {
-        return new FunctionaryProfileUseCase(functionaryProfilePersistencePort());
+        return new FunctionaryProfileUseCase(functionaryProfilePersistencePort(), academicPeriodServicePort(),
+                roleServicePort());
     }
 
     @Bean
@@ -223,7 +224,8 @@ public class BeanConfiguration {
     @Bean
     public IStudentProfileServicePort studentProfileServicePort() {
         return new StudentProfileUseCase(studentProfilePersistencePort(), userServicePort(),
-                integraServicePort(), academicProgramServicePort(), roleServicePort());
+                integraServicePort(), academicProgramServicePort(), roleServicePort(),
+                academicPeriodServicePort());
     }
 
     @Bean

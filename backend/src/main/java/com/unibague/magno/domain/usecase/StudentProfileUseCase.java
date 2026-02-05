@@ -1,13 +1,18 @@
 package com.unibague.magno.domain.usecase;
 
+import com.unibague.magno.domain.api.IAcademicPeriodServicePort;
 import com.unibague.magno.domain.api.IAcademicProgramServicePort;
 import com.unibague.magno.domain.api.IRoleServicePort;
 import com.unibague.magno.domain.api.IStudentProfileServicePort;
 import com.unibague.magno.domain.api.IUserServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
+import com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotVisibleException;
+import com.unibague.magno.domain.exception.role.DiriRoleNotAllowedException;
 import com.unibague.magno.domain.exception.studentprofile.StudentProfileAlreadyExistsException;
 import com.unibague.magno.domain.exception.studentprofile.StudentProfileNotFoundException;
+import com.unibague.magno.domain.model.AcademicPeriod;
 import com.unibague.magno.domain.model.AcademicProgram;
+import com.unibague.magno.domain.model.Role;
 import com.unibague.magno.domain.model.StudentProfile;
 import com.unibague.magno.domain.model.User;
 import com.unibague.magno.domain.model.enums.SeedbedRole;
@@ -44,17 +49,20 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
     private final IIntegraServicePort integraServicePort;
     private final IAcademicProgramServicePort academicProgramServicePort;
     private final IRoleServicePort roleServicePort;
+    private final IAcademicPeriodServicePort academicPeriodServicePort;
 
     public StudentProfileUseCase(IStudentProfilePersistencePort studentProfilePersistencePort,
                                  IUserServicePort userServicePort,
                                  IIntegraServicePort integraServicePort,
                                  IAcademicProgramServicePort academicProgramServicePort,
-                                 IRoleServicePort roleServicePort) {
+                                 IRoleServicePort roleServicePort,
+                                 IAcademicPeriodServicePort academicPeriodServicePort) {
         this.studentProfilePersistencePort = studentProfilePersistencePort;
         this.userServicePort = userServicePort;
         this.integraServicePort = integraServicePort;
         this.academicProgramServicePort = academicProgramServicePort;
         this.roleServicePort = roleServicePort;
+        this.academicPeriodServicePort = academicPeriodServicePort;
     }
 
     @Override
@@ -69,6 +77,13 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
     public StudentProfile save(StudentProfile studentProfile) {
         Long userId = studentProfile.getUserId();
         Long academicPeriodId = studentProfile.getAcademicPeriodId();
+
+        // Validate that the academic period is visible
+        verifyAcademicPeriodIsVisible(academicPeriodId);
+
+        // Validate that the role is not DIRI
+        verifyRoleIsNotDiri(studentProfile.getRoleId());
+
         if (existsByUserIdAndAcademicPeriodId(userId, academicPeriodId)) {
             throw new StudentProfileAlreadyExistsException(
                     String.format("No se pudo guardar el perfil de estudiante con ID de usuario %d porque ya existe " +
@@ -76,6 +91,38 @@ public class StudentProfileUseCase  implements IStudentProfileServicePort {
             );
         }
         return studentProfilePersistencePort.save(studentProfile);
+    }
+
+    @Override
+    public StudentProfile saveIgnoringPeriodVisibility(StudentProfile studentProfile) {
+        Long userId = studentProfile.getUserId();
+        Long academicPeriodId = studentProfile.getAcademicPeriodId();
+
+        if (existsByUserIdAndAcademicPeriodId(userId, academicPeriodId)) {
+            throw new StudentProfileAlreadyExistsException(
+                    String.format("No se pudo guardar el perfil de estudiante con ID de usuario %d porque ya existe " +
+                            "en el período académico con ID %d", userId, academicPeriodId)
+            );
+        }
+        return studentProfilePersistencePort.save(studentProfile);
+    }
+
+    private void verifyAcademicPeriodIsVisible(Long academicPeriodId) {
+        AcademicPeriod academicPeriod = academicPeriodServicePort.findById(academicPeriodId);
+        if (!academicPeriod.isVisible()) {
+            throw new AcademicPeriodNotVisibleException(
+                    "No se permite crear perfiles de estudiante en períodos académicos que no son visibles"
+            );
+        }
+    }
+
+    private void verifyRoleIsNotDiri(Long roleId) {
+        Role diriRole = roleServicePort.findByName(SeedbedRole.DIRI);
+        if (diriRole.getId().equals(roleId)) {
+            throw new DiriRoleNotAllowedException(
+                    "No se permite crear perfiles de estudiante con rol DIRI a través de este método"
+            );
+        }
     }
 
     @Override
