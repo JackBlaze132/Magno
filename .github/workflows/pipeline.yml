@@ -121,20 +121,22 @@ jobs:
             fi
             cd backend
             
-            # Stop existing Java processes using 'magno' 
-            # We try both normal pkill and sudo pkill in case they were started by a different user
+            # Stop existing Java processes
             echo "Stopping existing applications..."
             pkill -f 'magno' || echo "${{ secrets.INTERNAL_SSH_PASSWORD }}" | sudo -S pkill -f 'magno' || true
             
-            # Stop current user's gradle daemons
-            bash gradlew --stop || true
+            # Stop Gradle daemons
+            bash gradlew --stop 2>/dev/null || true
             
-            # CLEANUP: Try to remove corrupted/locked files. 
-            # If standard rm fails, try with sudo. If that fails, we ignore and hope Gradle can overwrite.
-            echo "Cleaning up corrupted Gradle files..."
-            (rm -rf .gradle build || echo "${{ secrets.INTERNAL_SSH_PASSWORD }}" | sudo -S rm -rf .gradle build) || true
+            # FIX PERMISSIONS: Take ownership of the entire backend folder
+            # This fixes "Permission denied" errors on .gradle and build folders
+            echo "Fixing file permissions..."
+            echo "${{ secrets.INTERNAL_SSH_PASSWORD }}" | sudo -S chown -R $(whoami):$(whoami) . || true
             
-            # Build using bash to bypass permission issues on the script itself
+            # Now we can safely clean up
+            rm -rf .gradle build
+            
+            # Build without daemon
             echo "Building backend..."
             bash gradlew build -x test --no-daemon
             
