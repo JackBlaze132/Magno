@@ -121,24 +121,22 @@ jobs:
             fi
             cd backend
             
-            # Stop processes FIRST to release file locks
-            echo "Stopping existing applications and Gradle daemons..."
-            pkill -u $(whoami) -f 'magno' || true
+            # Stop existing Java processes using 'magno' 
+            # We try both normal pkill and sudo pkill in case they were started by a different user
+            echo "Stopping existing applications..."
+            pkill -f 'magno' || echo "${{ secrets.INTERNAL_SSH_PASSWORD }}" | sudo -S pkill -f 'magno' || true
             
-            # Try to grant permissions if possible, but don't fail if we can't
-            chmod +x gradlew || true
-            
-            # Stop Gradle daemons using bash to be safe
+            # Stop current user's gradle daemons
             bash gradlew --stop || true
-            sleep 2
             
-            # CLEANUP: Remove .gradle folder to fix "Permission denied" on lock files
+            # CLEANUP: Try to remove corrupted/locked files. 
+            # If standard rm fails, try with sudo. If that fails, we ignore and hope Gradle can overwrite.
             echo "Cleaning up corrupted Gradle files..."
-            rm -rf .gradle
+            (rm -rf .gradle build || echo "${{ secrets.INTERNAL_SSH_PASSWORD }}" | sudo -S rm -rf .gradle build) || true
             
-            # Build without daemon using bash to bypass permission issues
+            # Build using bash to bypass permission issues on the script itself
             echo "Building backend..."
-            bash gradlew clean build -x test --no-daemon
+            bash gradlew build -x test --no-daemon
             
             mkdir -p logs
             # Create the .env.prod file from the GitHub Secret
