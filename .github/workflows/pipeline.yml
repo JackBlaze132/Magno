@@ -110,6 +110,15 @@ jobs:
           sleep 10
       - name: Deploy to Remote Server
         run: |
+          # Create the .env.prod file locally first to avoid shell expansion issues
+          cat << 'EOF_SECRET' > .env.prod
+          ${{ secrets.APP_ENV_PROD }}
+          EOF_SECRET
+
+          # Create directory and transfer the file
+          sshpass -p "${{ secrets.INTERNAL_SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.INTERNAL_USER }}@${{ secrets.INTERNAL_RESOURCE_IP }} "mkdir -p ~/magno/backend"
+          sshpass -p "${{ secrets.INTERNAL_SSH_PASSWORD }}" scp -o StrictHostKeyChecking=no .env.prod ${{ secrets.INTERNAL_USER }}@${{ secrets.INTERNAL_RESOURCE_IP }}:~/magno/backend/.env.prod
+
           sshpass -p "${{ secrets.INTERNAL_SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.INTERNAL_USER }}@${{ secrets.INTERNAL_RESOURCE_IP }} << 'EOF'
             set -e
             cd ~/magno/ || exit;
@@ -141,8 +150,7 @@ jobs:
             bash gradlew build -x test --no-daemon
             
             mkdir -p logs
-            # Create the .env.prod file from the GitHub Secret
-            echo "${{ secrets.APP_ENV_PROD }}" > .env.prod
+            # .env.prod was already uploaded via scp
 
             echo "Starting Spring Boot application with Java 21..."
             # Load variables safely (handles special characters like & in URLs)
@@ -180,6 +188,13 @@ jobs:
           sleep 10
       - name: Deploy to Remote Server
         run: |
+          # Create the file locally with proper escaping
+          echo "VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL }}" > .env.production
+
+          # Create directory and transfer the file
+          sshpass -p "${{ secrets.INTERNAL_SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.INTERNAL_USER }}@${{ secrets.INTERNAL_RESOURCE_IP }} "mkdir -p ~/magno/frontend"
+          sshpass -p "${{ secrets.INTERNAL_SSH_PASSWORD }}" scp -o StrictHostKeyChecking=no .env.production ${{ secrets.INTERNAL_USER }}@${{ secrets.INTERNAL_RESOURCE_IP }}:~/magno/frontend/.env.production
+
           sshpass -p "${{ secrets.INTERNAL_SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.INTERNAL_USER }}@${{ secrets.INTERNAL_RESOURCE_IP }} << 'EOF'
             set -e
             cd ~/magno/ || exit;
@@ -190,8 +205,7 @@ jobs:
               git reset --hard origin/main
             fi
             cd frontend
-            # Create the .env.production file for Vite build
-            echo "VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL }}" > .env.production
+            # .env.production was already uploaded via scp
             
             npm install
             npm run build
