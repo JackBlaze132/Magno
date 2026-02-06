@@ -160,13 +160,14 @@ jobs:
               fi
             done < .env.prod
             
-            # Use Java 21 explicitly
             export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
             export PATH=$JAVA_HOME/bin:$PATH
             
-            nohup java -Xmx512M -Xms256M -jar build/libs/magno-0.0.1-SNAPSHOT.jar > logs/app.log 2>&1 &
+            # Use -Xmx to limit memory and </dev/null to handle the interactive prompt
+            nohup java -Xmx512M -Xms256M -jar build/libs/magno-0.0.1-SNAPSHOT.jar > logs/app.log 2>&1 </dev/null &
+            disown
             
-            echo "Backend started."
+            echo "Backend started and disowned."
             echo "Logs available at: ~/magno/backend/logs/app.log"
           EOF
 
