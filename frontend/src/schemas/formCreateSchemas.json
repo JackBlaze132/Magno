@@ -54,8 +54,8 @@
   "external_seedbed_profile": [
     { "key": "user_id", "label": "Aliado Externo", "type": "select", "options": []},
     { "key": "country", "label":  "País", "type": "select", "options":  [] },
-    { "key": "type_of_external_user", "label": "Tipo", "type": "select", "options":  [] },
-    { "key": "organization_name", "label": "Organización", "type": "select" }
+    { "key": "organization_name", "label": "Organización", "type": "text" },
+    { "key": "type_of_external_user", "label": "Tipo", "type": "select", "options":  [] }
   ],
   "group_profile": [
     { "key": "investigation_group_id", "label": "Grupo de Investigación", "type": "select" },
