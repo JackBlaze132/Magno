@@ -111,27 +111,25 @@ jobs:
       - name: Deploy to Remote Server
         run: |
           sshpass -p "${{ secrets.INTERNAL_SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.INTERNAL_USER }}@${{ secrets.INTERNAL_RESOURCE_IP }} << 'EOF'
+            set -e
             cd ~/magno/ || exit;
             if [ ! -d ".git" ]; then
               git clone git@github.com:JackBlaze132/Magno.git . || (git init && git remote add origin git@github.com:JackBlaze132/Magno.git && git pull origin main)
             else
-              git pull origin main
+              git fetch origin main
+              git reset --hard origin/main
             fi
             cd backend
             
-            # Stop any existing Gradle daemons to free resources
+            # Stop existing Java processes with 'magno' and existing Gradle daemons
+            echo "Stopping existing applications and Gradle daemons..."
+            pkill -f 'magno' || true
             ./gradlew --stop || true
+            sleep 2
             
             chmod +x gradlew
-            ./gradlew clean build -x test
-            
-            # Stop existing Spring Boot application
-            pid=$(pgrep -f 'magno-0.0.1-SNAPSHOT.jar') || true
-            if [ -n "$pid" ]; then
-              echo "Stopping existing Spring Boot application with PID: $pid..."
-              kill -9 $pid
-              sleep 2
-            fi
+            # Build without daemon to avoid memory issues and lock file conflicts
+            ./gradlew clean build -x test --no-daemon
             
             mkdir -p logs
             # Create the .env.prod file from the GitHub Secret
@@ -145,13 +143,13 @@ jobs:
               fi
             done < .env.prod
             
-            # Use Java 21 explicitly (not Java 18)
+            # Use Java 21 explicitly
             export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
             export PATH=$JAVA_HOME/bin:$PATH
             
             nohup java -jar build/libs/magno-0.0.1-SNAPSHOT.jar > logs/app.log 2>&1 &
             
-            echo "Backend started with PID: $!"
+            echo "Backend started."
             echo "Logs available at: ~/magno/backend/logs/app.log"
           EOF
 
@@ -174,11 +172,13 @@ jobs:
       - name: Deploy to Remote Server
         run: |
           sshpass -p "${{ secrets.INTERNAL_SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.INTERNAL_USER }}@${{ secrets.INTERNAL_RESOURCE_IP }} << 'EOF'
+            set -e
             cd ~/magno/ || exit;
             if [ ! -d ".git" ]; then
               git clone git@github.com:JackBlaze132/Magno.git .
             else
-              git pull origin main
+              git fetch origin main
+              git reset --hard origin/main
             fi
             cd frontend
             # Create the .env.production file for Vite build
