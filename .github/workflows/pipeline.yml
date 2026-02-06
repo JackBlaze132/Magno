@@ -153,22 +153,15 @@ jobs:
             # .env.prod was already uploaded via scp
 
             echo "Starting Spring Boot application with Java 21..."
-            # Load variables safely (handles special characters like & in URLs)
-            while IFS= read -r line || [ -n "$line" ]; do
-              if [[ ! -z "$line" && ! "$line" =~ ^# ]]; then
-                export "$line"
-              fi
-            done < .env.prod
-            
             export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
             export PATH=$JAVA_HOME/bin:$PATH
+
+            cd /home/semillero/magno/backend && \
+            set -a && source .env.prod && set +a && \
+            nohup java -jar build/libs/magno-0.0.1-SNAPSHOT.jar > magno.log 2>&1 &
             
-            # Use -Xmx to limit memory and </dev/null to handle the interactive prompt
-            nohup java -Xmx512M -Xms256M -jar build/libs/magno-0.0.1-SNAPSHOT.jar > logs/app.log 2>&1 </dev/null &
-            disown
-            
-            echo "Backend started and disowned."
-            echo "Logs available at: ~/magno/backend/logs/app.log"
+            echo "Backend started."
+            echo "Logs available at: ~/magno/backend/magno.log"
           EOF
 
   deploy-front:
