@@ -164,7 +164,7 @@ jobs:
             export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
             export PATH=$JAVA_HOME/bin:$PATH
             
-            nohup java -jar build/libs/magno-0.0.1-SNAPSHOT.jar > logs/app.log 2>&1 &
+            nohup java -Xmx512M -Xms256M -jar build/libs/magno-0.0.1-SNAPSHOT.jar > logs/app.log 2>&1 &
             
             echo "Backend started."
             echo "Logs available at: ~/magno/backend/logs/app.log"
