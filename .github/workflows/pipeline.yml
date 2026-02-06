@@ -156,11 +156,11 @@ jobs:
             export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
             export PATH=$JAVA_HOME/bin:$PATH
 
-            (cd /home/semillero/magno/backend && set -a && source .env.prod && set +a && nohup java -jar build/libs/magno-0.0.1-SNAPSHOT.jar > magno.log 2>&1 </dev/null &)
+            cd /home/semillero/magno/backend
+            set -a && source .env.prod && set +a
+            setsid java -jar build/libs/magno-0.0.1-SNAPSHOT.jar > magno.log 2>&1 </dev/null &
             
-            sleep 1
-            echo "Backend triggered successfully. Disconnecting from SSH..."
-            exit 0
+            echo "Backend started with setsid."
           EOF
 
   deploy-front:
