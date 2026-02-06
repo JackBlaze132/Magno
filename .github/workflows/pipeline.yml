@@ -159,6 +159,8 @@ jobs:
             cd /home/semillero/magno/backend && \
             set -a && source .env.prod && set +a && \
             nohup java -jar build/libs/magno-0.0.1-SNAPSHOT.jar > magno.log 2>&1 </dev/null &
+            sleep 2
+            disown
             
             echo "Backend started."
             echo "Logs available at: ~/magno/backend/magno.log"
