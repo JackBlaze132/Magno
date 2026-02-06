@@ -46,7 +46,7 @@
     "external_seedbed_profile": [
         { "key": "user_id", "label": "Aliado Externo", "type": "select", "options": []},
         { "key": "country", "label":  "País", "type": "select", "options":  [] },
-        { "key": "organization_name", "label": "Organización", "type": "text" }
+        { "key": "organization_name", "label": "Organización", "type": "text" },
         { "key": "type_of_external_user", "label": "Tipo", "type": "select", "options":  [] }
     ]
 }

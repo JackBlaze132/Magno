@@ -48,4 +48,5 @@ export const paths = {
   PROFILES_LIST: 'listar-perfiles',
   PROFILE_VIEW: '/perfil',
   LOGS_PATH: '/logs',
+  ERROR_404: '/404',
 }

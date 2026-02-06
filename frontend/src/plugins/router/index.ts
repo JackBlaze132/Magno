@@ -1,6 +1,7 @@
 import type { App } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { routes } from './routes'
+import { paths as P } from './paths'
 import { useAuthStore } from '@/stores/authStore'
 
 const router = createRouter({
@@ -64,6 +65,16 @@ router.beforeEach(async (to, from, next) => {
       if (!authStore.can(action, entity)) {
         console.warn(`⚠️ User does not have required permission: ${action} on ${entity}`)
         next('/inicio')
+        return
+      }
+    }
+
+    // Check if the academic period is hidden/invisible
+    if (to.params.idPeriodo) {
+      const idPeriodo = Number(to.params.idPeriodo)
+      if (authStore.hiddenAcademicPeriods.includes(idPeriodo)) {
+        console.warn(`⚠️ Academic period ${idPeriodo} is hidden. Redirecting to not-found.`)
+        next(P.ERROR_404)
         return
       }
     }

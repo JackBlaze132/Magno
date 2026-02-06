@@ -96,7 +96,7 @@ export default defineComponent({
           'API-VERSION': '1',
       }
       try {
-        this.items = await API.get(API.ACADEMIC_PERIODS, apiHeaders)
+        this.items = await API.get(API.VISIBLE_ACADEMIC_PERIODS, apiHeaders)
         this.$emit('loaded');
       } catch (error) {
         console.error('Error fetching users:', error);

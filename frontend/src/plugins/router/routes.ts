@@ -289,7 +289,8 @@ export const routes = [
     ],
   },
   {
-    path: '/:pathMatch(.*)*',
+    path: P.ERROR_404,
+    name: 'not-found',
     component: components.LAYOUT_BLANK,
     children: [
       {
@@ -297,5 +298,9 @@ export const routes = [
         component: components.NOT_FOUND,
       }
     ]
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: P.ERROR_404,
   },
 ]

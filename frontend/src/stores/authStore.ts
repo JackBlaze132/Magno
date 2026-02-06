@@ -35,6 +35,7 @@ export const useAuthStore = defineStore('auth', {
     isInitialized: false,
     loading: false,
     error: null as string | null,
+    hiddenAcademicPeriods: [] as number[],
   }),
 
   getters: {
@@ -255,6 +256,27 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
+     * Fetch all hidden academic periods (is_visible = false)
+     */
+    async fetchHiddenPeriods() {
+      const headers = {
+        'API-VERSION': '1'
+      }
+
+      try {
+        const response = await API.get(API.ACADEMIC_PERIODS, headers)
+        if (Array.isArray(response)) {
+          this.hiddenAcademicPeriods = response
+            .filter((p: any) => p.is_visible === false || p.isVisible === false)
+            .map((p: any) => p.id)
+          console.log('✅ Hidden academic periods loaded:', this.hiddenAcademicPeriods)
+        }
+      } catch (error) {
+        console.error('❌ Error fetching academic periods for visibility check:', error)
+      }
+    },
+
+    /**
      * Fetch user profiles with roles
      */
     async fetchUserProfiles() {
@@ -333,6 +355,9 @@ export const useAuthStore = defineStore('auth', {
 
         // Fetch active academic period
         await this.fetchActivePeriod()
+
+        // Fetch hidden academic periods
+        await this.fetchHiddenPeriods()
 
         // Finally fetch profiles with roles
         if (this.user?.id) {
