@@ -1,20 +1,26 @@
 package com.unibague.magno.domain.usecase;
 
+import com.unibague.magno.application.dto.request.StudentSeedbedCertificateRequest;
 import com.unibague.magno.application.dto.request.integra.IntegraUserRequest;
+import com.unibague.magno.domain.api.IResearchSeedbedServicePort;
 import com.unibague.magno.domain.api.integra.IIntegraServicePort;
 import com.unibague.magno.domain.exception.integra.IntegraInvalidTypeException;
-import com.unibague.magno.domain.exception.user.UserNotFoundException;
+import com.unibague.magno.domain.exception.user.*;
+import com.unibague.magno.domain.model.ResearchSeedbed;
 import com.unibague.magno.domain.model.User;
+import com.unibague.magno.domain.model.certificates.projections.StudentSeedbedCertificateProjection;
+import com.unibague.magno.domain.model.certificates.studentcertificates.StudentSeedbedCertificate;
 import com.unibague.magno.domain.model.enums.JSONIntegraType;
+import com.unibague.magno.domain.model.enums.SeedbedRole;
 import com.unibague.magno.domain.model.enums.Sex;
 import com.unibague.magno.domain.model.enums.TypeOfInternalUser;
 import com.unibague.magno.domain.model.integra.IntegraFunctionary;
 import com.unibague.magno.domain.model.integra.IntegraStudent;
 import com.unibague.magno.domain.spi.IUserPersistencePort;
+import com.unibague.magno.domain.usecase.helper.IUserHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -37,7 +43,12 @@ class UserUseCaseTest {
     @Mock
     private IIntegraServicePort integraServicePort;
 
-    @InjectMocks
+    @Mock
+    private IResearchSeedbedServicePort researchSeedbedServicePort;
+
+    @Mock
+    private IUserHelper userHelper;
+
     private UserUseCase userUseCase;
 
     private User user;
@@ -46,6 +57,9 @@ class UserUseCaseTest {
 
     @BeforeEach
     void setUp() {
+        userUseCase = new UserUseCase(userPersistencePort, integraServicePort,
+                researchSeedbedServicePort, userHelper);
+
         user = new User(1L, "Juan Perez", "123456789", "juan@gmail.com",
                 "123456", false, Sex.MASCULINO, TypeOfInternalUser.ESTUDIANTE);
 
@@ -98,6 +112,7 @@ class UserUseCaseTest {
     @Test
     void save_ValidUser_ReturnsSavedUser() {
         // Arrange
+        when(userPersistencePort.findByEmail(user.getEmail())).thenReturn(Optional.empty());
         when(userPersistencePort.save(any(User.class))).thenReturn(user);
 
         // Act
@@ -110,6 +125,7 @@ class UserUseCaseTest {
                 .containsExactly(1L, "Juan Perez", "123456789", "juan@gmail.com",
                         "123456", false, Sex.MASCULINO);
 
+        verify(userPersistencePort, times(1)).findByEmail(user.getEmail());
         verify(userPersistencePort, times(1)).save(user);
     }
 
@@ -256,10 +272,12 @@ class UserUseCaseTest {
                 "INGENIERIA DE SISTEMAS","4", "daniel@gmail.com", "Estudiante", "Activo", "9", "3154444", "M");
         User user2 = new User();
         user2.setIdentificationNumber("654321");
+        user2.setEmail("daniel@gmail.com");
 
         when(userPersistencePort.findByUserIdentification("123456")).thenReturn(Optional.of(user1));
         when(userPersistencePort.findByUserIdentification("654321")).thenReturn(Optional.empty());
         when(integraServicePort.getFirstIntegraStudentFound("654321")).thenReturn(integraStudent2);
+        when(userPersistencePort.findByEmail("daniel@gmail.com")).thenReturn(Optional.empty());
         when(userPersistencePort.save(any(User.class))).thenReturn(user2);
 
         // Act
@@ -391,6 +409,474 @@ class UserUseCaseTest {
         // Act & Assert
         assertThatThrownBy(() -> userUseCase.mapFromIntegraStudent(request))
                 .isInstanceOf(IntegraInvalidTypeException.class);
+    }
+
+    // ==================== TESTS ADICIONALES ====================
+
+    @Test
+    void save_UserAlreadyExists_ThrowsUserAlreadyExistsException() {
+        // Arrange
+        when(userPersistencePort.findByEmail(user.getEmail())).thenReturn(Optional.of(user));
+
+        // Act & Assert
+        assertThatThrownBy(() -> userUseCase.save(user))
+                .isInstanceOf(UserAlreadyExistsException.class)
+                .hasMessage("El usuario con correo electrónico juan@gmail.com ya existe");
+
+        verify(userPersistencePort, times(1)).findByEmail(user.getEmail());
+        verify(userPersistencePort, never()).save(any(User.class));
+    }
+
+    @Test
+    void findAllFunctionariesRegistered_ReturnsFunctionaryList() {
+        // Arrange
+        User functionary1 = new User(2L, "Carlos Rodriguez", "111111111", "carlos@gmail.com",
+                "111111", false, Sex.MASCULINO, TypeOfInternalUser.FUNCIONARIO);
+        User functionary2 = new User(3L, "Ana Martinez", "222222222", "ana@gmail.com",
+                "222222", false, Sex.FEMENINO, TypeOfInternalUser.FUNCIONARIO);
+        List<User> functionaries = List.of(functionary1, functionary2);
+
+        when(userPersistencePort.findAllFunctionaries()).thenReturn(functionaries);
+
+        // Act
+        List<User> result = userUseCase.findAllFunctionariesRegistered();
+
+        // Assert
+        assertThat(result)
+                .isNotNull()
+                .hasSize(2)
+                .extracting(User::getTypeOfInternalUser)
+                .containsOnly(TypeOfInternalUser.FUNCIONARIO);
+
+        verify(userPersistencePort, times(1)).findAllFunctionaries();
+    }
+
+    @Test
+    void findAllStudentsRegistered_ReturnsStudentList() {
+        // Arrange
+        User student1 = new User(2L, "Pedro Gomez", "333333333", "pedro@gmail.com",
+                "333333", false, Sex.MASCULINO, TypeOfInternalUser.ESTUDIANTE);
+        List<User> students = List.of(user, student1);
+
+        when(userPersistencePort.findAllStudents()).thenReturn(students);
+
+        // Act
+        List<User> result = userUseCase.findAllStudentsRegistered();
+
+        // Assert
+        assertThat(result)
+                .isNotNull()
+                .hasSize(2)
+                .extracting(User::getTypeOfInternalUser)
+                .containsOnly(TypeOfInternalUser.ESTUDIANTE);
+
+        verify(userPersistencePort, times(1)).findAllStudents();
+    }
+
+    @Test
+    void findAllExternalUsersRegistered_ReturnsExternalUserList() {
+        // Arrange
+        User externalUser = new User(2L, "External User", "444444444", "external@gmail.com",
+                null, true, Sex.MASCULINO, null);
+        List<User> externalUsers = List.of(externalUser);
+
+        when(userPersistencePort.findAllExternalUsers()).thenReturn(externalUsers);
+
+        // Act
+        List<User> result = userUseCase.findAllExternalUsersRegistered();
+
+        // Assert
+        assertThat(result)
+                .isNotNull()
+                .hasSize(1)
+                .extracting(User::isExternalUser)
+                .containsOnly(true);
+
+        verify(userPersistencePort, times(1)).findAllExternalUsers();
+    }
+
+    @Test
+    void getUserByIntegraFunctionary_ShouldReturnMappedUser() {
+        // Arrange - functionary is already set up in setUp()
+
+        // Act
+        User userToCompare = userUseCase.getUserByIntegraFunctionary(functionary);
+
+        // Assert
+        assertThat(userToCompare)
+                .isNotNull()
+                .extracting(User::getIdentificationNumber, User::getFullName, User::getEmail,
+                        User::getUserCode, User::getSex, User::getTypeOfInternalUser)
+                .containsExactly("123456", "Maria Gomez", "maria.gomez@gmail.com",
+                        "mgomez123", Sex.FEMENINO, TypeOfInternalUser.FUNCIONARIO);
+        assertThat(userToCompare.isExternalUser()).isFalse();
+    }
+
+    @Test
+    void getUserByIntegraFunctionary_MaleSex_ShouldReturnMasculino() {
+        // Arrange
+        IntegraFunctionary maleFunctionary = new IntegraFunctionary(
+                "Pedro", "Lopez", "Pedro Lopez", "999999",
+                "pedro@gmail.com", "plopez123", "Docente",
+                "Facultad", "Programa", "DEP-001",
+                "Sede", "foto.jpg", "/photo.jpg",
+                "IMG-123", "01/01/1980", "01/01/2015", "1234",
+                "1-1-1", "Profesor", "M");
+
+        // Act
+        User userToCompare = userUseCase.getUserByIntegraFunctionary(maleFunctionary);
+
+        // Assert
+        assertThat(userToCompare.getSex()).isEqualTo(Sex.MASCULINO);
+    }
+
+    @Test
+    void findAllInternalUsersRegistered_ReturnsInternalUserList() {
+        // Arrange
+        List<User> internalUsers = List.of(user);
+        when(userPersistencePort.findAllInternalUsers()).thenReturn(internalUsers);
+
+        // Act
+        List<User> result = userUseCase.findAllInternalUsersRegistered();
+
+        // Assert
+        assertThat(result)
+                .isNotNull()
+                .hasSize(1)
+                .extracting(User::isExternalUser)
+                .containsOnly(false);
+
+        verify(userPersistencePort, times(1)).findAllInternalUsers();
+    }
+
+    @Test
+    void findByEmail_UserExists_ReturnsUser() {
+        // Arrange
+        when(userPersistencePort.findByEmail("juan@gmail.com")).thenReturn(Optional.of(user));
+
+        // Act
+        User result = userUseCase.findByEmail("juan@gmail.com");
+
+        // Assert
+        assertThat(result)
+                .isNotNull()
+                .extracting(User::getEmail)
+                .isEqualTo("juan@gmail.com");
+
+        verify(userPersistencePort, times(1)).findByEmail("juan@gmail.com");
+    }
+
+    @Test
+    void findByEmail_UserDoesNotExist_ThrowsUserNotFoundException() {
+        // Arrange
+        when(userPersistencePort.findByEmail("notfound@gmail.com")).thenReturn(Optional.empty());
+
+        // Act & Assert
+        assertThatThrownBy(() -> userUseCase.findByEmail("notfound@gmail.com"))
+                .isInstanceOf(UserNotFoundException.class)
+                .hasMessage("Usuario con correo electrónico notfound@gmail.com no encontrado");
+
+        verify(userPersistencePort, times(1)).findByEmail("notfound@gmail.com");
+    }
+
+    @Test
+    void getStudentParticipationsInSeedbedCertificates_ReturnsProjectionList() {
+        // Arrange
+        StudentSeedbedCertificateProjection projection = mock(StudentSeedbedCertificateProjection.class);
+        List<StudentSeedbedCertificateProjection> projections = List.of(projection);
+
+        when(userPersistencePort.getStudentParticipationsInSeedbedCertificates(1L, 1L))
+                .thenReturn(projections);
+
+        // Act
+        List<StudentSeedbedCertificateProjection> result =
+                userUseCase.getStudentParticipationsInSeedbedCertificates(1L, 1L);
+
+        // Assert
+        assertThat(result)
+                .isNotNull()
+                .hasSize(1);
+
+        verify(userPersistencePort, times(1))
+                .getStudentParticipationsInSeedbedCertificates(1L, 1L);
+    }
+
+    @Test
+    void generateStudentSeedbedCertificate_FunctionaryUser_ThrowsException() {
+        // Arrange
+        User functionaryUser = new User(2L, "Functionary", "111111111", "func@gmail.com",
+                "111111", false, Sex.MASCULINO, TypeOfInternalUser.FUNCIONARIO);
+
+        when(userPersistencePort.findById(2L)).thenReturn(Optional.of(functionaryUser));
+
+        // Act & Assert
+        assertThatThrownBy(() -> userUseCase.generateStudentSeedbedCertificate(2L, 1L))
+                .isInstanceOf(FunctionaryNotAllowedToGenerateCertificateException.class)
+                .hasMessage("Los funcionarios o usuarios externos no pueden generar certificados de participación en semilleros de investigación.");
+
+        verify(userPersistencePort, times(1)).findById(2L);
+    }
+
+    @Test
+    void generateStudentSeedbedCertificate_ExternalUser_ThrowsException() {
+        // Arrange
+        User externalUser = new User(3L, "External", "222222222", "external@gmail.com",
+                null, true, Sex.MASCULINO, TypeOfInternalUser.FUNCIONARIO);
+
+        when(userPersistencePort.findById(3L)).thenReturn(Optional.of(externalUser));
+
+        // Act & Assert
+        assertThatThrownBy(() -> userUseCase.generateStudentSeedbedCertificate(3L, 1L))
+                .isInstanceOf(FunctionaryNotAllowedToGenerateCertificateException.class);
+
+        verify(userPersistencePort, times(1)).findById(3L);
+    }
+
+    @Test
+    void generateStudentSeedbedCertificate_NoDataAvailable_ThrowsException() {
+        // Arrange
+        ResearchSeedbed seedbed = new ResearchSeedbed();
+        seedbed.setId(1L);
+
+        when(userPersistencePort.findById(1L)).thenReturn(Optional.of(user));
+        when(researchSeedbedServicePort.findById(1L)).thenReturn(seedbed);
+        when(userPersistencePort.getStudentParticipationsInSeedbedCertificates(1L, 1L))
+                .thenReturn(Collections.emptyList());
+
+        // Act & Assert
+        assertThatThrownBy(() -> userUseCase.generateStudentSeedbedCertificate(1L, 1L))
+                .isInstanceOf(NoDataAvailableToGenerateCertificateException.class);
+
+        verify(userPersistencePort, times(1)).findById(1L);
+        verify(researchSeedbedServicePort, times(1)).findById(1L);
+    }
+
+    @Test
+    void generateStudentSeedbedCertificate_ValidStudent_ReturnsCertificate() {
+        // Arrange
+        ResearchSeedbed seedbed = new ResearchSeedbed();
+        seedbed.setId(1L);
+
+        StudentSeedbedCertificateProjection projection = mock(StudentSeedbedCertificateProjection.class);
+        when(projection.getStudentName()).thenReturn("Juan Perez");
+        when(projection.getIdentificationNumber()).thenReturn("123456789");
+        when(projection.getSeedbedName()).thenReturn("Semillero Test");
+        when(projection.getInvestigationGroupName()).thenReturn("Grupo Test");
+        when(projection.getStartDate()).thenReturn("2024-01-01");
+        when(projection.getEndDate()).thenReturn("2024-06-30");
+        when(projection.getSeedbedCoordinatorName()).thenReturn("Coordinator");
+        when(projection.getInvestigationGroupCoordinatorName()).thenReturn("IG Coordinator");
+
+        when(userPersistencePort.findById(1L)).thenReturn(Optional.of(user));
+        when(researchSeedbedServicePort.findById(1L)).thenReturn(seedbed);
+        when(userPersistencePort.getStudentParticipationsInSeedbedCertificates(1L, 1L))
+                .thenReturn(List.of(projection));
+
+        // Act
+        StudentSeedbedCertificate result = userUseCase.generateStudentSeedbedCertificate(1L, 1L);
+
+        // Assert
+        assertThat(result)
+                .isNotNull()
+                .extracting(StudentSeedbedCertificate::getStudentName,
+                        StudentSeedbedCertificate::getIdentificationNumber,
+                        StudentSeedbedCertificate::getSeedbedName,
+                        StudentSeedbedCertificate::getInvestigationGroupName)
+                .containsExactly("Juan Perez", "123456789", "Semillero Test", "Grupo Test");
+
+        assertThat(result.getSeedbedParticipations()).hasSize(1);
+    }
+
+    @Test
+    void generateByteStudentSeedbedCertificate_ValidRequest_ReturnsBytes() throws Exception {
+        // Arrange
+        StudentSeedbedCertificateRequest request = StudentSeedbedCertificateRequest.builder()
+                .userId(1L)
+                .researchSeedbedId(1L)
+                .build();
+
+        ResearchSeedbed seedbed = new ResearchSeedbed();
+        seedbed.setId(1L);
+
+        StudentSeedbedCertificateProjection projection = mock(StudentSeedbedCertificateProjection.class);
+        when(projection.getStudentName()).thenReturn("Juan Perez");
+        when(projection.getIdentificationNumber()).thenReturn("123456789");
+        when(projection.getSeedbedName()).thenReturn("Semillero Test");
+        when(projection.getInvestigationGroupName()).thenReturn("Grupo Test");
+        when(projection.getStartDate()).thenReturn("2024-01-01");
+        when(projection.getEndDate()).thenReturn("2024-06-30");
+        when(projection.getSeedbedCoordinatorName()).thenReturn("Coordinator");
+        when(projection.getInvestigationGroupCoordinatorName()).thenReturn("IG Coordinator");
+
+        byte[] expectedBytes = new byte[]{1, 2, 3};
+
+        when(userPersistencePort.findById(1L)).thenReturn(Optional.of(user));
+        when(researchSeedbedServicePort.findById(1L)).thenReturn(seedbed);
+        when(userPersistencePort.getStudentParticipationsInSeedbedCertificates(1L, 1L))
+                .thenReturn(List.of(projection));
+        when(userPersistencePort.generateStudentSeedbedCertificate(any(StudentSeedbedCertificate.class)))
+                .thenReturn(expectedBytes);
+
+        // Act
+        byte[] result = userUseCase.generateByteStudentSeedbedCertificate(request);
+
+        // Assert
+        assertThat(result).isEqualTo(expectedBytes);
+        verify(userPersistencePort, times(1)).generateStudentSeedbedCertificate(any(StudentSeedbedCertificate.class));
+    }
+
+    @Test
+    void findAllDiriUsers_ReturnsDiriUserList() {
+        // Arrange
+        List<User> diriUsers = List.of(user);
+        when(userPersistencePort.findAllDistinctUsersByRole(SeedbedRole.DIRI)).thenReturn(diriUsers);
+
+        // Act
+        List<User> result = userUseCase.findAllDiriUsers();
+
+        // Assert
+        assertThat(result)
+                .isNotNull()
+                .hasSize(1);
+
+        verify(userPersistencePort, times(1)).findAllDistinctUsersByRole(SeedbedRole.DIRI);
+    }
+
+    @Test
+    void addDiriUser_ValidUser_ReturnsUser() {
+        // Arrange
+        when(userPersistencePort.findAllDistinctUsersByRole(SeedbedRole.DIRI))
+                .thenReturn(Collections.emptyList());
+        when(userPersistencePort.findByUserIdentification("123456789"))
+                .thenReturn(Optional.of(user));
+        doNothing().when(userHelper).addDiriUser("123456789", 1L);
+
+        // Act
+        User result = userUseCase.addDiriUser("123456789");
+
+        // Assert
+        assertThat(result)
+                .isNotNull()
+                .extracting(User::getIdentificationNumber)
+                .isEqualTo("123456789");
+
+        verify(userHelper, times(1)).addDiriUser("123456789", 1L);
+    }
+
+    @Test
+    void addDiriUser_UserAlreadyDiri_ThrowsDiriUserAlreadyExistsException() {
+        // Arrange
+        when(userPersistencePort.findAllDistinctUsersByRole(SeedbedRole.DIRI))
+                .thenReturn(List.of(user));
+
+        // Act & Assert
+        assertThatThrownBy(() -> userUseCase.addDiriUser("123456789"))
+                .isInstanceOf(DiriUserAlreadyExistsException.class)
+                .hasMessage("El usuario que intenta agregar ya es un usuario DIRI.");
+
+        verify(userHelper, never()).addDiriUser(anyString(), anyLong());
+    }
+
+    @Test
+    void addDiriUser_UserNotFound_ThrowsUserNotFoundException() {
+        // Arrange
+        when(userPersistencePort.findAllDistinctUsersByRole(SeedbedRole.DIRI))
+                .thenReturn(Collections.emptyList());
+        when(userPersistencePort.findByUserIdentification("999999999"))
+                .thenReturn(Optional.empty());
+
+        // Act & Assert
+        assertThatThrownBy(() -> userUseCase.addDiriUser("999999999"))
+                .isInstanceOf(UserNotFoundException.class)
+                .hasMessage("Usuario con identificación 999999999 no encontrado");
+
+        verify(userHelper, never()).addDiriUser(anyString(), anyLong());
+    }
+
+    @Test
+    void deleteDiriUser_ValidDiriUser_DeletesSuccessfully() {
+        // Arrange
+        when(userPersistencePort.findAllDistinctUsersByRole(SeedbedRole.DIRI))
+                .thenReturn(List.of(user));
+        when(userPersistencePort.findByUserIdentification("123456789"))
+                .thenReturn(Optional.of(user));
+        doNothing().when(userHelper).deleteDiriUser("123456789", 1L);
+
+        // Act
+        userUseCase.deleteDiriUser("123456789");
+
+        // Assert
+        verify(userHelper, times(1)).deleteDiriUser("123456789", 1L);
+    }
+
+    @Test
+    void deleteDiriUser_UserNotDiri_ThrowsDiriUserNotFoundException() {
+        // Arrange
+        when(userPersistencePort.findAllDistinctUsersByRole(SeedbedRole.DIRI))
+                .thenReturn(Collections.emptyList());
+
+        // Act & Assert
+        assertThatThrownBy(() -> userUseCase.deleteDiriUser("123456789"))
+                .isInstanceOf(DiriUserNotFoundException.class)
+                .hasMessage("El usuario que intenta eliminar no es un usuario DIRI.");
+
+        verify(userHelper, never()).deleteDiriUser(anyString(), anyLong());
+    }
+
+    @Test
+    void deleteDiriUser_UserNotFound_ThrowsUserNotFoundException() {
+        // Arrange
+        when(userPersistencePort.findAllDistinctUsersByRole(SeedbedRole.DIRI))
+                .thenReturn(List.of(user));
+        when(userPersistencePort.findByUserIdentification("123456789"))
+                .thenReturn(Optional.empty());
+
+        // Act & Assert
+        assertThatThrownBy(() -> userUseCase.deleteDiriUser("123456789"))
+                .isInstanceOf(UserNotFoundException.class)
+                .hasMessage("Usuario con identificación 123456789 no encontrado");
+
+        verify(userHelper, never()).deleteDiriUser(anyString(), anyLong());
+    }
+
+    @Test
+    void findInvestigationGroupCoordinatorsByAcademicPeriodId_ReturnsCoordinatorList() {
+        // Arrange
+        User coordinator = new User(2L, "Coordinator", "555555555", "coord@gmail.com",
+                "555555", false, Sex.MASCULINO, TypeOfInternalUser.FUNCIONARIO);
+        List<User> coordinators = List.of(coordinator);
+
+        when(userPersistencePort.findInvestigationGroupCoordinatorsByAcademicPeriodId(1L))
+                .thenReturn(coordinators);
+
+        // Act
+        List<User> result = userUseCase.findInvestigationGroupCoordinatorsByAcademicPeriodId(1L);
+
+        // Assert
+        assertThat(result)
+                .isNotNull()
+                .hasSize(1)
+                .extracting(User::getFullName)
+                .containsExactly("Coordinator");
+
+        verify(userPersistencePort, times(1))
+                .findInvestigationGroupCoordinatorsByAcademicPeriodId(1L);
+    }
+
+    @Test
+    void getUserByIntegraStudent_FemaleSex_ShouldReturnFemenino() {
+        // Arrange
+        IntegraStudent femaleStudent = new IntegraStudent(
+                "Maria Lopez", "2420211011", "777777", "21",
+                "INGENIERIA DE SISTEMAS", "5", "maria@gmail.com", "Estudiante",
+                "Activo", "8", "3155555", "F");
+
+        // Act
+        User userToCompare = userUseCase.getUserByIntegraStudent(femaleStudent);
+
+        // Assert
+        assertThat(userToCompare.getSex()).isEqualTo(Sex.FEMENINO);
+        assertThat(userToCompare.getTypeOfInternalUser()).isEqualTo(TypeOfInternalUser.ESTUDIANTE);
     }
 
 }
