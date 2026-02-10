@@ -86,9 +86,14 @@ public class ActionLoggingFilter implements Filter {
             String requestBody = getContentAsString(request.getContentAsByteArray(),
                     request.getCharacterEncoding());
 
-            // Extract response body
-            String responseBody = getContentAsString(response.getContentAsByteArray(),
-                    response.getCharacterEncoding());
+            // Extract response body (skip binary content types)
+            String responseBody = null;
+            if (!isBinaryContentType(response.getContentType())) {
+                responseBody = getContentAsString(response.getContentAsByteArray(),
+                        response.getCharacterEncoding());
+            } else {
+                responseBody = "[BINARY CONTENT - " + response.getContentType() + "]";
+            }
 
             // Create action log
             ActionLog actionLog = actionLogContextService.createActionLog(
@@ -106,6 +111,21 @@ public class ActionLoggingFilter implements Filter {
         } catch (Exception e) {
             // Silently fail - logging should never break the application
         }
+    }
+
+    private boolean isBinaryContentType(String contentType) {
+        if (contentType == null) {
+            return false;
+        }
+        String lowerContentType = contentType.toLowerCase();
+        return lowerContentType.contains("application/pdf") ||
+               lowerContentType.contains("application/octet-stream") ||
+               lowerContentType.contains("image/") ||
+               lowerContentType.contains("audio/") ||
+               lowerContentType.contains("video/") ||
+               lowerContentType.contains("application/zip") ||
+               lowerContentType.contains("application/x-") ||
+               lowerContentType.contains("application/vnd.");
     }
 
     private String getContentAsString(byte[] content, String encoding) {
