@@ -257,13 +257,32 @@ export default defineComponent({
         const response = await API.post(API.GENERATE_CERTIFICATES, requestBody, headers )
 
         if (response) {
-          useFeedbackToast().showSuccess('Certificado generado exitosamente')
-          console.log('Certificate generated:', response)
+          console.log('Certificate generated response:', response)
 
-          // If the response contains a download URL or file data, handle it here
-          if (response.downloadUrl || response.fileData) {
-            // Handle file download
+          // Handle the response if it's the raw Fetch Response object (binary PDF data)
+          if (response instanceof Response) {
+            const blob = await response.blob()
+            const url = window.URL.createObjectURL(blob)
+
+            // Create a temporary link to download the PDF
+            const link = document.createElement('a')
+            link.href = url
+            link.setAttribute('download', `Certificado_${this.userId}.pdf`)
+            document.body.appendChild(link)
+            link.click()
+            link.remove()
+
+            // Clean up the URL object after a short delay to ensure the download started
+            setTimeout(() => window.URL.revokeObjectURL(url), 100)
+
+            useFeedbackToast().showSuccess('Certificado descargado exitosamente')
+          } else if (response.downloadUrl || response.fileData) {
+            // Handle case where response might be JSON with a URL
             window.open(response.downloadUrl || response.fileData, '_blank')
+            useFeedbackToast().showSuccess('Certificado generado exitosamente')
+          } else {
+            // If it's something else but not null, we still emit it
+            useFeedbackToast().showSuccess('Certificado generado exitosamente')
           }
 
           this.$emit('certificate-created', response)
