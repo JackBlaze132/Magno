@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.16.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Magno Backend: Main Page</title>
+<title>Magno Backend: 🦅 Magno - Backend Service</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,10 +87,62 @@ $(function(){initNavTree('index.html','',''); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Magno Backend Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">🦅 Magno - Backend Service </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
+<p>The core logic and API services for the <b>Magno</b> Research Seedbeds Management System. Built with a robust architecture to ensure scalability, security, and maintainability.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+⚙️ Backend Highlights</h1>
+<ul>
+<li><b>🏗️ Hexagonal Architecture:</b> Clear separation of domain, application, and infrastructure layers.</li>
+<li><b>🛡️ Secure by Design:</b> Spring Security integration with Google OAuth2 for institutional safety.</li>
+<li><b>📄 Document Automation:</b> Dynamic generation of PDF certificates and Excel reports using specialized handlers.</li>
+<li><b>✅ Data Integrity:</b> Strict validation using Jakarta Persistence (JPA) and Hibernate.</li>
+<li><b>🔄 Scheduled Tasks:</b> Automated management of project states and log rotations.</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+🛠️ Tech Stack</h1>
+<ul>
+<li><b>Java 17</b></li>
+<li><b>Spring Boot 3.x</b></li>
+<li><b>Spring Data JPA</b> (PostgreSQL)</li>
+<li><b>Spring Security</b> (OAuth2/OIDC)</li>
+<li><b>Gradle</b> (Build automation)</li>
+<li><b>MapStruct</b> (Mapping)</li>
+<li><b>Lombok</b> (Boilerplate reduction)</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+🚀 Getting Started</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+Prerequisites</h2>
+<ul>
+<li>Java 17+ installed.</li>
+<li>PostgreSQL instance running.</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+Configuration</h2>
+<p>Create or update your <span class="tt">application.properties</span> or environment variables with the following:</p>
+<div class="fragment"><div class="line">spring.datasource.url=jdbc:postgresql://localhost:5432/magno</div>
+<div class="line">spring.datasource.username=your_user</div>
+<div class="line">spring.datasource.password=your_password</div>
+<div class="line">integra.base.url=institutional_api_url</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+Running the application</h2>
+<div class="fragment"><div class="line"># Using the Gradle wrapper</div>
+<div class="line">./gradlew bootRun</div>
+</div><!-- fragment --><p>The API will be accessible at <span class="tt"><a href="http://localhost:8080/api/">http://localhost:8080/api/</a></span>.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+📂 Architecture Overview</h1>
+<ul>
+<li><b><span class="tt">src/main/java/.../domain/</span></b>: Pure business logic (Models, Ports, Use cases).</li>
+<li><b><span class="tt">src/main/java/.../application/</span></b>: DTOs, Handlers, and orchestrators.</li>
+<li><b><span class="tt">src/main/java/.../infrastructure/</span></b>: Adapters (Persistence, REST controllers, Security).</li>
+</ul>
+<hr  />
+<p><em>Part of the Magno Ecosystem</em> </p>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
 </div><!-- doc-content -->

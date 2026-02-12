@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "Magno Backend", "index.html", [
+    [ "🦅 Magno - Backend Service", "index.html", "index" ],
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ]
     ] ],

@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['technology_20stack_0',['🛠️ Technology Stack',['../C:/Users/ederd/Documents/Github/Unibague/Magno/README.md#autotoc_md4',1,'']]]
+  ['service_0',['🦅 Magno - Backend Service',['../index.html',1,'']]],
+  ['stack_1',['🛠️ Tech Stack',['../index.html#autotoc_md2',1,'']]],
+  ['started_2',['🚀 Getting Started',['../index.html#autotoc_md3',1,'']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['🏁_20getting_20started_0',['🏁 Getting Started',['../C:/Users/ederd/Documents/Github/Unibague/Magno/README.md#autotoc_md10',1,'']]]
+  ['tech_20stack_0',['🛠️ Tech Stack',['../index.html#autotoc_md2',1,'']]],
+  ['the_20application_1',['Running the application',['../index.html#autotoc_md6',1,'']]]
 ];

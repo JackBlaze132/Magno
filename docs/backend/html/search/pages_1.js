@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['features_0',['🚀 Key Features',['../C:/Users/ederd/Documents/Github/Unibague/Magno/README.md#autotoc_md2',1,'']]],
-  ['frontend_1',['Frontend',['../C:/Users/ederd/Documents/Github/Unibague/Magno/README.md#autotoc_md6',1,'']]]
+  ['backend_20highlights_0',['⚙️ Backend Highlights',['../index.html#autotoc_md1',1,'']]],
+  ['backend_20service_1',['🦅 Magno - Backend Service',['../index.html',1,'']]]
 ];

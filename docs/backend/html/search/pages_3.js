@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['installation_0',['Installation',['../C:/Users/ederd/Documents/Github/Unibague/Magno/README.md#autotoc_md12',1,'']]]
+  ['getting_20started_0',['🚀 Getting Started',['../index.html#autotoc_md3',1,'']]]
 ];
