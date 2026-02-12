@@ -163,7 +163,7 @@ export default defineComponent({
     async fetchPeriods() {
       const headers = { 'API-VERSION': '1' };
       try {
-        const periods = await API.get(API.ACADEMIC_PERIODS, headers);
+        const periods = await API.get(API.VISIBLE_ACADEMIC_PERIODS, headers);
         const periodField = this.processedFields.find(f => f.key === 'academic_period_id');
         if (periodField) {
           if (periods && periods.length > 0) {

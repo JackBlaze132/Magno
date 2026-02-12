@@ -7,7 +7,7 @@ import radioChecked from '@images/svg/radio-checked.svg'
 import radioUnchecked from '@images/svg/radio-unchecked.svg'
 import calendarStart from '@/assets/images/svg/calendar-start.svg'
 import calendarEnd from '@/assets/images/svg/calendar-end.svg'
-import magnoLogo from '@/assets/images/logos/magno-dark.svg'
+import magnoLogo from '@/assets/images/logos/magno.svg'
 import { h } from 'vue'
 
 

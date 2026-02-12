@@ -346,7 +346,7 @@ export default defineComponent({
       this.loadingTrendData = true
       const headers = { "API-VERSION": "1" }
       try {
-        const periods = await API.get(API.ACADEMIC_PERIODS, headers)
+        const periods = await API.get(API.VISIBLE_ACADEMIC_PERIODS, headers)
         // Take last 5 periods for the trend
         const recentPeriods = periods.slice(-5)
 
@@ -377,7 +377,7 @@ export default defineComponent({
     async fetchInitialData() {
       const headers = { "API-VERSION": "1" }
       try {
-        const periods = await API.get(API.ACADEMIC_PERIODS, headers)
+        const periods = await API.get(API.VISIBLE_ACADEMIC_PERIODS, headers)
         this.periods = periods
 
         // Set default period if available
@@ -498,7 +498,7 @@ export default defineComponent({
           : API.USERS_STUDENTS
 
         const [periods, groups, seedbeds, students] = await Promise.all([
-          API.get(API.ACADEMIC_PERIODS, headers),
+          API.get(API.VISIBLE_ACADEMIC_PERIODS, headers),
           API.get(API.INVESTIGATION_GROUPS, headers),
           API.get(API.RESEARCH_SEEDBEDS, headers),
           API.get(studentEndpoint, headers)

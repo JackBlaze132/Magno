@@ -49,7 +49,7 @@ export default{
       if (idPeriodo) {
         try {
           const headers = { 'API-VERSION': '1' };
-          const data = await API.get(API.ACADEMIC_PERIODS + idPeriodo, headers);
+          const data = await API.get(API.VISIBLE_ACADEMIC_PERIODS + idPeriodo, headers);
           const period = Array.isArray(data) ? data[0] : data;
           if (period && period.name) {
             this.periodName = period.name;

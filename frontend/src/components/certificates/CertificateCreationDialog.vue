@@ -264,18 +264,10 @@ export default defineComponent({
             const blob = await response.blob()
             const url = window.URL.createObjectURL(blob)
 
-            // Create a temporary link to download the PDF
-            const link = document.createElement('a')
-            link.href = url
-            link.setAttribute('download', `Certificado_${this.userId}.pdf`)
-            document.body.appendChild(link)
-            link.click()
-            link.remove()
+            // Open the PDF in a new tab instead of downloading
+            window.open(url, '_blank')
 
-            // Clean up the URL object after a short delay to ensure the download started
-            setTimeout(() => window.URL.revokeObjectURL(url), 100)
-
-            useFeedbackToast().showSuccess('Certificado descargado exitosamente')
+            useFeedbackToast().showSuccess('Certificado generado exitosamente')
           } else if (response.downloadUrl || response.fileData) {
             // Handle case where response might be JSON with a URL
             window.open(response.downloadUrl || response.fileData, '_blank')

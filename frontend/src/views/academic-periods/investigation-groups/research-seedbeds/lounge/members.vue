@@ -51,7 +51,7 @@ export default {
         const [seedbedData, groupData, periodData] = await Promise.all([
           API.get(API.RESEARCH_SEEDBEDS_PROFILES + idSemillero, headers),
           API.get(API.INVESTIGATION_GRUOPS_PROFILES + idGrupo, headers),
-          API.get(API.ACADEMIC_PERIODS + idPeriodo, headers)
+          API.get(API.VISIBLE_ACADEMIC_PERIODS + idPeriodo, headers)
         ]);
 
         const seedbedProfile = Array.isArray(seedbedData) ? seedbedData[0] : seedbedData;

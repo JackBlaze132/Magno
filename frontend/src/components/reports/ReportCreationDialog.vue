@@ -215,7 +215,7 @@ export default defineComponent({
       this.loadingPeriods = true
       try {
         const headers = { 'API-VERSION': '1' }
-        const periods = await API.get(API.ACADEMIC_PERIODS, headers)
+        const periods = await API.get(API.VISIBLE_ACADEMIC_PERIODS, headers)
         this.academicPeriods = periods || []
       } catch (error) {
         console.error('Error loading academic periods:', error)

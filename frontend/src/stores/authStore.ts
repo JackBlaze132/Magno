@@ -264,7 +264,7 @@ export const useAuthStore = defineStore('auth', {
       }
 
       try {
-        const response = await API.get(API.ACADEMIC_PERIODS, headers)
+        const response = await API.get(API.NOT_VISIBLE_ACADEMIC_PERIODS, headers)
         if (Array.isArray(response)) {
           this.hiddenAcademicPeriods = response
             .filter((p: any) => p.is_visible === false || p.isVisible === false)

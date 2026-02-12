@@ -50,7 +50,7 @@ export default defineComponent({
         'API-VERSION': '1',
       };
       try {
-        const periods = await API.get(API.ACADEMIC_PERIODS, headers);
+        const periods = await API.get(API.VISIBLE_ACADEMIC_PERIODS, headers);
         this.$emit('loaded');
         console.log("Hola obtuve los periodos")
 
