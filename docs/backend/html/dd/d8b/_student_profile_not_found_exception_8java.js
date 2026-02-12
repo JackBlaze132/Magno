@@ -1,0 +1,4 @@
+var _student_profile_not_found_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.studentprofile.StudentProfileNotFoundException", "de/d7c/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1studentprofile_1_1_student_profile_not_found_exception.html", "de/d7c/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1studentprofile_1_1_student_profile_not_found_exception" ]
+];

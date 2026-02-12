@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.application.dto.response.ResearchSeedbedResponse" name="com.unibague.magno.application.dto.response.ResearchSeedbedResponse">
+<area shape="rect" id="Node000001" title="Response DTO containing research seedbed information." alt="" coords="5,120,300,163"/>
+<area shape="rect" id="Node000002" href="$d0/d0b/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_line_of_research.html" title="Research lines associated with investigation groups and seedbeds." alt="" coords="14,5,291,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,62,155,121,150,119,151,65"/>
+</map>

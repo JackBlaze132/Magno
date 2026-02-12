@@ -1,0 +1,4 @@
+var _i_functionary_profile_repository_8java =
+[
+    [ "com.unibague.magno.infrastructure.output.jpa.repository.IFunctionaryProfileRepository", "d3/d45/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_functionary_profile_repository.html", "d3/d45/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_functionary_profile_repository" ]
+];

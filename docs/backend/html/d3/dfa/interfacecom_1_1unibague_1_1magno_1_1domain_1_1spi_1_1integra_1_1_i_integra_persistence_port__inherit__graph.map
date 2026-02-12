@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.spi.integra.IIntegraPersistencePort" name="com.unibague.magno.domain.spi.integra.IIntegraPersistencePort">
+<area shape="rect" id="Node000001" title="Persistence port for integrating with the university&#39;s Integra system." alt="" coords="66,5,325,48"/>
+<area shape="rect" id="Node000002" href="$d5/da4/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1integra_1_1_integra_user_client.html" title="REST client implementation of IIntegraPersistencePort for fetching data from the external Integra sys..." alt="" coords="5,96,386,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,62,198,97,193,94,194,66"/>
+</map>

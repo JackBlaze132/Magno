@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileFunctionaryIsAlreadyACoordinatorException" name="com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileFunctionaryIsAlreadyACoordinatorException">
+<area shape="rect" id="Node000001" title="Exception thrown when attempting to assign a functionary as coordinator when they are already a coord..." alt="" coords="5,80,430,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="153,5,282,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,46,220,81,215,78,216,50"/>
+</map>

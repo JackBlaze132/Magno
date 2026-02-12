@@ -1,0 +1,4 @@
+var _research_seedbed_profile_authorization_service_8java =
+[
+    [ "com.unibague.magno.infrastructure.configuration.security.ResearchSeedbedProfileAuthorizationService", "d9/d6c/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_research_seedbed_profile_authorization_service.html", "d9/d6c/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_research_seedbed_profile_authorization_service" ]
+];

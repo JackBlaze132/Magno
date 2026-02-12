@@ -1,0 +1,5 @@
+var namespacecom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1studentprofile =
+[
+    [ "StudentProfileAlreadyExistsException", "db/dc0/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1studentprofile_1_1_student_profile_already_exists_exception.html", "db/dc0/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1studentprofile_1_1_student_profile_already_exists_exception" ],
+    [ "StudentProfileNotFoundException", "de/d7c/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1studentprofile_1_1_student_profile_not_found_exception.html", "de/d7c/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1studentprofile_1_1_student_profile_not_found_exception" ]
+];

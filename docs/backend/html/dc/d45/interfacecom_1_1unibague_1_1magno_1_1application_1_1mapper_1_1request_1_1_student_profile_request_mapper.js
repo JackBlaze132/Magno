@@ -1,0 +1,4 @@
+var interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_student_profile_request_mapper =
+[
+    [ "toStudentProfile", "dc/d45/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_student_profile_request_mapper.html#adcae7b643de59de11b27bbe60776bf0b", null ]
+];

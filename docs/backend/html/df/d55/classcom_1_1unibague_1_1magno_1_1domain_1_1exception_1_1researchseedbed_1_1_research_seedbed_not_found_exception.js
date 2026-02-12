@@ -1,0 +1,5 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbed_1_1_research_seedbed_not_found_exception =
+[
+    [ "ResearchSeedbedNotFoundException", "df/d55/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbed_1_1_research_seedbed_not_found_exception.html#a735034b4bd9e62c2758300ac52a57a84", null ],
+    [ "ResearchSeedbedNotFoundException", "df/d55/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbed_1_1_research_seedbed_not_found_exception.html#ad412d206a397b104eb5300e75eaf456b", null ]
+];

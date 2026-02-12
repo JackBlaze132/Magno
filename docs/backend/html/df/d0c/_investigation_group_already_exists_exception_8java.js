@@ -1,0 +1,4 @@
+var _investigation_group_already_exists_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupAlreadyExistsException", "db/d4c/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroup_1_1_investigation_group_already_exists_exception.html", "db/d4c/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroup_1_1_investigation_group_already_exists_exception" ]
+];

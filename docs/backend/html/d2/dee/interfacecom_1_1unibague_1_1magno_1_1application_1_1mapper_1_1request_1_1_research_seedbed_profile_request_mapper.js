@@ -1,0 +1,4 @@
+var interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_research_seedbed_profile_request_mapper =
+[
+    [ "toResearchSeedbedProfile", "d2/dee/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_research_seedbed_profile_request_mapper.html#abd74139dc3985805e5a847e0f475f801", null ]
+];

@@ -1,0 +1,5 @@
+var interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_cron_job_execution_log_entity_mapper =
+[
+    [ "toDomain", "d4/dc5/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_cron_job_execution_log_entity_mapper.html#a516e5210d5d351485e20df78d4f72b64", null ],
+    [ "toEntity", "d4/dc5/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_cron_job_execution_log_entity_mapper.html#a9803b0605fc40a68e0aa14064765f0de", null ]
+];

@@ -1,0 +1,4 @@
+var _research_seedbed_student_profile_entity_mapper_impl_8java =
+[
+    [ "com.unibague.magno.infrastructure.output.jpa.mapper.ResearchSeedbedStudentProfileEntityMapperImpl", "dc/d5a/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_research_seedbed_ca0c4078808677498647db4b6c5bddd2.html", "dc/d5a/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_research_seedbed_ca0c4078808677498647db4b6c5bddd2" ]
+];

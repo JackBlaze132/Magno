@@ -17,7 +17,6 @@ class Formatter{
   /**
    * Singleton instance of the Formatter class.
    * @private
-   * @static
    * @type {Formatter}
    */
   private static instance: Formatter;
@@ -33,7 +32,6 @@ class Formatter{
    * Creates a new instance if one doesn't exist.
    *
    * @public
-   * @static
    * @returns {Formatter} The singleton Formatter instance
    * @example
    * const formatter = Formatter.getInstance();
@@ -64,8 +62,8 @@ class Formatter{
 
   /**
    * Formats gender information.
+   * Implementation pending
    * @public
-   * @todo Implementation pending
    */
   public genderFormatter(){
 

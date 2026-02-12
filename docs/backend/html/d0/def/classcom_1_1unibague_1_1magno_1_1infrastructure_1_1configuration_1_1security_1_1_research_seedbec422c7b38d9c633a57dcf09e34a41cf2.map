@@ -1,0 +1,11 @@
+<map id="com.unibague.magno.infrastructure.configuration.security.ResearchSeedbedProfileAuthorizationService" name="com.unibague.magno.infrastructure.configuration.security.ResearchSeedbedProfileAuthorizationService">
+<area shape="rect" id="Node000001" title="Service for handling authorization checks related to research seedbed profiles." alt="" coords="886,44,1243,87"/>
+<area shape="rect" id="Node000002" href="$dd/d77/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_research_seedbed_profile_repository.html" title="Spring Data JPA repository for ResearchSeedbedProfileEntity." alt="" coords="279,5,629,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="645,36,888,54,883,54,645,41"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,5,230,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="245,24,281,26,276,27,246,29"/>
+<area shape="rect" id="Node000004" href="$de/d7d/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_researcbf41a203d2b203ae99b8308cc46f1fd4.html" title="Spring Data JPA repository for ResearchSeedbedStudentProfileEntity." alt="" coords="279,81,629,124"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="644,106,752,105,862,99,958,88,963,87,863,104,753,110,645,112"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,81,230,124"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="245,100,282,103,276,103,245,105"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="com.unibague.magno.application.mapper.request.impl.FunctionaryProfileRequestMapperImpl" name="com.unibague.magno.application.mapper.request.impl.FunctionaryProfileRequestMapperImpl">
+<area shape="rect" id="Node000001" title="Implementation of FunctionaryProfileRequestMapper." alt="" coords="509,105,846,148"/>
+<area shape="rect" id="Node000002" href="$d7/ded/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_functionary_profile_request_mapper.html" title="Mapper interface for converting functionary profile request DTOs to domain models." alt="" coords="5,5,315,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="330,46,485,73,603,104,598,105,484,79,330,52"/>
+<area shape="rect" id="Node000003" href="$d4/d0e/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1integra_1_1_i_integra_service_port.html" title="Service port interface that defines the contract for Integra external system integration operations." alt="" coords="30,72,290,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="305,100,511,115,506,117,305,105"/>
+<area shape="rect" id="Node000004" href="$d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html" title="Service port interface that defines the contract for user management operations." alt="" coords="52,139,268,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="284,152,484,140,511,141,505,141,485,145,284,157"/>
+<area shape="rect" id="Node000005" href="$da/db3/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_dependency_service_port.html" title="Service port interface that defines the contract for dependency management operations." alt="" coords="52,205,268,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="283,210,382,196,484,177,603,149,608,148,485,183,383,201,284,215"/>
+</map>

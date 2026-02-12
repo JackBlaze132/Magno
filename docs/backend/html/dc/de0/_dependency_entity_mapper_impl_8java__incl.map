@@ -1,0 +1,13 @@
+<map id="src/main/java/com/unibague/magno/infrastructure/output/jpa/mapper/DependencyEntityMapperImpl.java" name="src/main/java/com/unibague/magno/infrastructure/output/jpa/mapper/DependencyEntityMapperImpl.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="580,5,876,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,240,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="580,62,256,114,255,108,579,57"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="264,112,541,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="634,64,488,110,486,104,628,65"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="565,112,890,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="730,62,730,98,726,95,726,66"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="914,112,1123,155"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="815,62,944,107,939,106,814,67"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="1146,120,1238,147"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="877,56,1003,79,1135,109,1147,115,1142,115,1134,115,1002,84,876,61"/>
+</map>

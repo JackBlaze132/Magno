@@ -1,0 +1,4 @@
+var _not_allowed_to_do_this_action_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.security.NotAllowedToDoThisActionException", "d4/dbf/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1security_1_1_not_allowed_to_do_this_action_exception.html", "d4/dbf/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1security_1_1_not_allowed_to_do_this_action_exception" ]
+];

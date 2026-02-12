@@ -1,0 +1,4 @@
+var _research_seedbed_profile_response_mapper_impl_8java =
+[
+    [ "com.unibague.magno.application.mapper.response.ResearchSeedbedProfileResponseMapperImpl", "d0/d78/classcom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_research_seedbed_profile_response_mapper_impl.html", "d0/d78/classcom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_research_seedbed_profile_response_mapper_impl" ]
+];

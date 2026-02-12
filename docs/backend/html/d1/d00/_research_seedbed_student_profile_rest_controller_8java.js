@@ -1,0 +1,4 @@
+var _research_seedbed_student_profile_rest_controller_8java =
+[
+    [ "com.unibague.magno.infrastructure.input.rest.ResearchSeedbedStudentProfileRestController", "dc/dbf/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1input_1_1rest_1_1_research_seedbed_student_profile_rest_controller.html", "dc/dbf/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1input_1_1rest_1_1_research_seedbed_student_profile_rest_controller" ]
+];

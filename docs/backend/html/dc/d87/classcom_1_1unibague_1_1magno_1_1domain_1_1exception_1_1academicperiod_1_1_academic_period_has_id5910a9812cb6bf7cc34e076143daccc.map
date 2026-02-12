@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.exception.academicperiod.AcademicPeriodHasInvestigationGroupProfilesException" name="com.unibague.magno.domain.exception.academicperiod.AcademicPeriodHasInvestigationGroupProfilesException">
+<area shape="rect" id="Node000001" title="Exception thrown when attempting to delete an academic period that has associated investigation group..." alt="" coords="5,80,357,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="117,5,245,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,46,183,81,179,79,179,50"/>
+</map>

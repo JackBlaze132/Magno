@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$d3/d94/interfacecom_1_1unibague_1_1magno_1_1application_1_1handler_1_1interfaces_1_1_i_research_seedbed_profile_handler.html" title="Handler interface for research seedbed profile operations." alt="" coords="5,5,328,48"/>
+<area shape="rect" id="Node000001" href="$d6/dc4/classcom_1_1unibague_1_1magno_1_1application_1_1handler_1_1impl_1_1_research_seedbed_profile_handler.html" title="Implementation of IResearchSeedbedProfileHandler." alt="" coords="376,5,665,48"/>
+<area shape="poly" id="edge13_Node000000_Node000001" title=" " alt="" coords="343,24,378,27,373,27,343,29"/>
+</map>

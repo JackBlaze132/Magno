@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$d2/d9c/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_research_seedbed_profile_service_port.html" title="Service port interface that defines the contract for research seedbed profile management operations." alt="" coords="5,5,243,48"/>
+<area shape="rect" id="Node000001" href="$de/df8/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_research_seedbed_profile_use_case.html" title="Use case implementation for managing research seedbed profiles." alt="" coords="291,5,539,48"/>
+<area shape="poly" id="edge42_Node000000_Node000001" title=" " alt="" coords="258,24,293,27,288,27,258,29"/>
+</map>

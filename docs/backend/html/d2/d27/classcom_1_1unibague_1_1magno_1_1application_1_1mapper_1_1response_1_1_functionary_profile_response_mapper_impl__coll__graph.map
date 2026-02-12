@@ -1,0 +1,21 @@
+<map id="com.unibague.magno.application.mapper.response.FunctionaryProfileResponseMapperImpl" name="com.unibague.magno.application.mapper.response.FunctionaryProfileResponseMapperImpl">
+<area shape="rect" id="Node000001" title="Implementation of FunctionaryProfileResponseMapper." alt="" coords="576,272,895,315"/>
+<area shape="rect" id="Node000002" href="$d7/d3e/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_functionary_profile_response_mapper.html" title="Mapper interface for converting functionary profile domain models to response DTOs." alt="" coords="5,5,325,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="339,16,394,21,449,31,502,46,553,68,585,89,614,114,663,170,701,226,726,272,721,271,697,229,659,173,610,117,581,93,550,73,501,51,447,36,393,26,341,21"/>
+<area shape="rect" id="Node000003" href="$d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html" title="Service port interface that defines the contract for user management operations." alt="" coords="57,72,273,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="288,91,351,96,419,106,487,121,553,144,603,172,649,206,717,272,712,271,645,210,600,176,551,149,486,126,418,111,351,101,290,96"/>
+<area shape="rect" id="Node000004" href="$d2/d26/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_user_response_mapper.html" title="Mapper interface for converting user domain models to response DTOs." alt="" coords="5,139,325,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="339,171,446,187,552,211,629,238,696,271,690,272,627,243,551,216,445,192,341,176"/>
+<area shape="rect" id="Node000005" href="$d6/de6/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_academic_period_service_port.html" title="Service port interface that defines the contract for academic period management operations." alt="" coords="57,205,273,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="288,234,552,261,606,271,601,272,551,267,289,239"/>
+<area shape="rect" id="Node000006" href="$d8/d48/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_academic_period_response_mapper.html" title="Mapper interface for converting academic period domain models to response DTOs." alt="" coords="5,272,325,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="340,291,577,292,573,295,341,296"/>
+<area shape="rect" id="Node000007" href="$da/db3/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_dependency_service_port.html" title="Service port interface that defines the contract for dependency management operations." alt="" coords="57,339,273,381"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="288,348,551,320,606,315,601,316,552,325,289,353"/>
+<area shape="rect" id="Node000008" href="$d9/dd6/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_dependency_response_mapper.html" title="Mapper interface for converting dependency domain models to response DTOs." alt="" coords="5,405,325,448"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="339,410,445,395,551,371,627,343,690,316,695,314,629,348,552,376,446,400,341,416"/>
+<area shape="rect" id="Node000009" href="$d9/d80/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_role_service_port.html" title="Service port interface that defines the contract for role management operations." alt="" coords="57,472,273,515"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="288,490,351,485,418,476,486,460,551,438,600,410,645,377,712,316,717,314,649,381,603,415,553,442,487,465,419,481,351,491,289,496"/>
+<area shape="rect" id="Node000010" href="$d5/d18/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_role_response_mapper.html" title="Mapper interface for converting role domain models to response DTOs." alt="" coords="5,539,325,581"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="340,565,393,560,447,551,501,536,550,514,581,494,610,469,659,414,697,358,721,317,726,314,701,361,663,417,614,473,585,498,553,518,502,541,449,556,394,566,340,570"/>
+</map>

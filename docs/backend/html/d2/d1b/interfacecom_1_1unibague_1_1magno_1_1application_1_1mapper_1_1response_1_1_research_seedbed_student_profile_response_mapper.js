@@ -1,0 +1,6 @@
+var interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_research_seedbed_student_profile_response_mapper =
+[
+    [ "toResponse", "d2/d1b/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_research_seedbed_student_profile_response_mapper.html#aaac076c47a02aa81eb0ac84b145bfa50", null ],
+    [ "toResponseList", "d2/d1b/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_research_seedbed_student_profile_response_mapper.html#a59aea9918554bc0ae7bfd6abbe2c5478", null ],
+    [ "toSummaryResponseList", "d2/d1b/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_research_seedbed_student_profile_response_mapper.html#a99e1595ba677c6a18a93916f16d38402", null ]
+];

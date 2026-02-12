@@ -1,0 +1,6 @@
+var interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_academic_program_repository =
+[
+    [ "existsByProgramCodeAndName", "d9/d88/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_academic_program_repository.html#ac9edee9b11fc2cd34f951de204235045", null ],
+    [ "findByProgramCode", "d9/d88/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_academic_program_repository.html#a8ccb0907e984fb8d9bc1e1ab926980e8", null ],
+    [ "findByProgramCodeIn", "d9/d88/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_academic_program_repository.html#a82fe62dc5cb3dd247e925f8c49468dd0", null ]
+];

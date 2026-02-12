@@ -1,0 +1,5 @@
+var interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_research_seedbed_student_profile_helper =
+[
+    [ "verifyAcademicPeriodIsCurrentStatus", "d8/d54/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_research_seedbed_student_profile_helper.html#a2374293cb656ca6fb0e9db316d29d6bf", null ],
+    [ "verifyStudentHasAProfile", "d8/d54/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_research_seedbed_student_profile_helper.html#aed277253b97b698ea42a442ebf676994", null ]
+];

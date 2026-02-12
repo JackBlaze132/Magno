@@ -1,0 +1,26 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program =
+[
+    [ "IntegraAcademicProgram", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#a7d19dfc7fee5f58bcb63759b62418d60", null ],
+    [ "IntegraAcademicProgram", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#a977ee4ec0d966871136710fab757ed61", null ],
+    [ "getFormation", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#a953d94579eea9864ea2c39cd76f6bf59", null ],
+    [ "getMethodology", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#aaa78cb4df8a09f6497d0ace01743678f", null ],
+    [ "getModality", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#a4cd356b2af466cb7ff1632284c6dd780", null ],
+    [ "getProgramCode", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#a6a24787d86a2bede141d9706765ea5f4", null ],
+    [ "getProgramName", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#a068a4c88393c1a2a8375a667db393bd8", null ],
+    [ "getSedeCode", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#ad1795eb6c18a2614c13bd294241a195c", null ],
+    [ "getSedeName", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#a93aca95c084d9aedcf602b3f0f27e9ce", null ],
+    [ "setFormation", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#ae2eb3c593efc83593ff49148d777c955", null ],
+    [ "setMethodology", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#a8458579fef9c38b70245c5c6fdfb28b4", null ],
+    [ "setModality", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#a03cf850db9114f9bf3a1ed5450ca1af3", null ],
+    [ "setProgramCode", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#a651d688508cd780a64240d0fd678146b", null ],
+    [ "setProgramName", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#ac7f3d5d35d7e630bc6e48aed7ef84715", null ],
+    [ "setSedeCode", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#a2a73e43084064b7278e60d69f48497bd", null ],
+    [ "setSedeName", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#a3af8458f4140c10a3e9cb67bcffda486", null ],
+    [ "formation", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#aa8853301038754dc9a853289aade6059", null ],
+    [ "methodology", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#afc91867e91f82986192e92f01fe86525", null ],
+    [ "modality", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#a2343cd8ced650679f6f38b6c8827df8e", null ],
+    [ "programCode", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#a61b7eff25195b1a53ea26d8f86fde604", null ],
+    [ "programName", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#a830b84330e31f608e33ad2e4b02bb99d", null ],
+    [ "sedeCode", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#aa9654faef4f5fd4e9c864d8eff1fb769", null ],
+    [ "sedeName", "de/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1integra_1_1_integra_academic_program.html#ab4caf381316e6f4f72808e49cc47b0fe", null ]
+];

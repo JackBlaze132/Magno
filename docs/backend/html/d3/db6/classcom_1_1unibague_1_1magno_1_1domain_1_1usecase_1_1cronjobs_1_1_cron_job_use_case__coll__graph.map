@@ -1,0 +1,15 @@
+<map id="com.unibague.magno.domain.usecase.cronjobs.CronJobUseCase" name="com.unibague.magno.domain.usecase.cronjobs.CronJobUseCase">
+<area shape="rect" id="Node000001" title="Use case implementation for scheduled cron job operations." alt="" coords="504,172,805,215"/>
+<area shape="rect" id="Node000002" href="$dc/d68/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1cronjobs_1_1_i_cron_job_service_port.html" title="Service port interface that defines the contract for scheduled cron job operations." alt="" coords="5,5,275,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="290,36,386,52,481,80,523,100,564,123,629,172,624,172,561,128,521,105,479,85,385,57,291,41"/>
+<area shape="rect" id="Node000003" href="$d4/d0e/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1integra_1_1_i_integra_service_port.html" title="Service port interface that defines the contract for Integra external system integration operations." alt="" coords="10,72,270,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="285,106,382,120,480,139,591,171,586,172,479,144,381,125,286,112"/>
+<area shape="rect" id="Node000004" href="$d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html" title="Service port interface that defines the contract for user management operations." alt="" coords="32,139,248,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="263,165,505,182,501,185,264,171"/>
+<area shape="rect" id="Node000005" href="$da/d66/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_academic_program_service_port.html" title="Service port interface that defines the contract for academic program management operations." alt="" coords="32,205,248,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="263,220,479,208,506,208,501,209,480,213,264,225"/>
+<area shape="rect" id="Node000006" href="$da/db3/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_dependency_service_port.html" title="Service port interface that defines the contract for dependency management operations." alt="" coords="32,272,248,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="263,281,369,268,479,248,539,232,593,216,599,215,541,237,480,253,370,273,264,286"/>
+<area shape="rect" id="Node000007" href="$d0/d39/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_error_log_service_port.html" title="Service port interface that defines the contract for error log management operations." alt="" coords="32,339,248,381"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="263,351,370,336,426,323,479,306,521,285,562,261,625,216,630,214,565,265,524,290,481,310,427,328,371,341,264,357"/>
+</map>

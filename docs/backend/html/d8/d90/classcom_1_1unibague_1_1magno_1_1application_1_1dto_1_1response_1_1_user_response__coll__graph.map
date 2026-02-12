@@ -1,0 +1,7 @@
+<map id="com.unibague.magno.application.dto.response.UserResponse" name="com.unibague.magno.application.dto.response.UserResponse">
+<area shape="rect" id="Node000001" title="Response DTO containing user information." alt="" coords="472,27,766,69"/>
+<area shape="rect" id="Node000002" href="$d1/d9c/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_sex.html" title="Enum representing biological sex values used in the system." alt="" coords="5,5,306,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="321,26,474,38,468,39,321,32"/>
+<area shape="rect" id="Node000003" href="$d1/df0/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_type_of_internal_user.html" title="Enum representing internal user types." alt="" coords="17,56,294,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="309,71,447,64,469,65,474,65,448,69,310,76"/>
+</map>

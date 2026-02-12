@@ -1,0 +1,13 @@
+<map id="com.unibague.magno.infrastructure.input.rest.ResearchSeedbedProfileRestController" name="com.unibague.magno.infrastructure.input.rest.ResearchSeedbedProfileRestController">
+<area shape="rect" id="Node000001" title="REST controller for managing research seedbed profiles in Magno." alt="" coords="1118,111,1405,153"/>
+<area shape="rect" id="Node000002" href="$d6/dc4/classcom_1_1unibague_1_1magno_1_1application_1_1handler_1_1impl_1_1_research_seedbed_profile_handler.html" title="Implementation of IResearchSeedbedProfileHandler." alt="" coords="590,111,879,153"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="894,129,1120,132,1115,132,894,135"/>
+<area shape="rect" id="Node000003" href="$d3/d94/interfacecom_1_1unibague_1_1magno_1_1application_1_1handler_1_1interfaces_1_1_i_research_seedbed_profile_handler.html" title="Handler interface for research seedbed profile operations." alt="" coords="5,5,328,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="343,39,454,54,566,75,678,110,672,110,565,80,453,59,344,44"/>
+<area shape="rect" id="Node000004" href="$d2/d9c/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_research_seedbed_profile_service_port.html" title="Service port interface that defines the contract for research seedbed profile management operations." alt="" coords="48,72,285,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="301,100,591,120,587,124,301,105"/>
+<area shape="rect" id="Node000005" href="$d2/dee/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_research_seedbed_profile_request_mapper.html" title="Mapper interface for converting research seedbed profile request DTOs to domain models." alt="" coords="12,148,321,191"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="336,174,450,173,565,165,650,154,645,154,566,171,450,178,337,179"/>
+<area shape="rect" id="Node000006" href="$d8/d11/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_research_seedbed_profile_response_mapper.html" title="Mapper interface for converting research seedbed profile domain models to response DTOs." alt="" coords="7,224,326,267"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="341,253,453,247,510,238,565,225,604,211,642,192,702,155,707,153,645,196,606,216,566,231,511,244,454,252,342,258"/>
+</map>

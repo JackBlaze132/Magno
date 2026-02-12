@@ -1,0 +1,9 @@
+var interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_investigation_group_profile_helper =
+[
+    [ "handleFunctionaryProfileChangeOnUpdate", "da/d1a/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_investigation_group_profile_helper.html#a08a6a9264cbb2095cd426aa334c508c0", null ],
+    [ "verifyAcademicPeriodIsCurrent", "da/d1a/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_investigation_group_profile_helper.html#aa033ae2923ff60ef66047b110bc98b86", null ],
+    [ "verifyAcademicPeriodIsVisible", "da/d1a/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_investigation_group_profile_helper.html#a94add73220a5cfb5d471774a81960f9e", null ],
+    [ "verifyThatInvestigationGroupProfileHasNoResearchSeedbedProfiles", "da/d1a/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_investigation_group_profile_helper.html#aac9f53c9fb5e5cea4b4257e9fde28c34", null ],
+    [ "verifyThatUserIsNotAlreadyAInvestigationGroupCoordinator", "da/d1a/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_investigation_group_profile_helper.html#ade3bfc99fb822cf41996fd3f503295fd", null ],
+    [ "verifyUserHasFunctionaryProfile", "da/d1a/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_investigation_group_profile_helper.html#af5f905a77b228b323da356960ee07a61", null ]
+];

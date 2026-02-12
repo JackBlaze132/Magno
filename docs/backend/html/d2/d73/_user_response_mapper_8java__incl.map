@@ -1,0 +1,9 @@
+<map id="src/main/java/com/unibague/magno/application/mapper/response/UserResponseMapper.java" name="src/main/java/com/unibague/magno/application/mapper/response/UserResponseMapper.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="335,5,575,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,300,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="368,64,233,109,231,104,363,65"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="324,120,586,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="457,62,457,106,453,103,453,66"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="611,120,702,147"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="516,62,619,113,614,113,514,67"/>
+</map>

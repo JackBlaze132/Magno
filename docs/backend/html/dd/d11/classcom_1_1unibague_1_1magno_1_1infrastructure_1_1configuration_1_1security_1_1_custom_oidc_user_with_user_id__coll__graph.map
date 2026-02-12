@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.infrastructure.configuration.security.CustomOidcUserWithUserId" name="com.unibague.magno.infrastructure.configuration.security.CustomOidcUserWithUserId">
+<area shape="rect" id="Node000001" title="Custom OidcUser wrapper that includes the application&#39;s internal user ID." alt="" coords="5,80,362,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="145,5,222,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,46,186,81,181,79,182,50"/>
+</map>

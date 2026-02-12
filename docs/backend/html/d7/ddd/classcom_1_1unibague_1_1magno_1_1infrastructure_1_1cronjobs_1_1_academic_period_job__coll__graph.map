@@ -1,0 +1,14 @@
+<map id="com.unibague.magno.infrastructure.cronjobs.AcademicPeriodJob" name="com.unibague.magno.infrastructure.cronjobs.AcademicPeriodJob">
+<area shape="rect" id="Node000001" title="Scheduled job for managing academic period lifecycle." alt="" coords="968,141,1250,184"/>
+<area shape="rect" id="Node000002" href="$d6/de6/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_academic_period_service_port.html" title="Service port interface that defines the contract for academic period management operations." alt="" coords="493,5,709,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="724,36,833,54,945,81,1013,109,1073,141,1067,140,1011,113,943,87,832,59,725,41"/>
+<area shape="rect" id="Node000003" href="$de/dbe/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_academic_period_persistence_port.html" title="Persistence port for managing academic period data." alt="" coords="493,72,709,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="724,107,970,143,965,144,724,113"/>
+<area shape="rect" id="Node000004" href="$dc/dde/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_cron_job_execution_log_service_port.html" title="Service port interface that defines the contract for cron job execution log management operations." alt="" coords="5,176,227,219"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="242,179,250,179,445,168,640,162,970,161,965,162,640,167,445,173,251,184,243,185"/>
+<area shape="rect" id="Node000006" href="$d0/d11/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1util_1_1_cron_job_log_file_service.html" title="Service for generating text file reports of cron job executions." alt="" coords="476,211,726,253"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="242,204,477,221,473,225,242,209"/>
+<area shape="rect" id="Node000005" href="$d1/d76/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1util_1_1_cron_job_log_context_service.html" title="Service for creating and managing cron job execution log contexts." alt="" coords="476,277,726,320"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="741,291,842,278,893,268,943,253,981,238,1017,220,1076,185,1081,184,1019,224,983,243,945,259,895,273,843,284,742,296"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="742,224,841,216,944,203,1032,185,1038,184,944,208,842,221,742,229"/>
+</map>

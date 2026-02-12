@@ -1,0 +1,28 @@
+var interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port =
+[
+    [ "addDiriUser", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a859b81ca04b4d71d363a9eb6ce605084", null ],
+    [ "deleteById", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a114e18b3328ef7f568ad77b5fa64659e", null ],
+    [ "deleteDiriUser", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a4bea2eeb03fbd9fd6fec92292b8440f5", null ],
+    [ "findAll", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#ab9442b2a67a69f4f09d459fc48bbafb5", null ],
+    [ "findAllCountries", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a9f58df29849359c9f6d98be311ec1fab", null ],
+    [ "findAllDiriUsers", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#afc270035698520d6f996da24bdfc958d", null ],
+    [ "findAllExternalUsersRegistered", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a1d9fb4f813d279c29e0168fc57223609", null ],
+    [ "findAllFunctionariesRegistered", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a6102585462718cf599c5fa277eef149f", null ],
+    [ "findAllInternalUsersRegistered", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a5c512e56e50464dab87f497935b32cbd", null ],
+    [ "findAllStudentsRegistered", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a62ce29932d479f4db37ede336b21bcec", null ],
+    [ "findByEmail", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a672858fb1bd789969158dec4e11dc424", null ],
+    [ "findById", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a2f7bfa0504c686c38413e0b85015d43e", null ],
+    [ "findByUserIdentification", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a1cb4fa2c430560ea26491b348515a157", null ],
+    [ "findInvestigationGroupCoordinatorsByAcademicPeriodId", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a7d903e67182b1ebcddc0673cfd77859d", null ],
+    [ "findUserByIdentification", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a2d39c912916fa3fcbf82f41552c5ab04", null ],
+    [ "generateByteStudentSeedbedCertificate", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#aabbaf2a347f9329f040c647be6a05dcf", null ],
+    [ "generateStudentSeedbedCertificate", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a69b0e56262bb0b280c8cb94eab9105cd", null ],
+    [ "getStudentParticipationsInSeedbedCertificates", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a1462dd47a945cd4ad2d5d72baed67bd3", null ],
+    [ "getUserByIntegraFunctionary", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a68eabbc67b09181f0aebe45325144850", null ],
+    [ "getUserByIntegraStudent", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#ae3f77dc700f606dc27c34250582ce9b1", null ],
+    [ "getUserListByListOfStudentMaps", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#af090ac9524d4dbc388b6c1f836865335", null ],
+    [ "mapFromIntegraFunctionary", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#aecaed4eb298b8b74151e3d8db13cd02e", null ],
+    [ "mapFromIntegraStudent", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a0f4669bcdff3c211fbff6e4564bdd03a", null ],
+    [ "save", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#af8af0839e9705f6ecddc142e172de0e0", null ],
+    [ "update", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html#a9060b9c97eefd0d9c1c63a44746f7ea1", null ]
+];

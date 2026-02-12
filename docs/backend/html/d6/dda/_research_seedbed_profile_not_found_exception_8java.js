@@ -1,0 +1,4 @@
+var _research_seedbed_profile_not_found_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileNotFoundException", "dd/d01/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedprofile_1_1_research_seedbed_profile_not_found_exception.html", "dd/d01/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedprofile_1_1_research_seedbed_profile_not_found_exception" ]
+];

@@ -1,0 +1,4 @@
+var _external_user_profile_entity_mapper_impl_8java =
+[
+    [ "com.unibague.magno.infrastructure.output.jpa.mapper.ExternalUserProfileEntityMapperImpl", "d1/d2b/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_external_user_profile_entity_mapper_impl.html", "d1/d2b/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_external_user_profile_entity_mapper_impl" ]
+];

@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.infrastructure.util.excel.UploadService" name="com.unibague.magno.infrastructure.util.excel.UploadService">
+<area shape="rect" id="Node000001" title="Service for processing Excel file uploads." alt="" coords="5,120,291,163"/>
+<area shape="rect" id="Node000002" href="$df/ded/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1util_1_1excel_1_1_upload_util.html" title="Utility component for Excel file processing operations." alt="" coords="5,5,291,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,62,150,121,146,119,146,65"/>
+</map>

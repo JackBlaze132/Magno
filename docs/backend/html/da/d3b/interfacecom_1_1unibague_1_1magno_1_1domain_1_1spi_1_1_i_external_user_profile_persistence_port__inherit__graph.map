@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.spi.IExternalUserProfilePersistencePort" name="com.unibague.magno.domain.spi.IExternalUserProfilePersistencePort">
+<area shape="rect" id="Node000001" title="Persistence port for managing external user profile data." alt="" coords="5,5,237,48"/>
+<area shape="rect" id="Node000002" href="$de/d01/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_external_user_profile_jpa_adapter.html" title="JPA implementation of IExternalUserProfilePersistencePort for managing external user profile persiste..." alt="" coords="285,5,622,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="252,24,287,27,282,27,252,29"/>
+</map>

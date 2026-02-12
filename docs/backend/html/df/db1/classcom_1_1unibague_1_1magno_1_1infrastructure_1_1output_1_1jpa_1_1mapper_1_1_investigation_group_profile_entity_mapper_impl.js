@@ -1,0 +1,8 @@
+var classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_investigation_group_profile_entity_mapper_impl =
+[
+    [ "toInvestigationGroupProfile", "df/db1/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_investigation_group_profile_entity_mapper_impl.html#ac79b076f5500aab356cb160df395b024", null ],
+    [ "toInvestigationGroupProfileEntity", "df/db1/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_investigation_group_profile_entity_mapper_impl.html#a06d42234e0ac9a7f29485da4a71f7b33", null ],
+    [ "toInvestigationGroupProfileEntity", "df/db1/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_investigation_group_profile_entity_mapper_impl.html#a58011679a74bbdde381e71fd71e074bf", null ],
+    [ "toInvestigationGroupProfileList", "df/db1/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_investigation_group_profile_entity_mapper_impl.html#a6eadf3ef48cb459b39392917743d70dd", null ],
+    [ "functionaryProfileRepository", "df/db1/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_investigation_group_profile_entity_mapper_impl.html#a32a69134d23b902434be08162d2e0f0d", null ]
+];

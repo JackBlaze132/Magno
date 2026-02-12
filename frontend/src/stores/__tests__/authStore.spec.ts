@@ -14,6 +14,7 @@ vi.mock('@/utils/api', () => ({
     GOOGLE_DATA: 'auth/google/data',
     ACTIVE_ACADEMIC_PERIOD: 'periods/active',
     ACADEMIC_PERIODS: 'periods',
+    NOT_VISIBLE_ACADEMIC_PERIODS: 'periods/not-visible',
     STUDENT_PROFILES_ASSIGNED: 'profiles/student/',
     FUNCTIONARY_PROFILES_ASSIGNED: 'profiles/functionary/',
     USERS_PROFILES: 'users/profiles',
@@ -319,13 +320,13 @@ describe('Auth Store', () => {
       const mockPeriods = [
         { id: 1, name: 'Period 1', is_visible: true },
         { id: 2, name: 'Period 2', is_visible: false },
-        { id: 3, name: 'Period 3', isVisible: false }
+        { id: 3, name: 'Period 3', is_visible: false }
       ]
       vi.mocked(API.get).mockResolvedValue(mockPeriods)
 
       await store.fetchHiddenPeriods()
 
-      expect(API.get).toHaveBeenCalledWith(API.ACADEMIC_PERIODS, { 'API-VERSION': '1' })
+      expect(API.get).toHaveBeenCalledWith(API.NOT_VISIBLE_ACADEMIC_PERIODS, { 'API-VERSION': '1' })
       expect(store.hiddenAcademicPeriods).toEqual([2, 3])
     })
 

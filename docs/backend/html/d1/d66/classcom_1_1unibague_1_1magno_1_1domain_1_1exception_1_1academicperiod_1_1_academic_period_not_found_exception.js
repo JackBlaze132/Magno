@@ -1,0 +1,5 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicperiod_1_1_academic_period_not_found_exception =
+[
+    [ "AcademicPeriodNotFoundException", "d1/d66/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicperiod_1_1_academic_period_not_found_exception.html#ac46fb1f86df6cb6b7cec2117aa9efb32", null ],
+    [ "AcademicPeriodNotFoundException", "d1/d66/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicperiod_1_1_academic_period_not_found_exception.html#a08d41258411017b86d3f0f945600b4e1", null ]
+];

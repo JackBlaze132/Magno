@@ -1,0 +1,4 @@
+var interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_research_seedbed_request_mapper =
+[
+    [ "toResearchSeedbed", "d4/d30/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_research_seedbed_request_mapper.html#a1a4d63e673c7e8808fe9294c514d505f", null ]
+];

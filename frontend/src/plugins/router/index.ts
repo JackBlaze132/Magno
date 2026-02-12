@@ -1,15 +1,34 @@
+/**
+ * Router initialization and configuration.
+ * Sets up navigation guards for authentication, role-based access control,
+ * and dynamic breadcrumb/parameter validation.
+ */
+
 import type { App } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { routes } from './routes'
 import { paths as P } from './paths'
 import { useAuthStore } from '@/stores/authStore'
 
+/**
+ * Vue Router instance configured with web history and the defined application routes.
+ */
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes
 })
 
-// Navigation guard for authentication
+/**
+ * Global navigation guard for authentication and authorization.
+ *
+ * Logic flow:
+ * 1. Allow access to public routes (like login).
+ * 2. For protected routes, ensure authentication is initialized.
+ * 3. Verify user is authenticated.
+ * 4. Check for required roles (if applicable).
+ * 5. Check for specific permissions (if applicable).
+ * 6. Validate business rules (e.g., academic period visibility).
+ */
 router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore()
 

@@ -1,0 +1,7 @@
+var namespacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1excel_1_1projections =
+[
+    [ "ActiveSeedbedsProjection", "de/db4/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1excel_1_1projections_1_1_active_seedbeds_projection.html", "de/db4/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1excel_1_1projections_1_1_active_seedbeds_projection" ],
+    [ "InvestigationGroupHYRProjection", "d9/d24/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1excel_1_1projections_1_1_investigation_group_h_y_r_projection.html", "d9/d24/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1excel_1_1projections_1_1_investigation_group_h_y_r_projection" ],
+    [ "InvestigationGroupYRProjection", "dd/d7a/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1excel_1_1projections_1_1_investigation_group_y_r_projection.html", "dd/d7a/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1excel_1_1projections_1_1_investigation_group_y_r_projection" ],
+    [ "SeedbedReportProjection", "d0/d77/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1excel_1_1projections_1_1_seedbed_report_projection.html", "d0/d77/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1excel_1_1projections_1_1_seedbed_report_projection" ]
+];

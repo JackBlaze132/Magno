@@ -1,5 +1,10 @@
-import type { IconAliases, IconProps } from 'vuetify'
+/**
+ * Icon configuration for Vuetify.
+ * Maps Material Design Icons (MDI) and Remix Icons (RI) to Vuetify's internal aliases
+ * and handles custom SVG icons (checkboxes, logos, etc.).
+ */
 
+import type { IconAliases, IconProps } from 'vuetify'
 import checkboxChecked from '@/assets/images/svg/checkbox-checked.svg'
 import checkboxIndeterminate from '@/assets/images/svg/checkbox-indeterminate.svg'
 import checkboxUnchecked from '@/assets/images/svg/checkbox-unchecked.svg'
@@ -7,11 +12,12 @@ import radioChecked from '@images/svg/radio-checked.svg'
 import radioUnchecked from '@images/svg/radio-unchecked.svg'
 import calendarStart from '@/assets/images/svg/calendar-start.svg'
 import calendarEnd from '@/assets/images/svg/calendar-end.svg'
-import magnoLogo from '@/assets/images/logos/magno.svg'
+import magnoLogo from '@/assets/images/logos/magno-dark.svg'
 import { h } from 'vue'
 
-
-
+/**
+ * Registry of custom SVG components mapped to icon name strings.
+ */
 const customIcons: Record<string, unknown> = {
   'mdi-checkbox-blank-outline': checkboxUnchecked,
   'mdi-checkbox-marked': checkboxChecked,
@@ -23,6 +29,9 @@ const customIcons: Record<string, unknown> = {
   'ri-app-logo': magnoLogo
 }
 
+/**
+ * Maps standard Vuetify icon names (info, success, etc.) to specific Remix Icon classes.
+ */
 const aliases: Partial<IconAliases> = {
   info: 'ri-error-warning-line',
   success: 'ri-checkbox-circle-line',
@@ -58,8 +67,16 @@ const aliases: Partial<IconAliases> = {
   sortDesc: 'ri-arrow-down-line',
 }
 
-
+/**
+ * Custom icon set implementation that uses Iconify-style class names.
+ * Intercepts custom SVG icons before falling back to class-based rendering.
+ */
 export const iconify = {
+  /**
+   * Render function for icons.
+   * @param {IconProps} props - Properties passed to the icon component.
+   * @returns {VNode} The rendered icon.
+   */
   component: (props: IconProps) => {
     // Load custom SVG directly instead of going through icon component
     if (typeof props.icon === 'string') {
@@ -85,6 +102,9 @@ export const iconify = {
   },
 }
 
+/**
+ * Vuetify icon configuration object.
+ */
 export const icons = {
   defaultSet: 'iconify',
   aliases,

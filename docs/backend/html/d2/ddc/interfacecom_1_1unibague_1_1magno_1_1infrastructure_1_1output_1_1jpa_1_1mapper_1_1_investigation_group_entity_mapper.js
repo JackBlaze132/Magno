@@ -1,0 +1,7 @@
+var interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_investigation_group_entity_mapper =
+[
+    [ "toInvestigationGroup", "d2/ddc/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_investigation_group_entity_mapper.html#a95fdbdd0d5f54079ce6f8ebaf976653a", null ],
+    [ "toInvestigationGroupEntity", "d2/ddc/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_investigation_group_entity_mapper.html#a614829578abed6015f5468c350660c3c", null ],
+    [ "toInvestigationGroupEntity", "d2/ddc/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_investigation_group_entity_mapper.html#a447b54158d8049a9384dd10473ed7279", null ],
+    [ "toInvestigationGroupList", "d2/ddc/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_investigation_group_entity_mapper.html#ad5a888943f8d07c52e08d0dfa8c34234", null ]
+];

@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.application.mapper.request.impl.AcademicPeriodRequestMapperImpl" name="com.unibague.magno.application.mapper.request.impl.AcademicPeriodRequestMapperImpl">
+<area shape="rect" id="Node000001" title="Implementation of AcademicPeriodRequestMapper." alt="" coords="5,96,343,139"/>
+<area shape="rect" id="Node000002" href="$de/d45/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_academic_period_request_mapper.html" title="Mapper interface for converting academic period request DTOs to domain models." alt="" coords="19,5,329,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,62,176,97,172,94,172,66"/>
+</map>

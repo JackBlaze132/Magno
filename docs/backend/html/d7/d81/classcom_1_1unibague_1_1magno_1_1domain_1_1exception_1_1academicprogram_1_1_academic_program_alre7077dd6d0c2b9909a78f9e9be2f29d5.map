@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.exception.academicprogram.AcademicProgramAlreadyExistsException" name="com.unibague.magno.domain.exception.academicprogram.AcademicProgramAlreadyExistsException">
+<area shape="rect" id="Node000001" title="Exception thrown when attempting to create an academic program that already exists in the system." alt="" coords="5,80,368,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="122,5,251,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,46,189,81,184,78,185,50"/>
+</map>

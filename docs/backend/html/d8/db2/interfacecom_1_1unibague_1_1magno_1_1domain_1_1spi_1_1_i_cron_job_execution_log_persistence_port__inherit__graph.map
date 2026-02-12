@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.spi.ICronJobExecutionLogPersistencePort" name="com.unibague.magno.domain.spi.ICronJobExecutionLogPersistencePort">
+<area shape="rect" id="Node000001" title="Persistence port for managing cron job execution log data." alt="" coords="5,5,252,48"/>
+<area shape="rect" id="Node000002" href="$dd/df8/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_cron_job_execution_log_jpa_adapter.html" title="JPA implementation of ICronJobExecutionLogPersistencePort for managing cron job execution logs." alt="" coords="300,5,637,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="267,24,302,27,297,27,267,29"/>
+</map>

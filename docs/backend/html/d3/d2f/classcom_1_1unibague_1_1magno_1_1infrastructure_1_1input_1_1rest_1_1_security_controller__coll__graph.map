@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.infrastructure.input.rest.SecurityController" name="com.unibague.magno.infrastructure.input.rest.SecurityController">
+<area shape="rect" id="Node000001" title="REST controller for security&#45;related operations in Magno." alt="" coords="40,120,327,163"/>
+<area shape="rect" id="Node000002" href="$d2/de4/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_security_service.html" title="Service for extracting authenticated user information from the security context." alt="" coords="5,5,362,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,62,186,121,181,118,182,65"/>
+</map>

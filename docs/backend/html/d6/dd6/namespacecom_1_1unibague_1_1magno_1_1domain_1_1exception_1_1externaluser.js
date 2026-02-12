@@ -1,0 +1,5 @@
+var namespacecom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1externaluser =
+[
+    [ "ExternalUserProfileNotFoundException", "d7/d5a/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1externaluser_1_1_external_user_profile_not_found_exception.html", "d7/d5a/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1externaluser_1_1_external_user_profile_not_found_exception" ],
+    [ "UserIsNotExternalException", "d6/d13/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1externaluser_1_1_user_is_not_external_exception.html", "d6/d13/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1externaluser_1_1_user_is_not_external_exception" ]
+];

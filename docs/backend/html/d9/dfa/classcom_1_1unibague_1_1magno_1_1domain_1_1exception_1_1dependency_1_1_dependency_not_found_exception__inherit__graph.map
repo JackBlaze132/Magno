@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.exception.dependency.DependencyNotFoundException" name="com.unibague.magno.domain.exception.dependency.DependencyNotFoundException">
+<area shape="rect" id="Node000001" title="Exception thrown when a dependency cannot be found in the system." alt="" coords="5,80,334,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="105,5,234,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,46,172,81,167,79,168,50"/>
+</map>

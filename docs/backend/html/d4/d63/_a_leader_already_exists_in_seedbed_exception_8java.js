@@ -1,0 +1,4 @@
+var _a_leader_already_exists_in_seedbed_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.researchseedbedstudentprofile.ALeaderAlreadyExistsInSeedbedException", "d9/d98/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedstudentprofile_1_1_a_lead83053be80974da911ea3f5029b2bea94.html", "d9/d98/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedstudentprofile_1_1_a_lead83053be80974da911ea3f5029b2bea94" ]
+];

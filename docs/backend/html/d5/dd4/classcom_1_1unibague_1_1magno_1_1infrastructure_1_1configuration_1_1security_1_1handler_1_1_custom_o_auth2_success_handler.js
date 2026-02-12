@@ -1,0 +1,6 @@
+var classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1handler_1_1_custom_o_auth2_success_handler =
+[
+    [ "onAuthenticationSuccess", "d5/dd4/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1handler_1_1_custom_o_auth2_success_handler.html#ac9a2c3de251d49298ef0d5de93c9be28", null ],
+    [ "authorizedClientService", "d5/dd4/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1handler_1_1_custom_o_auth2_success_handler.html#a2f030692c439b8a672156487cbbaea30", null ],
+    [ "successRedirectUrl", "d5/dd4/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1handler_1_1_custom_o_auth2_success_handler.html#ad9d5894f7cf2aa35aed21cc3d0160768", null ]
+];

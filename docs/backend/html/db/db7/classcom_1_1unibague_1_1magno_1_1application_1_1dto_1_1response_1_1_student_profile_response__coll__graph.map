@@ -1,0 +1,13 @@
+<map id="com.unibague.magno.application.dto.response.StudentProfileResponse" name="com.unibague.magno.application.dto.response.StudentProfileResponse">
+<area shape="rect" id="Node000001" title="Response DTO containing student profile information." alt="" coords="915,93,1209,136"/>
+<area shape="rect" id="Node000002" href="$de/d7f/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1response_1_1_user_response.html" title="Response DTO containing user information." alt="" coords="472,27,766,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="781,67,891,83,939,93,934,93,891,88,781,72"/>
+<area shape="rect" id="Node000003" href="$d1/d9c/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_sex.html" title="Enum representing biological sex values used in the system." alt="" coords="5,5,306,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="321,26,474,38,469,40,321,32"/>
+<area shape="rect" id="Node000004" href="$d1/df0/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_type_of_internal_user.html" title="Enum representing internal user types." alt="" coords="17,56,294,99"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="309,71,447,64,474,64,469,65,448,69,310,76"/>
+<area shape="rect" id="Node000005" href="$d1/d15/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1response_1_1_academic_period_response.html" title="Response DTO containing academic period information." alt="" coords="472,93,766,136"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="781,112,917,114,912,115,782,117"/>
+<area shape="rect" id="Node000006" href="$d1/d0d/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1response_1_1_role_response.html" title="Response DTO containing role information." alt="" coords="472,160,766,203"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="781,157,891,141,934,137,939,136,891,147,782,163"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="com.unibague.magno.domain.usecase.AcademicProgramUseCase" name="com.unibague.magno.domain.usecase.AcademicProgramUseCase">
+<area shape="rect" id="Node000001" title="Use case implementation for managing academic programs." alt="" coords="519,72,767,115"/>
+<area shape="rect" id="Node000002" href="$da/d66/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_academic_program_service_port.html" title="Service port interface that defines the contract for academic program management operations." alt="" coords="27,5,243,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="258,34,374,46,495,61,540,71,535,72,494,67,373,51,259,39"/>
+<area shape="rect" id="Node000003" href="$d5/d1b/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_academic_program_persistence_port.html" title="Persistence port for managing academic program data." alt="" coords="22,72,248,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="263,91,520,91,516,95,263,96"/>
+<area shape="rect" id="Node000004" href="$d4/d0e/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1integra_1_1_i_integra_service_port.html" title="Service port interface that defines the contract for Integra external system integration operations." alt="" coords="5,139,265,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="280,145,494,120,535,116,540,115,495,125,281,151"/>
+</map>

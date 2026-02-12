@@ -1,0 +1,4 @@
+var _functionary_profile_request_mapper_impl_8java =
+[
+    [ "com.unibague.magno.application.mapper.request.impl.FunctionaryProfileRequestMapperImpl", "d0/d9a/classcom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1impl_1_1_functionary_profile_request_mapper_impl.html", "d0/d9a/classcom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1impl_1_1_functionary_profile_request_mapper_impl" ]
+];

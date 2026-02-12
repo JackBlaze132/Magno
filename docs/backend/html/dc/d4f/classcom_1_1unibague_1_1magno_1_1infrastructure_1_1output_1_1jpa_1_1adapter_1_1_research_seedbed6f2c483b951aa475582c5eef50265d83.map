@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.adapter.ResearchSeedbedProfileJpaAdapter" name="com.unibague.magno.infrastructure.output.jpa.adapter.ResearchSeedbedProfileJpaAdapter">
+<area shape="rect" id="Node000001" title="JPA implementation of IResearchSeedbedProfilePersistencePort for managing research seedbed profile pe..." alt="" coords="5,96,343,139"/>
+<area shape="rect" id="Node000002" href="$d8/d2e/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_research_seedbed_profile_persistence_port.html" title="Persistence port for managing research seedbed profile data." alt="" coords="43,5,305,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,62,176,97,172,94,172,66"/>
+</map>

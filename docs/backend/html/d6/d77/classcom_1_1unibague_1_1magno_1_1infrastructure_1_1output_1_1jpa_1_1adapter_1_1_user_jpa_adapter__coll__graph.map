@@ -1,0 +1,15 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.adapter.UserJpaAdapter" name="com.unibague.magno.infrastructure.output.jpa.adapter.UserJpaAdapter">
+<area shape="rect" id="Node000001" title="JPA implementation of IUserPersistencePort for managing user persistence." alt="" coords="754,139,1092,181"/>
+<area shape="rect" id="Node000002" href="$df/dfe/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_user_persistence_port.html" title="Persistence port for managing user data." alt="" coords="304,5,520,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="536,42,632,60,731,84,806,109,874,138,869,138,804,114,730,89,631,65,536,47"/>
+<area shape="rect" id="Node000003" href="$de/d13/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_user_repository.html" title="Spring Data JPA repository for UserEntity." alt="" coords="237,72,587,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="603,112,731,128,785,138,780,138,730,133,603,117"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,72,188,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="202,91,239,92,234,95,204,96"/>
+<area shape="rect" id="Node000005" href="$df/d8a/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_user_entity_mapper.html" title="Mapper interface for converting between User domain model and UserEntity JPA entity." alt="" coords="244,139,581,181"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="596,157,757,160,751,160,597,163"/>
+<area shape="rect" id="Node000006" href="$d2/d77/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1util_1_1certificates_1_1_html_render_service.html" title="Service for rendering HTML content using Thymeleaf templates." alt="" coords="253,205,571,248"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="587,205,730,187,785,182,780,182,731,192,587,210"/>
+<area shape="rect" id="Node000007" href="$db/de8/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1util_1_1certificates_1_1_pdf_service.html" title="Service for PDF generation and date formatting utilities." alt="" coords="253,272,571,315"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="573,266,652,250,730,231,804,206,869,183,874,181,806,211,731,236,653,255,574,271"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="com.unibague.magno.domain.usecase.ActionLogUseCase" name="com.unibague.magno.domain.usecase.ActionLogUseCase">
+<area shape="rect" id="Node000001" title="Use case implementation for managing action logs." alt="" coords="427,39,675,81"/>
+<area shape="rect" id="Node000002" href="$d0/d64/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_action_log_service_port.html" title="Service port interface that defines the contract for action log management operations." alt="" coords="5,5,222,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="237,33,429,49,424,52,237,39"/>
+<area shape="rect" id="Node000003" href="$de/db0/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_action_log_persistence_port.html" title="Persistence port for managing action log data." alt="" coords="5,72,222,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="237,86,402,75,424,75,429,75,403,80,237,91"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="com.unibague.magno.domain.usecase.EnumUseCase" name="com.unibague.magno.domain.usecase.EnumUseCase">
+<area shape="rect" id="Node000001" title="Use case implementation for enum&#45;related operations." alt="" coords="454,72,702,115"/>
+<area shape="rect" id="Node000002" href="$da/d85/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_enum_service_port.html" title="Service port interface that defines the contract for enum&#45;related operations." alt="" coords="5,5,222,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="237,36,430,61,475,71,469,72,429,67,237,42"/>
+<area shape="rect" id="Node000003" href="$d3/dd0/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_investigation_group_service_port.html" title="Service port interface that defines the contract for investigation group management operations." alt="" coords="5,72,222,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="237,91,455,92,451,95,237,96"/>
+<area shape="rect" id="Node000004" href="$d1/d9d/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_research_seedbed_service_port.html" title="Service port interface that defines the contract for research seedbed management operations." alt="" coords="5,139,222,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="237,145,429,120,469,116,475,115,430,125,238,150"/>
+</map>

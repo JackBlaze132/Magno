@@ -1,0 +1,4 @@
+var _i_cron_job_execution_log_repository_8java =
+[
+    [ "com.unibague.magno.infrastructure.output.jpa.repository.ICronJobExecutionLogRepository", "d0/d11/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_cron_job_execution_log_repository.html", "d0/d11/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_cron_job_execution_log_repository" ]
+];

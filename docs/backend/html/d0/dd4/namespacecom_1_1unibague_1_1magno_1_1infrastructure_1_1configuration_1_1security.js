@@ -1,0 +1,14 @@
+var namespacecom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security =
+[
+    [ "handler", "d7/dae/namespacecom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1handler.html", "d7/dae/namespacecom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1handler" ],
+    [ "CustomOidcUserService", "dc/d69/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_custom_oidc_user_service.html", "dc/d69/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_custom_oidc_user_service" ],
+    [ "CustomOidcUserWithUserId", "d0/df2/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_custom_oidc_user_with_user_id.html", "d0/df2/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_custom_oidc_user_with_user_id" ],
+    [ "CustomPrincipalWithUserId", "d3/d8b/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_custom_principal_with_user_id.html", "d3/d8b/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_custom_principal_with_user_id" ],
+    [ "DevTokenPrincipal", "d6/d9a/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_dev_token_principal.html", "d6/d9a/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_dev_token_principal" ],
+    [ "GoogleIdTokenAuthenticationFilter", "d5/d48/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_google_id_token_authentication_filter.html", "d5/d48/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_google_id_token_authentication_filter" ],
+    [ "JwtService", "d6/d52/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_jwt_service.html", "d6/d52/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_jwt_service" ],
+    [ "MethodSecurityConfig", "db/dae/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_method_security_config.html", null ],
+    [ "ResearchSeedbedProfileAuthorizationService", "d9/d6c/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_research_seedbed_profile_authorization_service.html", "d9/d6c/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_research_seedbed_profile_authorization_service" ],
+    [ "SecurityConfig", "d9/d8a/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_security_config.html", "d9/d8a/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_security_config" ],
+    [ "SecurityService", "d2/de4/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_security_service.html", "d2/de4/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_security_service" ]
+];

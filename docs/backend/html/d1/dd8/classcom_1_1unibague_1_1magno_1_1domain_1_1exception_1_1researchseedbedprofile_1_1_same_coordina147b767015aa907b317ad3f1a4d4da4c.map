@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.exception.researchseedbedprofile.SameCoordinatorAndTutorException" name="com.unibague.magno.domain.exception.researchseedbedprofile.SameCoordinatorAndTutorException">
+<area shape="rect" id="Node000001" title="Exception thrown when attempting to assign the same person as both coordinator and tutor for a resear..." alt="" coords="5,80,399,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="138,5,266,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,46,204,81,200,78,200,50"/>
+</map>

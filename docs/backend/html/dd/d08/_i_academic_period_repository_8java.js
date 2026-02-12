@@ -1,0 +1,4 @@
+var _i_academic_period_repository_8java =
+[
+    [ "com.unibague.magno.infrastructure.output.jpa.repository.IAcademicPeriodRepository", "d7/d78/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_academic_period_repository.html", "d7/d78/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_academic_period_repository" ]
+];

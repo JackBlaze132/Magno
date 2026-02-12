@@ -1,0 +1,15 @@
+<map id="com.unibague.magno.domain.usecase.InvestigationGroupProfileUseCase" name="com.unibague.magno.domain.usecase.InvestigationGroupProfileUseCase">
+<area shape="rect" id="Node000001" title="Use case implementation for managing investigation group profiles." alt="" coords="518,168,766,211"/>
+<area shape="rect" id="Node000002" href="$d0/d08/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_investigation_group_profile_service_port.html" title="Service port interface that defines the contract for investigation group profile management operation..." alt="" coords="29,5,269,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="283,18,336,21,390,28,443,40,495,58,535,80,572,109,626,168,621,167,568,113,532,85,493,62,442,45,389,33,335,26,285,23"/>
+<area shape="rect" id="Node000003" href="$d3/d47/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_investigation_group_profile_persistence_port.html" title="Persistence port for managing investigation group profile data." alt="" coords="17,72,281,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="296,105,395,119,494,139,584,167,579,168,493,144,394,125,297,111"/>
+<area shape="rect" id="Node000004" href="$d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html" title="Service port interface that defines the contract for user management operations." alt="" coords="41,139,257,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="272,165,519,180,515,184,273,170"/>
+<area shape="rect" id="Node000005" href="$d7/dc7/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_functionary_profile_service_port.html" title="Service port interface that defines the contract for functionary profile management operations." alt="" coords="41,205,257,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="272,220,493,207,520,206,515,207,494,212,273,226"/>
+<area shape="rect" id="Node000006" href="$da/d1a/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_investigation_group_profile_helper.html" title="Helper interface for investigation group profile operations." alt="" coords="5,272,293,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="308,296,401,288,493,269,526,257,557,242,609,212,614,210,560,246,528,262,494,275,401,294,309,301"/>
+<area shape="rect" id="Node000007" href="$d9/d80/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_role_service_port.html" title="Service port interface that defines the contract for role management operations." alt="" coords="41,339,257,381"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="273,364,326,362,382,356,439,343,493,324,534,300,570,269,623,212,627,210,574,273,537,304,495,329,440,349,383,361,327,367,273,370"/>
+</map>

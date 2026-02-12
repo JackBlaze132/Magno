@@ -1,0 +1,17 @@
+<map id="src/main/java/com/unibague/magno/infrastructure/util/CronJobLogContextService.java" name="src/main/java/com/unibague/magno/infrastructure/util/CronJobLogContextService.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="690,5,904,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,240,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="690,53,255,114,255,109,690,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="263,120,478,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="693,60,442,119,441,113,687,60"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="502,112,711,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="743,64,662,107,660,102,738,65"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="735,120,859,147"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="799,62,799,106,795,103,795,66"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="884,120,1015,147"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="843,62,919,112,914,111,842,67"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1039,120,1206,147"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="894,62,1068,115,1063,115,894,67"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1230,120,1428,147"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="904,53,1247,117,1242,117,904,58"/>
+</map>

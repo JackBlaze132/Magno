@@ -1,0 +1,17 @@
+<map id="src/main/java/com/unibague/magno/infrastructure/output/jpa/mapper/ExternalUserProfileEntityMapperImpl.java" name="src/main/java/com/unibague/magno/infrastructure/output/jpa/mapper/ExternalUserProfileEntityMapperImpl.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1005,5,1245,80"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,128,240,171"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1002,54,672,85,256,130,255,125,671,80,1007,53"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="264,128,589,171"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1007,62,581,128,580,122,1002,62"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="613,128,938,171"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1007,80,860,126,859,121,1002,80"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="962,128,1288,171"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1127,78,1127,114,1123,111,1123,82"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="1312,128,1637,171"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1246,77,1394,123,1388,123,1245,83"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1661,128,1869,171"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1246,60,1649,127,1643,128,1246,66"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1893,136,1984,163"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1246,46,1378,55,1537,70,1710,93,1882,125,1895,131,1890,131,1881,131,1709,98,1537,75,1377,60,1246,52"/>
+</map>

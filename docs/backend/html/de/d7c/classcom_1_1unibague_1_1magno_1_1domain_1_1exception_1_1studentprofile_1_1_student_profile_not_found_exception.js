@@ -1,0 +1,5 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1studentprofile_1_1_student_profile_not_found_exception =
+[
+    [ "StudentProfileNotFoundException", "de/d7c/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1studentprofile_1_1_student_profile_not_found_exception.html#a1d2b8ecec020ad77f724c8923fb230e1", null ],
+    [ "StudentProfileNotFoundException", "de/d7c/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1studentprofile_1_1_student_profile_not_found_exception.html#a4addd3b34461701660c66322685057c2", null ]
+];

@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.application.handler.interfaces.IResearchSeedbedStudentProfileHandler" name="com.unibague.magno.application.handler.interfaces.IResearchSeedbedStudentProfileHandler">
+<area shape="rect" id="Node000001" title="Handler interface for research seedbed student profile operations." alt="" coords="5,5,328,48"/>
+<area shape="rect" id="Node000002" href="$d9/d35/classcom_1_1unibague_1_1magno_1_1application_1_1handler_1_1impl_1_1_research_seedbed_student_profile_handler.html" title="Implementation of IResearchSeedbedStudentProfileHandler." alt="" coords="22,96,311,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,62,169,97,164,94,165,66"/>
+</map>

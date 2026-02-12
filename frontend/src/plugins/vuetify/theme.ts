@@ -1,9 +1,21 @@
+/**
+ * Theme definitions for light and dark modes.
+ * Customizes colors to match Unibague's institutional branding (Magno Primary Color).
+ */
+
 import type { ThemeDefinition } from 'vuetify'
 
+/** Institutional primary blue color used for light theme */
 export const staticPrimaryColor = '#003e7c'
+/** Lighter primary blue used for readability in dark theme */
 export const staticPrimaryDarkenColor = '#008bd2'
 
+/**
+ * Collection of theme definitions for Vuetify.
+ * @type {Record<string, ThemeDefinition>}
+ */
 export const themes: Record<string, ThemeDefinition> = {
+  /** Light theme configuration with high contrast on background surfacing */
   light: {
     dark: false,
     colors: {

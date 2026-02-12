@@ -1,0 +1,5 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroup_1_1_investigation_group_not_found_exception =
+[
+    [ "InvestigationGroupNotFoundException", "d9/d97/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroup_1_1_investigation_group_not_found_exception.html#a406c32d91cb22c7678d2ce4367c26bdf", null ],
+    [ "InvestigationGroupNotFoundException", "d9/d97/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroup_1_1_investigation_group_not_found_exception.html#a4fb81d9165c87b87a033bbb45976e21a", null ]
+];

@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.exception.researchseedbedstudentprofile.StudentProfileAlreadyExistsInSeedbedException" name="com.unibague.magno.domain.exception.researchseedbedstudentprofile.StudentProfileAlreadyExistsInSeedbedException">
+<area shape="rect" id="Node000001" title="Exception thrown when attempting to add a student profile to a research seedbed where they are alread..." alt="" coords="5,80,442,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="159,5,288,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,46,226,81,221,78,222,50"/>
+</map>

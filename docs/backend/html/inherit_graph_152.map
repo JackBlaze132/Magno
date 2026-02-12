@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$da/df5/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_investigation_group_persistence_port.html" title="Persistence port for managing investigation group data." alt="" coords="5,5,233,48"/>
+<area shape="rect" id="Node000001" href="$d6/d14/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_investigation_group_jpa_adapter.html" title="JPA implementation of IInvestigationGroupPersistencePort for managing investigation group persistence..." alt="" coords="281,5,618,48"/>
+<area shape="poly" id="edge56_Node000000_Node000001" title=" " alt="" coords="248,24,283,27,278,27,249,29"/>
+</map>

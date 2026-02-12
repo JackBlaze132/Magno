@@ -1,0 +1,21 @@
+<map id="src/main/java/com/unibague/magno/application/dto/request/InvestigationGroupRequest.java" name="src/main/java/com/unibague/magno/application/dto/request/InvestigationGroupRequest.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1046,5,1258,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,216,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1043,42,689,69,463,89,231,114,231,109,462,84,688,64,1048,41"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="240,112,514,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1048,50,530,114,529,109,1043,47"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="538,112,816,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1049,57,794,111,793,106,1043,58"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="840,112,1032,155"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1090,64,997,108,996,103,1085,65"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="1056,112,1248,155"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1154,62,1154,98,1150,95,1150,66"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1271,120,1488,147"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1220,62,1339,114,1334,113,1219,67"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1512,120,1616,147"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1258,54,1376,79,1502,109,1514,115,1509,115,1500,115,1375,84,1258,59"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1639,120,1742,147"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1258,46,1433,71,1628,109,1642,115,1637,115,1627,115,1432,76,1258,51"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="1765,120,1856,147"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1258,40,1487,63,1621,83,1754,109,1766,115,1761,114,1753,115,1620,88,1487,68,1258,45"/>
+</map>

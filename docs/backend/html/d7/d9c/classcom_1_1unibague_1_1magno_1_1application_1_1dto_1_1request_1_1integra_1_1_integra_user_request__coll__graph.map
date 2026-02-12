@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.application.dto.request.integra.IntegraUserRequest" name="com.unibague.magno.application.dto.request.integra.IntegraUserRequest">
+<area shape="rect" id="Node000001" title="Request DTO for querying user information from the Integra system." alt="" coords="5,120,333,163"/>
+<area shape="rect" id="Node000002" href="$d2/da0/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_j_s_o_n_integra_type.html" title="Enum representing the types of users that can be created from Integra requests." alt="" coords="30,5,308,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,62,171,121,167,119,167,65"/>
+</map>

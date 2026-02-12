@@ -1,0 +1,17 @@
+<map id="src/main/java/com/unibague/magno/application/mapper/response/RoleResponseMapper.java" name="src/main/java/com/unibague/magno/application/mapper/response/RoleResponseMapper.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="740,5,979,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,300,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="739,55,315,113,315,107,739,50"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="323,120,584,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="742,64,522,118,521,113,737,65"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="609,120,757,147"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="809,64,720,115,719,110,804,65"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="782,120,936,147"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="861,62,861,106,857,103,857,66"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="960,120,1158,147"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="919,62,1022,113,1017,113,918,67"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1182,120,1273,147"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="980,60,1171,109,1181,115,1176,114,1169,115,979,65"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1297,120,1387,147"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="980,50,1127,74,1285,109,1297,115,1292,114,1284,115,1126,80,979,55"/>
+</map>

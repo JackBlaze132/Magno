@@ -1,0 +1,5 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroupprofile_1_1_investigatf41381d9eade48759c24d590deecd436 =
+[
+    [ "InvestigationGroupProfileNotFoundException", "d5/d79/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroupprofile_1_1_investigatf41381d9eade48759c24d590deecd436.html#adaf5f2d0c83b6be9755f2d448afe7309", null ],
+    [ "InvestigationGroupProfileNotFoundException", "d5/d79/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroupprofile_1_1_investigatf41381d9eade48759c24d590deecd436.html#acf3682b234633af22f42642d90fd5369", null ]
+];

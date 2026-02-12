@@ -1,0 +1,5 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1studentprofile_1_1_student_profile_already_exists_exception =
+[
+    [ "StudentProfileAlreadyExistsException", "db/dc0/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1studentprofile_1_1_student_profile_already_exists_exception.html#aaa9b2443d4605372980f22b9a21a4317", null ],
+    [ "StudentProfileAlreadyExistsException", "db/dc0/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1studentprofile_1_1_student_profile_already_exists_exception.html#adefe069f8c488d373ef2e879de807453", null ]
+];

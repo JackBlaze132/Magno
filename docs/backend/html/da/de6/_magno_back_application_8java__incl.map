@@ -1,0 +1,9 @@
+<map id="src/main/java/com/unibague/magno/MagnoBackApplication.java" name="src/main/java/com/unibague/magno/MagnoBackApplication.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="214,5,444,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,96,178,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="276,48,162,93,161,88,271,49"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="202,96,456,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="331,46,331,82,327,79,327,50"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="480,96,754,139"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="397,46,537,91,532,91,396,51"/>
+</map>

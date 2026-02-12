@@ -1,0 +1,4 @@
+var _investigation_group_profile_duplicated_in_same_academic_period_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileDuplicatedInSameAcademicPeriodException", "dd/df9/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroupprofile_1_1_investigat68a0ca318a0dfdf1d1c66a6eca96dae8.html", "dd/df9/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroupprofile_1_1_investigat68a0ca318a0dfdf1d1c66a6eca96dae8" ]
+];

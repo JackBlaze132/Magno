@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.application.dto.request.AcademicProgramRequest" name="com.unibague.magno.application.dto.request.AcademicProgramRequest">
+<area shape="rect" id="Node000001" title="Request DTO for creating or updating an academic program." alt="" coords="5,120,290,163"/>
+<area shape="rect" id="Node000002" href="$d0/dfa/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_academic_program_type.html" title="Enum representing the type of academic program." alt="" coords="9,5,286,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,62,150,121,145,119,146,65"/>
+</map>

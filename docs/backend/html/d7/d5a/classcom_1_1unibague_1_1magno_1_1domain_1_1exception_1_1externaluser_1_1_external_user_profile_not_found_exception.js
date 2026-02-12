@@ -1,0 +1,5 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1externaluser_1_1_external_user_profile_not_found_exception =
+[
+    [ "ExternalUserProfileNotFoundException", "d7/d5a/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1externaluser_1_1_external_user_profile_not_found_exception.html#ac5d7531b13373e7f24245f967e7eb269", null ],
+    [ "ExternalUserProfileNotFoundException", "d7/d5a/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1externaluser_1_1_external_user_profile_not_found_exception.html#a5aed3894dbbeff0d48fdd4d6a8a35a54", null ]
+];

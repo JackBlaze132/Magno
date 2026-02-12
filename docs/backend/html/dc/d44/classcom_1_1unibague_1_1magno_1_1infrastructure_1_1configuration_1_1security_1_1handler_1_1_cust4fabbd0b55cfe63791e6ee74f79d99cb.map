@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.infrastructure.configuration.security.handler.CustomLogoutSuccessHandler" name="com.unibague.magno.infrastructure.configuration.security.handler.CustomLogoutSuccessHandler">
+<area shape="rect" id="Node000001" title="Custom handler for successful logout operations." alt="" coords="5,80,408,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="128,5,285,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,46,209,81,204,78,205,50"/>
+</map>

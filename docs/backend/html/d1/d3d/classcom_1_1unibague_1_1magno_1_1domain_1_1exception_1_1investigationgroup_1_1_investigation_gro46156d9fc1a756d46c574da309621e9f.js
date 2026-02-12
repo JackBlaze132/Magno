@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroup_1_1_investigation_gro46156d9fc1a756d46c574da309621e9f =
+[
+    [ "InvestigationGroupHasAssociatedProfilesException", "d1/d3d/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroup_1_1_investigation_gro46156d9fc1a756d46c574da309621e9f.html#a0b41efd034d6d44cabd21e7f990fdf25", null ]
+];

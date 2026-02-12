@@ -1,0 +1,4 @@
+var _investigation_group_not_found_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupNotFoundException", "d9/d97/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroup_1_1_investigation_group_not_found_exception.html", "d9/d97/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroup_1_1_investigation_group_not_found_exception" ]
+];

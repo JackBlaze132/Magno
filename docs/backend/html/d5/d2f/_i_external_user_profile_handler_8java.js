@@ -1,0 +1,4 @@
+var _i_external_user_profile_handler_8java =
+[
+    [ "com.unibague.magno.application.handler.interfaces.IExternalUserProfileHandler", "d5/dbf/interfacecom_1_1unibague_1_1magno_1_1application_1_1handler_1_1interfaces_1_1_i_external_user_profile_handler.html", "d5/dbf/interfacecom_1_1unibague_1_1magno_1_1application_1_1handler_1_1interfaces_1_1_i_external_user_profile_handler" ]
+];

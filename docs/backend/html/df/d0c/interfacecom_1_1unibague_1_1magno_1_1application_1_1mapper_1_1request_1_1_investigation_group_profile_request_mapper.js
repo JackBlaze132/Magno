@@ -1,0 +1,4 @@
+var interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_investigation_group_profile_request_mapper =
+[
+    [ "toInvestigationGroupProfile", "df/d0c/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_investigation_group_profile_request_mapper.html#a6ee0938131250196332edc896f36ea13", null ]
+];

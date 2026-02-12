@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedstudentprofile_1_1_a_lead83053be80974da911ea3f5029b2bea94 =
+[
+    [ "ALeaderAlreadyExistsInSeedbedException", "d9/d98/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedstudentprofile_1_1_a_lead83053be80974da911ea3f5029b2bea94.html#abda873c38d04417cfa8bde739d0d8ec4", null ]
+];

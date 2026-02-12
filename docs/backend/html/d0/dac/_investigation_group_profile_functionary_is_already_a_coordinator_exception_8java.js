@@ -1,0 +1,4 @@
+var _investigation_group_profile_functionary_is_already_a_coordinator_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileFunctionaryIsAlreadyACoordinatorException", "d1/d68/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroupprofile_1_1_investigat4a6a16cb7cd8adad5b451152902241b1.html", "d1/d68/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroupprofile_1_1_investigat4a6a16cb7cd8adad5b451152902241b1" ]
+];

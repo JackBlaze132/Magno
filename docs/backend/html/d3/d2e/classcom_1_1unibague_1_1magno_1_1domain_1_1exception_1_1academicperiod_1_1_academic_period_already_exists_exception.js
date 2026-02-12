@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicperiod_1_1_academic_period_already_exists_exception =
+[
+    [ "AcademicPeriodAlreadyExistsException", "d3/d2e/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicperiod_1_1_academic_period_already_exists_exception.html#acc5634699f369986de438676a8e46251", null ]
+];

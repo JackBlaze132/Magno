@@ -1,0 +1,5 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_academic_program_not_found_exception =
+[
+    [ "IntegraAcademicProgramNotFoundException", "d2/d08/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_academic_program_not_found_exception.html#aac98dea0e78b50d156c0cc2e1aeaacda", null ],
+    [ "IntegraAcademicProgramNotFoundException", "d2/d08/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_academic_program_not_found_exception.html#aefab7e7d733913f4ec32c3118c67465a", null ]
+];

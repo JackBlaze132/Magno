@@ -1,0 +1,4 @@
+var interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_academic_program_request_mapper =
+[
+    [ "toAcademicProgram", "d8/ddf/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_academic_program_request_mapper.html#a94c8b57ec2608a949d5aaacf02034ed7", null ]
+];

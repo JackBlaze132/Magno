@@ -1,0 +1,4 @@
+var _google_id_token_authentication_filter_8java =
+[
+    [ "com.unibague.magno.infrastructure.configuration.security.GoogleIdTokenAuthenticationFilter", "d5/d48/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_google_id_token_authentication_filter.html", "d5/d48/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_google_id_token_authentication_filter" ]
+];

@@ -1,0 +1,15 @@
+<map id="com.unibague.magno.application.dto.response.FunctionaryProfileResponse" name="com.unibague.magno.application.dto.response.FunctionaryProfileResponse">
+<area shape="rect" id="Node000001" title="Response DTO containing functionary profile information." alt="" coords="915,127,1209,169"/>
+<area shape="rect" id="Node000002" href="$de/d7f/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1response_1_1_user_response.html" title="Response DTO containing user information." alt="" coords="472,27,766,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="767,70,892,96,994,126,988,126,890,101,767,75"/>
+<area shape="rect" id="Node000003" href="$d1/d9c/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_sex.html" title="Enum representing biological sex values used in the system." alt="" coords="5,5,306,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="320,26,473,37,469,40,321,32"/>
+<area shape="rect" id="Node000004" href="$d1/df0/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_type_of_internal_user.html" title="Enum representing internal user types." alt="" coords="17,56,294,99"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="309,71,447,64,474,64,469,65,448,69,310,76"/>
+<area shape="rect" id="Node000005" href="$d1/d15/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1response_1_1_academic_period_response.html" title="Response DTO containing academic period information." alt="" coords="472,93,766,136"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="781,124,917,137,912,137,782,130"/>
+<area shape="rect" id="Node000006" href="$d8/de8/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1response_1_1_dependency_response.html" title="Response DTO containing university dependency (faculty or department) information." alt="" coords="472,160,766,203"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="781,169,891,161,917,162,912,162,891,167,782,174"/>
+<area shape="rect" id="Node000007" href="$d1/d0d/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1response_1_1_role_response.html" title="Response DTO containing role information." alt="" coords="472,227,766,269"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="777,221,890,197,993,170,999,169,892,203,778,226"/>
+</map>

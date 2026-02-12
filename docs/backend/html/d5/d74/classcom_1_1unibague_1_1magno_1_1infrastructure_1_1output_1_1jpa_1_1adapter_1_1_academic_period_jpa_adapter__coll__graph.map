@@ -1,0 +1,11 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.adapter.AcademicPeriodJpaAdapter" name="com.unibague.magno.infrastructure.output.jpa.adapter.AcademicPeriodJpaAdapter">
+<area shape="rect" id="Node000001" title="JPA implementation of IAcademicPeriodPersistencePort for managing academic period persistence." alt="" coords="842,72,1180,115"/>
+<area shape="rect" id="Node000002" href="$de/dbe/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_academic_period_persistence_port.html" title="Persistence port for managing academic period data." alt="" coords="333,5,549,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="565,35,819,61,875,71,870,71,818,67,565,40"/>
+<area shape="rect" id="Node000003" href="$d7/d78/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_academic_period_repository.html" title="Spring Data JPA repository for AcademicPeriodEntity." alt="" coords="266,72,616,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="632,91,845,93,839,94,632,96"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,72,217,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="232,91,268,93,263,94,233,96"/>
+<area shape="rect" id="Node000005" href="$d6/de9/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_academic_period_entity_mapper.html" title="MapStruct mapper for converting between AcademicPeriod domain model and AcademicPeriodEntity JPA enti..." alt="" coords="272,139,610,181"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="625,141,818,120,870,116,875,115,819,125,625,146"/>
+</map>

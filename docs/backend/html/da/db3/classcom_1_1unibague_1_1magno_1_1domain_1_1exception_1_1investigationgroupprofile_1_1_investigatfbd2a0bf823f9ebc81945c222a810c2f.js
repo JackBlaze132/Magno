@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroupprofile_1_1_investigatfbd2a0bf823f9ebc81945c222a810c2f =
+[
+    [ "InvestigationGroupProfileHasResearchSeedbedProfilesException", "da/db3/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroupprofile_1_1_investigatfbd2a0bf823f9ebc81945c222a810c2f.html#a90cf72e7aadac56542a05a19ce22c1f5", null ]
+];

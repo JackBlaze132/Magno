@@ -1,0 +1,37 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.entity.ExternalUserProfileEntity" name="com.unibague.magno.infrastructure.output.jpa.entity.ExternalUserProfileEntity">
+<area shape="rect" id="Node000001" title="JPA entity representing the external_user_profiles table." alt="" coords="2481,96,2806,139"/>
+<area shape="rect" id="Node000002" href="$d9/d17/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_type_of_external_user.html" title="Enum representing external user types." alt="" coords="1986,5,2263,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2278,38,2367,49,2458,64,2574,95,2569,95,2456,69,2367,54,2278,43"/>
+<area shape="rect" id="Node000003" href="$dd/d9e/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1entity_1_1_user_entity.html" title="JPA entity representing the users table." alt="" coords="472,504,797,547"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="812,533,956,539,1107,541,2126,541,2173,538,2218,528,2262,512,2305,491,2345,465,2384,437,2454,372,2515,304,2565,238,2628,140,2633,138,2569,241,2519,307,2458,376,2387,441,2348,470,2307,495,2265,517,2220,533,2174,543,2126,547,1107,547,956,544,812,538"/>
+<area shape="rect" id="Node000010" href="$d8/d50/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1entity_1_1_functionary_profile_entity.html" title="JPA entity representing the functionary_profiles table." alt="" coords="946,407,1271,449"/>
+<area shape="poly" id="edge10_Node000010_Node000003" title=" " alt="" coords="756,498,998,450,1004,450,757,503"/>
+<area shape="rect" id="Node000004" href="$d1/d9c/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_sex.html" title="Enum representing biological sex values used in the system." alt="" coords="5,561,306,588"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="321,560,447,548,474,548,480,547,448,553,321,565"/>
+<area shape="rect" id="Node000005" href="$d1/df0/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_type_of_internal_user.html" title="Enum representing internal user types." alt="" coords="17,495,294,537"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="310,516,474,522,469,523,310,522"/>
+<area shape="rect" id="Node000006" href="$dc/d1b/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1entity_1_1_academic_period_entity.html" title="JPA entity representing the academic_periods table." alt="" coords="472,223,797,265"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="685,213,764,173,867,130,925,112,985,97,1046,86,1107,83,2126,83,2310,88,2483,102,2478,102,2310,93,2126,88,1107,88,1047,92,986,102,926,117,869,136,766,178,687,217"/>
+<area shape="rect" id="Node000007" href="$d2/d0a/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1entity_1_1_research_seedbed_profile_entity.html" title="JPA entity representing the research_seedbeds_profiles table." alt="" coords="1962,192,2287,235"/>
+<area shape="poly" id="edge20_Node000007_Node000006" title=" " alt="" coords="812,235,946,231,1504,219,1964,215,1959,216,1505,224,946,236,813,240"/>
+<area shape="poly" id="edge11_Node000010_Node000006" title=" " alt="" coords="707,269,810,311,923,362,947,375,1029,406,1023,406,945,380,921,366,808,316,707,274"/>
+<area shape="rect" id="Node000012" href="$da/dfd/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1entity_1_1_investigation_group_profile_entity.html" title="JPA entity representing the investigation_group_profiles table." alt="" coords="1435,297,1761,340"/>
+<area shape="poly" id="edge16_Node000012_Node000006" title=" " alt="" coords="812,252,1094,271,1412,296,1438,301,1432,301,1411,301,1094,276,813,257"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="2258,186,2521,140,2527,139,2259,191"/>
+<area shape="rect" id="Node000008" href="$d0/dd2/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1entity_1_1_research_seedbed_entity.html" title="JPA entity representing the research_seedbeds table." alt="" coords="1435,133,1761,176"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1776,172,1964,195,1959,195,1776,177"/>
+<area shape="rect" id="Node000009" href="$d0/d0b/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_line_of_research.html" title="Research lines associated with investigation groups and seedbeds." alt="" coords="970,133,1247,176"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="1262,152,1438,154,1432,155,1263,157"/>
+<area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="1287,440,1395,442,1515,438,1640,423,1701,411,1760,395,1857,358,1949,314,2029,269,2087,236,2092,234,2032,274,1952,319,1859,363,1761,400,1702,416,1640,428,1516,443,1395,448,1287,446"/>
+<area shape="poly" id="edge15_Node000012_Node000010" title=" " alt="" coords="1287,433,1350,428,1411,416,1455,401,1497,380,1565,341,1570,339,1500,385,1457,406,1412,421,1350,433,1287,439"/>
+<area shape="rect" id="Node000011" href="$d9/d8f/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1entity_1_1_dependency_entity.html" title="JPA entity representing the dependencies table." alt="" coords="472,353,797,396"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="812,389,922,401,948,407,943,407,922,407,812,395"/>
+<area shape="poly" id="edge19_Node000007_Node000012" title=" " alt="" coords="1739,291,1937,253,2029,236,2034,235,1938,259,1740,297"/>
+<area shape="poly" id="edge13_Node000010_Node000012" title=" " alt="" coords="1497,344,1412,367,1218,409,1217,403,1411,361,1492,345"/>
+<area shape="rect" id="Node000013" href="$d3/dec/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1entity_1_1_investigation_group_entity.html" title="JPA entity representing the investigation_groups table." alt="" coords="946,323,1271,365"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="1286,332,1437,327,1432,327,1287,337"/>
+<area shape="rect" id="Node000014" href="$db/d9e/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1entity_1_1_role_entity.html" title="JPA entity representing the roles table." alt="" coords="472,420,797,463"/>
+<area shape="poly" id="edge17_Node000010_Node000014" title=" " alt="" coords="812,434,948,432,943,433,813,439"/>
+<area shape="rect" id="Node000015" href="$db/d8a/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_seedbed_role.html" title="Enum representing roles available within research seedbeds." alt="" coords="17,420,294,463"/>
+<area shape="poly" id="edge18_Node000014_Node000015" title=" " alt="" coords="309,439,474,440,469,442,310,444"/>
+</map>

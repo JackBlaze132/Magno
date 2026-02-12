@@ -1,0 +1,9 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.mapper.InvestigationGroupProfileEntityMapperImpl" name="com.unibague.magno.infrastructure.output.jpa.mapper.InvestigationGroupProfileEntityMapperImpl">
+<area shape="rect" id="Node000001" title=" " alt="" coords="810,39,1148,81"/>
+<area shape="rect" id="Node000002" href="$d9/d25/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_investigation_group_profile_entity_mapper.html" title="Mapper interface for converting between InvestigationGroupProfile domain model and InvestigationGroup..." alt="" coords="246,5,584,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="600,35,812,50,807,50,600,40"/>
+<area shape="rect" id="Node000003" href="$d3/d45/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_functionary_profile_repository.html" title="Spring Data JPA repository for FunctionaryProfileEntity." alt="" coords="240,72,590,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="605,84,786,75,807,76,812,76,786,80,606,90"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,72,191,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="206,91,242,93,237,94,206,96"/>
+</map>

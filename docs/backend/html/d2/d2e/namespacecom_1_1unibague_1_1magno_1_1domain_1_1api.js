@@ -1,0 +1,22 @@
+var namespacecom_1_1unibague_1_1magno_1_1domain_1_1api =
+[
+    [ "cronjobs", "dc/d85/namespacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1cronjobs.html", "dc/d85/namespacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1cronjobs" ],
+    [ "integra", "d2/d7f/namespacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1integra.html", "d2/d7f/namespacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1integra" ],
+    [ "IAcademicPeriodServicePort", "d6/de6/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_academic_period_service_port.html", "d6/de6/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_academic_period_service_port" ],
+    [ "IAcademicProgramServicePort", "da/d66/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_academic_program_service_port.html", "da/d66/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_academic_program_service_port" ],
+    [ "IActionLogServicePort", "d0/d64/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_action_log_service_port.html", "d0/d64/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_action_log_service_port" ],
+    [ "ICronJobExecutionLogServicePort", "dc/dde/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_cron_job_execution_log_service_port.html", "dc/dde/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_cron_job_execution_log_service_port" ],
+    [ "IDependencyServicePort", "da/db3/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_dependency_service_port.html", "da/db3/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_dependency_service_port" ],
+    [ "IEnumServicePort", "da/d85/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_enum_service_port.html", "da/d85/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_enum_service_port" ],
+    [ "IErrorLogServicePort", "d0/d39/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_error_log_service_port.html", "d0/d39/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_error_log_service_port" ],
+    [ "IExternalUserProfileServicePort", "d6/d35/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_external_user_profile_service_port.html", "d6/d35/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_external_user_profile_service_port" ],
+    [ "IFunctionaryProfileServicePort", "d7/dc7/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_functionary_profile_service_port.html", "d7/dc7/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_functionary_profile_service_port" ],
+    [ "IInvestigationGroupProfileServicePort", "d0/d08/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_investigation_group_profile_service_port.html", "d0/d08/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_investigation_group_profile_service_port" ],
+    [ "IInvestigationGroupServicePort", "d3/dd0/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_investigation_group_service_port.html", "d3/dd0/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_investigation_group_service_port" ],
+    [ "IResearchSeedbedProfileServicePort", "d2/d9c/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_research_seedbed_profile_service_port.html", "d2/d9c/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_research_seedbed_profile_service_port" ],
+    [ "IResearchSeedbedServicePort", "d1/d9d/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_research_seedbed_service_port.html", "d1/d9d/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_research_seedbed_service_port" ],
+    [ "IResearchSeedbedStudentProfileServicePort", "dc/de9/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_research_seedbed_student_profile_service_port.html", "dc/de9/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_research_seedbed_student_profile_service_port" ],
+    [ "IRoleServicePort", "d9/d80/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_role_service_port.html", "d9/d80/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_role_service_port" ],
+    [ "IStudentProfileServicePort", "df/d5b/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_student_profile_service_port.html", "df/d5b/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_student_profile_service_port" ],
+    [ "IUserServicePort", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html", "d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port" ]
+];

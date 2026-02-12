@@ -1,0 +1,11 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.adapter.FunctionaryProfileJpaAdapter" name="com.unibague.magno.infrastructure.output.jpa.adapter.FunctionaryProfileJpaAdapter">
+<area shape="rect" id="Node000001" title="JPA implementation of IFunctionaryProfilePersistencePort for managing functionary profile persistence..." alt="" coords="810,67,1148,109"/>
+<area shape="rect" id="Node000002" href="$dc/dbe/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_functionary_profile_persistence_port.html" title="Persistence port for managing functionary profile data." alt="" coords="304,5,527,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="542,34,787,57,836,66,831,66,786,63,542,39"/>
+<area shape="rect" id="Node000003" href="$d3/d45/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_functionary_profile_repository.html" title="Spring Data JPA repository for FunctionaryProfileEntity." alt="" coords="240,72,590,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="606,89,813,89,807,90,606,94"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,72,191,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="206,91,242,93,237,94,207,96"/>
+<area shape="rect" id="Node000005" href="$df/dc6/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_functionary_profile_entity_mapper.html" title="Mapper interface for converting between FunctionaryProfile domain model and FunctionaryProfileEntity ..." alt="" coords="246,143,584,185"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="599,158,692,151,786,139,851,125,909,110,915,110,852,130,787,144,693,156,600,163"/>
+</map>

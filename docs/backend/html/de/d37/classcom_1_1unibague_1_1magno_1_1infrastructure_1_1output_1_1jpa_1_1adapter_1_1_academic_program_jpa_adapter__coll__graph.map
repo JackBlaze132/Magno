@@ -1,0 +1,13 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.adapter.AcademicProgramJpaAdapter" name="com.unibague.magno.infrastructure.output.jpa.adapter.AcademicProgramJpaAdapter">
+<area shape="rect" id="Node000001" title="JPA implementation of IAcademicProgramPersistencePort for managing academic program persistence." alt="" coords="866,105,1204,148"/>
+<area shape="rect" id="Node000002" href="$d5/d1b/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_academic_program_persistence_port.html" title="Persistence port for managing academic program data." alt="" coords="340,5,566,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="581,36,708,51,843,73,963,105,957,105,842,79,707,57,581,41"/>
+<area shape="rect" id="Node000003" href="$d9/d88/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_academic_program_repository.html" title="Spring Data JPA repository for AcademicProgramEntity." alt="" coords="278,72,628,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="644,102,868,117,863,117,644,107"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,72,229,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="244,91,280,92,275,94,245,96"/>
+<area shape="rect" id="Node000005" href="$dd/da7/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_academic_program_entity_mapper.html" title="Mapper interface for converting between AcademicProgram domain model and AcademicProgramEntity JPA en..." alt="" coords="284,139,622,181"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="637,152,842,141,868,142,863,143,842,147,637,157"/>
+<area shape="rect" id="Node000006" href="$d4/d0e/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1integra_1_1_i_integra_service_port.html" title="Service port interface that defines the contract for Integra external system integration operations." alt="" coords="324,205,583,248"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="598,214,717,200,842,180,907,164,966,149,971,148,909,169,843,185,718,206,598,219"/>
+</map>

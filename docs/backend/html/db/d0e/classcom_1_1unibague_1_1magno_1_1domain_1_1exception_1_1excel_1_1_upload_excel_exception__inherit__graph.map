@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.exception.excel.UploadExcelException" name="com.unibague.magno.domain.exception.excel.UploadExcelException">
+<area shape="rect" id="Node000001" title="Exception thrown when an error occurs during Excel file upload or processing." alt="" coords="5,80,296,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="86,5,215,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,46,153,81,148,79,149,50"/>
+</map>

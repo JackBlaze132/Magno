@@ -1,0 +1,37 @@
+<map id="src/main/java/com/unibague/magno/domain/usecase/cronjobs/CronJobUseCase.java" name="src/main/java/com/unibague/magno/domain/usecase/cronjobs/CronJobUseCase.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="2081,5,2298,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,222,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2078,36,1769,40,1315,49,783,72,508,91,237,114,237,109,508,85,783,67,1315,44,1768,34,2084,35"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="245,112,462,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="2078,36,1803,42,1408,53,949,76,711,93,477,114,477,109,711,88,948,71,1408,48,1803,37,2083,36"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="485,112,702,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="2078,37,1838,46,1502,58,1115,80,717,114,717,109,1114,75,1502,53,1838,40,2083,37"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="725,112,942,155"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="2078,39,1875,49,1598,63,1281,84,957,114,957,109,1281,79,1598,57,1875,44,2084,39"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="966,112,1235,155"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="2083,43,1717,72,1251,114,1250,109,1717,66,2078,43"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1258,112,1518,155"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="2083,48,1534,114,1533,109,2078,48"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1542,112,1776,155"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="2083,55,1788,111,1787,106,2078,56"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1800,112,2035,155"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="2111,64,1991,109,1990,104,2106,65"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="2058,120,2321,147"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="2191,62,2191,106,2188,102,2188,66"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="2344,112,2622,155"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="2277,62,2408,107,2403,106,2276,67"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="2646,120,2946,147"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="2299,51,2704,117,2699,117,2298,56"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="2971,112,3248,155"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="2298,43,2590,70,2958,112,2952,112,2590,76,2298,48"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="3272,112,3550,155"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="2298,39,2715,64,2983,84,3259,112,3254,112,2982,90,2714,70,2298,44"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="3574,112,3851,155"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="2298,37,2835,59,3192,80,3561,112,3555,112,3192,85,2835,64,2298,42"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="3875,112,4152,155"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="2298,35,2569,41,2954,54,3401,76,3862,112,3857,112,3400,81,2954,60,2569,47,2298,40"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="4176,120,4251,147"/>
+<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="2298,33,2691,33,3231,41,3510,51,3771,64,3996,84,4088,96,4165,109,4176,115,4170,114,4164,115,4087,101,3995,89,3771,70,3510,56,3231,47,2690,38,2298,38"/>
+<area shape="rect" id="Node000018" title=" " alt="" coords="4275,120,4448,147"/>
+<area shape="poly" id="edge17_Node000001_Node000018" title=" " alt="" coords="2298,35,2707,43,3274,57,3845,79,4083,93,4263,109,4295,117,4290,116,4263,115,4083,99,3845,85,3274,62,2706,48,2298,40"/>
+</map>

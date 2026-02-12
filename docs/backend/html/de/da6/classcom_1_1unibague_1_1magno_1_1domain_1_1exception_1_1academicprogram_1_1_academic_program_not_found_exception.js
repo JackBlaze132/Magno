@@ -1,0 +1,5 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicprogram_1_1_academic_program_not_found_exception =
+[
+    [ "AcademicProgramNotFoundException", "de/da6/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicprogram_1_1_academic_program_not_found_exception.html#a15611ccacf54ec1ec408d69db42be490", null ],
+    [ "AcademicProgramNotFoundException", "de/da6/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicprogram_1_1_academic_program_not_found_exception.html#ac8edf672186a4fdefb35d97f90687bc9", null ]
+];

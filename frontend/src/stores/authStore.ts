@@ -3,64 +3,104 @@ import API from '@/utils/api'
 import { checkPermission } from '@/utils/permissions'
 import type { ActionType, EntityType } from '@/utils/abstract-forms-factory/form-types/formsTypes'
 
+/**
+ * Represents the fundamental user data in the system.
+ */
 interface User {
+  /** Unique internal identifier */
   id: number
+  /** Full name provided by Google or system */
   name: string
+  /** Institutional or personal email */
   email: string
+  /** URL to the user's avatar image */
   picture: string | null
+  /** Specific university code (e.g., student ID) */
   userCode?: string
+  /** National identification number */
   identificationNumber?: string
+  /** Array of raw role strings assigned to the user */
   roles?: string[]
 }
 
+/**
+ * Represents a user's professional profile within the organization.
+ * Links a user to a specific role and optionally an academic period.
+ */
 interface UserProfile {
+  /** Profile unique identifier */
   id: number
+  /** Role details associated with this profile */
   role: {
     id: number
     name: string
   }
+  /** Academic period this profile is relevant for */
   academic_period?: {
     id: number
     name: string
   }
 }
 
+/**
+ * Authentication and Authorization Store.
+ * Centralizes all logic regarding user sessions, role management, and permissions.
+ */
 export const useAuthStore = defineStore('auth', {
+  /**
+   * Initial state of the authentication store.
+   */
   state: () => ({
+    /** Current authenticated user data */
     user: null as User | null,
+    /** List of all profile/role assignments for the user */
     userProfiles: [] as UserProfile[],
+    /** Currently active role name (determines permissions) */
     currentRole: null as string | null,
+    /** ID of the currently active academic period in the system */
     currentAcademicPeriod: null as number | null,
+    /** Whether the user is correctly authenticated */
     isAuthenticated: false,
+    /** Whether the initial auth check/loading has completed */
     isInitialized: false,
+    /** Global loading state for auth operations */
     loading: false,
+    /** Last recorded error message */
     error: null as string | null,
+    /** List of academic period IDs that are marked as hidden by admin */
     hiddenAcademicPeriods: [] as number[],
   }),
 
   getters: {
     /**
-     * Get user's full name
+     * Returns the user's full name or a default placeholder.
+     * @returns {string}
      */
     userName: (state) => state.user?.name || 'Usuario',
 
     /**
-     * Get user's email
+     * Returns the user's email address.
+     * @returns {string}
      */
     userEmail: (state) => state.user?.email || '',
 
     /**
-     * Get user's profile picture URL
+     * Returns the user's profile picture URL or null if not available.
+     * @returns {string|null}
      */
     userPicture: (state) => state.user?.picture || null,
 
     /**
-     * Get user's ID
+     * Returns the unique internal database ID of the user.
+     * @returns {number|null}
      */
     userId: (state) => state.user?.id || null,
 
     /**
-     * Check if user has a specific role
+     * Checks if the user possesses a specific role, either in their user information
+     * or across their various profiles.
+     * @param {string} roleName - The name of the role to check (e.g., 'ADMIN', 'STUDENT').
+     * @returns {boolean}
      */
     hasRole: (state) => (roleName: string) => {
       const normalizedSearch = roleName.toUpperCase().replace(/\s+/g, '_').replace('ROLE_', '')
@@ -79,14 +119,16 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
-     * Get all user roles
+     * Returns a list of all role names associated with the user's profiles.
+     * @returns {string[]}
      */
     userRoles: (state) => {
       return state.userProfiles.map(profile => profile.role.name)
     },
 
     /**
-     * Check if user is admin
+     * Quick check to see if the user has administrative privileges.
+     * @returns {boolean}
      */
     isAdmin: (state) => {
       return state.userProfiles.some(profile =>
@@ -95,7 +137,8 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
-     * Check if user is a student
+     * Quick check to see if the user has a student role.
+     * @returns {boolean}
      */
     isStudent: (state) => {
       // Check in user.roles first (from USERS_ME)
@@ -115,7 +158,8 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
-     * Check if user is a functionary
+     * Quick check to see if the user is a functionary (staff/professor).
+     * @returns {boolean}
      */
     isFunctionary: (state) => {
       return state.userProfiles.some(profile =>
@@ -125,7 +169,11 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
-     * Check if user can perform an action on an entity
+     * Evaluates if the current role permits an action on a specific entity type.
+     * Useful for UI conditional rendering (e.g., hiding a "Delete" button).
+     * @param {ActionType} action - The action to perform (create, view, edit, delete).
+     * @param {EntityType} entity - The target entity (user, period, group, etc.).
+     * @returns {boolean}
      */
     can: (state) => (action: ActionType, entity: EntityType) => {
       return checkPermission(state.currentRole, action, entity)
@@ -134,7 +182,9 @@ export const useAuthStore = defineStore('auth', {
 
   actions: {
     /**
-     * Fetch current user data from Google OAuth
+     * Retrieves the current user's profile information from Google OAuth.
+     * This is primarily used to get the user's name, email, and profile picture.
+     * @returns {Promise<void>}
      */
     async fetchGoogleProfile() {
       if (this.loading) return
@@ -182,7 +232,9 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
-     * Fetch current user details including user ID
+     * Fetches detailed internal user information, including the unique user ID,
+     * roles assigned in the backend, and institutional codes.
+     * @returns {Promise<void>}
      */
     async fetchUserDetails() {
       if (this.loading) return
@@ -237,7 +289,9 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
-     * Fetch the current active academic period
+     * Retrieves the current active academic period from the backend.
+     * Used to scope most operations (profiles, groups, etc.) to the present time.
+     * @returns {Promise<void>}
      */
     async fetchActivePeriod() {
       const headers = {
@@ -256,7 +310,10 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
-     * Fetch all hidden academic periods (is_visible = false)
+     * Fetches all academic periods that are marked as invisible.
+     * Used by navigation guards to prevent users from accessing routes associated
+     * with hidden periods.
+     * @returns {Promise<void>}
      */
     async fetchHiddenPeriods() {
       const headers = {
@@ -267,7 +324,7 @@ export const useAuthStore = defineStore('auth', {
         const response = await API.get(API.NOT_VISIBLE_ACADEMIC_PERIODS, headers)
         if (Array.isArray(response)) {
           this.hiddenAcademicPeriods = response
-            .filter((p: any) => p.is_visible === false || p.isVisible === false)
+            .filter((p: any) => p.is_visible === false)
             .map((p: any) => p.id)
           console.log('✅ Hidden academic periods loaded:', this.hiddenAcademicPeriods)
         }
@@ -277,7 +334,8 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
-     * Fetch user profiles with roles
+     * Fetches the user's multiple profiles (e.g., as a student in different periods).
+     * @returns {Promise<void>}
      */
     async fetchUserProfiles() {
       if (!this.user?.id) {
@@ -317,7 +375,8 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
-     * Verify if the current token/session is still valid
+     * Verifies if the current session token stored by the API utility is still valid.
+     * @returns {Promise<boolean>} True if valid, false otherwise.
      */
     async verifyAuth() {
       const headers = {
@@ -334,7 +393,10 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
-     * Initialize authentication - fetch all user data
+     * Main initialization orchestration for the authentication process.
+     * Verifies the token, fetches identity information, roles, and system context (periods).
+     * Should be called by the router on initial load or page reloads.
+     * @returns {Promise<void>}
      */
     async initializeAuth() {
       // If we think we are authenticated, verify the token first
@@ -387,7 +449,9 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
-     * Set current active role
+     * Manually switches the active role for the user session.
+     * This affects the permissions evaluated throughout the application.
+     * @param {string} roleName - The target role name.
      */
     setCurrentRole(roleName: string) {
       // Check in user.roles (from USERS_ME)
@@ -417,7 +481,7 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
-     * Logout - clear all auth data
+     * Clears all local state and triggers the API logout process.
      */
     logout() {
       this.user = null
@@ -432,7 +496,7 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
-     * Clear error
+     * Resets the error state in the store.
      */
     clearError() {
       this.error = null

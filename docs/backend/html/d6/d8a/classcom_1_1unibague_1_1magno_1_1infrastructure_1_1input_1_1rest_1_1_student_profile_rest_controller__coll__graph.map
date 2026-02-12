@@ -1,0 +1,13 @@
+<map id="com.unibague.magno.infrastructure.input.rest.StudentProfileRestController" name="com.unibague.magno.infrastructure.input.rest.StudentProfileRestController">
+<area shape="rect" id="Node000001" title="REST controller for managing student profiles in Magno." alt="" coords="1036,105,1323,148"/>
+<area shape="rect" id="Node000002" href="$d0/dd5/classcom_1_1unibague_1_1magno_1_1application_1_1handler_1_1impl_1_1_student_profile_handler.html" title="Implementation of IStudentProfileHandler." alt="" coords="566,105,855,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="871,124,1038,126,1033,127,871,129"/>
+<area shape="rect" id="Node000003" href="$d5/d26/interfacecom_1_1unibague_1_1magno_1_1application_1_1handler_1_1interfaces_1_1_i_student_profile_handler.html" title="Handler interface for student profile operations." alt="" coords="5,5,328,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="343,41,442,55,542,73,648,104,643,105,541,79,441,60,343,46"/>
+<area shape="rect" id="Node000004" href="$df/d5b/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_student_profile_service_port.html" title="Service port interface that defines the contract for student profile management operations." alt="" coords="58,72,275,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="290,98,567,116,563,120,290,104"/>
+<area shape="rect" id="Node000005" href="$dc/d45/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_student_profile_request_mapper.html" title="Mapper interface for converting student profile request DTOs to domain models." alt="" coords="12,139,321,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="337,153,541,143,568,143,563,144,542,148,337,159"/>
+<area shape="rect" id="Node000006" href="$da/de3/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_student_profile_response_mapper.html" title="Mapper interface for converting student profile domain models to response DTOs." alt="" coords="7,205,326,248"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="341,212,441,200,541,181,600,165,652,149,657,148,601,170,542,187,442,205,342,217"/>
+</map>

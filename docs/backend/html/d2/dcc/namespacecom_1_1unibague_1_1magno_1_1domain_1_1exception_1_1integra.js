@@ -1,0 +1,11 @@
+var namespacecom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra =
+[
+    [ "IntegraAcademicProgramNotFoundException", "d2/d08/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_academic_program_not_found_exception.html", "d2/d08/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_academic_program_not_found_exception" ],
+    [ "IntegraDependencyNotFoundException", "de/dcd/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_dependency_not_found_exception.html", "de/dcd/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_dependency_not_found_exception" ],
+    [ "IntegraGatewayTimeoutException", "d7/d4d/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_gateway_timeout_exception.html", "d7/d4d/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_gateway_timeout_exception" ],
+    [ "IntegraInvalidTypeException", "dd/dec/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_invalid_type_exception.html", "dd/dec/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_invalid_type_exception" ],
+    [ "IntegraServiceException", "d5/d50/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_service_exception.html", "d5/d50/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_service_exception" ],
+    [ "IntegraStudentNotFoundException", "db/df0/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_student_not_found_exception.html", "db/df0/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_student_not_found_exception" ],
+    [ "IntegraUserNotFoundException", "df/d6d/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_user_not_found_exception.html", "df/d6d/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_user_not_found_exception" ],
+    [ "NullIntegraResponseException", "d0/d78/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_null_integra_response_exception.html", "d0/d78/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_null_integra_response_exception" ]
+];

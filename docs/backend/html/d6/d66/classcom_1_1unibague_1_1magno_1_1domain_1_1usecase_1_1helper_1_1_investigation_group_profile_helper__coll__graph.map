@@ -1,0 +1,19 @@
+<map id="com.unibague.magno.domain.usecase.helper.InvestigationGroupProfileHelper" name="com.unibague.magno.domain.usecase.helper.InvestigationGroupProfileHelper">
+<area shape="rect" id="Node000001" title="Implementation of IInvestigationGroupProfileHelper." alt="" coords="555,239,842,281"/>
+<area shape="rect" id="Node000002" href="$da/d1a/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_investigation_group_profile_helper.html" title="Helper interface for investigation group profile operations." alt="" coords="5,5,293,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="307,17,364,21,421,30,478,46,532,68,559,85,585,106,629,152,664,199,688,239,683,238,660,202,625,156,581,110,556,90,529,73,477,51,420,36,363,27,309,22"/>
+<area shape="rect" id="Node000003" href="$d4/d0e/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1integra_1_1_i_integra_service_port.html" title="Service port interface that defines the contract for Integra external system integration operations." alt="" coords="19,72,279,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="294,95,412,111,473,125,532,144,574,164,613,189,676,238,670,238,610,193,571,169,530,149,472,130,411,116,295,101"/>
+<area shape="rect" id="Node000004" href="$d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html" title="Service port interface that defines the contract for user management operations." alt="" coords="41,139,257,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="272,167,398,182,531,205,639,238,633,239,530,211,398,187,273,173"/>
+<area shape="rect" id="Node000005" href="$d7/dc7/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_functionary_profile_service_port.html" title="Service port interface that defines the contract for functionary profile management operations." alt="" coords="41,205,257,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="273,231,556,249,552,253,273,237"/>
+<area shape="rect" id="Node000006" href="$da/db3/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_dependency_service_port.html" title="Service port interface that defines the contract for dependency management operations." alt="" coords="41,272,257,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="272,288,530,276,557,276,552,277,531,281,273,294"/>
+<area shape="rect" id="Node000007" href="$d9/d80/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_role_service_port.html" title="Service port interface that defines the contract for role management operations." alt="" coords="41,339,257,381"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="272,351,398,339,530,316,589,299,647,281,642,283,591,304,531,321,398,344,273,356"/>
+<area shape="rect" id="Node000008" href="$d6/de6/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_academic_period_service_port.html" title="Service port interface that defines the contract for academic period management operations." alt="" coords="41,405,257,448"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="272,424,333,419,399,411,466,397,530,376,572,356,611,330,672,283,677,281,614,334,574,360,532,381,467,402,400,416,334,424,273,429"/>
+<area shape="rect" id="Node000009" href="$d2/d9c/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_research_seedbed_profile_service_port.html" title="Service port interface that defines the contract for research seedbed profile management operations." alt="" coords="30,472,268,515"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="283,500,343,497,407,489,470,474,529,450,556,433,582,413,626,366,660,319,683,284,688,280,664,322,630,369,585,417,560,437,532,454,472,479,408,494,344,502,283,505"/>
+</map>

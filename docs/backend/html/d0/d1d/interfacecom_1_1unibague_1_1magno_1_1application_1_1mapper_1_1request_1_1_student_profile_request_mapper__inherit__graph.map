@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.application.mapper.request.StudentProfileRequestMapper" name="com.unibague.magno.application.mapper.request.StudentProfileRequestMapper">
+<area shape="rect" id="Node000001" title="Mapper interface for converting student profile request DTOs to domain models." alt="" coords="5,5,315,48"/>
+<area shape="rect" id="Node000002" href="$d7/de3/classcom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1impl_1_1_student_profile_request_mapper_impl.html" title="Implementation of StudentProfileRequestMapper." alt="" coords="363,5,700,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="330,24,365,27,360,27,330,29"/>
+</map>

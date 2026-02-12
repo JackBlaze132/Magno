@@ -1,0 +1,4 @@
+var _research_seedbed_student_profile_request_8java =
+[
+    [ "com.unibague.magno.application.dto.request.ResearchSeedbedStudentProfileRequest", "da/dc5/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_research_seedbed_student_profile_request.html", "da/dc5/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_research_seedbed_student_profile_request" ]
+];

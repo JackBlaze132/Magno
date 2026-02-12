@@ -1,0 +1,4 @@
+var _i_research_seedbed_repository_8java =
+[
+    [ "com.unibague.magno.infrastructure.output.jpa.repository.IResearchSeedbedRepository", "da/d28/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_research_seedbed_repository.html", "da/d28/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_research_seedbed_repository" ]
+];

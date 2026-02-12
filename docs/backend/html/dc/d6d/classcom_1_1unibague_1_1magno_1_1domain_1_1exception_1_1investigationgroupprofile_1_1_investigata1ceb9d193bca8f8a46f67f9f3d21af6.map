@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException" name="com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileNotFoundException">
+<area shape="rect" id="Node000001" title="Exception thrown when an investigation group profile cannot be found in the system." alt="" coords="5,80,405,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="141,5,269,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,46,207,81,203,78,203,50"/>
+</map>

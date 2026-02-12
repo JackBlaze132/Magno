@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$dc/d68/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1cronjobs_1_1_i_cron_job_service_port.html" title="Service port interface that defines the contract for scheduled cron job operations." alt="" coords="5,5,275,48"/>
+<area shape="rect" id="Node000001" href="$d3/dca/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1cronjobs_1_1_cron_job_use_case.html" title="Use case implementation for scheduled cron job operations." alt="" coords="323,5,624,48"/>
+<area shape="poly" id="edge29_Node000000_Node000001" title=" " alt="" coords="290,24,325,27,320,27,290,29"/>
+</map>

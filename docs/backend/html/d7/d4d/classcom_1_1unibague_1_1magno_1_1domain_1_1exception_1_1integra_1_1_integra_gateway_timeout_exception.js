@@ -1,0 +1,5 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_gateway_timeout_exception =
+[
+    [ "IntegraGatewayTimeoutException", "d7/d4d/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_gateway_timeout_exception.html#a61b81a336c6652ca765c8ff3140ba198", null ],
+    [ "IntegraGatewayTimeoutException", "d7/d4d/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_gateway_timeout_exception.html#a1318e65e61511eaf501c4066dd15c628", null ]
+];

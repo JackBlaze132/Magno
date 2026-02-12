@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_functionary_not_allowed_to_generate_certificate_exception =
+[
+    [ "FunctionaryNotAllowedToGenerateCertificateException", "de/da6/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_functionary_not_allowed_to_generate_certificate_exception.html#a526c79577fb0fdac6b9f93e5f4dc81b8", null ]
+];

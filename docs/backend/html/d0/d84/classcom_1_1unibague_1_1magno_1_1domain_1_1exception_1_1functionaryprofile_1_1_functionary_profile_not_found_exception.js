@@ -1,0 +1,5 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1functionaryprofile_1_1_functionary_profile_not_found_exception =
+[
+    [ "FunctionaryProfileNotFoundException", "d0/d84/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1functionaryprofile_1_1_functionary_profile_not_found_exception.html#a23936fbef5b5b21d4ee4e4ca40939fdf", null ],
+    [ "FunctionaryProfileNotFoundException", "d0/d84/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1functionaryprofile_1_1_functionary_profile_not_found_exception.html#a8403104cc9f835f9069aadba00cbabec", null ]
+];

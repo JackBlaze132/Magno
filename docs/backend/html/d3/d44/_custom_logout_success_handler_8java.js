@@ -1,0 +1,4 @@
+var _custom_logout_success_handler_8java =
+[
+    [ "com.unibague.magno.infrastructure.configuration.security.handler.CustomLogoutSuccessHandler", "da/d9e/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1handler_1_1_custom_logout_success_handler.html", "da/d9e/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1handler_1_1_custom_logout_success_handler" ]
+];

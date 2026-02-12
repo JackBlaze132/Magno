@@ -1,5 +1,5 @@
 /**
- * @fileoverview Defines available action and entity types used by the Abstract Form Factory.
+ * Defines available action and entity types used by the Abstract Form Factory.
  * Provides both a typed union (`ActionType`, `EntityType`) derived from constant arrays and
  * arrays that can be used for UI selects or validation.
  *
@@ -11,7 +11,6 @@
 
 /**
  * List of supported action types for form operations.
- * @constant {string[]}
  */
 export const ActionTypes: string[] = [
   "create",
@@ -24,7 +23,6 @@ export const ActionTypes: string[] = [
 /**
  * List of supported entity types for form operations.
  * These correspond to the different resources managed by the application.
- * @constant {string[]}
  */
 export const EntityTypes: string[] = [
   "period",

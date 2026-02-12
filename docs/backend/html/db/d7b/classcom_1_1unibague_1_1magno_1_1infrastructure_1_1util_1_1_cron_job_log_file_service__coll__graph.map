@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.infrastructure.util.CronJobLogFileService" name="com.unibague.magno.infrastructure.util.CronJobLogFileService">
+<area shape="rect" id="Node000001" title="Service for generating text file reports of cron job executions." alt="" coords="5,120,256,163"/>
+<area shape="rect" id="Node000002" href="$dc/dde/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_cron_job_execution_log_service_port.html" title="Service port interface that defines the contract for cron job execution log management operations." alt="" coords="20,5,241,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,62,133,120,128,119,129,65"/>
+</map>

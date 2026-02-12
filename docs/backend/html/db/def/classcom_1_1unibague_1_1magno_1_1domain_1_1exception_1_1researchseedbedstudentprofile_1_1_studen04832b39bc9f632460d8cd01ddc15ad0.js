@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedstudentprofile_1_1_studen04832b39bc9f632460d8cd01ddc15ad0 =
+[
+    [ "StudentProfileAlreadyExistsInSeedbedException", "db/def/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedstudentprofile_1_1_studen04832b39bc9f632460d8cd01ddc15ad0.html#a9a23a2654eae4142c4bbc98092f94507", null ]
+];

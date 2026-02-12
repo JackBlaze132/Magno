@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$db/da5/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_role_persistence_port.html" title="Persistence port for managing role data." alt="" coords="5,5,222,48"/>
+<area shape="rect" id="Node000001" href="$df/d1f/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_role_jpa_adapter.html" title="JPA implementation of IRolePersistencePort for managing role persistence." alt="" coords="270,5,607,48"/>
+<area shape="poly" id="edge62_Node000000_Node000001" title=" " alt="" coords="237,24,272,27,267,27,237,29"/>
+</map>

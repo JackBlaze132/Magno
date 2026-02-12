@@ -1,0 +1,4 @@
+var _academic_program_already_exists_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.academicprogram.AcademicProgramAlreadyExistsException", "d9/d97/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicprogram_1_1_academic_program_already_exists_exception.html", "d9/d97/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicprogram_1_1_academic_program_already_exists_exception" ]
+];

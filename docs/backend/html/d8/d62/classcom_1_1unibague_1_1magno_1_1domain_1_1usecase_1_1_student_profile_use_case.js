@@ -1,0 +1,26 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case =
+[
+    [ "StudentProfileUseCase", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#ae7f7bf1d70c48bd8f3d3dc34fb35e582", null ],
+    [ "createStudentProfileFromIntegraData", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#ac7a050f26a160422abd24efc3c1266b6", null ],
+    [ "deleteById", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#a85c7c1ca52c008ecf2311d4d6a3bace1", null ],
+    [ "existsByUserIdAndAcademicPeriodId", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#a465a9bcc7afebcab2fcca38296b34715", null ],
+    [ "findAll", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#a4d4aee074b50e7e7c6102c22199d511c", null ],
+    [ "findAllByAcademicPeriodId", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#abfa46aca21a85a2243a6043353682339", null ],
+    [ "findAllProfilesByUserId", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#a5fef9eaae15b8d74e3b4c231d01ce953", null ],
+    [ "findById", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#aae51d8cd405893354a86029954ae0d02", null ],
+    [ "findByUserIdAndAcademicPeriodId", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#af3299e716776b9ac9231264baf5959d0", null ],
+    [ "getOrCreateStudentProfile", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#aaa0e66440269edbcfb88a6c3571d668a", null ],
+    [ "getOrCreateStudentProfiles", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#aa892fc197cf02e02ca9c41c703d3ff83", null ],
+    [ "save", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#a8ae17eb7fe9c1c01da042782eee3893a", null ],
+    [ "saveIgnoringPeriodVisibility", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#ab9b9cb52d96f945a05c30242e429c986", null ],
+    [ "update", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#a58109bdd67eb2f4899c26c37a5aa7090", null ],
+    [ "updateRoleId", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#a67d3b7a1c52f4c351a601acee789cc1b", null ],
+    [ "verifyAcademicPeriodIsVisible", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#a6610f59ead35c0d613ac2bc753bf94b2", null ],
+    [ "verifyRoleIsNotDiri", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#adc19469e9768b75f708887c3fbc824a1", null ],
+    [ "academicPeriodServicePort", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#a52e16f7e4d2881c9ce28b86470e19ac6", null ],
+    [ "academicProgramServicePort", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#a5c6ffd084b9919fe6d02d93efc88c53d", null ],
+    [ "integraServicePort", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#ac29f60b45d9066728b5d830b35628841", null ],
+    [ "roleServicePort", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#ab8ab63fb4620f39e9c15b7d63752e213", null ],
+    [ "studentProfilePersistencePort", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#a5639f8cf96be8c53d99bb5c4d2a132d6", null ],
+    [ "userServicePort", "d8/d62/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1_student_profile_use_case.html#acb9145624c03ca95e2afd660eb5bb228", null ]
+];

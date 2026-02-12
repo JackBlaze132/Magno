@@ -1,0 +1,7 @@
+<map id="com.unibague.magno.infrastructure.util.ErrorLogContextService" name="com.unibague.magno.infrastructure.util.ErrorLogContextService">
+<area shape="rect" id="Node000001" title="Service for creating error log entries from exceptions." alt="" coords="511,39,761,81"/>
+<area shape="rect" id="Node000002" href="$d2/de4/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_security_service.html" title="Service for extracting authenticated user information from the security context." alt="" coords="5,5,362,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="377,38,513,50,508,51,377,44"/>
+<area shape="rect" id="Node000003" href="$d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html" title="Service port interface that defines the contract for user management operations." alt="" coords="75,72,292,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="307,86,486,75,508,75,513,75,487,80,308,91"/>
+</map>

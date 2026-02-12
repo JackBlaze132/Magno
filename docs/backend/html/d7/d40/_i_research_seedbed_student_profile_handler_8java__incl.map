@@ -1,0 +1,13 @@
+<map id="src/main/java/com/unibague/magno/application/handler/interfaces/IResearchSeedbedStudentProfileHandler.java" name="src/main/java/com/unibague/magno/application/handler/interfaces/IResearchSeedbedStudentProfileHandler.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="673,5,915,80"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,128,290,171"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="673,66,291,128,291,122,672,61"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="314,128,608,171"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="679,80,542,125,541,120,674,81"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="632,128,957,171"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="796,78,796,114,792,111,792,82"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="982,128,1207,171"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="900,78,1023,123,1018,122,900,83"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="1231,136,1322,163"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="916,61,1062,88,1220,125,1231,131,1226,130,1219,131,1061,93,916,66"/>
+</map>

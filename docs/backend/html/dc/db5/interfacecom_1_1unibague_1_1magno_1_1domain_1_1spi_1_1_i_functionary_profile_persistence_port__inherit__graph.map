@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.spi.IFunctionaryProfilePersistencePort" name="com.unibague.magno.domain.spi.IFunctionaryProfilePersistencePort">
+<area shape="rect" id="Node000001" title="Persistence port for managing functionary profile data." alt="" coords="5,5,229,48"/>
+<area shape="rect" id="Node000002" href="$d1/d69/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_functionary_profile_jpa_adapter.html" title="JPA implementation of IFunctionaryProfilePersistencePort for managing functionary profile persistence..." alt="" coords="277,5,614,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="244,24,279,27,274,27,244,29"/>
+</map>

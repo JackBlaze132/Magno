@@ -1,0 +1,4 @@
+var namespacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1certificates_1_1projections =
+[
+    [ "StudentSeedbedCertificateProjection", "d6/d42/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1certificates_1_1projections_1_1_student_seedbed_certificate_projection.html", "d6/d42/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1certificates_1_1projections_1_1_student_seedbed_certificate_projection" ]
+];

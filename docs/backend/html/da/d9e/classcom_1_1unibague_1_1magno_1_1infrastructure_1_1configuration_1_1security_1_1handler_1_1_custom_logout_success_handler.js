@@ -1,0 +1,5 @@
+var classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1handler_1_1_custom_logout_success_handler =
+[
+    [ "onLogoutSuccess", "da/d9e/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1handler_1_1_custom_logout_success_handler.html#af2755b1bec278ea0d34f4e9661bf84b1", null ],
+    [ "loginRedirectUrl", "da/d9e/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1handler_1_1_custom_logout_success_handler.html#ab600706319919252ff3cf59b7ed3f126", null ]
+];

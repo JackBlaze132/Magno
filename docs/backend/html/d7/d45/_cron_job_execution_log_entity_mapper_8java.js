@@ -1,0 +1,4 @@
+var _cron_job_execution_log_entity_mapper_8java =
+[
+    [ "com.unibague.magno.infrastructure.output.jpa.mapper.CronJobExecutionLogEntityMapper", "d4/dc5/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_cron_job_execution_log_entity_mapper.html", "d4/dc5/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_cron_job_execution_log_entity_mapper" ]
+];

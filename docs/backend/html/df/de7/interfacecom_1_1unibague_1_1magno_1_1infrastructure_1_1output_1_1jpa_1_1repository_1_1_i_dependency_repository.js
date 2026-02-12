@@ -1,0 +1,4 @@
+var interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_dependency_repository =
+[
+    [ "findByName", "df/de7/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_dependency_repository.html#a00b7b4c1b1d312a16cb60d56e09a2b1a", null ]
+];

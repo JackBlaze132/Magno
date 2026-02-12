@@ -1,5 +1,5 @@
 /**
- * @fileoverview Permission management system for role-based access control (RBAC).
+ * Permission management system for role-based access control (RBAC).
  * Defines permissions for different user roles and provides utilities to check access rights.
  * @module permissions
  */
@@ -10,8 +10,7 @@ import type { ActionType, EntityType } from './abstract-forms-factory/form-types
  * Permission Map based on the API Endpoints CSV.
  * Maps roles to their allowed actions on each entity.
  *
- * @constant {Record<string, Partial<Record<EntityType, ActionType[]>>>} PERMISSIONS
- * @description Comprehensive permission matrix defining what actions each role can perform on entities.
+ * Comprehensive permission matrix defining what actions each role can perform on entities.
  *
  * **Roles:**
  * - `DIRI`: Full administrative access to all entities

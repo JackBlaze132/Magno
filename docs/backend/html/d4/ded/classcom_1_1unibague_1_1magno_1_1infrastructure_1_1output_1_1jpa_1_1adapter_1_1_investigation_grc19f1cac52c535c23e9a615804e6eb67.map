@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.adapter.InvestigationGroupProfileJpaAdapter" name="com.unibague.magno.infrastructure.output.jpa.adapter.InvestigationGroupProfileJpaAdapter">
+<area shape="rect" id="Node000001" title="JPA implementation of IInvestigationGroupProfilePersistencePort for managing investigation group prof..." alt="" coords="5,96,343,139"/>
+<area shape="rect" id="Node000002" href="$d3/d47/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_investigation_group_profile_persistence_port.html" title="Persistence port for managing investigation group profile data." alt="" coords="42,5,306,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,62,176,97,172,94,172,66"/>
+</map>

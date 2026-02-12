@@ -1,0 +1,9 @@
+<map id="src/main/java/com/unibague/magno/infrastructure/output/jpa/entity/CronJobExecutionLogEntity.java" name="src/main/java/com/unibague/magno/infrastructure/output/jpa/entity/CronJobExecutionLogEntity.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="70,5,342,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,146,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,64,108,105,105,101,161,65"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="170,112,242,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="208,62,208,97,204,95,204,66"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="267,112,433,139"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="254,62,320,104,314,104,252,67"/>
+</map>

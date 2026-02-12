@@ -1,0 +1,4 @@
+var _research_seedbed_profile_already_exists_in_academic_period_8java =
+[
+    [ "com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileAlreadyExistsInAcademicPeriod", "d5/d85/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedprofile_1_1_research_seede3be74e9004cc0435526b6a9464054c8.html", "d5/d85/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedprofile_1_1_research_seede3be74e9004cc0435526b6a9464054c8" ]
+];

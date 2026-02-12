@@ -1,0 +1,4 @@
+var _research_seedbed_student_profile_not_found_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.researchseedbedstudentprofile.ResearchSeedbedStudentProfileNotFoundException", "df/de7/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedstudentprofile_1_1_resear3267ab6dad1c05e232d06f84938e9156.html", "df/de7/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedstudentprofile_1_1_resear3267ab6dad1c05e232d06f84938e9156" ]
+];

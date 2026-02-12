@@ -1,0 +1,35 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPointStrategy": "expand",
+  "entryPoints": ["src"],
+  "out": "../docs/frontend",
+  "skipErrorChecking": true,
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "src/**/__tests__/**",
+    "node_modules/**",
+    "**/*.vue"
+  ],
+  "name": "Magno Frontend Documentation",
+  "includeVersion": true,
+  "githubPages": false,
+  "readme": "README.md",
+  "plugin": ["typedoc-plugin-missing-exports"],
+  "disableSources": false,
+  "excludeInternal": false,
+  "excludePrivate": false,
+  "excludeProtected": false,
+  "categorizeByGroup": true,
+  "categoryOrder": ["Stores", "Composables", "Utils", "Plugins", "Types", "*"],
+  "searchInComments": true,
+  "sort": ["source-order"],
+  "navigation": {
+    "includeCategories": true,
+    "includeGroups": true
+  },
+  "validation": {
+    "notExported": false,
+    "invalidLink": false
+  }
+}

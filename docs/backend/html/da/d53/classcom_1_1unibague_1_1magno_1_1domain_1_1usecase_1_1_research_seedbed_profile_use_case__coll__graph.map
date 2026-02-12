@@ -1,0 +1,9 @@
+<map id="com.unibague.magno.domain.usecase.ResearchSeedbedProfileUseCase" name="com.unibague.magno.domain.usecase.ResearchSeedbedProfileUseCase">
+<area shape="rect" id="Node000001" title="Use case implementation for managing research seedbed profiles." alt="" coords="580,72,828,115"/>
+<area shape="rect" id="Node000002" href="$d2/d9c/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_research_seedbed_profile_service_port.html" title="Service port interface that defines the contract for research seedbed profile management operations." alt="" coords="30,5,268,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="283,33,416,44,556,61,602,71,597,71,555,67,415,50,283,38"/>
+<area shape="rect" id="Node000003" href="$d8/d2e/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_research_seedbed_profile_persistence_port.html" title="Persistence port for managing research seedbed profile data." alt="" coords="18,72,280,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="295,91,581,92,577,95,296,96"/>
+<area shape="rect" id="Node000004" href="$df/d69/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_research_seedbed_profile_helper.html" title="Helper interface for research seedbed profile operations." alt="" coords="5,139,293,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="308,147,430,135,555,120,597,116,602,115,556,125,430,141,309,152"/>
+</map>

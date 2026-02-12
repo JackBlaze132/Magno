@@ -1,0 +1,4 @@
+var _functionary_not_allowed_to_generate_certificate_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.user.FunctionaryNotAllowedToGenerateCertificateException", "de/da6/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_functionary_not_allowed_to_generate_certificate_exception.html", "de/da6/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_functionary_not_allowed_to_generate_certificate_exception" ]
+];

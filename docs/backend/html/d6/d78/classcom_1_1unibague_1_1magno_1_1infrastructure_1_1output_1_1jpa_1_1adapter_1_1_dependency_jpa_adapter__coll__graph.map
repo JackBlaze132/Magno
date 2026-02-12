@@ -1,0 +1,13 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.adapter.DependencyJpaAdapter" name="com.unibague.magno.infrastructure.output.jpa.adapter.DependencyJpaAdapter">
+<area shape="rect" id="Node000001" title="JPA implementation of IDependencyPersistencePort for managing university dependency persistence." alt="" coords="798,105,1136,148"/>
+<area shape="rect" id="Node000002" href="$d3/d41/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_dependency_persistence_port.html" title="Persistence port for managing dependency data." alt="" coords="312,5,528,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="544,38,657,54,775,75,891,105,886,105,774,80,656,59,544,44"/>
+<area shape="rect" id="Node000003" href="$df/de7/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_dependency_repository.html" title="Spring Data JPA repository for DependencyEntity." alt="" coords="245,72,595,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="611,102,800,116,795,117,611,108"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,72,196,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="211,91,247,92,242,94,212,96"/>
+<area shape="rect" id="Node000005" href="$da/d6f/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_dependency_entity_mapper.html" title="Mapper interface for converting between Dependency domain model and DependencyEntity JPA entity." alt="" coords="252,139,589,181"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="604,151,774,141,800,142,795,143,775,147,605,156"/>
+<area shape="rect" id="Node000006" href="$d4/d0e/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1integra_1_1_i_integra_service_port.html" title="Service port interface that defines the contract for Integra external system integration operations." alt="" coords="290,205,550,248"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="565,210,668,197,774,179,895,149,901,148,775,184,669,202,566,216"/>
+</map>

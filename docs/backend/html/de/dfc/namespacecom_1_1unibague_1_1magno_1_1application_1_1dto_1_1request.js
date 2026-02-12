@@ -1,0 +1,18 @@
+var namespacecom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request =
+[
+    [ "integra", "d3/da0/namespacecom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1integra.html", "d3/da0/namespacecom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1integra" ],
+    [ "AcademicPeriodRequest", "de/d30/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_academic_period_request.html", "de/d30/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_academic_period_request" ],
+    [ "AcademicProgramRequest", "d8/d5a/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_academic_program_request.html", "d8/d5a/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_academic_program_request" ],
+    [ "DependencyRequest", "d6/d77/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_dependency_request.html", "d6/d77/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_dependency_request" ],
+    [ "ExternalUserProfileRequest", "dd/d6c/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_external_user_profile_request.html", "dd/d6c/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_external_user_profile_request" ],
+    [ "FunctionaryProfileRequest", "df/d29/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_functionary_profile_request.html", "df/d29/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_functionary_profile_request" ],
+    [ "InvestigationGroupProfileRequest", "de/d17/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_investigation_group_profile_request.html", "de/d17/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_investigation_group_profile_request" ],
+    [ "InvestigationGroupRequest", "d3/d64/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_investigation_group_request.html", "d3/d64/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_investigation_group_request" ],
+    [ "ResearchSeedbedProfileRequest", "dc/d8d/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_research_seedbed_profile_request.html", "dc/d8d/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_research_seedbed_profile_request" ],
+    [ "ResearchSeedbedRequest", "d3/dd4/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_research_seedbed_request.html", "d3/dd4/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_research_seedbed_request" ],
+    [ "ResearchSeedbedStudentProfileRequest", "da/dc5/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_research_seedbed_student_profile_request.html", "da/dc5/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_research_seedbed_student_profile_request" ],
+    [ "RoleRequest", "d3/d7b/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_role_request.html", "d3/d7b/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_role_request" ],
+    [ "StudentProfileRequest", "d5/dc6/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_student_profile_request.html", "d5/dc6/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_student_profile_request" ],
+    [ "StudentSeedbedCertificateRequest", "d7/d4e/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_student_seedbed_certificate_request.html", "d7/d4e/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_student_seedbed_certificate_request" ],
+    [ "UserRequest", "d7/d44/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_user_request.html", "d7/d44/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1_user_request" ]
+];

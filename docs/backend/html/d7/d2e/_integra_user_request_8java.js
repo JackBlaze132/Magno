@@ -1,0 +1,4 @@
+var _integra_user_request_8java =
+[
+    [ "com.unibague.magno.application.dto.request.integra.IntegraUserRequest", "d9/dae/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1integra_1_1_integra_user_request.html", "d9/dae/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1request_1_1integra_1_1_integra_user_request" ]
+];

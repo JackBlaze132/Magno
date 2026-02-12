@@ -1,0 +1,4 @@
+var _custom_oidc_user_with_user_id_8java =
+[
+    [ "com.unibague.magno.infrastructure.configuration.security.CustomOidcUserWithUserId", "d0/df2/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_custom_oidc_user_with_user_id.html", "d0/df2/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_custom_oidc_user_with_user_id" ]
+];

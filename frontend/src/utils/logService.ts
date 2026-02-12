@@ -64,7 +64,6 @@ class LogService {
   /**
    * Singleton instance of the LogService class.
    * @private
-   * @static
    * @type {LogService}
    */
   private static instance: LogService;
@@ -80,7 +79,6 @@ class LogService {
    * Creates a new instance if one doesn't exist.
    *
    * @public
-   * @static
    * @returns {LogService} The singleton LogService instance
    * @example
    * const service = LogService.getInstance();
@@ -97,7 +95,6 @@ class LogService {
    * Constructs the appropriate endpoint based on log type and filter parameters.
    *
    * @public
-   * @async
    * @param {LogType} type - The type of logs to fetch ('ACTION', 'CRONJOB', or 'ERROR')
    * @param {LogFilters} [filters={}] - Optional filters to apply to the log query
    * @returns {Promise<any>} Array of log entries matching the criteria

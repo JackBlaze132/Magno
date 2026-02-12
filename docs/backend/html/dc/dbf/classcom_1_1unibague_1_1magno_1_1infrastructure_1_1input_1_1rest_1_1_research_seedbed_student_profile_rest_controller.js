@@ -1,0 +1,12 @@
+var classcom_1_1unibague_1_1magno_1_1infrastructure_1_1input_1_1rest_1_1_research_seedbed_student_profile_rest_controller =
+[
+    [ "createResearchSeedbedStudentProfile", "dc/dbf/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1input_1_1rest_1_1_research_seedbed_student_profile_rest_controller.html#af394066edbbd1ebdb5b3595d2c43d6cc", null ],
+    [ "deleteResearchSeedbedStudentProfileById", "dc/dbf/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1input_1_1rest_1_1_research_seedbed_student_profile_rest_controller.html#a82a5e7932e374f06ab3e578a14739b1d", null ],
+    [ "getAllResearchSeedbedStudentProfiles", "dc/dbf/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1input_1_1rest_1_1_research_seedbed_student_profile_rest_controller.html#a89ba7f5e15ba126d0130ab6bf7e4055f", null ],
+    [ "getAllResearchSeedbedStudentProfilesByResearchSeedbedProfileId", "dc/dbf/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1input_1_1rest_1_1_research_seedbed_student_profile_rest_controller.html#a47909127f63877c4dadd3e4d6a2e9b47", null ],
+    [ "getResearchSeedbedStudentProfileById", "dc/dbf/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1input_1_1rest_1_1_research_seedbed_student_profile_rest_controller.html#a552a46e6247682860f4a4bd2d51fc3e7", null ],
+    [ "updateResearchSeedbedStudentProfileById", "dc/dbf/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1input_1_1rest_1_1_research_seedbed_student_profile_rest_controller.html#afc798a02c01cb79512a4a2eb1daa73c1", null ],
+    [ "authorizationService", "dc/dbf/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1input_1_1rest_1_1_research_seedbed_student_profile_rest_controller.html#a59afae0fa0c9f5faa56e26d88cbfa324", null ],
+    [ "researchSeedbedStudentProfileHandler", "dc/dbf/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1input_1_1rest_1_1_research_seedbed_student_profile_rest_controller.html#ae9cbfe4f15d5a398a5d35e0d5906c541", null ],
+    [ "uploadService", "dc/dbf/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1input_1_1rest_1_1_research_seedbed_student_profile_rest_controller.html#a43edd78c881665530afca0a652c20abb", null ]
+];

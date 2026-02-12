@@ -1,0 +1,17 @@
+<map id="com.unibague.magno.domain.usecase.StudentProfileUseCase" name="com.unibague.magno.domain.usecase.StudentProfileUseCase">
+<area shape="rect" id="Node000001" title="Use case implementation for managing student profiles." alt="" coords="494,205,742,248"/>
+<area shape="rect" id="Node000002" href="$df/d5b/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_student_profile_service_port.html" title="Service port interface that defines the contract for student profile management operations." alt="" coords="27,5,243,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="258,24,311,29,365,39,419,54,471,75,514,103,552,138,605,205,600,205,548,142,511,108,468,80,418,59,364,44,310,35,260,29"/>
+<area shape="rect" id="Node000003" href="$dd/d09/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_student_profile_persistence_port.html" title="Persistence port for managing student profile data." alt="" coords="27,72,243,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="258,99,363,115,418,127,471,143,534,171,587,205,582,205,531,176,469,148,417,132,362,120,259,105"/>
+<area shape="rect" id="Node000004" href="$d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html" title="Service port interface that defines the contract for user management operations." alt="" coords="27,139,243,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="258,168,470,195,515,204,510,205,469,200,259,174"/>
+<area shape="rect" id="Node000005" href="$d4/d0e/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1integra_1_1_i_integra_service_port.html" title="Service port interface that defines the contract for Integra external system integration operations." alt="" coords="5,205,265,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="280,224,495,225,491,228,281,229"/>
+<area shape="rect" id="Node000006" href="$da/d66/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_academic_program_service_port.html" title="Service port interface that defines the contract for academic program management operations." alt="" coords="27,272,243,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="258,280,469,253,515,248,510,249,470,259,259,285"/>
+<area shape="rect" id="Node000007" href="$d9/d80/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_role_service_port.html" title="Service port interface that defines the contract for role management operations." alt="" coords="27,339,243,381"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="258,349,362,333,417,321,469,305,531,278,582,250,587,247,534,282,471,311,418,326,363,338,259,354"/>
+<area shape="rect" id="Node000008" href="$d6/de6/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_academic_period_service_port.html" title="Service port interface that defines the contract for academic period management operations." alt="" coords="27,405,243,448"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="259,424,310,419,364,409,418,395,468,374,511,346,548,311,600,250,605,247,552,315,514,350,471,378,419,400,365,415,311,424,259,429"/>
+</map>

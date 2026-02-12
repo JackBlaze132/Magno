@@ -1,0 +1,9 @@
+var namespacecom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user =
+[
+    [ "DiriUserAlreadyExistsException", "d2/d53/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_diri_user_already_exists_exception.html", "d2/d53/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_diri_user_already_exists_exception" ],
+    [ "DiriUserNotFoundException", "d1/d85/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_diri_user_not_found_exception.html", "d1/d85/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_diri_user_not_found_exception" ],
+    [ "FunctionaryNotAllowedToGenerateCertificateException", "de/da6/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_functionary_not_allowed_to_generate_certificate_exception.html", "de/da6/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_functionary_not_allowed_to_generate_certificate_exception" ],
+    [ "NoDataAvailableToGenerateCertificateException", "d0/df3/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_no_data_available_to_generate_certificate_exception.html", "d0/df3/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_no_data_available_to_generate_certificate_exception" ],
+    [ "UserAlreadyExistsException", "d7/d82/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_user_already_exists_exception.html", "d7/d82/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_user_already_exists_exception" ],
+    [ "UserNotFoundException", "d5/d5f/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_user_not_found_exception.html", "d5/d5f/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_user_not_found_exception" ]
+];

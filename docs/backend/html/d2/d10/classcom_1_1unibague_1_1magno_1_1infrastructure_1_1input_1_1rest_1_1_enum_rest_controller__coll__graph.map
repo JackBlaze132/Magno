@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.infrastructure.input.rest.EnumRestController" name="com.unibague.magno.infrastructure.input.rest.EnumRestController">
+<area shape="rect" id="Node000001" title="REST controller for accessing enum values used throughout Magno." alt="" coords="5,120,293,163"/>
+<area shape="rect" id="Node000002" href="$da/d85/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_enum_service_port.html" title="Service port interface that defines the contract for enum&#45;related operations." alt="" coords="41,5,257,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,62,151,121,147,119,147,65"/>
+</map>

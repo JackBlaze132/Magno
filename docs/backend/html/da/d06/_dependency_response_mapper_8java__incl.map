@@ -1,0 +1,13 @@
+<map id="src/main/java/com/unibague/magno/application/mapper/response/DependencyResponseMapper.java" name="src/main/java/com/unibague/magno/application/mapper/response/DependencyResponseMapper.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="514,5,799,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,300,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="516,63,276,111,275,106,511,64"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="323,112,558,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="595,64,502,108,500,103,590,65"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="582,120,731,147"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="658,62,659,106,654,103,655,66"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="755,120,952,147"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="716,62,817,113,812,113,715,67"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="976,120,1068,147"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="784,62,965,109,976,115,970,114,964,115,783,67"/>
+</map>

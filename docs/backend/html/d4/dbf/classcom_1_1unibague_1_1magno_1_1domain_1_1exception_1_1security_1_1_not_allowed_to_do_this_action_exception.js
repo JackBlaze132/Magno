@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1security_1_1_not_allowed_to_do_this_action_exception =
+[
+    [ "NotAllowedToDoThisActionException", "d4/dbf/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1security_1_1_not_allowed_to_do_this_action_exception.html#a79523eb238a568c65de424f389beecac", null ]
+];

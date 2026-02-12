@@ -1,0 +1,23 @@
+<map id="src/main/java/com/unibague/magno/application/mapper/response/StudentProfileResponseMapperImpl.java" name="src/main/java/com/unibague/magno/application/mapper/response/StudentProfileResponseMapperImpl.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1147,5,1414,80"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,136,305,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1144,54,773,87,317,131,268,136,267,131,316,125,773,82,1150,54"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="328,128,544,171"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1149,57,880,90,560,130,559,125,879,84,1144,58"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="568,128,784,171"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1149,67,800,129,799,124,1144,67"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="808,128,1024,171"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1155,80,1004,126,1003,121,1149,81"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="1048,128,1264,171"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1239,80,1193,120,1191,115,1234,82"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1288,128,1523,171"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1325,78,1372,118,1367,117,1324,83"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1546,136,1761,163"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1412,78,1596,132,1591,131,1412,83"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1786,128,1994,171"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1414,64,1773,128,1768,128,1414,69"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="2017,136,2109,163"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1414,48,1540,57,1689,73,1848,95,2006,125,2020,131,2014,131,2005,131,1848,100,1688,78,1539,63,1414,53"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="2132,136,2223,163"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1414,45,1560,53,1738,67,1930,91,2121,125,2134,131,2129,131,2120,131,1929,96,1737,73,1560,58,1414,50"/>
+</map>

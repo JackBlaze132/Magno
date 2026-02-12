@@ -1,0 +1,4 @@
+var interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_investigation_group_request_mapper =
+[
+    [ "toInvestigationGroup", "d9/df9/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_investigation_group_request_mapper.html#ad45e3eeab2cc2d6346c312dd065d7ec0", null ]
+];

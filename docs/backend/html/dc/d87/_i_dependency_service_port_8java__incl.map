@@ -1,0 +1,9 @@
+<map id="src/main/java/com/unibague/magno/domain/api/IDependencyServicePort.java" name="src/main/java/com/unibague/magno/domain/api/IDependencyServicePort.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="181,5,437,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,240,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="256,64,177,107,175,102,251,65"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="264,120,355,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="311,62,311,106,307,103,307,66"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="379,120,498,147"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="348,62,412,111,407,110,347,67"/>
+</map>

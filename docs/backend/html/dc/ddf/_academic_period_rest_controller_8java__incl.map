@@ -1,0 +1,23 @@
+<map id="src/main/java/com/unibague/magno/infrastructure/input/rest/AcademicPeriodRestController.java" name="src/main/java/com/unibague/magno/infrastructure/input/rest/AcademicPeriodRestController.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1206,5,1465,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,290,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1203,44,808,72,305,114,305,109,808,67,1209,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="314,112,608,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1209,49,624,114,624,109,1203,48"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="632,112,922,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1209,58,912,112,911,106,1203,58"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="945,120,1096,147"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1245,64,1077,118,1076,112,1239,65"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="1120,120,1335,147"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1306,63,1254,112,1252,107,1301,65"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1359,112,1528,155"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1368,62,1412,102,1407,101,1366,67"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1553,112,1838,155"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1443,62,1606,108,1601,107,1442,67"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1863,120,2131,147"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1465,52,1897,117,1892,117,1465,57"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="2154,120,2250,147"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1465,36,1606,43,1777,56,1961,77,2144,109,2158,115,2152,115,2143,115,1960,83,1776,61,1606,48,1465,42"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="2274,120,2365,147"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1465,34,1627,38,1827,50,2045,73,2155,89,2263,109,2277,115,2271,115,2262,115,2155,94,2045,78,1826,56,1626,44,1465,39"/>
+</map>

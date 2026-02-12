@@ -1,0 +1,4 @@
+var _external_user_profile_response_mapper_impl_8java =
+[
+    [ "com.unibague.magno.application.mapper.response.ExternalUserProfileResponseMapperImpl", "d3/d42/classcom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_external_user_profile_response_mapper_impl.html", "d3/d42/classcom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_external_user_profile_response_mapper_impl" ]
+];

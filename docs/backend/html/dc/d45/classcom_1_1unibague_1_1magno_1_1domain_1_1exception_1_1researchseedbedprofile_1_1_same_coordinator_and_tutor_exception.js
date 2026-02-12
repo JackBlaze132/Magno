@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedprofile_1_1_same_coordinator_and_tutor_exception =
+[
+    [ "SameCoordinatorAndTutorException", "dc/d45/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedprofile_1_1_same_coordinator_and_tutor_exception.html#aa503fc4739116c5127bf5650c9ebb9e0", null ]
+];

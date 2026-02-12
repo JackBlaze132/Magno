@@ -1,0 +1,5 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedprofile_1_1_research_seedbed_profile_not_found_exception =
+[
+    [ "ResearchSeedbedProfileNotFoundException", "dd/d01/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedprofile_1_1_research_seedbed_profile_not_found_exception.html#a67263708938c292dc634639dd3131d36", null ],
+    [ "ResearchSeedbedProfileNotFoundException", "dd/d01/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedprofile_1_1_research_seedbed_profile_not_found_exception.html#a051b9784cb7fbb8384ace2ead9b3d797", null ]
+];

@@ -1,0 +1,23 @@
+<map id="src/main/java/com/unibague/magno/infrastructure/output/jpa/adapter/CronJobExecutionLogJpaAdapter.java" name="src/main/java/com/unibague/magno/infrastructure/output/jpa/adapter/CronJobExecutionLogJpaAdapter.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1452,5,1694,80"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,128,240,171"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1449,48,936,76,599,99,256,130,255,125,599,93,935,70,1454,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="263,128,510,171"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1449,51,1045,82,788,104,525,130,525,125,787,98,1044,77,1454,51"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="533,128,858,171"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1454,58,874,130,874,124,1449,58"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="883,128,1220,171"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1454,68,1170,127,1170,122,1449,68"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="1245,128,1595,171"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1522,80,1464,121,1462,116,1517,81"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1619,136,1834,163"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1628,78,1698,128,1693,126,1626,83"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1858,128,2067,171"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1695,74,1873,124,1868,123,1694,79"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="2091,136,2258,163"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1695,60,2079,125,2104,133,2098,132,2078,131,1695,65"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="2282,136,2374,163"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1695,48,1816,58,1960,74,2116,96,2270,125,2283,131,2278,131,2269,131,2115,101,1960,79,1815,63,1695,54"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="2397,136,2570,163"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1695,50,2008,79,2197,100,2386,125,2414,133,2409,132,2385,131,2196,105,2008,84,1695,56"/>
+</map>

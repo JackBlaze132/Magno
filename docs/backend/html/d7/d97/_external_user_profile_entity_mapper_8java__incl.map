@@ -1,0 +1,9 @@
+<map id="src/main/java/com/unibague/magno/infrastructure/output/jpa/mapper/ExternalUserProfileEntityMapper.java" name="src/main/java/com/unibague/magno/infrastructure/output/jpa/mapper/ExternalUserProfileEntityMapper.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="306,5,547,80"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,128,240,171"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="322,80,198,125,196,120,317,81"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="264,128,589,171"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="428,78,429,114,424,111,425,82"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="613,136,704,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="509,78,619,129,614,129,508,83"/>
+</map>

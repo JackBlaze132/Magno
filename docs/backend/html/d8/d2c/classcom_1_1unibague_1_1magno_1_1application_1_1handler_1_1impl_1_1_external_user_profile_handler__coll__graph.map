@@ -1,0 +1,11 @@
+<map id="com.unibague.magno.application.handler.impl.ExternalUserProfileHandler" name="com.unibague.magno.application.handler.impl.ExternalUserProfileHandler">
+<area shape="rect" id="Node000001" title="Implementation of IExternalUserProfileHandler." alt="" coords="563,111,852,153"/>
+<area shape="rect" id="Node000002" href="$d5/dbf/interfacecom_1_1unibague_1_1magno_1_1application_1_1handler_1_1interfaces_1_1_i_external_user_profile_handler.html" title="Handler interface for external user profile operations." alt="" coords="5,5,328,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="343,41,441,56,539,75,650,110,645,110,538,80,440,61,344,47"/>
+<area shape="rect" id="Node000003" href="$d6/d35/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_external_user_profile_service_port.html" title="Service port interface that defines the contract for external user profile management operations." alt="" coords="58,72,275,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="290,99,564,120,560,123,290,105"/>
+<area shape="rect" id="Node000004" href="$de/dc4/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_external_user_profile_response_mapper.html" title="Mapper interface for converting external user profile domain models to response DTOs." alt="" coords="7,148,326,191"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="342,174,439,172,538,165,623,153,618,154,539,171,440,178,342,179"/>
+<area shape="rect" id="Node000005" href="$d9/d22/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_external_user_profile_request_mapper.html" title="Mapper interface for converting external user profile request DTOs to domain models." alt="" coords="12,224,321,267"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="337,251,437,244,489,236,538,224,577,210,614,191,675,155,680,153,617,195,579,215,539,229,490,241,438,249,337,256"/>
+</map>

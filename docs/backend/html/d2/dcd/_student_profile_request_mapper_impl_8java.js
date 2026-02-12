@@ -1,0 +1,4 @@
+var _student_profile_request_mapper_impl_8java =
+[
+    [ "com.unibague.magno.application.mapper.request.impl.StudentProfileRequestMapperImpl", "d7/de3/classcom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1impl_1_1_student_profile_request_mapper_impl.html", "d7/de3/classcom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1impl_1_1_student_profile_request_mapper_impl" ]
+];

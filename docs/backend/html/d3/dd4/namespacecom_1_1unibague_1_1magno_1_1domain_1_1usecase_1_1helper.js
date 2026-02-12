@@ -1,0 +1,11 @@
+var namespacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper =
+[
+    [ "IInvestigationGroupProfileHelper", "da/d1a/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_investigation_group_profile_helper.html", "da/d1a/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_investigation_group_profile_helper" ],
+    [ "InvestigationGroupProfileHelper", "d5/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_investigation_group_profile_helper.html", "d5/d11/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_investigation_group_profile_helper" ],
+    [ "IResearchSeedbedProfileHelper", "df/d69/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_research_seedbed_profile_helper.html", "df/d69/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_research_seedbed_profile_helper" ],
+    [ "IResearchSeedbedStudentProfileHelper", "d8/d54/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_research_seedbed_student_profile_helper.html", "d8/d54/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_research_seedbed_student_profile_helper" ],
+    [ "IUserHelper", "d1/dec/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_user_helper.html", "d1/dec/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_user_helper" ],
+    [ "ResearchSeedbedProfileHelper", "de/d13/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_research_seedbed_profile_helper.html", "de/d13/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_research_seedbed_profile_helper" ],
+    [ "ResearchSeedbedStudentProfileHelper", "d9/d1f/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_research_seedbed_student_profile_helper.html", "d9/d1f/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_research_seedbed_student_profile_helper" ],
+    [ "UserHelper", "d6/d39/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_user_helper.html", "d6/d39/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_user_helper" ]
+];

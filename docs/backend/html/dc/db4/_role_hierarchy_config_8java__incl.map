@@ -1,0 +1,13 @@
+<map id="src/main/java/com/unibague/magno/infrastructure/configuration/RoleHierarchyConfig.java" name="src/main/java/com/unibague/magno/infrastructure/configuration/RoleHierarchyConfig.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="632,5,854,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,283,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="632,57,288,112,287,106,631,51"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="307,120,592,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="658,64,503,117,501,112,653,65"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="616,112,870,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="745,62,745,98,741,95,741,66"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="894,112,1231,155"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="838,62,982,107,977,107,837,67"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="1254,112,1591,155"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="854,49,1264,109,1259,110,854,54"/>
+</map>

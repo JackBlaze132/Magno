@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicperiod_1_1_academic_period_not_current_exception =
+[
+    [ "AcademicPeriodNotCurrentException", "d2/d70/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicperiod_1_1_academic_period_not_current_exception.html#a9dae7168a589eb7189240fce705000ce", null ]
+];

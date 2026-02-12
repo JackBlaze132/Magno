@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbed_1_1_research_seedbed_has_associated_profiles_exception =
+[
+    [ "ResearchSeedbedHasAssociatedProfilesException", "dc/d3b/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbed_1_1_research_seedbed_has_associated_profiles_exception.html#a769d6faa07264cd3a04f2a1a47c88b7a", null ]
+];

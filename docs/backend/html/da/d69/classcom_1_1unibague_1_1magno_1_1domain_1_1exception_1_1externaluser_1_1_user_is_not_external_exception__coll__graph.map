@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.exception.externaluser.UserIsNotExternalException" name="com.unibague.magno.domain.exception.externaluser.UserIsNotExternalException">
+<area shape="rect" id="Node000001" title="Exception thrown when attempting to perform an operation specific to external users on a user who is ..." alt="" coords="5,80,336,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="106,5,235,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,46,173,81,168,79,169,50"/>
+</map>

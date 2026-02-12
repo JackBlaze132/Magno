@@ -1,0 +1,11 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.adapter.ResearchSeedbedStudentProfileJpaAdapter" name="com.unibague.magno.infrastructure.output.jpa.adapter.ResearchSeedbedStudentProfileJpaAdapter">
+<area shape="rect" id="Node000001" title="JPA implementation of IResearchSeedbedStudentProfilePersistencePort for managing research seedbed stu..." alt="" coords="868,71,1206,113"/>
+<area shape="rect" id="Node000002" href="$d1/d90/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_research_seedbed_student_profile_persistence_port.html" title="Persistence port for managing research seedbed student profile data." alt="" coords="300,5,608,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="623,25,733,31,845,43,963,70,957,70,844,48,732,36,624,30"/>
+<area shape="rect" id="Node000003" href="$de/d7d/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_researcbf41a203d2b203ae99b8308cc46f1fd4.html" title="Spring Data JPA repository for ResearchSeedbedStudentProfileEntity." alt="" coords="279,72,629,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="645,90,871,92,865,93,645,96"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,72,230,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="245,91,281,93,276,94,246,96"/>
+<area shape="rect" id="Node000005" href="$d3/d3d/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_research_seede5390a9c9f16a63ddb73f1924f06c02f.html" title="Mapper interface for converting between ResearchSeedbedStudentProfile domain model and ResearchSeedbe..." alt="" coords="286,147,623,189"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="638,162,741,154,844,141,908,128,966,114,971,114,909,133,845,147,741,160,639,167"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.repository.IAcademicProgramRepository" name="com.unibague.magno.infrastructure.output.jpa.repository.IAcademicProgramRepository">
+<area shape="rect" id="Node000001" title="Spring Data JPA repository for AcademicProgramEntity." alt="" coords="5,96,356,139"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="69,5,292,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,62,183,97,178,94,179,66"/>
+</map>

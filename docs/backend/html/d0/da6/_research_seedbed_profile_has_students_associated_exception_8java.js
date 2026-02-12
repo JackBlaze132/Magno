@@ -1,0 +1,4 @@
+var _research_seedbed_profile_has_students_associated_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.researchseedbedprofile.ResearchSeedbedProfileHasStudentsAssociatedException", "d1/dbc/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedprofile_1_1_research_seedda5233be1bda84e5974f9ff7a90ce8fd.html", "d1/dbc/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedprofile_1_1_research_seedda5233be1bda84e5974f9ff7a90ce8fd" ]
+];

@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$d1/dec/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_user_helper.html" title="Helper interface for user&#45;related operations." alt="" coords="5,5,293,48"/>
+<area shape="rect" id="Node000001" href="$d6/d39/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_user_helper.html" title="Implementation of IUserHelper." alt="" coords="341,5,628,48"/>
+<area shape="poly" id="edge68_Node000000_Node000001" title=" " alt="" coords="308,24,343,27,338,27,308,29"/>
+</map>

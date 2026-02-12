@@ -1,0 +1,19 @@
+<map id="src/main/java/com/unibague/magno/application/dto/response/UserResponse.java" name="src/main/java/com/unibague/magno/application/dto/response/UserResponse.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="986,5,1195,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,227,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="983,43,658,71,453,91,242,114,242,109,452,85,658,66,988,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="251,112,461,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="988,47,757,77,477,114,476,109,756,72,983,48"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="486,112,760,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="988,57,739,111,738,106,983,58"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="784,120,1085,147"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1047,64,969,114,967,109,1042,65"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="1109,112,1387,155"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1138,62,1204,104,1199,103,1137,67"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1410,120,1518,147"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1196,58,1399,109,1412,115,1407,115,1398,115,1195,63"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1542,120,1645,147"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1196,48,1354,73,1530,109,1544,115,1539,115,1529,115,1353,78,1195,53"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1669,120,1771,147"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1196,42,1410,66,1535,85,1658,109,1673,116,1667,115,1657,115,1534,90,1409,71,1195,47"/>
+</map>

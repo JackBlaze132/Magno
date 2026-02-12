@@ -1,0 +1,4 @@
+var _multiple_active_academic_periods_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.academicperiod.MultipleActiveAcademicPeriodsException", "db/d8a/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicperiod_1_1_multiple_active_academic_periods_exception.html", "db/d8a/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicperiod_1_1_multiple_active_academic_periods_exception" ]
+];

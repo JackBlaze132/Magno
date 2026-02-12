@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.adapter.UserJpaAdapter" name="com.unibague.magno.infrastructure.output.jpa.adapter.UserJpaAdapter">
+<area shape="rect" id="Node000001" title="JPA implementation of IUserPersistencePort for managing user persistence." alt="" coords="5,96,343,139"/>
+<area shape="rect" id="Node000002" href="$df/dfe/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_user_persistence_port.html" title="Persistence port for managing user data." alt="" coords="66,5,282,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,62,176,97,172,94,172,66"/>
+</map>

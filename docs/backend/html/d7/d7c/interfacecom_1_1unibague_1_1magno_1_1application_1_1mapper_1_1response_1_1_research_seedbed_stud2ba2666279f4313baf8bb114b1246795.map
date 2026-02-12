@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.application.mapper.response.ResearchSeedbedStudentProfileResponseMapper" name="com.unibague.magno.application.mapper.response.ResearchSeedbedStudentProfileResponseMapper">
+<area shape="rect" id="Node000001" title="Mapper interface for converting research seedbed student profile domain models to response DTOs." alt="" coords="5,5,325,48"/>
+<area shape="rect" id="Node000002" href="$da/d8d/classcom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_research_seedbed_student_profile_response_mapper_impl.html" title="Implementation of ResearchSeedbedStudentProfileResponseMapper." alt="" coords="373,5,710,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="340,24,375,27,370,27,340,29"/>
+</map>

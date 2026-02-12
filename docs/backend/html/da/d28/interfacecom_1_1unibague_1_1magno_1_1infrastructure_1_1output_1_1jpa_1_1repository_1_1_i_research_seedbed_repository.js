@@ -1,0 +1,5 @@
+var interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_research_seedbed_repository =
+[
+    [ "findResearchSeedbedsByUserId", "da/d28/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_research_seedbed_repository.html#a6665ba16a00dff43ede3527b6522d105", null ],
+    [ "findResearchSeedbedsWithAssociatedProfiles", "da/d28/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_research_seedbed_repository.html#a3f9d3c6f74c3dfd409f673b0e279e5b6", null ]
+];

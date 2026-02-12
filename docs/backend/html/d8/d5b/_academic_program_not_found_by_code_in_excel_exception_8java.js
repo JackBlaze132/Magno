@@ -1,0 +1,4 @@
+var _academic_program_not_found_by_code_in_excel_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.academicprogram.AcademicProgramNotFoundByCodeInExcelException", "d8/da8/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicprogram_1_1_academic_program_not960397b0f85f28a59549293479283390.html", "d8/da8/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicprogram_1_1_academic_program_not960397b0f85f28a59549293479283390" ]
+];

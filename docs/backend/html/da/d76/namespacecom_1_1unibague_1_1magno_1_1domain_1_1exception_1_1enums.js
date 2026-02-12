@@ -1,0 +1,4 @@
+var namespacecom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1enums =
+[
+    [ "EnumBadRequestException", "d7/dff/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1enums_1_1_enum_bad_request_exception.html", "d7/dff/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1enums_1_1_enum_bad_request_exception" ]
+];

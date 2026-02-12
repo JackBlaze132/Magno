@@ -1,0 +1,21 @@
+<map id="src/main/java/com/unibague/magno/infrastructure/output/jpa/adapter/StudentProfileJpaAdapter.java" name="src/main/java/com/unibague/magno/infrastructure/output/jpa/adapter/StudentProfileJpaAdapter.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1256,5,1525,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,240,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1253,42,815,67,538,88,255,114,255,109,537,82,814,62,1258,41"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="264,112,480,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1253,44,915,72,707,91,496,114,495,109,707,86,914,66,1258,44"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="504,112,829,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1258,54,837,112,837,107,1253,54"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="854,112,1191,155"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1284,64,1117,110,1116,105,1278,65"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="1215,112,1566,155"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1392,62,1392,98,1389,95,1389,66"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1590,120,1804,147"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1482,62,1645,115,1640,115,1481,67"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1829,112,2104,155"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1526,56,1830,109,1825,109,1525,61"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="2129,120,2220,147"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1526,38,1651,46,1800,60,1959,81,2116,109,2130,115,2125,115,2115,115,1958,86,1799,65,1651,52,1526,44"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="2245,120,2363,147"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1526,38,1672,46,1849,60,2041,80,2232,109,2251,116,2246,115,2231,115,2041,86,1849,65,1672,51,1526,43"/>
+</map>

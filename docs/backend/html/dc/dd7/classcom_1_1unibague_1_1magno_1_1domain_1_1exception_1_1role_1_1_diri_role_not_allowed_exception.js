@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1role_1_1_diri_role_not_allowed_exception =
+[
+    [ "DiriRoleNotAllowedException", "dc/dd7/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1role_1_1_diri_role_not_allowed_exception.html#ae29a7c8745b77a04f6720a7eef592912", null ]
+];

@@ -1,0 +1,4 @@
+var _student_profile_already_exists_in_seedbed_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.researchseedbedstudentprofile.StudentProfileAlreadyExistsInSeedbedException", "db/def/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedstudentprofile_1_1_studen04832b39bc9f632460d8cd01ddc15ad0.html", "db/def/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedstudentprofile_1_1_studen04832b39bc9f632460d8cd01ddc15ad0" ]
+];

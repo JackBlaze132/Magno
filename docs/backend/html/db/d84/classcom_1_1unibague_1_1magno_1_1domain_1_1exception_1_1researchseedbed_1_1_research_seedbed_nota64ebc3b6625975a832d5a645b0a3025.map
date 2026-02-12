@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFoundException" name="com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedNotFoundException">
+<area shape="rect" id="Node000001" title="Exception thrown when a research seedbed cannot be found in the system." alt="" coords="5,80,364,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="120,5,249,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,46,187,81,182,78,183,50"/>
+</map>

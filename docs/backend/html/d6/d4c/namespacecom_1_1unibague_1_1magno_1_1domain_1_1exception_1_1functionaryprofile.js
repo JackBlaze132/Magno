@@ -1,0 +1,5 @@
+var namespacecom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1functionaryprofile =
+[
+    [ "FunctionaryProfileAlreadyExistsException", "d4/ddb/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1functionaryprofile_1_1_functionary_profile_already_exists_exception.html", "d4/ddb/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1functionaryprofile_1_1_functionary_profile_already_exists_exception" ],
+    [ "FunctionaryProfileNotFoundException", "d0/d84/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1functionaryprofile_1_1_functionary_profile_not_found_exception.html", "d0/d84/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1functionaryprofile_1_1_functionary_profile_not_found_exception" ]
+];

@@ -1,0 +1,7 @@
+var namespacecom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1security =
+[
+    [ "InvalidEmailException", "df/d83/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1security_1_1_invalid_email_exception.html", "df/d83/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1security_1_1_invalid_email_exception" ],
+    [ "NotAllowedToDoThisActionException", "d4/dbf/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1security_1_1_not_allowed_to_do_this_action_exception.html", "d4/dbf/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1security_1_1_not_allowed_to_do_this_action_exception" ],
+    [ "NullEmailException", "d1/d41/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1security_1_1_null_email_exception.html", "d1/d41/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1security_1_1_null_email_exception" ],
+    [ "UnsupportedPrincipalException", "d7/dbb/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1security_1_1_unsupported_principal_exception.html", "d7/dbb/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1security_1_1_unsupported_principal_exception" ]
+];

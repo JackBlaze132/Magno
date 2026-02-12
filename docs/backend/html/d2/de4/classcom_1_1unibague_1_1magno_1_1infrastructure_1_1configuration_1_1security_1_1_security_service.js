@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_security_service =
+[
+    [ "getInfoFromAuthenticatedUser", "d2/de4/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_security_service.html#a7a8e728f44b8c42b2ac8e3c822d6f1ef", null ]
+];

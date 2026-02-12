@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.exception.academicprogram.AcademicProgramNotFoundByCodeInExcelException" name="com.unibague.magno.domain.exception.academicprogram.AcademicProgramNotFoundByCodeInExcelException">
+<area shape="rect" id="Node000001" title="Exception thrown when an academic program code specified in an Excel file cannot be found in the syst..." alt="" coords="5,80,368,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="122,5,251,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,46,189,81,184,78,185,50"/>
+</map>

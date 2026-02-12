@@ -1,0 +1,11 @@
+<map id="com.unibague.magno.infrastructure.exceptionhandler.ControllerAdvisor" name="com.unibague.magno.infrastructure.exceptionhandler.ControllerAdvisor">
+<area shape="rect" id="Node000001" title="Global exception handler for all REST controllers." alt="" coords="954,39,1285,81"/>
+<area shape="rect" id="Node000002" href="$d0/d39/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_error_log_service_port.html" title="Service port interface that defines the contract for error log management operations." alt="" coords="528,5,744,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="760,32,956,48,951,49,760,38"/>
+<area shape="rect" id="Node000003" href="$d0/de0/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1util_1_1_error_log_context_service.html" title="Service for creating error log entries from exceptions." alt="" coords="511,72,761,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="776,83,930,73,956,74,951,74,930,79,777,88"/>
+<area shape="rect" id="Node000004" href="$d2/de4/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_security_service.html" title="Service for extracting authenticated user information from the security context." alt="" coords="5,39,362,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="377,72,513,84,508,84,377,77"/>
+<area shape="rect" id="Node000005" href="$d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html" title="Service port interface that defines the contract for user management operations." alt="" coords="75,105,292,148"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="307,119,486,108,508,109,513,108,487,113,308,125"/>
+</map>

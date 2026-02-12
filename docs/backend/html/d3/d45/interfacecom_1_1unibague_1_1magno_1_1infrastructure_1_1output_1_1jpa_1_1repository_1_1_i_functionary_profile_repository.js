@@ -1,0 +1,7 @@
+var interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_functionary_profile_repository =
+[
+    [ "existsByUser_IdAndAcademicPeriod_Id", "d3/d45/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_functionary_profile_repository.html#a28385b7b4335c18f36b298d136fb2290", null ],
+    [ "findAllByAcademicPeriod_Id", "d3/d45/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_functionary_profile_repository.html#a33a451979c3c43ced86eb0f4bd51c25a", null ],
+    [ "findAllByIdAndAcademicPeriod", "d3/d45/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_functionary_profile_repository.html#ab06281173608267f27b024ed2f0efd9a", null ],
+    [ "findAllByUser_Id", "d3/d45/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_functionary_profile_repository.html#afd64b2c205309cbfd171b4ee4d61540c", null ]
+];

@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.exception.security.InvalidEmailException" name="com.unibague.magno.domain.exception.security.InvalidEmailException">
+<area shape="rect" id="Node000001" title="Exception thrown when an invalid email address is provided." alt="" coords="5,80,310,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="93,5,222,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,46,160,81,155,79,156,50"/>
+</map>

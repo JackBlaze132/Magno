@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.infrastructure.util.ActionLogContextService" name="com.unibague.magno.infrastructure.util.ActionLogContextService">
+<area shape="rect" id="Node000001" title="Service for creating action log entries from HTTP requests." alt="" coords="5,120,256,163"/>
+<area shape="rect" id="Node000002" href="$d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html" title="Service port interface that defines the contract for user management operations." alt="" coords="22,5,239,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,62,133,120,128,119,129,65"/>
+</map>

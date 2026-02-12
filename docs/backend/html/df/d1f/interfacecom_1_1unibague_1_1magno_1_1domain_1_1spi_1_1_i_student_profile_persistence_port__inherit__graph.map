@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.spi.IStudentProfilePersistencePort" name="com.unibague.magno.domain.spi.IStudentProfilePersistencePort">
+<area shape="rect" id="Node000001" title="Persistence port for managing student profile data." alt="" coords="66,5,282,48"/>
+<area shape="rect" id="Node000002" href="$d6/d53/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_student_profile_jpa_adapter.html" title="JPA implementation of IStudentProfilePersistencePort for managing student profile persistence." alt="" coords="5,96,343,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,62,176,97,172,94,172,66"/>
+</map>

@@ -1,0 +1,5 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1functionaryprofile_1_1_functionary_profile_already_exists_exception =
+[
+    [ "FunctionaryProfileAlreadyExistsException", "d4/ddb/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1functionaryprofile_1_1_functionary_profile_already_exists_exception.html#a2f42d9bc65c985316de7f41b03e906b3", null ],
+    [ "FunctionaryProfileAlreadyExistsException", "d4/ddb/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1functionaryprofile_1_1_functionary_profile_already_exists_exception.html#a34c8ec8180f94346975fb159e42c2c1e", null ]
+];

@@ -1,0 +1,5 @@
+var namespacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1certificates_1_1studentcertificates =
+[
+    [ "StudentSeedbedCertificate", "d5/d86/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1certificates_1_1studentcertificates_1_1_student_seedbed_certificate.html", "d5/d86/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1certificates_1_1studentcertificates_1_1_student_seedbed_certificate" ],
+    [ "StudentSeedbedParticipation", "dd/d2a/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1certificates_1_1studentcertificates_1_1_student_seedbed_participation.html", "dd/d2a/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1certificates_1_1studentcertificates_1_1_student_seedbed_participation" ]
+];

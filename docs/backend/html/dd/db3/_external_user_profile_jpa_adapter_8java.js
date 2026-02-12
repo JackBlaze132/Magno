@@ -1,0 +1,4 @@
+var _external_user_profile_jpa_adapter_8java =
+[
+    [ "com.unibague.magno.infrastructure.output.jpa.adapter.ExternalUserProfileJpaAdapter", "de/d01/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_external_user_profile_jpa_adapter.html", "de/d01/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_external_user_profile_jpa_adapter" ]
+];

@@ -1,0 +1,9 @@
+<map id="com.unibague.magno.infrastructure.configuration.WebConfig" name="com.unibague.magno.infrastructure.configuration.WebConfig">
+<area shape="rect" id="Node000001" title="Web MVC configuration class." alt="" coords="875,27,1183,69"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="392,5,524,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="539,20,877,40,872,41,539,25"/>
+<area shape="rect" id="Node000003" href="$d2/d89/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1annotation_1_1_current_user_argument_resolver.html" title="Argument resolver for the CurrentUser annotation." alt="" coords="272,56,643,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="659,73,851,65,872,66,877,66,851,71,659,79"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,64,223,91"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="238,75,275,77,269,77,239,80"/>
+</map>

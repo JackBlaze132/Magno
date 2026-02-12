@@ -1,0 +1,4 @@
+var interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_functionary_profile_request_mapper =
+[
+    [ "toFunctionaryProfile", "d7/ded/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_functionary_profile_request_mapper.html#a5bf36b0a0722e91accf8222a8cc0dc94", null ]
+];

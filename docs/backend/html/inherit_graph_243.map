@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,113,153,140"/>
+<area shape="rect" id="Node000001" href="$da/d4a/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1initializer_1_1_admin_registration_initializer.html" title="Initializer that provides an interactive prompt at application startup to register an administrator (..." alt="" coords="201,5,485,48"/>
+<area shape="poly" id="edge78_Node000000_Node000001" title=" " alt="" coords="112,103,153,79,200,58,237,47,233,50,202,62,156,84,116,107"/>
+<area shape="rect" id="Node000002" href="$d4/d00/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1initializer_1_1_enum_constraint_initializer.html" title="Automatically updates CHECK constraints for all enum columns at application startup." alt="" coords="201,72,485,115"/>
+<area shape="poly" id="edge79_Node000000_Node000002" title=" " alt="" coords="167,113,203,110,198,113,169,118"/>
+<area shape="rect" id="Node000003" href="$dc/d91/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1initializer_1_1_role_data_initializer.html" title="Initializer responsible for populating the database with all seedbed roles defined in the SeedbedRole..." alt="" coords="201,139,485,181"/>
+<area shape="poly" id="edge80_Node000000_Node000003" title=" " alt="" coords="168,135,203,141,198,143,168,140"/>
+<area shape="rect" id="Node000004" href="$d3/de4/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1initializer_1_1_user_data_initializer.html" title="Initializer responsible for synchronizing user data from the external Integra system at application s..." alt="" coords="201,205,485,248"/>
+<area shape="poly" id="edge81_Node000000_Node000004" title=" " alt="" coords="114,146,156,170,202,191,237,205,232,205,200,196,153,174,114,151"/>
+</map>

@@ -1,0 +1,4 @@
+var _investigation_group_has_associated_profiles_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.investigationgroup.InvestigationGroupHasAssociatedProfilesException", "d1/d3d/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroup_1_1_investigation_gro46156d9fc1a756d46c574da309621e9f.html", "d1/d3d/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroup_1_1_investigation_gro46156d9fc1a756d46c574da309621e9f" ]
+];

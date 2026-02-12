@@ -1,0 +1,5 @@
+var interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_cron_job_execution_log_response_mapper =
+[
+    [ "toResponse", "d2/d0a/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_cron_job_execution_log_response_mapper.html#ad37dd5c6fcae1f64a1b8c2ac328c55b0", null ],
+    [ "toResponseList", "d2/d0a/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_cron_job_execution_log_response_mapper.html#a7b3072628b8cb36a75eecd1392f897f5", null ]
+];

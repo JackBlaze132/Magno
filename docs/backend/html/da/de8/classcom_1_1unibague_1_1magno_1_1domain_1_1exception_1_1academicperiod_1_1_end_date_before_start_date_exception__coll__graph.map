@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException" name="com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException">
+<area shape="rect" id="Node000001" title="Exception thrown when attempting to create or update an academic period with an end date that precede..." alt="" coords="5,80,356,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="116,5,245,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,46,183,81,178,79,179,50"/>
+</map>

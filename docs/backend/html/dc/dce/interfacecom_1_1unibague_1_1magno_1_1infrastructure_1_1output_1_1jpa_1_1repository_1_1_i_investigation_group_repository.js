@@ -1,0 +1,4 @@
+var interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_investigation_group_repository =
+[
+    [ "findInvestigationGroupsWithAssociatedProfiles", "dc/dce/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_investigation_group_repository.html#aef3a2f834d6b7c61ad75998ff7ac4451", null ]
+];

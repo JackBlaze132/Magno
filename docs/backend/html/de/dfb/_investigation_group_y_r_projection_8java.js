@@ -1,0 +1,4 @@
+var _investigation_group_y_r_projection_8java =
+[
+    [ "com.unibague.magno.domain.model.excel.projections.InvestigationGroupYRProjection", "dd/d7a/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1excel_1_1projections_1_1_investigation_group_y_r_projection.html", "dd/d7a/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1excel_1_1projections_1_1_investigation_group_y_r_projection" ]
+];

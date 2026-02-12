@@ -1,0 +1,9 @@
+<map id="com.unibague.magno.infrastructure.input.rest.DevAuthController" name="com.unibague.magno.infrastructure.input.rest.DevAuthController">
+<area shape="rect" id="Node000001" title="REST controller for development/testing authentication." alt="" coords="511,72,798,115"/>
+<area shape="rect" id="Node000002" href="$d6/d52/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_jwt_service.html" title="Service for generating and validating JWT tokens for development/testing purposes." alt="" coords="5,5,362,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="377,46,487,61,535,71,530,72,486,67,377,52"/>
+<area shape="rect" id="Node000003" href="$d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html" title="Service port interface that defines the contract for user management operations." alt="" coords="75,72,292,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="307,91,513,92,508,94,307,96"/>
+<area shape="rect" id="Node000004" href="$d9/d80/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_role_service_port.html" title="Service port interface that defines the contract for role management operations." alt="" coords="75,139,292,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="307,144,486,120,530,116,535,115,487,125,308,149"/>
+</map>

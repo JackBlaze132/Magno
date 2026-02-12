@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1impl_1_1_academic_period_request_mapper_impl =
+[
+    [ "toAcademicPeriod", "d1/d65/classcom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1impl_1_1_academic_period_request_mapper_impl.html#af972c65ec17c0e848e56051e9855ffc6", null ]
+];

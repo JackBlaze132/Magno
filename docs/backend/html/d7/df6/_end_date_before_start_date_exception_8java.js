@@ -1,0 +1,4 @@
+var _end_date_before_start_date_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.academicperiod.EndDateBeforeStartDateException", "d9/d64/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicperiod_1_1_end_date_before_start_date_exception.html", "d9/d64/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicperiod_1_1_end_date_before_start_date_exception" ]
+];

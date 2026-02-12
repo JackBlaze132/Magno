@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.mapper.AcademicProgramEntityMapper" name="com.unibague.magno.infrastructure.output.jpa.mapper.AcademicProgramEntityMapper">
+<area shape="rect" id="Node000001" title="Mapper interface for converting between AcademicProgram domain model and AcademicProgramEntity JPA en..." alt="" coords="5,5,343,48"/>
+<area shape="rect" id="Node000002" href="$dc/d66/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_academic_program_entity_mapper_impl.html" title=" " alt="" coords="391,5,728,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="358,24,393,27,388,27,358,29"/>
+</map>

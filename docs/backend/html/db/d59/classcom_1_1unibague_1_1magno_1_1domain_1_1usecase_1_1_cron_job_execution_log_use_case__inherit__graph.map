@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.usecase.CronJobExecutionLogUseCase" name="com.unibague.magno.domain.usecase.CronJobExecutionLogUseCase">
+<area shape="rect" id="Node000001" title="Use case implementation for managing cron job execution logs." alt="" coords="5,96,254,139"/>
+<area shape="rect" id="Node000002" href="$dc/dde/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_cron_job_execution_log_service_port.html" title="Service port interface that defines the contract for cron job execution log management operations." alt="" coords="19,5,240,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,62,132,97,127,95,128,66"/>
+</map>

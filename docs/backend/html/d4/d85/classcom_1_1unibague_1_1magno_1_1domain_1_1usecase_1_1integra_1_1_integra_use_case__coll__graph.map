@@ -1,0 +1,7 @@
+<map id="com.unibague.magno.domain.usecase.integra.IntegraUseCase" name="com.unibague.magno.domain.usecase.integra.IntegraUseCase">
+<area shape="rect" id="Node000001" title="Use case implementation for integrating with the university&#39;s Integra system." alt="" coords="453,39,744,81"/>
+<area shape="rect" id="Node000002" href="$d4/d0e/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1integra_1_1_i_integra_service_port.html" title="Service port interface that defines the contract for Integra external system integration operations." alt="" coords="5,5,265,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="280,34,455,49,450,50,281,40"/>
+<area shape="rect" id="Node000003" href="$d0/d72/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1integra_1_1_i_integra_persistence_port.html" title="Persistence port for integrating with the university&#39;s Integra system." alt="" coords="5,72,265,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="280,83,428,73,455,74,450,74,429,79,281,88"/>
+</map>

@@ -1,0 +1,4 @@
+var _academic_program_not_found_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.academicprogram.AcademicProgramNotFoundException", "de/da6/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicprogram_1_1_academic_program_not_found_exception.html", "de/da6/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicprogram_1_1_academic_program_not_found_exception" ]
+];

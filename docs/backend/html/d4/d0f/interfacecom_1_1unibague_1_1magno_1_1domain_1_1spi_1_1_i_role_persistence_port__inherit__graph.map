@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.spi.IRolePersistencePort" name="com.unibague.magno.domain.spi.IRolePersistencePort">
+<area shape="rect" id="Node000001" title="Persistence port for managing role data." alt="" coords="66,5,282,48"/>
+<area shape="rect" id="Node000002" href="$df/d1f/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_role_jpa_adapter.html" title="JPA implementation of IRolePersistencePort for managing role persistence." alt="" coords="5,96,343,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,62,176,97,172,94,172,66"/>
+</map>

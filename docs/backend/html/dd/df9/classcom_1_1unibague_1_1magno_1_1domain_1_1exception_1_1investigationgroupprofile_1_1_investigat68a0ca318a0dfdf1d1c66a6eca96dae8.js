@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroupprofile_1_1_investigat68a0ca318a0dfdf1d1c66a6eca96dae8 =
+[
+    [ "InvestigationGroupProfileDuplicatedInSameAcademicPeriodException", "dd/df9/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroupprofile_1_1_investigat68a0ca318a0dfdf1d1c66a6eca96dae8.html#af4d809a322fd1bb5a142f3b1f9a336a2", null ]
+];

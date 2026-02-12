@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.model.Role" name="com.unibague.magno.domain.model.Role">
+<area shape="rect" id="Node000001" title="Domain model representing a role assigned within research seedbeds." alt="" coords="13,120,275,147"/>
+<area shape="rect" id="Node000002" href="$db/d8a/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_seedbed_role.html" title="Enum representing roles available within research seedbeds." alt="" coords="5,5,283,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="146,62,146,120,142,118,142,65"/>
+</map>

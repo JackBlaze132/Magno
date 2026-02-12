@@ -1,0 +1,4 @@
+var interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_research_seedbed_student_profile_request_mapper =
+[
+    [ "toResearchSeedbedStudentProfile", "de/d69/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_research_seedbed_student_profile_request_mapper.html#a1c58aa1c56c0b9046267189443af3ca4", null ]
+];

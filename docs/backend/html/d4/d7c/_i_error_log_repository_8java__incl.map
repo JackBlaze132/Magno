@@ -1,0 +1,17 @@
+<map id="src/main/java/com/unibague/magno/infrastructure/output/jpa/repository/IErrorLogRepository.java" name="src/main/java/com/unibague/magno/infrastructure/output/jpa/repository/IErrorLogRepository.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="911,5,1161,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,331,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="911,52,346,114,346,109,910,47"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="355,112,608,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="913,58,616,111,615,106,908,58"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="632,112,885,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="956,64,833,109,832,104,951,65"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="909,112,1163,155"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1038,62,1038,98,1034,95,1034,66"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="1186,112,1454,155"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1121,62,1247,107,1242,106,1120,67"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1478,120,1644,147"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1162,55,1466,109,1490,117,1484,116,1465,115,1161,60"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1669,120,1760,147"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1161,41,1393,64,1526,84,1657,109,1670,115,1665,115,1655,115,1525,89,1392,70,1161,46"/>
+</map>

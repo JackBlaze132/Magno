@@ -1,0 +1,11 @@
+<map id="com.unibague.magno.infrastructure.input.rest.ErrorLogController" name="com.unibague.magno.infrastructure.input.rest.ErrorLogController">
+<area shape="rect" id="Node000001" title="REST controller for querying error logs in Magno." alt="" coords="970,72,1257,115"/>
+<area shape="rect" id="Node000002" href="$d4/d59/classcom_1_1unibague_1_1magno_1_1application_1_1handler_1_1impl_1_1_error_log_handler.html" title="Implementation of IErrorLogHandler." alt="" coords="533,72,822,115"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="838,91,972,93,967,93,838,96"/>
+<area shape="rect" id="Node000003" href="$dd/d25/interfacecom_1_1unibague_1_1magno_1_1application_1_1handler_1_1interfaces_1_1_i_error_log_handler.html" title="Handler interface for error log operations." alt="" coords="5,5,328,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="343,41,509,61,559,71,554,72,508,67,343,46"/>
+<area shape="rect" id="Node000004" href="$d0/d39/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_error_log_service_port.html" title="Service port interface that defines the contract for error log management operations." alt="" coords="58,72,275,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="290,91,535,92,530,95,290,96"/>
+<area shape="rect" id="Node000005" href="$d4/d15/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_error_log_response_mapper.html" title="Mapper interface for converting error log domain models to response DTOs." alt="" coords="7,139,326,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="341,140,508,120,554,116,559,115,509,125,342,146"/>
+</map>

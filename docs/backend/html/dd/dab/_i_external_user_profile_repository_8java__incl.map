@@ -1,0 +1,9 @@
+<map id="src/main/java/com/unibague/magno/infrastructure/output/jpa/repository/IExternalUserProfileRepository.java" name="src/main/java/com/unibague/magno/infrastructure/output/jpa/repository/IExternalUserProfileRepository.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="369,5,594,80"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,128,331,171"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="373,80,245,125,243,120,368,81"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="355,128,608,171"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="483,78,483,114,479,111,479,82"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="632,136,723,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="551,78,643,128,637,128,550,83"/>
+</map>

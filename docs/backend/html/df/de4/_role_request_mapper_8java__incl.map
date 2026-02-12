@@ -1,0 +1,11 @@
+<map id="src/main/java/com/unibague/magno/application/mapper/request/RoleRequestMapper.java" name="src/main/java/com/unibague/magno/application/mapper/request/RoleRequestMapper.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="450,5,669,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,290,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="452,61,251,111,250,105,447,62"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="314,120,576,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="528,63,472,112,470,108,523,65"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="600,120,748,147"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="594,62,651,111,645,110,592,67"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="773,120,970,147"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="653,62,819,115,813,115,652,67"/>
+</map>

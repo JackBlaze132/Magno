@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroupprofile_1_1_investigat4a6a16cb7cd8adad5b451152902241b1 =
+[
+    [ "InvestigationGroupProfileFunctionaryIsAlreadyACoordinatorException", "d1/d68/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroupprofile_1_1_investigat4a6a16cb7cd8adad5b451152902241b1.html#a667a94354661474ff44aba2757f5fcea", null ]
+];

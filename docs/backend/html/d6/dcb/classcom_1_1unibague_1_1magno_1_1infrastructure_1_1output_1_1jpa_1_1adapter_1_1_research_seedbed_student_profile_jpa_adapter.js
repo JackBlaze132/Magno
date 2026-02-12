@@ -1,0 +1,13 @@
+var classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_research_seedbed_student_profile_jpa_adapter =
+[
+    [ "deleteById", "d6/dcb/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_research_seedbed_student_profile_jpa_adapter.html#a70eec4d4b11c9326e11cddda9c4238a0", null ],
+    [ "existsByStudentProfileIdAndResearchSeedbedProfileId", "d6/dcb/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_research_seedbed_student_profile_jpa_adapter.html#afcbac3e732446bd791a3e3d838fc0578", null ],
+    [ "findAll", "d6/dcb/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_research_seedbed_student_profile_jpa_adapter.html#a40f461cebc21b0aa4fdff15e1fbaedb7", null ],
+    [ "findAllByResearchSeedbedProfileId", "d6/dcb/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_research_seedbed_student_profile_jpa_adapter.html#a02905cba3dbbf1d369f85245cf18609b", null ],
+    [ "findAllByStudentProfileIdAndAcademicPeriodId", "d6/dcb/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_research_seedbed_student_profile_jpa_adapter.html#a08cb389670dc3b071ce3baa10230c206", null ],
+    [ "findById", "d6/dcb/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_research_seedbed_student_profile_jpa_adapter.html#aed9ea381f78879b873637e1e40526973", null ],
+    [ "save", "d6/dcb/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_research_seedbed_student_profile_jpa_adapter.html#af6fa40eb927d66845951d3d67c5bd4ab", null ],
+    [ "update", "d6/dcb/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_research_seedbed_student_profile_jpa_adapter.html#a21a9541c9eb4e5f114d7d5b8c9acdcb1", null ],
+    [ "researchSeedbedStudentProfileMapper", "d6/dcb/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_research_seedbed_student_profile_jpa_adapter.html#a7c7ca21d93a7ca5f66dccc32ddf5cef0", null ],
+    [ "researchSeedbedStudentProfileRepository", "d6/dcb/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_research_seedbed_student_profile_jpa_adapter.html#a5c604c61603ebfa4b4cfe53bc08ca887", null ]
+];

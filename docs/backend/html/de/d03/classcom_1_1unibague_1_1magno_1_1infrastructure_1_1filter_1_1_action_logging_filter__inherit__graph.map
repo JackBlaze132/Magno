@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.infrastructure.filter.ActionLoggingFilter" name="com.unibague.magno.infrastructure.filter.ActionLoggingFilter">
+<area shape="rect" id="Node000001" title="Servlet filter for auditing user actions." alt="" coords="5,80,264,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="109,5,160,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,46,137,81,132,79,133,50"/>
+</map>

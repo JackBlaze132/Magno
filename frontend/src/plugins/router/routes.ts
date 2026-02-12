@@ -1,7 +1,18 @@
+/**
+ * Defines the complete route tree for the application.
+ * Routes are structured hierarchically to match the Hexagonal Architecture-based backend
+ * (Period -> Group -> Seedbed).
+ */
+
 import { RouteLocationNormalized } from 'vue-router'
 import { paths as P } from './paths'
 import { components } from './components'
 
+/**
+ * Array of route definitions for Vue Router.
+ * Each route contains its path, component, and metadata for access control.
+ * @type {Array<import('vue-router').RouteRecordRaw>}
+ */
 export const routes = [
   {
     path: P.RAIZ,
@@ -270,7 +281,7 @@ export const routes = [
       {
         name: 'logs',
         path: P.LOGS_PATH,
-        component: components.LOGS_INDEX,
+        component: components.LOG_INDEX,
         meta: {
           requiresAuth: true,
           requiredPermission: { action: 'view', entity: 'logs' }

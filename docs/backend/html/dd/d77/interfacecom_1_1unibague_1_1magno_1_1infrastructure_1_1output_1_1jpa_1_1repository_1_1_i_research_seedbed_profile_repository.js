@@ -1,0 +1,6 @@
+var interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_research_seedbed_profile_repository =
+[
+    [ "findAllByAcademicPeriod_Id", "dd/d77/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_research_seedbed_profile_repository.html#a33544b976d01b6ed5fce27e72a19bcdd", null ],
+    [ "findAllByInvestigationGroupProfileId", "dd/d77/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_research_seedbed_profile_repository.html#a46a56179b2a1b34a5b3a0fb5bfff7dc4", null ],
+    [ "getSeedbedReportById", "dd/d77/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_research_seedbed_profile_repository.html#a5946a20678313713ce43ae1dc1c53547", null ]
+];

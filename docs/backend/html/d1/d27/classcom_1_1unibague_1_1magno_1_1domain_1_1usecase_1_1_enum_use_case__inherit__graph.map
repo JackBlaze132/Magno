@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.usecase.EnumUseCase" name="com.unibague.magno.domain.usecase.EnumUseCase">
+<area shape="rect" id="Node000001" title="Use case implementation for enum&#45;related operations." alt="" coords="5,96,254,139"/>
+<area shape="rect" id="Node000002" href="$da/d85/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_enum_service_port.html" title="Service port interface that defines the contract for enum&#45;related operations." alt="" coords="21,5,238,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,62,132,97,127,95,128,66"/>
+</map>

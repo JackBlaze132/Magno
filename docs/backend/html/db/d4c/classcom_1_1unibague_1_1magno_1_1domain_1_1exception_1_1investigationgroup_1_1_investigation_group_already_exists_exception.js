@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroup_1_1_investigation_group_already_exists_exception =
+[
+    [ "InvestigationGroupAlreadyExistsException", "db/d4c/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroup_1_1_investigation_group_already_exists_exception.html#a9baf218233bf35c5840e1f81c0de01df", null ]
+];

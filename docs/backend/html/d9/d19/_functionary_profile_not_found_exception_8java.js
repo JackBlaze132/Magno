@@ -1,0 +1,4 @@
+var _functionary_profile_not_found_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.functionaryprofile.FunctionaryProfileNotFoundException", "d0/d84/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1functionaryprofile_1_1_functionary_profile_not_found_exception.html", "d0/d84/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1functionaryprofile_1_1_functionary_profile_not_found_exception" ]
+];

@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.usecase.ResearchSeedbedStudentProfileUseCase" name="com.unibague.magno.domain.usecase.ResearchSeedbedStudentProfileUseCase">
+<area shape="rect" id="Node000001" title="Use case implementation for managing research seedbed student profiles." alt="" coords="14,96,279,139"/>
+<area shape="rect" id="Node000002" href="$dc/de9/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_research_seedbed_student_profile_service_port.html" title="Service port interface that defines the contract for research seedbed student profile management oper..." alt="" coords="5,5,288,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,62,149,97,144,95,145,66"/>
+</map>

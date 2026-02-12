@@ -1,0 +1,4 @@
+var _student_seedbed_certificate_builder_8java =
+[
+    [ "com.unibague.magno.application.dto.util.certificate.StudentSeedbedCertificateBuilder", "db/d34/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1util_1_1certificate_1_1_student_seedbed_certificate_builder.html", "db/d34/classcom_1_1unibague_1_1magno_1_1application_1_1dto_1_1util_1_1certificate_1_1_student_seedbed_certificate_builder" ]
+];

@@ -64,3 +64,14 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+javadoc {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    failOnError = false
+}
+
+tasks.register('doxygen', Exec) {
+    commandLine 'doxygen', 'Doxyfile'
+    description 'Generates technical documentation using Doxygen'
+    group 'documentation'
+}

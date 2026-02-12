@@ -1,0 +1,5 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_student_not_found_exception =
+[
+    [ "IntegraStudentNotFoundException", "db/df0/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_student_not_found_exception.html#a457e25a562664e96f97630a3a88d2462", null ],
+    [ "IntegraStudentNotFoundException", "db/df0/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_student_not_found_exception.html#af0c2fee6c28209def21ed46b17c036e7", null ]
+];

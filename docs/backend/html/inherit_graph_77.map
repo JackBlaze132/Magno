@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$d8/d11/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_research_seedbed_profile_response_mapper.html" title="Mapper interface for converting research seedbed profile domain models to response DTOs." alt="" coords="5,5,325,48"/>
+<area shape="rect" id="Node000001" href="$d0/d78/classcom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_research_seedbed_profile_response_mapper_impl.html" title="Implementation of ResearchSeedbedProfileResponseMapper." alt="" coords="373,5,692,48"/>
+<area shape="poly" id="edge25_Node000000_Node000001" title=" " alt="" coords="340,24,375,27,369,27,340,29"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="com.unibague.magno.application.mapper.response.InvestigationGroupProfileResponseMapperImpl" name="com.unibague.magno.application.mapper.response.InvestigationGroupProfileResponseMapperImpl">
+<area shape="rect" id="Node000001" title="Implementation of InvestigationGroupProfileResponseMapper." alt="" coords="576,203,895,245"/>
+<area shape="rect" id="Node000002" href="$d5/d76/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_investigation_group_profile_response_mapper.html" title="Mapper interface for converting investigation group profile domain models to response DTOs." alt="" coords="5,5,325,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="340,19,448,32,501,45,553,63,605,93,652,130,691,169,720,203,714,202,687,172,649,134,602,97,551,68,500,50,447,37,341,24"/>
+<area shape="rect" id="Node000003" href="$d3/dd0/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_investigation_group_service_port.html" title="Service port interface that defines the contract for investigation group management operations." alt="" coords="57,72,273,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="288,89,417,98,486,108,552,124,595,140,637,160,705,202,700,202,634,164,593,145,551,129,485,113,417,103,289,94"/>
+<area shape="rect" id="Node000004" href="$de/dbe/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_investigation_group_response_mapper.html" title="Mapper interface for converting investigation group domain models to response DTOs." alt="" coords="5,140,325,183"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="340,174,552,196,582,202,576,202,551,201,340,179"/>
+<area shape="rect" id="Node000005" href="$d7/dc7/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_functionary_profile_service_port.html" title="Service port interface that defines the contract for functionary profile management operations." alt="" coords="57,207,273,249"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="289,224,577,223,574,227,289,230"/>
+<area shape="rect" id="Node000006" href="$d7/d3e/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_functionary_profile_response_mapper.html" title="Mapper interface for converting functionary profile domain models to response DTOs." alt="" coords="5,276,325,319"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="340,294,445,288,551,275,614,261,675,245,670,247,615,266,552,280,446,293,341,299"/>
+<area shape="rect" id="Node000007" href="$d6/de6/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_academic_period_service_port.html" title="Service port interface that defines the contract for academic period management operations." alt="" coords="57,343,273,385"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="288,362,417,351,485,340,551,323,594,306,635,285,702,247,707,245,638,290,596,311,552,328,486,345,417,356,289,367"/>
+<area shape="rect" id="Node000008" href="$d8/d48/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_academic_period_response_mapper.html" title="Mapper interface for converting academic period domain models to response DTOs." alt="" coords="5,409,325,452"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="340,432,392,428,446,419,500,406,551,387,603,356,650,317,688,277,715,247,720,244,692,281,653,321,606,360,553,392,501,411,447,424,393,433,340,438"/>
+</map>

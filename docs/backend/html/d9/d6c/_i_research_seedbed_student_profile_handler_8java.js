@@ -1,0 +1,4 @@
+var _i_research_seedbed_student_profile_handler_8java =
+[
+    [ "com.unibague.magno.application.handler.interfaces.IResearchSeedbedStudentProfileHandler", "d2/d19/interfacecom_1_1unibague_1_1magno_1_1application_1_1handler_1_1interfaces_1_1_i_research_seedbed_student_profile_handler.html", "d2/d19/interfacecom_1_1unibague_1_1magno_1_1application_1_1handler_1_1interfaces_1_1_i_research_seedbed_student_profile_handler" ]
+];

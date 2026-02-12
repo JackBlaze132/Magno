@@ -1,0 +1,13 @@
+<map id="src/main/java/com/unibague/magno/domain/spi/IRolePersistencePort.java" name="src/main/java/com/unibague/magno/domain/spi/IRolePersistencePort.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="520,5,755,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,120,267,147"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="520,61,217,119,216,114,519,56"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="291,112,568,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="578,64,489,108,487,102,573,65"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="592,120,683,147"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="639,62,639,106,635,103,635,66"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="708,120,826,147"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="677,62,740,111,735,110,675,67"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="850,120,940,147"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="714,62,850,114,844,114,713,67"/>
+</map>

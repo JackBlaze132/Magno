@@ -1,0 +1,13 @@
+<map id="com.unibague.magno.infrastructure.input.rest.AcademicPeriodRestController" name="com.unibague.magno.infrastructure.input.rest.AcademicPeriodRestController">
+<area shape="rect" id="Node000001" title="REST controller for managing academic periods in Magno." alt="" coords="1062,105,1349,148"/>
+<area shape="rect" id="Node000002" href="$d2/d09/classcom_1_1unibague_1_1magno_1_1application_1_1handler_1_1impl_1_1_academic_period_handler.html" title="Implementation of IAcademicPeriodHandler." alt="" coords="579,105,868,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="884,124,1064,126,1059,127,884,129"/>
+<area shape="rect" id="Node000003" href="$db/d5f/interfacecom_1_1unibague_1_1magno_1_1application_1_1handler_1_1interfaces_1_1_i_academic_period_handler.html" title="Handler interface for academic period operations." alt="" coords="5,5,328,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="343,40,448,54,555,73,661,105,656,105,554,79,448,59,343,45"/>
+<area shape="rect" id="Node000004" href="$d6/de6/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_academic_period_service_port.html" title="Service port interface that defines the contract for academic period management operations." alt="" coords="58,72,275,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="290,98,580,116,576,120,290,103"/>
+<area shape="rect" id="Node000005" href="$de/d45/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_academic_period_request_mapper.html" title="Mapper interface for converting academic period request DTOs to domain models." alt="" coords="12,139,321,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="336,154,554,143,581,143,576,144,555,148,337,159"/>
+<area shape="rect" id="Node000006" href="$d8/d48/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_academic_period_response_mapper.html" title="Mapper interface for converting academic period domain models to response DTOs." alt="" coords="7,205,326,248"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="342,214,447,202,554,183,614,166,667,149,672,148,615,171,555,188,448,207,342,219"/>
+</map>

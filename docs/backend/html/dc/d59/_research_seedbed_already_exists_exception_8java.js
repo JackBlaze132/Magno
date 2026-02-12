@@ -1,0 +1,4 @@
+var _research_seedbed_already_exists_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedAlreadyExistsException", "d3/d3a/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbed_1_1_research_seedbed_already_exists_exception.html", "d3/d3a/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbed_1_1_research_seedbed_already_exists_exception" ]
+];

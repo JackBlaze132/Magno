@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.application.mapper.response.FunctionaryProfileResponseMapperImpl" name="com.unibague.magno.application.mapper.response.FunctionaryProfileResponseMapperImpl">
+<area shape="rect" id="Node000001" title="Implementation of FunctionaryProfileResponseMapper." alt="" coords="5,96,325,139"/>
+<area shape="rect" id="Node000002" href="$d7/d3e/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_functionary_profile_response_mapper.html" title="Mapper interface for converting functionary profile domain models to response DTOs." alt="" coords="5,5,325,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,62,167,97,163,94,163,66"/>
+</map>

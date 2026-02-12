@@ -1,0 +1,11 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.adapter.RoleJpaAdapter" name="com.unibague.magno.infrastructure.output.jpa.adapter.RoleJpaAdapter">
+<area shape="rect" id="Node000001" title="JPA implementation of IRolePersistencePort for managing role persistence." alt="" coords="740,72,1078,115"/>
+<area shape="rect" id="Node000002" href="$db/da5/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_role_persistence_port.html" title="Persistence port for managing role data." alt="" coords="303,5,519,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="535,38,717,61,770,71,765,71,716,67,535,44"/>
+<area shape="rect" id="Node000003" href="$dd/d0c/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_role_repository.html" title="Spring Data JPA repository for RoleEntity." alt="" coords="236,72,586,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="602,91,742,93,737,94,602,96"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,72,187,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="202,91,238,93,233,94,203,96"/>
+<area shape="rect" id="Node000005" href="$df/dce/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_role_entity_mapper.html" title="MapStruct mapper for converting between Role domain model and RoleEntity JPA entity." alt="" coords="242,139,580,181"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="595,136,716,120,765,116,770,115,717,125,596,141"/>
+</map>

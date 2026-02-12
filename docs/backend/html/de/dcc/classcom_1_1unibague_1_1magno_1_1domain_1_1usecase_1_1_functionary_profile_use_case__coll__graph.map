@@ -1,0 +1,11 @@
+<map id="com.unibague.magno.domain.usecase.FunctionaryProfileUseCase" name="com.unibague.magno.domain.usecase.FunctionaryProfileUseCase">
+<area shape="rect" id="Node000001" title="Use case implementation for managing functionary profiles." alt="" coords="479,105,727,148"/>
+<area shape="rect" id="Node000002" href="$d7/dc7/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_functionary_profile_service_port.html" title="Service port interface that defines the contract for functionary profile management operations." alt="" coords="9,5,225,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,35,346,49,455,71,552,104,547,105,454,76,345,54,241,40"/>
+<area shape="rect" id="Node000003" href="$dc/dbe/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_functionary_profile_persistence_port.html" title="Persistence port for managing functionary profile data." alt="" coords="5,72,229,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="244,99,480,116,476,120,244,105"/>
+<area shape="rect" id="Node000004" href="$d6/de6/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_academic_period_service_port.html" title="Service port interface that defines the contract for academic period management operations." alt="" coords="9,139,225,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="240,154,454,143,481,143,476,144,455,148,241,160"/>
+<area shape="rect" id="Node000005" href="$d9/d80/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_role_service_port.html" title="Service port interface that defines the contract for role management operations." alt="" coords="9,205,225,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="241,217,345,204,454,183,507,166,553,149,558,148,508,171,455,188,346,209,241,222"/>
+</map>

@@ -1,0 +1,21 @@
+<map id="src/main/java/com/unibague/magno/infrastructure/configuration/security/handler/CustomLogoutSuccessHandler.java" name="src/main/java/com/unibague/magno/infrastructure/configuration/security/handler/CustomLogoutSuccessHandler.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="823,5,1154,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,164,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="820,46,528,72,355,91,180,114,179,109,354,85,527,67,826,45"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="188,112,346,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="821,52,608,79,362,114,361,109,607,73,826,51"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="370,112,660,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="850,64,632,111,632,106,845,65"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="684,112,853,155"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="926,64,830,108,829,103,920,65"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="878,112,1099,155"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="990,62,990,98,987,95,987,66"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1123,112,1467,155"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1080,62,1218,107,1212,107,1079,67"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1491,112,1699,155"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1154,58,1478,111,1473,111,1154,64"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1724,112,1978,155"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1154,49,1411,75,1711,112,1706,112,1410,80,1154,54"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="2002,120,2138,147"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1154,37,1328,45,1538,58,1765,79,1990,109,2013,116,2007,116,1989,115,1764,84,1537,64,1328,50,1154,43"/>
+</map>

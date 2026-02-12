@@ -1,0 +1,11 @@
+<map id="src/main/java/com/unibague/magno/domain/api/IAcademicPeriodServicePort.java" name="src/main/java/com/unibague/magno/domain/api/IAcademicPeriodServicePort.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="595,5,830,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,356,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="598,57,310,111,309,106,592,57"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="380,112,730,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="668,64,603,106,601,101,663,65"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="754,112,988,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="760,62,827,104,822,103,759,67"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="1012,120,1104,147"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="830,62,1001,109,1012,115,1006,114,1000,115,829,67"/>
+</map>

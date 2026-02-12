@@ -1,0 +1,22 @@
+<map id="com.unibague.magno.infrastructure.configuration.security.SecurityConfig" name="com.unibague.magno.infrastructure.configuration.security.SecurityConfig">
+<area shape="rect" id="Node000001" title="Main Spring Security configuration class." alt="" coords="1104,155,1460,197"/>
+<area shape="rect" id="Node000002" href="$dc/d69/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_custom_oidc_user_service.html" title="Custom OIDC user service for Google OAuth2 authentication." alt="" coords="525,85,881,128"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="896,127,1106,154,1101,155,897,132"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="123,5,244,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="258,24,374,38,501,57,618,84,613,86,500,63,373,43,260,29"/>
+<area shape="rect" id="Node000004" href="$d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html" title="Service port interface that defines the contract for user management operations." alt="" coords="75,155,292,197"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="307,173,1104,173,1103,179,307,179"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="306,157,540,127,536,130,308,162"/>
+<area shape="rect" id="Node000007" href="$d5/d48/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_google_id_token_authentication_filter.html" title="Security filter for authenticating requests using Google ID tokens or Magno development tokens." alt="" coords="525,308,881,351"/>
+<area shape="poly" id="edge9_Node000007_Node000004" title=" " alt="" coords="276,201,321,220,363,245,375,259,387,271,448,287,555,307,550,308,447,292,384,276,371,262,360,249,319,225,276,206"/>
+<area shape="rect" id="Node000005" href="$d4/d0e/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1integra_1_1_i_integra_service_port.html" title="Service port interface that defines the contract for Integra external system integration operations." alt="" coords="54,56,313,99"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="328,83,526,95,522,98,329,88"/>
+<area shape="rect" id="Node000006" href="$d9/d80/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_role_service_port.html" title="Service port interface that defines the contract for role management operations." alt="" coords="75,259,292,301"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="306,256,405,225,454,202,499,175,510,160,515,152,523,144,564,127,559,130,526,149,519,156,515,163,502,179,456,207,406,230,308,261"/>
+<area shape="poly" id="edge10_Node000007_Node000006" title=" " alt="" coords="273,303,329,316,386,325,455,331,527,335,522,336,455,336,385,331,328,321,273,308"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="820,302,1079,237,1213,199,1219,197,1081,243,821,307"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="108,429,259,456"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="274,429,361,415,502,382,624,352,629,351,504,387,362,420,274,434"/>
+<area shape="rect" id="Node000009" href="$d6/d52/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1configuration_1_1security_1_1_jwt_service.html" title="Service for generating and validating JWT tokens for development/testing purposes." alt="" coords="5,363,362,405"/>
+<area shape="poly" id="edge11_Node000007_Node000009" title=" " alt="" coords="377,374,500,363,595,351,590,352,501,368,378,379"/>
+</map>

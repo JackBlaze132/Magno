@@ -1,0 +1,4 @@
+var _academic_period_not_found_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.academicperiod.AcademicPeriodNotFoundException", "d1/d66/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicperiod_1_1_academic_period_not_found_exception.html", "d1/d66/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicperiod_1_1_academic_period_not_found_exception" ]
+];

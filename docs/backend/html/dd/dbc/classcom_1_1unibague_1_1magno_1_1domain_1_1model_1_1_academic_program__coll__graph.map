@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.model.AcademicProgram" name="com.unibague.magno.domain.model.AcademicProgram">
+<area shape="rect" id="Node000001" title="Domain model representing an academic program offered by the institution." alt="" coords="27,120,261,163"/>
+<area shape="rect" id="Node000002" href="$d0/dfa/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_academic_program_type.html" title="Enum representing the type of academic program." alt="" coords="5,5,283,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="146,62,146,121,142,119,142,65"/>
+</map>

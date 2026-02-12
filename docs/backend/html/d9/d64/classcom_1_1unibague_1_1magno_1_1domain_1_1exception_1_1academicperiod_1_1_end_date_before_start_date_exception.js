@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicperiod_1_1_end_date_before_start_date_exception =
+[
+    [ "EndDateBeforeStartDateException", "d9/d64/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicperiod_1_1_end_date_before_start_date_exception.html#ac209503c2171a69821d48e85e71f44a1", null ]
+];

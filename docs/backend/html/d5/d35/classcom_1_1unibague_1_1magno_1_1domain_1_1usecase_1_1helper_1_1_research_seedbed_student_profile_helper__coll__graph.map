@@ -1,0 +1,13 @@
+<map id="com.unibague.magno.domain.usecase.helper.ResearchSeedbedStudentProfileHelper" name="com.unibague.magno.domain.usecase.helper.ResearchSeedbedStudentProfileHelper">
+<area shape="rect" id="Node000001" title="Implementation of IResearchSeedbedStudentProfileHelper." alt="" coords="555,139,842,181"/>
+<area shape="rect" id="Node000002" href="$d8/d54/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_research_seedbed_student_profile_helper.html" title="Helper interface for research seedbed student profile operations." alt="" coords="5,5,293,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="308,34,419,50,531,76,602,104,663,138,658,138,600,109,530,81,418,55,309,40"/>
+<area shape="rect" id="Node000003" href="$d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html" title="Service port interface that defines the contract for user management operations." alt="" coords="41,72,257,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="273,100,531,128,582,138,576,138,530,133,273,106"/>
+<area shape="rect" id="Node000004" href="$d2/d9c/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_research_seedbed_profile_service_port.html" title="Service port interface that defines the contract for research seedbed profile management operations." alt="" coords="30,139,268,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="283,157,556,158,552,162,284,163"/>
+<area shape="rect" id="Node000005" href="$df/d5b/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_student_profile_service_port.html" title="Service port interface that defines the contract for student profile management operations." alt="" coords="41,205,257,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="272,214,530,187,582,181,576,182,531,192,273,220"/>
+<area shape="rect" id="Node000006" href="$d6/de6/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_academic_period_service_port.html" title="Service port interface that defines the contract for academic period management operations." alt="" coords="41,272,257,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="273,284,398,268,465,256,530,239,600,211,658,183,663,181,602,216,531,244,466,261,399,274,273,289"/>
+</map>

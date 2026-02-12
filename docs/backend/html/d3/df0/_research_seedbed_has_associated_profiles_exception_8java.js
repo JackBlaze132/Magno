@@ -1,0 +1,4 @@
+var _research_seedbed_has_associated_profiles_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.researchseedbed.ResearchSeedbedHasAssociatedProfilesException", "dc/d3b/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbed_1_1_research_seedbed_has_associated_profiles_exception.html", "dc/d3b/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbed_1_1_research_seedbed_has_associated_profiles_exception" ]
+];

@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.spi.IResearchSeedbedStudentProfilePersistencePort" name="com.unibague.magno.domain.spi.IResearchSeedbedStudentProfilePersistencePort">
+<area shape="rect" id="Node000001" title="Persistence port for managing research seedbed student profile data." alt="" coords="5,5,313,48"/>
+<area shape="rect" id="Node000002" href="$d6/dcb/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1adapter_1_1_research_seedbed_student_profile_jpa_adapter.html" title="JPA implementation of IResearchSeedbedStudentProfilePersistencePort for managing research seedbed stu..." alt="" coords="361,5,698,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="328,24,363,27,358,27,328,29"/>
+</map>

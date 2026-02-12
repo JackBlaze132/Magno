@@ -1,0 +1,13 @@
+<map id="src/main/java/com/unibague/magno/application/mapper/request/impl/AcademicPeriodRequestMapperImpl.java" name="src/main/java/com/unibague/magno/application/mapper/request/impl/AcademicPeriodRequestMapperImpl.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="643,5,887,80"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,128,290,171"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="643,67,285,128,284,122,642,62"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="314,128,624,171"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="663,80,542,125,541,120,658,81"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="648,128,882,171"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="767,78,767,114,763,111,763,82"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="906,136,1120,163"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="853,78,971,130,966,129,852,83"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="1145,128,1353,171"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="888,68,1141,124,1136,124,887,73"/>
+</map>

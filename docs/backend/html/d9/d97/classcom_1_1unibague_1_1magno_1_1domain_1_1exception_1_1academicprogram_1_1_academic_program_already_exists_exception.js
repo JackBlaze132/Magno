@@ -1,0 +1,5 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicprogram_1_1_academic_program_already_exists_exception =
+[
+    [ "AcademicProgramAlreadyExistsException", "d9/d97/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicprogram_1_1_academic_program_already_exists_exception.html#aaf56d0be8c701a6b314b8122e73c8044", null ],
+    [ "AcademicProgramAlreadyExistsException", "d9/d97/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicprogram_1_1_academic_program_already_exists_exception.html#a6bfcd6ef688ce54c6f0a95a8ec0af3e7", null ]
+];

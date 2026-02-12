@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.api.cronjobs.ICronJobServicePort" name="com.unibague.magno.domain.api.cronjobs.ICronJobServicePort">
+<area shape="rect" id="Node000001" title="Service port interface that defines the contract for scheduled cron job operations." alt="" coords="21,5,291,48"/>
+<area shape="rect" id="Node000002" href="$d3/dca/classcom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1cronjobs_1_1_cron_job_use_case.html" title="Use case implementation for scheduled cron job operations." alt="" coords="5,96,307,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,62,158,97,154,94,154,66"/>
+</map>

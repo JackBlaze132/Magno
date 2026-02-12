@@ -1,0 +1,27 @@
+<map id="src/main/java/com/unibague/magno/application/handler/impl/ResearchSeedbedProfileHandler.java" name="src/main/java/com/unibague/magno/application/handler/impl/ResearchSeedbedProfileHandler.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1768,5,2039,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,290,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1765,39,1501,49,1140,62,728,84,306,114,305,109,727,78,1140,57,1501,43,1770,39"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="314,112,608,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1765,41,1268,68,949,88,624,114,623,109,949,83,1268,63,1771,41"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="632,112,954,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1771,45,1412,75,970,114,969,109,1411,70,1765,46"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="978,112,1288,155"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1771,53,1303,113,1303,108,1765,53"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="1312,112,1631,155"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1778,64,1580,111,1579,105,1772,65"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1656,112,1893,155"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1868,64,1815,105,1813,100,1863,65"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1917,112,2151,155"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1943,62,1997,103,1991,102,1942,67"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="2176,112,2445,155"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="2025,62,2211,108,2205,108,2024,67"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="2469,112,2796,155"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="2039,51,2463,109,2458,109,2039,56"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="2820,120,3035,147"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="2039,41,2389,67,2599,86,2809,109,2846,117,2841,117,2808,115,2598,91,2388,72,2039,47"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="3059,112,3268,155"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="2039,38,2482,60,2760,81,3046,112,3041,112,2760,86,2481,66,2039,43"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="3291,120,3382,147"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="2039,36,2326,44,2684,58,3029,79,3171,93,3280,109,3294,115,3289,115,3279,115,3171,98,3029,85,2683,63,2326,49,2039,41"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="com.unibague.magno.domain.usecase.DependencyUseCase" name="com.unibague.magno.domain.usecase.DependencyUseCase">
+<area shape="rect" id="Node000001" title="Use case implementation for managing dependencies (organizational units)." alt="" coords="484,72,732,115"/>
+<area shape="rect" id="Node000002" href="$da/db3/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_dependency_service_port.html" title="Service port interface that defines the contract for dependency management operations." alt="" coords="27,5,243,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="259,36,460,61,505,71,499,72,459,67,259,41"/>
+<area shape="rect" id="Node000003" href="$d3/d41/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_dependency_persistence_port.html" title="Persistence port for managing dependency data." alt="" coords="27,72,243,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="258,91,485,92,481,95,259,96"/>
+<area shape="rect" id="Node000004" href="$d4/d0e/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1integra_1_1_i_integra_service_port.html" title="Service port interface that defines the contract for Integra external system integration operations." alt="" coords="5,139,265,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="280,143,459,120,499,116,505,115,460,125,281,149"/>
+</map>

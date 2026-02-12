@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.entity.AcademicProgramEntity" name="com.unibague.magno.infrastructure.output.jpa.entity.AcademicProgramEntity">
+<area shape="rect" id="Node000001" title="JPA entity representing the academic_programs table." alt="" coords="5,120,331,163"/>
+<area shape="rect" id="Node000002" href="$d0/dfa/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_academic_program_type.html" title="Enum representing the type of academic program." alt="" coords="29,5,307,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,62,170,121,166,119,166,65"/>
+</map>

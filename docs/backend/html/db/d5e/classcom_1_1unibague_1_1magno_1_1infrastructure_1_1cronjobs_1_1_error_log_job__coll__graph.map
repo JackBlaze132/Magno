@@ -1,0 +1,12 @@
+<map id="com.unibague.magno.infrastructure.cronjobs.ErrorLogJob" name="com.unibague.magno.infrastructure.cronjobs.ErrorLogJob">
+<area shape="rect" id="Node000001" title="Scheduled job for cleaning up old error logs." alt="" coords="939,97,1221,140"/>
+<area shape="rect" id="Node000002" href="$d0/d39/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_error_log_service_port.html" title="Service port interface that defines the contract for error log management operations." alt="" coords="493,5,709,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="724,41,916,75,1001,97,995,97,914,80,724,47"/>
+<area shape="rect" id="Node000003" href="$dc/dde/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_cron_job_execution_log_service_port.html" title="Service port interface that defines the contract for cron job execution log management operations." alt="" coords="5,109,227,152"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="242,113,251,112,437,104,583,104,915,112,941,115,936,115,915,117,583,109,437,109,251,117,243,118"/>
+<area shape="rect" id="Node000005" href="$d0/d11/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1util_1_1_cron_job_log_file_service.html" title="Service for generating text file reports of cron job executions." alt="" coords="476,144,726,187"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="242,137,477,155,473,158,242,142"/>
+<area shape="rect" id="Node000004" href="$d1/d76/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1util_1_1_cron_job_log_context_service.html" title="Service for creating and managing cron job execution log contexts." alt="" coords="476,211,726,253"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="741,214,827,200,914,180,975,160,1028,141,1034,140,977,165,916,185,828,205,742,219"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="741,152,915,136,941,136,936,136,915,141,742,157"/>
+</map>

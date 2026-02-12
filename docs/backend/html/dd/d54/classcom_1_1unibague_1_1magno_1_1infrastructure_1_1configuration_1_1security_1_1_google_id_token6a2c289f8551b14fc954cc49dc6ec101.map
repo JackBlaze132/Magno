@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.infrastructure.configuration.security.GoogleIdTokenAuthenticationFilter" name="com.unibague.magno.infrastructure.configuration.security.GoogleIdTokenAuthenticationFilter">
+<area shape="rect" id="Node000001" title="Security filter for authenticating requests using Google ID tokens or Magno development tokens." alt="" coords="5,80,362,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="108,5,259,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,46,186,81,181,79,182,50"/>
+</map>

@@ -1,0 +1,26 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile =
+[
+    [ "ExternalUserProfile", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#a209328c2c72cec62973d47a38d30894a", null ],
+    [ "ExternalUserProfile", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#ad6da031749b916307783613841c0473e", null ],
+    [ "getAcademicPeriodId", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#a70203f78a02a6d0c09b71dbfa0091af1", null ],
+    [ "getCountry", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#a4cb9abbb708be7720dbdf7d125d0eb0b", null ],
+    [ "getId", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#a1f12255a53746158033d73d10e3b1700", null ],
+    [ "getOrganizationName", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#a86e47d5c5264a05c1b01b242e428e489", null ],
+    [ "getResearchSeedbedProfileId", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#a29ed2ac931e033893b822a529f6a8cd8", null ],
+    [ "getTypeOfExternalUser", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#a18c7e8f3bd3efdd2930919bdd43ddcdf", null ],
+    [ "getUserId", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#a2b809f3313af5a2a0728dfe98e15df1a", null ],
+    [ "setAcademicPeriodId", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#a27ddf1035e056f9fab4e18146616d552", null ],
+    [ "setCountry", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#aea4c0c1471ae337b1b54c15dab8f90c7", null ],
+    [ "setId", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#a7c61002f07c9e132e3227e05179f5c70", null ],
+    [ "setOrganizationName", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#a5a487f1e957259552ed4c8a8129bbc73", null ],
+    [ "setResearchSeedbedProfileId", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#ab11e8471e77c91999c16c3d163738153", null ],
+    [ "setTypeOfExternalUser", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#aad3d7bb669b05278fb6a968bde2682ad", null ],
+    [ "setUserId", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#ae66ba3a8b8efa46f54b980be76dcda1e", null ],
+    [ "academicPeriodId", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#a0a9f111cf5c2d35819472d916bfbff62", null ],
+    [ "country", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#a106583ff4c450e77d3e130bcbcf81eb0", null ],
+    [ "id", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#a6e221130f9761a3e09534e63a491aabc", null ],
+    [ "organizationName", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#aa6e76489683f46ebc5413566afea14b0", null ],
+    [ "researchSeedbedProfileId", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#a3bc995c44d1c0dd34649e514f37f59cd", null ],
+    [ "typeOfExternalUser", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#abebde2430fe9775c20c3d7edfc42c423", null ],
+    [ "userId", "dc/d34/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_external_user_profile.html#a13b8e691e340d72803856e9a46297591", null ]
+];

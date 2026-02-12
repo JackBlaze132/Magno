@@ -1,5 +1,5 @@
 /**
- * @fileoverview Factory pattern implementation for dynamically creating form components.
+ * Factory pattern implementation for dynamically creating form components.
  * Provides a centralized way to get the appropriate form factory based on action type.
  * @module FormFactory
  */
@@ -17,10 +17,11 @@ import { UploadFormFactory } from "./actions-forms/uploadFormFactory";
  * Factory class for creating and configuring form components based on action types.
  * Implements the Factory pattern to provide appropriate form factories for different CRUD operations.
  *
- * @class FormFactory
- * @description This class serves as the main entry point for obtaining form component configurations.
+ * This class serves as the main entry point for obtaining form component configurations.
  * It maps action types to their corresponding factory implementations and provides methods
  * to retrieve both factories and component configurations.
+ *
+ * @class FormFactory
  *
  * @example
  * // Get a component configuration for creating a period
@@ -36,11 +37,7 @@ export class FormFactory {
   /**
    * Returns the appropriate form factory instance based on the action type.
    *
-   * @static
-   * @param {ActionType} action - The action type ('create', 'update', 'delete', 'view', 'upload')
-   * @returns {AbstractFormFactory} The corresponding form factory instance
-   *
-   * @description Maps action types to their factory implementations:
+   * Maps action types to their factory implementations:
    * - 'create' → CreateFormFactory
    * - 'upload' → UploadFormFactory
    * - 'update' → UpdateFormFactory
@@ -48,6 +45,9 @@ export class FormFactory {
    * - 'delete' → DeleteFormFactory
    *
    * Returns a new FormFactory instance as fallback if action is not found.
+   *
+   * @param {ActionType} action - The action type ('create', 'update', 'delete', 'view', 'upload')
+   * @returns {AbstractFormFactory} The corresponding form factory instance
    *
    * @example
    * const createFactory = FormFactory.getFactory('create');
@@ -69,7 +69,6 @@ export class FormFactory {
    * Retrieves the component configuration for a specific action and entity type.
    * This is the primary method used to get form component configurations throughout the application.
    *
-   * @static
    * @param {ActionType} action - The action to perform ('create', 'update', 'delete', 'view', 'upload')
    * @param {EntityType} type - The entity type (e.g., 'period', 'group', 'seedbed', 'user')
    * @param {Record<string, any>} [extraProps] - Optional additional props to pass to the component

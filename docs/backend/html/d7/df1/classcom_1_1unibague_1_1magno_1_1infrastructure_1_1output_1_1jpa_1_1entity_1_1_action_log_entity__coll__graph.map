@@ -1,0 +1,9 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.entity.ActionLogEntity" name="com.unibague.magno.infrastructure.output.jpa.entity.ActionLogEntity">
+<area shape="rect" id="Node000001" title="JPA entity representing the action_logs table." alt="" coords="878,27,1203,69"/>
+<area shape="rect" id="Node000002" href="$dd/d9e/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1entity_1_1_user_entity.html" title="JPA entity representing the users table." alt="" coords="472,27,797,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="812,45,880,48,875,48,812,51"/>
+<area shape="rect" id="Node000003" href="$d1/d9c/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_sex.html" title="Enum representing biological sex values used in the system." alt="" coords="5,5,306,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="321,26,474,38,469,39,321,31"/>
+<area shape="rect" id="Node000004" href="$d1/df0/enumcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1enums_1_1_type_of_internal_user.html" title="Enum representing internal user types." alt="" coords="17,56,294,99"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="309,70,448,63,474,63,469,64,448,68,310,75"/>
+</map>

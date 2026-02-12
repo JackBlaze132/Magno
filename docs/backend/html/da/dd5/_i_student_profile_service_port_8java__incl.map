@@ -1,0 +1,13 @@
+<map id="src/main/java/com/unibague/magno/domain/api/IStudentProfileServicePort.java" name="src/main/java/com/unibague/magno/domain/api/IStudentProfileServicePort.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="485,5,706,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,240,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="485,61,240,111,238,106,484,56"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="263,120,526,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="539,64,435,115,434,110,533,65"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="550,120,642,147"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="598,62,598,106,594,103,594,66"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="666,120,761,147"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="631,62,689,111,684,109,630,67"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="785,120,903,147"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="670,62,800,114,795,114,669,67"/>
+</map>

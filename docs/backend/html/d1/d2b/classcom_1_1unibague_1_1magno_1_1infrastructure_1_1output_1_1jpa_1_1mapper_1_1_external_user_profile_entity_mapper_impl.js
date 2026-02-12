@@ -1,0 +1,7 @@
+var classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_external_user_profile_entity_mapper_impl =
+[
+    [ "toExternalUserProfile", "d1/d2b/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_external_user_profile_entity_mapper_impl.html#ade134514fb300f28efaf666edf451d61", null ],
+    [ "toExternalUserProfileEntity", "d1/d2b/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_external_user_profile_entity_mapper_impl.html#aece5688d00a130327c431e2a098769cd", null ],
+    [ "toExternalUserProfileEntity", "d1/d2b/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_external_user_profile_entity_mapper_impl.html#a2441337f1f637b56e249126f6a5a4c98", null ],
+    [ "toExternalUserProfileList", "d1/d2b/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_external_user_profile_entity_mapper_impl.html#a3744ffc7de384f2415d82a6cb9186f33", null ]
+];

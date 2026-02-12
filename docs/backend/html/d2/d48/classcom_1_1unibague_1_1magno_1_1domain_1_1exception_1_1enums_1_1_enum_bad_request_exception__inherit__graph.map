@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.exception.enums.EnumBadRequestException" name="com.unibague.magno.domain.exception.enums.EnumBadRequestException">
+<area shape="rect" id="Node000001" title="Exception thrown when an invalid enum value is provided in a request." alt="" coords="5,80,304,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="90,5,219,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,46,157,81,152,79,153,50"/>
+</map>

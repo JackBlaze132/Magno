@@ -1,0 +1,26 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed =
+[
+    [ "ResearchSeedbed", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#adad52524d983d92c4f9fe4f4d5c17400", null ],
+    [ "ResearchSeedbed", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#a32a108ed7172d29a152137e5c2d7680e", null ],
+    [ "getCreationDate", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#a2232f8c24ca176a365752c5c37ca9729", null ],
+    [ "getId", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#ae696146a4e4c7d367e76b9283109ec70", null ],
+    [ "getLineOfResearch", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#afd3bc494a14ffb340e16210c5f07d29b", null ],
+    [ "getMission", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#a295139045d1bc2235ad8fb4a9cb95d24", null ],
+    [ "getName", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#a4e09e3f42ad50bc0950d3ee7c23e1b44", null ],
+    [ "getResearchProposalDescription", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#abba787e37176fc1ca22bf29352e11030", null ],
+    [ "getVision", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#a41a787796e639ed778750214df6b2606", null ],
+    [ "setCreationDate", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#addde51c6b02ce5f12c661cf99b77545a", null ],
+    [ "setId", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#a68f5ccbe7d6f33ad0227c77507d2c1da", null ],
+    [ "setLineOfResearch", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#ad7a5928bbb1a2f0ae7f48a1a1ef285fc", null ],
+    [ "setMission", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#ac1543fa6555a1d1193ca8d41a9f3e29b", null ],
+    [ "setName", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#a7514c23f3f40dddaa3b19ab5738b4f4d", null ],
+    [ "setResearchProposalDescription", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#a5bc7f4f3846e5a7cdf25f4b8e16fae9d", null ],
+    [ "setVision", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#a1e747132fa6a97d75c169df1bd8f62fb", null ],
+    [ "creationDate", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#a35993083406d17cf77d5939a641ad71d", null ],
+    [ "id", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#ab046344c2db06f637c20408b0b14998c", null ],
+    [ "lineOfResearch", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#ae91ee9d9b69b545b5c25fa600da82dfb", null ],
+    [ "mission", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#ab5374d1fff8696860af38725a92ad5ed", null ],
+    [ "name", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#a1504326e8672ed163f8957976d1c90f4", null ],
+    [ "researchProposalDescription", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#aa2cb53cd1f48aec07014519f9f42a981", null ],
+    [ "vision", "d2/d87/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1_research_seedbed.html#a278d723f90bf887272ab37e4863392b4", null ]
+];

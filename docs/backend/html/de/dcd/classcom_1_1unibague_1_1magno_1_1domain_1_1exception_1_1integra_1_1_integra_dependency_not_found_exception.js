@@ -1,0 +1,5 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_dependency_not_found_exception =
+[
+    [ "IntegraDependencyNotFoundException", "de/dcd/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_dependency_not_found_exception.html#a56eb32aacbc702161893b9f42fa7a9a2", null ],
+    [ "IntegraDependencyNotFoundException", "de/dcd/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1integra_1_1_integra_dependency_not_found_exception.html#a62f3be7cbf1fecce871ef721c5b67222", null ]
+];

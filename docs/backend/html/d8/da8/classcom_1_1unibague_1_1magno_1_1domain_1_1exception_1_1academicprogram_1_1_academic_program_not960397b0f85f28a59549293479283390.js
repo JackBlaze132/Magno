@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicprogram_1_1_academic_program_not960397b0f85f28a59549293479283390 =
+[
+    [ "AcademicProgramNotFoundByCodeInExcelException", "d8/da8/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicprogram_1_1_academic_program_not960397b0f85f28a59549293479283390.html#a0beb6f6a0e3bb5b66919de5ce5564bb9", null ]
+];

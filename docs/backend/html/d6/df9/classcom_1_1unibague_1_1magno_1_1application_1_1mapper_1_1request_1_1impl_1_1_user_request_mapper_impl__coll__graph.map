@@ -1,0 +1,7 @@
+<map id="com.unibague.magno.application.mapper.request.impl.UserRequestMapperImpl" name="com.unibague.magno.application.mapper.request.impl.UserRequestMapperImpl">
+<area shape="rect" id="Node000001" title="Implementation of UserRequestMapper." alt="" coords="464,39,801,81"/>
+<area shape="rect" id="Node000002" href="$d1/dc5/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_user_request_mapper.html" title="Mapper interface for converting user request DTOs to domain models." alt="" coords="5,5,315,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="330,36,466,48,460,49,330,41"/>
+<area shape="rect" id="Node000003" href="$d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html" title="Service port interface that defines the contract for user management operations." alt="" coords="52,72,268,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="283,84,439,73,466,74,460,74,440,79,283,89"/>
+</map>

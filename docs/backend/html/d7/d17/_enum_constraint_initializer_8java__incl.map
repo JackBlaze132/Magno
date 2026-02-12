@@ -1,0 +1,27 @@
+<map id="src/main/java/com/unibague/magno/infrastructure/initializer/EnumConstraintInitializer.java" name="src/main/java/com/unibague/magno/infrastructure/initializer/EnumConstraintInitializer.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1256,5,1456,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,120,288,147"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1253,41,839,70,570,90,299,115,251,120,250,115,298,109,570,85,838,64,1258,41"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="311,112,480,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1253,41,922,67,712,87,496,114,496,109,711,82,922,62,1258,41"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="504,112,709,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1258,46,1018,76,724,114,723,109,1017,71,1253,47"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="733,120,947,147"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1258,54,923,119,922,114,1253,55"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="971,120,1132,147"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1268,64,1106,118,1105,112,1263,65"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1156,112,1329,155"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1325,63,1279,104,1277,99,1320,65"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1352,112,1589,155"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1391,62,1437,103,1432,101,1389,67"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1613,112,1821,155"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1456,60,1628,108,1623,107,1456,65"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="1845,112,2120,155"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1456,49,1835,109,1830,109,1456,54"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="2144,120,2253,147"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1456,37,1591,44,1760,58,1946,79,2132,109,2149,116,2144,115,2131,115,1946,84,1760,63,1590,50,1456,42"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="2277,120,2368,147"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="1456,34,1613,38,1816,49,2041,72,2155,89,2266,109,2280,115,2274,115,2265,115,2154,94,2040,77,1815,54,1613,43,1456,39"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="2392,120,2565,147"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="1456,37,1631,44,1861,58,2119,79,2380,109,2410,117,2405,116,2379,115,2119,85,1860,63,1630,50,1456,42"/>
+</map>

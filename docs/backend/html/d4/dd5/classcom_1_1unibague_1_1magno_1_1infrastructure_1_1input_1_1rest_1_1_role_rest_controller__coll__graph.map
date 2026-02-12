@@ -1,0 +1,13 @@
+<map id="com.unibague.magno.infrastructure.input.rest.RoleRestController" name="com.unibague.magno.infrastructure.input.rest.RoleRestController">
+<area shape="rect" id="Node000001" title="REST controller for managing roles in Magno." alt="" coords="918,105,1205,148"/>
+<area shape="rect" id="Node000002" href="$dc/d9c/classcom_1_1unibague_1_1magno_1_1application_1_1handler_1_1impl_1_1_role_handler.html" title="Implementation of IRoleHandler." alt="" coords="507,105,796,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="811,124,920,126,915,127,811,129"/>
+<area shape="rect" id="Node000003" href="$d8/d7a/interfacecom_1_1unibague_1_1magno_1_1application_1_1handler_1_1interfaces_1_1_i_role_handler.html" title="Handler interface for role operations." alt="" coords="5,5,328,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="343,48,483,75,586,104,580,105,482,80,343,53"/>
+<area shape="rect" id="Node000004" href="$d9/d80/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_role_service_port.html" title="Service port interface that defines the contract for role management operations." alt="" coords="58,72,275,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="290,99,509,115,504,118,290,104"/>
+<area shape="rect" id="Node000005" href="$d7/d4f/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1request_1_1_role_request_mapper.html" title="Mapper interface for converting role request DTOs to domain models." alt="" coords="12,139,321,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="337,150,482,141,509,142,504,142,483,147,337,156"/>
+<area shape="rect" id="Node000006" href="$d5/d18/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_role_response_mapper.html" title="Mapper interface for converting role domain models to response DTOs." alt="" coords="7,205,326,248"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="341,205,482,179,589,149,594,148,483,184,342,210"/>
+</map>

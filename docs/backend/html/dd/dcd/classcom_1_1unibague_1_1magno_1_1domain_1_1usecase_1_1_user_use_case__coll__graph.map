@@ -1,0 +1,13 @@
+<map id="com.unibague.magno.domain.usecase.UserUseCase" name="com.unibague.magno.domain.usecase.UserUseCase">
+<area shape="rect" id="Node000001" title="Use case implementation for managing users in the Magno system." alt="" coords="518,139,766,181"/>
+<area shape="rect" id="Node000002" href="$d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html" title="Service port interface that defines the contract for user management operations." alt="" coords="41,5,257,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="273,33,382,49,439,61,495,77,557,105,611,138,606,138,555,110,493,83,438,66,381,54,273,38"/>
+<area shape="rect" id="Node000003" href="$df/dfe/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_user_persistence_port.html" title="Persistence port for managing user data." alt="" coords="41,72,257,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="273,101,494,128,539,138,534,138,493,133,273,107"/>
+<area shape="rect" id="Node000004" href="$d4/d0e/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1integra_1_1_i_integra_service_port.html" title="Service port interface that defines the contract for Integra external system integration operations." alt="" coords="19,139,279,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="294,157,519,159,515,161,295,163"/>
+<area shape="rect" id="Node000005" href="$d1/d9d/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_research_seedbed_service_port.html" title="Service port interface that defines the contract for research seedbed management operations." alt="" coords="41,205,257,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="272,213,493,187,539,181,534,183,494,192,273,219"/>
+<area shape="rect" id="Node000006" href="$d1/dec/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_user_helper.html" title="Helper interface for user&#45;related operations." alt="" coords="5,272,293,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="308,278,400,262,493,237,555,210,606,183,611,181,557,215,495,243,402,267,309,283"/>
+</map>

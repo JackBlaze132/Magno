@@ -21,7 +21,6 @@ class LoadingManager {
   /**
    * Singleton instance of the LoadingManager class.
    * @private
-   * @static
    * @type {LoadingManager}
    */
   private static instance: LoadingManager;
@@ -45,7 +44,6 @@ class LoadingManager {
    * Sets componentsLoaded to 0 and totalComponents to 3.
    *
    * @public
-   * @constructor
    */
   public constructor() {
     this.componentsLoaded = 0;
@@ -57,7 +55,6 @@ class LoadingManager {
    * Creates a new instance if one doesn't exist.
    *
    * @public
-   * @static
    * @returns {LoadingManager} The singleton LoadingManager instance
    * @example
    * const manager = LoadingManager.getInstance();

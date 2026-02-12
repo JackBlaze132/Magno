@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileHasResearchSeedbedProfilesException" name="com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileHasResearchSeedbedProfilesException">
+<area shape="rect" id="Node000001" title="Exception thrown when attempting to delete an investigation group profile that has associated researc..." alt="" coords="5,80,406,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="141,5,270,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,46,208,81,203,78,204,50"/>
+</map>

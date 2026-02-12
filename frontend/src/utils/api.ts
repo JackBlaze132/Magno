@@ -181,7 +181,6 @@ class API{
   /**
    * Singleton instance of the API class.
    * @private
-   * @static
    * @type {API}
    */
   private static instance: API;
@@ -197,7 +196,6 @@ class API{
    * Creates a new instance if one doesn't exist.
    *
    * @public
-   * @static
    * @returns {API} The singleton API instance
    * @example
    * const api = API.getInstance();
@@ -214,7 +212,6 @@ class API{
    * Automatically handles JSON and text responses.
    *
    * @public
-   * @async
    * @param {string} endpoint - The API endpoint to request (without base URL)
    * @param {Record<string, string>} [headers={}] - Optional custom headers to include in the request
    * @returns {Promise<any>} Response data as an array (for JSON) or text
@@ -255,7 +252,6 @@ class API{
    * Returns the raw Response object for blob/file handling.
    *
    * @public
-   * @async
    * @param {string} endpoint - The API endpoint to download from
    * @param {Record<string, string>} [headers={}] - Optional custom headers
    * @returns {Promise<Response>} The raw fetch Response object
@@ -279,7 +275,6 @@ class API{
    * Automatically handles JSON and FormData payloads.
    *
    * @public
-   * @async
    * @param {string} endpoint - The API endpoint to post to
    * @param {any} [data] - The data to send (JSON object or FormData)
    * @param {Record<string, string>} [headers={}] - Optional custom headers
@@ -341,7 +336,6 @@ class API{
    * Handles 204 No Content responses and JSON/text responses.
    *
    * @public
-   * @async
    * @param {string} endpoint - The API endpoint to update
    * @param {any} data - The data to send as JSON
    * @param {Record<string, string>} [headers={}] - Optional custom headers
@@ -395,7 +389,6 @@ class API{
    * Handles 204 No Content responses and JSON/text responses.
    *
    * @public
-   * @async
    * @param {string} endpoint - The API endpoint to delete from
    * @param {Record<string, string>} [headers={}] - Optional custom headers
    * @returns {Promise<any>} Response data, empty object for 204 status

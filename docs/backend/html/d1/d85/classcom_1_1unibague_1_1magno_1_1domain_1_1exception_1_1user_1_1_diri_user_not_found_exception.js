@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_diri_user_not_found_exception =
+[
+    [ "DiriUserNotFoundException", "d1/d85/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1user_1_1_diri_user_not_found_exception.html#a973b45f79f50d4f9476f968b7c215c3c", null ]
+];

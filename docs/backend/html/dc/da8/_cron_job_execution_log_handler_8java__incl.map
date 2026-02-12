@@ -1,0 +1,19 @@
+<map id="src/main/java/com/unibague/magno/application/handler/impl/CronJobExecutionLogHandler.java" name="src/main/java/com/unibague/magno/application/handler/impl/CronJobExecutionLogHandler.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1117,5,1372,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,300,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1114,45,760,74,315,114,315,109,760,69,1119,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="323,112,646,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1120,52,661,112,661,107,1114,52"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="670,112,990,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1124,64,934,111,934,105,1119,65"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="1014,112,1235,155"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1212,63,1163,105,1161,100,1207,65"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="1259,120,1473,147"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1281,62,1341,111,1336,109,1279,67"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1498,112,1706,155"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1351,62,1513,108,1508,107,1350,67"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1731,120,1897,147"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1372,52,1718,109,1743,117,1738,116,1717,115,1372,57"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1922,120,2013,147"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1372,40,1622,62,1766,82,1909,109,1923,115,1917,115,1908,115,1766,88,1621,68,1372,45"/>
+</map>

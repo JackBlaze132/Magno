@@ -1,0 +1,4 @@
+var _investigation_group_profile_has_research_seedbed_profiles_exception_8java =
+[
+    [ "com.unibague.magno.domain.exception.investigationgroupprofile.InvestigationGroupProfileHasResearchSeedbedProfilesException", "da/db3/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroupprofile_1_1_investigatfbd2a0bf823f9ebc81945c222a810c2f.html", "da/db3/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1investigationgroupprofile_1_1_investigatfbd2a0bf823f9ebc81945c222a810c2f" ]
+];

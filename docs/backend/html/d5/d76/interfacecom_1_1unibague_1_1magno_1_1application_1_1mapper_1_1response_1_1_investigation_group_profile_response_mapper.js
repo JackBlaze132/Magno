@@ -1,0 +1,5 @@
+var interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_investigation_group_profile_response_mapper =
+[
+    [ "toResponse", "d5/d76/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_investigation_group_profile_response_mapper.html#a4348d51d30654ec0bc1251941ea7c4c0", null ],
+    [ "toResponseList", "d5/d76/interfacecom_1_1unibague_1_1magno_1_1application_1_1mapper_1_1response_1_1_investigation_group_profile_response_mapper.html#a73dac41375caff682ea5542a2f9418cd", null ]
+];

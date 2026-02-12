@@ -1,0 +1,11 @@
+<map id="src/main/java/com/unibague/magno/infrastructure/output/jpa/repository/IInvestigationGroupRepository.java" name="src/main/java/com/unibague/magno/infrastructure/output/jpa/repository/IInvestigationGroupRepository.java">
+<area shape="rect" id="Node000001" title=" " alt="" coords="510,5,730,80"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,128,331,171"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="512,69,273,127,272,121,507,69"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="355,128,608,171"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="574,80,522,121,520,116,569,82"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="632,128,885,171"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="670,78,722,119,717,118,668,83"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="909,136,1000,163"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="731,74,898,125,908,131,903,130,897,131,730,79"/>
+</map>

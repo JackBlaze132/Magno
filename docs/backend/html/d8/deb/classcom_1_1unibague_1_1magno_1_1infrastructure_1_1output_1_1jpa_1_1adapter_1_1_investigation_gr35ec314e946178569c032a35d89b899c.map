@@ -1,0 +1,15 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.adapter.InvestigationGroupProfileJpaAdapter" name="com.unibague.magno.infrastructure.output.jpa.adapter.InvestigationGroupProfileJpaAdapter">
+<area shape="rect" id="Node000001" title="JPA implementation of IInvestigationGroupProfilePersistencePort for managing investigation group prof..." alt="" coords="816,109,1154,152"/>
+<area shape="rect" id="Node000002" href="$d3/d47/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_investigation_group_profile_persistence_port.html" title="Persistence port for managing investigation group profile data." alt="" coords="289,5,553,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="569,27,680,36,793,55,871,79,940,109,935,109,869,84,792,60,679,41,569,32"/>
+<area shape="rect" id="Node000003" href="$d3/dab/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_investigation_group_profile_repository.html" title="Spring Data JPA repository for InvestigationGroupProfileEntity." alt="" coords="246,72,596,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="612,103,819,119,813,120,612,109"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,72,197,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="211,91,248,92,243,94,213,96"/>
+<area shape="rect" id="Node000005" href="$d9/d25/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_investigation_group_profile_entity_mapper.html" title="Mapper interface for converting between InvestigationGroupProfile domain model and InvestigationGroup..." alt="" coords="252,147,590,189"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="605,172,698,171,792,165,888,153,893,152,793,171,699,177,606,178"/>
+<area shape="rect" id="Node000006" href="$d3/d45/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_functionary_profile_repository.html" title="Spring Data JPA repository for FunctionaryProfileEntity." alt="" coords="246,213,596,256"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="612,227,702,217,792,201,869,178,935,153,940,152,871,183,793,207,703,223,612,232"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="8,213,194,256"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="209,232,248,234,243,235,209,237"/>
+</map>

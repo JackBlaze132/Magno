@@ -1,0 +1,5 @@
+var namespacecom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1role =
+[
+    [ "DiriRoleNotAllowedException", "dc/dd7/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1role_1_1_diri_role_not_allowed_exception.html", "dc/dd7/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1role_1_1_diri_role_not_allowed_exception" ],
+    [ "RoleNotFoundException", "df/d7d/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1role_1_1_role_not_found_exception.html", "df/d7d/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1role_1_1_role_not_found_exception" ]
+];

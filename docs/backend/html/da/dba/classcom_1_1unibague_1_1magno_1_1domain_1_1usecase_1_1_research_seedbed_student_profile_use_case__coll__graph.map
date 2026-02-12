@@ -1,0 +1,19 @@
+<map id="com.unibague.magno.domain.usecase.ResearchSeedbedStudentProfileUseCase" name="com.unibague.magno.domain.usecase.ResearchSeedbedStudentProfileUseCase">
+<area shape="rect" id="Node000001" title="Use case implementation for managing research seedbed student profiles." alt="" coords="575,240,840,282"/>
+<area shape="rect" id="Node000002" href="$dc/de9/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_research_seedbed_student_profile_service_port.html" title="Service port interface that defines the contract for research seedbed student profile management oper..." alt="" coords="18,6,300,49"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="315,4,374,4,435,9,495,23,552,47,581,65,606,88,649,142,680,195,700,240,695,238,676,198,645,145,602,92,577,70,549,51,494,28,434,15,374,9,317,9"/>
+<area shape="rect" id="Node000003" href="$d1/d90/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_research_seedbed_student_profile_persistence_port.html" title="Persistence port for managing research seedbed student profile data." alt="" coords="5,73,313,116"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="327,96,440,111,497,125,552,144,591,164,628,188,687,239,681,239,625,193,589,168,550,149,496,130,439,117,329,101"/>
+<area shape="rect" id="Node000004" href="$d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html" title="Service port interface that defines the contract for user management operations." alt="" coords="51,140,267,182"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="282,167,413,182,551,206,652,238,647,239,550,211,412,187,283,172"/>
+<area shape="rect" id="Node000005" href="$d4/d0e/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1integra_1_1_i_integra_service_port.html" title="Service port interface that defines the contract for Integra external system integration operations." alt="" coords="29,206,289,249"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="304,234,576,251,572,255,304,239"/>
+<area shape="rect" id="Node000006" href="$df/d5b/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_student_profile_service_port.html" title="Service port interface that defines the contract for student profile management operations." alt="" coords="51,273,267,316"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="282,290,412,286,550,278,577,278,572,279,551,284,412,292,283,296"/>
+<area shape="rect" id="Node000007" href="$d2/d9c/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_research_seedbed_profile_service_port.html" title="Service port interface that defines the contract for research seedbed profile management operations." alt="" coords="40,340,278,382"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="293,353,419,342,550,318,607,301,657,284,662,282,608,306,551,323,419,347,294,359"/>
+<area shape="rect" id="Node000008" href="$d8/d54/interfacecom_1_1unibague_1_1magno_1_1domain_1_1usecase_1_1helper_1_1_i_research_seedbed_student_profile_helper.html" title="Helper interface for research seedbed student profile operations." alt="" coords="15,406,303,449"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="318,439,375,438,434,432,493,420,550,401,593,376,632,344,665,310,688,284,693,281,669,314,636,348,596,380,552,406,495,425,435,437,376,443,319,444"/>
+<area shape="rect" id="Node000009" href="$d9/d80/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_role_service_port.html" title="Service port interface that defines the contract for role management operations." alt="" coords="51,473,267,516"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="282,510,347,512,416,507,485,494,549,468,577,450,602,427,644,376,675,324,695,284,699,281,680,326,648,379,606,431,580,454,552,473,486,499,417,513,347,517,282,515"/>
+</map>

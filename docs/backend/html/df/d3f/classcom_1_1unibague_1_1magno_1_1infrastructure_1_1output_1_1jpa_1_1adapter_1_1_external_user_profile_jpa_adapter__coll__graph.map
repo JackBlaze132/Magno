@@ -1,0 +1,11 @@
+<map id="com.unibague.magno.infrastructure.output.jpa.adapter.ExternalUserProfileJpaAdapter" name="com.unibague.magno.infrastructure.output.jpa.adapter.ExternalUserProfileJpaAdapter">
+<area shape="rect" id="Node000001" title="JPA implementation of IExternalUserProfilePersistencePort for managing external user profile persiste..." alt="" coords="828,67,1166,109"/>
+<area shape="rect" id="Node000002" href="$dd/d4f/interfacecom_1_1unibague_1_1magno_1_1domain_1_1spi_1_1_i_external_user_profile_persistence_port.html" title="Persistence port for managing external user profile data." alt="" coords="308,5,539,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="554,34,805,57,854,66,849,66,804,63,554,39"/>
+<area shape="rect" id="Node000003" href="$d4/d60/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1repository_1_1_i_external_user_profile_repository.html" title="Spring Data JPA repository for ExternalUserProfileEntity." alt="" coords="248,72,598,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="614,89,831,89,825,90,614,94"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,72,199,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="214,91,250,93,245,94,215,96"/>
+<area shape="rect" id="Node000005" href="$d6/db9/interfacecom_1_1unibague_1_1magno_1_1infrastructure_1_1output_1_1jpa_1_1mapper_1_1_external_user_profile_entity_mapper.html" title="Mapper interface for converting between ExternalUserProfile domain model and ExternalUserProfileEntit..." alt="" coords="254,143,592,185"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="607,159,705,153,804,140,870,125,930,110,935,110,871,131,805,145,706,158,607,165"/>
+</map>

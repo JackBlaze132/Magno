@@ -1,0 +1,4 @@
+var _investigation_group_y_r_metadata_8java =
+[
+    [ "com.unibague.magno.domain.model.excel.metadata.InvestigationGroupYRMetadata", "d2/d8c/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1excel_1_1metadata_1_1_investigation_group_y_r_metadata.html", "d2/d8c/classcom_1_1unibague_1_1magno_1_1domain_1_1model_1_1excel_1_1metadata_1_1_investigation_group_y_r_metadata" ]
+];

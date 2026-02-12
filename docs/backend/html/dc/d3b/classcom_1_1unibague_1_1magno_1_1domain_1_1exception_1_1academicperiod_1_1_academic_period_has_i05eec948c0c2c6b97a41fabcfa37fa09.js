@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicperiod_1_1_academic_period_has_i05eec948c0c2c6b97a41fabcfa37fa09 =
+[
+    [ "AcademicPeriodHasInvestigationGroupProfilesException", "dc/d3b/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1academicperiod_1_1_academic_period_has_i05eec948c0c2c6b97a41fabcfa37fa09.html#a6c8c78e473ffa526c33c3963beccb57c", null ]
+];

@@ -1,0 +1,4 @@
+var classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedprofile_1_1_research_seedda5233be1bda84e5974f9ff7a90ce8fd =
+[
+    [ "ResearchSeedbedProfileHasStudentsAssociatedException", "d1/dbc/classcom_1_1unibague_1_1magno_1_1domain_1_1exception_1_1researchseedbedprofile_1_1_research_seedda5233be1bda84e5974f9ff7a90ce8fd.html#a980b86563a68bcabb70212dc5748ad17", null ]
+];

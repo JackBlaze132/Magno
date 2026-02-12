@@ -1,0 +1,5 @@
+<map id="com.unibague.magno.domain.exception.role.DiriRoleNotAllowedException" name="com.unibague.magno.domain.exception.role.DiriRoleNotAllowedException">
+<area shape="rect" id="Node000001" title="Exception thrown when attempting to create a profile with DIRI role through unauthorized methods." alt="" coords="5,80,286,123"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="81,5,210,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,46,148,81,143,79,144,50"/>
+</map>

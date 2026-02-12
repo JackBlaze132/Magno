@@ -1,0 +1,7 @@
+<map id="com.unibague.magno.infrastructure.initializer.UserDataInitializer" name="com.unibague.magno.infrastructure.initializer.UserDataInitializer">
+<area shape="rect" id="Node000001" title="Initializer responsible for synchronizing user data from the external Integra system at application s..." alt="" coords="53,120,337,163"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,13,153,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,48,176,119,171,120,101,53"/>
+<area shape="rect" id="Node000003" href="$dc/d68/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1cronjobs_1_1_i_cron_job_service_port.html" title="Service port interface that defines the contract for scheduled cron job operations." alt="" coords="176,5,446,48"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="282,58,218,122,215,117,277,60"/>
+</map>

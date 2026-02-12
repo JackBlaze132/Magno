@@ -1,0 +1,11 @@
+<map id="com.unibague.magno.infrastructure.filter.ActionLoggingFilter" name="com.unibague.magno.infrastructure.filter.ActionLoggingFilter">
+<area shape="rect" id="Node000001" title="Servlet filter for auditing user actions." alt="" coords="823,56,1081,99"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="471,5,521,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="537,19,655,28,799,45,847,55,841,55,799,51,654,34,537,24"/>
+<area shape="rect" id="Node000003" href="$d0/d64/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_action_log_service_port.html" title="Service port interface that defines the contract for action log management operations." alt="" coords="388,56,604,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="619,75,825,77,820,78,619,80"/>
+<area shape="rect" id="Node000004" href="$d4/d42/classcom_1_1unibague_1_1magno_1_1infrastructure_1_1util_1_1_action_log_context_service.html" title="Service for creating action log entries from HTTP requests." alt="" coords="371,123,621,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="636,126,799,104,839,100,845,99,799,109,637,131"/>
+<area shape="rect" id="Node000005" href="$d8/d51/interfacecom_1_1unibague_1_1magno_1_1domain_1_1api_1_1_i_user_service_port.html" title="Service port interface that defines the contract for user management operations." alt="" coords="5,123,222,165"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="237,141,373,144,367,144,237,147"/>
+</map>

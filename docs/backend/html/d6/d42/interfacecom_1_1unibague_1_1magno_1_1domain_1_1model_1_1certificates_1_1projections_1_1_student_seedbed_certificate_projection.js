@@ -1,0 +1,11 @@
+var interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1certificates_1_1projections_1_1_student_seedbed_certificate_projection =
+[
+    [ "getEndDate", "d6/d42/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1certificates_1_1projections_1_1_student_seedbed_certificate_projection.html#a84ecf917ba2ea0f5e7b2939537195819", null ],
+    [ "getIdentificationNumber", "d6/d42/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1certificates_1_1projections_1_1_student_seedbed_certificate_projection.html#a180c5a1a2214ca800775a9b01fad02ce", null ],
+    [ "getInvestigationGroupCoordinatorName", "d6/d42/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1certificates_1_1projections_1_1_student_seedbed_certificate_projection.html#a61addcbf1e7106e5772f2d9344ff17fc", null ],
+    [ "getInvestigationGroupName", "d6/d42/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1certificates_1_1projections_1_1_student_seedbed_certificate_projection.html#a24dc93a39845c52871040927f9121c0c", null ],
+    [ "getSeedbedCoordinatorName", "d6/d42/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1certificates_1_1projections_1_1_student_seedbed_certificate_projection.html#ac48f2072457ee3b65bd5905c74478171", null ],
+    [ "getSeedbedName", "d6/d42/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1certificates_1_1projections_1_1_student_seedbed_certificate_projection.html#ad9d59b8541e19bf97830ec8e8f9653d7", null ],
+    [ "getStartDate", "d6/d42/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1certificates_1_1projections_1_1_student_seedbed_certificate_projection.html#a35833b93f8d526482a9702c5162574e0", null ],
+    [ "getStudentName", "d6/d42/interfacecom_1_1unibague_1_1magno_1_1domain_1_1model_1_1certificates_1_1projections_1_1_student_seedbed_certificate_projection.html#a96aa0a3583725ee5bcfe6a744cddded4", null ]
+];
