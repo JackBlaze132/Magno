@@ -24,7 +24,7 @@ The core logic and API services for the **Magno** Research Seedbeds Management S
 
 ### Prerequisites
 
-- Java 17+ installed.
+- Java 21 + installed.
 - PostgreSQL instance running.
 
 ### Configuration
