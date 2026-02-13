@@ -12,8 +12,8 @@ The core logic and API services for the **Magno** Research Seedbeds Management S
 
 ## 🛠️ Tech Stack
 
-- **Java 17**
-- **Spring Boot 3.x**
+- **Java 21**
+- **Spring Boot 3.4.1**
 - **Spring Data JPA** (PostgreSQL)
 - **Spring Security** (OAuth2/OIDC)
 - **Gradle** (Build automation)
