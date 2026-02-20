@@ -41,7 +41,7 @@ public class InvestigationGroupUseCase implements IInvestigationGroupServicePort
 
     @Override
     public InvestigationGroup save(InvestigationGroup investigationGroup) {
-        verifyThatInvestigationGroupDoesNotExist(investigationGroup);
+        verifyThatInvestigationGroupDoesNotExist(investigationGroup, null);
         return investigationGroupPersistencePort.save(investigationGroup);
     }
 
@@ -50,13 +50,15 @@ public class InvestigationGroupUseCase implements IInvestigationGroupServicePort
      * Uses case-insensitive comparison and trims whitespace.
      *
      * @param investigationGroup the investigation group to verify
+     * @param excludeId optional ID to exclude from the check (used when updating)
      * @throws InvestigationGroupAlreadyExistsException if a group with the same name exists
      */
-    private void verifyThatInvestigationGroupDoesNotExist(InvestigationGroup investigationGroup) {
+    private void verifyThatInvestigationGroupDoesNotExist(InvestigationGroup investigationGroup, Long excludeId) {
         String normalizedName = investigationGroup.getName().trim().toLowerCase();
         
         List<InvestigationGroup> existingGroups = investigationGroupPersistencePort.findAll();
         boolean exists = existingGroups.stream()
+                .filter(group -> excludeId == null || !group.getId().equals(excludeId))
                 .anyMatch(group -> group.getName().trim().toLowerCase().equals(normalizedName));
         
         if (exists) {
@@ -73,7 +75,7 @@ public class InvestigationGroupUseCase implements IInvestigationGroupServicePort
             throw new InvestigationGroupNotFoundException(
                     String.format("InvestigationGroup with ID %d could not be updated because it does not exist", id));
         }
-        verifyThatInvestigationGroupDoesNotExist(investigationGroup);
+        verifyThatInvestigationGroupDoesNotExist(investigationGroup, id);
         return investigationGroupPersistencePort.update(id, investigationGroup);
     }
 

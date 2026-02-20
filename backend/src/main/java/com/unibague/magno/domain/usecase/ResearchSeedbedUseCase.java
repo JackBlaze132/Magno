@@ -43,7 +43,7 @@ public class ResearchSeedbedUseCase implements IResearchSeedbedServicePort {
 
     @Override
     public ResearchSeedbed save(ResearchSeedbed researchSeedbed) {
-        verifyThatResearchSeedbedDoesNotExist(researchSeedbed);
+        verifyThatResearchSeedbedDoesNotExist(researchSeedbed, null);
         return researchSeedbedPersistencePort.save(researchSeedbed);
     }
 
@@ -52,13 +52,15 @@ public class ResearchSeedbedUseCase implements IResearchSeedbedServicePort {
      * Uses case-insensitive comparison and trims whitespace.
      *
      * @param researchSeedbed the research seedbed to verify
+     * @param excludeId optional ID to exclude from the check (used when updating)
      * @throws ResearchSeedbedAlreadyExistsException if a seedbed with the same name exists
      */
-    private void verifyThatResearchSeedbedDoesNotExist(ResearchSeedbed researchSeedbed) {
+    private void verifyThatResearchSeedbedDoesNotExist(ResearchSeedbed researchSeedbed, Long excludeId) {
         String normalizedName = researchSeedbed.getName().trim().toLowerCase();
         
         List<ResearchSeedbed> existingSeedbeds = researchSeedbedPersistencePort.findAll();
         boolean exists = existingSeedbeds.stream()
+                .filter(seedbed -> excludeId == null || !seedbed.getId().equals(excludeId))
                 .anyMatch(seedbed -> seedbed.getName().trim().toLowerCase().equals(normalizedName));
         
         if (exists) {
@@ -76,7 +78,7 @@ public class ResearchSeedbedUseCase implements IResearchSeedbedServicePort {
                     String.format("No se pudo actualizar el semillero de investigación con ID %d porque no existe", id)
             );
         }
-        verifyThatResearchSeedbedDoesNotExist(researchSeedbed);
+        verifyThatResearchSeedbedDoesNotExist(researchSeedbed, id);
         return researchSeedbedPersistencePort.update(id, researchSeedbed);
     }
 
