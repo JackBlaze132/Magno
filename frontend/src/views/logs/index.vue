@@ -74,7 +74,7 @@ export default defineComponent({
 <template>
     <VRow>
       <VCol cols="12">
-        <h1>Gestión de Logs</h1>
+        <h1>Auditoría</h1>
       </VCol>
     </VRow>
 

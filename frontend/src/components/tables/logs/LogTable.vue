@@ -24,6 +24,15 @@ export default defineComponent({
     }
   },
   computed: {
+    sortBy(): readonly { key: string; order?: boolean | 'asc' | 'desc' }[] {
+      if (this.type === 'ACTION') {
+        return  [{ key: 'timestamp', order: 'desc' }];
+      }
+      if (this.type === 'CRONJOB') {
+        return  [{ key: 'startTime', order: 'desc' }];
+      }
+      return  [{ key: 'timestamp', order: 'desc' }];
+    },
     headers() {
       if (this.type === 'ACTION') {
         return [
@@ -32,7 +41,7 @@ export default defineComponent({
           { title: 'Endpoint', key: 'requestUrl' },
           { title: 'Estado', key: 'responseStatus' },
           { title: 'Usuario', key: 'userEmail' },
-          { title: 'Fecha', key: 'timestamp' },
+          { title: 'Fecha', key: 'timestamp', order: 'desc' },
           { title: 'Tiempo (ms)', key: 'executionTimeMs' },
           { key: 'actions', sortable: false }
         ];
@@ -41,7 +50,7 @@ export default defineComponent({
           { title: 'ID', key: 'id' },
           { title: 'Nombre del Job', key: 'jobName' },
           { title: 'Estado', key: 'status' },
-          { title: 'Inicio', key: 'startTime' },
+          { title: 'Inicio', key: 'startTime', order: 'desc' },
           { title: 'Duración (ms)', key: 'durationMs'},
           { title: 'Detalles', key: 'details' }
         ];
@@ -53,11 +62,11 @@ export default defineComponent({
           { title: 'Endpoint', key: 'requestUrl' },
           { title: 'Mensaje', key: 'errorMessage' },
           { title: 'Usuario', key: 'userEmail' },
-          { title: 'Fecha', key: 'timestamp' },
+          { title: 'Fecha', key: 'timestamp', order: 'desc' },
           { key: 'actions', sortable: false }
         ];
       }
-    }
+    },
   },
   methods: {
     formatDate(date: string) {
@@ -146,6 +155,7 @@ export default defineComponent({
       :search="search"
       :headers="headers"
       :loading="loading"
+      :sort-by="sortBy"
     >
       <template v-slot:item.timestamp="{ item }">
         {{ formatDate(item.timestamp) }}
