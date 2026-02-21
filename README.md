@@ -28,7 +28,7 @@
 ## 🛠️ Technology Stack
 
 ### Backend
-- **Core:** Java 17+ with **Spring Boot 3.x**
+- **Core:** Java 21+ with **Spring Boot 3.x**
 - **Persistence:** Spring Data JPA + PostgreSQL
 - **Security:** Spring Security & Google OAuth2
 - **Build Tool:** Gradle
