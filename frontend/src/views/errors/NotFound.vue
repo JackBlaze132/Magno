@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AppFooter from '@/components/AppFooter.vue'
-import working from '@/assets/images/we_working.svg?raw'
+import working from '@/assets/images/we_working_.svg?raw'
 
 
 </script>
@@ -8,7 +8,7 @@ import working from '@/assets/images/we_working.svg?raw'
 <template>
   <div class="not-found-wrapper d-flex flex-column fill-height">
     <div class="not-found-container d-flex flex-column align-center justify-center flex-grow-1 pa-6 text-center">
-      <div class="logo-container mb-1">
+      <div class="logo-container mb-4">
         <VIcon icon="ri-app-logo"></VIcon>
       </div>
 
@@ -19,7 +19,7 @@ import working from '@/assets/images/we_working.svg?raw'
 
       <h2 class="text-h4 font-weight-bold mb-1">Página no encontrada</h2>
 
-      <p class="text-medium-emphasis mb-2 max-w-md">
+      <p class="text-medium-emphasis mb-9 max-w-md">
         ¡Ups! Parece que te has perdido en el sistema. <br>
         La ruta que buscas no existe en Magno.
       </p>
