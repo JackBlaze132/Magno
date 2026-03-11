@@ -42,7 +42,10 @@ public interface IResearchSeedbedProfileRepository extends JpaRepository<Researc
     INNER JOIN users u_student ON u_student.id = sp.user_id
     INNER JOIN student_profiles_academic_programs spap ON spap.student_profile_id = sp.id
     INNER JOIN academic_programs apg ON apg.id = spap.academic_program_id
-    WHERE rsp.id = :rspId AND ap.id = :apId
+    WHERE 
+        rsp.id IS NOT NULL
+        AND ap.id = :apId
+        AND rssp.was_active = TRUE
 """, nativeQuery = true)
     List<SeedbedReportProjection> getSeedbedReportById(
             @Param("rspId") Long researchSeedbedProfileId, @Param("apId") Long academicPeriodId);

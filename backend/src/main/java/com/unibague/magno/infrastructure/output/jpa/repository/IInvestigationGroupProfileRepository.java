@@ -31,14 +31,17 @@ public interface IInvestigationGroupProfileRepository extends JpaRepository<Inve
         rsp.was_active AS isActive
     FROM research_seedbeds rs
     JOIN research_seedbeds_profiles rsp ON rs.id = rsp.research_seedbed_id
-    JOIN investigation_groups ig ON ig.id = rsp.investigation_group_profile_id
+    JOIN investigation_group_profiles igp ON igp.id = rsp.investigation_group_profile_id
+    JOIN investigation_groups ig ON ig.id = igp.investigation_group_id
     JOIN academic_periods ap ON ap.id = rsp.academic_period_id
-    JOIN users u ON u.id = rsp.coordinator_id
+    JOIN functionary_profiles fp ON fp.id = rsp.coordinator_id
+    JOIN users u ON u.id = fp.user_id
     LEFT JOIN research_seedbeds_student_profiles rssp
            ON rsp.id = rssp.research_seedbed_profile_id
     WHERE ap.id = :academicPeriodId
+        AND rssp.was_active = TRUE
     GROUP BY rsp.id, ap.name, ig.name, rs.name, u.full_name, rsp.was_active
-    ORDER BY ap.name, rs.name
+    ORDER BY ap.name, ig.name, rs.name
 """, nativeQuery = true)
     List<InvestigationGroupHYRProjection> getInvestigationGroupsReportByAcademicPeriodId(@Param("academicPeriodId") Long academicPeriodId);
 
@@ -57,7 +60,8 @@ public interface IInvestigationGroupProfileRepository extends JpaRepository<Inve
         JOIN research_seedbeds_student_profiles rssp ON rssp.research_seedbed_profile_id = rsp.id
         JOIN student_profiles sp ON sp.id = rssp.student_profile_id
         WHERE rsp.academic_period_id IN (:academicPeriodId1, :academicPeriodId2)
-          AND sp.academic_period_id IN (:academicPeriodId1, :academicPeriodId2)
+          AND sp.academic_period_id IN (:academicPeriodId1, :academicPeriodId2) 
+          AND rssp.was_active = TRUE
         GROUP BY
             ig.id,
             ig.name,
@@ -93,6 +97,7 @@ public interface IInvestigationGroupProfileRepository extends JpaRepository<Inve
         ON sp.id = rssp.student_profile_id
     WHERE rsp.academic_period_id = :academicPeriodId
       AND rsp.was_active = true
+      AND rssp.was_active = true
     GROUP BY ap.name, ig.name
     ORDER BY ig.name
     """, nativeQuery = true)
@@ -125,6 +130,7 @@ public interface IInvestigationGroupProfileRepository extends JpaRepository<Inve
     WHERE
         rsp.academic_period_id IN (:academicPeriodId1, :academicPeriodId2)
         AND rsp.was_active = true
+            AND rssp.was_active = true
     GROUP BY
         ig.name,
         ap1.name,
